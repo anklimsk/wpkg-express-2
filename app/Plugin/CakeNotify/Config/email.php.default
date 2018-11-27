@@ -1,0 +1,59 @@
+<?php
+/**
+ * This is email configuration file.
+ *
+ * Use it to configure email transports of CakePHP.
+ * CakeNotify: Sending email from CakePHP using task queues
+ * @copyright Copyright 2016-2018, Andrey Klimov.
+ * @license https://opensource.org/licenses/mit-license.php MIT License
+ * @package plugin.Config
+ */
+
+App::uses('BaseEmailConfig', 'Tools.Config');
+App::uses('ClassRegistry', 'Utility');
+
+class EmailConfig extends BaseEmailConfig {
+
+/**
+ * Read Configure Email pwds and assign them to the configs.
+ * Also assigns custom Mail config as well as log/trace configs.
+ */
+	public function __construct() {
+		if (CakePlugin::loaded('CakeSettingsApp')) {
+			$modelSetting = ClassRegistry::init('CakeSettingsApp.Setting');
+			$host = $modelSetting->getConfig('EmailSmtphost');
+			$port = (int)$modelSetting->getConfig('EmailSmtpport');
+			$user = $modelSetting->getConfig('EmailSmtpuser');
+			$pwd = $modelSetting->getConfig('EmailSmtppassword');
+
+			if (!empty($host)) {
+				$this->smtp['host'] = $host;
+			}
+			if (!empty($port)) {
+				$this->smtp['port'] = $port;
+			}
+			if (!empty($user) && !empty($pwd)) {
+				$this->smtp['username'] = $user;
+				$this->smtp['password'] = $pwd;
+			}
+		}
+		parent::__construct();
+	}
+
+/**
+ * SMTP configuration
+ *
+ * @var array
+ */
+	public $smtp = [
+		'host' => 'localhost',
+		'port' => 25,
+		'username' => null,
+		'password' => null,
+		'template' => 'default',
+		'layout' => 'CakeNotify.default',
+		'transport' => 'Smtp',
+		'trace' => false,
+		'log' => false
+	];
+}

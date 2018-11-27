@@ -1,0 +1,484 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: CakePHP Plugin CakeLdap\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2018-11-15 18:55+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 2.2\n"
+
+#: Console/Command/CronShell.php:43
+msgid "Sync information of employees with LDAP server"
+msgstr "Синхронизация информации сотрудников с сервером LDAP"
+
+#: Console/Command/CronShell.php:57
+msgid "Cron task Shell"
+msgstr "Оболочка задач Cron"
+
+#: Console/Command/CronShell.php:59
+msgid "This shell is used to execute task scheduled."
+msgstr "Эта оболочка используется для выполнения задач по расписанию."
+
+#: Console/Command/CronShell.php:60
+msgid "Available tasks: %s."
+msgstr "Доступные задачи: %s."
+
+#: Console/Command/CronShell.php:60 Model/Sync.php:147;151
+#: Test/Case/Console/Command/CronShellTest.php:52
+msgid "and"
+msgstr "и"
+
+#: Console/Command/Task/QueueOrderEmployeeTask.php:81
+msgid "CakePHP Queue Order task."
+msgstr "Очередь CakePHP задача Сортировки."
+
+#: Console/Command/Task/QueueOrderEmployeeTask.php:84
+#: Test/Case/Console/Command/Task/QueueOrderEmployeeTaskTest.php:135
+msgid "Found order task in queue: %d. Skipped."
+msgstr "Найдено задач в очереди: %d. Пропущено."
+
+#: Console/Command/Task/QueueOrderEmployeeTask.php:91;92
+#: Model/SubordinateDb.php:269
+#: Test/Case/Console/Command/Task/QueueOrderEmployeeTaskTest.php:103
+#: Test/Case/Console/Command/Task/QueueSyncEmployeeTaskTest.php:108
+msgid "Tree of employees is broken. Perform a restore."
+msgstr "Дерево из сотрудников разрушено. Выполните восстановление."
+
+#: Console/Command/Task/QueueOrderEmployeeTask.php:100
+msgid "Error on reorder tree of employee."
+msgstr "Ошибка при пересортиовке дерева сотрудников"
+
+#: Console/Command/Task/QueueRecoveryEmployeeTask.php:82
+msgid "CakePHP Queue Recovery task."
+msgstr "Очередь CakePHP задача Восстановления."
+
+#: Console/Command/Task/QueueRecoveryEmployeeTask.php:85
+#: Test/Case/Console/Command/Task/QueueRecoveryEmployeeTaskTest.php:138
+msgid "Found recovery task in queue: %d. Skipped."
+msgstr "Найдено задач восстановления в очереди: %d. Пропущено."
+
+#: Console/Command/Task/QueueRecoveryEmployeeTask.php:93
+#: Test/Case/Console/Command/Task/QueueRecoveryEmployeeTaskTest.php:178
+msgid "The recovery tree of employees is not required"
+msgstr "Восстановление дерева сотрудников не требуется"
+
+#: Console/Command/Task/QueueRecoveryEmployeeTask.php:101
+msgid "Error on recovery tree of employee."
+msgstr "Ошибка при восстановлении дерева сотрудников."
+
+#: Console/Command/Task/QueueRecoveryEmployeeTask.php:106
+msgid "Error on synchronizing the employee tree with LDAP server."
+msgstr "Ошибка при синхронизации дерева сотрудников с сервером LDAP."
+
+#: Console/Command/Task/QueueSyncEmployeeTask.php:81
+msgid "CakePHP Queue Sync task."
+msgstr "Задача Синхронизации Очереди CakePHP."
+
+#: Console/Command/Task/QueueSyncEmployeeTask.php:94
+#: Test/Case/Console/Command/Task/QueueSyncEmployeeTaskTest.php:157;272
+msgid "Found sync task in queue: %d. Skipped."
+msgstr "Найдено задач cинхронизации в очереди: %d. Пропущено."
+
+#: Console/Command/Task/SyncTask.php:39
+msgid ""
+"This task is used to synchronization information with LDAP server scheduled."
+msgstr ""
+"Эта задача используется для синхронизации информации с сервером LDAP по "
+"расписанию."
+
+#: Console/Command/Task/SyncTask.php:51
+msgid "Synchronization with LDAP server in progress..."
+msgstr "Синхронизация с сервером LDAP выполняется..."
+
+#: Console/Command/Task/SyncTask.php:53
+#: Test/Case/Console/Command/Task/SyncTaskTest.php:76
+msgid "Synchronization with LDAP server set in queue successfully."
+msgstr "Синхронизация с сервером LDAP успешно поставлена в очередь."
+
+#: Console/Command/Task/SyncTask.php:55
+msgid "Synchronization with LDAP server set in queue unsuccessfully."
+msgstr "Синхронизация с сервером LDAP поставлена в очередь неудачно."
+
+#: Controller/EmployeesController.php:181;204
+#: Controller/Component/EmployeeActionComponent.php:236;273;298;315
+msgid "The database does not contain information on the tree view"
+msgstr "База данных не содержит информацию о деревовидном представлении"
+
+#: Controller/UsersController.php:106
+#: Test/Case/Controller/UsersControllerTest.php:159;181;203
+msgid "Invalid username or password, try again"
+msgstr "Неверное имя пользователя или пароль, попробуйте ещё раз"
+
+#: Controller/Component/EmployeeActionComponent.php:116
+msgid "Employees not found"
+msgstr "Сотрудники не найдены"
+
+#: Controller/Component/EmployeeActionComponent.php:141;251
+#: Test/Case/Controller/Component/EmployeeActionTest.php:812;827;842;1807
+msgid "Invalid ID for employee"
+msgstr "Неверный идентификатор сотрудника"
+
+#: Controller/Component/EmployeeActionComponent.php:206
+#: Test/Case/Controller/Component/EmployeeActionTest.php:1737;1779
+msgid "Synchronization information of employees put in queue..."
+msgstr "Синхронизация информации сотрудников поставлена в очередь..."
+
+#: Controller/Component/EmployeeActionComponent.php:209
+msgid "Synchronization information of employees put in queue unsuccessfully"
+msgstr "Синхронизация информации сотрудников поставлена в очередь безуспешно"
+
+#: Controller/Component/EmployeeActionComponent.php:214
+#: Test/Case/Controller/Component/EmployeeActionTest.php:1765
+msgid "Synchronization information of employees has been finished successfully"
+msgstr "Синхронизация информации сотрудников успешно завершена"
+
+#: Controller/Component/EmployeeActionComponent.php:216
+#: Test/Case/Controller/Component/EmployeeActionTest.php:1751
+msgid ""
+"Synchronization information of employees has been finished unsuccessfully"
+msgstr "Синхронизация информации о сотрудниках завершена неудачно"
+
+#: Controller/Component/EmployeeActionComponent.php:279
+#: Test/Case/Controller/Component/EmployeeActionTest.php:2242
+msgid "Order tree of employees put in queue..."
+msgstr "Сортировка дерева сотрудников поставлена в очередь..."
+
+#: Controller/Component/EmployeeActionComponent.php:282
+msgid "Order tree of employees put in queue unsuccessfully"
+msgstr "Сортировка дерева сотрудников поставлена в очередь безуспешно"
+
+#: Controller/Component/EmployeeActionComponent.php:320
+#: Test/Case/Controller/Component/EmployeeActionTest.php:2338
+msgid "Recovery tree of employees put in queue..."
+msgstr "Восстановление дерева сотрудников поставлено в очередь..."
+
+#: Controller/Component/EmployeeActionComponent.php:323
+msgid "Recovery tree of employees put in queue unsuccessfully"
+msgstr "Восстановление дерева сотрудников поставлено в очередь безуспешно"
+
+#: Model/DepartmentDb.php:223
+msgid "Error getting departments information from LDAP server"
+msgstr "Ошибка при получении информации об отделах из сервера LDAP"
+
+#: Model/DepartmentDb.php:271 Model/Sync.php:215
+#: Test/Case/Console/Command/Task/QueueSyncEmployeeTaskTest.php:105;214;218;283
+msgid "Blocked"
+msgstr "Заблокировано"
+
+#: Model/DepartmentDb.php:271 Model/SubordinateDb.php:356 Model/Sync.php:215
+msgid "Deleted"
+msgstr "Удалено"
+
+#: Model/DepartmentDb.php:275 Model/SubordinateDb.php:364 Model/Sync.php:224
+#: Test/Case/Console/Command/Task/QueueSyncEmployeeTaskTest.php:106;215;220;284;288
+msgid "Saved"
+msgstr "Сохранено"
+
+#: Model/DepartmentDb.php:278
+#: Test/Case/Console/Command/Task/QueueSyncEmployeeTaskTest.php:222;290
+msgctxt "res_msg_type"
+msgid "departments"
+msgstr "отделов"
+
+#: Model/SubordinateDb.php:277
+msgid "Error getting employees information from database"
+msgstr "Ошибка при получении информации о сотрудниках из базы данных"
+
+#: Model/SubordinateDb.php:360
+msgid "Changed manager"
+msgstr "Изменён руководитель"
+
+#: Model/SubordinateDb.php:367
+msgctxt "res_msg_type"
+msgid "subordinates"
+msgstr "подчинённых"
+
+#: Model/Sync.php:112
+msgid "Error getting employees information from LDAP server"
+msgstr "Ошибка при получении информации о сотрудниках из сервера LDAP"
+
+#: Model/Sync.php:141
+msgid "Employee DN: \"%s\"."
+msgstr "DN Сотрудника: \"%s\"."
+
+#: Model/Sync.php:148
+msgid "Model: \"%s; \"Field: \"%s\"; Message: \"%s\"."
+msgstr "Модель: \"%s\"; Поле: \"%s\"; Сообщение: \"%s\"."
+
+#: Model/Sync.php:152
+msgid "Field: \"%s\"; Message: \"%s\"."
+msgstr "Поле: \"%s\"; Сообщение: \"%s\"."
+
+#: Model/Sync.php:155
+msgid "Error validation employee: %s"
+msgstr "Ошибка при проверке сотрудника: %s"
+
+#: Model/Sync.php:220
+#: Test/Case/Console/Command/Task/QueueSyncEmployeeTaskTest.php:219;287
+msgid "Deleted binded"
+msgstr "Удалено связанное"
+
+#: Model/Sync.php:227
+#: Test/Case/Console/Command/Task/QueueSyncEmployeeTaskTest.php:109;223;291
+msgctxt "res_msg_type"
+msgid "employees"
+msgstr "сотрудников"
+
+#: Model/Behavior/SyncBehavior.php:101
+#: Test/Case/Console/Command/Task/QueueSyncEmployeeTaskTest.php:109;222;223;290;291
+#: Test/Case/Model/Behavior/SyncBehaviorTest.php:253;279
+msgid "Result of synchronization"
+msgstr "Результат синхронизации"
+
+#: Model/Behavior/SyncBehavior.php:90
+#: Test/Case/Console/Command/Task/QueueSyncEmployeeTaskTest.php:105;106;214;215;218;219;220;283;284;287;288
+#: Test/Case/Model/Behavior/SyncBehaviorTest.php:250;251;277
+msgid "record"
+msgid_plural "records"
+msgstr[0] "запись"
+msgstr[1] "записи"
+msgstr[2] "записей"
+
+#: View/Elements/formUserLogin.ctp:14
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: View/Elements/formUserLogin.ctp:14
+msgid "Username in user principal name format, e.g.: %s"
+msgstr "Имя пользователя в формате основного имени пользователя, например: %s"
+
+#: View/Elements/formUserLogin.ctp:16
+msgid "Password"
+msgstr "Пароль"
+
+#: View/Elements/formUserLogin.ctp:17
+msgid "Caps Lock on"
+msgstr "Включен Caps Lock"
+
+#: View/Elements/formUserLogin.ctp:20 View/Users/login.ctp:10
+msgid "Login"
+msgstr "Вход"
+
+#: View/Elements/tableEmployee.ctp:58 View/Employees/view.ctp:27
+msgid "Synchronize information of this employee with LDAP server"
+msgstr "Синхронизация информации этого сотрудника с сервером LDAP"
+
+#: View/Elements/treeItemEmployeeFullDraggable.ctp:18
+msgid "Show or hide buttons"
+msgstr "Показать или скрыть кнопки"
+
+#: View/Employees/check.ctp:11;30
+msgid "Checking state tree of employees"
+msgstr "Проверка состояния дерева сотрудников"
+
+#: View/Employees/check.ctp:13 View/Employees/index.ctp:14;16
+#: View/Employees/tree.ctp:16 View/Employees/view.ctp:39
+msgid "Employees"
+msgstr "Сотрудники"
+
+#: View/Employees/check.ctp:14
+msgid "Checking tree"
+msgstr "Проверка дерева"
+
+#: View/Employees/check.ctp:22;25
+msgid "Recovery state of tree"
+msgstr "Восстановление состояния дерева"
+
+#: View/Employees/index.ctp:17
+msgid "Index"
+msgstr "Указатель"
+
+#: View/Employees/index.ctp:24 View/Employees/tree.ctp:24
+msgid "Synchronize information with LDAP server"
+msgstr "Синхронизация информации с сервером LDAP"
+
+#: View/Employees/index.ctp:27 View/Employees/tree.ctp:27
+msgid "Synchronize information of employees with LDAP server"
+msgstr "Синхронизировать информацию сотрудников с сервером LDAP"
+
+#: View/Employees/index.ctp:35
+msgid "Tree of employees"
+msgstr "Дерево сотрудников"
+
+#: View/Employees/index.ctp:37
+msgid "Tree view of employees"
+msgstr "Древовидное представление сотрудников"
+
+#: View/Employees/index.ctp:41
+msgid "Index of employees"
+msgstr "Указатель сотрудников"
+
+#: View/Employees/tree.ctp:14;48
+msgid "Tree view information of employees"
+msgstr "Древовидное представление информации о сотрудниках"
+
+#: View/Employees/tree.ctp:17
+msgid "Tree viewing"
+msgstr "Просмотр дерева"
+
+#: View/Employees/tree.ctp:33
+msgid "Order tree of employees"
+msgstr "Сортировка дерева сотрудников"
+
+#: View/Employees/tree.ctp:36
+msgid "Order tree of employees by alphabet"
+msgstr "Сортиовка дерева сотрудников по алфавиту"
+
+#: View/Employees/tree.ctp:38
+msgid "Are you sure you wish to re-order tree of employees?"
+msgstr "Вы уверены, что хотите пересортировать дерево сотрудников?"
+
+#: View/Employees/tree.ctp:43;45
+msgid "Check state tree of employees"
+msgstr "Проверка состояния дерева сотрудников"
+
+#: View/Employees/view.ctp:14
+msgid "Detail information"
+msgstr "Подробная информация"
+
+#: View/Employees/view.ctp:25
+msgid "Synchronize"
+msgstr "Синхронизировать"
+
+#: View/Employees/view.ctp:33
+msgid "Tree of subordinate"
+msgstr "Дерево подчинённых"
+
+#: View/Employees/view.ctp:35
+msgid "Edit tree of subordinate employee"
+msgstr "Редактирование дерева подчинённых сотрудника"
+
+#: View/Employees/view.ctp:40
+msgid "Viewing"
+msgstr "Просмотр"
+
+#: View/Employees/view.ctp:44
+msgid "Information of employees"
+msgstr "Информация о сотрудниках"
+
+#: View/Users/login.ctp:18
+msgid "Authentication"
+msgstr "Аутентификация"
+
+#~ msgid "Synchronization with AD set in queue successfully."
+#~ msgstr "Синхронизация с AD поставлена в очередь успешно."
+
+#~ msgid "Error getting employee information from database"
+#~ msgstr "Ошибка при получении информации о сотрудниках из базы данных"
+
+#~ msgid "Sync information of employees with AD"
+#~ msgstr "Синхронизация информации сотрудников с AD"
+
+#~ msgid "Error on synchronizing the employee tree with AD."
+#~ msgstr "Ошибка при синхронизации дерева сотрудников с AD."
+
+#~ msgid "This task is used to synchronization information with AD scheduled."
+#~ msgstr ""
+#~ "Эта задача используется для синхронизации информации с AD по расписанию."
+
+#~ msgid "Synchronization with AD in progress..."
+#~ msgstr "Синхронизация с AD выполняется..."
+
+#~ msgid "Synchronization with AD set in queue unsuccessfully."
+#~ msgstr "Синхронизация с AD поставлена в очередь неудачно."
+
+#~ msgid "Error getting department information from Active Directory"
+#~ msgstr "Ошибка при получении информации об отделах из Active Directory"
+
+#~ msgid "Error getting employee information from Active Directory"
+#~ msgstr "Ошибка при получении информации о сотрудниках из Active Directory"
+
+#~ msgid "Synchronize information of this employee with AD"
+#~ msgstr "Синхронизация информации этого сотрудника с AD"
+
+#~ msgid "Synchronize information with AD"
+#~ msgstr "Синхронизация информации с AD"
+
+#~ msgid "Synchronize information of employees with AD"
+#~ msgstr "Синхронизировать информацию сотрудников с AD"
+
+#~ msgid "Username in user principal name format, e.g: %s"
+#~ msgstr ""
+#~ "Имя пользователя в формате основного имени пользователя, например: %s"
+
+#~ msgid "Username in user principal name format, e.g: user@domain.com"
+#~ msgstr ""
+#~ "Имя пользователя в формате основного имени пользователя, например: "
+#~ "user@domain.com"
+
+#~ msgid ""
+#~ "Result of synchronization%s:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Результат синхронизации%s:\n"
+#~ "%s"
+
+#~ msgid "Blocked: %d %s of employees"
+#~ msgstr "Заблокировано: %d %s сотрудников"
+
+#~ msgid "Saved: %d %s of employees"
+#~ msgstr "Сохранено: %d %s сотрудников"
+
+#~ msgid ""
+#~ "Result of synchronization:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Результат синхронизации:\n"
+#~ "%s"
+
+#~ msgid "Deleted: %d %s of binded information"
+#~ msgstr "Удалено: %d %s связанной информации"
+
+#~ msgid "Error synchronization of the list of departments"
+#~ msgstr "Ошибка синхронизации списка отделов"
+
+#~ msgid "Deleted: %d %s of employees"
+#~ msgstr "Удалено: %d %s сотрудников"
+
+#~ msgid "Blocked %d %s of employees"
+#~ msgstr "Заблокирована %d %s сотрудников"
+
+#~ msgid "Deleted %d %s of employees"
+#~ msgstr "Удалены %d %s сотрудников"
+
+#~ msgid "Deleted %d %s of binded information"
+#~ msgstr "Удалены %d %s связанной информации"
+
+#~ msgid "Saved %d %s of employees"
+#~ msgstr "Сохранена %d %s сотрудников"
+
+#~ msgid "The tree of employees is recovered successfully"
+#~ msgstr "Дерево сотрудников восстановлено успешно"
+
+#~ msgid "The tree of employees is recovered unsuccessfully"
+#~ msgstr "Дерево сотрудников восстановлено неуспешно"
+
+#~ msgid "Tree of employee"
+#~ msgstr "Дерево сотрудников"
+
+#~ msgid "Order tree of employee"
+#~ msgstr "Сортиовка дерева сотрудников"
+
+#~ msgid "Check state tree of employee"
+#~ msgstr "Проверка состояния дерева сотрудников"
+
+#~ msgid "blocked"
+#~ msgstr "заблокирован"
+
+#~ msgid "Actions"
+#~ msgstr "Действия"
+
+#~ msgid "Tree view"
+#~ msgstr "Древовидное представление"
+
+#~ msgid "Tree information"
+#~ msgstr "Дерево информации"

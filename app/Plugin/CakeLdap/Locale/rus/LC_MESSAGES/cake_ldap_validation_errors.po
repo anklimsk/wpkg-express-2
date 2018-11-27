@@ -1,0 +1,101 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: CakePHP Plugin CakeLdap\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2018-11-15 18:52+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 2.2\n"
+
+#: Config/cakeldap.php:30
+msgid "Incorrect GUID of employee"
+msgstr "Некорректный GUID сотрудника"
+
+#: Config/cakeldap.php:37
+msgid "GUID of employee is not unique"
+msgstr "GUID сотрудника не уникален"
+
+#: Config/cakeldap.php:57 Model/EmployeeEdit.php:validation for field dn
+msgid "Incorrect distinguished name of employee"
+msgstr "Некорректное отличительное имя сотрудника"
+
+#: Config/cakeldap.php:64
+msgid "Distinguished name of employee is not unique"
+msgstr "Отличное имя сотрудника не уникально"
+
+#: Config/cakeldap.php:80
+msgid "Incorrect full name of employee"
+msgstr "Некорректное полное имя сотрудника"
+
+#: Config/cakeldap.php:115
+msgid "Incorrect last name of employee"
+msgstr "Некорректная фамилия сотрудника"
+
+#: Config/cakeldap.php:132
+msgid "Incorrect first name of employee"
+msgstr "Некорректное имя сотрудника"
+
+#: Config/cakeldap.php:149
+msgid "Incorrect middle name of employee"
+msgstr "Некорректное отчество сотрудника"
+
+#: Config/cakeldap.php:166
+msgid "Incorrect position of employee"
+msgstr "Некорректная должность сотрудника"
+
+#: Config/cakeldap.php:249
+msgid "Incorrect E-mail address"
+msgstr "Некорректный адрес электронной почты"
+
+#: Model/Department.php:validation for field id
+#: Model/Othermobile.php:validation
+#: Plugin/CakeLdap/Model/DepartmentDb.php:validation
+#: Plugin/CakeLdap/Model/OthermobileDb.php:validation
+#: Plugin/CakeLdap/Model/OthertelephoneDb.php:validation
+#: Plugin/CakeLdap/Model/SubordinateDb.php:validation
+msgid "Incorrect primary key"
+msgstr "Неправильный первичный ключ"
+
+#: Model/Department.php:validation for field value
+#: Plugin/CakeLdap/Model/DepartmentDb.php:validation
+msgid "Incorrect name of department"
+msgstr "Некорректное наименование отдела"
+
+#: Model/Department.php:validation for field value
+#: Plugin/CakeLdap/Model/DepartmentDb.php:validation
+msgid "Name of department is not unique"
+msgstr "Наименование отдела не является уникальным"
+
+#: Model/EmployeeEdit.php:validation for field othertelephone
+msgid "This field must contain a valid local telephone number."
+msgstr "Это поле должно содержать действительный местный номер телефона."
+
+#: Model/EmployeeEdit.php:validation for field mobile;validation othermobile
+msgid "This field must contain a valid mobile telephone number."
+msgstr "Это поле должно содержать действительный номер мобильного телефона."
+
+#: Model/Othermobile.php:validation for field value
+#: Plugin/CakeLdap/Model/OthermobileDb.php:validation
+#: Plugin/CakeLdap/Model/OthertelephoneDb.php:validation
+msgid "Incorrect value"
+msgstr "Неверное значение"
+
+#: Plugin/CakeLdap/Model/User.php:validation for field username
+msgid "You must enter username."
+msgstr "Вы должны ввести имя пользователя."
+
+#: Plugin/CakeLdap/Model/User.php:validation for field password
+msgid "You must enter password."
+msgstr "Вы должны ввести пароль."
+
+#~ msgid "Short name of department is not unique"
+#~ msgstr "Краткое наименование отдела не является уникальным"

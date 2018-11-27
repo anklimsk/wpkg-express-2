@@ -1,0 +1,124 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: wpkgExpress II\n"
+"POT-Creation-Date: 2016-01-28 10:34+0300\n"
+"PO-Revision-Date: 2018-11-12 13:22+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 2.2\n"
+
+msgid "Not"
+msgstr "Not"
+
+msgid "And"
+msgstr "And"
+
+msgid "Or"
+msgstr "Or"
+
+msgid "At least"
+msgstr "At least"
+
+msgid "At most"
+msgstr "At most"
+
+msgid "Exists"
+msgstr "Exists"
+
+msgid "Equals"
+msgstr "Equals"
+
+msgid "Size equals"
+msgstr "Size equals"
+
+msgid "Version smaller than"
+msgstr "Version smaller than"
+
+msgid "Version less than or equal to"
+msgstr "Version less than or equal to"
+
+msgid "Version equal to"
+msgstr "Version equal to"
+
+msgid "Version greater than"
+msgstr "Version greater than"
+
+msgid "Version greater than or equal to"
+msgstr "Version greater than or equal to"
+
+msgid "Date modify equal to"
+msgstr "Date modify equal to"
+
+msgid "Date modify newer than"
+msgstr "Date modify newer than"
+
+msgid "Date modify older than"
+msgstr "Date modify older than"
+
+msgid "Date create equal to"
+msgstr "Date create equal to"
+
+msgid "Date create newer than"
+msgstr "Date create newer than"
+
+msgid "Date create older than"
+msgstr "Date create older than"
+
+msgid "Date access equal to"
+msgstr "Date access equal to"
+
+msgid "Date access newer than"
+msgstr "Date access newer than"
+
+msgid "Date access older than"
+msgstr "Date access older than"
+
+msgid "Exit code smaller than"
+msgstr "Exit code smaller than"
+
+msgid "Exit code less than or equal to"
+msgstr "Exit code less than or equal to"
+
+msgid "Exit code equal to"
+msgstr "Exit code equal to"
+
+msgid "Exit code greater than"
+msgstr "Exit code greater than"
+
+msgid "Exit code greater than or equal to"
+msgstr "Exit code greater than or equal to"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Os"
+msgstr "OS"
+
+msgid "Architecture"
+msgstr "Architecture"
+
+msgid "Ip addresses"
+msgstr "IP addresses"
+
+msgid "Domain name"
+msgstr "Domain name"
+
+msgid "Groups"
+msgstr "Groups"
+
+msgid "Lcid"
+msgstr "OS language"
+
+msgid "Lcid os"
+msgstr "OS initial language"
+
+msgid "Environment"
+msgstr "Environment"

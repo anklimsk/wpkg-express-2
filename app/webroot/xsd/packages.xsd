@@ -1,0 +1,794 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.wpkg.org/packages"
+	elementFormDefault="unqualified"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.wpkg.org/packages"
+	xmlns:wpkg="http://www.wpkg.org/wpkg">
+
+	<xsd:import namespace="http://www.wpkg.org/wpkg" schemaLocation="wpkg.xsd">
+		<xsd:annotation>
+			<xsd:documentation>
+				Include WPKG master definition.
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:import>
+
+	<xsd:element name="packages" type="packages"></xsd:element>
+
+	<xsd:complexType name="packages">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies how the packages element is built up (list of
+				package elements).
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="package" type="package"></xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="package">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies how the package element is build up (list of
+				checks, commands and downloads).
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice maxOccurs="unbounded" minOccurs="0">
+			<xsd:element name="variable" type="wpkg:variable">
+				<xsd:annotation>
+					<xsd:documentation>
+						Define an environment variable which is valid
+						during package execution. Variables can be used
+						within other variables, commands and checks.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="check" type="wpkg:check">
+				<xsd:annotation>
+					<xsd:documentation>
+						Define checks which are used to verify whether a
+						package has been applied properly to the target
+						system.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="commands" type="commands">
+				<xsd:annotation>
+					<xsd:documentation>
+						Define a list of commands to be executed for
+						installation/upgrade/downgrade/remove.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<xsd:element name="install" type="command">
+				<xsd:annotation>
+					<xsd:documentation>
+						Define a command which is executed during
+						package installation.
+
+						This is still supported but in the future
+						commands shall be grouped within the commands
+						sub-node. Please regard the install node as
+						deprecated. It might be removed in future WPKG
+						releases.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="upgrade" type="command">
+				<xsd:annotation>
+					<xsd:documentation>
+						Define a comamnd which is executed during
+						package upgrade.
+
+						This is still supported but in the future
+						commands shall be grouped within the commands
+						sub-node. Please regard the upgrade node as
+						deprecated. It might be removed in future WPKG
+						releases.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="downgrade" type="command">
+				<xsd:annotation>
+					<xsd:documentation>
+						Define a comamnd which is executed during
+						package downgrade.
+
+						This is still supported but in the future
+						commands shall be grouped within the commands
+						sub-node. Please regard the downgrade node as
+						deprecated. It might be removed in future WPKG
+						releases.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="remove" type="command">
+				<xsd:annotation>
+					<xsd:documentation>
+						Define a command which is executed during
+						package removal.
+
+						This is still supported but in the future
+						commands shall be grouped within the commands
+						sub-node. Please regard the remove node as
+						deprecated. It might be removed in future WPKG
+						releases.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="download" type="download">
+				<xsd:annotation>
+					<xsd:documentation>
+						Specify a list of 'global' downloads. These
+						downloads will be processes before each package
+						command (like install, upgrade, downgrade,
+						remove).
+
+						Please consider this as deprecated. It's
+						recommended to use the download sub-node of a
+						command in order to specify downloads. This also
+						allows one to specify downloads which are not
+						executed when not needed.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<xsd:element name="depends" type="wpkg:packageReference">
+				<xsd:annotation>
+					<xsd:documentation>
+						Specify a dependency between this and another
+						package. The package referenced is a
+						pre-requirement to install this package.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="include" type="wpkg:packageReference">
+				<xsd:annotation>
+					<xsd:documentation>
+						Specify that this package includes another
+						package into the package tree. Note that this is
+						different from a dependency in the sense that
+						the package included does not need to be
+						installed BEFORE this package is applied.
+
+						A package which is included is just added to the
+						tree in the same way as it would when it's
+						applied to the profile. It will be executed in
+						order of priority.
+
+						Please consider specifying a dependency rather
+						than an include whenever possible.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="chain" type="wpkg:packageReference">
+				<xsd:annotation>
+					<xsd:documentation>
+						Specify a package which is installed/verified
+						right after applying this package.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:choice>
+		<xsd:attribute name="id" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation>
+					Package identification. Needs to be a unique ID
+					among all the packages. The package ID is
+					case-sensitive unless the /ignoreCase switch is
+					passed to wpkg.js.
+
+					Example:
+
+					'pidgin'
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="name" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation>
+					Descriptive name of the package. e.g. 'Pidgin
+					multi-protocol instant messenger'
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="revision" type="xsd:string"
+			use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Revision of the package.
+
+					WPKG allows to specify a versions in quite flexible
+					format. It is important to know how versions are
+					compared in order to know whether WPKG needs to
+					perform an upgrade or a downgrade.
+
+					Here are some notes about version comparison:
+
+					Some version number contain appendices to the
+					version string indicating 'volatile' versions like
+					'pre releases'. For example some packages use
+					versions like '1.0RC1' or '1.0alpha2'. Usually a
+					version like '1.0RC1' would be considered to be
+					newer than '1.0' by the algorithm but in case of
+					'RC' versions this would be wrong. To handle such
+					cases a number of strings are defined in order to
+					define such volatile releases.
+
+					The list of prefixes is defined in the global
+					volatileReleaseMarker array.
+
+					Valid comparisons include: A B Result '1' '2' B is
+					newer '1' '15' B is newer '1.0' '1.2.b' B is newer
+					'1.35' '1.35-2' B is newer '1.35-2' '1.36' B is
+					newer '1.35R3' '1.36' B is newer '1' '1.0.00.0000'
+					Versions are equal '1' '1.0' Versions are equal
+					'1.35' '1.35-2' B is newer '1.35-2' '1.35' A is
+					newer '1.35R3' '1.36R4' B is newer '1.35-2'
+					'1.35-2.0' Versions are equal '1.35.1' '1.35.1.0'
+					Versions are equal '1.3RC2' '1.3' B is newer
+					(special case where A is an 'RC' version) '1.5'
+					'1.5I3656' A is newer (B is an 'I'/integration
+					version) '1.5' '1.5M3656' A is newer (B is an
+					'M'/milestone version) '1.5' '1.5u3656' B is newer
+					(B is an update version)
+
+					This attribute is optional. Defaults to 0.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="priority" type="xsd:int" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Package priority. Packages with higher priorities
+					are installed first. Optional. Defaults to 0.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="reboot" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specify if a reboot should be initiated after
+					package installation. Valid values:
+
+					true: reboot immediately after package actions have
+					been executed.
+
+					false: do not reboot after executing commands.
+
+					postponed: reboot after all packages have been
+					installed (not after this one but schedule reboot to
+					WPKG termination).
+				</xsd:documentation>
+			</xsd:annotation>
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="true"></xsd:enumeration>
+					<xsd:enumeration value="false"></xsd:enumeration>
+					<xsd:enumeration value="postponed"></xsd:enumeration>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="execute" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specify how the package should be executed:
+
+					always: Execute on each synchronization - regardless
+					of the current install state or the result of any
+					defined checks.
+
+					changed: Execute on each synchronization but only if
+					there are other changes done to the system.
+
+					once: Execute only once. No checks will be executed
+					on following synchronization requests unless the
+					package version on the server side is changed.
+				</xsd:documentation>
+			</xsd:annotation>
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="default"></xsd:enumeration>
+					<xsd:enumeration value="once"></xsd:enumeration>
+					<xsd:enumeration value="always"></xsd:enumeration>
+					<xsd:enumeration value="changed"></xsd:enumeration>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="notify" type="xsd:boolean"
+			use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specify if the user should be notified about the
+					installation of packages due to this package.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="precheck-install">
+			<xsd:annotation>
+				<xsd:documentation>
+					Defines how package checks are used during package
+					installation.
+
+					Currently supported values:
+
+					always (default): When a package is new to the host
+					then first the checks are run in order to verify
+					whether the package is already installed. If the
+					checks succeed then it is assumed that no further
+					installation is needed. The package is silently
+					added to the host without executing any commands.
+
+					never: When a package is new to the host then the
+					install commands are run in any case (without doing
+					checks first). Note: Checks will still be done after
+					package installation to verify whether installation
+					was successful.
+				</xsd:documentation>
+			</xsd:annotation>
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="always"></xsd:enumeration>
+					<xsd:enumeration value="never"></xsd:enumeration>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="precheck-remove">
+			<xsd:annotation>
+				<xsd:documentation>
+					Defines how package checks are used during package
+					removal.
+
+					Currently supported values:
+
+					always: When a package is removed from a host then
+					the checks will be executed before removal is
+					processes. If the checks fail this potentially means
+					that the package has been removed already. In such
+					case the package remove commands will be skipped.
+
+					never (default): When a package is about to be
+					removed from the host then WPKG will execute the
+					remove commands in any case without executing the
+					checks first. Note: Checks will still be done after
+					package removal to verify whether the removal was
+					successful.
+				</xsd:documentation>
+			</xsd:annotation>
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="always"></xsd:enumeration>
+					<xsd:enumeration value="never"></xsd:enumeration>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="precheck-upgrade">
+			<xsd:annotation>
+				<xsd:documentation>
+					Defines how package checks are used during package
+					upgrade.
+
+					Currently supported values:
+
+					always: When a package is upgraded the checks
+					specified will be be executed before the upgrade
+					takes place. If checks succeed, then the upgrade
+					will not be performed (WPKG just assumes that the
+					new version is already applied correctly. Please
+					note that your checks shall verify a specific
+					software version and not just a generic check which
+					is true for all versions. If your checks are true
+					for the old version too then WPKG would never
+					perform the upgrade in this mode.
+
+					never (default): When a package is about to be
+					upgraded then WPKG will execute the upgrade commands
+					in any case without executing the checks first. This
+					is the recommended behavior. Note: Checks will still
+					be done after package upgrade to verify whether the
+					upgrade was successful.
+				</xsd:documentation>
+			</xsd:annotation>
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="always"></xsd:enumeration>
+					<xsd:enumeration value="never"></xsd:enumeration>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="precheck-downgrade">
+			<xsd:annotation>
+				<xsd:documentation>
+					Defines how package checks are used during package
+					downgrade.
+
+					Currently supported values:
+
+					always: When a package is downgraded the checks
+					specified will be be executed before the downgrade
+					takes place. If checks succeed, then the downgrade
+					will not be performed (WPKG just assumes that the
+					old version is already applied correctly. Please
+					note that your checks shall verify a specific
+					software version and not just a generic check which
+					is true for all versions. If your checks are true
+					for the new/current version too then WPKG would
+					never perform the downgrade in this mode.
+
+					never (default): When a package is about to be
+					downgraded then WPKG will execute the downgrade
+					commands in any case without executing the checks
+					first. This is the recommended behavior. Note:
+					Checks will still be done after package downgrade to
+					verify whether the downgrade was successful.
+				</xsd:documentation>
+			</xsd:annotation>
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="always"></xsd:enumeration>
+					<xsd:enumeration value="never"></xsd:enumeration>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:complexType name="commands">
+		<xsd:sequence minOccurs="1" maxOccurs="unbounded">
+			<xsd:element name="command" type="command">
+				<xsd:annotation>
+					<xsd:documentation>
+						Specify any numer of commands for any type of
+						command.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="commandInstall">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines an installation command.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:restriction base="command">
+				<xsd:attribute name="type" type="xsd:string"
+					fixed="install" use="required">
+				</xsd:attribute>
+				<xsd:attribute name="cmd" type="xsd:string"
+					use="required">
+				</xsd:attribute>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="commandRemove">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines a remove command.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:restriction base="command">
+				<xsd:attribute name="type" type="xsd:string"
+					fixed="remove">
+				</xsd:attribute>
+				<xsd:attribute name="cmd" type="xsd:string"
+					use="required">
+				</xsd:attribute>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="commandUpgrade">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines an upgrade command.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:restriction base="command">
+				<xsd:attribute name="type" type="xsd:string"
+					fixed="upgrade">
+				</xsd:attribute>
+				<xsd:attribute name="cmd" type="xsd:string"
+					use="required">
+				</xsd:attribute>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="commandDowngrade">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines a downgrade command.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:restriction base="command">
+				<xsd:attribute name="type" type="xsd:string"
+					fixed="downgrade">
+				</xsd:attribute>
+				<xsd:attribute name="cmd" type="xsd:string"
+					use="required">
+				</xsd:attribute>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="command">
+		<xsd:annotation>
+			<xsd:documentation>
+				Type definition used for all commands (install, upgrade,
+				downgrade, remove)
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence minOccurs="0" maxOccurs="1">
+			<xsd:sequence minOccurs="0" maxOccurs="1">
+				<xsd:element name="condition" type="wpkg:condition"></xsd:element>
+			</xsd:sequence>
+			<xsd:choice minOccurs="0" maxOccurs="unbounded">
+				<xsd:element name="exit" type="exit">
+					<xsd:annotation>
+						<xsd:documentation>
+							Specify exit code handling for this command.
+
+							This allows you to define some exit codes as
+							successful even if they are non-zero.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="download" type="download">
+					<xsd:annotation>
+						<xsd:documentation>
+							Specify downloads which are executed only
+							for this command to be run.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attribute name="type" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>
+					This attribute allows command grouping. All commands
+					with the same type are executed at the specified
+					package stage. The following types are supported by
+					WPKG currently:
+
+					install: Commands of type install are executed
+					during package installation.
+
+					upgrade: Commands of type upgrade are executed if a
+					package revision is incremented and therefore the
+					package is updated to a new version.
+
+					downgrade: Commands of type downgrade are executed
+					if a package revision is decremented and therefore
+					the package is downgraded to an older version.
+
+					remove: Commands of type remove are executed when a
+					package is uninstalled from the system.
+
+					You can also specify any other type identifier here.
+					WPKG however will not execute these commands
+					automatically during any package phase. But you can
+					use these package types in include references. For
+					example this allows you to define packages of type
+					'prepare' and then refer to it by includes by
+					specifying include='prepare' within another command
+					node.
+
+					Example:
+
+					&lt;command type='prepare' cmd='do-something' /&gt;
+
+					&lt;command type='prepare' cmd='do-something-else'
+					/&gt;
+
+					&lt;command type='install' include='prepare' /&gt;
+
+					&lt;command type='install' cmd='install-command'
+					/&gt;
+
+					&lt;command type='remove' include='prepare' /&gt;
+
+					&lt;command type='remove' cmd='install-command'
+					/&gt;
+
+					This will include the 'prepare' commands during
+					installation and during remove.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="include">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specify to inherit all commands from a specific type
+					of commands. For example specify 'install' to
+					include all install commands. The package will be
+					processed the same way as if the specified type of
+					commands would be duplicated and inserted exactly
+					where you specified the include command.
+
+					It is allowed to specify multiple include commands.
+
+					Be careful no to create inclusion loops. For example
+					including all install commands within the upgrade
+					node and including the upgrade node within the
+					install node.
+				</xsd:documentation>
+			</xsd:annotation>
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:pattern value="install"></xsd:pattern>
+					<xsd:pattern value="upgrade"></xsd:pattern>
+					<xsd:pattern value="downgrade"></xsd:pattern>
+					<xsd:pattern value="remove"></xsd:pattern>
+					<xsd:pattern value="\w+"></xsd:pattern>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="cmd" type="xsd:string" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specify the command to be executed in order to
+					install the application in silent mode.
+
+					Example:
+
+					'%SOFTWARE%\pidgin\pidgin.exe /L=1033 /DS=1 /NOUI'.
+
+					Note that a command is required in order to perform
+					any action. Although this attribute is optional it
+					is required for normal commands. Either the include
+					or the cmd attribute shall be filled.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="timeout" type="xsd:int" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specify timeout for command (in seconds).
+
+					Timeout has no effect on inheritance.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="workdir" type="xsd:string"
+			use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specify working directory in which the command is
+					executed.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+
+		<xsd:attributeGroup ref="wpkg:HostMatch"></xsd:attributeGroup>
+
+	</xsd:complexType>
+
+	<xsd:complexType name="exit">
+		<xsd:annotation>
+			<xsd:documentation>
+				Definition for exit code specification.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="code" use="required">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specify integer value which matches the exit code of
+					the installer. Or specify the string 'any' or '*' to
+					match any exit code.
+				</xsd:documentation>
+			</xsd:annotation>
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:pattern value="any"></xsd:pattern>
+					<xsd:pattern value="\d+"></xsd:pattern>
+					<xsd:pattern value="\*"></xsd:pattern>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="reboot" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specify this attribute if the exit code should
+					initiate/shedule any type of reboot. Valid values:
+
+					false: Do not require any reboot.
+
+					true: Reuire immediate reboot after this command.
+
+					delayed: Schedule reboot after execution of all
+					commands of this package has been finished.
+
+					postponed: Schedule reboot after execution of all
+					packages (when WPKG terminates).
+				</xsd:documentation>
+			</xsd:annotation>
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="true"></xsd:enumeration>
+					<xsd:enumeration value="false"></xsd:enumeration>
+					<xsd:enumeration value="delayed"></xsd:enumeration>
+					<xsd:enumeration value="postponed"></xsd:enumeration>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:complexType name="download">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies how a download node looks like, including all
+				attributes.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence minOccurs="0">
+			<xsd:element name="condition" type="wpkg:condition"></xsd:element>
+		</xsd:sequence>
+
+		<xsd:attribute name="url" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation>
+					URL where the file is downloaded:
+					'http://server.example.org/path/to/file.exe'
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="expandURL" type="xsd:boolean">
+			<xsd:annotation>
+				<xsd:documentation>
+					Defines whether the url attribute is expanded (ie.
+					environment variables are replaced).
+
+					Note: As URLs are used to contain some percentage
+					characters (like '%20' for spaces) these might be
+					expanded too if the URL matches an environment
+					variable which is defined. For example downloading
+					from an URL like
+					url='http://host/softwareX%20release%20.exe' would
+					try to expand the environment'20release' as well.
+					It's very unlikely that this collides with an
+					environment variable you have actually defined but
+					keep it in mind when defining download URLs. If you
+					really need to disable expansion because the URL
+					collides with existing environment variables then
+					use the expandURL='false' attribute:
+
+					&lt;download expandURL='false'
+					url='http://host/softwareX%20release%20.exe'
+					target='release.exe' /&gt;
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="target" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation>
+					Target path to store the file to. The path has to be
+					specified relative to the downloadDir property
+					within config.xml. By default relative to %TEMP%.
+					For example specify 'pidgin\pidgin.exe' to download
+					the file at the specified URL to
+					'%TEMP%\pidgin\pigin.exe'. The file is removed after
+					the commands are executed.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="timeout" type="xsd:string"
+			use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Optional download timeout (specified in seconds).
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+
+		<xsd:attributeGroup ref="wpkg:HostMatch"></xsd:attributeGroup>
+	</xsd:complexType>
+
+</xsd:schema>

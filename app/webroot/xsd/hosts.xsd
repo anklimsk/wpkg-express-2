@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.wpkg.org/hosts"
+	elementFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.wpkg.org/hosts" xmlns:wpkg="http://www.wpkg.org/wpkg">
+
+	<xsd:import namespace="http://www.wpkg.org/wpkg" schemaLocation="wpkg.xsd">
+		<xsd:annotation>
+			<xsd:documentation>Include WPKG master definition.
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:import>
+
+	<xsd:element name="wpkg" type="wpkg">
+		<xsd:annotation>
+			<xsd:documentation>Root element for host definitions.
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+
+	<xsd:complexType name="wpkg">
+		<xsd:sequence minOccurs="1" maxOccurs="unbounded">
+			<xsd:element name="host" type="host"></xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="host">
+		<xsd:sequence maxOccurs="1" minOccurs="0">
+			<xsd:sequence maxOccurs="1" minOccurs="0">
+				<xsd:element name="condition" type="wpkg:condition">
+					<xsd:annotation>
+						<xsd:documentation>Define condition under which this host entry is applied.</xsd:documentation>
+					</xsd:annotation></xsd:element>
+			</xsd:sequence>
+			<xsd:choice maxOccurs="unbounded" minOccurs="0">
+				<xsd:element name="variable" type="wpkg:variable">
+					<xsd:annotation>
+						<xsd:documentation>Define an environment variable to be set when the host entry applies.</xsd:documentation>
+					</xsd:annotation></xsd:element>
+				<xsd:element name="profile" type="profileReference">
+					<xsd:annotation>
+						<xsd:documentation>Define profile which should be applied to matching host.</xsd:documentation>
+					</xsd:annotation></xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attribute name="name" type="xsd:string" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>Hostname specification. It might contain regular expressions as well as well 
+as IP-address ranges.
+
+Direct match: This is tried first always. If the hostname matches exactly the 
+value of 'name' this host node is applied to the machine.
+
+IP-Ranges: format has to be specified as follows: 
+start[-end].start[-end].start[-end].start[-end] examples: 192.168.1.1 
+192.168.1.1-254 192.168.1-5.20-50
+
+Regular expressions: example: &quot;test-.*&quot; will match all machines where the 
+hostname is starting with &quot;test-&quot; string.
+
+If no name attribute exists then the host entry will always match. You can 
+omit the name attribute and use extended attribute matching like hostname 
+(which matches the host name only, but not IP), ipaddresses, domainname etc.
+</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="profile-id" type="xsd:string"
+			use="optional">
+			<xsd:annotation>
+				<xsd:documentation>Main profile. You can specify the applying profile as separate &quot;profile&quot; nodes 
+as well but if there is only one single profile it is recommended to use the 
+profile-id attribute.
+</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attributeGroup ref="wpkg:HostMatch"></xsd:attributeGroup>
+	</xsd:complexType>
+
+	<xsd:complexType name="profileReference">
+		<xsd:sequence maxOccurs="1" minOccurs="0">
+			<xsd:element name="condition" type="wpkg:condition"></xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation>
+					ID referencing to the profile defined in
+					profiles.xml
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attributeGroup ref="wpkg:HostMatch"></xsd:attributeGroup>
+	</xsd:complexType>
+</xsd:schema>

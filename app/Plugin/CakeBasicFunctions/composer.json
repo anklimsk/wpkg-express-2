@@ -1,0 +1,26 @@
+{
+    "name": "anklimsk/cakephp-basic-functions",
+    "description": "Global basic utilities for the CakePHP 2.x application",
+    "type": "cakephp-plugin",
+    "homepage": "https://github.com/anklimsk/cakephp-basic-functions",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrey Klimov"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "composer/installers": "^1.5.0",
+        "anklimsk/cakephp-extended-test": "^1.0.0"
+    },
+    "support": {
+        "source": "https://github.com/anklimsk/cakephp-basic-functions"
+    },
+    "extra": {
+        "installer-name": "CakeBasicFunctions",
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}

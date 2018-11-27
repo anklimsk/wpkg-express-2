@@ -1,0 +1,81 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: CakePHP Plugin CakeSettingsApp\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2018-11-15 19:07+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 2.2\n"
+
+#: Model/Setting.php:488
+msgid "This field must contain a valid group name."
+msgstr "Это поле должно содержать допустимое имя группы."
+
+#: Model/Setting.php:validation for field ExternalAuth;validation
+#: EmailNotifyUser
+msgid "Incorrect value for checkbox"
+msgstr "Неверное значение для checkbox"
+
+#: Model/Setting.php:validation for field EmailContact
+msgid "This field must contain a valid e-mail"
+msgstr "Это поле должно содержать корректный адрес электронной почты"
+
+#: Model/Setting.php:validation for field EmailSubject
+msgid "This field must contain a valid subject of e-mail"
+msgstr "Это поле должно содержать действительную тему электронной почты"
+
+#: Model/Setting.php:validation for field EmailSmtphost
+msgid "Invalid SMTP Server"
+msgstr "Недопустимый сервер SMTP"
+
+#: Model/Setting.php:validation for field EmailSmtpport
+msgid "Invalid port number"
+msgstr "Недопустимый номер порта"
+
+#: Model/Setting.php:validation for field EmailSmtpuser
+msgid "Invalid SMTP Username"
+msgstr "Неверное имя пользователя SMTP"
+
+#: Model/Setting.php:validation for field EmailSmtppassword
+msgid "Invalid SMTP password"
+msgstr "Неверный пароль SMTP"
+
+#: Model/Setting.php:validation for field EmailSmtppassword
+msgid "Passwords dont match"
+msgstr "Пароли не совпадают"
+
+#: Model/Setting.php:validation for field AutocompleteLimit
+msgid "This field must contain a valid limit of autocomplete between %d and %d"
+msgstr ""
+"Это поле должно содержать допустимый предел автозаполнения между %d и %d"
+
+#: Model/Setting.php:validation for field Company
+msgid "This field must contain a valid company name"
+msgstr "Это поле должно содержать допустимое название организации"
+
+#: Model/Setting.php:validation for field SearchBase
+msgid ""
+"This field must contain a valid distinguished name of the search base object"
+msgstr ""
+"Это поле должно содержать допустимое уникальное имя объекта базы поиска"
+
+#: Model/Setting.php:validation for field Language
+msgid "This field must contain a valid language name"
+msgstr "Это поле должно содержать допустимое название языка"
+
+#~ msgid "Invalid User name"
+#~ msgstr "Неверное имя пользователя"
+
+#~ msgid ""
+#~ "This field must contain a valid limit of autocomplete between 5 and 100"
+#~ msgstr ""
+#~ "Это поле должно содержать допустимый предел автозаполнения между 5 и 100"

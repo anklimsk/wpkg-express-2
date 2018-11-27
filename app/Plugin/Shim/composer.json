@@ -1,0 +1,38 @@
+{
+	"name": "dereuromark/cakephp-shim",
+	"type": "cakephp-plugin",
+	"description": "A CakePHP plugin to shim applications between major framework versions.",
+	"keywords": ["cakephp", "plugin", "shim", "helpers"],
+	"homepage": "https://github.com/dereuromark/cakephp-shim",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Mark Scherer",
+			"homepage": "http://www.dereuromark.de",
+			"role": "Maintainer"
+		}
+	],
+	"require": {
+		"php": ">=5.4",
+		"cakephp/cakephp": ">=2.0 <3.0",
+		"composer/installers": "*"
+	},
+	"require-dev": {
+		"mobiledetect/mobiledetectlib": "2.*",
+		"fig-r/psr2r-sniffer": "dev-master"
+	},
+	"suggest": {
+		"ircmaxell/password-compat": "PHP5.4 compatability for the PHP5.5 password hashing functionality.",
+		"mobiledetect/mobiledetectlib": "Better up-to-date mobile/tablet detection."
+	},
+	"support": {
+		"source": "https://github.com/dereuromark/cakephp-shim"
+	},
+	"extra": {
+		"installer-name": "Shim"
+	},
+	"scripts": {
+		"cs-check": "phpcs -v -p --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --ignore=/vendor/,/tmp/,/docs/ --extensions=php ./",
+		"cs-fix": "phpcbf -v --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --ignore=/vendor/,/tmp/,/docs/ --extensions=php ./"
+	}
+}

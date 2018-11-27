@@ -1,0 +1,23 @@
+{
+    "name": "cakephp/cakephp",
+    "version": "2.10.9",
+    "require": {
+        "anklimsk/cakephp-basic-functions": "^1.0.0",
+        "anklimsk/cakephp-console-installer": "^1.0.0",
+        "anklimsk/cakephp-extended-test": "^1.0.0",
+        "anklimsk/cakephp-ldap-sync": "^1.0.0",
+        "anklimsk/cakephp-notify": "^1.0.0",
+        "anklimsk/cakephp-search-info": "^1.0.0",
+        "anklimsk/cakephp-settings-app": "^1.0.0",
+        "anklimsk/cakephp2-theme": "^1.0.0",
+        "markstory/geshi": "v0.3.0"
+    },
+    "config": {
+        "vendor-dir": "Vendor/",
+        "preferred-install": {
+            "cakephp/datasources": "dist"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

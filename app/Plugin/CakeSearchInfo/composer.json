@@ -1,0 +1,25 @@
+{
+    "name": "anklimsk/cakephp-search-info",
+    "description": " Search for information in the project database for CakePHP 2.x",
+    "type": "cakephp-plugin",
+    "homepage": "https://github.com/anklimsk/cakephp-search-info",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrey Klimov"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "composer/installers": "^1.5.0",
+        "anklimsk/cakephp-config-plugin": "^1.0.0",
+        "anklimsk/cakephp-extended-test": "^1.0.0",
+        "anklimsk/cakephp2-theme": "^1.0.0"
+    },
+    "support": {
+        "source": "https://github.com/anklimsk/cakephp-search-info"
+    },
+    "extra": {
+        "installer-name": "CakeSearchInfo"
+    }
+}

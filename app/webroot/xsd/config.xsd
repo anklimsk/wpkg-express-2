@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.wpkg.org/config" elementFormDefault="qualified"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.wpkg.org/config" xmlns:Q1="http://www.wpkg.org/wpkg">
+
+	<xsd:import namespace="http://www.wpkg.org/wpkg" schemaLocation="wpkg.xsd">
+		<xsd:annotation>
+			<xsd:documentation>
+				Include WPKG master definition.
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:import>
+
+	<xsd:complexType name="config">
+        <xsd:annotation>
+        	<xsd:documentation>WPKG configuration root element.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence minOccurs="1" maxOccurs="1">
+			<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+				<xsd:element name="param" type="param">
+					<xsd:annotation>
+						<xsd:documentation>WPKG global configuration parameter.</xsd:documentation>
+					</xsd:annotation></xsd:element>
+			</xsd:sequence>
+			<xsd:element name="languages" type="languages">
+				<xsd:annotation>
+					<xsd:documentation>WPKG language definitions (message localization).</xsd:documentation>
+				</xsd:annotation></xsd:element>
+			<xsd:sequence minOccurs="0" maxOccurs="1">
+				<xsd:element name="variables" type="variables">
+					<xsd:annotation>
+						<xsd:documentation>WPKG global variables (available to all packages).</xsd:documentation>
+					</xsd:annotation></xsd:element>
+			</xsd:sequence>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="param">
+		<xsd:annotation>
+			<xsd:documentation>Configuration parameter entry. Defines a configuration parameter of WPKG.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence></xsd:sequence>
+		<xsd:attribute name="name" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Name of the configuration parameter.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="value" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Value to be assigned to the configuration parameter.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:complexType name="languages">
+		<xsd:annotation>
+			<xsd:documentation>Holds language definitions such as language-specific strings.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="language" type="language"></xsd:element>
+		</xsd:choice>
+	</xsd:complexType>
+
+	<xsd:complexType name="language">
+		<xsd:annotation>
+			<xsd:documentation>Language holds a concrete language specification defining message strings.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="string" type="string"></xsd:element>
+		</xsd:choice>
+		<xsd:attribute name="lcid">
+			<xsd:annotation>
+				<xsd:documentation>
+					Comma-separated list of LCID values for which this language specification is valid. For example
+					specify "409,809" to match English locale. For a complete list of LCIDs see
+					http://www.microsoft.com/globaldev/reference/lcid-all.mspx.
+				</xsd:documentation>
+			</xsd:annotation>
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:pattern value="[\w]+(,[\w]+)*"></xsd:pattern>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:complexType name="string" mixed="true">
+		<xsd:annotation>
+			<xsd:documentation>Localized string definition.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="id">
+			<xsd:annotation>
+				<xsd:documentation>
+					Identifier for language string. Identifies the string you are going to localize.
+				</xsd:documentation>
+			</xsd:annotation>
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="notifyUserStart"></xsd:enumeration>
+					<xsd:enumeration value="notifyUserStop"></xsd:enumeration>
+					<xsd:enumeration value="notifyUserFail"></xsd:enumeration>
+					<xsd:enumeration value="notifyUserReboot"></xsd:enumeration>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+
+    <xsd:element name="config" type="config">
+    	<xsd:annotation>
+    		<xsd:documentation>Root element of WPKG configuration.</xsd:documentation>
+    	</xsd:annotation></xsd:element>
+
+
+    <xsd:complexType name="variables">
+        <xsd:annotation>
+        	<xsd:documentation>WPKG global variables (available to all packages).</xsd:documentation>
+        </xsd:annotation>
+        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+    		<xsd:element name="variable" type="Q1:variable"></xsd:element>
+    	</xsd:choice>
+    </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,1017 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: CakePHP Plugin CakeInstaller\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2018-11-26 15:59+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 2.2\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: Console/Command/CakeInstallerShell.php:136
+msgid "Do not prompt for confirmation. Be careful!"
+msgstr "Не запрашивать подтверждение. Будьте осторожны!"
+
+#: Console/Command/CakeInstallerShell.php:231;473
+msgid "Empty command list. See config file."
+msgstr "Пустой список команд. См конфигурационный файл."
+
+#: Console/Command/CakeInstallerShell.php:237
+msgid "Continue installation process?"
+msgstr "Продолжить процесс установки?"
+
+#: Console/Command/CakeInstallerShell.php:243
+msgid "Installer task Shell"
+msgstr "Оболочка задач Устновщика"
+
+#: Console/Command/CakeInstallerShell.php:245
+msgid "Input the number of command from list"
+msgstr "Введите номер команды из списка"
+
+#: Console/Command/CakeInstallerShell.php:246
+msgid "Please choose command of installer:"
+msgstr "Пожалуйста, выберите команду инсталлятора:"
+
+#: Console/Command/CakeInstallerShell.php:262
+msgid "Are you sure?"
+msgstr "Вы уверены?"
+
+#: Console/Command/CakeInstallerShell.php:464
+msgid "Empty command list for action install. See config file."
+msgstr "Пустой список команд для действия установка. См конфигурационный файл."
+
+#: Console/Command/CakeInstallerShell.php:482
+msgid "Invalid command list for action install. See config file."
+msgstr ""
+"Неверный список команд для действия установка. См конфигурационный файл."
+
+#: Console/Command/CakeInstallerShell.php:490
+msgid "Application is installed. Reinstall?"
+msgstr "Приложение установлено. Переустановить?"
+
+#: Console/Command/CakeInstallerShell.php:506
+msgid "Intsall: step %d of %d"
+msgstr "Установка: шаг %d из %d"
+
+#: Console/Command/CakeInstallerShell.php:521
+msgid "To apply the changes, restart the installer."
+msgstr "Чтобы применить изменения, перезапустите программу установки."
+
+#: Console/Command/CakeInstallerShell.php:539
+msgid "Intsall: completed"
+msgstr "Установка: завершена"
+
+#: Console/Command/CakeInstallerShell.php:547
+msgid "Running post-install actions"
+msgstr "Выполнение действий после установки"
+
+#: Console/Command/CakeInstallerShell.php:556
+#: Test/Case/Console/Command/CakeInstallerShellTest.php:371
+msgid "The installation process is completed successfully."
+msgstr "Процесс установки завершён успешно."
+
+#: Console/Command/CakeInstallerShell.php:558
+msgid "The installation process is completed unsuccessfully."
+msgstr "Процесс установки завершён неудачно."
+
+#: Console/Command/CakeInstallerShell.php:571 Model/ConfigInstaller.php:113
+#: Test/Case/Model/ConfigInstallerTest.php:150
+msgid "Configure database connections"
+msgstr "Настройка подключений к базе данных"
+
+#: Console/Command/CakeInstallerShell.php:574;632;690;787;963;1009;1084;1143
+msgid "This action has already been successfully completed. Skipped."
+msgstr "Это действие уже успешно завершено. Пропущено."
+
+#: Console/Command/CakeInstallerShell.php:626
+msgid "Creating database and initializing data"
+msgstr "Создание базы данных и инициализация данных"
+
+#: Console/Command/CakeInstallerShell.php:636
+msgid "All schemas exists. Re-create?"
+msgstr "Все схемы существуют. Создать заново?"
+
+#: Console/Command/CakeInstallerShell.php:642
+msgid "Create schema of application"
+msgstr "Создать схему приложения"
+
+#: Console/Command/CakeInstallerShell.php:657
+msgid "Create additional schemes"
+msgstr "Создать дополнительные схемы"
+
+#: Console/Command/CakeInstallerShell.php:664
+msgid "Create additional scheme: '%s'"
+msgstr "Создать дополнительную схему: '%s'"
+
+#: Console/Command/CakeInstallerShell.php:671
+msgid "Creating additional schemes completed."
+msgstr "Создание дополнительных схем завершено."
+
+#: Console/Command/CakeInstallerShell.php:684
+msgid "Creating symbolic links to files"
+msgstr "Создание символьных ссылок на файлы"
+
+#: Console/Command/CakeInstallerShell.php:694
+msgid "All symbolic links to files exists. Rewrite?"
+msgstr "Все символические ссылки на файлы существуют. Переписать?"
+
+#: Console/Command/CakeInstallerShell.php:702;751
+msgid "List of symbolic links is empty"
+msgstr "Список символьных ссылок пуст"
+
+#: Console/Command/CakeInstallerShell.php:739;859;1221;1231;1247;1250;1263;1296;1314
+#: Test/Case/Console/Command/CakeInstallerShellTest.php:232;312
+#: Test/Case/View/Helper/CheckResultHelperTest.php:59;61;62
+#: View/Helper/CheckResultHelper.php:46;51
+msgid "Ok"
+msgstr "Ok"
+
+#: Console/Command/CakeInstallerShell.php:741;861;1223;1253;1298;1326
+#: Test/Case/View/Helper/CheckResultHelperTest.php:56;57;58;60;63
+#: View/Helper/CheckResultHelper.php:56
+msgid "Bad"
+msgstr "Плохо"
+
+#: Console/Command/CakeInstallerShell.php:758
+#: Test/Case/Console/Command/CakeInstallerShellTest.php:324
+msgid "Creating symbolic links completed successfully."
+msgstr "Создание символьных ссылок завершено успешно."
+
+#: Console/Command/CakeInstallerShell.php:760
+#: Test/Case/Console/Command/CakeInstallerShellTest.php:338
+msgid "Creating symbolic links unsuccessfully."
+msgstr "Создание символьных ссылок завершено неудачно."
+
+#: Console/Command/CakeInstallerShell.php:774
+msgid "Creating cron jobs"
+msgstr "Создание заданий cron"
+
+#: Console/Command/CakeInstallerShell.php:779
+msgid "Server OS is Windows. Creating cron jobs skipped."
+msgstr "Серверная ОС - Windows. Создание заданий cron пропущено."
+
+#: Console/Command/CakeInstallerShell.php:791
+msgid "All cron jobs exists. Rewrite?"
+msgstr "Все задания cron существуют. Переписать?"
+
+#: Console/Command/CakeInstallerShell.php:799;891
+msgid "List of cron jobs is empty"
+msgstr "Список заданий cron пуст"
+
+#: Console/Command/CakeInstallerShell.php:806
+msgid "Error on getting the username of the web server process"
+msgstr "Ошибка при получении имени пользователя процесса веб-сервера"
+
+#: Console/Command/CakeInstallerShell.php:819
+msgid "Error on getting crontab for user '%s'"
+msgstr "Ошибка при получении crontab для пользователя '%s'"
+
+#: Console/Command/CakeInstallerShell.php:832
+msgid "Error on creation copy of current crontab."
+msgstr "Ошибка при создании копии текущего crontab."
+
+#: Console/Command/CakeInstallerShell.php:871
+msgid "Error on closing cron file."
+msgstr "Ошибка при закрытии файла cron."
+
+#: Console/Command/CakeInstallerShell.php:879
+msgid "Error on updating crontab."
+msgstr "Ошибка при обновлении crontab."
+
+#: Console/Command/CakeInstallerShell.php:882
+msgid "Error on creation copy of previous crontab."
+msgstr "Ошибка при создании копии предыдущего crontab."
+
+#: Console/Command/CakeInstallerShell.php:893
+msgid "Crontab update is not required."
+msgstr "Обновление crontab не требуется."
+
+#: Console/Command/CakeInstallerShell.php:899
+msgid "Creating cron jobs completed successfully."
+msgstr "Создание заданий cron завершено успешно."
+
+#: Console/Command/CakeInstallerShell.php:901
+msgid "Creating cron jobs unsuccessfully."
+msgstr "Создание заданий cron завершено неудачно."
+
+#: Console/Command/CakeInstallerShell.php:956
+msgid "Setting default timezone"
+msgstr "Настройка часового пояса по умолчанию"
+
+#: Console/Command/CakeInstallerShell.php:967
+msgid "Default timezone set to '%s'. Change?"
+msgstr "Часовой пояс по умолчанию установлен в '%s'. Изменить?"
+
+#: Console/Command/CakeInstallerShell.php:982
+msgid "Default timezone is not changed."
+msgstr "Часовой пояс по умолчанию не изменён."
+
+#: Console/Command/CakeInstallerShell.php:985
+msgid "Default timezone set to '%s' successfully."
+msgstr "Часовой пояс по умолчанию установлен в '%s' успешно."
+
+#: Console/Command/CakeInstallerShell.php:987
+msgid "Unable to set default timezone, you should change it in %s"
+msgstr ""
+"Невозможно установить часовой пояс по умолчанию, вы должны изменить его в %s"
+
+#: Console/Command/CakeInstallerShell.php:1002 Model/ConfigInstaller.php:111
+msgid "Setting base URL"
+msgstr "Настройка базового URL"
+
+#: Console/Command/CakeInstallerShell.php:1013
+msgid "Base URL set to '%s'. Change?"
+msgstr "Базовый URL установлен в '%s'. Изменить?"
+
+#: Console/Command/CakeInstallerShell.php:1026
+msgid "Base URL is not changed."
+msgstr "Базовый URL не изменён."
+
+#: Console/Command/CakeInstallerShell.php:1029
+msgid "Base URL set to '%s' successfully."
+msgstr "Базовый URL установлен в '%s' успешно."
+
+#: Console/Command/CakeInstallerShell.php:1031
+msgid "Unable to set Base URL, you should change it in %s"
+msgstr "Невозможно установить базовый URL, вы должны изменить его в %s"
+
+#: Console/Command/CakeInstallerShell.php:1077
+msgid "Setting security keys"
+msgstr "Настройка ключей защиты"
+
+#: Console/Command/CakeInstallerShell.php:1088
+msgid "The security keys is set. Rewrite?"
+msgstr "Ключи безопасности установлены. Переписать?"
+
+#: Console/Command/CakeInstallerShell.php:1096
+msgid "Random hash key created for 'Security.salt'"
+msgstr "Создан  случайный хэш ключ для 'Security.salt'"
+
+#: Console/Command/CakeInstallerShell.php:1098
+msgid ""
+"Unable to generate random hash for 'Security.salt', you should change it in "
+"%s"
+msgstr ""
+"Невозможно создать случайный хэш для 'Security.salt', вы должны изменить его "
+"в %s"
+
+#: Console/Command/CakeInstallerShell.php:1103
+msgid "Random seed created for 'Security.cipherSeed'"
+msgstr "Создано случайное зерно для 'Security.cipherSeed'"
+
+#: Console/Command/CakeInstallerShell.php:1105
+msgid ""
+"Unable to generate random seed for 'Security.cipherSeed', you should change "
+"it in %s"
+msgstr ""
+"Невозможно создать случайное зерно для 'Security.cipherSeed', вы должны "
+"изменить его в %s"
+
+#: Console/Command/CakeInstallerShell.php:1110
+msgid "Random key created for 'Security.key'"
+msgstr "Создан случайный хэш ключ  для 'Security.key'"
+
+#: Console/Command/CakeInstallerShell.php:1112
+msgid ""
+"Unable to generate random key for 'Security.key', you should change it in %s"
+msgstr ""
+"Невозможно создать случайный хэш для 'Security.key', вы должны изменить его "
+"в %s"
+
+#: Console/Command/CakeInstallerShell.php:1120
+msgid "The security keys is written successfully."
+msgstr "Ключи безопасности записаны успешно."
+
+#: Console/Command/CakeInstallerShell.php:1122
+msgid "The security keys is written unsuccessfully."
+msgstr "Ключи безопасности записаны неудачно."
+
+#: Console/Command/CakeInstallerShell.php:1136 Model/ConfigInstaller.php:106
+msgid "Setting application UI language"
+msgstr "Настройка языка пользовательского интерфейса приложения"
+
+#: Console/Command/CakeInstallerShell.php:1155;1177
+msgid "List of UI languages is empty"
+msgstr "Список языков пользовательского интерфейса пуст."
+
+#: Console/Command/CakeInstallerShell.php:1165
+msgid "Incorrect language code '%s'"
+msgstr "Некорректный код языка '%s'"
+
+#: Console/Command/CakeInstallerShell.php:1182
+msgid "Input the number of language from list"
+msgstr "Введите номер языка из списка"
+
+#: Console/Command/CakeInstallerShell.php:1183
+msgid "Please choose language of application UI:"
+msgstr "Пожалуйста, выберите язык интерфейса приложения:"
+
+#: Console/Command/CakeInstallerShell.php:1193
+msgid "Application UI language is not changed."
+msgstr "Язык интерфейса приложения не изменён."
+
+#: Console/Command/CakeInstallerShell.php:1196
+msgid "Application UI language set successfully."
+msgstr "Язык интерфейса приложения установлен успешно."
+
+#: Console/Command/CakeInstallerShell.php:1201
+msgid "Application UI language set unsuccessfully."
+msgstr "Язык пользовательского интерфейса приложения установлен неудачно."
+
+#: Console/Command/CakeInstallerShell.php:1216 View/Check/index.ctp:90
+msgid "Checking PHP version"
+msgstr "Проверка версии PHP"
+
+#: Console/Command/CakeInstallerShell.php:1228 View/Check/index.ctp:94
+msgid "Current PHP version: %s"
+msgstr "Текущая версия PHP: %s"
+
+#: Console/Command/CakeInstallerShell.php:1237 View/Check/index.ctp:109
+msgid "Checking PHP extensions"
+msgstr "Проверка расширений PHP"
+
+#: Console/Command/CakeInstallerShell.php:1257 View/Check/index.ctp:114
+msgid "Checking module is loaded: '%s'"
+msgstr "Проверка загрузки модуля: '%s'"
+
+#: Console/Command/CakeInstallerShell.php:1269;1343
+msgid "Check completed successfully."
+msgstr "Проверка завершена успешно."
+
+#: Console/Command/CakeInstallerShell.php:1271;1345
+msgid "Check completed unsuccessfully."
+msgstr "Проверка завершена неудачно."
+
+#: Console/Command/CakeInstallerShell.php:1288;1307 View/Check/index.ctp:174
+msgid "Checking database connections"
+msgstr "Проверка подключения к базе данных"
+
+#: Console/Command/CakeInstallerShell.php:1291 View/Check/index.ctp:151
+msgid "Checking database configuration file"
+msgstr "Проверка файла конфигурации базы данных"
+
+#: Console/Command/CakeInstallerShell.php:1301 View/Check/index.ctp:160
+msgid "Database configuration file"
+msgstr "Файл конфигурации базы данных"
+
+#: Console/Command/CakeInstallerShell.php:1330 View/Check/index.ctp:184
+msgid "Checking database connection: '%s'"
+msgstr "Проверка подключения к базе данных: '%s'"
+
+#: Console/Command/CakeInstallerShell.php:1346
+msgid "Change database connections?"
+msgstr "Измененить подключения к базе данных?"
+
+#: Console/Command/CakeInstallerShell.php:1439
+msgid "Setting permissions"
+msgstr "Установка разрешений"
+
+#: Console/Command/CakeInstallerShell.php:1444
+#: Test/Case/Console/Command/CakeInstallerShellTest.php:248
+msgid "Server OS is Windows. Change permissions skipped."
+msgstr "Серверная ОС - Windows. Изменение разрешений пропущено."
+
+#: Console/Command/CakeInstallerShell.php:1455;1463
+msgid "Could not change the mode on '%s' to '%s'"
+msgstr "Не удалось изменить режим '%s' на '%s'"
+
+#: Console/Command/CakeInstallerShell.php:1459;1467
+#: Test/Case/Console/Command/CakeInstallerShellTest.php:249
+msgid "Access permissions on '%s' changed to '%s' successfully."
+msgstr "Разрешения доступа к '%s' успешно изменены на '%s'."
+
+#: Console/Command/CakeInstallerShell.php:1472
+msgid "Error getting the username of the web server process"
+msgstr "Ошибка получения имени пользователя процесса веб-сервера"
+
+#: Console/Command/CakeInstallerShell.php:1478;1510
+msgid "Could not change owner on '%s' to '%s'"
+msgstr "Не удалось сменить владельца в '%s' на '%s'"
+
+#: Console/Command/CakeInstallerShell.php:1481;1514
+msgid "Owner of '%s' changed to '%s' successfully."
+msgstr "Владелец '%s' успешно изменен на '%s'."
+
+#: Console/Command/CakeInstallerShell.php:1553
+msgid "Input the number of scope time zone from list"
+msgstr "Введите номер области часового пояса из списка"
+
+#: Console/Command/CakeInstallerShell.php:1554
+msgid "Please choose scope of time zone:"
+msgstr "Пожалуйста, выберите область часового пояса:"
+
+#: Console/Command/CakeInstallerShell.php:1560
+msgid "Input the number of timezone from list"
+msgstr "Введите номер часового пояса из списка"
+
+#: Console/Command/CakeInstallerShell.php:1561
+msgid "Please choose time zone:"
+msgstr "Пожалуйста, выберите часовой пояс:"
+
+#: Console/Command/CakeInstallerShell.php:1576
+msgid "Input base URL (e.g. %s):"
+msgstr "Введите базовый URL (например,  %s):"
+
+#: Console/Command/Task/DbConfigExtendTask.php:200
+msgid "Unknown parameter"
+msgstr "Неизвестный параметр"
+
+#: Console/Command/Task/DbConfigExtendTask.php:255
+msgid "Invalid validation pattern of parameter '%s'. Validation skipped."
+msgstr "Недопустимый шаблон проверки параметра '%s'. Проверка пропущена."
+
+#: Console/Command/Task/DbConfigExtendTask.php:297
+msgid "Database Configuration:"
+msgstr "Конфигурации Базы данных:"
+
+#: Console/Command/Task/DbConfigExtendTask.php:332
+msgid "Connection name"
+msgstr "Имя подключения"
+
+#: Console/Command/Task/DbConfigExtendTask.php:334
+msgid "Input the number of connection name from list"
+msgstr "Введите номер имени подключения из списка."
+
+#: Console/Command/Task/DbConfigExtendTask.php:335;380
+msgid "Please choose connection name:"
+msgstr "Пожалуйста, выберите имя подключения:"
+
+#: Console/Command/Task/DbConfigExtendTask.php:340;417
+msgid "Database Configuration: %s"
+msgstr "Конфигурация базы данных: %s"
+
+#: Console/Command/Task/DbConfigExtendTask.php:373
+msgid "No"
+msgstr "Нет"
+
+#: Console/Command/Task/DbConfigExtendTask.php:379
+msgid "Do you wish to add another database configuration?"
+msgstr "Вы хотите добавить другую конфигурацию базы данных?"
+
+#: Console/Command/Task/DbConfigExtendTask.php:415
+msgid "The following database configuration will be created:"
+msgstr "Будет создана следующая конфигурация базы данных:"
+
+#: Console/Command/Task/DbConfigExtendTask.php:421
+msgid "Parameter name"
+msgstr "Имя параметра"
+
+#: Console/Command/Task/DbConfigExtendTask.php:422
+msgid "Parameter value"
+msgstr "Значение параметра"
+
+#: Console/Command/Task/DbConfigExtendTask.php:439
+msgid "Look okay?"
+msgstr "Посмотрите, в порядке?"
+
+#: Console/Command/Task/DbConfigExtendTask.php:531
+msgid "%s not found"
+msgstr "%s не найден"
+
+#: Console/Helper/WaitingShellHelper.php:72
+#: Test/Case/Console/Helper/WaitingShellHelperTest.php:46;66;82
+msgid "Please wait..."
+msgstr "Пожалуйста, подождите..."
+
+#: Lib/Utility/CakeInstallerShellTrait.php:39
+msgid "Input the number from list"
+msgstr "Введите номер из списка"
+
+#: Lib/Utility/CakeInstallerShellTrait.php:64
+msgid "Exit"
+msgstr "Выход"
+
+#: Lib/Utility/CakeInstallerShellTrait.php:69
+msgid "Prev page"
+msgstr "Предыдущая страница"
+
+#: Lib/Utility/CakeInstallerShellTrait.php:72
+msgid "Next page"
+msgstr "Следующая страница"
+
+#: Lib/Utility/CakeInstallerShellTrait.php:110
+msgid "Page %d of %d"
+msgstr "Страница %d из %d"
+
+#: Model/ConfigInstaller.php:107
+#: Test/Case/Console/Command/CakeInstallerShellTest.php:203;219
+#: Test/Case/Model/ConfigInstallerTest.php:149
+msgid "Checking PHP environment"
+msgstr "Проверка PHP окружения"
+
+#: Model/ConfigInstaller.php:108
+msgid "Setting file system permissions on the temporary directory"
+msgstr "Настройка разрешений файловой системы на временном каталоге"
+
+#: Model/ConfigInstaller.php:109
+#: Test/Case/Console/Command/CakeInstallerShellTest.php:204;220
+msgid "Setting security key"
+msgstr "Установка ключа безопасности"
+
+#: Model/ConfigInstaller.php:110
+msgid "Setting timezone"
+msgstr "Установка часового пояса"
+
+#: Model/ConfigInstaller.php:112
+msgid "Checking connect to database"
+msgstr "Проверка подключения к базе данных"
+
+#: Model/ConfigInstaller.php:114
+msgid "Creation database and initialization data"
+msgstr "Создание базы данных и инициализация данных"
+
+#: Model/ConfigInstaller.php:115
+msgid "Creation symbolic links to files"
+msgstr "Создание символьных ссылок на файлы"
+
+#: Model/ConfigInstaller.php:116
+msgid "Creation cron jobs"
+msgstr "Создание заданий cron"
+
+#: Model/ConfigInstaller.php:117
+msgid "Install this application"
+msgstr "Устновка этого приложения"
+
+#: Test/Case/Model/ConfigInstallerTest.php:385;409
+msgid "Version of LDAP protocol"
+msgstr "Версия протокола LDAP"
+
+#: View/Check/index.ctp:13
+msgid "Checking installation of application"
+msgstr "Проверка установки приложения"
+
+#: View/Check/index.ctp:61
+msgid "to run the interactive installer"
+msgstr "для запуска интерактивного установщика"
+
+#: View/Check/index.ctp:62
+msgid "to check the readiness of the start installation"
+msgstr "для проверки готовности начала установки"
+
+#: View/Check/index.ctp:63
+msgid "to start the installation process"
+msgstr "для начала процесса установки"
+
+#: View/Check/index.ctp:64
+msgid "to get help"
+msgstr "для получения справки"
+
+#: View/Check/index.ctp:69
+msgid "Application is not installed"
+msgstr "Приложение не установлено"
+
+#: View/Check/index.ctp:72
+msgid "Application is not installed (ready to install)"
+msgstr "Приложение не установлено (готово к установке)"
+
+#: View/Check/index.ctp:77
+msgid ""
+"To install the application, go to the OS console, navigate to the directory "
+"%s application, and run the following commands:"
+msgstr ""
+"Для установки приложения зайдите в консоль ОС, перейдите в каталог %s "
+"приложения, и выполните следующие команды:"
+
+#: View/Check/index.ctp:84
+msgid "Application is installed"
+msgstr "Приложение установлено"
+
+#: View/Check/index.ctp:128
+msgid "Checking possibility of writing to files"
+msgstr "Проверка возможности записи в файлы"
+
+#: View/Check/index.ctp:131
+msgid "file"
+msgstr "файл"
+
+#: View/Check/index.ctp:133
+msgid "directory"
+msgstr "каталог"
+
+#: View/Check/index.ctp:138
+msgid "Checking write to %s: '%s'"
+msgstr "Проверка записи в %s: '%s'"
+
+#: View/Layouts/default.ctp:47
+msgid "Installation of application"
+msgstr "Установка приложения"
+
+#~ msgid "Server OS is Windows. Change permissions skipped!"
+#~ msgstr "Серверная ОС - Windows. Изменение разрешений пропущено!"
+
+#~ msgid "Access permissions on '%s' changed to '%s' successfully!"
+#~ msgstr "Разрешения доступа к '%s' успешно изменены на '%s'!"
+
+#~ msgid "Creating symbolic links completed successfully!"
+#~ msgstr "Создание символьных ссылок завершено успешно!"
+
+#~ msgid "Creating symbolic links unsuccessfully!"
+#~ msgstr "Создание символьных ссылок завершено неудачно!"
+
+#~ msgid "To apply the changes, restart the installer!"
+#~ msgstr "Чтобы применить изменения, перезапустите программу установки!"
+
+#~ msgid "The installation process is completed successfully!"
+#~ msgstr "Процесс установки завершён успешно!"
+
+#~ msgid "The installation process is completed unsuccessfully!"
+#~ msgstr "Процесс установки завершён неуспешно!"
+
+#~ msgid "Creating additional schemes completed!"
+#~ msgstr "Создание дополнительных схем завершено!"
+
+#~ msgid "Server OS is Windows. Creating cron jobs skipped!"
+#~ msgstr "Серверная ОС - Windows. Создание заданий cron пропущено!"
+
+#~ msgid "Error on creation copy of current crontab!"
+#~ msgstr "Ошибка при создании копии текущего crontab!"
+
+#~ msgid "Error on closing cron file!"
+#~ msgstr "Ошибка при закрытии файла cron!"
+
+#~ msgid "Error on updating crontab!"
+#~ msgstr "Ошибка при обновлении crontab!"
+
+#~ msgid "Error on creation copy of previous crontab!"
+#~ msgstr "Ошибка при создании копии предыдущего crontab!"
+
+#~ msgid "Crontab update is not required!"
+#~ msgstr "Обновление crontab не требуется!"
+
+#~ msgid "Creating cron jobs completed successfully!"
+#~ msgstr "Создание заданий cron завершено успешно!"
+
+#~ msgid "Creating cron jobs unsuccessfully!"
+#~ msgstr "Создание заданий cron завершено неудачно!"
+
+#~ msgid "Default timezone set to '%s' successfully!"
+#~ msgstr "Часовой пояс по умолчанию установлен в '%s' успешно!"
+
+#~ msgid "Base URL set to '%s' successfully!"
+#~ msgstr "Базовый URL установлен в '%s' успешно!"
+
+#~ msgid "The security keys is written successfully!"
+#~ msgstr "Ключи безопасности записаны успешно!"
+
+#~ msgid "The security keys is written unsuccessfully!"
+#~ msgstr "Ключи безопасности записаны незуспешно!"
+
+#~ msgid "Application UI language set successfully!"
+#~ msgstr "Язык интерфейса приложения установлен успешно!"
+
+#~ msgid "Application UI language set unsuccessfully!"
+#~ msgstr "Язык пользовательского интерфейса приложения установлен незуспешно!"
+
+#~ msgid "Check completed successfully!"
+#~ msgstr "Проверка завершена успешно!"
+
+#~ msgid "Check completed unsuccessfully!"
+#~ msgstr "Проверка завершена неудачно!"
+
+#~ msgid "Owner of '%s' changed to '%s' successfully!"
+#~ msgstr "Владелец '%s' успешно изменен на '%s'!"
+
+#~ msgid "Input base URL (e.g. http://someapp.intra):"
+#~ msgstr "Введите базовый URL (например,  http://someapp.intra):"
+
+#~ msgid "LDAP host"
+#~ msgstr "Хост LDAP"
+
+#~ msgid "User principal name (user@fabrikam.com)"
+#~ msgstr "Основное имя пользователя (user@fabrikam.com)"
+
+#~ msgid "The DN of the search base (DC=fabrikam,DC=com)"
+#~ msgstr "Уникальное имя базы поиска (DC=fabrikam,DC=com)"
+
+#~ msgid "LDAP server type"
+#~ msgstr "Тип сервера LDAP"
+
+#~ msgid "Use TLS?"
+#~ msgstr "Использовать TLS?"
+
+#~ msgid "Creating symlink: '%s'"
+#~ msgstr "Создание символьной ссылки: '%s'"
+
+#~ msgid "Creating cron job: '%s'"
+#~ msgstr "Создание заданя cron: '%s'"
+
+#~ msgid "Set file system permissions on the temporary directory"
+#~ msgstr "Задание разрешений файловой системы на временном каталоге"
+
+#~ msgid "Create database and initialize data"
+#~ msgstr "Создать базу данных и инициализировать данные"
+
+#~ msgid "Could not change group on '%s' to '%s'"
+#~ msgstr "Не удалось сменить группу в '%s' на '%s'"
+
+#~ msgid "Group of '%s' changed to '%s' successfully!"
+#~ msgstr "Группа '%s' успешно изменена на '%s'!"
+
+#~ msgid "Could not change group owner on '%s' to '%s'"
+#~ msgstr "Не удалось сменить группу владельца в '%s' на '%s'"
+
+#~ msgid "Group owner of '%s' changed to '%s' successfully!"
+#~ msgstr "Группа владельца '%s' успешно изменена на '%s'!"
+
+#~ msgid "Server OS is Windows. Owner change skipped!"
+#~ msgstr "ОС сервера Windows. Смена владельца пропущена!"
+
+#~ msgid "Owner of %s changed to %s successfully!"
+#~ msgstr "Владелец %s изменён на %s успешно!"
+
+#~ msgid "Invalid command list. See config file."
+#~ msgstr "Неверный список команд. См конфигурационный файл."
+
+#~ msgid "Set security key"
+#~ msgstr "Установка ключа безопасности"
+
+#~ msgid "Set timezone"
+#~ msgstr "Установить часовой пояс"
+
+#~ msgid "Set base URL"
+#~ msgstr "Установка базового URL"
+
+#~ msgid "Check connect to database"
+#~ msgstr "Проверить подключение к базе данных"
+
+#~ msgid "Create symbolic links to files"
+#~ msgstr "Создать символьные ссылки на файлы"
+
+#~ msgid "Set application UI language"
+#~ msgstr "Установка языка интерфейса приложения"
+
+#~ msgid "This shell is used to install this application."
+#~ msgstr "Эта оболочка используется для устновки этого приложения."
+
+#~ msgid "Available tasks: %s."
+#~ msgstr "Доступные задачи: %s."
+
+#~ msgid "and"
+#~ msgstr "и"
+
+#~ msgid ""
+#~ "To apply to the database connection changes, restart the installer task."
+#~ msgstr ""
+#~ "Чтобы применить изменения подключения к базе данных, перезапустите задачу "
+#~ "установки."
+
+#~ msgid "Create additional scheme: %s"
+#~ msgstr "Создать дополнительные схему: %s"
+
+#~ msgid "Default timezone set to %s successfully!"
+#~ msgstr "Часовой пояс по умолчанию %s установлен успешно!"
+
+#~ msgid "Unable to set defalut timezone, you should change it in %s"
+#~ msgstr ""
+#~ "Невозможно установить часовой пояс по умолчанию, вы должны изменить его в "
+#~ "%s"
+
+#~ msgid "Base URL set to %s successfully!"
+#~ msgstr "Базовый URL %s установлен успешно!"
+
+#~ msgid "The security key is written successfully!"
+#~ msgstr "Ключ безопасности записан успешно!"
+
+#~ msgid "The security key is written unsuccessfully!"
+#~ msgstr "Ключ безопасности записан неуспешно!"
+
+#~ msgid "Could not change owner on %s to %s"
+#~ msgstr "Не смог изменить владельца %s на %s"
+
+#~ msgid "Please choose scope of timezone:"
+#~ msgstr "Пожалуйста, выберите область часового пояса:"
+
+#~ msgid "Input the number of scope time zone:"
+#~ msgstr "Введите номер области временной зоны:"
+
+#~ msgid "Input the number of time zone:"
+#~ msgstr "Введите номер временной зоны:"
+
+#~ msgid "Checking PHP environment and ready to install"
+#~ msgstr "Проверка окружения PHP и готовности к установке"
+
+#~ msgid "Configure database"
+#~ msgstr "Настройка базы данных"
+
+#~ msgid "Application ready to install!"
+#~ msgstr "Приложение готово к установке!"
+
+#~ msgid "Application is not ready to install!"
+#~ msgstr "Приложение не готово к установке!"
+
+#~ msgid "Datasource"
+#~ msgstr "Источник данных"
+
+#~ msgid "Persistent connection?"
+#~ msgstr "Постоянное подключение?"
+
+#~ msgid "Database host"
+#~ msgstr "Хост базы данных"
+
+#~ msgid "Port"
+#~ msgstr "Порт"
+
+#~ msgid "User"
+#~ msgstr "Пользователь"
+
+#~ msgid "Password"
+#~ msgstr "Пароль"
+
+#~ msgid "Database name"
+#~ msgstr "Название базы данных"
+
+#~ msgid "Table schema"
+#~ msgstr "Схема таблицы"
+
+#~ msgid "Table prefix"
+#~ msgstr "Префикс таблицы"
+
+#~ msgid "Table encoding"
+#~ msgstr "Кодировка таблицы"
+
+#~ msgid "Permissions on %s set successfully!"
+#~ msgstr "Разрешения на %s установлены успешно!"
+
+#~ msgid "Owner on %s change skipped!"
+#~ msgstr "Изменение владельца на %s пропущено!"
+
+#~ msgid "Owner on %s change successfully!"
+#~ msgstr "Владелец на %s изменён успешно!"
+
+#~ msgid ""
+#~ "To install the application, go to the OS console, navigate to the "
+#~ "directory %s application, and run the following command:"
+#~ msgstr ""
+#~ "Для установки приложения зайдите в консоль ОС, перейдите в каталог %s "
+#~ "приложения, и выполните следующие команды:"
+
+#~ msgid "Could not set permissions on %s"
+#~ msgstr "Не удалось установить разрешения на %s"
+
+#~ msgid "Could not change owner on %s"
+#~ msgstr "Не удалось изменить владельца на %s"
+
+#~ msgid "Name:"
+#~ msgstr "Название:"
+
+#~ msgid "Datasource:"
+#~ msgstr "Источник данных:"
+
+#~ msgid "Persistent Connection?"
+#~ msgstr "Постоянное подключение?"
+
+#~ msgid "Ldap Host:"
+#~ msgstr "Хост Ldap:"
+
+#~ msgid "Database Host:"
+#~ msgstr "Хост Базы данных:"
+
+#~ msgid "Port?"
+#~ msgstr "Порт?"
+
+#~ msgid "User principal name (e.g. user@domain.com):"
+#~ msgstr "Основное имя пользователя (например, user@domain.com):"
+
+#~ msgid "User:"
+#~ msgstr "Пользователь:"
+
+#~ msgid "Password:"
+#~ msgstr "Пароль:"
+
+#~ msgid "The password you supplied was empty. Use an empty password?"
+#~ msgstr "Пароль, который вы устанавливаете пуст. Использовать пустой пароль?"
+
+#~ msgid "Database Name:"
+#~ msgstr "Название Базы данных:"
+
+#~ msgid "The distinguished name of the search base:"
+#~ msgstr "Уникальное имя базы поиска:"
+
+#~ msgid "Table Prefix?"
+#~ msgstr "Префикс таблиц?"
+
+#~ msgid "Table encoding?"
+#~ msgstr "Кодировка таблиц?"
+
+#~ msgid "Table schema?"
+#~ msgstr "Схема таблиц?"
+
+#~ msgid "Use Transport Layer Security (TLS)?"
+#~ msgstr "Использовать Безопасность транспортного уровня (TLS)?"
+
+#~ msgid "Version of LDAP protocol:"
+#~ msgstr "Версия протокола LDAP:"
+
+#~ msgid "Name:         %s"
+#~ msgstr "Название:        %s"
+
+#~ msgid "Datasource:   %s"
+#~ msgstr "Источник данных: %s"
+
+#~ msgid "Persistent:   %s"
+#~ msgstr "Постоянное:      %s"
+
+#~ msgid "Host:         %s"
+#~ msgstr "Хост:            %s"
+
+#~ msgid "Port:         %s"
+#~ msgstr "Порт:            %s"
+
+#~ msgid "User:         %s"
+#~ msgstr "Пользователь:    %s"
+
+#~ msgid "Pass:         %s"
+#~ msgstr "Пароль:          %s"
+
+#~ msgid "baseDN:       %s"
+#~ msgstr "baseDN:          %s"
+
+#~ msgid "Type:         %s"
+#~ msgstr "Тип:             %s"
+
+#~ msgid "TLS:          %s"
+#~ msgstr "TLS:          %s"
+
+#~ msgid "Version:      %s"
+#~ msgstr "Версия:          %s"
+
+#~ msgid "Table prefix: %s"
+#~ msgstr "Префикс таблиц: %s"
+
+#~ msgid "Schema:       %s"
+#~ msgstr "Схема:       %s"
+
+#~ msgid "Encoding:     %s"
+#~ msgstr "Кодировка:     %s"
+
+#~ msgid "Please choose type of LDAP server:"
+#~ msgstr "Пожалуйста, выберите тип серевера LDAP:"
+
+#~ msgid "Input the number of the LDAP server type:"
+#~ msgstr "Введите номер типа сервера LDAP:"
+
+#~ msgid "Create symlinks to files"
+#~ msgstr "Создать символьные ссылки на файлы"
+
+#~ msgid "Creating symlinks to files"
+#~ msgstr "Создание символьных ссылок на файлы"
+
+#~ msgid "List of symlinks is empty"
+#~ msgstr "Список символьных ссылок пуст"
+
+#~ msgid "Creating symlinks completed successfully!"
+#~ msgstr "Создание символьных ссылок завершено успешно!"
+
+#~ msgid "Creating symlinks unsuccessfully!"
+#~ msgstr "Создание символьных ссылок завершено неудачно!"
+
+#~ msgid "Error getting the name of the WEB server's user"
+#~ msgstr "Ошибка получения имени пользователя веб-сервера"
+
+#~ msgid "Processing..."
+#~ msgstr "Обработка..."
+
+#~ msgid "Result"
+#~ msgstr "Результат"
+
+#~ msgid "Check"
+#~ msgstr "Проверка"
+
+#~ msgid ""
+#~ "To install the application, go to the OS console, navigate to the "
+#~ "directory <abbr title=\"%s\">APP</abbr> application, and run the "
+#~ "following command:"
+#~ msgstr ""
+#~ "Для установки приложения зайдите в консоль ОС, перейдите в каталог <abbr "
+#~ "title=\"%s\">APP</abbr> приложения, и выполните следующую команду:"
+
+#~ msgid ""
+#~ "<i>./Console/cake Installer check</i> - to check the readiness of the "
+#~ "start installation"
+#~ msgstr ""
+#~ "<i>./Console/cake Installer check</i> - для проверки готовности начала "
+#~ "установки"
+
+#~ msgid ""
+#~ "<i>./Console/cake Installer install</i> - to start the installation "
+#~ "process"
+#~ msgstr "<i>./Console/cake Installer install</i> -"
+
+#~ msgid " * Random hash key created for 'Security.salt'"
+#~ msgstr " * Создан  случайный хэш ключ для 'Security.salt'"
+
+#~ msgid " * Random seed created for 'Security.cipherSeed'"
+#~ msgstr " * Создано случайное зерно для 'Security.cipherSeed'"
+
+#~ msgid " * Random key created for 'Security.key'"
+#~ msgstr " * Создан случайный хэш ключ  для 'Security.key'"

@@ -1,0 +1,13 @@
+.DS_Store
+.~lock.*
+*.ipr
+*.iws
+.idea
+.buildpath
+.project
+.settings
+build/
+vendor/
+composer.lock
+composer.phar
+phpunit.xml

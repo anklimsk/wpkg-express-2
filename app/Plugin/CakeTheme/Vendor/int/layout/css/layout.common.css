@@ -1,0 +1,156 @@
+/*!
+ * Main file for common layout
+ * version 0.1
+ * copyright 2016-2018 Andrey Klimov.
+ * @license https://opensource.org/licenses/mit-license.php MIT License
+ */
+
+/* Body with Navbar and Breadcrumb */
+body.use-navbar-breadcrumb {
+    padding-top: 86px;
+}
+
+/* Body with Breadcrumb */
+body.use-breadcrumb-only {
+    padding-top: 36px;
+}
+
+/* Body with Navbar */
+body.use-navbar-only {
+    padding-top: 50px;
+}
+
+/* Page content block */
+#content {
+    clear: both;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+/* Container block */
+#container {
+    text-align: left;
+}
+
+/* Breadcrumb block */
+.breadcrumb {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 50px;
+    z-index: 1020;
+    margin-bottom: 0;
+}
+
+/* Styling forms */
+select {
+    width: 100%;
+}
+
+textarea {
+    resize: none;
+}
+
+form .required label:after {
+    color: #E32;
+    content: '*';
+    display: inline;
+}
+
+.checkbox label, .radio label {
+    font-weight: 700;
+    padding-left: 0;
+}
+
+/* Styling tabs */
+.tab-content > form > .tab-pane,
+.pill-content > form > .pill-pane {
+    display: none;
+}
+
+.tab-content > form > .active,
+.pill-content > form > .active {
+    display: block;
+}
+
+/* Styling lists */
+dl.list-compact, ol.list-compact, ul.list-compact {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.list-wo-border li {
+    border: none;
+}
+
+/* SQL log */
+.cake-sql-log {
+    background: #FFF;
+}
+
+.cake-sql-log td {
+    padding: 4px 8px;
+    text-align: left;
+    font-family: monaco, consolas, "Courier New", monospaced;
+}
+
+.cake-sql-log caption {
+    color: #FFF;
+}
+
+/* Row buffer */
+.top-buffer {
+    margin-top: 15px;
+}
+
+.top-buffer-sm {
+    margin-top: 8px;
+}
+
+.bottom-buffer {
+    margin-bottom: 15px;
+}
+
+.bottom-buffer-sm {
+    margin-bottom: 8px;
+}
+
+/* Typeahead */
+.twitter-typeahead {
+    float: none;
+    vertical-align: top;
+}
+
+/* Horizontal description */
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+.popover .dl-horizontal dt {
+    white-space: nowrap;
+}
+
+/* Button inside list description */
+dd .btn {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+/* List inside list description */
+dd ul, dd ol {
+    margin: 0;
+}
+
+/* Styling grids */
+html, body, #container, #content, .container-table {
+    height: 100%;
+}
+
+.container-table {
+    display: table;
+}
+
+.vertical-center-row {
+    display: table-cell;
+    vertical-align: middle;
+}

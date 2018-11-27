@@ -1,0 +1,42 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: wpkgExpress II\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2018-11-14 10:31+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 2.2\n"
+
+#: Model/PackageActionType.php:232
+#, fuzzy
+#| msgid "action"
+#| msgid_plural "actions"
+msgctxt "Package action type"
+msgid "action"
+msgid_plural "actions"
+msgstr[0] "действии"
+msgstr[1] "действиях"
+msgstr[2] "действиях"
+
+#: Model/WpiCategory.php:223
+msgctxt "WPI category"
+msgid "package"
+msgid_plural "packages"
+msgstr[0] "пакете"
+msgstr[1] "пакетах"
+msgstr[2] "пакетах"
+
+#~ msgid "host"
+#~ msgid_plural "hosts"
+#~ msgstr[0] "хоста"
+#~ msgstr[1] "хостов"
+#~ msgstr[2] "хостов"

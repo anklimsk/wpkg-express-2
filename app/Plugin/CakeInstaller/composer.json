@@ -1,0 +1,25 @@
+{
+    "name": "anklimsk/cakephp-console-installer",
+    "description": "Console installer for CakePHP 2.x",
+    "type": "cakephp-plugin",
+    "homepage": "https://github.com/anklimsk/cakephp-console-installer",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrey Klimov"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "composer/installers": "^1.5.0",
+        "anklimsk/cakephp-basic-functions": "^1.0.0",
+        "anklimsk/cakephp-config-plugin": "^1.0.0",
+        "anklimsk/cakephp-extended-test": "^1.0.0"
+    },
+    "support": {
+        "source": "https://github.com/anklimsk/cakephp-console-installer"
+    },
+    "extra": {
+        "installer-name": "CakeInstaller"
+    }
+}

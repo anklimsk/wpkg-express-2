@@ -1,0 +1,124 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: wpkgExpress II\n"
+"POT-Creation-Date: 2016-01-28 10:34+0300\n"
+"PO-Revision-Date: 2018-11-12 13:22+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 2.2\n"
+
+msgid "Not"
+msgstr "Не"
+
+msgid "And"
+msgstr "И"
+
+msgid "Or"
+msgstr "Или"
+
+msgid "At least"
+msgstr "По меньшей мере"
+
+msgid "At most"
+msgstr "В большинстве"
+
+msgid "Exists"
+msgstr "Существует"
+
+msgid "Equals"
+msgstr "Равно"
+
+msgid "Size equals"
+msgstr "Размер равен"
+
+msgid "Version smaller than"
+msgstr "Версия меньше, чем"
+
+msgid "Version less than or equal to"
+msgstr "Версия меньше или равна"
+
+msgid "Version equal to"
+msgstr "Версия равна"
+
+msgid "Version greater than"
+msgstr "Версия больше"
+
+msgid "Version greater than or equal to"
+msgstr "Версия больше или равна"
+
+msgid "Date modify equal to"
+msgstr "Дата изменения равна"
+
+msgid "Date modify newer than"
+msgstr "Дата изменения младше"
+
+msgid "Date modify older than"
+msgstr "Дата изменения старше"
+
+msgid "Date create equal to"
+msgstr "Дата созадния равна"
+
+msgid "Date create newer than"
+msgstr "Дата созадния младше"
+
+msgid "Date create older than"
+msgstr "Дата созадния старше"
+
+msgid "Date access equal to"
+msgstr "Дата доступа равна"
+
+msgid "Date access newer than"
+msgstr "Дата доступа младше"
+
+msgid "Date access older than"
+msgstr "Дата доступа старше"
+
+msgid "Exit code smaller than"
+msgstr "Код выхода меньше"
+
+msgid "Exit code less than or equal to"
+msgstr "Код выхода меньше или равен"
+
+msgid "Exit code equal to"
+msgstr "Код выхода равен"
+
+msgid "Exit code greater than"
+msgstr "Код выхода больше"
+
+msgid "Exit code greater than or equal to"
+msgstr "Код выхода больше или равен"
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "Os"
+msgstr "ОС"
+
+msgid "Architecture"
+msgstr "Архитектура"
+
+msgid "Ip addresses"
+msgstr "IP адреса"
+
+msgid "Domain name"
+msgstr "Имя домена"
+
+msgid "Groups"
+msgstr "Группы"
+
+msgid "Lcid"
+msgstr "Язык ОС"
+
+msgid "Lcid os"
+msgstr "Начальный язык ОС"
+
+msgid "Environment"
+msgstr "Окружение"

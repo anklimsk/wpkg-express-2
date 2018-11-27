@@ -1,0 +1,29 @@
+{
+    "name": "anklimsk/cakephp-ldap-sync",
+    "description": "Synchronizing information and authenticating users by LDAP for CakePHP 2.x",
+    "type": "cakephp-plugin",
+    "homepage": "https://github.com/anklimsk/cakephp-ldap-sync",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrey Klimov"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "composer/installers": "^1.5.0",
+        "anklimsk/cakephp-basic-functions": "^1.0.0",
+        "anklimsk/cakephp-config-plugin": "^1.0.0",
+        "anklimsk/cakephp-extended-test": "^1.0.0",
+        "anklimsk/cakephp2-theme": "^1.0.0",
+        "cakephp/datasources": "2.3.x-dev",
+        "dereuromark/cakephp-queue": "^2.3.0",
+        "dereuromark/cakephp-tools": "^0.12.4"
+    },
+    "support": {
+        "source": "https://github.com/anklimsk/cakephp-ldap-sync"
+    },
+    "extra": {
+        "installer-name": "CakeLdap"
+    }
+}

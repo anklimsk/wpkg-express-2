@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hosts:wpkg xmlns:hosts="http://www.wpkg.org/hosts" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wpkg.org/hosts ../../xsd/hosts.xsd">
+  <host name="HOST_TEMPLATE" profile-id="PROFILE_TEMPLATE">
+    <!-- Notes: Template of InstallShield package with MSI. -->
+    <!-- Template: Use as template -->
+  </host>
+</hosts:wpkg>

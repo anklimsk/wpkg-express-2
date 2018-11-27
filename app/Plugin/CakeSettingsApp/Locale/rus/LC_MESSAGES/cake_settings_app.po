@@ -1,0 +1,419 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: CakePHP Plugin CakeSettingsApp\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2018-11-16 15:01+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 2.2\n"
+
+#: Console/Command/Task/QueueClearCacheTask.php:78
+msgid "CakePHP Queue clearing cache task."
+msgstr "Очередь CakePHP задача очистки кэша."
+
+#: Console/Command/Task/QueueClearCacheTask.php:81
+msgid "Found clearing cache task in queue: %d. Skipped."
+msgstr "Найдено задач очистки кэша в очереди: %d. Пропущено."
+
+#: Controller/QueuesController.php:117
+#: Test/Case/Controller/QueuesControllerTest.php:86;202;348
+msgid "Delete selected tasks"
+msgstr "Удаление выбранных задач"
+
+#: Controller/QueuesController.php:127
+#: Test/Case/Controller/QueuesControllerTest.php:270;300
+msgid "Selected tasks has been deleted."
+msgstr "Выбранные задачи удалены."
+
+#: Controller/QueuesController.php:129
+#: Test/Case/Controller/QueuesControllerTest.php:271
+msgid "Selected tasks could not be deleted. Please, try again."
+msgstr ""
+"Выбранные задачи не могут быть удалены. Пожалуйста, попробуйте еще раз."
+
+#: Controller/QueuesController.php:144;159
+#: Test/Case/Controller/QueuesControllerTest.php:127;149;214;236;375;397
+msgid "Queue of tasks"
+msgstr "Очередь заданий"
+
+#: Controller/QueuesController.php:149;152
+#: Test/Case/Controller/QueuesControllerTest.php:131;134;218;221;379;382
+msgid "Clear queue of tasks"
+msgstr "Очистить очередь задач"
+
+#: Controller/QueuesController.php:154
+#: Test/Case/Controller/QueuesControllerTest.php:136;223;384
+msgid "Are you sure you wish to clear queue of tasks?"
+msgstr "Вы уверены, что хотите очистить очередь задач?"
+
+#: Controller/QueuesController.php:183
+msgid "Invalid task"
+msgstr "Неверное задание"
+
+#: Controller/QueuesController.php:187
+#: Test/Case/Controller/QueuesControllerTest.php:468
+msgid "The task has been deleted."
+msgstr "Задание удалено."
+
+#: Controller/QueuesController.php:189
+#: Test/Case/Controller/QueuesControllerTest.php:443
+msgid "The task could not be deleted. Please, try again."
+msgstr "Задание не может быть удалено. Пожалуйста, попробуйте снова."
+
+#: Controller/QueuesController.php:205
+#: Test/Case/Controller/QueuesControllerTest.php:501
+msgid "The task queue has been cleared."
+msgstr "Очередь задач очищена."
+
+#: Controller/QueuesController.php:207
+msgid "The task queue could not be cleared. Please, try again."
+msgstr "Очередь задач не может быть очищена. Пожалуйста, попробуйте снова."
+
+#: Controller/SettingsController.php:131
+#: Test/Case/Controller/SettingsControllerTest.php:133
+msgid "Application settings has been saved."
+msgstr "Настройки приложения сохранены."
+
+#: Controller/SettingsController.php:133
+msgid "Reload the page to apply the settings."
+msgstr "Перезагрузите страницу, чтобы применить настройки."
+
+#: Controller/SettingsController.php:141
+#: Test/Case/Controller/SettingsControllerTest.php:171
+msgid "Unable to save application settings."
+msgstr "Не удается сохранить настройки приложения."
+
+#: Controller/SettingsController.php:159 Model/SettingBase.php:1072
+#: Test/Case/Controller/QueuesControllerTest.php:142;229;390
+#: Test/Case/Controller/SettingsControllerTest.php:81;84
+#: Test/Case/Model/SettingBaseTest.php:688
+msgid "Application settings"
+msgstr "Настройки приложения"
+
+#: Controller/SettingsController.php:161
+#: Test/Case/Controller/SettingsControllerTest.php:91
+msgid "Settings"
+msgstr "Настройки"
+
+#: Model/QueueInfo.php:58
+#: Test/Case/Controller/QueuesControllerTest.php:89;205;351
+#: Test/Case/Model/QueueInfoTest.php:73
+msgid "Not ready"
+msgstr "Не готов"
+
+#: Model/QueueInfo.php:59
+#: Test/Case/Controller/QueuesControllerTest.php:90;112;206;352
+#: Test/Case/Model/QueueInfoTest.php:74;126
+msgid "Not started"
+msgstr "Не начался"
+
+#: Model/QueueInfo.php:60
+#: Test/Case/Controller/QueuesControllerTest.php:91;207;353
+#: Test/Case/Model/QueueInfoTest.php:75
+msgid "In progress"
+msgstr "В процессе выполнения"
+
+#: Model/QueueInfo.php:61
+#: Test/Case/Controller/QueuesControllerTest.php:92;98;208;354;360
+#: Test/Case/Model/QueueInfoTest.php:76;112 View/Elements/tableQueue.ctp:50
+msgid "Completed"
+msgstr "Завершён"
+
+#: Model/QueueInfo.php:62
+#: Test/Case/Controller/QueuesControllerTest.php:93;209;355
+#: Test/Case/Model/QueueInfoTest.php:77
+msgid "Failed"
+msgstr "Неудавшийся"
+
+#: Model/QueueInfo.php:63
+#: Test/Case/Controller/QueuesControllerTest.php:94;210;356
+#: Test/Case/Model/QueueInfoTest.php:78
+msgid "Unknown"
+msgstr "Неизвестный"
+
+#: View/Elements/formSettings.ctp:70
+msgid "Main settings"
+msgstr "Основные настройки"
+
+#: View/Elements/formSettings.ctp:71
+msgid "Extended settings"
+msgstr "Расширенные настройки"
+
+#: View/Elements/formSettings.ctp:83
+msgid "Interface"
+msgstr "Интерфейс"
+
+#: View/Elements/formSettings.ctp:84
+msgid "Language"
+msgstr "Язык"
+
+#: View/Elements/formSettings.ctp:85
+msgid "Language of user interface"
+msgstr "Язык пользовательского интерфейса"
+
+#: View/Elements/formSettings.ctp:91
+msgid "Use external authentication"
+msgstr "Использовать внешнюю аутентификацию"
+
+#: View/Elements/formSettings.ctp:92
+msgid "Use external authentication (e.g. Kerberos)"
+msgstr "Использовать внешнюю аутентификацию (например, Kerberos)"
+
+#: View/Elements/formSettings.ctp:104
+msgid "user with role %s"
+msgstr "пользователь с ролью %s"
+
+#: View/Elements/formSettings.ctp:107
+msgid "LDAP group member for access with role %s"
+msgstr "Член группы LDAP для получения доступа с ролью %s"
+
+#: View/Elements/formSettings.ctp:108
+msgid "LDAP group for access with role %s"
+msgstr "Группа LDAP для получения доступа с ролью %s"
+
+#: View/Elements/formSettings.ctp:112
+msgid "Authentication"
+msgstr "Аутентификация"
+
+#: View/Elements/formSettings.ctp:116
+msgid "Search on LDAP server"
+msgstr "Поиск на сервере LDAP"
+
+#: View/Elements/formSettings.ctp:117
+msgid "Company name"
+msgstr "Название организации"
+
+#: View/Elements/formSettings.ctp:118
+msgid "Company name for search employee on LDAP server"
+msgstr "Название организации для поиска сотрудников на сервере LDAP"
+
+#: View/Elements/formSettings.ctp:120
+msgid "Search base"
+msgstr "База поиска"
+
+#: View/Elements/formSettings.ctp:121
+msgid ""
+"Distinguished name of the search base object for search employee on LDAP "
+"server (e.g. CN=Users,DC=fabrikam,DC=com)"
+msgstr ""
+"Уникальное имя объекта базы поиска для поиска сотрудника на сервере LDAP "
+"(например, CN=Users,DC=fabrikam,DC=com)"
+
+#: View/Elements/formSettings.ctp:127
+msgid "Autocomplete"
+msgstr "Автодополнение"
+
+#: View/Elements/formSettings.ctp:128
+msgid "Autocomplete limit"
+msgstr "Ограничение автодополнения"
+
+#: View/Elements/formSettings.ctp:128
+msgid "Limit for autocomplete search query"
+msgstr "Предел для поискового запроса автозаполнения"
+
+#: View/Elements/formSettings.ctp:141
+msgid "Notification"
+msgstr "Уведомление"
+
+#: View/Elements/formSettings.ctp:142
+msgid "Notify user via E-mail"
+msgstr "Уведомлять пользователя по E-mail"
+
+#: View/Elements/formSettings.ctp:143
+msgid "Use user notification via E-mail"
+msgstr "Использовать уведомление пользователя по электронной почте"
+
+#: View/Elements/formSettings.ctp:148
+msgid "E-mail"
+msgstr "E-mail"
+
+#: View/Elements/formSettings.ctp:149
+msgid "E-mail for contact"
+msgstr "Электронная почта для связи"
+
+#: View/Elements/formSettings.ctp:149
+msgid "E-mail for the contact with the administrator"
+msgstr "E-mail для связи с администратором"
+
+#: View/Elements/formSettings.ctp:151
+msgid "Subject for E-mail"
+msgstr "Тема для E-mail"
+
+#: View/Elements/formSettings.ctp:151
+msgid "Subject for e-mail to contact the administrator"
+msgstr "Тема e-mail при обращении к администратору"
+
+#: View/Elements/formSettings.ctp:156;157
+msgid "SMTP Server"
+msgstr "Сервер SMTP"
+
+#: View/Elements/formSettings.ctp:157
+msgid "Address of the SMTP server."
+msgstr "Адрес SMTP-сервера."
+
+#: View/Elements/formSettings.ctp:159
+msgid "Port"
+msgstr "Порт"
+
+#: View/Elements/formSettings.ctp:159
+msgid "Port of the SMTP server."
+msgstr "Порт SMTP-сервера."
+
+#: View/Elements/formSettings.ctp:161
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: View/Elements/formSettings.ctp:161
+msgid "Username for authentication on SMTP server."
+msgstr "Имя пользователя для аутентификации на SMTP сервере."
+
+#: View/Elements/formSettings.ctp:163
+msgid "Password"
+msgstr "Пароль"
+
+#: View/Elements/formSettings.ctp:163;165
+msgid "Caps Lock on"
+msgstr "Включен Caps Lock"
+
+#: View/Elements/formSettings.ctp:165
+msgid "Confirm password"
+msgstr "Подтверждение пароля"
+
+#: View/Elements/formSettings.ctp:200
+msgid "Save"
+msgstr "Сохранить"
+
+#: View/Elements/tableQueue.ctp:41
+msgid "Job type"
+msgstr "Тип работы"
+
+#: View/Elements/tableQueue.ctp:44
+msgid "Created"
+msgstr "Создан"
+
+#: View/Elements/tableQueue.ctp:47
+msgid "Fetched"
+msgstr "Извлечён"
+
+#: View/Elements/tableQueue.ctp:53
+msgid "Progress"
+msgstr "Ход"
+
+#: View/Elements/tableQueue.ctp:56
+msgid "Reference"
+msgstr "Ссылок"
+
+#: View/Elements/tableQueue.ctp:59
+msgid "Failed num."
+msgstr "Кол. ошибок."
+
+#: View/Elements/tableQueue.ctp:62
+msgid "Failure mess."
+msgstr "Сообщ. ошибки."
+
+#: View/Elements/tableQueue.ctp:65
+msgid "Status"
+msgstr "Состояние"
+
+#: View/Elements/tableQueue.ctp:113;136;137;138;139;141
+msgid "&lt;None&gt;"
+msgstr "&lt;Нет&gt;"
+
+#: View/Elements/tableQueue.ctp:120
+msgid "Delete task"
+msgstr "Удалить задание"
+
+#: View/Elements/tableQueue.ctp:122
+msgid "Are you sure you wish to delete task '%s' created %s?"
+msgstr "Вы уверены, что хотите удалить задачу '%s' созданную %s?"
+
+#: View/Queues/index.ctp:16
+msgid "State queue of tasks"
+msgstr "Состояние очереди задач"
+
+#~ msgid "Use external authentification"
+#~ msgstr "Использовать внешнюю аутентификацию"
+
+#~ msgid "Use external authentification (e.g. Kerberos)"
+#~ msgstr "Использовать внешнюю аутентификацию (например, Kerberos)"
+
+#~ msgid "Notify user"
+#~ msgstr "Уведомлять пользователя"
+
+#~ msgid "To notify the user about the change information"
+#~ msgstr "Уведомлять пользователя об изменении информации"
+
+#~ msgid "Please set the groups for access as user with role"
+#~ msgstr ""
+#~ "Пожалуйста, установите группы для доступа в качестве пользователя с ролью"
+
+#~ msgid "AD group member for access with role %s"
+#~ msgstr "Член группы AD для получения доступа с ролью %s"
+
+#~ msgid "Active Directory group for access with role %s"
+#~ msgstr "Группа Active Directory для получения доступа с ролью %s"
+
+#~ msgid "AD search"
+#~ msgstr "Поиск по AD"
+
+#~ msgid "Company name for search employee in AD"
+#~ msgstr "Название организации для поиска сотрудников в AD"
+
+#~ msgid ""
+#~ "Distinguished name of the search base object for search employee in AD (e."
+#~ "g. CN=Users,DC=fabrikam,DC=com)"
+#~ msgstr ""
+#~ "Уникальное имя объекта базы поиска для поиска сотрудника в AD (например, "
+#~ "CN=Users,DC=fabrikam,DC=com)"
+
+#~ msgid ""
+#~ "Distinguished name of the search base object for search employee in AD"
+#~ msgstr "Уникальное имя объекта базы поиска для поиска сотрудника в AD"
+
+#~ msgid "Company"
+#~ msgstr "Организация"
+
+#~ msgid "Company name:"
+#~ msgstr "Название организации:"
+
+#~ msgid "Autocomplete limit:"
+#~ msgstr "Ограничение автодополнения:"
+
+#~ msgid "E-mail for contact:"
+#~ msgstr "Электронная почта для связи:"
+
+#~ msgid "Subject for E-mail:"
+#~ msgstr "Тема для E-mail:"
+
+#~ msgid "CakePHP Queue clear cache task."
+#~ msgstr "Очередь CakePHP задача очистки кэша."
+
+#~ msgid "Index of queue"
+#~ msgstr "Указатель очереди"
+
+#~ msgid "Company name for search employee"
+#~ msgstr "Название организации для поиска сотрудников"
+
+#~ msgid "Actions"
+#~ msgstr "Действия"
+
+#~ msgid "AD group member for access as %s"
+#~ msgstr "Член группы AD для получения доступа в качестве %s"
+
+#~ msgid "Active Directory group for access as %s"
+#~ msgstr "Группа Active Directory для получения доступа в качестве %s"
+
+#~ msgid "SMTP server"
+#~ msgstr "Сервер SMTP"
+
+#~ msgid "Confirm Password"
+#~ msgstr "Подтверждение пароля"

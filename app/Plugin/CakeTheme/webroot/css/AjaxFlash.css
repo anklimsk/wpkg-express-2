@@ -1,0 +1,81 @@
+/*!
+ * Main file for AjaxFlashMessage
+ * version 0.9.0
+ * copyright 2016-2018 Andrey Klimov.
+ * @license https://opensource.org/licenses/mit-license.php MIT License
+ */
+
+/* Styling icon */
+.alert .glyphicon, .flash .glyphicon, .noty_body .glyphicon {
+    margin: 0 6px;
+    font-size: 1.33em;
+}
+
+/* Styling container */
+.ajax-flash-body {
+    margin-top: 15px;
+    display: table;
+    width: 100%;
+}
+
+.ajax-flash-body.alert, .ajax-flash-body.flash {
+    position: fixed;
+    z-index: 1000;
+}
+
+.ajax-flash-icon {
+    display: table-cell;
+    vertical-align: middle;
+    width: 1%;
+}
+
+.ajax-flash-msg {
+    display: table-cell;
+    vertical-align: middle;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+}
+
+.ajax-flash-msg-code {
+    padding: 0 5px;
+}
+
+/* Styling Flash */
+.flash {
+    border: 1px solid;
+    margin: 10px 0px;
+    padding: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.flash-information {
+    color: #00529B;
+    border-color: #00529B;
+    background-color: #BDE5F8;
+}
+
+.flash-success {
+    color: #4F8A10;
+    border-color: #4F8A10;
+    background-color: #DFF2BF;
+}
+
+.flash-warning {
+    color: #9F6000;
+    border-color: #9F6000;
+    background-color: #FFFABF;
+}
+
+.flash-error {
+    color: #D8000C;
+    border-color: #D8000C;
+    background-color: #FFBABA;
+}
+
+.flash-default {
+    color: #CCC;
+    border-color: #CCC;
+    background-color: #FFF;
+}

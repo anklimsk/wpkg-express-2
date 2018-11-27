@@ -1,0 +1,26 @@
+.input-group .bootstrap-select.form-control {
+    z-index: inherit;
+}
+
+.bootstrap-select.non-break-list .dropdown-menu > li > a {
+    white-space: nowrap;
+}
+
+.bootstrap-select:not(.non-break-list) .dropdown-menu > li > a {
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.bootstrap-select .bs-actionsbox .btn-group button {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    width: 100%;
+}
+
+.bootstrap-select.btn-group .dropdown-toggle.multiple-value-select .filter-option {
+    white-space: normal;
+}

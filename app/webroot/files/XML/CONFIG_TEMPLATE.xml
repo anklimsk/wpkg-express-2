@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.wpkg.org/config" xsi:schemaLocation="http://www.wpkg.org/config ../../xsd/config.xsd">
+  <param name="force" value="false"/>
+  <param name="forceInstall" value="false"/>
+  <param name="quitonerror" value="false"/>
+  <param name="debug" value="false"/>
+  <param name="dryrun" value="false"/>
+  <param name="quiet" value="true"/>
+  <param name="nonotify" value="true"/>
+  <param name="notificationDisplayTime" value="10"/>
+  <param name="execTimeout" value="3600"/>
+  <param name="noreboot" value="false"/>
+  <param name="noRunningState" value="false"/>
+  <param name="caseSensitivity" value="true"/>
+  <param name="applyMultiple" value="false"/>
+  <param name="noDownload" value="false"/>
+  <param name="rebootCmd" value="standard"/>
+  <param name="settings_file_name" value="[HOSTNAME].xml"/>
+  <param name="settings_file_path" value="%SystemRoot%\\system32"/>
+  <param name="noForcedRemove" value="false"/>
+  <param name="noRemove" value="false"/>
+  <param name="sendStatus" value="true"/>
+  <param name="noUpgradeBeforeRemove" value="false"/>
+  <param name="settingsHostInfo" value="true"/>
+  <param name="queryMode" value="local"/>
+  <param name="logAppend" value="false"/>
+  <param name="logLevel" value="0x13"/>
+  <param name="log_file_path" value="%TEMP%"/>
+  <param name="logfilePattern" value="wpkg-[HOSTNAME]@[DD]-[MM]-[YYYY]-[hh]-[mm]-[ss].log"/>
+  <param name="packages_path" value=""/>
+  <param name="profiles_path" value=""/>
+  <param name="hosts_path" value=""/>
+  <param name="sRegPath" value="SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall"/>
+  <param name="sRegWPKG_Running" value="HKLM\\Software\\WPKG\\running"/>
+  <languages>
+    <language lcid="409,809,c09,2809,1009,2409,3c09,4009,3c09,4009,3809,1809,2009,4409,1409,3409,4809,1c09,2c09,3009">
+      <string id="notifyUserStart">Automatic software deployment is currently updating your system. Please save all your documents as the the system might reboot without further notice. Thank you.</string>
+      <string id="notifyUserStop">The automated software installation utility has completed installing or updating software on your system. No reboot was necessary. All updates are complete.</string>
+      <string id="notifyUserFail">The software installation has failed.</string>
+      <string id="notifyUserReboot">Rebooting to complete software installation. Please note that some software might not work until the machine is rebooted.</string>
+    </language>
+    <language lcid="40c,80c,2c0c,c0c,240c,300c,3c0c,140c,340c,180c,380c,e40c,200c,280c,100c,1c0c">
+      <string id="notifyUserStart">WPKG, l'utilitaire d'installation automatique des programmes a appliqué ou applique en ce moment des mises à jour à votre système. Veuillez consulter l'heure au début de ce message afin de vérifier que cette information ne soit pas obsolète. Veuillez sauvegarder tous vos documents ouverts, car un redémarrage peut être nécessaire et, dans ce cas, le système redémarrera sans avertissement à la fin de l'installation ou de la mise à jour. Merci.</string>
+      <string id="notifyUserStop">WPKG, l'utilitaire d'installation automatique de logiciels a terminé l'installation ou l'actualisation des logiciels sur votre système. Aucun redémarrage n'était requis. Toutes les mises à jour sont achevées.</string>
+      <string id="notifyUserFail">L'installation des logiciels est échoué.</string>
+      <string id="notifyUserReboot">Un rédémarrage est nécessaire pour compléter l'installation ou la mise à jour. Veuillez noter que les programmes nouveaux/actualisées peuvent ne pas fonctionner avant redémarrage du système.</string>
+    </language>
+    <language lcid="407,c07,1407,1007,807">
+      <string id="notifyUserStart">Die automatische Software-Verteilung läuft gerade. Bitte speichern Sie ihre offenen Dokumente, weil das System unter Umständen ohne weitere Warnung neu startet. Danke.</string>
+      <string id="notifyUserStop">Das WPKG Software-Installationstool hat die Installation oder Aktualisierung von Software auf Ihrem System beendet. Es war kein Neustart notwendig. Alle Updates sind komplett.</string>
+      <string id="notifyUserFail">Die Software-Installation ist fehlgeschlagen.</string>
+      <string id="notifyUserReboot">Neustart zum Abschließen der Installation. Bitte beachten: Die neu installierte/aktualisierte Software funktioniert ggf. erst nach einem Neustart.</string>
+    </language>
+    <language lcid="410,810">
+      <string id="notifyUserStart">L'utilità di installazione automatica del software sta aggiornando il sistema. Verifica la marcatura temporale di questa segnalazione per capire se c'è qualche problema. Se tutto è a posto, salva e chiudi tutte le applicazioni aperte, perchè potrebbe essere necessario un riavvio. Se necessario, il sistema verrà infatti riavviato senza alcun preavviso. Grazie.</string>
+      <string id="notifyUserStop">L'utilità di installazione automatica del software ha terminato di aggiornare il sistema. Non si è reso necessario un riavvio. Tutti gli aggiornamenti sono andati a buon fine.</string>
+      <string id="notifyUserFail">Qualcosa nell'aggiornamento del sistema è fallito.</string>
+      <string id="notifyUserReboot">Riavvia per completare l'aggiornamento del sistema. Qualche programma potrebbe non funzionare correttamente senza un riavvio.</string>
+    </language>
+    <language lcid="0c0a,040a,2c0a,400a,340a,240a,140a,1c0a,300a,440a,100a,480a,580a,080a,4c0a,180a,3c0a,280a,500a,540a,380a,200a">
+      <string id="notifyUserStart">La utilidad de instalación automática de software está actualizando el sistema. Por favor corrobore la fecha mostrada al inicio de este mensaje para determinar si está desactualizada; si no por favor guarde todos sus documentos abiertos, dado que es posible que el sistema necesite reiniciarse. Si fuera necesario, el sistema será reiniciado sin previo aviso cuando la instalación finalice. Muchas gracias.</string>
+      <string id="notifyUserStop">La utilidad de instalación automática de software ha completado de instalar o actualizar el sistema. No ha sido necesario reiniciar. Todas las actualizaciones fueron completadas.</string>
+      <string id="notifyUserFail">Ha habido un error con la instalación de software.</string>
+      <string id="notifyUserReboot">Reniciando el sistema para completar la instalación de software. Por favor note que algún aplicativo puede que no funcione hasta que se reinicie el sistema.</string>
+    </language>
+    <language lcid="419,422,423,43f,444,46d">
+      <string id="notifyUserStart">Автоматическое развертывание программного обеспечения в настоящее время обновляет вашу систему. Сохраните все документы, так как система может перезагрузиться без дальнейшего уведомления. Спасибо.</string>
+      <string id="notifyUserStop">Утилита автоматической установки программного обеспечения завершила установку или обновление программного обеспечения в вашей системе. Не требуется перезагрузка. Все обновления завершены.</string>
+      <string id="notifyUserFail">Не удалось выполнить установку программного обеспечения.</string>
+      <string id="notifyUserReboot">Перезагрузка для завершения установки программного обеспечения. Пожалуйста, обратите внимание, что некоторые программы не могут работать, пока машина не будет перезагружена.</string>
+    </language>
+  </languages>
+  <variables>
+    <variable name="SOFTWARE" value="\\server\share"/>
+    <variable name="SOFTWARE_PUBLIC" value="\\server\public_share"/>
+    <variable name="ARCH" value="x86" architecture="x86"/>
+    <variable name="ARCH" value="x64" architecture="x64"/>
+    <variable name="ARCHBIT" value="32" architecture="x86"/>
+    <variable name="ARCHBIT" value="64" architecture="x64"/>
+    <variable name="ACLGROUPUSERS" value="Users" lcidOS="409"/>
+    <variable name="ACLGROUPUSERS" value="Пользователи" lcidOS="419"/>
+    <variable name="AUTORUNREG" value="HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run"/>
+    <variable name="COMMONAUTORUNREG" value="HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run"/>
+    <variable name="COMMONSTARTMENU" value="%ALLUSERSPROFILE%\Start Menu" os="[5]{1}\.\d{1}\.\d{4}" lcidOS="409"/>
+    <variable name="COMMONSTARTMENU" value="%ALLUSERSPROFILE%\Главное меню" os="[5]{1}\.\d{1}\.\d{4}" lcidOS="419"/>
+    <variable name="COMMONSTARTMENU" value="%ProgramData%\Microsoft\Windows\Start Menu" os="(?:[6-9]{1}|[1-9]\d{1})\.\d{1}\.\d{4}"/>
+    <variable name="COMMONSTARTMENUPROGRAMS" value="%COMMONSTARTMENU%\Programs" os="[5]{1}\.\d{1}\.\d{4}" lcidOS="409"/>
+    <variable name="COMMONSTARTMENUPROGRAMS" value="%COMMONSTARTMENU%\Программы" os="[5]{1}\.\d{1}\.\d{4}" lcidOS="419"/>
+    <variable name="COMMONSTARTMENUPROGRAMS" value="%COMMONSTARTMENU%\Programs" os="(?:[6-9]{1}|[1-9]\d{1})\.\d{1}\.\d{4}"/>
+    <variable name="COMMONDESKTOP" value="%ALLUSERSPROFILE%\Desktop" os="[5]{1}\.\d{1}\.\d{4}" lcidOS="409"/>
+    <variable name="COMMONDESKTOP" value="%ALLUSERSPROFILE%\Рабочий стол" os="[5]{1}\.\d{1}\.\d{4}" lcidOS="419"/>
+    <variable name="COMMONDESKTOP" value="%PUBLIC%\Desktop" os="(?:[6-9]{1}|[1-9]\d{1})\.\d{1}\.\d{4}"/>
+    <variable name="DESKTOP" value="%USERPROFILE%\Desktop" os="[5]{1}\.\d{1}\.\d{4}" lcidOS="409"/>
+    <variable name="DESKTOP" value="%USERPROFILE%\Рабочий стол" os="[5]{1}\.\d{1}\.\d{4}" lcidOS="419"/>
+    <variable name="DESKTOP" value="%USERPROFILE%\Desktop" os="(?:[6-9]{1}|[1-9]\d{1})\.\d{1}\.\d{4}"/>
+    <variable name="STARTMENU" value="%USERPROFILE%\Start Menu" os="[5]{1}\.\d{1}\.\d{4}" lcidOS="409"/>
+    <variable name="STARTMENU" value="%USERPROFILE%\Главное меню" os="[5]{1}\.\d{1}\.\d{4}" lcidOS="419"/>
+    <variable name="STARTMENU" value="%APPDATA%\Microsoft\Windows\Start Menu" os="(?:[6-9]{1}|[1-9]\d{1})\.\d{1}\.\d{4}"/>
+    <variable name="STARTMENUPROGRAMS" value="%STARTMENU%\Programs" os="[5]{1}\.\d{1}\.\d{4}" lcidOS="409"/>
+    <variable name="STARTMENUPROGRAMS" value="%STARTMENU%\Программы" os="[5]{1}\.\d{1}\.\d{4}" lcidOS="419"/>
+    <variable name="STARTMENUPROGRAMS" value="%STARTMENU%\Programs" os="(?:[6-9]{1}|[1-9]\d{1})\.\d{1}\.\d{4}"/>
+  </variables>
+</config>

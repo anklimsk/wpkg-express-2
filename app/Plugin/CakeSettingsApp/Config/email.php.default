@@ -1,0 +1,77 @@
+<?php
+/**
+ * This file is email configuration file.
+ * Configure email transports of CakePHP using settings application.
+ *
+ * CakeSettingsApp: Manage settings of application.
+ * @copyright Copyright 2016-2018, Andrey Klimov.
+ * @license https://opensource.org/licenses/mit-license.php MIT License
+ * @package plugin.Config
+ */
+
+/**
+ * This is email configuration file.
+ *
+ * Use it to configure email transports of CakePHP.
+ */
+
+App::uses('Setting', 'CakeSettingsApp.Model');
+App::uses('ClassRegistry', 'Utility');
+
+/**
+ * Email configuration class.
+ * You can specify multiple configurations for production, development and testing.
+ *
+ * transport => The name of a supported transport; valid options are as follows:
+ *      Mail        - Send using PHP mail function
+ *      Smtp        - Send using SMTP
+ *      Debug       - Do not send the email, just return the result
+ *
+ * You can add custom transports (or override existing transports) by adding the
+ * appropriate file to app/Network/Email. Transports should be named 'YourTransport.php',
+ * where 'Your' is the name of the transport.
+ *
+ * from =>
+ * The origin email. See CakeEmail::from() about the valid values
+ */
+class EmailConfig {
+
+/**
+ * Constructor
+ */
+	public function __construct() {
+		$modelSetting = ClassRegistry::init('CakeSettingsApp.Setting');
+		$username = $modelSetting->getConfig('EmailSmtpuser');
+		$password = $modelSetting->getConfig('EmailSmtppassword');
+		$host = $modelSetting->getConfig('EmailSmtphost');
+		$port = (int)$modelSetting->getConfig('EmailSmtpport');
+		if (empty($username)) {
+			$username = null;
+		}
+		if (empty($password)) {
+			$password = null;
+		}
+		if (empty($host)) {
+			$host = 'localhost';
+		}
+		if (empty($port)) {
+			$port = 25;
+		}
+		$this->smtp += compact('username', 'password', 'host', 'port');
+	}
+
+/**
+ * SMTP transport configuration
+ *
+ * @var array
+ */
+	public $smtp = [
+		'transport' => 'Smtp',
+		'timeout' => 30,
+		'client' => null,
+		'log' => false,
+		'charset' => 'utf-8',
+		'headerCharset' => 'utf-8',
+		'emailFormat' => 'both'
+	];
+}

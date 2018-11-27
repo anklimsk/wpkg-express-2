@@ -1,0 +1,1 @@
+$(function(){$(document).off("MainAppScripts:update.ErrorLayout").on("MainAppScripts:update.ErrorLayout",function(){MainAppScripts.setUIReadyCounter();MainAppScripts.updateBodyClass();MainAppScripts.updateFontAwesome();MainAppScripts.updateTooltips();MainAppScripts.processUIReadyCounter()});MainAppScripts.update()});

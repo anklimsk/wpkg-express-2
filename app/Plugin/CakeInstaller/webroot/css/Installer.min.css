@@ -1,0 +1,6 @@
+/*!
+ * Main file for layout Installer
+ * version 0.1
+ * copyright 2016 Andrey Klimov.
+ * @license https://opensource.org/licenses/mit-license.php MIT License
+ */body{padding-top:50px}html,body,#container,#content,.container-table{height:100%}.container-table{display:table}.vertical-center-row{display:table-cell;vertical-align:middle}#content{clear:both;padding:10px 20px}#container{text-align:left}

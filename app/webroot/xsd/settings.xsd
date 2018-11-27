@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.wpkg.org/settings"
+	elementFormDefault="unqualified"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.wpkg.org/settings"
+	xmlns:packages="http://www.wpkg.org/packages" xmlns:wpkg="http://www.wpkg.org/wpkg">
+
+	<xsd:import namespace="http://www.wpkg.org/packages" schemaLocation="packages.xsd">
+		<xsd:annotation>
+			<xsd:documentation>
+				Include WPKG package definition.
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:import>
+
+	<xsd:import namespace="http://www.wpkg.org/wpkg" schemaLocation="wpkg.xsd">
+		<xsd:annotation>
+			<xsd:documentation>
+				Include WPKG generic elements.
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:import>
+
+	<xsd:complexType name="package">
+		<xsd:complexContent>
+			<xsd:extension base="packages:package">
+				<xsd:attribute name="manualInstall" type="xsd:boolean" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>
+							Specify how the package was installed
+
+							true: the package was installed manually via command line.
+
+							false: the package was installed by package synchronization.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:element name="wpkg" type="wpkg">
+		<xsd:annotation>
+			<xsd:documentation>Root element for local settings database.</xsd:documentation>
+		</xsd:annotation></xsd:element>
+
+	<xsd:complexType name="wpkg">
+		<xsd:annotation>
+			<xsd:documentation>
+				Type of loca settings database. Contains all packages
+				installed on local node.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice minOccurs="1" maxOccurs="unbounded">
+			<xsd:sequence minOccurs="0" maxOccurs="1"><xsd:element name="checkResults" type="checkResults">
+	<xsd:annotation>
+		<xsd:documentation>List of executed checks and their results.</xsd:documentation>
+	</xsd:annotation></xsd:element></xsd:sequence>
+			<xsd:choice minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>
+						References to packages which are installed on
+						the host.
+					</xsd:documentation>
+				</xsd:annotation>
+				<xsd:element name="package" type="package">
+					<xsd:annotation>
+						<xsd:documentation>Package installed on node.</xsd:documentation>
+					</xsd:annotation></xsd:element>
+			</xsd:choice>
+		</xsd:choice>
+		<xsd:attribute name="hostname" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>
+					Name of host where the settings have been generated.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="architecture" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>
+					Architecture of host where the settings have been
+					generated.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="os" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>
+					Operating system on host where the settings have
+					been generated.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="ipaddresses" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>
+					List of IP addresses on host where the settings have
+					been generated.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="domainname" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>
+					Name of domain on host where the settings have been
+					generated.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="groups" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>
+					Name of primary group on host where the settings
+					have been generated.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="lcid" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>
+					Locale setting (LCID) of user under which WPKG has
+					been executed when the settings have been generated.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="lcidOS" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>
+					Locale setting (LCID) of operating system on which
+					WPKG has been executed when the settings have been
+					generated.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:complexType name="checkResults">
+        <xsd:annotation>
+        	<xsd:documentation>Stores results of checks executed on node.
+This can be used on remote host in order to know the evaluated result of a specific check on a remote client.
+It might also be useful for debugging to verify the results of specific checks.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="check" type="check">
+				<xsd:annotation>
+					<xsd:documentation>Refers to a check and stores the check result.</xsd:documentation>
+				</xsd:annotation></xsd:element>
+		</xsd:choice>
+	</xsd:complexType>
+
+	<xsd:complexType name="check">
+		<xsd:complexContent>
+			<xsd:extension base="wpkg:check">
+				<xsd:attribute name="result" type="xsd:boolean"
+					use="required">
+					<xsd:annotation>
+						<xsd:documentation>
+							The check result is only used to store the
+							result in local settings database in order
+							to remember the check result on a remote
+							system.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:schema>

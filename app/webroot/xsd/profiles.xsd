@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.wpkg.org/profiles"
+	elementFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.wpkg.org/profiles" xmlns:wpkg="http://www.wpkg.org/wpkg">
+
+	<xsd:import namespace="http://www.wpkg.org/wpkg" schemaLocation="wpkg.xsd">
+		<xsd:annotation>
+			<xsd:documentation>Include WPKG master definition.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:import>
+
+	<xsd:element name="profiles" type="profiles">
+		<xsd:annotation>
+			<xsd:documentation>Root element for profile definitions.
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+
+	<xsd:complexType name="profiles">
+		<xsd:sequence maxOccurs="unbounded" minOccurs="1">
+			<xsd:element name="profile" type="profile"></xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="profile">
+		<xsd:annotation>
+			<xsd:documentation></xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="depends" type="depends"></xsd:element>
+			<xsd:element name="variable" type="wpkg:variable"></xsd:element>
+			<xsd:element name="package" type="packageReference"></xsd:element>
+		</xsd:choice>
+		<xsd:attribute name="id" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation>
+Name of the profile (as referenced within hosts.xml).
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:complexType name="packageReference">
+		<xsd:complexContent>
+			<xsd:extension base="wpkg:packageReference">
+				<xsd:attribute name="installdate" type="xsd:dateTime"
+					use="optional">
+					<xsd:annotation>
+						<xsd:documentation>
+Date from which the package should be installed (this date or later). Date has to
+be specified in ISO 8601 format (see http://www.w3.org/TR/NOTE-datetime).
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="uninstalldate" type="xsd:dateTime"
+					use="optional">
+					<xsd:annotation>
+						<xsd:documentation>
+Date from which the package should be removed (this date or later). Date has to be
+specified in ISO 8601 format (seehttp://www.w3.org/TR/NOTE-datetime).
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="depends">
+		<xsd:sequence minOccurs="0" maxOccurs="1">
+			<xsd:element name="condition" type="wpkg:condition"></xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="profile-id" type="xsd:string"
+			use="required">
+			<xsd:annotation>
+				<xsd:documentation>
+ID of the profile which this profile depends on (in
+fact it works similar to an include - all packages
+from the referenced profile are installed too).
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attributeGroup ref="wpkg:HostMatch"></xsd:attributeGroup>
+	</xsd:complexType>
+</xsd:schema>

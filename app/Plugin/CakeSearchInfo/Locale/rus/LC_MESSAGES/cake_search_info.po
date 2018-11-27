@@ -1,0 +1,123 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: CakePHP Plugin CakeSearchInfo\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2018-04-06 09:31+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 1.8.7\n"
+
+#: Controller/Component/SearchFilterComponent.php:152
+msgid "Invalid fields for filter of search scope."
+msgstr "Недопустимые поля для фильтра область поиска."
+
+#: Controller/Component/SearchFilterComponent.php:241
+msgid "No results for searching \"%s\""
+msgstr "Нет результатов для поиска \"%s\""
+
+#: Controller/Component/SearchFilterComponent.php:248
+#: Test/Case/Controller/SearchControllerTest.php:458
+#: Test/Case/Controller/Component/SearchFilterComponentTest.php:601
+msgid "Input minimum %d %s"
+msgstr "Введите не менее %d %s"
+
+#: Controller/Component/SearchFilterComponent.php:251
+msgid "Enter your query in the search bar"
+msgstr "Введите запрос в строку поиска"
+
+#: Controller/Component/SearchFilterComponent.php:249
+#: Test/Case/Controller/SearchControllerTest.php:459
+#: Test/Case/Controller/Component/SearchFilterComponentTest.php:602
+msgid "character"
+msgid_plural "characters"
+msgstr[0] "символа"
+msgstr[1] "символов"
+msgstr[2] "символов"
+
+#: View/Elements/formSearch.ctp:39
+msgid "Search"
+msgstr "Поиск"
+
+#: View/Elements/formSearch.ctp:47 View/Search/index.ctp:21;23
+msgid "Search information"
+msgstr "Поиск информации"
+
+#: View/Elements/formSearch.ctp:54
+msgid "Search settings"
+msgstr "Параметры поиска"
+
+#: View/Elements/formSearch.ctp:55
+msgid "In any part of the string"
+msgstr "В любой части строки"
+
+#: View/Elements/formSearch.ctp:62
+msgid "The scope of the search"
+msgstr "Область поиска"
+
+#: View/Elements/formSearch.ctp:72
+msgid "Select all"
+msgstr "Отметить всё"
+
+#: View/Elements/formSearch.ctp:73
+msgid "Deselect all"
+msgstr "Cнять выделение"
+
+#: View/Elements/formSearch.ctp:74
+msgid "Set search scope filter"
+msgstr "Установить фильтр области поиска"
+
+#: View/Elements/infoCorrectQuery.ctp:24
+msgid "Showing results for \"%s\""
+msgstr "Показаны результаты по запросу \"%s\""
+
+#: View/Elements/infoCorrectQuery.ctp:27
+msgid "Search instead \"%s\""
+msgstr "Искать вместо этого \"%s\""
+
+#: View/Elements/tableSearch.ctp:48
+msgid "Results of search \"%s\""
+msgstr "Результаты поиска \"%s\""
+
+#: View/Elements/tableSearch.ctp:84
+msgid "Found %s %s."
+msgstr "Найдено %s %s."
+
+#: View/Elements/tableSearch.ctp:123
+msgid "&lt;None&gt;"
+msgstr "&lt;Нет&gt;"
+
+#: View/Elements/tableSearch.ctp:86
+msgid "result"
+msgid_plural "results"
+msgstr[0] "результат"
+msgstr[1] "результата"
+msgstr[2] "результатов"
+
+#: View/Search/index.ctp:28
+msgid "Results of search"
+msgstr "Результаты поиска"
+
+#: View/Search/index.ctp:30
+msgid "New search"
+msgstr "Новый поиск"
+
+#~ msgid "Results of search \"%s\". Search instead %s."
+#~ msgstr "Результаты поиска \"%s\". Искать вместо \"%s\"."
+
+#~ msgid "Deselect"
+#~ msgstr "Снять выделение"
+
+#~ msgid "Found %d %s."
+#~ msgstr "Найдено %d %s."
+
+#~ msgid "Results"
+#~ msgstr "Результаты"

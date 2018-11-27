@@ -1,0 +1,35 @@
+{
+    "name": "leodido/conversio",
+    "description": "A library that provides a simple infrastructure to create your own converters and to perform any conversion you want",
+    "minimum-stability": "stable",
+    "license": "ISC",
+    "authors": [
+        {
+            "name": "Leo Di Donato",
+            "email": "leodidonato@gmail.com",
+            "homepage": "http://github.com/leodido"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "zendframework/zend-filter": "~2.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.2",
+        "satooshi/php-coveralls": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Conversio\\": "library/",
+            "ConversioTest\\": "tests/"
+        }
+    },
+    "keywords": [
+        "convert",
+        "conversion",
+        "converter",
+        "library",
+        "conversions",
+        "converters"
+    ]
+}

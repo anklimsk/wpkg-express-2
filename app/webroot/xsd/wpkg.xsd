@@ -1,0 +1,715 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.wpkg.org/wpkg"
+	elementFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.wpkg.org/wpkg">
+	<xsd:annotation>
+		<xsd:documentation>XML Schema Definition for WPKG packages. The root element (packages) contains all packages.
+There might be multiple XML files of this type put to the packages/ sub-directory where WPKG is installed.
+		</xsd:documentation>
+	</xsd:annotation>
+	<xsd:complexType name="check">
+		<xsd:annotation>
+			<xsd:documentation>Generic check definition - used for compatibility. Does not verify correct 
+combination of attributes for all kind of checks. If you would like to verify 
+the attributes in more detail please specify the xsi:type='checkFile' 
+attribute where 'checkFile' can be replaced with any more-specific check type 
+of check*.
+
+Valid types include:
+
+- checkFile
+- checkRegistry
+- checkExecute
+- checkUninstall
+- checkLogical</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence minOccurs="0" maxOccurs="1">
+			<xsd:sequence maxOccurs="unbounded" minOccurs="0">
+				<xsd:element name="check" type="check">
+					<xsd:annotation>
+						<xsd:documentation>Checks can be nested. Use logical checks to group checks with logical conditions.</xsd:documentation>
+					</xsd:annotation></xsd:element>
+			</xsd:sequence>
+			<xsd:sequence maxOccurs="1" minOccurs="0">
+				<xsd:element name="condition" type="condition">
+					<xsd:annotation>
+						<xsd:documentation>Specify a condition under which this check applies. If the condition does not 
+apply then the check is ignored (exactly as if it would not have been 
+specifyed at all).
+
+For example you might add a condition to check for specific OS version. So the 
+check will only be applied if the OS version matches the condition.</xsd:documentation>
+					</xsd:annotation></xsd:element>
+			</xsd:sequence>
+		</xsd:sequence>
+		<xsd:attribute name="type" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Type of check, valid values are: - file - registry -
+uninstall - execute - logical
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="condition" use="required"
+			type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>Check condition. Valid values are:
+- equals
+- exists
+- sizeequals
+- versionsmallerthan
+- versionlessorequal
+- versionequalto
+- versiongreaterorequal
+- versiongreaterthan
+- datemodifyequalto
+- datemodifynewerthan
+- datemodfyolderthan
+- datecreateequalto
+- datecreatenewerthan
+- datecreateolderthan
+- dateaccessequalto
+- dateaccessnewerthan
+- dateaccessolderthan
+- exitcodesmallerthan
+- exitcodelessorequal
+- exitcodeequalto
+- exitcodegreaterorequal
+- exitcodegreaterthan
+- not
+- and
+- or
+- atleast
+- atmost
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="path" type="xsd:string" use="optional"
+			default="%SystemRoot%\explorer.exe">
+			<xsd:annotation>
+				<xsd:documentation>Path to be used for checks (registry path, file path).
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="value" type="xsd:string" use="optional"
+			default="1.0">
+			<xsd:annotation>
+				<xsd:documentation>A value is required for some check conditions like
+VERSION, SIZE or EQUALS checks.
+
+Note for registry equals checks: The value should
+contain a string representing the data within the
+registry value. In case the value is a DWORD just
+enter a numeric string. The values will be compared
+in their string representation (DWORD converted to
+String). In case you compare to a REG_MULTI_SZ value
+all data fields will be concatenated to a single
+string separated by newline characters.
+
+Example:
+REG_MULTI_SZ='a
+b
+c'
+value='a
+b
+c' will match.
+
+REG_BINARY values will be converted to multiline
+string as well. Each octett of the binary value is
+converted to its decimal representation.
+REG_BINARY= '11 22 33 44'
+value = '17 34 51 68' will match.
+</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attributeGroup ref="HostMatch"></xsd:attributeGroup>
+	</xsd:complexType>
+	<xsd:complexType name="checkFile">
+		<xsd:annotation>
+			<xsd:documentation>Check type for file specific tests.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:restriction base="check">
+				<xsd:attribute name="type" use="required" fixed="file" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>File checks need to specify 'file' as the TYPE of check.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="condition" use="required">
+					<xsd:annotation>
+						<xsd:documentation>Specify what should be tested on the file specified within the 'path' property.
+
+- exists: Check for file existence.
+
+- sizeequals: Check for file size (exact size in Bytes specified within the 
+'value' attribute.
+
+- version*: Compare file version to version specified within the 'value' 
+attribute.
+
+- date*: Compare file date to date specified within the 'value' attribute.
+</xsd:documentation>
+					</xsd:annotation>
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:enumeration value="exists"></xsd:enumeration>
+							<xsd:enumeration value="sizeequals"></xsd:enumeration>
+
+							<xsd:enumeration
+								value="versionsmallerthan">
+							</xsd:enumeration>
+							<xsd:enumeration
+								value="versionlessorequal">
+							</xsd:enumeration>
+							<xsd:enumeration value="versionequalto"></xsd:enumeration>
+							<xsd:enumeration
+								value="versiongreaterorequal">
+							</xsd:enumeration>
+							<xsd:enumeration
+								value="versiongreaterthan">
+							</xsd:enumeration>
+							<xsd:enumeration
+								value="datemodifyequalto">
+							</xsd:enumeration>
+							<xsd:enumeration
+								value="datemodifynewerthan">
+							</xsd:enumeration>
+							<xsd:enumeration
+								value="datemodifyolderthan">
+							</xsd:enumeration>
+							<xsd:enumeration
+								value="datecreateequalto">
+							</xsd:enumeration>
+							<xsd:enumeration
+								value="datecreatenewerthan">
+							</xsd:enumeration>
+							<xsd:enumeration
+								value="datecreateolderthan">
+							</xsd:enumeration>
+							<xsd:enumeration
+								value="dateaccessequalto">
+							</xsd:enumeration>
+							<xsd:enumeration
+								value="dateaccessnewerthan">
+							</xsd:enumeration>
+							<xsd:enumeration
+								value="dateaccessolderthan">
+							</xsd:enumeration>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
+				<xsd:attribute name="path" type="xsd:string" use="required">
+					<xsd:annotation>
+						<xsd:documentation>Path to the file to be checked. You might use
+environment variables as well:
+'C:\Windows\explorer.exe'
+'%TEMP%\somefile.txt'
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="value" type="xsd:string" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>
+This value is optional only for existence check. For all other checks it it is
+required.
+
+The value should have the following format:
+
+- for 'exists' condition:
+For the 'exists' condition the value attribute is not evaluated. Exists just
+checks for existence of the file referred within the 'path' attribute.
+
+- for 'sizeequals' condition:
+The 'value' attribute has to tontain the file size (in bytes).
+
+- for 'version*' condition:
+The value has to contain a version string which can be compared against the file
+version. Some examples for valid version comparisons:
+
+A        B              Result
+'1'      '2'            B is newer
+'1'      '15'           B is newer
+'1.0'    '1.2.b'        B is newer
+'1.35'   '1.35-2'       B is newer
+'1.35-2' '1.36'         B is newer
+'1.35R3' '1.36'         B is newer
+'1'      '1.0.00.0000'  Versions are equal
+'1'      '1.0'          Versions are equal
+'1.35'   '1.35-2'       B is newer
+'1.35-2' '1.35'         A is newer
+'1.35R3' '1.36R4'       B is newer
+'1.35-2' '1.35-2.0'     Versions are equal
+'1.35.1' '1.35.1.0'     Versions are equal
+'1.3RC2' '1.3'          B is newer (special case where A is an 'RC' version)
+'1.5'    '1.5I3656'     A is newer (B is an 'I'/integration version)
+'1.5'    '1.5M3656'     A is newer (B is an 'M'/milestone version)
+'1.5'    '1.5u3656'     B is newer (B is an update version)
+
+- for 'date*' condition:
+This value allwos to do comparison to file creation, modification and access
+timestamps.
+The 'value' attribute has to contain a string in the following format:
+
+Relative timestamp (in minutes):
+-100     Means the file timestamp is compared to the timestamp 100 minutes ago.
++50      Means the file timestamp is compared to the timestamp 50 minutes in
+         the future.
+
+Absolute timestamp in ISO 8601 format:
+'2007-11-23 22:00'            (22:00 local time)
+'2007-11-23T22:00'            (Both, 'T' and space delimiter are allowed)
+'2007-11-23 22:00:00'         (specifies seconds which default to 0 above)
+'2007-11-23 22:00:00.000'     (specifies milliseconds which default to 0)
+
+It is allowed to specify the timezone as well:
+'2007-11-23 22:00+01:00'      (22:00 CET)
+'2007-11-23 21:00Z'           (21:00 UTC/GMT = 22:00 CET)
+'2007-11-23 22:00+00:00'      (21:00 UTC/GMT = 22:00 CET)
+
+File-Comparison:
+Prefix your value with the '@' character in order to point to a file to which
+the timestamp of the file referred in path is compared.
+Examples:
+@%SystemRoot%\explorer.exe
+@c:\myfile.txt
+
+Special terms:
+last-week           Check afainst timestamp of exactly one week ago (7 days).
+last-month          Check afainst timestamp of exactly one month ago (30 days).
+last-year           Check afainst timestamp of exactly one year ago (365 days).
+yesterday           Check afainst timestamp of yesterday (24 hours ago).
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="checkRegistry">
+		<xsd:annotation>
+			<xsd:documentation>Use this type to specify a check for registry values.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:restriction base="check">
+				<xsd:attribute name="type" use="required" fixed="registry" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>Registry checks need to specify 'registry' as the the TYPE of check.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="condition" use="required">
+					<xsd:annotation>
+						<xsd:documentation>exist: Check for existence of the key/value supplied within the 'path' 
+attribute.
+
+equals: Check if the specified value contains the data entered within the 
+'value' attribute.
+</xsd:documentation>
+					</xsd:annotation>
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:enumeration value="exists"></xsd:enumeration>
+							<xsd:enumeration value="equals"></xsd:enumeration>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
+				<xsd:attribute name="path" type="xsd:string" use="required">
+					<xsd:annotation>
+						<xsd:documentation>Enter registry path to a key which you like to check. Valid examples: 
+'HKLM\Software'
+</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="value" type="xsd:string" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>Data to check te specified registry value against. NOTE: This attribute is 
+optional only for registry existence checks. It is REQUIRED if you use equal 
+checks.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="checkUninstall">
+		<xsd:annotation>
+			<xsd:documentation>Use this type to specify a check for uninstall entries
+(Control Panel, Add/Remove programs).
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:restriction base="check">
+				<xsd:attribute name="type" fixed="uninstall" use="required" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>Uninstall checks need to specify 'uninstall' as the the TYPE of check.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="condition" use="required">
+					<xsd:annotation>
+						<xsd:documentation>- exist: Check if an uninstall entry equal to the value within the 'value' 
+attribute exists (see Control Pane, Add/Remove software)
+
+version*: 
+Compares the uninstall entry version to the value within the 'value' attribute.
+
+NOTE: This only works if the application specifies a 'DisplayVersion' value 
+within the Windows registry.
+
+Valid values:
+- versionsmallerthan
+- versionlessorequal
+- versionequalto
+- versiongreaterorequal
+- versiongreaterthan
+</xsd:documentation>
+					</xsd:annotation>
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:enumeration value="exists"></xsd:enumeration>
+							<xsd:enumeration value="versionsmallerthan">
+							</xsd:enumeration>
+							<xsd:enumeration value="versionlessorequal">
+							</xsd:enumeration>
+							<xsd:enumeration value="versionequalto"></xsd:enumeration>
+							<xsd:enumeration value="versiongreaterorequal">
+							</xsd:enumeration>
+							<xsd:enumeration value="versiongreaterthan">
+							</xsd:enumeration>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
+				<xsd:attribute name="path" type="xsd:string" use="required">
+					<xsd:annotation>
+						<xsd:documentation>Name of the uninstall entry as it appears
+within Control Panel, Add/Remove software.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="value" type="xsd:string" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>Specifies a version if any of the version* checks are used.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="checkExecute">
+		<xsd:annotation>
+			<xsd:documentation>Use this type of check to execute a script. Its exit	code can be evaluated by rules then.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:restriction base="check">
+				<xsd:attribute name="type" use="required" fixed="execute" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation> Execute checks need to specify 'execute' here.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="condition" use="required">
+					<xsd:annotation>
+						<xsd:documentation>Verify the exit code of the script executed. Please specify the exit code to 
+compare to within the 'value' attribute. Valid values:
+
+exitcodesmallerthan: true in case the script exit code is numerically less 
+than the value specified
+
+exitcodelessorequal: true in case the script exit code is numerically less 
+or equal than the value specified
+
+exitcodeequalto: true in case the script exit code is numerically equal to 
+the value specified
+
+exitcodegreaterorequal: true in case the script exit code is numerically 
+greater or equal to the value specified
+
+exitcodegreaterthan: true in case the script exit code is numerically larger 
+than the value specified</xsd:documentation>
+					</xsd:annotation>
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:enumeration value="exitcodesmallerthan">
+							</xsd:enumeration>
+							<xsd:enumeration value="exitcodelessorequal">
+							</xsd:enumeration>
+							<xsd:enumeration value="exitcodeequalto"></xsd:enumeration>
+							<xsd:enumeration value="exitcodegreaterorequal">
+							</xsd:enumeration>
+							<xsd:enumeration value="exitcodegreaterthan">
+							</xsd:enumeration>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
+				<xsd:attribute name="path" type="xsd:string" use="required">
+					<xsd:annotation>
+						<xsd:documentation>
+							Path to the script to be executed.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="value" type="xsd:string" use="required">
+					<xsd:annotation>
+						<xsd:documentation>
+							Value used in exit code comparison.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="checkLogical">
+		<xsd:annotation>
+			<xsd:documentation>Use this check for logical chaining of other checks.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:restriction base="check">
+
+				<xsd:attribute name="type" use="required"
+					fixed="logical" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>Type of check has to be set to 'logical' for logical checks.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="condition" use="required">
+					<xsd:annotation>
+						<xsd:documentation>Check condition:
+
+not: Requires exactly one single sub-element of type 'check' whose exit code 
+boolean value is inverted.
+
+and: Returns false immediately if one of the contained checks returns 
+false. Only evaluates true in case ALL checks contained evaluate true.
+
+or: Returns true immediately as soon as one of the checks return true. Only 
+evaluates false if ALL checks contained evaluate false.
+
+atleast: Returns true only if at least the specified amount of checks 
+contained return true. For example if you specify 5 checks and the value for 
+'atleast' is set to 3 then it returns true as soon as 3 checks out of 5 
+evaluated true.
+
+atmost: Returns true if maximum the specified amount of checks return true. 
+For example if you specify 5 checks and the value for 'atmost' is set to 3 it 
+will return true only if no more than 3 checks evaluate true.</xsd:documentation>
+					</xsd:annotation>
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:enumeration value="not"></xsd:enumeration>
+							<xsd:enumeration value="and"></xsd:enumeration>
+							<xsd:enumeration value="or"></xsd:enumeration>
+							<xsd:enumeration value="atleast"></xsd:enumeration>
+							<xsd:enumeration value="atmost"></xsd:enumeration>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
+				<xsd:attribute name="value" type="xsd:string"
+					use="optional">
+					<xsd:annotation>
+						<xsd:documentation>Number of checks required for 'atleast' and 'atmost' checks. Unused for all other conditions.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="variable">
+		<xsd:sequence maxOccurs="1" minOccurs="0">
+			<xsd:element name="condition" type="condition"></xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="name" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Variable name.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="value" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Variable value.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+
+		<xsd:attributeGroup ref="HostMatch"></xsd:attributeGroup>
+	</xsd:complexType>
+
+	<xsd:complexType name="condition">
+		<xsd:sequence minOccurs="1" maxOccurs="unbounded">
+
+			<xsd:element name="check" type="check"></xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="packageReference">
+		<xsd:annotation>
+			<xsd:documentation>Reference to a package.</xsd:documentation>
+		</xsd:annotation>
+
+		<xsd:sequence maxOccurs="1" minOccurs="0">
+			<xsd:element name="condition" type="condition">
+				<xsd:annotation>
+					<xsd:documentation>Specifies a condition under which the package reference is taken into account.
+If the condition is not met, then the package reference is ignored.</xsd:documentation>
+				</xsd:annotation></xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="package-id" type="xsd:string"
+			use="required">
+			<xsd:annotation>
+				<xsd:documentation>Equal to the ID attribute of any existing package.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attributeGroup ref="HostMatch"></xsd:attributeGroup>
+	</xsd:complexType>
+
+	<xsd:attributeGroup name="HostMatch">
+
+        <xsd:attribute name="hostname" type="xsd:string">
+        	<xsd:annotation>
+        		<xsd:documentation>Regular expression which matches host name.
+If hostname attribute is specified then this node is only applied if
+the host name is matched by the specified attribute regular
+expression.</xsd:documentation></xsd:annotation></xsd:attribute>
+        <xsd:attribute name="os" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>Regular expression which matches host operating
+system. e.g. 'microsoft windows 7 professional' Host
+OS description string will have the following
+format:
+
+'[OS-caption], [OS-description],[CSD-version], [OS-version]'
+				</xsd:documentation>
+			</xsd:annotation>
+        </xsd:attribute>
+		<xsd:attribute name="ipaddresses" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>Regular expression matching machine IP address. Any
+IP address of the host (if it has multiple) will
+have to match this expression. e.g.
+^192\.168\.1\..*
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="domainname" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>Regular expression matching domain name of the host.
+e.g.
+^domain$
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="groups" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>Regular expression matching group membership of
+host. At least one group has to match the regular
+expression. e.g.
+^group.*$
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="architecture">
+			<xsd:annotation>
+				<xsd:documentation>Regular expression matching the host architecture.
+Currently the following architecture are supported:
+
+x86: 32-bit Windows operating system running on x86 instruction set 
+
+x64: 64-bit	Windows operating system running on x86-64 instruction set
+
+ia64: 64-bit Windows operating system running on IA64 instruction set
+
+
+Note: Note: You will have to match x86 also if you
+run Windows 32-bit on AMD64/EMT64/x64 hardware.
+				</xsd:documentation>
+			</xsd:annotation>
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="x86"></xsd:enumeration>
+					<xsd:enumeration value="x64"></xsd:enumeration>
+					<xsd:enumeration value="ia64"></xsd:enumeration>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="environment" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>Define environment variables which have to match in
+order to match the host. Environment variables need
+to be specified in the following format:
+environment='variable1=^regexp$|variable2=regexp...'
+
+Please note that regular expressions are matched
+case-insensitive and multiple variables have to be
+separated by the pipe ('|') character. Please also
+note that in case you use WPKG-client the
+system-user environment might differ from the
+environment you see when opening a command prompt
+and typing 'set'. Some variables might be missing
+and others might have different content. So use with
+caution.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="lcid" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>Comma-separated list of LCID values to be matched
+against executing host (LCID seetting of executing
+user locale). A full list of LCIDs might be found at:
+http://www.microsoft.com/globaldev/reference/lcid-all.mspx
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="lcidOS" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>Comma-separated list of LCID values to be matched
+against executing host (LCID setting of Windows
+install language). A full list of LCIDs might be
+found at:
+http://www.microsoft.com/globaldev/reference/lcid-all.mspx
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+
+	<xsd:complexType name="checkHost">
+		<xsd:annotation>
+			<xsd:documentation>
+				Use this type to specify a check for host attributes.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+            <xsd:restriction base="check">
+				<xsd:attribute name="type" type="xsd:string" fixed="host" use="required">
+					<xsd:annotation>
+						<xsd:documentation>
+							Type of check. Set this tho "host" for host
+							type checks.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="condition" use="required">
+					<xsd:annotation>
+						<xsd:documentation>
+							Set condition for host check.
+						</xsd:documentation>
+					</xsd:annotation>
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:enumeration value="hostname"></xsd:enumeration>
+							<xsd:enumeration value="architecture"></xsd:enumeration>
+							<xsd:enumeration value="os"></xsd:enumeration>
+							<xsd:enumeration value="ipaddresses"></xsd:enumeration>
+							<xsd:enumeration value="domainname"></xsd:enumeration>
+							<xsd:enumeration value="groups"></xsd:enumeration>
+							<xsd:enumeration value="lcid"></xsd:enumeration>
+							<xsd:enumeration value="lcidOS"></xsd:enumeration>
+							<xsd:enumeration value="environment"></xsd:enumeration>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
+				<xsd:attribute name="value" type="xsd:string" use="required">
+					<xsd:annotation>
+						<xsd:documentation>Regular expression to match the condition.</xsd:documentation>
+					</xsd:annotation></xsd:attribute>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:schema>

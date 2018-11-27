@@ -1,0 +1,26 @@
+{
+    "name": "anklimsk/cakephp-notify",
+    "description": "Sending E-mail using task queues and sending a notification to the user using WEB Notifications API from CakePHP 2.x",
+    "type": "cakephp-plugin",
+    "homepage": "https://github.com/anklimsk/cakephp-notify",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrey Klimov"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "composer/installers": "^1.5.0",
+        "anklimsk/cakephp-extended-test": "^1.0.0",
+        "anklimsk/cakephp2-theme": "^1.0.0",
+        "dereuromark/cakephp-queue": "^2.3.0",
+        "dereuromark/cakephp-tools": "^0.12.4"
+    },
+    "support": {
+        "source": "https://github.com/anklimsk/cakephp-notify"
+    },
+    "extra": {
+        "installer-name": "CakeNotify"
+    }
+}

@@ -1,0 +1,7 @@
+
+.flagstrap > button[data-toggle="dropdown"] {
+	text-align: left;
+}
+.flagstrap > ul.dropdown-menu {
+	width: 100%
+}

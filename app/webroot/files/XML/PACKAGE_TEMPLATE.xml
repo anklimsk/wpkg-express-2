@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages:packages xmlns:packages="http://www.wpkg.org/packages" xmlns:wpkg="http://www.wpkg.org/wpkg" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wpkg.org/packages ../../xsd/packages.xsd">
+  <package id="PACKAGE_TEMPLATE_MSI_SIMPLE" name="Template of simple MSI package" revision="1.0" priority="0" reboot="false" notify="true" execute="default">
+    <!-- Notes: Template of simple MSI package. -->
+    <!-- Template: Use as template -->
+    <variable name="DisplayName" value="Some application"/>
+    <variable name="Installer" value="package.msi"/>
+    <variable name="ProcessName" value="application.exe"/>
+    <variable name="Revision" value="1.0"/>
+    <variable name="RevI1" value="1"/>
+    <variable name="RevI2" value="0"/>
+    <check type="uninstall" condition="versiongreaterorequal" path="%DisplayName%" value="%Revision%"/>
+    <commands>
+      <command type="install" include="remove"/>
+      <command type="install" cmd="MsiExec.exe /i &quot;%SOFTWARE%\Some company\Some product\%Revision%\%ARCH%\%Installer%&quot; /passive /norestart /log %&quot;%TEMP%\package-name-install.log%&quot;" timeout="60"/>
+      <command type="upgrade" include="install"/>
+      <command type="downgrade" include="install"/>
+      <command type="remove" include="prepare"/>
+      <command type="remove" cmd="%COMSPEC% /C wmic product where &quot;name like '%DisplayName%%%'&quot; call uninstall /nointeractive" timeout="60"/>
+      <command type="prepare" cmd="%ComSpec% /C taskkill /F /IM &quot;%ProcessName%&quot;" timeout="30">
+        <exit code="128" reboot="false"/>
+      </command>
+    </commands>
+  </package>
+  <package id="PACKAGE_TEMPLATE_MSI_TRANSFORM" name="Template of MSI package with transformation file" revision="1.0" priority="0" reboot="false" notify="true" execute="default">
+    <!-- Notes: Template of MSI package with transformation file. -->
+    <!-- Template: Use as template -->
+    <variable name="DisplayName" value="Some application"/>
+    <variable name="Installer" value="package.msi"/>
+    <variable name="ProcessName" value="application.exe"/>
+    <variable name="Revision" value="1.0"/>
+    <variable name="RevI1" value="1"/>
+    <variable name="RevI2" value="0"/>
+    <check type="uninstall" condition="versiongreaterorequal" path="%DisplayName%" value="%Revision%"/>
+    <commands>
+      <command type="install" include="remove"/>
+      <command type="install" cmd="MsiExec.exe /i &quot;%SOFTWARE%\Some company\Some product\%Revision%\%ARCH%\%Installer%&quot; /passive /norestart /log %&quot;%TEMP%\package-name-install.log%&quot; TRANSFORMS=&quot;%SOFTWARE%\Some company\Some product\%Revision%\%ARCH%\transform.mst&quot;" timeout="60"/>
+      <command type="upgrade" include="install"/>
+      <command type="downgrade" include="install"/>
+      <command type="remove" include="prepare"/>
+      <command type="remove" cmd="%COMSPEC% /C wmic product where &quot;name like '%DisplayName%%%'&quot; call uninstall /nointeractive" timeout="60"/>
+      <command type="prepare" cmd="%ComSpec% /C taskkill /F /IM &quot;%ProcessName%&quot;" timeout="30">
+        <exit code="128" reboot="false"/>
+      </command>
+    </commands>
+  </package>
+  <package id="PACKAGE_TEMPLATE_MSI_TARGETDIR" name="Template of MSI package with TARGETDIR parameter" revision="1.0" priority="0" reboot="false" notify="true" execute="default">
+    <!-- Notes: Template of MSI package with TARGETDIR parameter. -->
+    <!-- Template: Use as template -->
+    <variable name="DisplayName" value="Some application"/>
+    <variable name="Installer" value="package.msi"/>
+    <variable name="ProcessName" value="application.exe"/>
+    <variable name="ProgramDir" value="%ProgramFiles%\Some product"/>
+    <variable name="Revision" value="1.0"/>
+    <variable name="RevI1" value="1"/>
+    <variable name="RevI2" value="0"/>
+    <check type="uninstall" condition="versiongreaterorequal" path="%DisplayName%" value="%Revision%"/>
+    <commands>
+      <command type="install" include="remove"/>
+      <command type="install" cmd="MsiExec.exe /i &quot;%SOFTWARE%\Some company\Some product\%Revision%\%ARCH%\%Installer%&quot; /passive /norestart /log %&quot;%TEMP%\package-name-install.log%&quot; TARGETDIR=&quot;%ProgramDir%&quot;" timeout="60"/>
+      <command type="upgrade" include="install"/>
+      <command type="downgrade" include="install"/>
+      <command type="remove" include="prepare"/>
+      <command type="remove" cmd="%COMSPEC% /C wmic product where &quot;name like '%DisplayName%%%'&quot; call uninstall /nointeractive" timeout="60"/>
+      <command type="prepare" cmd="%ComSpec% /C taskkill /F /IM &quot;%ProcessName%&quot;" timeout="30">
+        <exit code="128" reboot="false"/>
+      </command>
+    </commands>
+  </package>
+  <package id="PACKAGE_TEMPLATE_NSIS" name="Template of Nullsoft Scriptable Install System installer package" revision="1.0" priority="0" reboot="false" notify="true" execute="default">
+    <!-- Notes: Template of Nullsoft Scriptable Install System installer package. -->
+    <!-- Template: Use as template -->
+    <variable name="DisplayName" value="Some application"/>
+    <variable name="Installer" value="install.exe"/>
+    <variable name="ProcessName" value="application.exe"/>
+    <variable name="ProgramDir" value="%ProgramFiles%\Some product"/>
+    <variable name="Revision" value="1.0"/>
+    <variable name="RevI1" value="1"/>
+    <variable name="RevI2" value="0"/>
+    <variable name="Uninstaller" value="Uninstall.exe"/>
+    <check type="uninstall" condition="versiongreaterorequal" path="%DisplayName%" value="%Revision%"/>
+    <commands>
+      <command type="install" include="remove"/>
+      <command type="install" cmd="&quot;%SOFTWARE%\Some company\Some product\%Revision%\%ARCH%\%Installer%&quot; /S /D=%ProgramDir%" timeout="60"/>
+      <command type="upgrade" include="install"/>
+      <command type="downgrade" include="install"/>
+      <command type="remove" include="prepare"/>
+      <command type="remove" cmd="%&quot;%ProgramDir%\%Uninstaller%&quot; /S _?=%ProgramDir%" timeout="60">
+        <condition>
+          <check type="file" condition="exists" path="%ProgramDir%\%Uninstaller%"/>
+        </condition>
+      </command>
+      <command type="prepare" cmd="%ComSpec% /C taskkill /F /IM &quot;%ProcessName%&quot;" timeout="30">
+        <exit code="128" reboot="false"/>
+      </command>
+    </commands>
+  </package>
+  <package id="PACKAGE_TEMPLATE_INNO_SETUP" name="Template of Inno Setup package" revision="1.0" priority="0" reboot="false" notify="true" execute="default">
+    <!-- Notes: Template of Inno Setup package. -->
+    <!-- Template: Use as template -->
+    <variable name="DisplayName" value="Some application"/>
+    <variable name="Installer" value="install.exe"/>
+    <variable name="ProcessName" value="application.exe"/>
+    <variable name="ProgramDir" value="%ProgramFiles%\Some product"/>
+    <variable name="Revision" value="1.0"/>
+    <variable name="RevI1" value="1"/>
+    <variable name="RevI2" value="0"/>
+    <variable name="Uninstaller" value="Uninstall.exe"/>
+    <check type="uninstall" condition="versiongreaterorequal" path="%DisplayName%" value="%Revision%"/>
+    <commands>
+      <command type="install" include="remove"/>
+      <command type="install" cmd="&quot;%SOFTWARE%\Some company\Some product\%Revision%\%ARCH%\%Installer%&quot; /SP- /VERYSILENT /SUPPRESSMSGBOXES /NORESTART /DIR=&quot;%ProgramDir%&quot; /LOG=&quot;%TEMP%\package-name-install.log%&quot;" timeout="60"/>
+      <command type="upgrade" include="install"/>
+      <command type="downgrade" include="install"/>
+      <command type="remove" include="prepare"/>
+      <command type="remove" cmd="&quot;%ProgramDir%\%Uninstaller%&quot; /VERYSILENT /SUPPRESSMSGBOXES /NORESTART" timeout="60">
+        <condition>
+          <check type="file" condition="exists" path="%ProgramDir%\%Uninstaller%"/>
+        </condition>
+      </command>
+      <command type="prepare" cmd="%ComSpec% /C taskkill /F /IM &quot;%ProcessName%&quot;" timeout="30">
+        <exit code="128" reboot="false"/>
+      </command>
+    </commands>
+  </package>
+  <package id="PACKAGE_TEMPLATE_INSTALLSHIELD" name="Template of InstallShield package" revision="1.0" priority="0" reboot="false" notify="true" execute="default">
+    <!-- Notes: Template of InstallShield package. -->
+    <!-- Template: Use as template -->
+    <variable name="DisplayName" value="Some application"/>
+    <variable name="Installer" value="install.exe"/>
+    <variable name="ProcessName" value="application.exe"/>
+    <variable name="ProgramDir" value="%ProgramFiles%\Some product"/>
+    <variable name="Revision" value="1.0"/>
+    <variable name="RevI1" value="1"/>
+    <variable name="RevI2" value="0"/>
+    <check type="uninstall" condition="versiongreaterorequal" path="%DisplayName%" value="%Revision%"/>
+    <commands>
+      <command type="install" include="remove"/>
+      <command type="install" cmd="&quot;%SOFTWARE%\Some company\Some product\%Revision%\%ARCH%\%Installer%&quot; /s /sms /f1&quot;%SOFTWARE%\Some company\Some product\%Revision%\%ARCH%\setup.iss&quot; /f2%&quot;%TEMP%\package-name-install.log%&quot;" timeout="60"/>
+      <command type="upgrade" include="install"/>
+      <command type="downgrade" include="install"/>
+      <command type="remove" include="prepare"/>
+      <command type="remove" cmd="&quot;%SOFTWARE%\Some company\Some product\%Revision%\%ARCH%\%Installer%&quot; /s /sms /f1&quot;%SOFTWARE%\Some company\Some product\%Revision%\%ARCH%\remove.iss&quot; /f2%&quot;%TEMP%\package-name-uninstall.log%&quot;" timeout="60">
+        <condition>
+          <check type="file" condition="exists" path="%ProgramDir%\%ProcessName%"/>
+        </condition>
+      </command>
+      <command type="prepare" cmd="%ComSpec% /C taskkill /F /IM &quot;%ProcessName%&quot;" timeout="30">
+        <exit code="128" reboot="false"/>
+      </command>
+    </commands>
+  </package>
+  <package id="PACKAGE_TEMPLATE_INSTALLSHIELD_WITH_MSI" name="Template of InstallShield package with MSI" revision="1.0" priority="0" reboot="false" notify="true" execute="default">
+    <!-- Notes: Template of InstallShield package with MSI. -->
+    <!-- Template: Use as template -->
+    <variable name="DisplayName" value="Some application"/>
+    <variable name="Installer" value="install.exe"/>
+    <variable name="ProcessName" value="application.exe"/>
+    <variable name="Revision" value="1.0"/>
+    <variable name="RevI1" value="1"/>
+    <variable name="RevI2" value="0"/>
+    <check type="uninstall" condition="versiongreaterorequal" path="%DisplayName%" value="%Revision%"/>
+    <commands>
+      <command type="install" include="remove"/>
+      <command type="install" cmd="&quot;%SOFTWARE%\Some company\Some product\%Revision%\%ARCH%\%Installer%&quot; /s /v&quot;/qb /norestart&quot; /f2%&quot;%TEMP%\package-name-install.log%&quot;" workdir="%TEMP%" timeout="60"/>
+      <command type="upgrade" include="install"/>
+      <command type="downgrade" include="install"/>
+      <command type="remove" include="prepare"/>
+      <command type="remove" cmd="%COMSPEC% /C wmic product where &quot;name like '%DisplayName%%%'&quot; call uninstall /nointeractive" timeout="60"/>
+      <command type="prepare" cmd="%ComSpec% /C taskkill /F /IM &quot;%ProcessName%&quot;" timeout="30">
+        <exit code="128" reboot="false"/>
+      </command>
+    </commands>
+  </package>
+</packages:packages>

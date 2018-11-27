@@ -1,0 +1,6 @@
+/*!
+ * Main file for AjaxFlashMessage
+ * version 0.9.0
+ * copyright 2016-2018 Andrey Klimov.
+ * @license https://opensource.org/licenses/mit-license.php MIT License
+ */.alert .glyphicon,.flash .glyphicon,.noty_body .glyphicon{margin:0 6px;font-size:1.33em}.ajax-flash-body{margin-top:15px;display:table;width:100%}.ajax-flash-body.alert,.ajax-flash-body.flash{position:fixed;z-index:1000}.ajax-flash-icon{display:table-cell;vertical-align:middle;width:1%}.ajax-flash-msg{display:table-cell;vertical-align:middle;-moz-hyphens:auto;-webkit-hyphens:auto;-ms-hyphens:auto}.ajax-flash-msg-code{padding:0 5px}.flash{border:1px solid;margin:10px 0;padding:15px;font-weight:bold;cursor:pointer}.flash-information{color:#00529b;border-color:#00529b;background-color:#bde5f8}.flash-success{color:#4f8a10;border-color:#4f8a10;background-color:#dff2bf}.flash-warning{color:#9f6000;border-color:#9f6000;background-color:#fffabf}.flash-error{color:#d8000c;border-color:#d8000c;background-color:#ffbaba}.flash-default{color:#CCC;border-color:#CCC;background-color:#FFF}

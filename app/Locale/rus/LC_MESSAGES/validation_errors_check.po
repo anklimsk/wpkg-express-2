@@ -1,0 +1,91 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: wpkgExpress II\n"
+"POT-Creation-Date: 2016-01-28 10:34+0300\n"
+"PO-Revision-Date: 2018-11-15 12:19+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 2.2\n"
+
+msgid "Invalid check reference ID."
+msgstr "Недопустимый ссылающийся идентификатор проверки."
+
+msgid "Invalid check type."
+msgstr "Недопустимый тип проверки."
+
+msgid "Check type attribute is invalid."
+msgstr "Недопустимый атрибут типа проверки."
+
+msgid "Check condition attribute is invalid."
+msgstr "Неверный атрибут условия проверки."
+
+msgid "You must enter a registry path."
+msgstr "Необходимо ввести путь реестра."
+
+msgid "You must enter a registry value."
+msgstr "Необходимо ввести значение реестра."
+
+msgid "You must enter a file path."
+msgstr "Необходимо ввести путь к файлу."
+
+msgid "You must enter a file size."
+msgstr "Необходимо ввести размер файла."
+
+msgid "You must enter a file version."
+msgstr "Необходимо ввести версию файла."
+
+msgid "You must enter a file modification date."
+msgstr "Необходимо ввести дату изменения файла."
+
+msgid "You must enter a file creation date."
+msgstr "Необходимо ввести дату создания файла."
+
+msgid "You must enter a file access date."
+msgstr "Необходимо ввести дату доступа к файлу."
+
+msgid "You must enter a Add/Remove program name."
+msgstr "Необходимо ввести имя Добавления/Удаления программы."
+
+msgid "You must enter a program version."
+msgstr "Необходимо ввести версию программы."
+
+msgid "You must enter a executable path."
+msgstr "Необходимо ввести исполняемый путь."
+
+msgid "You must enter a exit code."
+msgstr "Необходимо ввести код выхода."
+
+msgid "You must enter a host name."
+msgstr "Необходимо ввести имя хоста."
+
+msgid "You must enter a OS."
+msgstr "Необходимо ввести ОС."
+
+msgid "You must enter a architecture."
+msgstr "Необходимо ввести архитектуру."
+
+msgid "You must enter a ip addresses."
+msgstr "Необходимо ввести IP-адреса."
+
+msgid "You must enter a domain name."
+msgstr "Необходимо ввести доменное имя."
+
+msgid "You must enter a groups."
+msgstr "Необходимо ввести группы."
+
+msgid "You must enter a language ID."
+msgstr "Необходимо ввести идентификатора языка."
+
+msgid "You must enter a language ID OS."
+msgstr "Необходимо ввести идентификатора языка ОС."
+
+msgid "You must enter check of environment variables."
+msgstr "Необходимо ввести проверку переменных окружения."

@@ -1,0 +1,67 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: CakePHP Plugin CakeInstaller\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2018-04-06 09:19+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 1.8.7\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SearchPath-0: .\n"
+
+msgid "LDAP host"
+msgstr "Хост LDAP"
+
+msgid "User principal name (user@fabrikam.com)"
+msgstr "Основное имя пользователя (user@fabrikam.com)"
+
+msgid "The DN of the search base (DC=fabrikam,DC=com)"
+msgstr "Уникальное имя базы поиска (DC=fabrikam,DC=com)"
+
+msgid "LDAP server type"
+msgstr "Тип сервера LDAP"
+
+msgid "Use TLS?"
+msgstr "Использовать TLS?"
+
+msgid "Version of LDAP protocol"
+msgstr "Версия протокола LDAP"
+
+msgid "Datasource"
+msgstr "Источник данных"
+
+msgid "Persistent connection?"
+msgstr "Постоянное подключение?"
+
+msgid "Database host"
+msgstr "Хост базы данных"
+
+msgid "Port"
+msgstr "Порт"
+
+msgid "User"
+msgstr "Пользователь"
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid "Database name"
+msgstr "Название базы данных"
+
+msgid "Table schema"
+msgstr "Схема таблицы"
+
+msgid "Table prefix"
+msgstr "Префикс таблицы"
+
+msgid "Table encoding"
+msgstr "Кодировка таблицы"

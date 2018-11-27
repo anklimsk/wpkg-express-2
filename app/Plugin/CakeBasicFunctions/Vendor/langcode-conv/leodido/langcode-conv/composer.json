@@ -1,0 +1,39 @@
+{
+  "name": "leodido/langcode-conv",
+  "description": "Convert language codes to any available format",
+  "minimum-stability": "stable",
+  "license": "ISC",
+  "authors": [
+    {
+      "name": "Leo Di Donato",
+      "email": "leodidonato@gmail.com",
+      "homepage": "http://github.com/leodido"
+    }
+  ],
+  "require": {
+    "php": ">=5.4",
+    "leodido/conversio": "~0.2.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.2",
+    "satooshi/php-coveralls": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "Conversio\\": "library/",
+      "ConversioTest\\": "tests/"
+    }
+  },
+  "keywords": [
+    "convert",
+    "conversion",
+    "converter",
+    "library",
+    "iso639-1",
+    "iso639-2t",
+    "iso639-2b",
+    "iso639-3",
+    "native",
+    "name"
+  ]
+}

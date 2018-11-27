@@ -1,0 +1,221 @@
+[
+    {
+        "name": "zendframework/zend-stdlib",
+        "version": "3.0.1",
+        "version_normalized": "3.0.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/zendframework/zend-stdlib.git",
+            "reference": "8bafa58574204bdff03c275d1d618aaa601588ae"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/zendframework/zend-stdlib/zipball/8bafa58574204bdff03c275d1d618aaa601588ae",
+            "reference": "8bafa58574204bdff03c275d1d618aaa601588ae",
+            "shasum": ""
+        },
+        "require": {
+            "php": "^5.5 || ^7.0"
+        },
+        "require-dev": {
+            "athletic/athletic": "~0.1",
+            "fabpot/php-cs-fixer": "1.7.*",
+            "phpunit/phpunit": "~4.0"
+        },
+        "time": "2016-04-12 21:19:36",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.0-dev",
+                "dev-develop": "3.1-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Zend\\Stdlib\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "homepage": "https://github.com/zendframework/zend-stdlib",
+        "keywords": [
+            "stdlib",
+            "zf2"
+        ]
+    },
+    {
+        "name": "zendframework/zend-filter",
+        "version": "2.7.1",
+        "version_normalized": "2.7.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/zendframework/zend-filter.git",
+            "reference": "84c50246428efb0a1e52868e162dab3e149d5b80"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/zendframework/zend-filter/zipball/84c50246428efb0a1e52868e162dab3e149d5b80",
+            "reference": "84c50246428efb0a1e52868e162dab3e149d5b80",
+            "shasum": ""
+        },
+        "require": {
+            "php": "^5.5 || ^7.0",
+            "zendframework/zend-stdlib": "^2.7 || ^3.0"
+        },
+        "require-dev": {
+            "fabpot/php-cs-fixer": "1.7.*",
+            "pear/archive_tar": "^1.4",
+            "phpunit/phpunit": "~4.0",
+            "zendframework/zend-crypt": "^2.6",
+            "zendframework/zend-servicemanager": "^2.7.5 || ^3.0.3",
+            "zendframework/zend-uri": "^2.5"
+        },
+        "suggest": {
+            "zendframework/zend-crypt": "Zend\\Crypt component, for encryption filters",
+            "zendframework/zend-i18n": "Zend\\I18n component for filters depending on i18n functionality",
+            "zendframework/zend-servicemanager": "Zend\\ServiceManager component, for using the filter chain functionality",
+            "zendframework/zend-uri": "Zend\\Uri component, for the UriNormalize filter"
+        },
+        "time": "2016-04-18 18:32:43",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.7-dev",
+                "dev-develop": "2.8-dev"
+            },
+            "zf": {
+                "component": "Zend\\Filter",
+                "config-provider": "Zend\\Filter\\ConfigProvider"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Zend\\Filter\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "description": "provides a set of commonly needed data filters",
+        "homepage": "https://github.com/zendframework/zend-filter",
+        "keywords": [
+            "filter",
+            "zf2"
+        ]
+    },
+    {
+        "name": "leodido/conversio",
+        "version": "v0.2.0",
+        "version_normalized": "0.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/leodido/conversio.git",
+            "reference": "ebbb626b0cf2a44729af6d46d753b5a4b06d9835"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/leodido/conversio/zipball/ebbb626b0cf2a44729af6d46d753b5a4b06d9835",
+            "reference": "ebbb626b0cf2a44729af6d46d753b5a4b06d9835",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4",
+            "zendframework/zend-filter": "~2.2"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.2",
+            "satooshi/php-coveralls": "dev-master"
+        },
+        "time": "2015-01-08 11:35:23",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Conversio\\": "library/",
+                "ConversioTest\\": "tests/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "ISC"
+        ],
+        "authors": [
+            {
+                "name": "Leo Di Donato",
+                "email": "leodidonato@gmail.com",
+                "homepage": "http://github.com/leodido"
+            }
+        ],
+        "description": "A library that provides a simple infrastructure to create your own converters and to perform any conversion you want",
+        "keywords": [
+            "conversion",
+            "conversions",
+            "convert",
+            "converter",
+            "converters",
+            "library"
+        ]
+    },
+    {
+        "name": "leodido/langcode-conv",
+        "version": "v0.2.0",
+        "version_normalized": "0.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/leodido/langcode-conv.git",
+            "reference": "052ef0028ed4ed3b88313d10f80741296d7d127f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/leodido/langcode-conv/zipball/052ef0028ed4ed3b88313d10f80741296d7d127f",
+            "reference": "052ef0028ed4ed3b88313d10f80741296d7d127f",
+            "shasum": ""
+        },
+        "require": {
+            "leodido/conversio": "~0.2.0",
+            "php": ">=5.4"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.2",
+            "satooshi/php-coveralls": "dev-master"
+        },
+        "time": "2015-01-09 18:20:29",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Conversio\\": "library/",
+                "ConversioTest\\": "tests/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "ISC"
+        ],
+        "authors": [
+            {
+                "name": "Leo Di Donato",
+                "email": "leodidonato@gmail.com",
+                "homepage": "http://github.com/leodido"
+            }
+        ],
+        "description": "Convert language codes to any available format",
+        "keywords": [
+            "conversion",
+            "convert",
+            "converter",
+            "iso639-1",
+            "iso639-2b",
+            "iso639-2t",
+            "iso639-3",
+            "library",
+            "name",
+            "native"
+        ]
+    }
+]

@@ -1,0 +1,76 @@
+language: php
+
+php:
+  - 7.1
+
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+
+env:
+  global:
+    - DB=mysql
+    - CAKEAPP=$(cd ./app; pwd)
+    - CAKEROOT=$(pwd)
+    - TESTARG="app AllApp --stderr"
+    - COVERAGEARG="$TESTARG --coverage-clover clover.xml"
+    - PHPCSARG=" --ignore='Config,Plugin,Test,Vendor'"
+    - PHPUNIT=3.7.38
+    - DEFAULT=1
+
+matrix:
+  include:
+    - php: 7.1
+      env:
+        - PHPCS=1
+        - DEFAULT=0
+
+before_script:
+  - composer require "phpunit/phpunit=$PHPUNIT"
+  - ln -s $CAKEROOT/vendors/phpunit/phpunit/PHPUnit $CAKEAPP/Vendor/PHPUnit
+  - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE cakephp_test CHARACTER SET utf8 COLLATE utf8_general_ci;'; fi"
+  - chmod -R 777 ./app/tmp
+  - sh -c "if [ '$PHPCS' = '1' ]; then composer require 'cakephp/cakephp-codesniffer:1.*'; fi"
+  - sh -c "if [ '$PHPCS' = '1' ]; then $CAKEROOT/vendors/bin/phpcs --config-set installed_paths $CAKEROOT/vendors/cakephp/cakephp-codesniffer; fi"
+  - if [[ ${TRAVIS_PHP_VERSION:0:1} == "7" ]] ; then echo "yes" | pecl install apcu-5.1.3 || true; fi
+  - if [[ ${TRAVIS_PHP_VERSION:0:1} == "5" ]] ; then echo "yes" | pecl install apcu-4.0.11 || true; fi
+  - echo -e "extension = apcu.so\napc.enable_cli=1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - phpenv rehash
+  - set +H
+  - echo "<?php
+    class DATABASE_CONFIG {
+    public \$default = [
+      'persistent' => false,
+      'datasource' => 'Database/Mysql',
+      'host' => '127.0.0.1',
+      'login' => 'travis',
+      'password' => '',
+      'database' => 'cakephp_test',
+      'prefix' => '',
+      'encoding' => 'utf8'
+    ];
+    public \$test = [
+      'persistent' => false,
+      'datasource' => 'Database/Mysql',
+      'host' => '127.0.0.1',
+      'login' => 'travis',
+      'password' => '',
+      'database' => 'cakephp_test',
+      'prefix' => '',
+      'encoding' => 'utf8'
+    ];
+    }" > app/Config/database.php
+  - if [ -f "./app/Console/cake" ]; then ./app/Console/cake CakeInstaller setsecurkey --yes --app $CAKEAPP; fi
+  - if [ -f "./app/Console/cake" ]; then ./app/Console/cake CakeInstaller createsymlinks --yes --app $CAKEAPP; fi
+  - echo "Installed" > app/tmp/installer/installed.txt
+
+script:
+  - sh -c "if [ '$PHPCS' = '1' ]; then $CAKEROOT/vendors/bin/phpcs -p --extensions=php --standard=CakePHP $CAKEAPP$PHPCSARG; fi"
+  - sh -c "if [ '$DEFAULT' = '1' ]; then cd $CAKEAPP; ./Console/cake test $TESTARG; fi"
+  - sh -c "if [ '$CODECOVERAGE' = '1' ]; then cd $CAKEAPP; ./Console/cake test $COVERAGEARG; fi"
+
+after_success:
+  - if [ "$CODECOVERAGE" == '1' ]; then wget -O codecov.sh https://codecov.io/bash; bash codecov.sh; fi
+
+notifications:
+  email: false

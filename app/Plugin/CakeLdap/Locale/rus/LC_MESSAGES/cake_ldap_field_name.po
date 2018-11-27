@@ -1,0 +1,205 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: CakePHP Plugin CakeLdap\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2018-04-14 12:30+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 1.8.7\n"
+
+#: Config/cakeldap.php:19;21
+msgid "GUID"
+msgstr "GUID"
+
+#: Config/cakeldap.php:47
+msgid "Distinguished name"
+msgstr "Отличительное имя"
+
+#: Config/cakeldap.php:48
+msgid "Disting. name"
+msgstr "Отлич. имя"
+
+#: Config/cakeldap.php:70;71
+msgid "Full name"
+msgstr "Полное имя"
+
+#: Config/cakeldap.php:87
+msgid "Display name"
+msgstr "Отображаемое имя"
+
+#: Config/cakeldap.php:88
+msgid "Displ. name"
+msgstr "Отобр. имя"
+
+#: Config/cakeldap.php:95
+msgid "Initials"
+msgstr "Инициалы"
+
+#: Config/cakeldap.php:96
+msgid "Init."
+msgstr "Иниц."
+
+#: Config/cakeldap.php:103
+msgid "Surname"
+msgstr "Фамилия"
+
+#: Config/cakeldap.php:104
+msgid "Surn."
+msgstr "Фам."
+
+#: Config/cakeldap.php:119
+msgid "Given name"
+msgstr "Имя"
+
+#: Config/cakeldap.php:120
+msgid "Giv. name"
+msgstr "Имя"
+
+#: Config/cakeldap.php:135
+msgid "Middle name"
+msgstr "Отчество"
+
+#: Config/cakeldap.php:136
+msgid "Mid. name"
+msgstr "Отчество"
+
+#: Config/cakeldap.php:151
+msgid "Position"
+msgstr "Должность"
+
+#: Config/cakeldap.php:152
+msgid "Pos."
+msgstr "Долж."
+
+#: Config/cakeldap.php:167
+msgid "Subdivision"
+msgstr "Подразделение"
+
+#: Config/cakeldap.php:168
+msgid "Subdiv."
+msgstr "Подразд."
+
+#: Config/cakeldap.php:175
+msgid "Department"
+msgstr "Отдел"
+
+#: Config/cakeldap.php:176
+msgid "Depart."
+msgstr "Отдел"
+
+#: Config/cakeldap.php:183
+msgid "Telephone"
+msgstr "Телефон"
+
+#: Config/cakeldap.php:184
+msgid "Tel."
+msgstr "Тел."
+
+#: Config/cakeldap.php:191
+msgid "Other telephone"
+msgstr "Другой телефон"
+
+#: Config/cakeldap.php:192
+msgid "Other tel."
+msgstr "Другой тел."
+
+#: Config/cakeldap.php:199
+msgid "Mobile telephone"
+msgstr "Мобильный телефон"
+
+#: Config/cakeldap.php:200
+msgid "Mob. tel."
+msgstr "Моб. тел."
+
+#: Config/cakeldap.php:207
+msgid "Other mobile telephone"
+msgstr "Другой мобильный телефон"
+
+#: Config/cakeldap.php:208
+msgid "Other mob. tel."
+msgstr "Другой моб. тел."
+
+#: Config/cakeldap.php:215
+msgid "Office room"
+msgstr "Комната"
+
+#: Config/cakeldap.php:216
+msgid "Office"
+msgstr "Комната"
+
+#: Config/cakeldap.php:223;224
+msgid "E-mail"
+msgstr "E-mail"
+
+#: Config/cakeldap.php:239
+msgid "Manager"
+msgstr "Руководитель"
+
+#: Config/cakeldap.php:240
+msgid "Manag."
+msgstr "Руковод."
+
+#: Config/cakeldap.php:247;248
+msgid "Photo"
+msgstr "Фото"
+
+#: Config/cakeldap.php:255
+msgid "Computer"
+msgstr "Компьютер"
+
+#: Config/cakeldap.php:256
+msgid "Comp."
+msgstr "Комп."
+
+#: Config/cakeldap.php:263
+msgid "Employee ID"
+msgstr "Табельный номер"
+
+#: Config/cakeldap.php:264
+msgid "Empl. ID"
+msgstr "Таб. ном."
+
+#: Config/cakeldap.php:271
+msgid "Company name"
+msgstr "Название организации"
+
+#: Config/cakeldap.php:272
+msgid "Comp. name"
+msgstr "Назв. организ."
+
+#: Config/cakeldap.php:279
+msgid "Birthday"
+msgstr "День рождения"
+
+#: Config/cakeldap.php:280
+msgid "Birthd."
+msgstr "День рожд."
+
+#: Config/cakeldap.php:287
+msgid "SIP telephone"
+msgstr "SIP телефон"
+
+#: Config/cakeldap.php:288
+msgid "SIP tel."
+msgstr "SIP тел."
+
+#: Model/ConfigSync.php:241;242
+msgid "Block"
+msgstr "Заблокирован"
+
+#: Model/EmployeeDb.php:945
+msgid "Subordinate"
+msgstr "Подчинённые"
+
+#: Model/EmployeeDb.php:946
+msgid "Subord."
+msgstr "Подчин."

@@ -1,0 +1,143 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: CakePHP Plugin CakeExtendTest\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2018-04-06 09:29+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 1.8.7\n"
+
+#: Console/Command/BakeShell.php:53
+msgid "Extended bake task Shell"
+msgstr "Расширенная оболочка Bake"
+
+#: Console/Command/BakeShell.php:55
+msgid "This shell is used to bake extended test case."
+msgstr "Эта оболочка используется выпекания расширенного теста."
+
+#: Test/AllTestsTest.php:24 Test/Case/AllTestsTest.php:24
+msgid "All tests"
+msgstr "Все тесты"
+
+#: Test/ExtendCakeTestCase.php:194
+msgid "Target object is not object"
+msgstr "Целевой объект не является объектом"
+
+#: Test/ExtendCakeTestCase.php:197
+msgid "Method %s does not exist in target object"
+msgstr "Метод %s не существует в целевом объект"
+
+#: Test/ExtendCakeTestCase.php:230
+msgid "Invalid params for method %s"
+msgstr "Недействительные параметры для метода %s"
+
+#: Test/ExtendCakeTestCase.php:231
+msgid "Invalid expectation for the method %s"
+msgstr "Неверное ожидание для метода %s"
+
+#: Test/ExtendCakeTestCase.php:232
+msgid "Keys for params and expectations is not equals"
+msgstr "Ключи для параметров и ожиданий не равны"
+
+#: Test/ExtendCakeTestCase.php:234
+msgid "method"
+msgstr "метода"
+
+#: Test/ExtendCakeTestCase.php:234
+msgid "function"
+msgstr "функции"
+
+#: Test/ExtendCakeTestCase.php:239
+msgid ""
+"Testing %s %s.\n"
+"\n"
+"Step %d of %d."
+msgstr ""
+"Тестирование %s %s.\n"
+"\n"
+"Шаг %d из %d."
+
+#: Test/ExtendCakeTestCase.php:249
+msgid "Error parse expected"
+msgstr "Ошибка разбора ожидания"
+
+#: Test/ExtendCakeTestCase.php:310
+#: Test/Case/TestCase/ExtendCakeTestCaseTest.php:150;155;159
+msgid "where"
+msgstr "где"
+
+#: Test/ExtendControllerTestCase.php:138
+msgid "Empty URL for checking redirect"
+msgstr "Пустой URL для проверки перенаправления"
+
+#: Test/ExtendControllerTestCase.php:162
+msgid "Empty file name for checking download"
+msgstr "Пустое имя файла для проверки скачивания"
+
+#: Test/ExtendControllerTestCase.php:163
+msgid "Invalid file size for checking download"
+msgstr "Неверный размер файла для проверки скачивания"
+
+#: Test/ExtendControllerTestCase.php:181
+msgid "Invalid object Controller for checking \"Is Authorized\""
+msgstr "Неверный объект Контроллера для проверки \"Is Authorized\""
+
+#: Test/ExtendControllerTestCase.php:182
+msgid "Invalid object Controller component Auth for checking \"Is Authorized\""
+msgstr ""
+"Неверный объект Контроллера компонента Auth для проверки \"Is Authorized\""
+
+#: Test/CakeExtendTestTrait.php:309
+msgid "Result is not equal expected"
+msgstr "Результат не равен ожиданию"
+
+#: Test/CakeExtendTestTrait.php:342
+msgid "Extension \"Runkit\" is not loaded"
+msgstr "Расширение \"Runkit\" Runkit не загружено"
+
+#: Test/CakeExtendTestTrait.php:344
+msgid "Option \"runkit.internal_override\" is False"
+msgstr "Настройка \"runkit.internal_override\" является Ложной"
+
+#~ msgid "Empty flash message for checking"
+#~ msgstr "Пустое сообщение флэш для проверки"
+
+#~ msgid "Invalid Controller object for checking Flash message"
+#~ msgstr "Неверный объект Кондроллера для проверки флэш сообщения"
+
+#~ msgid "Wrong number of arguments for checking Flash message."
+#~ msgstr "Неправильное количество аргументов для проверки флэш-сообщения."
+
+#~ msgid "Error checking Flash message. Second argument is not array."
+#~ msgstr ""
+#~ "Ошибка при проверке Flash-сообщения. Второй аргумент не является массивом."
+
+#~ msgid "Invalid Controller object for checking \"Is Authorized\""
+#~ msgstr "Неверный объект Контроллера для проверки \"Is Authorized\""
+
+#~ msgid "You are not authorized to access that location."
+#~ msgstr "У вас нет доступа к этой странице."
+
+#~ msgid "where:"
+#~ msgstr "где:"
+
+#~ msgid "Target is not object"
+#~ msgstr "Цель н"
+
+#~ msgid "Method %s does not exist"
+#~ msgstr "Метод %s не существует"
+
+#~ msgid "Testing method \"%s\". Step %d of %d."
+#~ msgstr "Тестирование метода  \"%s\". Шаг %d из %d."
+
+#~ msgid "Empty message for checking Flash message."
+#~ msgstr "Пустое сообщение для проверки флэш-сообщения."

@@ -1,0 +1,30 @@
+{
+	"name": "dereuromark/cakephp-tools",
+	"type": "cakephp-plugin",
+	"description": "A CakePHP plugin containing lots of useful and reusable tools",
+	"keywords": ["cakephp", "plugin", "tools", "utils", "helpers", "components", "behaviors", "datasources"],
+	"homepage": "https://github.com/dereuromark/cakephp-tools",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Mark Scherer",
+			"homepage": "http://www.dereuromark.de",
+			"role": "Maintainer"
+		}
+	],
+	"require": {
+		"php": ">=5.4",
+		"composer/installers": "*",
+		"cakephp/cakephp": ">=2.0 <3.0",
+		"dereuromark/cakephp-shim": "^0.5.0 || ^0.6.0"
+	},
+	"support": {
+		"source": "https://github.com/dereuromark/cakephp-tools"
+	},
+	"extra": {
+		"installer-name": "Tools"
+	},
+	"suggest": {
+		"pelago/emogrifier": "When using InlineCss lib and CSS to inline HTML transformation."
+	}
+}
