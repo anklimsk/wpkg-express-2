@@ -1,9 +1,10 @@
 # wpkg-express-2
+[![Build Status](https://travis-ci.com/anklimsk/wpkg-express-2.svg?branch=master)](https://travis-ci.com/anklimsk/wpkg-express-2)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-A web-based frontend to WPKG
+A web-based frontend to [WPKG](https://wpkg.org)
 
-WPKG Express 2 based on [wpkgExpress](https://code.google.com/archive/p/wpkgexpress/) by Brian White &copy;2009.
+WPKG Express 2 based on [wpkgExpress](https://code.google.com/archive/p/wpkgexpress) by Brian White &copy;2009.
 
 ## Requirements
 
