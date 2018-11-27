@@ -1,0 +1,7 @@
+/app/tmp/*
+!/app/tmp/asset_compress_build_time
+/app/Config/core.php
+/app/Config/config.php
+/app/Config/database.php
+/app/webroot/cake_installer
+/app/webroot/cake_theme
