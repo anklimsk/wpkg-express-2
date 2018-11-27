@@ -1,5 +1,6 @@
-# wpkg-express-2
+# WPKG Express 2
 [![Build Status](https://travis-ci.com/anklimsk/wpkg-express-2.svg?branch=master)](https://travis-ci.com/anklimsk/wpkg-express-2)
+[![Latest Unstable Version](https://poser.pugx.org/anklimsk/wpkg-express-2/v/unstable)](https://packagist.org/packages/anklimsk/wpkg-express-2)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 A web-based frontend to [WPKG](https://wpkg.org)
