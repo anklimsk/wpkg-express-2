@@ -568,7 +568,7 @@ class Variable extends AppModel {
 		$conditions = [
 			$this->alias . '.ref_type' => VARIABLE_TYPE_CONFIG
 		];
-		return $this->deleteAll($conditions, false);
+		return $this->deleteAll($conditions, true, false);
 	}
 
 /**
