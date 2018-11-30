@@ -1986,8 +1986,7 @@ class Import extends AppModel {
 		}
 
 		$pkgId = $this->_modelPackage->id;
-		$pkgIdLast = $this->_modelPackage->getLastInsertID();
-		if ($pkgId === $pkgIdLast) {
+		if (!isset($packageInfo['Package']['id'])) {
 			$pkgIdText = $package['Package']['id_text'];
 			$this->setIdNamesCache('Package', $pkgIdText, $pkgId, !$this->_caseSensitivity);
 		} elseif (!$this->_modelPackage->removeAssocData($pkgId)) {
@@ -2190,8 +2189,7 @@ class Import extends AppModel {
 		}
 
 		$profId = $this->_modelProfile->id;
-		$profIdLast = $this->_modelProfile->getLastInsertID();
-		if ($profId === $profIdLast) {
+		if (!isset($profileInfo['Profile']['id'])) {
 			$profIdText = $profile['Profile']['id_text'];
 			$this->setIdNamesCache('Profile', $profIdText, $profId, !$this->_caseSensitivity);
 		} elseif (!$this->_modelProfile->removeAssocData($profId)) {
@@ -2342,8 +2340,7 @@ class Import extends AppModel {
 		}
 
 		$hostId = $this->_modelHost->id;
-		$hostIdLast = $this->_modelHost->getLastInsertID();
-		if ($hostId === $hostIdLast) {
+		if (!isset($hostInfo['Host']['id'])) {
 			$hostIdText = $host['Host']['id_text'];
 			$this->setIdNamesCache('Host', $hostIdText, $hostId);
 		} elseif (!$this->_modelHost->removeAssocData($hostId)) {
@@ -2511,8 +2508,7 @@ class Import extends AppModel {
 		}
 
 		$hostId = $this->_modelReport->ReportHost->id;
-		$hostIdLast = $this->_modelReport->ReportHost->getLastInsertID();
-		if ($hostId === $hostIdLast) {
+		if (!isset($info['ReportHost']['id'])) {
 			$this->setIdNamesCache('ReportHost', $info['ReportHost']['ReportHost']['name'], $hostId);
 		}
 
