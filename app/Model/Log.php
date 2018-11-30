@@ -405,7 +405,7 @@ class Log extends AppModel {
 			$localFile = LOG_DIR . $fileName;
 			if ($share->get($filePath, $localFile)) {
 				try {
-					if ($share->del($filePath)) {
+					if (!$share->del($filePath)) {
 						unlink($localFile);
 					}
 				} catch (Exception $e) {
