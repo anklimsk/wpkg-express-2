@@ -189,7 +189,7 @@ class Import extends AppModel {
  *
  * @param bool $returnServer If True, return result for server.
  *  Otherwise return for client.
- * @return string Return Allowed extensions of files for upload.
+ * @return string Return allowed extensions of files for upload.
  */
 	public function getAcceptFileTypes($returnServer = false) {
 		if ($returnServer) {
