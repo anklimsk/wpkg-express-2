@@ -626,7 +626,7 @@ class Import extends AppModel {
 				continue;
 			}
 
-			$varId = $this->_modelVariable->getLastInsertID();
+			$varId = $this->_modelVariable->id;
 			if (!$this->_saveExtAttributes($messages, $variableInfo, $attrType, ATTRIBUTE_NODE_VARIABLE, $varId)) {
 				$result = false;
 				continue;
@@ -1732,7 +1732,7 @@ class Import extends AppModel {
 		$resultSaving = (bool)$this->_modelPackage->PackageAction->PackageActionType->save($actionType);
 		if ($resultSaving) {
 			$pkgActTypeName = $actionType['PackageActionType']['name'];
-			$pkgActTypeId = $this->_modelPackage->PackageAction->PackageActionType->getLastInsertID();
+			$pkgActTypeId = $this->_modelPackage->PackageAction->PackageActionType->id;
 			$this->setIdNamesCache('PackageActionType', $pkgActTypeName, $pkgActTypeId);
 		} else {
 			$result = false;
@@ -1823,7 +1823,7 @@ class Import extends AppModel {
 				continue;
 			}
 
-			$pkgActId = $this->_modelPackage->PackageAction->getLastInsertID();
+			$pkgActId = $this->_modelPackage->PackageAction->id;
 			if (!$this->_saveExitCodes($messages, $actionInfo, $pkgActId)) {
 				$result = false;
 				continue;
@@ -1878,7 +1878,7 @@ class Import extends AppModel {
 				continue;
 			}
 
-			$pkgChkId = $this->_modelCheck->getLastInsertID();
+			$pkgChkId = $this->_modelCheck->id;
 			if (!$this->_saveExtAttributes($messages, $checkInfo, $attrRefType, ATTRIBUTE_NODE_CHECK, $pkgChkId)) {
 				$result = false;
 				continue;
@@ -1940,7 +1940,7 @@ class Import extends AppModel {
 					continue;
 				}
 
-				$pkgDepId = $this->_modelPackage->$modelName->getLastInsertID();
+				$pkgDepId = $this->_modelPackage->$modelName->id;
 				if (!$this->_saveExtAttributes($messages, $pkgDependencyInfo, ATTRIBUTE_TYPE_PACKAGE, $attrRefNode, $pkgDepId)) {
 					$result = false;
 				}
@@ -1972,16 +1972,13 @@ class Import extends AppModel {
 			return false;
 		}
 
-		$pkgIdNew = $this->_modelPackage->getLastInsertID();
-		if (!empty($pkgIdNew)) {
-			$pkgId = $pkgIdNew;
+		$pkgId = $this->_modelPackage->id;
+		$pkgIdLast = $this->_modelPackage->getLastInsertID();
+		if ($pkgId === $pkgIdLast) {
 			$pkgIdText = $package['Package']['id_text'];
 			$this->setIdNamesCache('Package', $pkgIdText, $pkgId, !$this->_caseSensitivity);
-		} else {
-			$pkgId = $this->_modelPackage->id;
-			if (!$this->_modelPackage->removeAssocData($pkgId)) {
-				return false;
-			}
+		} elseif (!$this->_modelPackage->removeAssocData($pkgId)) {
+			return false;
 		}
 
 		$this->_saveDependenciesPackage($messages, $packageInfo, $pkgId);
@@ -2103,12 +2100,12 @@ class Import extends AppModel {
 				continue;
 			}
 
-			$pkgActId = $this->_modelProfile->PackagesProfile->getLastInsertID();
-			if (!$this->_saveExtAttributes($messages, $packageInfo, ATTRIBUTE_TYPE_PROFILE, ATTRIBUTE_NODE_PACKAGE, $pkgActId)) {
+			$pkgProfId = $this->_modelProfile->PackagesProfile->id;
+			if (!$this->_saveExtAttributes($messages, $packageInfo, ATTRIBUTE_TYPE_PROFILE, ATTRIBUTE_NODE_PACKAGE, $pkgProfId)) {
 				$result = false;
 				continue;
 			}
-			if (!$this->_saveChecks($messages, $packageInfo, null, CHECK_PARENT_TYPE_PROFILE, $pkgActId, ATTRIBUTE_TYPE_PROFILE)) {
+			if (!$this->_saveChecks($messages, $packageInfo, null, CHECK_PARENT_TYPE_PROFILE, $pkgProfId, ATTRIBUTE_TYPE_PROFILE)) {
 				$result = false;
 			}
 		}
@@ -2177,16 +2174,13 @@ class Import extends AppModel {
 			return false;
 		}
 
-		$profIdNew = $this->_modelProfile->getLastInsertID();
-		if (!empty($profIdNew)) {
-			$profId = $profIdNew;
+		$profId = $this->_modelProfile->id;
+		$profIdLast = $this->_modelProfile->getLastInsertID();
+		if ($profId === $profIdLast) {
 			$profIdText = $profile['Profile']['id_text'];
 			$this->setIdNamesCache('Profile', $profIdText, $profId, !$this->_caseSensitivity);
-		} else {
-			$profId = $this->_modelProfile->id;
-			if (!$this->_modelProfile->removeAssocData($profId)) {
-				return false;
-			}
+		} elseif (!$this->_modelProfile->removeAssocData($profId)) {
+			return false;
 		}
 
 		$this->_saveDependenciesProfile($messages, $profileInfo, $profId);
@@ -2332,16 +2326,13 @@ class Import extends AppModel {
 			return false;
 		}
 
-		$hostIdNew = $this->_modelHost->getLastInsertID();
-		if (!empty($hostIdNew)) {
-			$hostId = $hostIdNew;
+		$hostId = $this->_modelHost->id;
+		$hostIdLast = $this->_modelHost->getLastInsertID();
+		if ($hostId === $hostIdLast) {
 			$hostIdText = $host['Host']['id_text'];
 			$this->setIdNamesCache('Host', $hostIdText, $hostId);
-		} else {
-			$hostId = $this->_modelHost->id;
-			if (!$this->_modelHost->removeAssocData($hostId)) {
-				return false;
-			}
+		} elseif (!$this->_modelHost->removeAssocData($hostId)) {
+			return false;
 		}
 
 		if (!$this->_saveExtAttributes($messages, $hostInfo, ATTRIBUTE_TYPE_HOST, ATTRIBUTE_NODE_HOST, $hostId)) {
@@ -2501,14 +2492,16 @@ class Import extends AppModel {
 		if (!$result) {
 			$errorType = $this->_modelReport->ReportHost->getFullName($info['ReportHost']);
 			$messages[__('Errors')][$errorType] = $this->_modelReport->ReportHost->validationErrors;
+			return false;
 		}
 
-		$hostId = $this->_modelReport->ReportHost->getLastInsertID();
-		if (!empty($hostId)) {
+		$hostId = $this->_modelReport->ReportHost->id;
+		$hostIdLast = $this->_modelReport->ReportHost->getLastInsertID();
+		if ($hostId === $hostIdLast) {
 			$this->setIdNamesCache('ReportHost', $info['ReportHost']['ReportHost']['name'], $hostId);
 		}
 
-		return $result;
+		return true;
 	}
 
 /**

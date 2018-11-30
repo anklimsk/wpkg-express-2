@@ -333,7 +333,7 @@ class Log extends AppModel {
 		$this->create(false);
 		$result = (bool)$this->saveAll($logInfo, ['validate' => false]);
 		if ($result && isset($logInfo['LogHost']['name'])) {
-			$hostId = $this->LogHost->getLastInsertID();
+			$hostId = $this->LogHost->id;
 			$this->setIdNamesCache('LogHost', $hostName, $hostId);
 		}
 
