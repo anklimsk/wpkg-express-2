@@ -32,6 +32,10 @@ if (!isset($maxfilesize)) {
 if (!isset($acceptfiletypes)) {
 	$acceptfiletypes = UPLOAD_FILE_TYPES_CLIENT;
 }
+
+if (!isset($validxmltypes)) {
+	$validxmltypes = $this->ViewExtension->showEmpty();
+}
 ?>
 	<div class="row">
 		<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
@@ -40,6 +44,7 @@ if (!isset($acceptfiletypes)) {
 ?>
 			<fieldset>
 <?php
+	echo $this->Form->staticControl(__('Valid XML file types') . ':', $validxmltypes);
 	echo $this->Form->staticControl(__('Maximum XML file size') . ':', $this->Number->toReadableSize($maxfilesize));
 	$url = $this->Html->url(['controller' => 'uploads', 'action' => 'upload', 'ext' => 'json']);
 	$btnUploadTitle = $this->ViewExtension->iconTag('fas fa-file-upload fa-lg') . '&nbsp;' .

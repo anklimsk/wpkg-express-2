@@ -35,6 +35,6 @@
 	<div class="container">
 <?php
 		echo $this->ViewExtension->headerPage($pageHeader);
-		echo $this->element('formUploadXml', compact('maxfilesize', 'acceptfiletypes'));
+		echo $this->element('formUploadXml', compact('maxfilesize', 'acceptfiletypes', 'validxmltypes'));
 ?>
 	</div>

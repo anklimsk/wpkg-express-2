@@ -202,6 +202,17 @@ class Import extends AppModel {
 	}
 
 /**
+ * Return the name valid types of XML files for upload.
+ *
+ * @return string Return the name valid the types of XML files for upload.
+ */
+	public function getNameValidXmlTypes() {
+		$result = __('Package, profile, host, WPKG configuration or client database.');
+
+		return $result;
+	}
+
+/**
  * Clear dependency tree cache
  *
  * @return void
@@ -828,7 +839,8 @@ class Import extends AppModel {
 
 		$xsdPath = $this->getXsdForType($xmlType);
 		if (empty($xsdPath)) {
-			$this->_modelExtendQueuedTask->updateTaskErrorMessage($idTask, __('Invalid file type. Can be one of: package, profile, host or client database.'));
+			$xmlTypesName = $this->getNameValidXmlTypes();
+			$this->_modelExtendQueuedTask->updateTaskErrorMessage($idTask, __('Invalid file type. Can be one of: %s', $xmlTypesName));
 			return false;
 		}
 
@@ -2812,7 +2824,8 @@ class Import extends AppModel {
 	public function importXml($xmlFile = '', $idTask = null) {
 		$xmlType = $this->getTypeFromXmlFile($xmlFile);
 		if (empty($xmlType)) {
-			$this->_modelExtendQueuedTask->updateTaskErrorMessage($idTask, __('Invalid file type. Can be one of: package, profile, host or client database.'));
+			$xmlTypesName = $this->getNameValidXmlTypes();
+			$this->_modelExtendQueuedTask->updateTaskErrorMessage($idTask, __('Invalid file type. Can be one of: %s', $xmlTypesName));
 			return false;
 		}
 

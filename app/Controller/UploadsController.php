@@ -92,11 +92,13 @@ class UploadsController extends AppController {
 		$this->view = 'index';
 		$maxfilesize = $this->Import->getLimitFileSize();
 		$acceptfiletypes = $this->Import->getAcceptFileTypes(false);
+		$validxmltypes = $this->Import->getNameValidXmlTypes();
 		$breadCrumbs = $this->Import->getBreadcrumbInfo();
 		$breadCrumbs[] = __('File selection');
 		$pageHeader = __('Uploading XML files');
 
-		$this->set(compact('maxfilesize', 'acceptfiletypes', 'breadCrumbs', 'pageHeader'));
+		$this->set(compact('maxfilesize', 'acceptfiletypes', 'validxmltypes',
+			'breadCrumbs', 'pageHeader'));
 	}
 
 /**

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wpkgExpress II\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2018-11-26 16:56+0300\n"
+"PO-Revision-Date: 2018-11-30 11:56+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -697,7 +697,7 @@ msgstr "Генерирование"
 msgid "Generating host"
 msgstr "Создание хоста"
 
-#: Controller/HostsController.php:542 Controller/UploadsController.php:121
+#: Controller/HostsController.php:542 Controller/UploadsController.php:123
 #: Controller/Component/ExportDataComponent.php:153;195
 #: Controller/Component/ViewDataComponent.php:66
 msgid "Invalid request"
@@ -911,21 +911,21 @@ msgid "The client database could not be renamed. Please, try again."
 msgstr ""
 "Не удалось переименовать базу данных клиента. Пожалуйста, попробуйте ещё раз."
 
-#: Controller/UploadsController.php:96
+#: Controller/UploadsController.php:97
 msgid "File selection"
 msgstr "Выбор файла"
 
-#: Controller/UploadsController.php:97 Model/Import.php:2834
+#: Controller/UploadsController.php:98 Model/Import.php:2841
 msgid "Uploading XML files"
 msgstr "Загрузка XML файлов"
 
-#: Controller/UploadsController.php:148
+#: Controller/UploadsController.php:150
 msgid ""
 "XML file uploaded successfully.<br />Information will be processed by queue."
 msgstr ""
 "Файл XML успешно загружен.<br />Информация будет обрабатываться по очереди."
 
-#: Controller/UploadsController.php:151
+#: Controller/UploadsController.php:153
 msgid "Unable to create queue task."
 msgstr "Невозможно создать задачу очереди."
 
@@ -1165,12 +1165,12 @@ msgstr "Не удалось скопировать %s. Пожалуйста, п�
 msgid "Method '%s' is not found in target model"
 msgstr "Метод '%s' не найден в целевой модели"
 
-#: Controller/Component/ExportDataComponent.php:110 Model/Import.php:2747
+#: Controller/Component/ExportDataComponent.php:110 Model/Import.php:2753
 msgid "Fatal errors"
 msgstr "Неустранимые ошибки"
 
 #: Controller/Component/ExportDataComponent.php:111
-#: Model/Import.php:612;625;670;1740;1769;1813;1822;1861;1877;1939;1971;2102;2152;2176;2307;2331;2503;2565;2698;2723;2744
+#: Model/Import.php:623;636;681;1753;1782;1826;1835;1874;1890;1952;1984;2112;2162;2186;2314;2338;2507;2571;2704;2729;2750
 msgid "Errors"
 msgstr "Ошибки"
 
@@ -1373,7 +1373,7 @@ msgstr "Корневой узел"
 msgid "Check"
 msgstr "Проверка"
 
-#: Model/Check.php:1395 Model/Import.php:1861 View/Elements/infoPackage.ctp:101
+#: Model/Check.php:1395 Model/Import.php:1874 View/Elements/infoPackage.ctp:101
 msgid "Checks"
 msgstr "Проверки"
 
@@ -1385,11 +1385,11 @@ msgstr "Проверка %s"
 msgid "check %s"
 msgstr "проверки %s"
 
-#: Model/Config.php:453 View/Elements/barNav.ctp:248
+#: Model/Config.php:456 View/Elements/barNav.ctp:248
 msgid "Settings of WPKG"
 msgstr "Настройки WPKG"
 
-#: Model/Config.php:473
+#: Model/Config.php:476
 msgid "Configuration for script WPKG ver. %s"
 msgstr "Конфигурация для скрипта WPKG вер. %s"
 
@@ -1489,69 +1489,70 @@ msgstr "профиль"
 msgid "associated %s of the %s"
 msgstr "связанного %s %s"
 
-#: Model/Import.php:612 Model/Variable.php:228 View/Elements/infoHost.ctp:83
+#: Model/Import.php:210
+msgid "Package, profile, host, WPKG configuration or client database."
+msgstr "Пакет, профиль, хост, конфигурация WPKG или клиентская база данных."
+
+#: Model/Import.php:623 Model/Variable.php:228 View/Elements/infoHost.ctp:83
 #: View/Elements/infoPackage.ctp:100 View/Elements/infoProfile.ctp:69
 #: View/Elements/infoVariables.ctp:199
 msgid "Variables"
 msgstr "Переменные"
 
-#: Model/Import.php:612;1813;1861
+#: Model/Import.php:623;1826;1874
 msgid "Error on settings scope"
 msgstr "Ошибка при настройке области"
 
-#: Model/Import.php:824
+#: Model/Import.php:836
 msgid "Invalid file path"
 msgstr "Недопустимый путь к файлу"
 
-#: Model/Import.php:830;2821
-msgid ""
-"Invalid file type. Can be one of: package, profile, host or client database."
-msgstr ""
-"Недопустимый тип файла. Может быть одним из следующих: пакет, профиль, хост "
-"или клиентская база данных."
+#: Model/Import.php:843;2828
+msgid "Invalid file type. Can be one of: %s"
+msgstr "Недопустимый тип файла. Может быть одним из следующих: %s"
 
-#: Model/Import.php:861
+#: Model/Import.php:874
 msgid "Invalid input XML file"
 msgstr "Недопустимый входной файл XML"
 
-#: Model/Import.php:865
+#: Model/Import.php:878
 msgid "Input XML file is empty"
 msgstr "Входной XML-файл пуст"
 
-#: Model/Import.php:1193
+#: Model/Import.php:1206
 msgid "Invalid name of dependency model"
 msgstr "Недопустимое имя зависимой модели"
 
-#: Model/Import.php:1813 Model/PackageAction.php:538
+#: Model/Import.php:1826 Model/PackageAction.php:538
 #: View/Elements/infoPackage.ctp:96
 msgid "Package actions"
 msgstr "Действия пакета"
 
-#: Model/Import.php:2440
+#: Model/Import.php:2444
 msgid "Error on deleting records of report"
 msgstr "Ошибка при удалении записей отчета"
 
-#: Model/Import.php:2565
+#: Model/Import.php:2571
 msgid "Error on saving report record"
 msgstr "Ошибка сохранения записи отчета"
 
-#: Model/Import.php:2698
+#: Model/Import.php:2704
 msgid "Error on saving WPKG configuration"
 msgstr "Ошибка при сохранении конфигурации WPKG"
 
-#: Model/Import.php:2723
+#: Model/Import.php:2729
 msgid "Error on saving WPKG configuration language"
 msgstr "Ошибка при сохранении языка конфигурации WPKG"
 
-#: Model/Import.php:2738
+#: Model/Import.php:2744
 msgid "Other messages"
 msgstr "Другие сообщения"
 
-#: Model/Import.php:2741
+#: Model/Import.php:2747
 msgid "Warnings"
 msgstr "Предупреждения"
 
-#: Model/Import.php:2790
+#: Model/Import.php:2796
 msgid "Invalid path to XSD schema file"
 msgstr "Недопустимый путь к файлу схемы XSD"
 
@@ -3269,11 +3270,15 @@ msgstr "Дополнительный атрибут"
 msgid "Create"
 msgstr "Создать"
 
-#: View/Elements/formUploadXml.ctp:43
+#: View/Elements/formUploadXml.ctp:47
+msgid "Valid XML file types"
+msgstr "Допустимые типы XML файлов"
+
+#: View/Elements/formUploadXml.ctp:48
 msgid "Maximum XML file size"
 msgstr "Максимальный размер файла XML"
 
-#: View/Elements/formUploadXml.ctp:46
+#: View/Elements/formUploadXml.ctp:51
 msgid "Upload XML file"
 msgstr "Загрузить файл XML"
 
