@@ -721,6 +721,7 @@ class Import extends AppModel {
 		$childrenName = $children->getName();
 		switch ($childrenName) {
 			case 'package':
+			case 'checkResults':
 				$result = 'databases';
 			break;
 			case 'host':
