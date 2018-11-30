@@ -2026,6 +2026,8 @@ class Import extends AppModel {
 			$dataSource->rollback();
 			$pkgIdText = Hash::get($packageInfo, 'Package.id_text');
 			$this->resetIdNamesCache('Package', $pkgIdText, !$this->_caseSensitivity);
+			Cache::clear(false, CACHE_KEY_LISTS_INFO_PACKAGE_ACTION_TYPE);
+			$this->createNamesCache('PackageActionType');
 		}
 
 		return $result;
@@ -2591,6 +2593,8 @@ class Import extends AppModel {
 			$dataSource->commit();
 		} else {
 			$dataSource->rollback();
+			Cache::clear(false, CACHE_KEY_LISTS_INFO_REPORT_HOST);
+			$this->createNamesCache('ReportHost');
 		}
 
 		return $result;
