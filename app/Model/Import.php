@@ -2090,13 +2090,13 @@ class Import extends AppModel {
 
 		$result = true;
 		foreach ($info['PackagesProfile'] as $packageInfo) {
-			$packageAction = ['PackagesProfile' => $packageInfo['PackagesProfile']];
-			$packageAction['PackagesProfile']['profile_id'] = $refId;
+			$packageProfile = ['PackagesProfile' => $packageInfo['PackagesProfile']];
+			$packageProfile['PackagesProfile']['profile_id'] = $refId;
 			$this->_modelProfile->PackagesProfile->create(false);
-			$resultSaving = (bool)$this->_modelProfile->PackagesProfile->save($packageAction);
+			$resultSaving = (bool)$this->_modelProfile->PackagesProfile->save($packageProfile);
 			if (!$resultSaving) {
 				$result = false;
-				$errorType = $this->_modelProfile->PackagesProfile->getFullName($packageAction, null, null, $refId);
+				$errorType = $this->_modelProfile->PackagesProfile->getFullName($packageProfile, null, null, $refId);
 				$messages[__('Errors')][$errorType] = $this->_modelProfile->PackagesProfile->validationErrors;
 				continue;
 			}
