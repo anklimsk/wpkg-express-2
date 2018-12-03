@@ -123,7 +123,7 @@ class AppController extends Controller {
 			($action === 'index') && $this->RequestHandler->isXml()) ||
 			(($controller === 'wpi') && ($action === 'config') &&
 			$this->RequestHandler->prefers('js'))) &&
-			$this->UserInfo->checkUserRole(USER_ROLE_USER, true, $user)) {
+			$this->UserInfo->checkUserRole([USER_ROLE_EXPORT, USER_ROLE_ADMIN], true, $user)) {
 			return true;
 		}
 
@@ -165,9 +165,8 @@ class AppController extends Controller {
 			(($controller === 'wpi') && ($action === 'config') &&
 			$this->RequestHandler->prefers('js'))) {
 			$protectXml = $this->Setting->getConfig('ProtectXml');
-			if ($protectXml) {
-				// Need FIX view cache
-				Configure::write('Cache.check', false);
+			if ($protectXml &&
+				!$this->UserInfo->checkUserRole([USER_ROLE_EXPORT, USER_ROLE_ADMIN], true)) {
 				AuthComponent::$sessionKey = false;
 				$this->Auth->authenticate = [
 					'BasicInternal' => [

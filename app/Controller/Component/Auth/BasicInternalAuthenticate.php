@@ -65,7 +65,7 @@ class BasicInternalAuthenticate extends BasicAuthenticate {
 		}
 
 		$user = $username;
-		$role = USER_ROLE_USER;
+		$role = USER_ROLE_USER | USER_ROLE_EXPORT;
 		$prefix = null;
 
 		return compact('user', 'role', 'prefix');

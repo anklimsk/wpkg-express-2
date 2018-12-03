@@ -83,13 +83,23 @@ if (!defined('USER_ROLE_USER')) {
 }
 
 /**
+ * Bit mask for user role `Export`
+ *
+ * Role for export configuration user.
+ * Used for set user role. Default value `2`
+ */
+if (!defined('USER_ROLE_EXPORT')) {
+	define('USER_ROLE_EXPORT', 2);
+}
+
+/**
  * Bit mask for user role `Admin`
  *
- * Role for Administrators
- * Used for set user role. Default value `8`
+ * Role for Administrators.
+ * Used for set user role. Default value `4`
  */
 if (!defined('USER_ROLE_ADMIN')) {
-	define('USER_ROLE_ADMIN', 2);
+	define('USER_ROLE_ADMIN', 4);
 }
 
 /**
