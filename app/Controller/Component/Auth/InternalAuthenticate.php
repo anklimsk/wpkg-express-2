@@ -48,13 +48,18 @@ class InternalAuthenticate extends FormAuthenticate {
 		}
 
 		$modelSetting = ClassRegistry::init('Setting');
-		$hashPass = $modelSetting->getConfig('IntAuthPassword');
-		if (empty($hashPass)) {
-			$this->passwordHasher()->hash($password);
+		$cfgUser = $modelSetting->getConfig('IntAuthUser');
+		$cfgPass = $modelSetting->getConfig('IntAuthPassword');
+		if (empty($cfgUser) || empty($cfgPass)) {
+			$this->passwordHasher()->hash($cfgPass);
 			return false;
 		}
 
-		if (!$this->passwordHasher()->check($password, $hashPass)) {
+		if (strcmp($cfgUser, $username) !== 0) {
+			return false;
+		}
+
+		if (!$this->passwordHasher()->check($password, $cfgPass)) {
 			return false;
 		}
 		$user = $username;
