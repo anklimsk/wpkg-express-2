@@ -81,6 +81,25 @@ class ParseDataBehavior extends ModelBehavior {
 	}
 
 /**
+ * Clear cache of records by name
+ *
+ * @param Model $model Model using this behavior
+ * @param string $modelName Name of model
+ * @param string $cacheKey Additional key for cache
+ * @return bool Success
+ */
+	public function clearNamesCache(Model $model, $modelName = null, $cacheKey = null) {
+		if (empty($cacheKey)) {
+			$cacheKey = 'default';
+		}
+		$objModel = $this->getModelNamesCache($model, $modelName);
+		$objModel->clearCacheList();
+		$this->_cacheNames[$modelName][$cacheKey] = [];
+
+		return true;
+	}
+
+/**
  * Return record ID from cache by name
  *
  * @param Model $model Model using this behavior

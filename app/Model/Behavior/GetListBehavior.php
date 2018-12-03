@@ -61,6 +61,16 @@ class GetListBehavior extends ModelBehavior {
 	}
 
 /**
+ * Delete all keys from the cache.
+ *
+ * @param Model $model Model using this behavior
+ * @return bool True if the cache was successfully cleared, false otherwise
+ */
+	public function clearCacheList(Model $model) {
+		return Cache::clear(false, $this->settings[$model->alias]['cacheConfig']);
+	}
+
+/**
  * afterSave Callback
  *
  * Actions:
@@ -72,7 +82,7 @@ class GetListBehavior extends ModelBehavior {
  * @return bool true.
  */
 	public function afterSave(Model $model, $created, $options = []) {
-		Cache::clear(false, $this->settings[$model->alias]['cacheConfig']);
+		$this->clearCacheList($model);
 		return true;
 	}
 
@@ -86,7 +96,7 @@ class GetListBehavior extends ModelBehavior {
  * @return bool true to continue, false to abort the delete
  */
 	public function afterDelete(Model $model) {
-		Cache::clear(false, $this->settings[$model->alias]['cacheConfig']);
+		$this->clearCacheList($model);
 		return true;
 	}
 
