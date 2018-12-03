@@ -12,14 +12,6 @@ if (!isset($isExternalAuth)) {
 	$isExternalAuth = false;
 }
 
-if (!isset($emailContact)) {
-	$emailContact = '';
-}
-
-if (!isset($emailSubject)) {
-	$emailSubject = '';
-}
-
 if (!isset($showSearchForm)) {
 	$showSearchForm = true;
 }

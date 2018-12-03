@@ -212,16 +212,12 @@ class AppController extends Controller {
 		$this->loadModel('Log');
 		$countLogErrors = $this->Log->getNumberErrors();
 
-		$emailContact = $this->Setting->getConfig('EmailContact');
-		$emailSubject = $this->Setting->getConfig('EmailSubject');
 		$useNavbarContainerFluid = false;
 		$projectName = __d('project', PROJECT_NAME);
 
 		$this->set(compact(
 			'isExternalAuth',
 			'countLogErrors',
-			'emailContact',
-			'emailSubject',
 			'useNavbarContainerFluid',
 			'projectName'
 		));
