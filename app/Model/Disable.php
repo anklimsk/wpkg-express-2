@@ -199,10 +199,6 @@ class Disable extends AppModel {
 			}
 		}
 
-		if (empty($dataToMail)) {
-			return $result;
-		}
-
 		if (!$this->_sendEmail($errorMessages, $dataToMail)) {
 			$result = false;
 		}
