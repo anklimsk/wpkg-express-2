@@ -903,7 +903,10 @@ class Package extends AppModel {
 		$conditions = [
 			$this->alias . '.id' => $id
 		];
-		$contain = array_keys($bindModelInfo);
+		$contain = [];
+		foreach ($bindModelInfo as $bindModelName => $label) {
+			$contain[$bindModelName] = ['conditions' => [$bindModelName . '.enabled' => true]];
+		}
 		$data = $this->find('first', compact('fields', 'conditions', 'contain'));
 		if (empty($data)) {
 			return false;

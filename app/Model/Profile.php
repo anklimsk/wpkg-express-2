@@ -458,7 +458,9 @@ class Profile extends AppModel {
 			$this->alias . '.id' => $id
 		];
 		$contain = [
-			'HostMainProfiles'
+			'HostMainProfiles' => [
+				'conditions' => ['HostMainProfiles.enabled' => true]
+			]
 		];
 		$data = $this->find('first', compact('fields', 'conditions', 'contain'));
 		if (empty($data)) {
