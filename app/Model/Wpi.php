@@ -297,8 +297,8 @@ class Wpi extends AppModel {
 			$cat = h($wpiPackage['WpiCategory']['name']);
 			$cmds = strtr(sprintf(WPI_INSTALL_CMD_WPKG, WPI_WPKG_SCRIPT_PATH, $wpiPackage['Package']['id_text']), ['\\' => '\\\\']);
 			$desc = '';
-			if ($exportnotes) {
-				$desc = h($wpiPackage['Package']['notes']);
+			if ($exportnotes && !empty($wpiPackage['Package']['notes'])) {
+				$desc = strtr(h($wpiPackage['Package']['notes']), ["\n" => '<br />', "\r" => '']);
 			}
 			$result['Programs'][] = compact(
 				'enabled',
