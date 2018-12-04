@@ -35,7 +35,7 @@ App::uses('Hash', 'Utility');
  *
  * @package app.Model
  */
-class LdapComputer extends AppModel {
+class Ldap extends AppModel {
 
 /**
  * The name of the DataSource connection that this Model uses
