@@ -141,10 +141,10 @@ class ReportsController extends AppController {
  * @return void
  */
 	protected function _parse($hostName = null) {
-		$modelExtendQueuedTask = ClassRegistry::init('CakeTheme.ExtendQueuedTask');
+		$this->loadModel('CakeTheme.ExtendQueuedTask');
 		$this->ViewExtension->setRedirectUrl(null, 'report');
 		$taskParam = compact('hostName');
-		if ((bool)$modelExtendQueuedTask->createJob('ParseDatabases', $taskParam, null, 'parse')) {
+		if ((bool)$this->ExtendQueuedTask->createJob('ParseDatabases', $taskParam, null, 'parse')) {
 			$this->Flash->success(__('Parsing client database files put in queue...'));
 			$this->ViewExtension->setProgressSseTask('ParseDatabases');
 		} else {

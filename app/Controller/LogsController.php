@@ -164,10 +164,10 @@ class LogsController extends AppController {
  * @return void
  */
 	protected function _parse($hostName = null) {
-		$modelExtendQueuedTask = ClassRegistry::init('CakeTheme.ExtendQueuedTask');
+		$this->loadModel('CakeTheme.ExtendQueuedTask');
 		$this->ViewExtension->setRedirectUrl(null, 'log');
 		$taskParam = compact('hostName');
-		if ((bool)$modelExtendQueuedTask->createJob('ParseLogs', $taskParam, null, 'parse')) {
+		if ((bool)$this->ExtendQueuedTask->createJob('ParseLogs', $taskParam, null, 'parse')) {
 			$this->Flash->success(__('Parsing logs put in queue...'));
 			$this->ViewExtension->setProgressSseTask('ParseLogs');
 		} else {
