@@ -405,7 +405,7 @@ class Report extends AppModel {
 		foreach ($aRemoteFiles as $fileName) {
 			$localFile = REPORT_DIR . uniqid('db_');
 			if (!$share->get($fileName, $localFile)) {
-				$errorMessages['Errors'][__('Error on copying files')][] = $fileName;
+				$errorMessages[__('Errors')][__('Error on copying files')][] = $fileName;
 			}
 		}
 		if (!empty($errorMessages)) {
@@ -437,7 +437,7 @@ class Report extends AppModel {
 		}
 
 		if (!$this->ReportHost->clearUnusedHosts()) {
-			$errorMessages['Errors'][] = __('Error on removing unused hosts');
+			$errorMessages[__('Errors')][] = __('Error on removing unused hosts');
 			$result = false;
 		}
 		$step = $maxStep - 1;

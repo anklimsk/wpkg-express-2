@@ -398,7 +398,7 @@ class Log extends AppModel {
 		foreach ($aRemoteFiles as $filePath) {
 			$fileName = pathinfo($filePath, PATHINFO_FILENAME);
 			if (empty($fileName)) {
-				$errorMessages['Error'][__('Error on retrieving log file name')][] = $fileName;
+				$errorMessages[__('Errors')][__('Error on retrieving log file name')][] = $fileName;
 				continue;
 			}
 
@@ -412,7 +412,7 @@ class Log extends AppModel {
 					unlink($localFile);
 				}
 			} else {
-				$errorMessages['Errors'][__('Error on copying files')][] = $filePath;
+				$errorMessages[__('Errors')][__('Error on copying files')][] = $filePath;
 			}
 		}
 		if (!empty($errorMessages)) {
@@ -454,7 +454,7 @@ class Log extends AppModel {
 			$result = false;
 		}
 		if (!$this->LogHost->clearUnusedHosts()) {
-			$errorMessages['Errors'][] = __('Error on removing unused hosts');
+			$errorMessages[__('Errors')][] = __('Error on removing unused hosts');
 			$result = false;
 		}
 
@@ -525,7 +525,7 @@ class Log extends AppModel {
 		foreach ($listEmails as $email => $name) {
 			$to = [$email, $name];
 			if (!$modelSendEmail->putQueueEmail(compact('config', 'from', 'to', 'subject', 'template', 'vars', 'helpers'))) {
-				$errorMessages['Errors'][__('Error on sending e-mail')][] = __('Error on putting sending e-mail for "%s" in queue...', $to);
+				$errorMessages[__('Errors')][__('Error on sending e-mail')][] = __('Error on putting sending e-mail for "%s" in queue...', $to);
 				$result = false;
 			}
 		}
@@ -544,13 +544,13 @@ class Log extends AppModel {
 		$result = [];
 		$oLogFile = new File($filePath);
 		if (!$oLogFile->exists()) {
-			$errorMessages['Error'][__('Invalid file for parsing')][] = $filePath;
+			$errorMessages[__('Errors')][__('Invalid file for parsing')][] = $filePath;
 			return $result;
 		}
 
 		$fileName = $oLogFile->name();
 		if (!preg_match(LOG_PARSE_PCRE_FILE_NAME, $fileName, $matches)) {
-			$errorMessages['Error'][__('Error on parsing log file name')][] = $fileName;
+			$errorMessages[__('Errors')][__('Error on parsing log file name')][] = $fileName;
 			return $result;
 		}
 
@@ -568,7 +568,7 @@ class Log extends AppModel {
 		$hostName = mb_strtoupper($hostName);
 		$hostId = $this->getIdFromNamesCache('LogHost', $hostName);
 		if (!preg_match_all(LOG_PARSE_PCRE_CONTENT, $logContent, $logLines, PREG_SET_ORDER)) {
-			$errorMessages['Error'][__('Error on parsing log file content')][] = $hostName;
+			$errorMessages[__('Errors')][__('Error on parsing log file content')][] = $hostName;
 			return $result;
 		}
 
@@ -698,7 +698,7 @@ class Log extends AppModel {
 				$result[] = $dataToSave;
 			} else {
 				$errorType = $this->getFullName($dataToSave);
-				$errorMessages['Errors'][$errorType][] = $this->validationErrors;
+				$errorMessages[__('Errors')][$errorType][] = $this->validationErrors;
 			}
 		}
 

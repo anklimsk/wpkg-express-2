@@ -2440,7 +2440,7 @@ class Import extends AppModel {
 		}
 
 		if (!$this->_modelReport->deleteReportRecords($listPackages)) {
-			$errorMessages['Errors'][] = __('Error on deleting records of report');
+			$errorMessages[__('Errors')][] = __('Error on deleting records of report');
 			$result = false;
 		}
 
