@@ -142,6 +142,13 @@ if ($this->UserInfo->checkUserRole(USER_ROLE_ADMIN)) {
 		),
 		'divider',
 		$this->ViewExtension->menuActionLink(
+			'fas fa-toggle-off',
+			__('Disable unused'),
+			['controller' => 'hosts', 'action' => 'unused'],
+			['title' => __('Disable unused hosts and profiles'), 'data-toggle' => 'request-only']
+		),
+		'divider',
+		$this->ViewExtension->menuActionLink(
 			'fas fa-clipboard-check',
 			__('Verify state of list'),
 			['controller' => 'hosts', 'action' => 'verify'],

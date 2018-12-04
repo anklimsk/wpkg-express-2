@@ -526,6 +526,36 @@ class HostsController extends AppController {
 	}
 
 /**
+ * Base of action `unused`. Used to disable unused
+ *  hosts and profiles.
+ *
+ * @return void
+ */
+	protected function _unused() {
+		$this->loadModel('CakeTheme.ExtendQueuedTask');
+		$this->ViewExtension->setRedirectUrl(null, 'host');
+		if ((bool)$this->ExtendQueuedTask->createJob('DisableUnused', null, null, 'process')) {
+			$this->Flash->success(__('Disabling unused hosts and profiles put in queue...'));
+			$this->ViewExtension->setProgressSseTask('DisableUnused');
+		} else {
+			$this->Flash->error(__('Disabling unused hosts and profiles put in queue unsuccessfully.'));
+		}
+
+		return $this->ViewExtension->redirectByUrl(null, 'host');
+	}
+
+/**
+ * Action `unused`. Used to disable unused hosts and
+ *  profiles.
+ *  User role - administrator.
+ *
+ * @return void
+ */
+	public function admin_unused() {
+		$this->_unused();
+	}
+
+/**
  * Base of action `computers`. Used to get a list of computer 
  *  names from LDAP by query.
  *

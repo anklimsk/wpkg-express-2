@@ -1998,6 +1998,15 @@ if (!defined('SHELL_CRON_TASK_PARSE_DATABASES')) {
 }
 
 /**
+ * The task of the shell `cron` used for disabling unused hosts and profiles
+ *
+ * Used for set name of command. Default value `disable_unused`
+ */
+if (!defined('SHELL_CRON_TASK_DISABLE_UNUSED')) {
+	define('SHELL_CRON_TASK_DISABLE_UNUSED', 'disable_unused');
+}
+
+/**
  * Time limit for import XML data
  *
  * Used for set time limit of import XML data. Default value `180`
@@ -2061,6 +2070,16 @@ if (!defined('TASK_RECOVERY_TREE_TIME_LIMIT')) {
  */
 if (!defined('TASK_IMPORT_XML_TIME_LIMIT')) {
 	define('TASK_IMPORT_XML_TIME_LIMIT', 180);
+}
+
+/**
+ * Time limit for disabling unused hosts and profiles.
+ *
+ * Used for set time limit of disabling unused hosts and profiles.
+ *  Default value `60`
+ */
+if (!defined('DISABLE_UNUSED_TIME_LIMIT')) {
+	define('DISABLE_UNUSED_TIME_LIMIT', 60);
 }
 
 /**

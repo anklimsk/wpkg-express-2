@@ -767,4 +767,20 @@ class Host extends AppModel {
 
 		return $result;
 	}
+
+/**
+ * Return a list of enabled host
+ *
+ * @param bool $includeTemplate Flag of inclusion in the result
+ *  template hosts.
+ * @return array Return list of enabled host
+ */
+	public function getListHosts($includeTemplate = false) {
+		$conditions = [$this->alias . '.enabled' => true];
+		if (!$includeTemplate) {
+			$conditions[$this->alias . '.template'] = false;
+		}
+		return $this->getList($conditions);
+	}
+
 }

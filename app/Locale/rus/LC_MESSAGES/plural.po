@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wpkgExpress II\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2018-11-14 10:31+0300\n"
+"PO-Revision-Date: 2018-12-04 14:05+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -16,10 +16,23 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 "X-Generator: Poedit 2.2\n"
 
-#: Model/PackageActionType.php:232
-#, fuzzy
-#| msgid "action"
-#| msgid_plural "actions"
+#: Model/Disable.php:123
+msgctxt "Disable type"
+msgid "host"
+msgid_plural "hosts"
+msgstr[0] "хост"
+msgstr[1] "хоста"
+msgstr[2] "хостов"
+
+#: Model/Disable.php:162
+msgctxt "Disable type"
+msgid "profile"
+msgid_plural "profiles"
+msgstr[0] "профиль"
+msgstr[1] "профиля"
+msgstr[2] "профилей"
+
+#: Model/PackageActionType.php:248
 msgctxt "Package action type"
 msgid "action"
 msgid_plural "actions"
@@ -27,16 +40,10 @@ msgstr[0] "действии"
 msgstr[1] "действиях"
 msgstr[2] "действиях"
 
-#: Model/WpiCategory.php:223
+#: Model/WpiCategory.php:239
 msgctxt "WPI category"
 msgid "package"
 msgid_plural "packages"
 msgstr[0] "пакете"
 msgstr[1] "пакетах"
 msgstr[2] "пакетах"
-
-#~ msgid "host"
-#~ msgid_plural "hosts"
-#~ msgstr[0] "хоста"
-#~ msgstr[1] "хостов"
-#~ msgstr[2] "хостов"

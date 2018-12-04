@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wpkgExpress II\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2018-12-03 09:33+0300\n"
+"PO-Revision-Date: 2018-12-04 14:03+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "Package ID"
 msgstr "Идентификатор пакета"
 
-#: Config/cakesearchinfo.php:21 Model/Package.php:1042
+#: Config/cakesearchinfo.php:21 Model/Package.php:1045
 #: View/Elements/formHostBase.ctp:53 View/Elements/formPackageBase.ctp:75
 #: View/Elements/formPackageExistsProfilesEdit.ctp:46
 #: View/Elements/infoPackage.ctp:63 View/Elements/tableArchive.ctp:67
@@ -41,8 +41,8 @@ msgstr "Наименование"
 msgid "Notes"
 msgstr "Примечания"
 
-#: Config/cakesearchinfo.php:25 Model/Package.php:1063
-#: View/Elements/barNav.ctp:84 View/Home/index.ctp:70
+#: Config/cakesearchinfo.php:25 Model/Package.php:1066
+#: View/Elements/barNav.ctp:76 View/Home/index.ctp:70
 msgid "Packages"
 msgstr "Пакеты"
 
@@ -54,8 +54,8 @@ msgstr "Пакеты"
 msgid "Profile ID"
 msgstr "Идентификатор профиля"
 
-#: Config/cakesearchinfo.php:33 Model/Profile.php:649
-#: View/Elements/barNav.ctp:112
+#: Config/cakesearchinfo.php:33 Model/Profile.php:651
+#: View/Elements/barNav.ctp:104
 #: View/Elements/formPackageExistsProfilesEdit.ctp:35
 #: View/Elements/formProfileExistsHostsEdit.ctp:35 View/Home/index.ctp:75
 msgid "Profiles"
@@ -66,7 +66,7 @@ msgstr "Профили"
 msgid "Host ID"
 msgstr "Идентификатор хоста"
 
-#: Config/cakesearchinfo.php:41 Model/Host.php:490 View/Elements/barNav.ctp:161
+#: Config/cakesearchinfo.php:41 Model/Host.php:490 View/Elements/barNav.ctp:160
 #: View/Home/index.ctp:82
 msgid "Hosts"
 msgstr "Хосты"
@@ -75,29 +75,54 @@ msgstr "Хосты"
 msgid "administrator"
 msgstr "администратор"
 
-#: Console/Command/CronShell.php:59
+#: Console/Command/CronShell.php:60
 msgid "Parsing log files"
 msgstr "Разбор файлов журналов"
 
-#: Console/Command/CronShell.php:63
+#: Console/Command/CronShell.php:64
 msgid "Parsing client database files"
 msgstr "Разбор файлов баз данных клиента"
 
-#: Console/Command/CronShell.php:77
+#: Console/Command/CronShell.php:68
+msgid "Disabling unused hosts and profiles"
+msgstr "Отключение неиспользуемых хостов и профилей"
+
+#: Console/Command/CronShell.php:82
 msgid "Cron task of the shell"
 msgstr "Задача Cron оболочки"
 
-#: Console/Command/CronShell.php:79
+#: Console/Command/CronShell.php:84
 msgid "This shell is used to execute task scheduled."
 msgstr "Эта оболочка используется для выполнения задач по расписанию."
 
-#: Console/Command/CronShell.php:80
+#: Console/Command/CronShell.php:85
 msgid "Available tasks: %s."
 msgstr "Доступные задачи: %s."
 
-#: Console/Command/CronShell.php:80 View/Helper/CheckHelper.php:277
+#: Console/Command/CronShell.php:85 View/Helper/CheckHelper.php:277
 msgid "and"
 msgstr "и"
+
+#: Console/Command/Task/DisableUnusedTask.php:52
+msgid "This task is used to disable unused hosts and profiles scheduled."
+msgstr ""
+"Эта задача используется для отключения неиспользуемых хостов и профилей по "
+"расписанию."
+
+#: Console/Command/Task/DisableUnusedTask.php:63
+msgid "Disabling unused hosts and profiles in progress..."
+msgstr "Выполняется отключение неиспользуемых хостов и профилей..."
+
+#: Console/Command/Task/DisableUnusedTask.php:65
+msgid "Disabling unused hosts and profiles put in queue successfully."
+msgstr ""
+"Отключение неиспользуемых хостов и профилей успешно помещено в очередь."
+
+#: Console/Command/Task/DisableUnusedTask.php:67
+#: Controller/HostsController.php:542
+msgid "Disabling unused hosts and profiles put in queue unsuccessfully."
+msgstr ""
+"Отключение неиспользуемых хостов и профилей безуспешно помещено в очередь."
 
 #: Console/Command/Task/ParseDatabasesTask.php:52
 msgid "This task is used to parse client database files scheduled."
@@ -132,6 +157,11 @@ msgstr "Разбор файлов журналов успешно помещён
 #: Console/Command/Task/ParseLogsTask.php:67
 msgid "Parsing log files put in queue unsuccessfully."
 msgstr "Разбор файлов журналов безуспешно помещён в очередь."
+
+#: Console/Command/Task/QueueDisableUnusedTask.php:94
+msgid "CakePHP Queue task for disable unused hosts and profiles."
+msgstr ""
+"Задача очереди CakePHP для отключения неиспользуемых хостов и профилей."
 
 #: Console/Command/Task/QueueImportXmlTask.php:95
 msgid "CakePHP Queue task for import XML file."
@@ -485,11 +515,11 @@ msgstr ""
 "Вы действительно хотите сбросить конфигурацию WPKG по умолчанию, включая "
 "глобальные переменные?"
 
-#: Controller/ConfigsController.php:100 View/Elements/barNav.ctp:261
+#: Controller/ConfigsController.php:100 View/Elements/barNav.ctp:260
 msgid "Global variables"
 msgstr "Глобальные переменные"
 
-#: Controller/ConfigsController.php:102 View/Elements/barNav.ctp:263
+#: Controller/ConfigsController.php:102 View/Elements/barNav.ctp:262
 msgid "Variables of the global environment"
 msgstr "Переменные глобального окружения"
 
@@ -555,7 +585,7 @@ msgstr "Добавление кода выхода"
 msgid "Editing exit code"
 msgstr "Редактирование кода выхода"
 
-#: Controller/GarbageController.php:110 View/Elements/barNav.ctp:281
+#: Controller/GarbageController.php:110 View/Elements/barNav.ctp:280
 msgid "Recycle bin"
 msgstr "Корзина"
 
@@ -627,23 +657,23 @@ msgstr "Общая информация"
 msgid "Index of hosts"
 msgstr "Указатель хостов"
 
-#: Controller/HostsController.php:145 View/Elements/barNav.ctp:139
+#: Controller/HostsController.php:145 View/Elements/barNav.ctp:131
 msgid "Generate based on LDAP"
 msgstr "Создать на основе LDAP"
 
-#: Controller/HostsController.php:147 View/Elements/barNav.ctp:141
+#: Controller/HostsController.php:147 View/Elements/barNav.ctp:133
 msgid "Generate from template based on LDAP"
 msgstr "Создать из шаблона на основе LDAP"
 
-#: Controller/HostsController.php:152 View/Elements/barNav.ctp:146
+#: Controller/HostsController.php:152 View/Elements/barNav.ctp:138
 msgid "Build a graph"
 msgstr "Построить граф"
 
-#: Controller/HostsController.php:154 View/Elements/barNav.ctp:148
+#: Controller/HostsController.php:154 View/Elements/barNav.ctp:140
 msgid "Build a graph for host"
 msgstr "Построить граф для хоста"
 
-#: Controller/HostsController.php:160 View/Elements/barNav.ctp:156
+#: Controller/HostsController.php:160 View/Elements/barNav.ctp:155
 msgid "Verify state of list hosts"
 msgstr "Проверка состояния списка хостов"
 
@@ -697,7 +727,12 @@ msgstr "Генерирование"
 msgid "Generating host"
 msgstr "Создание хоста"
 
-#: Controller/HostsController.php:542 Controller/UploadsController.php:123
+#: Controller/HostsController.php:539
+msgid "Disabling unused hosts and profiles put in queue..."
+msgstr ""
+"Отключение неиспользуемых хостов и профилей успешно помещено в очередь..."
+
+#: Controller/HostsController.php:573 Controller/UploadsController.php:123
 #: Controller/Component/ExportDataComponent.php:153;195
 #: Controller/Component/ViewDataComponent.php:66
 msgid "Invalid request"
@@ -707,7 +742,7 @@ msgstr "Недопустимый запрос"
 msgid "Index of logs"
 msgstr "Указатель журналов"
 
-#: Controller/LogsController.php:104;106 View/Elements/barNav.ctp:176;178
+#: Controller/LogsController.php:104;106 View/Elements/barNav.ctp:175;177
 msgid "Refresh logs"
 msgstr "Обновить журналы"
 
@@ -777,11 +812,11 @@ msgid "Index of packages"
 msgstr "Указатель пакетов"
 
 #: Controller/PackagesController.php:132;177 Model/Archive.php:195
-#: View/Elements/barNav.ctp:77
+#: View/Elements/barNav.ctp:69
 msgid "Archive"
 msgstr "Архив"
 
-#: Controller/PackagesController.php:134 View/Elements/barNav.ctp:79
+#: Controller/PackagesController.php:134 View/Elements/barNav.ctp:71
 msgid "Archive of packages"
 msgstr "Архив пакетов"
 
@@ -874,7 +909,7 @@ msgstr "Изменение списка хостов"
 msgid "Index of reports"
 msgstr "Указатель отчётов"
 
-#: Controller/ReportsController.php:104;106 View/Elements/barNav.ctp:199;201
+#: Controller/ReportsController.php:104;106 View/Elements/barNav.ctp:198;200
 msgid "Refresh reports"
 msgstr "Обновить отчёты"
 
@@ -1007,19 +1042,19 @@ msgstr "Указатель пакетов WPI"
 msgid "Add package WPI"
 msgstr "Добавить пакет WPI"
 
-#: Controller/WpiController.php:145 View/Elements/barNav.ctp:220
+#: Controller/WpiController.php:145 View/Elements/barNav.ctp:219
 msgid "Categories"
 msgstr "Категории"
 
-#: Controller/WpiController.php:148 View/Elements/barNav.ctp:222
+#: Controller/WpiController.php:148 View/Elements/barNav.ctp:221
 msgid "Categories of packages"
 msgstr "Категории пакетов"
 
-#: Controller/WpiController.php:155 View/Elements/barNav.ctp:227
+#: Controller/WpiController.php:155 View/Elements/barNav.ctp:226
 msgid "Configuration of WPI"
 msgstr "Конфигурация WPI"
 
-#: Controller/WpiController.php:158 View/Elements/barNav.ctp:229
+#: Controller/WpiController.php:158 View/Elements/barNav.ctp:228
 msgid "Download WPI configuration file"
 msgstr "Скачать конфигурационный файл WPI"
 
@@ -1170,7 +1205,9 @@ msgid "Fatal errors"
 msgstr "Неустранимые ошибки"
 
 #: Controller/Component/ExportDataComponent.php:111
-#: Model/Import.php:623;636;681;1753;1782;1826;1835;1874;1890;1952;1984;2112;2162;2186;2314;2338;2507;2571;2704;2729;2750
+#: Model/Disable.php:89;96;126;165;262
+#: Model/Import.php:623;636;681;1753;1782;1826;1835;1874;1890;1952;1984;2113;2163;2187;2314;2338;2443;2506;2569;2704;2729;2750
+#: Model/Log.php:401;415;457;528;547;553;571;701 Model/Report.php:408;440
 msgid "Errors"
 msgstr "Ошибки"
 
@@ -1273,7 +1310,7 @@ msgid "Add %s"
 msgstr "Добавить %s"
 
 #: Controller/Component/ViewDataComponent.php:136;262
-#: View/Elements/barNav.ctp:70;105;133
+#: View/Elements/barNav.ctp:62;97;125
 msgid "Create from template"
 msgstr "Создать из шаблона"
 
@@ -1385,13 +1422,66 @@ msgstr "Проверка %s"
 msgid "check %s"
 msgstr "проверки %s"
 
-#: Model/Config.php:456 View/Elements/barNav.ctp:248
+#: Model/Config.php:453 View/Elements/barNav.ctp:247
 msgid "Settings of WPKG"
 msgstr "Настройки WPKG"
 
-#: Model/Config.php:476
+#: Model/Config.php:473
 msgid "Configuration for script WPKG ver. %s"
 msgstr "Конфигурация для скрипта WPKG вер. %s"
+
+#: Model/Disable.php:89
+msgid "The list of computers for processing is empty"
+msgstr "Список компьютеров для обработки пуст"
+
+#: Model/Disable.php:96
+msgid "The list of hosts for processing is empty"
+msgstr "Список хостов для обработки пуст"
+
+#: Model/Disable.php:114
+msgid "Number of hosts"
+msgstr "Количество хостов"
+
+#: Model/Disable.php:115;154
+msgid "List"
+msgstr "Список"
+
+#: Model/Disable.php:120;159
+msgid "Information"
+msgstr "Информация"
+
+#: Model/Disable.php:120;159
+msgid "Disabled %d %s."
+msgstr "Отключено %d %s."
+
+#: Model/Disable.php:126
+msgid "Error on disabling hosts"
+msgstr "Ошибка при отключении хостов"
+
+#: Model/Disable.php:153
+msgid "Number of profiles"
+msgstr "Количество профилей"
+
+#: Model/Disable.php:165
+msgid "Error on disabling profiles"
+msgstr "Ошибка при отключении профилей"
+
+#: Model/Disable.php:239 Model/Log.php:490
+msgid "Administrator of WPKG"
+msgstr "Администратор WPKG"
+
+#: Model/Disable.php:248
+msgid "Unused hosts and profiles is disabled"
+msgstr "Неиспользуемые хосты и профили отключены"
+
+#: Model/Disable.php:262 Model/Log.php:528
+msgid "Error on sending e-mail"
+msgstr "Ошибка при отправке электронной почты"
+
+#: Model/Disable.php:262 Model/Log.php:528
+msgid "Error on putting sending e-mail for \"%s\" in queue..."
+msgstr ""
+"Ошибка при помещении отправки электронной почты для \"%s\" в очередь..."
 
 #: Model/ExitCode.php:227 View/Elements/formCheckBase.ctp:107
 #: View/Elements/formExitCodeBase.ctp:48
@@ -1528,11 +1618,11 @@ msgstr "Недопустимое имя зависимой модели"
 msgid "Package actions"
 msgstr "Действия пакета"
 
-#: Model/Import.php:2444
+#: Model/Import.php:2443
 msgid "Error on deleting records of report"
 msgstr "Ошибка при удалении записей отчета"
 
-#: Model/Import.php:2571
+#: Model/Import.php:2569
 msgid "Error on saving report record"
 msgstr "Ошибка сохранения записи отчета"
 
@@ -1560,7 +1650,7 @@ msgstr "Недопустимый путь к файлу схемы XSD"
 msgid "Log record"
 msgstr "Запись журнала"
 
-#: Model/Log.php:197 View/Elements/barNav.ctp:169;183
+#: Model/Log.php:197 View/Elements/barNav.ctp:168;182
 msgid "Logs"
 msgstr "Журналы"
 
@@ -1584,22 +1674,9 @@ msgstr "Ошибка при копировании файлов"
 msgid "Error on removing unused hosts"
 msgstr "Ошибка при удалении неиспользуемых хостов"
 
-#: Model/Log.php:490
-msgid "Administrator of WPKG"
-msgstr "Администратор WPKG"
-
 #: Model/Log.php:501
 msgid "Found new errors of WPKG"
 msgstr "Найдены новые ошибки WPKG"
-
-#: Model/Log.php:528
-msgid "Error on sending e-mail"
-msgstr "Ошибка при отправке электронной почты"
-
-#: Model/Log.php:528
-msgid "Error on putting sending e-mail for \"%s\" in queue..."
-msgstr ""
-"Ошибка при помещении отправки электронной почты для \"%s\" в очередь..."
 
 #: Model/Log.php:547
 msgid "Invalid file for parsing"
@@ -1613,7 +1690,7 @@ msgstr "Ошибка при разборе имени файла журнала"
 msgid "Error on parsing log file content"
 msgstr "Ошибка при разборе содержимого файла журнала"
 
-#: Model/Package.php:923
+#: Model/Package.php:926
 msgid ""
 "The package '%s' cannot be deleted or disabled because it is exists in %s "
 "for the following packages: %s"
@@ -1621,24 +1698,24 @@ msgstr ""
 "Пакет '%s' не может быть удалён или отключен, поскольку он существует в %s "
 "для следующих пакетов: %s"
 
-#: Model/Package.php:1052 View/Elements/formPackageBase.ctp:58
+#: Model/Package.php:1055 View/Elements/formPackageBase.ctp:58
 #: View/Elements/formWpiBase.ctp:56 View/Elements/tableReport.ctp:59
 msgid "Package"
 msgstr "Пакет"
 
-#: Model/Package.php:1087
+#: Model/Package.php:1090
 msgid "Package '%s'"
 msgstr "Пакет '%s'"
 
-#: Model/Package.php:1089
+#: Model/Package.php:1092
 msgid "package '%s'"
 msgstr "пакета '%s'"
 
-#: Model/Package.php:1101
+#: Model/Package.php:1104
 msgid "full data of packages"
 msgstr "полные данные пакетов"
 
-#: Model/Package.php:1269
+#: Model/Package.php:1272
 msgid "Present in"
 msgstr "Присутствует в"
 
@@ -1657,17 +1734,17 @@ msgctxt "check disable"
 msgid "chains"
 msgstr "цепочках"
 
-#: Model/Package.php:1290 Model/Profile.php:861
+#: Model/Package.php:1293 Model/Profile.php:863
 msgctxt "dependency"
 msgid "Depends on"
 msgstr "Зависит от"
 
-#: Model/Package.php:1291
+#: Model/Package.php:1294
 msgctxt "dependency"
 msgid "Includes on"
 msgstr "Включает"
 
-#: Model/Package.php:1292
+#: Model/Package.php:1295
 msgctxt "dependency"
 msgid "Chain on"
 msgstr "Цепочки"
@@ -1766,7 +1843,7 @@ msgstr "Связанные пакеты"
 msgid "Associated packages"
 msgstr "Связанные пакеты"
 
-#: Model/Profile.php:476
+#: Model/Profile.php:478
 msgid ""
 "The profile '%s' cannot be deleted or disabled because it is the main "
 "profile for the following hosts: %s"
@@ -1774,35 +1851,35 @@ msgstr ""
 "Профиль '%s' не может быть удалён или отключен, поскольку он является "
 "основным профилем для следующих хостов: %s"
 
-#: Model/Profile.php:638 View/Elements/formProfileBase.ctp:39
+#: Model/Profile.php:640 View/Elements/formProfileBase.ctp:39
 msgid "Profile"
 msgstr "Профиль"
 
-#: Model/Profile.php:673
+#: Model/Profile.php:675
 msgid "Profile '%s'"
 msgstr "Профиль '%s'"
 
-#: Model/Profile.php:675
+#: Model/Profile.php:677
 msgid "profile '%s'"
 msgstr "профиля '%s'"
 
-#: Model/Profile.php:687
+#: Model/Profile.php:689
 msgid "full data of profiles"
 msgstr "полные данные профилей"
 
-#: Model/Profile.php:893
+#: Model/Profile.php:895
 msgid "Through main profile"
 msgstr "Через основной профиль"
 
-#: Model/Profile.php:894
+#: Model/Profile.php:896
 msgid "Through dependent profile"
 msgstr "Через зависимый профиль"
 
-#: Model/Profile.php:895
+#: Model/Profile.php:897
 msgid "Through prof. assoc. host"
 msgstr "Через проф. связ. с хостом"
 
-#: Model/Profile.php:947
+#: Model/Profile.php:949
 msgid "Contains"
 msgstr "Содержит"
 
@@ -1822,7 +1899,7 @@ msgstr "Ошибка при восстановлении дерева (спис�
 msgid "Report"
 msgstr "Отчёт"
 
-#: Model/Report.php:233 View/Elements/barNav.ctp:192;206
+#: Model/Report.php:233 View/Elements/barNav.ctp:191;205
 msgid "Reports"
 msgstr "Отчёты"
 
@@ -1914,7 +1991,7 @@ msgstr "неизвестно"
 msgid "Invalid constant prefix"
 msgstr "Недопустимый префикс константы"
 
-#: Model/Behavior/ParseDataBehavior.php:186;194
+#: Model/Behavior/ParseDataBehavior.php:205;213
 msgid "Invalid name of model for cache"
 msgstr "Недопустимое имя модели для кеша"
 
@@ -1927,123 +2004,131 @@ msgstr "Расширение PHP \"%s\" не загружено"
 msgid "Behavior %s not loaded in %s"
 msgstr "Поведение %s не загружено в %s"
 
-#: View/Elements/barNav.ctp:57;59
+#: View/Elements/barNav.ctp:49;51
 msgid "List of packages"
 msgstr "Список пакетов"
 
-#: View/Elements/barNav.ctp:64
+#: View/Elements/barNav.ctp:56
 msgid "Add package"
 msgstr "Добавить пакет"
 
-#: View/Elements/barNav.ctp:66
+#: View/Elements/barNav.ctp:58
 msgid "Add new package"
 msgstr "Добавить новый пакет"
 
-#: View/Elements/barNav.ctp:72
+#: View/Elements/barNav.ctp:64
 msgid "Create package from template"
 msgstr "Создать пакет из шаблона"
 
-#: View/Elements/barNav.ctp:86
+#: View/Elements/barNav.ctp:78
 msgid "Manage packages"
 msgstr "Управление пакетами"
 
-#: View/Elements/barNav.ctp:92;94
+#: View/Elements/barNav.ctp:84;86
 msgid "List of profiles"
 msgstr "Список профилей"
 
-#: View/Elements/barNav.ctp:99
+#: View/Elements/barNav.ctp:91
 msgid "Add profile"
 msgstr "Добавить профиль"
 
-#: View/Elements/barNav.ctp:101
+#: View/Elements/barNav.ctp:93
 msgid "Add new profile"
 msgstr "Добавить новый профиль"
 
-#: View/Elements/barNav.ctp:107
+#: View/Elements/barNav.ctp:99
 msgid "Create profile from template"
 msgstr "Создать профиль из шаблона"
 
-#: View/Elements/barNav.ctp:114
+#: View/Elements/barNav.ctp:106
 msgid "Manage profiles"
 msgstr "Управление профилями"
 
-#: View/Elements/barNav.ctp:120;122
+#: View/Elements/barNav.ctp:112;114
 msgid "List of hosts"
 msgstr "Список хостов"
 
-#: View/Elements/barNav.ctp:127
+#: View/Elements/barNav.ctp:119
 msgid "Add host"
 msgstr "Добавить хост"
 
-#: View/Elements/barNav.ctp:129
+#: View/Elements/barNav.ctp:121
 msgid "Add new host"
 msgstr "Добавить новый хост"
 
-#: View/Elements/barNav.ctp:135
+#: View/Elements/barNav.ctp:127
 msgid "Create host from template"
 msgstr "Создать хост из шаблона"
 
-#: View/Elements/barNav.ctp:154
+#: View/Elements/barNav.ctp:146
+msgid "Disable unused"
+msgstr "Отключить неиспользуемые"
+
+#: View/Elements/barNav.ctp:148
+msgid "Disable unused hosts and profiles"
+msgstr "Отключить неиспользуемые хосты и профили"
+
+#: View/Elements/barNav.ctp:153
 msgid "Verify state of list"
 msgstr "Проверка состояния списка"
 
-#: View/Elements/barNav.ctp:163
+#: View/Elements/barNav.ctp:162
 msgid "Manage hosts"
 msgstr "Управление хостами"
 
-#: View/Elements/barNav.ctp:171
+#: View/Elements/barNav.ctp:170
 msgid "List of logs records"
 msgstr "Список записей журналов"
 
-#: View/Elements/barNav.ctp:194
+#: View/Elements/barNav.ctp:193
 msgid "List of packages installation state"
 msgstr "Список состояний установки пакетов"
 
-#: View/Elements/barNav.ctp:214;216
+#: View/Elements/barNav.ctp:213;215
 msgid "List of packages for WPI"
 msgstr "Список пакетов для WPI"
 
-#: View/Elements/barNav.ctp:234
+#: View/Elements/barNav.ctp:233
 msgid "Windows Post-Install Wizard"
 msgstr "Windows Post-Install Wizard"
 
-#: View/Elements/barNav.ctp:242;244;288
+#: View/Elements/barNav.ctp:241;243;287
 msgid "Application settings"
 msgstr "Настройки приложения"
 
-#: View/Elements/barNav.ctp:250
+#: View/Elements/barNav.ctp:249
 msgid "Creating a WPKG configuration file"
 msgstr "Создание файла конфигурации WPKG"
 
-#: View/Elements/barNav.ctp:254
+#: View/Elements/barNav.ctp:253
 msgid "Queue of tasks"
 msgstr "Очередь заданий"
 
-#: View/Elements/barNav.ctp:256
+#: View/Elements/barNav.ctp:255
 msgid "Task queue list"
 msgstr "Список задач"
 
-#: View/Elements/barNav.ctp:268
+#: View/Elements/barNav.ctp:267
 msgid "Uploading XML"
 msgstr "Загрузка XML"
 
-#: View/Elements/barNav.ctp:270
+#: View/Elements/barNav.ctp:269
 msgid "Upload XML files"
 msgstr "Загрузка файлов XML"
 
-#: View/Elements/barNav.ctp:274
+#: View/Elements/barNav.ctp:273
 msgid "Downloading XML"
 msgstr "Скачивание XML"
 
-#: View/Elements/barNav.ctp:276
+#: View/Elements/barNav.ctp:275
 msgid "Download XML files"
 msgstr "Скачивание файлов XML"
 
-#: View/Elements/barNav.ctp:283
+#: View/Elements/barNav.ctp:282
 msgid "Manage removed data"
 msgstr "Управление удалёнными данными"
 
-#: View/Elements/barNav.ctp:297
+#: View/Elements/barNav.ctp:296
 msgid "Logout"
 msgstr "Выход"
 
@@ -3598,6 +3683,10 @@ msgstr "Вы действительно хотите удалить катего
 msgid "Add WPI category"
 msgstr "Добавить категорию WPI"
 
+#: View/Elements/mailDisableUnusedData.ctp:46
+msgid "Created"
+msgstr "Создан"
+
 #: View/Elements/tableArchive.ctp:117
 msgid "Are you sure you wish to restore package from archive '%s'?"
 msgstr "Вы действительно хотите восстановить пакет из архива '%s'?"
@@ -3831,6 +3920,11 @@ msgstr "Вы уверены, что хотите удалить '%s'?"
 msgid "Any children of this logical check will also be removed."
 msgstr "Любые потомки этой логической проверки также будут удалены."
 
+#: View/Emails/html/disable_unused_report.ctp:30
+#: View/Emails/text/disable_unused_report.ctp:29
+msgid "Disabled unused hosts and profiles"
+msgstr "Отключенные неиспользуемые хосты и профили"
+
 #: View/Emails/html/error_report.ctp:30 View/Emails/text/error_report.ctp:28
 msgid "WPKG Error report"
 msgstr "Отчет об ошибках WPKG"
@@ -3962,6 +4056,19 @@ msgstr "Экспорт XML файлов"
 #: View/Reports/index.ctp:35
 msgid "State of packages"
 msgstr "Состояние пакетов"
+
+#~ msgid "Disabled %d profile(s)."
+#~ msgstr "Отключено %d профиль(ей)."
+
+#~ msgid "List of disabled hosts"
+#~ msgstr "Список отключенных хостов"
+
+#~ msgid "List of disabled profiles"
+#~ msgstr "Список отключенных профилей"
+
+#~ msgid "Disabling unused hosts and profiles put in queue unsuccessfully"
+#~ msgstr ""
+#~ "Отключение неиспользуемых хостов и профилей безуспешно помещено в очередь"
 
 #~ msgid "Are you sure you wish to reset WPKG configuration to default?"
 #~ msgstr "Вы действительно хотите сбросить конфигурацию WPKG по умолчанию?"

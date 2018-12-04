@@ -962,4 +962,58 @@ class Profile extends AppModel {
 
 		return $result;
 	}
+
+/**
+ * Return list of unused profiles to disable
+ *
+ * @return array Return list of unused profiles to disable
+ */
+	public function getListProfilesToDisable() {
+		$conditions = [
+			$this->alias . '.enabled' => true,
+			$this->alias . '.template' => false,
+			'HostsProfile.profile_id' => null,
+			'ProfilesProfile.dependency_id' => null,
+			'OR' => [
+				'Host.mainprofile_id' => null,
+				'AND' => [
+					'Host.enabled' => false,
+					'Host.template' => false,
+				]
+			]
+		];
+		$fields = [
+			$this->alias . '.id',
+			$this->alias . '.id_text'
+		];
+		$order = [$this->alias . '.id_text' => 'asc'];
+		$joins = [
+			[
+				'table' => 'hosts',
+				'alias' => 'Host',
+				'type' => 'LEFT',
+				'conditions' => [
+					'Profile.id = Host.mainprofile_id',
+				]
+			],
+			[
+				'table' => 'hosts_profiles',
+				'alias' => 'HostsProfile',
+				'type' => 'LEFT',
+				'conditions' => [
+					'Profile.id = HostsProfile.profile_id',
+				]
+			],
+			[
+				'table' => 'profiles_profiles',
+				'alias' => 'ProfilesProfile',
+				'type' => 'LEFT',
+				'conditions' => [
+					'Profile.id = ProfilesProfile.dependency_id',
+				]
+			]
+		];
+		$recursive = -1;
+		return $this->find('all', compact('conditions', 'fields', 'order', 'joins', 'recursive'));
+	}
 }

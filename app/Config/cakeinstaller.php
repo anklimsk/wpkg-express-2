@@ -184,6 +184,7 @@ $config['CakeInstaller'] = [
 		'cd ' . APP . ' && Console/cake Queue.Queue runworker -q' => '*/10 * * * *',
 		'cd ' . APP . ' && Console/cake cron parse_logs -q' => '*/15 * * * *',
 		'cd ' . APP . ' && Console/cake cron parse_databases -q' => '0 */2 * * *',
+		'cd ' . APP . ' && Console/cake cron disable_unused -q' => '0 6 * * *',
 	],
 	// List of languages for installer UI in format: ISO639-2
 	'UIlangList' => [

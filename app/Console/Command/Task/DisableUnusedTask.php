@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is the console shell file of the application.
+ * This file is the console shell task file of the application.
  *
  * This file is part of wpkgExpress II.
  *
@@ -21,30 +21,25 @@
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
  * @copyright Copyright 2018, Andrey Klimov.
- * @package app.Console.Command
+ * @package app.Console.Command.Task
  */
 
 App::uses('AppShell', 'Console/Command');
-App::uses('CakeText', 'Utility');
 
 /**
- * This shell is used to execute tasks on a schedule.
+ * This task is used to put parsing log files in task queue.
  *
- * @package app.Console.Command
+ * @package app.Console.Command.Task
  */
-class CronShell extends AppShell {
+class DisableUnusedTask extends AppShell {
 
 /**
- * Contains tasks to load and instantiate
+ * Contains models to load and instantiate
  *
  * @var array
- * @link http://book.cakephp.org/2.0/en/console-and-shells.html#Shell::$tasks
+ * @link http://book.cakephp.org/2.0/en/console-and-shells.html#Shell::$uses
  */
-	public $tasks = [
-		'ParseLogs',
-		'ParseDatabases',
-		'DisableUnused',
-	];
+	public $uses = ['Queue.QueuedTask'];
 
 /**
  * Gets the option parser instance and configures it.
@@ -54,21 +49,7 @@ class CronShell extends AppShell {
  */
 	public function getOptionParser() {
 		$parser = parent::getOptionParser();
-
-		$parser->addSubcommands([
-			SHELL_CRON_TASK_PARSE_LOGS => [
-					'help' => __('Parsing log files'),
-					'parser' => $this->ParseLogs->getOptionParser()
-			],
-			SHELL_CRON_TASK_PARSE_DATABASES => [
-					'help' => __('Parsing client database files'),
-					'parser' => $this->ParseDatabases->getOptionParser()
-			],
-			SHELL_CRON_TASK_DISABLE_UNUSED => [
-					'help' => __('Disabling unused hosts and profiles'),
-					'parser' => $this->DisableUnused->getOptionParser()
-			],
-		]);
+		$parser->description(__('This task is used to disable unused hosts and profiles scheduled.'));
 
 		return $parser;
 	}
@@ -78,10 +59,12 @@ class CronShell extends AppShell {
  *
  * @return void
  */
-	public function main() {
-		$this->out(__('Cron task of the shell'));
-		$this->hr();
-		$this->out(__('This shell is used to execute task scheduled.'));
-		$this->out(__('Available tasks: %s.', CakeText::toList(constsVals('SHELL_CRON_TASK_'), __('and'))));
+	public function execute() {
+		$this->out(__('Disabling unused hosts and profiles in progress...'), 1, Shell::NORMAL);
+		if ($this->QueuedTask->createJob('DisableUnused', null, null, 'process')) {
+			$this->out(__('Disabling unused hosts and profiles put in queue successfully.'), 1, Shell::NORMAL);
+		} else {
+			$this->out('<error>' . __('Disabling unused hosts and profiles put in queue unsuccessfully.') . '</error>');
+		}
 	}
 }
