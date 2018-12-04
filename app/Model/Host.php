@@ -697,8 +697,8 @@ class Host extends AppModel {
  */
 	public function getListNotProcessedComputersByQuery($query = null) {
 		$result = [];
-		$modelLdap = ClassRegistry::init('Ldap');
-		$computers = $modelLdap->getListComputers($query);
+		$modelLdapComputer = ClassRegistry::init('LdapComputer');
+		$computers = $modelLdapComputer->getListComputers($query);
 		if (empty($computers)) {
 			return $result;
 		}
