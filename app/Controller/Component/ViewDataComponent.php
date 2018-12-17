@@ -243,7 +243,7 @@ class ViewDataComponent extends BaseDataComponent {
 			];
 			$headerMenuActions = array_merge($headerMenuActions, $headerMenuActionsExt);
 		}
-		if ($this->_modelTarget->Behaviors->loaded('CopyItem')) {
+		if ($this->_modelTarget->Behaviors->loaded('TemplateData')) {
 			$headerMenuActionsExt = [
 				'fas fa-copy',
 				__('Copy %s', $targetNameI18n),

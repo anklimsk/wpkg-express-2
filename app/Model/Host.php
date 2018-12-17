@@ -61,7 +61,6 @@ class Host extends AppModel {
 		'GetNumber' => ['cacheConfig' => CACHE_KEY_STATISTICS_INFO_HOST],
 		'GroupAction',
 		'ChangeState',
-		'CopyItem',
 		'GetGraphInfo',
 		'TemplateData',
 		'ClearViewCache'

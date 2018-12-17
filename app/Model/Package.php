@@ -59,7 +59,6 @@ class Package extends AppModel {
 		'GetNumber' => ['cacheConfig' => CACHE_KEY_STATISTICS_INFO_PACKAGE],
 		'GroupAction',
 		'ChangeState',
-		'CopyItem',
 		'GetGraphInfo',
 		'TemplateData',
 		'ValidationRules',

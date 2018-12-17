@@ -59,7 +59,6 @@ class Profile extends AppModel {
 		'GetNumber' => ['cacheConfig' => CACHE_KEY_STATISTICS_INFO_PROFILE],
 		'GroupAction',
 		'ChangeState',
-		'CopyItem',
 		'GetGraphInfo',
 		'TemplateData',
 		'ValidationRules',
