@@ -81,6 +81,12 @@ class ReportHost extends AppModel {
 			'allowEmpty' => false,
 			'message' => 'Report date is invalid.'
 		],
+		'hash' => [
+			'rule' => 'notBlank',
+			'required' => true,
+			'allowEmpty' => false,
+			'message' => 'Hash is invalid.'
+		],
 	];
 
 /**
@@ -167,17 +173,17 @@ class ReportHost extends AppModel {
 	}
 
 /**
- * Return list of date last update reports
+ * Return list of MD5 hash reports
  *
  * @param string|null $hostName Host name to retrieve data
  * @param int|string|null $limit Limit of list
- * @return array Return list of date last update reports
+ * @return array Return list of MD5 hash reports
  */
-	public function getListLastUpdate($hostName = null, $limit = null) {
+	public function getListMD5hash($hostName = null, $limit = null) {
 		$result = [];
 		$fields = [
 			$this->alias . '.name',
-			$this->alias . '.date',
+			$this->alias . '.hash',
 		];
 		$conditions = [];
 		if (!empty($hostName)) {

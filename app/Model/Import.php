@@ -582,13 +582,15 @@ class Import extends AppModel {
 				$xmlData = Hash::extract($xmlData, 'wpkg');
 				$Attribute = $this->_prepareAttributes($xmlData);
 				$lastChange = null;
+				$md5Hash = null;
 				if (is_file($xmlFile)) {
 					$timestamp = filemtime($xmlFile);
 					if ($timestamp) {
 						$lastChange = date('Y-m-d H:i:s', $timestamp);
 					}
+					$md5Hash = md5_file($xmlFile, false);
 				}
-				$result = compact('Attribute', 'lastChange');
+				$result = compact('Attribute', 'lastChange', 'md5Hash');
 				break;
 			default:
 				return false;
@@ -1557,11 +1559,12 @@ class Import extends AppModel {
 
 		$name = Hash::get($xmlInfo, 'Attribute.hostname');
 		$date = Hash::get($xmlInfo, 'lastChange');
+		$hash = Hash::get($xmlInfo, 'md5Hash');
 		$id = $this->getIdFromNamesCache('ReportHost', $name);
-		if (empty($name) || empty($date)) {
+		if (empty($name) || empty($date) || empty($hash)) {
 			return $result;
 		}
-		$result = ['ReportHost' => compact('name', 'date')];
+		$result = ['ReportHost' => compact('name', 'date', 'hash')];
 		if (!empty($id)) {
 			$result['ReportHost']['id'] = $id;
 		}
@@ -2387,10 +2390,10 @@ class Import extends AppModel {
  *
  * @param string $xmlFile XML string or file to processing
  * @param int $idTask The ID of the QueuedTask
- * @param array $cacheLastUpdate Cache of date last update reports
+ * @param array $cacheMD5hash Cache of MD5 hash reports
  * @return bool Success
  */
-	public function importXmlDatabases($xmlFile = '', $idTask = null, $cacheLastUpdate = []) {
+	public function importXmlDatabases($xmlFile = '', $idTask = null, $cacheMD5hash = []) {
 		$step = 0;
 		$maxStep = 2;
 		$dataToSave = [];
@@ -2398,7 +2401,7 @@ class Import extends AppModel {
 		$result = true;
 		$updateProgress = true;
 		set_time_limit(IMPORT_TIME_LIMIT);
-		if (!empty($cacheLastUpdate)) {
+		if (!empty($cacheMD5hash)) {
 			$updateProgress = false;
 		}
 		if ($updateProgress) {
@@ -2411,12 +2414,13 @@ class Import extends AppModel {
 
 		$hostName = (string)Hash::get($xmlDataArray, 'info.Attribute.hostname');
 		$hostName = mb_strtolower($hostName);
-		$lastChange = Hash::get($xmlDataArray, 'info.lastChange');
-		if (empty($cacheLastUpdate)) {
-			$cacheLastUpdate = $this->_modelReport->ReportHost->getListLastUpdate($hostName);
+		$md5Hash = Hash::get($xmlDataArray, 'info.md5Hash');
+		if (empty($cacheMD5hash)) {
+			$cacheMD5hash = $this->_modelReport->ReportHost->getListMD5hash($hostName);
 		}
-		if (!empty($cacheLastUpdate) && isset($cacheLastUpdate[$hostName]) &&
-			($lastChange === $cacheLastUpdate[$hostName])) {
+
+		if (!empty($cacheMD5hash) && isset($cacheMD5hash[$hostName]) &&
+			($md5Hash === $cacheMD5hash[$hostName])) {
 			return true;
 		}
 
