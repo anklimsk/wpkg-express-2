@@ -69,7 +69,10 @@ if (!$host['MainProfile']['enabled']) {
 	echo $this->Html->tag('dd', $this->ViewExtension->popupModalLink(
 		$mainProfileName,
 		['controller' => 'profiles', 'action' => 'view', $host['MainProfile']['id']],
-		['data-modal-size' => 'lg']
+		[
+			'data-modal-size' => 'lg',
+			'data-popover-size' => 'lg'
+		]
 	));
 	echo $this->Html->tag('dt', __('Notes') . ':');
 	echo $this->Html->tag('dd', $this->ViewExtension->showEmpty(h($host['Host']['notes'])));

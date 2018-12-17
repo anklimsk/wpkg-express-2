@@ -139,13 +139,19 @@ foreach ($archives as $archive) {
 	$tableRow[] = $this->ViewExtension->popupModalLink(
 		h($archive['Archive']['name']),
 		['controller' => 'packages', 'action' => 'view', $archive['Package']['id']],
-		['data-modal-size' => 'lg']
+		[
+			'data-modal-size' => 'lg',
+			'data-popover-size' => 'lg'
+		]
 	);
 	$tableRow[] = [
 		$this->ViewExtension->popupModalLink(
 			h($archive['Archive']['revision']),
 			['controller' => 'archives', 'action' => 'view', $archive['Package']['id']],
-			['data-modal-size' => 'lg']
+			[
+				'data-modal-size' => 'lg',
+				'data-popover-size' => 'lg'
+			]
 		),
 		['class' => 'text-right text-nowrap']
 	];

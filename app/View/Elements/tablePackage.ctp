@@ -226,7 +226,10 @@ foreach ($packages as $package) {
 	$tableRow[] = $this->ViewExtension->popupModalLink(
 		$packageName,
 		['controller' => 'packages', 'action' => 'view', $package['Package']['id']],
-		['data-modal-size' => 'lg']
+		[
+			'data-modal-size' => 'lg',
+			'data-popover-size' => 'lg'
+		]
 	);
 	$tableRow[] = $this->ViewExtension->truncateText(h($package['Package']['name']), 30);
 	$tableRow[] = [h($package['Package']['revision']), ['class' => 'text-center']];

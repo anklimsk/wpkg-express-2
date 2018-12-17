@@ -134,7 +134,10 @@ foreach ($wpis as $wpiPackage) {
 	$tableRow[] = $this->ViewExtension->popupModalLink(
 		h($wpiPackage['Package']['name']),
 		['controller' => 'packages', 'action' => 'view', $wpiPackage['Package']['id']],
-		['data-modal-size' => 'lg']
+		[
+			'data-modal-size' => 'lg',
+			'data-popover-size' => 'lg'
+		]
 	);
 	$tableRow[] = $this->ViewExtension->showEmpty(
 		$wpiPackage['Package']['notes'],

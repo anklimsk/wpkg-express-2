@@ -142,7 +142,10 @@ foreach ($reports as $report) {
 	$tableRow[] = $this->ViewExtension->popupModalLink(
 		$packageName,
 		['controller' => 'packages', 'action' => 'view', $report['Package']['id']],
-		['data-modal-size' => 'lg']
+		[
+			'data-modal-size' => 'lg',
+			'data-popover-size' => 'lg'
+		]
 	);
 	$tableRow[] = [$revision, ['class' => 'action text-nowrap', 'colspan' => 2]];
 

@@ -220,12 +220,18 @@ foreach ($hosts as $host) {
 	$tableRow[] = $this->ViewExtension->popupModalLink(
 		$hostName,
 		['controller' => 'hosts', 'action' => 'view', $host['Host']['id']],
-		['data-modal-size' => 'lg']
+		[
+			'data-modal-size' => 'lg',
+			'data-popover-size' => 'lg'
+		]
 	);
 	$tableRow[] = $this->ViewExtension->popupModalLink(
 		$mainProfileName,
 		['controller' => 'profiles', 'action' => 'view', $host['MainProfile']['id']],
-		['data-modal-size' => 'lg']
+		[
+			'data-modal-size' => 'lg',
+			'data-popover-size' => 'lg'
+		]
 	);
 	$tableRow[] = $this->ViewExtension->showEmpty(
 		$host['Host']['notes'],

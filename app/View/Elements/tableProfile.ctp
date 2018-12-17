@@ -193,7 +193,10 @@ foreach ($profiles as $profile) {
 	$tableRow[] = $this->ViewExtension->popupModalLink(
 		$profileName,
 		['controller' => 'profiles', 'action' => 'view', $profile['Profile']['id']],
-		['data-modal-size' => 'lg']
+		[
+			'data-modal-size' => 'lg',
+			'data-popover-size' => 'lg'
+		]
 	);
 	$tableRow[] = $this->ViewExtension->showEmpty(
 		$profile['Profile']['notes'],

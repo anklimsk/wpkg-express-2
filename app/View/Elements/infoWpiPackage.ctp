@@ -39,7 +39,10 @@ if (empty($wpiPackage)) {
 	echo $this->Html->tag('dd', $this->ViewExtension->popupModalLink(
 		$wpiPackage['Package']['id_text'],
 		['controller' => 'packages', 'action' => 'view', $wpiPackage['Package']['id']],
-		['data-modal-size' => 'lg']
+		[
+			'data-modal-size' => 'lg',
+			'data-popover-size' => 'lg'
+		]
 	));
 	echo $this->Html->tag('dt', __('Category') . ':');
 	echo $this->Html->tag('dd', $this->ViewExtension->showEmpty(h($wpiPackage['WpiCategory']['name'])));

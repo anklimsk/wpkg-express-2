@@ -26,7 +26,10 @@
  */
 
 	$this->assign('title', $pageHeader);
-	$linkOptions = ['data-modal-size' => 'lg'];
+	$linkOptions = [
+		'data-modal-size' => 'lg',
+		'data-popover-size' => 'lg'
+	];
 ?>
 <div class="container" data-toggle="repeat" data-repeat-time="300">
 <?php
