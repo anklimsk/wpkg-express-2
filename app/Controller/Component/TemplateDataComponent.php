@@ -2,7 +2,7 @@
 /**
  * This file is the componet file of the application.
  *  The base actions of the controller, used to creating data
- *  from a template
+ *  from a template and copying data
  *
  * This file is part of wpkgExpress II.
  *
@@ -32,7 +32,7 @@ App::uses('BaseDataComponent', 'Controller/Component');
  * TemplateData Component.
  *
  * The base actions of the controller, used to creating data
- *  from a template
+ *  from a template and copying data
  * @package app.Controller.Component
  */
 class TemplateDataComponent extends BaseDataComponent {
@@ -78,16 +78,37 @@ class TemplateDataComponent extends BaseDataComponent {
 		$modelName = $this->_getTargetName(false);
 		$labelAdditAttrib = $this->_modelTarget->getLabelAdditAttrib();
 		if ($this->_controller->request->is('post')) {
+			$newId = null;
 			$templateId = $this->_controller->request->data('Template.template_id');
 			$idText = $this->_controller->request->data($modelName . '.id_text');
 			$additAttrib = $this->_controller->request->data($modelName . '.addit_attrib');
 			$fieldList = ['id_text'];
 			$this->_modelTarget->set($this->_controller->request->data($modelName));
-			if ($this->_modelTarget->validates(compact('fieldList')) &&
-				$this->_modelTarget->createFromTemplate($templateId, $idText, $additAttrib)) {
+			if ($this->_modelTarget->validates(compact('fieldList'))) {
+				$newId = $this->_modelTarget->createFromTemplate($templateId, $idText, $additAttrib);
+			}
+			if (!empty($newId)) {
 				$this->_controller->Flash->success(__('The %s has been created.', mb_ucfirst($targetNameI18n)));
+				$controllerName = null;
+				$redirectUrl = null;
+				if ($this->_modelTarget->Behaviors->loaded('BreadCrumbExt')) {
+					$controllerName = $this->_modelTarget->getControllerName();
+				}
+				if (!empty($controllerName)) {
+					$redirectUrl = [
+						'controller' => $controllerName,
+						'action' => 'view',
+						$newId
+					];
+				}
 
-				return $this->_controller->ViewExtension->redirectByUrl(null, $targetName);
+				if (empty($redirectUrl)) {
+					$result = $this->_controller->ViewExtension->redirectByUrl(null, $targetName);
+				} else {
+					$result = $this->_controller->redirect($redirectUrl);
+				}
+
+				return $result;
 			} else {
 				$this->_controller->Flash->error(__('The %s could not be created. Please, try again.', $targetNameI18n));
 			}
@@ -112,5 +133,51 @@ class TemplateDataComponent extends BaseDataComponent {
 		$pageHeader = __('Creating a new %s based on the template', $targetNameI18n);
 
 		$this->_controller->set(compact('breadCrumbs', 'pageHeader', 'listTemplates', 'labelAdditAttrib', 'modelName'));
+	}
+
+/**
+ * Action `copy`. Used to copying data.
+ *
+ * @param int|string $id ID of source record.
+ * @return CakeResponse|null
+ */
+	public function actionCopy($id = null) {
+		$targetName = $this->_getTargetName();
+		$targetNameI18n = $this->_getTargetName(true);
+		if (method_exists($this->_modelTarget, 'getTargetName')) {
+			$targetNameI18n = mb_strtolower($this->_modelTarget->getTargetName());
+		}
+		if (!empty($id) && !$this->_modelTarget->exists($id)) {
+			return $this->_controller->ViewExtension->setExceptionMessage(new NotFoundException(__('Invalid ID for %s', $targetNameI18n)));
+		}
+
+		$this->_controller->request->allowMethod('post');
+		$this->_controller->ViewExtension->setRedirectUrl(null, $targetName);
+		$redirectUrl = null;
+		$newId = $this->_modelTarget->makeCopy($id);
+		if (!empty($newId)) {
+			$this->_controller->Flash->success(__('The %s has been copied.', mb_ucfirst($targetNameI18n)));
+			$controllerName = null;
+			if ($this->_modelTarget->Behaviors->loaded('BreadCrumbExt')) {
+				$controllerName = $this->_modelTarget->getControllerName();
+			}
+			if (!empty($controllerName)) {
+				$redirectUrl = [
+					'controller' => $controllerName,
+					'action' => 'view',
+					$newId
+				];
+			}
+		} else {
+			$this->_controller->Flash->error(__('The %s could not be copied. Please, try again.', $targetNameI18n));
+		}
+
+		if (empty($redirectUrl)) {
+			$result = $this->_controller->ViewExtension->redirectByUrl(null, $targetName);
+		} else {
+			$result = $this->_controller->redirect($redirectUrl);
+		}
+
+		return $result;
 	}
 }

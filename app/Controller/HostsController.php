@@ -67,7 +67,6 @@ class HostsController extends AppController {
 		'ChangeState' => ['TargetModel' => 'Host'],
 		'VerifyData' => ['TargetModel' => 'Host'],
 		'CakeTheme.Move' => ['model' => 'Host'],
-		'CopyData' => ['TargetModel' => 'Host'],
 		'TemplateData' => ['TargetModel' => 'Host'],
 	];
 
@@ -433,7 +432,7 @@ class HostsController extends AppController {
  * @return void
  */
 	protected function _copy($id = null) {
-		$this->CopyData->actionCopy($id);
+		$this->TemplateData->actionCopy($id);
 	}
 
 /**

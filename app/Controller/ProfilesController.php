@@ -65,7 +65,6 @@ class ProfilesController extends AppController {
 		'ViewData' => ['TargetModel' => 'Profile'],
 		'ExportData' => ['TargetModel' => 'Profile'],
 		'ChangeState' => ['TargetModel' => 'Profile'],
-		'CopyData' => ['TargetModel' => 'Profile'],
 		'TemplateData' => ['TargetModel' => 'Profile'],
 	];
 
@@ -389,7 +388,7 @@ class ProfilesController extends AppController {
  * @return void
  */
 	protected function _copy($id = null) {
-		$this->CopyData->actionCopy($id);
+		$this->TemplateData->actionCopy($id);
 	}
 
 /**

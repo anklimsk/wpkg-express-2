@@ -64,7 +64,6 @@ class PackagesController extends AppController {
 		'ViewData' => ['TargetModel' => 'Package'],
 		'ExportData' => ['TargetModel' => 'Package'],
 		'ChangeState' => ['TargetModel' => 'Package'],
-		'CopyData' => ['TargetModel' => 'Package'],
 		'TemplateData' => ['TargetModel' => 'Package'],
 	];
 
@@ -446,7 +445,7 @@ class PackagesController extends AppController {
  * @return void
  */
 	protected function _copy($id = null) {
-		$this->CopyData->actionCopy($id);
+		$this->TemplateData->actionCopy($id);
 	}
 
 /**
