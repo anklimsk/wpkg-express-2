@@ -361,7 +361,7 @@ Where:
 Example of text input with autocomplete
 
 ```php
-echo $this->Form->text($fieldName, ['data-toggle' => 'autocomplete']);
+echo $this->Form->text($fieldName, $options + ['data-toggle' => 'autocomplete']);
 echo $this->Form->autocomplete($fieldName, $options);
 ```
 
@@ -374,3 +374,47 @@ Where:
    * `local` - Local data for autocomplete;
    * `min-length` - minimal length of query string.
      See https://github.com/bassjobsen/Bootstrap-3-Typeahead
+
+### Textarea input with autocomplete
+
+Example of textarea input with autocomplete
+
+```php
+echo $this->Form->text($fieldName, $options + ['data-toggle' => 'textcomplete']);
+echo $this->Form->textarea($fieldName, $options + ['data-toggle' => 'textcomplete']);
+```
+
+Where:
+- `$fieldName` Name of a field, like this "Modelname.fieldname"
+- `$options` Array of HTML attributes and widget options:
+   * `data-textcomplete-strategies`- Array of strategies, e.g.:
+      + `match`, `replace`.
+      + `ajaxOptions`: A set of key/value pairs that configure the Ajax request.
+        See https://github.com/yuku/textcomplete
+
+Example options:
+
+```php
+$strategies = [
+    [
+        'ajaxOptions' => [
+            'url' => $this->Html->url(['controller' => 'variables', 'action' => 'autocomplete', 'ext' => 'json']),
+            'data' => [
+                'ref-type' => 'some-type',
+                'ref-id' => 'some-id',
+            ]
+        ],
+        'match' => '(%)(\w+)$',
+        'replace' => 'return "$1" + value + "%";'
+    ]
+];
+
+$ptions = [
+    'label' => __('Label') . ':',
+    'title' => __('Tooltip.'),
+    'type' => 'textarea',
+    'rows' => 4,
+    'data-toggle' => 'textcomplete', 
+    'data-textcomplete-strategies' => json_encode($strategies)
+];
+```

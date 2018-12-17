@@ -11,6 +11,7 @@ Full UI theme for CakePHP
 - Using additional `JS` and `CSS` files in `main` layout;
 - Retrieving list of specific CSS or JS files for action of controller;
 - Rendering CakePHP Flash message using `Noty` or` Bootstrap`;
+- Rendering styled information on error or exception;
 - Creating tour of the application;
 - Filter for table data with a group action, data export and printing;
 - Pagination controls elements:
@@ -35,7 +36,8 @@ Full UI theme for CakePHP
    * drop down input;
    * checkbox and radio button;
    * password input with checking Caps Lock;
-   * text input with autocomplete, input mask or focus.
+   * text input with autocomplete, input mask or focus;
+   * textarea input with autocomplete.
 - Creating page header with small menu with typical actions;
 - Creating tooltips;
 - Creating time ago block;

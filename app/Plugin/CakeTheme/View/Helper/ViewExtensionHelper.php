@@ -115,14 +115,14 @@ class ViewExtensionHelper extends CakeThemeAppHelper {
 		$result['showEmpty'] = __d('view_extension', '&lt;None&gt;');
 		$result['popupModalLink'] = [
 			'escape' => false,
-			'class' => 'popup-link text-nowrap',
+			'class' => 'popup-link',
 			'target' => '_blank',
 			'data-popover-placement' => 'auto top',
 			'data-modal-title' => __d('view_extension', 'Detail information'),
 		];
 		$result['popupLink'] = [
 			'escape' => false,
-			'class' => 'popup-link text-nowrap',
+			'class' => 'popup-link',
 			'target' => '_blank',
 			'data-popover-placement' => 'auto top',
 		];

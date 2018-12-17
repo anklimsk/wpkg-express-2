@@ -22,7 +22,6 @@
                     MainAppScripts.setTextareaLinesLimit();
                     MainAppScripts.updateBodyClass();
                     MainAppScripts.updateFontAwesome();
-                    MainAppScripts.updateDisabledLinks();
                     MainAppScripts.updateNotUsedLinks();
                     MainAppScripts.updateLightboxLinks();
                     MainAppScripts.updateModalLinks();
@@ -52,6 +51,7 @@
                     MainAppScripts.updateFlagSelect();
                     MainAppScripts.updateCloneDOMelements();
                     MainAppScripts.updateAutocomplete();
+                    MainAppScripts.updateTextcomplete();
                     MainAppScripts.updatePopover();
                     MainAppScripts.updateExpandTruncatedText();
                     MainAppScripts.updateSortable();
@@ -59,6 +59,7 @@
                     MainAppScripts.updateInputsFilledProgressBar();
                     MainAppScripts.updateRequiredInputsForm();
                     MainAppScripts.updatePaginationLinks();
+                    MainAppScripts.updateDisabledLinks();
                     MainAppScripts.clearInputBtn();
                     MainAppScripts.scrollUpBtn();
                     MainAppScripts.updateRepeat();

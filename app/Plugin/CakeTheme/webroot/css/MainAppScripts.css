@@ -84,3 +84,8 @@ input.clear-btn[type="text"]::-ms-clear {
     cursor: not-allowed;
     opacity: 0.65;
 }
+
+/* Popover size */
+.popover.popover-lg {
+    max-width: 900px;
+}

@@ -8,6 +8,7 @@
 
 .noty_theme__bootstrap-v3.noty_bar .noty_body {
 	padding: 15px;
+	line-height: normal;
 }
 
 .noty_theme__bootstrap-v3.noty_bar .noty_buttons {

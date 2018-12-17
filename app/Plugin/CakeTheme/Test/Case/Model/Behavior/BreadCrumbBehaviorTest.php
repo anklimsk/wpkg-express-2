@@ -230,7 +230,7 @@ class BreadCrumbBehaviorTest extends AppCakeTestCase {
  * @return void
  */
 	public function testCreateBreadcrumbInvalidParam() {
-		$result = $this->_targetObject->createBreadcrumb('1000', null);
+		$result = $this->_targetObject->createBreadcrumb('1000', null, true);
 		$expected = [];
 		$this->assertData($expected, $result);
 	}
@@ -241,7 +241,7 @@ class BreadCrumbBehaviorTest extends AppCakeTestCase {
  * @return void
  */
 	public function testCreateBreadcrumbSuccessDisableLink() {
-		$result = $this->_targetObject->createBreadcrumb(3, false);
+		$result = $this->_targetObject->createBreadcrumb(3, false, true);
 		$expected = [
 			CakeText::truncate('Герасимова Н.М.', CAKE_THEME_BREADCRUMBS_TEXT_LIMIT),
 			null
@@ -255,7 +255,7 @@ class BreadCrumbBehaviorTest extends AppCakeTestCase {
  * @return void
  */
 	public function testCreateBreadcrumbSuccessDefaultLink() {
-		$result = $this->_targetObject->createBreadcrumb(4, null);
+		$result = $this->_targetObject->createBreadcrumb(4, null, true);
 		$expected = [
 			CakeText::truncate('Алексеев А. В.', CAKE_THEME_BREADCRUMBS_TEXT_LIMIT),
 			[
@@ -275,7 +275,7 @@ class BreadCrumbBehaviorTest extends AppCakeTestCase {
  */
 	public function testCreateBreadcrumbSuccessUseLink() {
 		$link = ['controller' => 'some_controller', 'param'];
-		$result = $this->_targetObject->createBreadcrumb(5, $link);
+		$result = $this->_targetObject->createBreadcrumb(5, $link, true);
 		$expected = [
 			CakeText::truncate('Ефимов У.Ю.', CAKE_THEME_BREADCRUMBS_TEXT_LIMIT),
 			[
@@ -283,6 +283,40 @@ class BreadCrumbBehaviorTest extends AppCakeTestCase {
 				'param',
 				'plugin' => null,
 				'action' => 'view',
+			]
+		];
+		$this->assertData($expected, $result);
+	}
+
+/**
+ * testCreateBreadcrumbSuccessWithoutLinkEscapeHtml method
+ *
+ * @return void
+ */
+	public function testCreateBreadcrumbSuccessWithoutLinkEscapeHtml() {
+		$link = ['controller' => 'some_controller', 'param'];
+		$result = $this->_targetObject->createBreadcrumb(6, false, true);
+		$expected = [
+			CakeText::truncate('&lt;b&gt;Егоров Т.Г.&lt;/b&gt;', CAKE_THEME_BREADCRUMBS_TEXT_LIMIT),
+			null
+		];
+		$this->assertData($expected, $result);
+	}
+
+/**
+ * testCreateBreadcrumbSuccessDefaultLinkWithHtml method
+ *
+ * @return void
+ */
+	public function testCreateBreadcrumbSuccessDefaultLinkWithHtml() {
+		$result = $this->_targetObject->createBreadcrumb(6, null, false);
+		$expected = [
+			CakeText::truncate('<b>Егоров Т.Г.</b>', CAKE_THEME_BREADCRUMBS_TEXT_LIMIT),
+			[
+				6,
+				'plugin' => null,
+				'controller' => 'bread_crumb_tests',
+				'action' => 'view'
 			]
 		];
 		$this->assertData($expected, $result);

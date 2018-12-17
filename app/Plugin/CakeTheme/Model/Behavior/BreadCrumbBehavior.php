@@ -155,9 +155,10 @@ class BreadCrumbBehavior extends ModelBehavior {
  * @param int|string|array $id ID of record or array data
  *  for retrieving name.
  * @param array|bool|null $link URL for breadcrumb or False to disable auto creation.
+ * @param bool $escape Escape conversion HTML special characters to HTML entities.
  * @return array Return an array of information for creating a breadcrumb.
  */
-	public function createBreadcrumb(Model $model, $id = null, $link = null) {
+	public function createBreadcrumb(Model $model, $id = null, $link = null, $escape = true) {
 		$result = [];
 		if (empty($id)) {
 			$name = $model->getGroupName();
@@ -166,6 +167,9 @@ class BreadCrumbBehavior extends ModelBehavior {
 		}
 		if (empty($name)) {
 			return $result;
+		}
+		if ($escape) {
+			$name = h($name);
 		}
 
 		if ($link === false) {
@@ -187,7 +191,7 @@ class BreadCrumbBehavior extends ModelBehavior {
 			$link += compact('plugin', 'controller', 'action');
 		}
 
-		$name = CakeText::truncate(h($name), CAKE_THEME_BREADCRUMBS_TEXT_LIMIT);
+		$name = CakeText::truncate($name, CAKE_THEME_BREADCRUMBS_TEXT_LIMIT);
 		$result = [
 			$name,
 			$link

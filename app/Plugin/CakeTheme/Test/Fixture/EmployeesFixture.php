@@ -66,7 +66,7 @@ class EmployeesFixture extends CakeTestFixture {
 		],
 		[
 			'id' => '3',
-			'department_id' => '14',
+			'department_id' => '2',
 			'upn' => 'n.gerasimova@fabrikam.com',
 			'last_name' => 'Герасимова',
 			'first_name' => 'Наталия',
@@ -80,7 +80,7 @@ class EmployeesFixture extends CakeTestFixture {
 		],
 		[
 			'id' => '4',
-			'department_id' => '13',
+			'department_id' => '3',
 			'upn' => 'alexeev@fabrikam.com',
 			'last_name' => 'Алексеев',
 			'first_name' => 'Алексей',
@@ -94,7 +94,7 @@ class EmployeesFixture extends CakeTestFixture {
 		],
 		[
 			'id' => '5',
-			'department_id' => '20',
+			'department_id' => '4',
 			'upn' => 'e.efimov@fabrikam.com',
 			'last_name' => 'Ефимов',
 			'first_name' => 'Евгений',
@@ -105,6 +105,20 @@ class EmployeesFixture extends CakeTestFixture {
 			'manager' => 1,
 			'block' => 0,
 			'birthday' => '1986-12-07'
+		],
+		[
+			'id' => '6',
+			'department_id' => '4',
+			'upn' => 't.egorov@fabrikam.com',
+			'last_name' => 'Егоров',
+			'first_name' => 'Тимофей',
+			'middle_name' => 'Геннадьевич',
+			'full_name' => '<b>Егоров Т.Г.</b>',
+			'position' => 'Ведущий инженер',
+			'mail' => 't.egorov@fabrikam.com',
+			'manager' => 1,
+			'block' => 0,
+			'birthday' => '1996-07-27'
 		],
 	];
 }

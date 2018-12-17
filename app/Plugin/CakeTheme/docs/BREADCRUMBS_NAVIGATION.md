@@ -96,6 +96,19 @@
       $this->set(compact('breadCrumbs'));
       ```
 
+      or
+
+      ```php
+      $breadCrumbs = $this->Model->AssocModel->getBreadcrumbInfo($refId);
+      $link = ['action' => 'view', $refId];
+      $breadCrumbs[] = $this->Model->createBreadcrumb(null, $link);
+      if (!empty($id)) {
+          $breadCrumbs[] = $this->Model->createBreadcrumb($id, false);
+      } 
+
+      $this->set(compact('breadCrumbs'));
+      ```
+
 3. In your `View` add:
    - Adds a link to the breadcrumbs array:
 

@@ -76,6 +76,6 @@ if (isset($pageTitlePostfix) && !empty($pageTitlePostfix)) {
 <?php echo $this->fetch('content'); ?>
 		</div>
 	</div>
-	<?php echo $this->element('sql_dump'); ?>
+	<?php echo $this->element('CakeTheme.sql_dump'); ?>
 </body>
 </html>

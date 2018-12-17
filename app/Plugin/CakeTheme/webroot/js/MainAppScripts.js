@@ -2,7 +2,7 @@
  * This file use for application UI
  *
  * @file    Main file for MainAppScripts
- * @version 0.20.7
+ * @version 1.1.0
  * @copyright 2016-2018 Andrey Klimov.
  * @license https://opensource.org/licenses/mit-license.php MIT License
  */
@@ -1389,6 +1389,41 @@
         }
 
         /**
+         * Return template for popover by size.
+         *
+         * @param {string} size Size of popover
+         *
+         * @callback _getPopoverTemplate
+         * @memberof MainAppScripts
+         *
+         * @returns {string} Template for popover
+         */
+        function _getPopoverTemplate(size)
+        {
+            var templateNormal = '<div class="popover" role="tooltip">\
+                    <div class="arrow"></div>\
+                    <h3 class="popover-title"></h3>\
+                    <div class="popover-content"></div>\
+                </div>';
+            var templateLarge = '<div class="popover popover-lg" role="tooltip">\
+                    <div class="arrow"></div>\
+                    <h3 class="popover-title"></h3>\
+                    <div class="popover-content"></div>\
+                </div>';
+
+            if (!size) {
+                return templateNormal;
+            }
+
+            size = size.toLowerCase();
+            if (size === 'lg') {
+                return templateLarge;
+            }
+
+            return templateNormal;
+        }
+
+        /**
          * Create template of modal window
          *
          * @function _createTemplateModalWindow
@@ -2017,7 +2052,7 @@
          * @returns {null}
          */
         MainAppScripts.updateDisabledLinks = function () {
-            $('.disabled a, a.disabled').off('click.MainAppScripts').on(
+            $('.disabled a, a.disabled').off('click').on(
                 'click.MainAppScripts',
                 function (e) {
                     e.stopPropagation();
@@ -2104,6 +2139,8 @@
                                 return;
                             }
 
+                            $('body').removeClass('modal-open');
+                            $('.modal-backdrop').remove();
                             MainAppScripts.update();
                             MainAppScripts.loadIndicatorOff(fadeBackground);
                         }
@@ -3097,6 +3134,7 @@
          *  `data-popover-url` - URL for loading content;
          *  `data-popover-placement` - position of popover;
          *  `data-popover-title` - title of popover.
+         *  `data-popover-size` - size of popover: `lg`.
          *
          * @function updatePopover
          * @memberof MainAppScripts
@@ -3110,24 +3148,45 @@
                 return false;
             }
 
-            $('[data-toggle="popover"],[data-toggle="modal-popover"]').popover(
-                {
-                    content: _getPopoverContent,
-                    delay: {
-                        'show': 1000,
-                        'hide': 100
-                    },
-                    html: true,
-                    placement: $(this).data('popover-placement'),
-                    container: _contentContainer,
-                    title: $(this).data('popover-title'),
-                    trigger: 'hover'
-                }
-            ).off('inserted.bs.popover').on(
-                'inserted.bs.popover',
-                function (e) {
-                    _moveTooltip(e);
-                    MainAppScripts.update();
+            var targetBlock = $('[data-toggle="popover"],[data-toggle="modal-popover"]');
+            if (targetBlock.length === 0) {
+                return true;
+            }
+
+            var targetItem = null;
+            var title      = null;
+            var size       = null;
+            var placement  = null;
+            targetBlock.each(
+                function (i, el) {
+                    targetItem = $(el);
+                    title      = $(this).data('popover-title');
+                    size       = $(this).data('popover-size');
+                    placement  = $(this).data('popover-placement');
+                    if (!placement) {
+                        placement = 'right';
+                    }
+                    targetItem.popover(
+                        {
+                            content: _getPopoverContent,
+                            delay: {
+                                'show': 1000,
+                                'hide': 100
+                            },
+                            html: true,
+                            placement: placement,
+                            container: _contentContainer,
+                            template: _getPopoverTemplate(size),
+                            title: title,
+                            trigger: 'hover'
+                        }
+                    ).off('inserted.bs.popover').on(
+                        'inserted.bs.popover',
+                        function (e) {
+                            _moveTooltip(e);
+                            MainAppScripts.update();
+                        }
+                    );
                 }
             );
 
@@ -4655,6 +4714,96 @@
                             name: 'autocomplete-data',
                             source: source
                         }
+                    );
+                }
+            );
+
+            return true;
+        };
+
+        /**
+         * This function used for bind Autocomplete for textarea elements
+         * Selector: `[data-toggle="textcomplete"]`.
+         * Attributes:
+         *  `data-textcomplete-strategies` - Array of strategies, e.g.:
+         *   - `match`, `replace`.
+         *   - `ajaxOptions`: A set of key/value pairs that configure the Ajax request.
+         *
+         * @function updateTextcomplete
+         * @memberof MainAppScripts
+         * @see      {@link https://github.com/yuku/textcomplete} Autocomplete for textarea elements
+         *
+         * @returns {null}
+         */
+        MainAppScripts.updateTextcomplete = function () {
+            if (typeof Textcomplete === 'undefined') {
+                return false;
+            }
+
+            var targetBlock       = $('[data-toggle="textcomplete"]');
+            var targetBlockLength = targetBlock.length;
+            if (targetBlockLength === 0) {
+                return true;
+            }
+
+            var Textarea = Textcomplete.editors.Textarea;
+            var targetItem   = null;
+            var editor       = null;
+            var textcomplete = null;
+            var strategies   = [];
+            targetBlock.each(
+                function (i, el) {
+                    targetItem = $(el);
+                    strategies = targetItem.data('textcomplete-strategies');
+                    if (!strategies || (typeof strategies !== 'object')) {
+                        return true;
+                    }
+
+                    $.each(strategies,
+                        function (i, strategy) {
+                            $.each(strategy,
+                                function (prop, val) {
+                                    switch (prop) {
+                                        case 'match':
+                                            strategy[prop] = new RegExp(val, 'i');
+                                        break;
+
+                                        case 'replace':
+                                            strategy[prop] = new Function('value', val);
+                                        break;
+
+                                        case 'search':
+                                            strategy[prop] = new Function('term', 'callback', val);
+                                        break;
+
+                                        case 'ajaxOptions':
+                                            if (!val || (typeof val !== 'object') ||
+                                                !val.hasOwnProperty('url') || !val.hasOwnProperty('data') ||
+                                                (typeof val.data !== 'object')) {
+                                                    return true;
+                                            }
+                                            if (!val.hasOwnProperty('method')) {
+                                                val.method = 'POST';
+                                            }
+                                            strategy['search'] = function (term, callback) {
+                                                val.data.query = term;
+                                                val.dataType = 'json';
+                                                $.ajax(val).done(function (resp) { callback(resp); }).fail(function () { callback([]); });
+                                            };
+                                            delete strategy[prop];
+                                        break;
+                                    }
+                                }
+                            );
+                            if (!strategy.hasOwnProperty('cache')) {
+                                strategy.cache = true;
+                            }
+                        }
+                    );
+                    editor = new Textarea(el);
+                    textcomplete = new Textcomplete(editor);
+                    textcomplete.register(
+                        strategies
                     );
                 }
             );

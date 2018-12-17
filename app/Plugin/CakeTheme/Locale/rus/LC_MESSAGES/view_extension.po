@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CakePHP Plugin CakeTheme\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2018-09-07 16:56+0300\n"
+"PO-Revision-Date: 2018-12-12 10:37+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -14,104 +14,100 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 2.2\n"
 
-#: Config/caketheme.php:57
+#: Config/caketheme.php:58
 msgid "Waiting to run task"
 msgstr "Ожидание запуска задачи"
 
-#: Config/caketheme.php:61
+#: Config/caketheme.php:62
 msgid "Task"
 msgstr "Задача"
 
-#: Config/caketheme.php:63
+#: Config/caketheme.php:64
 msgid "Completed"
 msgstr "Завершено"
 
-#: Config/caketheme.php:65 View/Elements/tableTreeState.ctp:44
+#: Config/caketheme.php:66 View/Elements/tableTreeState.ctp:45
 msgid "Message"
 msgstr "Сообщение"
 
-#: Controller/Component/ExportComponent.php:100;320
+#: Controller/Component/ExportComponent.php:100;314
 msgid "Invalid path to \"www_root\" directory"
 msgstr "Неверный путь к каталогу \"www_root\""
 
-#: Controller/Component/ExportComponent.php:174
-#: Controller/Component/UploadComponent.php:212
+#: Controller/Component/ExportComponent.php:171
+#: Controller/Component/UploadComponent.php:203
 msgid "Invalid request"
 msgstr "Неверный запрос"
 
-#: Controller/Component/ExportComponent.php:178
+#: Controller/Component/ExportComponent.php:175
 msgid "Export method not found"
 msgstr "Метод экспорта не найден"
 
-#: Controller/Component/ExportComponent.php:183;227
+#: Controller/Component/ExportComponent.php:180;223
 msgid "Invalid generated file"
 msgstr "Неверный сгенерированный файл"
 
-#: Controller/Component/ExportComponent.php:209;217
-#: Controller/Component/TreeComponent.php:93
+#: Controller/Component/ExportComponent.php:205;213
+#: Controller/Component/TreeComponent.php:91
 msgid "Method \"%s\" is not exists in model \"%s\""
 msgstr "Метод \"%s\" не существует в модели \"%s\""
 
-#: Controller/Component/ExportComponent.php:268
+#: Controller/Component/ExportComponent.php:263
 msgid "Unoconv is not configured"
 msgstr "Unoconv не настроен"
 
-#: Controller/Component/ExportComponent.php:272
+#: Controller/Component/ExportComponent.php:267
 msgid "Invalid input file for converting to PDF"
 msgstr "Неверный входной файл для преобразования в PDF"
 
-#: Controller/Component/ExportComponent.php:276
+#: Controller/Component/ExportComponent.php:271
 msgid "Invalid output file for converting to PDF"
 msgstr "Неверный выходной файл для преобразования в PDF"
 
-#: Controller/Component/ExportComponent.php:294
+#: Controller/Component/ExportComponent.php:289
 msgid "Error on creation PDF file"
 msgstr "шибка при создании файла PDF"
 
-#: Controller/Component/ExportComponent.php:325
+#: Controller/Component/ExportComponent.php:319
 msgid "Path to preview directory is not contain path to \"www_root\" directory"
 msgstr ""
 "Путь к директории предварительного просмотра не содержит путь к директории "
 "\"www_root\""
 
-#: Controller/Component/ExportComponent.php:330
+#: Controller/Component/ExportComponent.php:324
 msgid "Invalid path to preview directory"
 msgstr "Неверный путь к директории предварительного просмотра"
 
-#: Controller/Component/ExportComponent.php:488
+#: Controller/Component/ExportComponent.php:473
 msgid "Invalid file for downloading"
 msgstr "Неверный файл для загрузки"
 
-#: Controller/Component/FilterComponent.php:131
+#: Controller/Component/FilterComponent.php:126
 msgid "Paginator component is not loaded"
 msgstr "Компонент Paginator не загружен"
 
-#: Controller/Component/MoveComponent.php:78
+#: Controller/Component/MoveComponent.php:77
 msgid "Invalid name of target model for component"
 msgstr "Неверное имя целевой модели для компонента"
 
-#: Controller/Component/MoveComponent.php:82 Model/Behavior/MoveBehavior.php:36
+#: Controller/Component/MoveComponent.php:81 Model/Behavior/MoveBehavior.php:36
 msgid "Tree behavior is not loaded"
 msgstr "Поведение Tree не загружено"
 
-#: Controller/Component/MoveComponent.php:103
+#: Controller/Component/MoveComponent.php:101
 msgid "Error move record %d %s"
 msgstr "Ошибка перемещения записи %d %s"
 
-#: Controller/Component/MoveComponent.php:134
-msgid "Move behavior is not loaded"
-msgstr "Поведение Move не загружено"
-
-#: Controller/Component/TreeComponent.php:75
+#: Controller/Component/TreeComponent.php:74
 msgid "Invalid Model name for tree view"
 msgstr "Неверное название Модели древовидного вида"
 
-#: Controller/Component/TreeComponent.php:107
-#: Test/Case/View/Helper/FilterHelperTest.php:131
-#: Test/Case/View/Helper/ViewExtensionHelperTest.php:205;1552;1596
-#: View/Helper/ViewExtensionHelper.php:117
+#: Controller/Component/TreeComponent.php:105
+#: Test/Case/View/Helper/FilterHelperTest.php:125
+#: Test/Case/View/Helper/ViewExtensionHelperTest.php:198;1513;1557
+#: View/Helper/ViewExtensionHelper.php:115
 msgid "&lt;None&gt;"
 msgstr "&lt;Нет&gt;"
 
@@ -123,222 +119,222 @@ msgstr "Недействительная дельта для перемещен�
 msgid "Invalid direction for moving record"
 msgstr "Недопустимое направление для перемещения записи"
 
-#: Test/Case/View/Helper/ExtBs3FormHelperTest.php:458;459;683
-#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1443;1448;1453
+#: Test/Case/View/Helper/ExtBs3FormHelperTest.php:442;443;664
+#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1406;1411;1416
 #: View/Helper/ViewExtensionHelper.php:172
 msgid "Please fill in this field"
 msgstr "Пожалуйста, заполните это поле."
 
-#: Test/Case/View/Helper/ExtBs3FormHelperTest.php:500
-#: View/Helper/ExtBs3FormHelper.php:224
+#: Test/Case/View/Helper/ExtBs3FormHelperTest.php:483
+#: View/Helper/ExtBs3FormHelper.php:220
 msgid "Select file..."
 msgstr "Выбирите файл..."
 
-#: Test/Case/View/Helper/ExtBs3FormHelperTest.php:500;503
-#: View/Helper/ExtBs3FormHelper.php:232
+#: Test/Case/View/Helper/ExtBs3FormHelperTest.php:483;486
+#: View/Helper/ExtBs3FormHelper.php:228
 msgid "Upload"
 msgstr "Загрузить"
 
-#: Test/Case/View/Helper/ExtBs3FormHelperTest.php:500;503
-#: View/Helper/ExtBs3FormHelper.php:233
+#: Test/Case/View/Helper/ExtBs3FormHelperTest.php:483;486
+#: View/Helper/ExtBs3FormHelper.php:229
 msgid "Abort"
 msgstr "Прервать"
 
-#: Test/Case/View/Helper/ExtBs3FormHelperTest.php:500;503
-#: View/Helper/ExtBs3FormHelper.php:234
+#: Test/Case/View/Helper/ExtBs3FormHelperTest.php:483;486
+#: View/Helper/ExtBs3FormHelper.php:230
 msgid "Processing..."
 msgstr "Обработка..."
 
-#: Test/Case/View/Helper/ExtBs3FormHelperTest.php:500;503
-#: View/Helper/ExtBs3FormHelper.php:235
+#: Test/Case/View/Helper/ExtBs3FormHelperTest.php:483;486
+#: View/Helper/ExtBs3FormHelper.php:231
 msgid "File upload failed"
 msgstr "Загрузка файла не удалось"
 
-#: Test/Case/View/Helper/ExtBs3FormHelperTest.php:687
-#: View/Helper/ExtBs3FormHelper.php:244
+#: Test/Case/View/Helper/ExtBs3FormHelperTest.php:668
+#: View/Helper/ExtBs3FormHelper.php:240
 msgid "Save"
 msgstr "Сохранить"
 
-#: Test/Case/View/Helper/FilterHelperTest.php:131
-#: Test/Case/View/Helper/ViewExtensionHelperTest.php:636;637;639;689;690;692
+#: Test/Case/View/Helper/FilterHelperTest.php:125
+#: Test/Case/View/Helper/ViewExtensionHelperTest.php:618;619;621;670;671;673
 #: View/Helper/ViewExtensionHelper.php:141
 msgid "Click to sort by this fiels"
 msgstr "Нажмите для сортировки по данному полю"
 
-#: Test/Case/View/Helper/FilterHelperTest.php:131
-#: View/Helper/FilterHelper.php:102
+#: Test/Case/View/Helper/FilterHelperTest.php:125
+#: View/Helper/FilterHelper.php:100
 msgid "Actions"
 msgstr "Действия"
 
-#: Test/Case/View/Helper/FilterHelperTest.php:131
-#: View/Helper/FilterHelper.php:126
+#: Test/Case/View/Helper/FilterHelperTest.php:125
+#: View/Helper/FilterHelper.php:124
 msgid "Show or hide filter"
 msgstr "Показать или скрыть фильтр"
 
-#: Test/Case/View/Helper/FilterHelperTest.php:131
-#: View/Helper/FilterHelper.php:174
+#: Test/Case/View/Helper/FilterHelperTest.php:125
+#: View/Helper/FilterHelper.php:172
 msgid "Print informations"
 msgstr "Печать информации"
 
-#: Test/Case/View/Helper/FilterHelperTest.php:131
-#: View/Helper/FilterHelper.php:179
+#: Test/Case/View/Helper/FilterHelperTest.php:125
+#: View/Helper/FilterHelper.php:177
 msgid "Export informations"
 msgstr "Экспорт информации"
 
-#: Test/Case/View/Helper/FilterHelperTest.php:131
-#: View/Helper/FilterHelper.php:110
+#: Test/Case/View/Helper/FilterHelperTest.php:125
+#: View/Helper/FilterHelper.php:108
 msgid "Data filter for the table: %s"
 msgstr "Фильтр данных для таблицы: %s"
 
-#: Test/Case/View/Helper/FilterHelperTest.php:131;318;329
-#: View/Helper/FilterHelper.php:231
+#: Test/Case/View/Helper/FilterHelperTest.php:125;308;319
+#: View/Helper/FilterHelper.php:229
 msgid "Change the logical condition of the group"
 msgstr "Изменение логического условия группы"
 
-#: Test/Case/View/Helper/FilterHelperTest.php:132;319;330
-#: View/Helper/FilterHelper.php:227
+#: Test/Case/View/Helper/FilterHelperTest.php:126;309;320
+#: View/Helper/FilterHelper.php:225
 msgid "And"
 msgstr "И"
 
-#: Test/Case/View/Helper/FilterHelperTest.php:133;320;331
-#: View/Helper/FilterHelper.php:228
+#: Test/Case/View/Helper/FilterHelperTest.php:127;310;321
+#: View/Helper/FilterHelper.php:226
 msgid "Or"
 msgstr "Или"
 
-#: Test/Case/View/Helper/FilterHelperTest.php:134;321;332
-#: View/Helper/FilterHelper.php:229
+#: Test/Case/View/Helper/FilterHelperTest.php:128;311;322
+#: View/Helper/FilterHelper.php:227
 msgid "Not"
 msgstr "Не"
 
-#: Test/Case/View/Helper/FilterHelperTest.php:135
-#: View/Helper/FilterHelper.php:138
+#: Test/Case/View/Helper/FilterHelperTest.php:129
+#: View/Helper/FilterHelper.php:136
 msgid "Apply filter"
 msgstr "Установить фильтр"
 
-#: Test/Case/View/Helper/FilterHelperTest.php:135
-#: View/Helper/FilterHelper.php:150
+#: Test/Case/View/Helper/FilterHelperTest.php:129
+#: View/Helper/FilterHelper.php:148
 msgid "Clear filter"
 msgstr "Очистить фильтр"
 
-#: Test/Case/View/Helper/FilterHelperTest.php:136;147;151
-#: View/Helper/FilterHelper.php:249;269
+#: Test/Case/View/Helper/FilterHelperTest.php:130;141;145
+#: View/Helper/FilterHelper.php:247;267
 msgid "Sel."
 msgstr "Выб."
 
-#: Test/Case/View/Helper/FilterHelperTest.php:139;281;295;534;552
-#: View/Helper/FilterHelper.php:223
+#: Test/Case/View/Helper/FilterHelperTest.php:133;272;286;519;537
+#: View/Helper/FilterHelper.php:221
 msgid "Change the logical condition of the field"
 msgstr "Изменение логического условия поля"
 
-#: Test/Case/View/Helper/FilterHelperTest.php:140;282;296;535;553
-#: View/Helper/FilterHelper.php:211
+#: Test/Case/View/Helper/FilterHelperTest.php:134;273;287;520;538
+#: View/Helper/FilterHelper.php:209
 msgid "Equal"
 msgstr "Равно"
 
-#: Test/Case/View/Helper/FilterHelperTest.php:141;283;297;536;554
-#: View/Helper/FilterHelper.php:213
+#: Test/Case/View/Helper/FilterHelperTest.php:135;274;288;521;539
+#: View/Helper/FilterHelper.php:211
 msgid "Greater than"
 msgstr "Больше"
 
-#: Test/Case/View/Helper/FilterHelperTest.php:142;284;298;537;555
-#: View/Helper/FilterHelper.php:215
+#: Test/Case/View/Helper/FilterHelperTest.php:136;275;289;522;540
+#: View/Helper/FilterHelper.php:213
 msgid "Greater than or equal to"
 msgstr "Больше или равно"
 
-#: Test/Case/View/Helper/FilterHelperTest.php:143;285;299;538;556
-#: View/Helper/FilterHelper.php:217
+#: Test/Case/View/Helper/FilterHelperTest.php:137;276;290;523;541
+#: View/Helper/FilterHelper.php:215
 msgid "Less than"
 msgstr "Меньше"
 
-#: Test/Case/View/Helper/FilterHelperTest.php:144;286;300;539;557
-#: View/Helper/FilterHelper.php:219
+#: Test/Case/View/Helper/FilterHelperTest.php:138;277;291;524;542
+#: View/Helper/FilterHelper.php:217
 msgid "Less than or equal to"
 msgstr "Меньше или равно"
 
-#: Test/Case/View/Helper/FilterHelperTest.php:145;287;301;540;558
-#: View/Helper/FilterHelper.php:221
+#: Test/Case/View/Helper/FilterHelperTest.php:139;278;292;525;543
+#: View/Helper/FilterHelper.php:219
 msgid "Not equal"
 msgstr "Не равно"
 
-#: Test/Case/View/Helper/FilterHelperTest.php:148;152
-#: Test/Case/View/Helper/ViewExtensionHelperTest.php:136;137;153;371;372;373;374;1024;1025;1294
-#: View/Helper/ViewExtensionHelper.php:115;137
+#: Test/Case/View/Helper/FilterHelperTest.php:142;146
+#: Test/Case/View/Helper/ViewExtensionHelperTest.php:131;132;147;360;361;362;363;996;997;1261;2150
+#: View/Helper/ViewExtensionHelper.php:113;137
 msgid "No"
 msgstr "Нет"
 
-#: Test/Case/View/Helper/FilterHelperTest.php:149;153
-#: Test/Case/View/Helper/ViewExtensionHelperTest.php:138;139;154;371;372;373;374;1024;1025;1294
-#: View/Helper/ViewExtensionHelper.php:114;136
+#: Test/Case/View/Helper/FilterHelperTest.php:143;147
+#: Test/Case/View/Helper/ViewExtensionHelperTest.php:133;134;148;360;361;362;363;996;997;1261;2150
+#: View/Helper/ViewExtensionHelper.php:112;136
 msgid "Yes"
 msgstr "Да"
 
-#: Test/Case/View/Helper/FilterHelperTest.php:154
-#: View/Helper/FilterHelper.php:161
+#: Test/Case/View/Helper/FilterHelperTest.php:148
+#: View/Helper/FilterHelper.php:159
 msgid "Add row of filter"
 msgstr "Добавить строку фильтра"
 
-#: Test/Case/View/Helper/FilterHelperTest.php:154
-#: View/Helper/FilterHelper.php:169
+#: Test/Case/View/Helper/FilterHelperTest.php:148
+#: View/Helper/FilterHelper.php:167
 msgid "Delete row of filter"
 msgstr "Удалить строку фильтра"
 
-#: Test/Case/View/Helper/FilterHelperTest.php:228;229;230
-#: View/Helper/FilterHelper.php:192
+#: Test/Case/View/Helper/FilterHelperTest.php:221;222;223
+#: View/Helper/FilterHelper.php:190
 msgid "Select / deselect all"
 msgstr "Отметить всё / снять выделение"
 
-#: Test/Case/View/Helper/FilterHelperTest.php:228
-#: View/Helper/FilterHelper.php:196
+#: Test/Case/View/Helper/FilterHelperTest.php:221
+#: View/Helper/FilterHelper.php:194
 msgid "Group data processing"
 msgstr "Групповая обработка данных"
 
-#: Test/Case/View/Helper/FilterHelperTest.php:228
-#: View/Helper/FilterHelper.php:200
+#: Test/Case/View/Helper/FilterHelperTest.php:221
+#: View/Helper/FilterHelper.php:198
 msgid "Perform action"
 msgstr "Выполнить действие"
 
-#: Test/Case/View/Helper/FilterHelperTest.php:228
-#: View/Helper/FilterHelper.php:202
+#: Test/Case/View/Helper/FilterHelperTest.php:221
+#: View/Helper/FilterHelper.php:200
 msgid "Action to perform"
 msgstr "Действие для выполнения"
 
-#: Test/Case/View/Helper/FilterHelperTest.php:228
-#: View/Helper/FilterHelper.php:203
+#: Test/Case/View/Helper/FilterHelperTest.php:221
+#: View/Helper/FilterHelper.php:201
 msgid "Select a action"
 msgstr "Выберите действие"
 
-#: Test/Case/View/Helper/FilterHelperTest.php:228
-#: View/Helper/FilterHelper.php:204
+#: Test/Case/View/Helper/FilterHelperTest.php:221
+#: View/Helper/FilterHelper.php:202
 msgid "Perform"
 msgstr "Выполнить"
 
-#: Test/Case/View/Helper/FilterHelperTest.php:228
-#: View/Helper/FilterHelper.php:205
+#: Test/Case/View/Helper/FilterHelperTest.php:221
+#: View/Helper/FilterHelper.php:203
 msgid "Cancel"
 msgstr "Отмена"
 
-#: Test/Case/View/Helper/ViewExtensionHelperTest.php:248;249;250;330;331;332
-#: View/Helper/ViewExtensionHelper.php:120;131 View/Logs/view.ctp:11
+#: Test/Case/View/Helper/ViewExtensionHelperTest.php:240;241;242;320;321;322;1559
+#: View/Helper/ViewExtensionHelper.php:121;131
 msgid "Detail information"
 msgstr "Подробная информация"
 
-#: Test/Case/View/Helper/ViewExtensionHelperTest.php:371;372;373;1024;1025;1294
+#: Test/Case/View/Helper/ViewExtensionHelperTest.php:360;361;362;996;997;1261
 #: View/Helper/ViewExtensionHelper.php:135
 msgid "Are you sure you wish to delete this data?"
 msgstr "Вы уверены, что хотите удалить эти данные?"
 
-#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1413
+#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1377;1559
 #: View/Helper/ViewExtensionHelper.php:156
 msgid "Expand text"
 msgstr "Развернуть текст"
 
-#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1414
+#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1378;1559
 #: View/Helper/ViewExtensionHelper.php:166
 msgid "Roll up text"
 msgstr "Свернуть текст"
 
-#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1692;1859
-#: View/Helper/ViewExtensionHelper.php:1778
+#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1651;1815
+#: View/Helper/ViewExtensionHelper.php:1727
 msgid ""
 "Page {:page} of {:pages}, showing {:current} %s out of {:count} total, "
 "starting on record {:start}, ending on {:end}"
@@ -346,168 +342,180 @@ msgstr ""
 "Страница {:page} из {:pages}, показано {:current} %s из {:count} всего, "
 "начиная с записи {:start}, заканчивая {:end}"
 
-#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1694;1695;1798;1861;1862;1905
+#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1653;1654;1755;1817;1818;1860
 #: View/Helper/ViewExtensionHelper.php:206
 msgid "Next page"
 msgstr "Следущая страница"
 
-#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1694;1695;1861;1862
+#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1653;1654;1817;1818
 #: View/Helper/ViewExtensionHelper.php:215
 msgid "Last page"
 msgstr "Последняя страница"
 
-#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1695
+#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1654
 #: View/Helper/ViewExtensionHelper.php:222
 msgid "Show as list"
 msgstr "Показать в виде списка"
 
-#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1763;2047
-#: View/Helper/ViewExtensionHelper.php:1775;1959
-msgid "Showing {:count} %s"
-msgstr "Показано {:count} %s"
-
-#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1798;1861;1862;1905
-#: View/Helper/ViewExtensionHelper.php:189
-msgid "Previous page"
-msgstr "Предыдущая страница"
-
-#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1861;1862
-#: View/Helper/ViewExtensionHelper.php:180
-msgid "First page"
-msgstr "Первая страница"
-
-#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1862
+#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1654;1818
 #: View/Helper/ViewExtensionHelper.php:236
 msgid "Go to the page"
 msgstr "Перейти на страницу"
 
-#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1862
+#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1654;1818
 #: View/Helper/ViewExtensionHelper.php:248
 msgid "The page number to quickly jump"
 msgstr "Номер страницы для быстрого перехода"
 
-#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1862
+#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1654;1818
 #: View/Helper/ViewExtensionHelper.php:262
 msgid "Number of lines"
 msgstr "Количество строк"
 
-#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1949;1950;1951
+#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1721;1999
+#: View/Helper/ViewExtensionHelper.php:1724;1906
+msgid "Showing {:count} %s"
+msgstr "Показано {:count} %s"
+
+#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1755;1817;1818;1860
+#: View/Helper/ViewExtensionHelper.php:189
+msgid "Previous page"
+msgstr "Предыдущая страница"
+
+#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1817;1818
+#: View/Helper/ViewExtensionHelper.php:180
+msgid "First page"
+msgstr "Первая страница"
+
+#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1903;1904;1905
 #: View/Helper/ViewExtensionHelper.php:279
 msgid "Move top"
 msgstr "Переместить наверх"
 
-#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1949;1950;1951
+#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1903;1904;1905
 #: View/Helper/ViewExtensionHelper.php:284
 msgid "Move up"
 msgstr "Вверх"
 
-#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1949;1950;1951
+#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1903;1904;1905
 #: View/Helper/ViewExtensionHelper.php:289
 msgid "Move down"
 msgstr "Вниз"
 
-#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1949;1950;1951
+#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1903;1904;1905
 #: View/Helper/ViewExtensionHelper.php:294
 msgid "Move bottom"
 msgstr "Переместить вниз"
 
-#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1950
+#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1904
 #: View/Helper/ViewExtensionHelper.php:273
 msgid "Drag and drop this item"
 msgstr "Перетащите этот элемент"
 
-#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1998
-#: View/Helper/ViewExtensionHelper.php:1986
+#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1951
+#: View/Helper/ViewExtensionHelper.php:1933
 msgid ""
 "Current loaded page {:page} of {:pages}, showing {:end} %s of {:count} total"
 msgstr ""
 "Текущая загруженная страница {:page} из {:pages}, показано {:end} %s из {:"
 "count} всего"
 
-#: Test/Case/View/Helper/ViewExtensionHelperTest.php:2001
+#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1954
 #: View/Helper/ViewExtensionHelper.php:304
 msgid "Load more informations"
 msgstr "Загрузить болше информации"
 
-#: Test/Case/View/Helper/ViewExtensionHelperTest.php:2001
+#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1954
 #: View/Helper/ViewExtensionHelper.php:300
 msgid "Load more"
 msgstr "Загрузить ещё"
 
-#: Test/Case/View/Helper/ViewExtensionHelperTest.php:2130
+#: Test/Case/View/Helper/ViewExtensionHelperTest.php:2079
 #: View/Helper/ViewExtensionHelper.php:313
 msgid "Print this page"
 msgstr "Распечатать эту страницу"
 
-#: Test/Case/View/Helper/ViewExtensionHelperTest.php:2195;2196;2197;2199;2200;2202;2239;2240
+#: Test/Case/View/Helper/ViewExtensionHelperTest.php:2143;2144;2145;2147;2148;2150;2186;2187
 #: View/Helper/ViewExtensionHelper.php:323
 msgid "Menu of operations"
 msgstr "Меню операций"
 
-#: Test/Case/View/Helper/ViewExtensionHelperTest.php:2295
-#: View/Helper/ViewExtensionHelper.php:2182
+#: Test/Case/View/Helper/ViewExtensionHelperTest.php:2241
+#: View/Helper/ViewExtensionHelper.php:2124
 msgid "Show or hide full list"
 msgstr "Показать или скрыть полный список"
 
-#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1691;1762;1858;1997;2046
-#: View/Helper/ViewExtensionHelper.php:1774;1777;1956;1982
+#: Test/Case/View/Helper/ViewExtensionHelperTest.php:1650;1720;1814;1950;1998
+#: View/Helper/ViewExtensionHelper.php:1723;1726;1903;1929
 msgid "record"
 msgid_plural "records"
 msgstr[0] "запись"
 msgstr[1] "записи"
 msgstr[2] "записей"
 
-#: View/Elements/barNavBase.ctp:61
+#: View/Elements/barNavBase.ctp:63
 msgid "Home page"
 msgstr "Домашняя страница"
 
-#: View/Elements/infoPreview.ctp:33;40
+#: View/Elements/infoPreview.ctp:34;41
 msgid "Download file %s"
 msgstr "Скачать файл %s"
 
-#: View/Elements/infoPreview.ctp:72
+#: View/Elements/infoPreview.ctp:73
 msgid "Page %d of %d"
 msgstr "Страница %d из %d"
 
-#: View/Elements/infoPreview.ctp:80
+#: View/Elements/infoPreview.ctp:81
 msgid "Preview file"
 msgstr "Предварительный просмотр файла"
 
-#: View/Elements/infoPreview.ctp:82
+#: View/Elements/infoPreview.ctp:83
 msgid "Loading..."
 msgstr "Загрузка..."
 
-#: View/Elements/infoPreview.ctp:83
+#: View/Elements/infoPreview.ctp:84
 msgid "Click to preview"
 msgstr "Нажмите для предварительного просмотра"
 
-#: View/Elements/tableTreeState.ctp:28
+#: View/Elements/tableTreeState.ctp:29
 msgid "Errors of state tree is not found"
 msgstr "Ошибки состояния дерева не найдены"
 
-#: View/Elements/tableTreeState.ctp:42
+#: View/Elements/tableTreeState.ctp:43
 msgid "Type"
 msgstr "Тип"
 
-#: View/Elements/tableTreeState.ctp:43
+#: View/Elements/tableTreeState.ctp:44
 msgid "Value"
 msgstr "Значение"
 
-#: View/Helper/FilterHelper.php:235
+#: View/Errors/error400.ctp:17
+msgid "Error %s: Page not found"
+msgstr "Ошибка %s: Страница не найдена"
+
+#: View/Errors/error400.ctp:36 View/Errors/error500.ctp:30
+msgid "Stack trace"
+msgstr "Трассировки стека"
+
+#: View/Errors/error500.ctp:17
+msgid "Error %s: Internal Server Error"
+msgstr "Ошибка %s: Внутренняя ошибка сервера"
+
+#: View/Helper/FilterHelper.php:233
 msgid "Changing the filter condition"
 msgstr "Измение условия фильтра"
 
-#: View/Logs/index.ctp:11;13 View/Logs/view.ctp:13
-msgid "Logs"
-msgstr "Журналы"
+#~ msgid "Move behavior is not loaded"
+#~ msgstr "Поведение Move не загружено"
 
-#: View/Logs/index.ctp:14
-msgid "Index"
-msgstr "Указатель"
+#~ msgid "Logs"
+#~ msgstr "Журналы"
 
-#: View/Logs/view.ctp:14
-msgid "Viewing"
-msgstr "Просмотр"
+#~ msgid "Index"
+#~ msgstr "Указатель"
+
+#~ msgid "Viewing"
+#~ msgstr "Просмотр"
 
 #~ msgid "Logs not found"
 #~ msgstr "Журналы не найдены"

@@ -178,3 +178,9 @@ Cache::config(CAKE_THEME_CACHE_KEY_LANG_CODE, [
 	'probability' => 100,
 	'path' => CACHE . CAKE_THEME_CACHE_KEY_LANG_CODE . DS,
 ]);
+
+/**
+ * Configuration the Exception renderer
+ *
+ */
+Configure::write('Exception.renderer', 'CakeTheme.ExceptionRendererCakeTheme');

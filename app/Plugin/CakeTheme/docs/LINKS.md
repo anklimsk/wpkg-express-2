@@ -41,9 +41,17 @@
    echo $this->ViewExtension->popupLink($title, $url, $options);
    echo $this->Html->link($title, $url, ['data-toggle' => 'popover']);
 
+   // `Popover` link with popover window size
+   echo $this->ViewExtension->popupLink($title, $url, $options + ['data-popover-size' => 'lg']);
+   echo $this->Html->link($title, $url, ['data-toggle' => 'popover', 'data-popover-size' => 'lg']);
+
    // `Modal` link
    echo $this->ViewExtension->modalLink($title, $url, $options);
    echo $this->Html->link($title, $url, ['data-toggle' => 'modal']);
+
+   // `Modal` link with modal window size
+   echo $this->ViewExtension->modalLink($title, $url, $options + ['data-modal-size' => 'lg']);
+   echo $this->Html->link($title, $url, ['data-toggle' => 'modal', 'data-modal-size' => 'lg']);
    ```
 
    Where:
