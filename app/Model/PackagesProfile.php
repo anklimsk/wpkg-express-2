@@ -222,6 +222,19 @@ class PackagesProfile extends AppModel {
 	}
 
 /**
+ * Return ID of the associated record by the record ID
+ *
+ * @param int|string $id ID of record
+ *  for retrieving associated record ID
+ * @return string|bool Return associated record ID,
+ *  or False on failure.
+ */
+	public function getRefId($id = null) {
+		$this->id = $id;
+		return $this->field('profile_id');
+	}
+
+/**
  * Return name of data.
  *
  * @param int|string|array $id ID of record or array data
