@@ -771,12 +771,11 @@ class PackageAction extends AppModel {
  * Return data for autocomplete
  *
  * @param string $query Query string for autocomplete
- * @param string $type Request type
- * @param int|string $packageId The ID of the package record.
+ * @param string $type Request type: `switch` or `command`
  * @param int|string $limit Limit for autocomplete data
  * @return array Data for autocomplete.
  */
-	public function getAutocomplete($query = null, $type = null, $packageId = null, $limit = null) {
+	public function getAutocomplete($query = null, $type = null, $limit = null) {
 		$result = [];
 		$query = trim($query);
 		if (empty($query)) {
@@ -790,14 +789,6 @@ class PackageAction extends AppModel {
 				break;
 			case 'command':
 				$result = $this->_getAutocompleteData($query, 'VARIABLE_COMMAND_', $limit);
-				break;
-			case 'variable':
-				$query .= '%';
-				$modelVariable = ClassRegistry::init('Variable');
-				$variablesPkg = $modelVariable->getListVariables(VARIABLE_TYPE_PACKAGE, $packageId, $query, $limit);
-				$variablesGlobal = $modelVariable->getListVariables(VARIABLE_TYPE_CONFIG, 1, $query, $limit);
-				$variables = array_merge($variablesPkg, $variablesGlobal);
-				$result = array_values($variables);
 				break;
 		}
 

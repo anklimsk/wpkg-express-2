@@ -69,26 +69,6 @@ var AppActionScriptsActionsAdd = AppActionScriptsActionsAdd || {};
 	}
 
 	/**
-	 * This function used to autocomplete data in action command form input.
-	 *
-	 * @param {string} term Query string
-	 * @param {callback} callback Callback function for process response
-	 * @param {string} url URL for getting data
-	 * @param {string} pkgId ID of package
-	 * @param {string} type Type of request
-	 *
-	 * @returns {null}
-	 */
-	function _search(term, callback, url, pkgId, type) {
-		var data = {
-			'query': term,
-			'pkg-id': pkgId,
-			'type': type
-		};
-		$.post(url, data, function (resp) { callback(resp); }, 'json').fail(function () { callback([]); });
-	}
-
-	/**
 	 * This function is used to bind change event for
 	 *  update form.
 	 *
@@ -129,50 +109,6 @@ var AppActionScriptsActionsAdd = AppActionScriptsActionsAdd || {};
 				e.preventDefault();
 			}
 		});
-		if (textareaCommand.length === 0) {
-			return;
-		}
-
-		var Textarea = Textcomplete.editors.Textarea;
-		var editor = new Textarea(textareaCommand.get(0));
-		var textcomplete = new Textcomplete(editor);
-		var url = textareaCommand.data('autocomplete-url');
-		var pkgId = textareaCommand.data('autocomplete-pkg-id');
-		textcomplete.register(
-			[
-				{
-					match: /(%COMSPEC%\s+)(\/\w*)$/i,
-					search: function (term, callback) {
-						_search(term, callback, url, pkgId, 'command');
-					},
-					cache: true,
-					replace: function (word) {
-						return '$1' + word;
-					}
-				},
-				{
-					match: /(%)(\w+)$/,
-					search: function (term, callback) {
-						_search(term, callback, url, pkgId, 'variable');
-					},
-					cache: true,
-					replace: function (word) {
-						return '$1' + word + '%';
-					}
-				},
-				{
-					match: /(\s+)(\/\w*)$/,
-					search: function (term, callback) {
-						_search(term, callback, url, pkgId, 'switch');
-					},
-					cache: true,
-					replace: function (word) {
-						return '$1' + word;
-					}
-				}
-			],
-			{ debounce: 500 }
-		);
 	};
 
 	return AppActionScriptsActionsAdd;

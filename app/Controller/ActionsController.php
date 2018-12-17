@@ -33,7 +33,7 @@ App::uses('AppController', 'Controller');
  * This controller allows to perform the following operations:
  *  - to view, edit, delete and changing position of package action;
  *  - verifying and recovery state list of package actions;
- *  - autocomplete name of variables and command line switches.
+ *  - autocomplete command line switches.
  *
  * @package app.Controller
  */
@@ -447,8 +447,7 @@ class ActionsController extends AppController {
  *
  * POST Data:
  *  - `query`: query string for autocomple;
- *  - `type`: type of request: `switch`, `command` or `variable`;
- *  - `pkg-id`: record ID of the package.
+ *  - `type`: type of request: `switch` or `command`.
  *
  * @throws BadRequestException if request is not `AJAX`, or not `POST`
  *  or not `JSON`
@@ -464,7 +463,6 @@ class ActionsController extends AppController {
 		$data = [];
 		$query = $this->request->data('query');
 		$type = $this->request->data('type');
-		$pkgId = $this->request->data('pkg-id');
 		if (empty($query)) {
 			$this->set(compact('data'));
 			$this->set('_serialize', 'data');
@@ -472,7 +470,7 @@ class ActionsController extends AppController {
 		}
 
 		$limit = $this->Setting->getConfig('AutocompleteLimit');
-		$data = $this->PackageAction->getAutocomplete($query, $type, $pkgId, $limit);
+		$data = $this->PackageAction->getAutocomplete($query, $type, $limit);
 		if (empty($data)) {
 			$data = [];
 		}

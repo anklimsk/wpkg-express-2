@@ -56,9 +56,25 @@ if (!isset($isAddAction)) {
 		'type' => 'text', 'autocomplete' => 'off', 'autofocus' => true,
 		'data-toggle' => 'autocomplete', 'data-autocomplete-url' => '/cake_theme/filter/autocomplete.json',
 		'data-autocomplete-type' => 'Variable.name',
-		'data-autocomplete-min-length' => CAKE_SEARCH_INFO_QUERY_SEARCH_MIN_LENGTH]);
+		'data-autocomplete-min-length' => CAKE_SEARCH_INFO_QUERY_SEARCH_MIN_LENGTH
+	]);
+	$strategies = [
+		[
+			'ajaxOptions' => [
+				'url' => $this->Html->url(['controller' => 'variables', 'action' => 'autocomplete', 'ext' => 'json']),
+				'data' => [
+					'ref-type' => $this->request->data('Variable.ref_type'),
+					'ref-id' => $this->request->data('Variable.ref_id'),
+				]
+			],
+			'match' => '(%)(\w+)$',
+			'replace' => 'return "$1" + value + "%";'
+		]
+	];
 	echo $this->Form->input('Variable.value', ['label' => __('Value') . ':', 'title' => __('Value of variable'),
-		'type' => 'text', 'data-toggle' => 'tooltip', 'autocomplete' => 'off']);
+		'type' => 'text', 'autocomplete' => 'off',
+		'data-toggle' => 'textcomplete', 'data-textcomplete-strategies' => json_encode($strategies)
+	]);
 ?>
 	</fieldset>
 <?php

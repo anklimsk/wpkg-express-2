@@ -169,13 +169,31 @@ switch ($checkType) {
 		'type' => 'select', 'data-toggle' => 'tooltip', 'options' => $listType, 'autocomplete' => 'off']);
 	echo $this->Form->input('Check.condition', ['label' => [__('Condition'), __('Describes how the check is to be carried out for the selected type.'), ':'],
 		'type' => 'select', 'data-toggle' => 'tooltip', 'options' => $listCondition, 'autocomplete' => 'off']);
+	$strategies = [
+		[
+			'ajaxOptions' => [
+				'url' => $this->Html->url(['controller' => 'variables', 'action' => 'autocomplete', 'ext' => 'json']),
+				'data' => [
+					'ref-type' => $this->request->data('Check.ref_type'),
+					'ref-id' => $this->request->data('Check.ref_id'),
+					'convert-ref' => 'check',
+				]
+			],
+			'match' => '(%)(\w+)$',
+			'replace' => 'return "$1" + value + "%";'
+		]
+	];
 if ($showPath) {
 	echo $this->Form->input('Check.path', ['label' => $pathLabel . ':', 'title' => __('The contents of this field vary depending on the check type and condition.'),
-		'type' => 'text', 'data-toggle' => 'tooltip', 'autocomplete' => 'off']);
+		'type' => 'text', 'autocomplete' => 'off',
+		'data-toggle' => 'textcomplete', 'data-textcomplete-strategies' => json_encode($strategies)
+	]);
 }
 if ($showValue) {
 	echo $this->Form->input('Check.value', $valueOptions + ['label' => $valueLabel . ':', 'title' => __('The contents of this field vary depending on the check type and condition.'),
-		'type' => 'text', 'data-toggle' => 'tooltip', 'autocomplete' => 'off']);
+		'type' => 'text', 'autocomplete' => 'off',
+		'data-toggle' => 'textcomplete', 'data-textcomplete-strategies' => json_encode($strategies)
+	]);
 }
 ?>
 	</fieldset>

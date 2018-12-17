@@ -399,8 +399,9 @@ class Variable extends AppModel {
  * @return array Return list of check conditions
  */
 	public function getListVariables($refType = null, $refId = null, $query = null, $limit = null) {
+		$result = [];
 		if (empty($refType) || empty($refId)) {
-			return false;
+			return $result;
 		}
 
 		$conditions = [
@@ -589,5 +590,90 @@ class Variable extends AppModel {
 		}
 
 		return $modelType->getParamClearCache();
+	}
+
+/**
+ * Prepare reference parameters by ID of type and ID of associated record
+ *
+ * @param string $convertRef Type of conversion type and ID of
+ *  associated record
+ * @param int|string $refType ID of type
+ * @param int|string $refId ID of associated record
+ * @return array Return array of reference parameters
+ */
+	protected function _prepareRefParam($convertRef = null, $refType = null, $refId = null) {
+		$result = [];
+		if (empty($convertRef)) {
+			$result = compact('refType', 'refId');
+			return $result;
+		}
+
+		$convertRef = mb_strtolower($convertRef);
+		switch ($convertRef) {
+			case 'check':
+				$modelType = $this->Check->getRefTypeModel($refType);
+				if (empty($modelType)) {
+					return $result;
+				}
+				switch ($refType) {
+					case CHECK_PARENT_TYPE_PACKAGE:
+						$refType = VARIABLE_TYPE_PACKAGE;
+					break;
+					case CHECK_PARENT_TYPE_PROFILE:
+						$refType = VARIABLE_TYPE_PROFILE;
+						$refId = $modelType->getRefId($refId);
+					break;
+					case CHECK_PARENT_TYPE_ACTION:
+						$refType = VARIABLE_TYPE_PACKAGE;
+						$refId = $modelType->getRefId($refId);
+					break;
+					case CHECK_PARENT_TYPE_VARIABLE:
+						$refType = $modelType->getRefType($refId);
+						$refId = $modelType->getRefId($refId);
+					break;
+					default:
+						return $result;
+				}
+			break;
+			default:
+				return $result;
+		}
+		if (empty($refType) || empty($refId)) {
+			return $result;
+		}
+		$result = compact('refType', 'refId');
+
+		return $result;
+	}
+
+/**
+ * Return data for autocomplete
+ *
+ * @param string $query Query string for autocomplete
+ * @param int|string $refType ID of type
+ * @param int|string $refId ID of associated record
+ * @param string $convertRef Type of conversion type and ID of
+ *  associated record
+ * @param int|string $limit Limit for autocomplete data
+ * @return array Data for autocomplete.
+ */
+	public function getAutocomplete($query = null, $refType = null, $refId = null, $convertRef = null, $limit = null) {
+		$result = [];
+		$query = trim($query);
+		if (empty($query)) {
+			return $result;
+		}
+
+		$query .= '%';
+		$refData = $this->_prepareRefParam($convertRef, $refType, $refId);
+		if (empty($refData)) {
+			return $result;
+		}
+		$variablesPkg = $this->getListVariables($refData['refType'], $refData['refId'], $query, $limit);
+		$variablesGlobal = $this->getListVariables(VARIABLE_TYPE_CONFIG, 1, $query, $limit);
+		$variables = array_merge($variablesPkg, $variablesGlobal);
+		$result = array_values(array_unique($variables));
+
+		return $result;
 	}
 }

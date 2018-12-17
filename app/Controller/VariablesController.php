@@ -32,7 +32,8 @@ App::uses('AppController', 'Controller');
  *
  * This controller allows to perform the following operations:
  *  - to view, edit, delete and changing position of variable;
- *  - verifying and recovery state list of variables.
+ *  - verifying and recovery state list of variables;
+ *  - autocomplete name of variables.
  *
  * @package app.Controller
  */
@@ -84,6 +85,7 @@ class VariablesController extends AppController {
 		$this->Security->unlockedActions = [
 			'admin_drop',
 			'admin_move',
+			'admin_autocomplete',
 		];
 
 		parent::beforeFilter();
@@ -406,4 +408,55 @@ class VariablesController extends AppController {
 		$this->_recover($refType, $refId);
 	}
 
+/**
+ * Base of action `autocomplete`. Is used to autocomplete input field
+ *  of command of package action.
+ *
+ * POST Data:
+ *  - `query`: query string for autocomple;
+ *  - `ref-type`: ID type of object variables;
+ *  - `ref-id`: record ID of the node variables.
+ *
+ * @throws BadRequestException if request is not `AJAX`, or not `POST`
+ *  or not `JSON`
+ * @return void
+ */
+	protected function _autocomplete() {
+		Configure::write('debug', 0);
+		if (!$this->request->is('ajax') || !$this->request->is('post') ||
+			!$this->RequestHandler->prefers('json')) {
+			throw new BadRequestException();
+		}
+
+		$data = [];
+		$query = $this->request->data('query');
+		$refType = $this->request->data('ref-type');
+		$refId = $this->request->data('ref-id');
+		$convertRef = $this->request->data('convert-ref');
+		if (empty($query)) {
+			$this->set(compact('data'));
+			$this->set('_serialize', 'data');
+			return;
+		}
+
+		$limit = $this->Setting->getConfig('AutocompleteLimit');
+		$data = $this->Variable->getAutocomplete($query, $refType, $refId, $convertRef, $limit);
+		if (empty($data)) {
+			$data = [];
+		}
+
+		$this->set(compact('data'));
+		$this->set('_serialize', 'data');
+	}
+
+/**
+ * Action `autocomplete`. Is used to autocomplete input field
+ *  of command of package action.
+ *  User role - administrator.
+ *
+ * @return void
+ */
+	public function admin_autocomplete() {
+		$this->_autocomplete();
+	}
 }

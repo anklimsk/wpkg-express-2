@@ -67,10 +67,42 @@ if (!isset($refId)) {
 				$includeOptions = ['label' => [__('Command'), __('The command to be executed.'), ':'],
 					'type' => 'select', 'options' => $listActionType, 'autocomplete' => 'off'];
 			} else {
+				$strategies = [
+					[
+						'ajaxOptions' => [
+							'url' => $this->Html->url(['controller' => 'actions', 'action' => 'autocomplete', 'ext' => 'json']),
+							'data' => [
+								'type' => 'command',
+							]
+						],
+						'match' => '(%ComSpec%\s+)(\/\w*)$',
+						'replace' => 'return "$1" + value;'
+					],
+					[
+						'ajaxOptions' => [
+							'url' => $this->Html->url(['controller' => 'variables', 'action' => 'autocomplete', 'ext' => 'json']),
+							'data' => [
+								'ref-type' => VARIABLE_TYPE_PACKAGE,
+								'ref-id' => $refId,
+							]
+						],
+						'match' => '(%)(\w+)$',
+						'replace' => 'return "$1" + value + "%";'
+					],
+					[
+						'ajaxOptions' => [
+							'url' => $this->Html->url(['controller' => 'actions', 'action' => 'autocomplete', 'ext' => 'json']),
+							'data' => [
+								'type' => 'switch',
+							]
+						],
+						'match' => '(\s+)(\/\w*)$',
+						'replace' => 'return "$1" + value;'
+					]
+				];
 				$commandOptions = ['label' => __('Command') . ':', 'title' => __('The command to be executed. Autocompletion is available for global variables, package variables and console commands like "%ComSpec% /С".'),
 					'type' => 'textarea', 'rows' => 4, 'autocorrect' => 'off', 'autocapitalize' => 'off', 'spellcheck' => 'false',
-					'data-autocomplete-url' => $this->Html->url(['controller' => 'actions', 'action' => 'autocomplete', 'ext' => 'json']),
-					'data-autocomplete-pkg-id' => $refId
+					'data-toggle' => 'textcomplete', 'data-textcomplete-strategies' => json_encode($strategies),
 				];
 				$workDirOptions = ['label' => __('Work directory') . ':', 'title' => __('The working directory to use when executing this action.')];
 				$timeoutOptions = ['label' => __('Timeout') . ':', 'title' => __('The maximum number of seconds to wait for the action to execute. Default is %d.', ACTION_COMMAND_DEFAULT_TIMEOUT),
