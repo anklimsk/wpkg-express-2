@@ -451,7 +451,7 @@ class Log extends AppModel {
 		}
 		unset($dataToSaveItem);
 
-		if (!$this->_sendEmail($errorMessages, $dataToSave)) {
+		if (!empty($dataToSave) && !$this->_sendEmail($errorMessages, $dataToSave)) {
 			$result = false;
 		}
 		if (!$this->LogHost->clearUnusedHosts()) {
@@ -478,7 +478,7 @@ class Log extends AppModel {
  */
 	protected function _sendEmail(array &$errorMessages, $data = []) {
 		if (empty($data)) {
-			return true;
+			return false;
 		}
 
 		$result = true;
