@@ -967,23 +967,17 @@ class Profile extends AppModel {
  *
  * @return array Return list of unused profiles to disable
  */
-	public function getListProfilesToDisable() {
+	protected function _getListProfilesToDisableUnused() {
 		$conditions = [
 			$this->alias . '.enabled' => true,
 			$this->alias . '.template' => false,
 			'HostsProfile.profile_id' => null,
 			'ProfilesProfile.dependency_id' => null,
-			'OR' => [
-				'Host.mainprofile_id' => null,
-				'AND' => [
-					'Host.enabled' => false,
-					'Host.template' => false,
-				]
-			]
+			'Host.mainprofile_id' => null,
 		];
 		$fields = [
 			$this->alias . '.id',
-			$this->alias . '.id_text'
+			$this->alias . '.id',
 		];
 		$order = [$this->alias . '.id_text' => 'asc'];
 		$joins = [
@@ -1013,6 +1007,68 @@ class Profile extends AppModel {
 			]
 		];
 		$recursive = -1;
-		return $this->find('all', compact('conditions', 'fields', 'order', 'joins', 'recursive'));
+		return $this->find('list', compact('conditions', 'fields', 'order', 'joins', 'recursive'));
+	}
+
+/**
+ * Return list of unused profiles to disable from main profile hosts
+ *
+ * @return array Return list of unused profiles to disable
+ */
+	protected function _getListProfilesToDisableMainProfileHost() {
+		$result = [];
+		$conditions = [
+			$this->alias . '.enabled' => true,
+			$this->alias . '.template' => false,
+		];
+		$fields = [
+			$this->alias . '.id',
+			'COUNT(DISTINCT Host.id_text) AS CountFull',
+			'COUNT(DISTINCT HostInactive.id_text) AS CountInactive',
+		];
+		$order = [$this->alias . '.id_text' => 'asc'];
+		$joins = [
+			[
+				'table' => 'hosts',
+				'alias' => 'Host',
+				'type' => 'INNER',
+				'conditions' => [
+					'Profile.id = Host.mainprofile_id',
+				]
+			],
+			[
+				'table' => 'hosts',
+				'alias' => 'HostInactive',
+				'type' => 'INNER',
+				'conditions' => [
+					'Profile.id = HostInactive.mainprofile_id',
+					'HostInactive.enabled = 0',
+				]
+			],
+		];
+		$group = $this->alias . '.id';
+		$having = 'CountFull = CountInactive';
+		$recursive = -1;
+		$data = $this->find('all', compact('conditions', 'fields', 'order', 'joins',
+			'group', 'having', 'recursive'));
+		if (empty($data)) {
+			return $result;
+		}
+		$result = Hash::combine($data, '{n}.' . $this->alias . '.id', '{n}.' . $this->alias . '.id');
+
+		return $result;
+	}
+
+/**
+ * Return list of unused profiles to disable
+ *
+ * @return array Return list of unused profiles to disable
+ */
+	public function getListProfilesToDisable() {
+		$result = [];
+		$result += $this->_getListProfilesToDisableUnused();
+		$result += $this->_getListProfilesToDisableMainProfileHost();
+
+		return $result;
 	}
 }

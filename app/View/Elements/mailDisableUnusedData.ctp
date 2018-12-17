@@ -46,23 +46,21 @@ if (empty($data)) {
 	echo $this->Html->tag('dt', __('Created'));
 	echo $this->Html->tag('dd', $this->Time->i18nFormat($created, '%x %X'));
 
-	foreach ($data as $modelName => $info) {
-		foreach ($info as $label => $dataItem) {
-			if (empty($dataItem)) {
-				continue;
-			}
-			if (is_array($dataItem)) {
-				if ($useNestedList) {
-					$text = $this->Html->nestedList($dataItem, [], [], 'ol');
-				} else {
-					$text = implode(', ', $dataItem) . '.';
-				}
+	foreach ($data as $label => $info) {
+		if (empty($info)) {
+			continue;
+		}
+		if (is_array($info)) {
+			if ($useNestedList) {
+				$text = $this->Html->nestedList($info, [], [], 'ol');
 			} else {
-				$text = $dataItem;
+				$text = implode(', ', $info) . '.';
 			}
+		} else {
+			$text = $info;
+		}
 		echo $this->Html->tag('dt', h($label));
 		echo $this->Html->tag('dd', $text);
-		}
 	}
 ?>
 </dl>
