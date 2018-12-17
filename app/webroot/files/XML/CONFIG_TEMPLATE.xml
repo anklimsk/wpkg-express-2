@@ -12,13 +12,13 @@
   <param name="noreboot" value="false"/>
   <param name="noRunningState" value="false"/>
   <param name="caseSensitivity" value="true"/>
-  <param name="applyMultiple" value="false"/>
+  <param name="applyMultiple" value="true"/>
   <param name="noDownload" value="false"/>
   <param name="rebootCmd" value="standard"/>
   <param name="settings_file_name" value="[HOSTNAME].xml"/>
   <param name="settings_file_path" value="%SystemRoot%\\system32"/>
-  <param name="noForcedRemove" value="false"/>
-  <param name="noRemove" value="false"/>
+  <param name="noForcedRemove" value="true"/>
+  <param name="noRemove" value="true"/>
   <param name="sendStatus" value="true"/>
   <param name="noUpgradeBeforeRemove" value="false"/>
   <param name="settingsHostInfo" value="true"/>
@@ -73,6 +73,7 @@
   <variables>
     <variable name="SOFTWARE" value="\\server\share"/>
     <variable name="SOFTWARE_PUBLIC" value="\\server\public_share"/>
+    <variable name="SOFTWARE_NETLOGON" value="\\fabrikam.com\netlogon"/>
     <variable name="ARCH" value="x86" architecture="x86"/>
     <variable name="ARCH" value="x64" architecture="x64"/>
     <variable name="ARCHBIT" value="32" architecture="x86"/>

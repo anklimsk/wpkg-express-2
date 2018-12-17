@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <profiles:profiles xmlns:profiles="http://www.wpkg.org/profiles" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wpkg.org/profiles ../../xsd/profiles.xsd">
   <profile id="PROFILE_TEMPLATE">
-    <!-- Notes: Template of InstallShield package with MSI. -->
+    <!-- Notes: Template of profile. -->
     <!-- Template: Use as template -->
   </profile>
 </profiles:profiles>
