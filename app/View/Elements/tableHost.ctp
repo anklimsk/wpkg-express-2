@@ -245,11 +245,11 @@ foreach ($hosts as $host) {
 ?>
 			</tbody>
 		</table>
+	</div>
 <?php
 	echo $this->Filter->closeFilterForm();
 	echo $this->Html->div('confirm-form-block', $this->fetch('confirm-form'));
 ?>
-	</div>
 </div>
 <?php
 	echo $this->ViewExtension->buttonsPaging();
