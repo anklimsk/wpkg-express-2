@@ -286,10 +286,10 @@ class PackagesProfile extends AppModel {
  */
 	public function getBreadcrumbInfo($id = null, $refType = null, $refNode = null, $refId = null, $includeRoot = null) {
 		$result = [];
-		if (empty($refId)) {
+		if (empty($id)) {
 			return $result;
 		}
-		$data = $this->get($refId);
+		$data = $this->get($id);
 		if (empty($data)) {
 			return $result;
 		}
