@@ -367,6 +367,11 @@ class Host extends AppModel {
 				'@xsi:schemaLocation' => 'http://www.wpkg.org/hosts ' . $baseUrl . '/xsd/hosts.xsd'
 			]];
 		if ($exportdisable) {
+			$xmlItemArray = [
+				'@name' => 'STOP_EXPORT_XML_HOST',
+				'@profile-id' => 'STOP_EXPORT_XML_PROFILE'
+			];
+			$result['hosts:wpkg']['host'][] = $xmlItemArray;
 			return $result;
 		}
 

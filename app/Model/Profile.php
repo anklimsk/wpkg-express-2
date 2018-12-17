@@ -358,6 +358,10 @@ class Profile extends AppModel {
 			]];
 
 		if ($exportdisable) {
+			$xmlItemArray = [
+				'@id' => 'STOP_EXPORT_XML_PROFILE'
+			];
+			$result['profiles:profiles']['profile'][] = $xmlItemArray;
 			return $result;
 		}
 
