@@ -99,11 +99,10 @@ $list = [];
 		$dependencyName = '';
 		if (isset($dependencyItem['name'])) {
 			$dependencyName = h($dependencyItem['name']);
-		}
-		if (!empty($dependencyName)) {
-			 $dependencyName .= ' (' . h($dependencyItem['id_text']) . ')';
-		} else {
-			$dependencyName = h($dependencyItem['id_text']);
+		} elseif (isset($dependencyItem['id_text'])) {
+			 $dependencyName = h($dependencyItem['id_text']);
+		} elseif (isset($dependencyItem['id'])) {
+			$dependencyName = $dependencyItem['id'];
 		}
 		if (!$dependencyItem['enabled']) {
 			$dependencyName = $this->Html->tag('s', $dependencyName);
@@ -112,7 +111,10 @@ $list = [];
 			$dependencyName = $this->ViewExtension->popupModalLink(
 				$dependencyName,
 				['controller' => $controllerName, 'action' => 'view', $dependencyItem['id']],
-				['data-modal-size' => 'lg']
+				[
+					'data-modal-size' => 'lg',
+					'data-popover-size' => 'lg'
+				]
 			);
 		}
 		$row = $this->Html->div('dependency', $this->Html->tag('span', $dependencyName . $attributes) . ' ' . $this->Html->tag('span', $actions, ['class' => 'action hide-popup'])) . $checks;
