@@ -41,6 +41,10 @@ if (!isset($listCondition)) {
 	$listCondition = [];
 }
 
+if (!isset($listValues)) {
+	$listValues = [];
+}
+
 if (!isset($isAddAction)) {
 	$isAddAction = false;
 }
@@ -97,7 +101,10 @@ switch ($checkType) {
 			case CHECK_CONDITION_FILE_DATE_ACCESS_EQUAL_TO:
 			case CHECK_CONDITION_FILE_DATE_ACCESS_NEWER_THAN:
 			case CHECK_CONDITION_FILE_DATE_ACCESS_OLDER_THAN:
-				$valueOptions = ['type' => 'dateTimeSelect'];
+				$valueOptions = [
+					//'type' => 'dateTimeSelect',
+					'data-inputmask-regex' => '^@.+|^%.+|^[\+-]{1}[\d]+|(last-week|last-month|last-year|yesterday)|[\d]{4}-[\d]{2}-[\d]{2}(\s|T)[\d]{2}:[\d]{2}(:[\d]{2}\.[\d]{3}|:[\d]{2}|\+[\d]{2}:[\d]{2}|Z|)$'
+				];
 				$valueLabel = __('Date');
 				break;
 		}
