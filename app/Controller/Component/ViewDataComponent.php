@@ -107,6 +107,7 @@ class ViewDataComponent extends BaseDataComponent {
 					$this->_controller->Flash->error(__('Processing selected items put in queue unsuccessfully.'));
 				}
 			}
+			$this->_controller->request->data('FilterGroup.action', null);
 		} else {
 			if ((empty($defaultConditions) && !empty($conditions)) ||
 				(!empty($defaultConditions) && ($conditions !== $defaultConditions))) {
