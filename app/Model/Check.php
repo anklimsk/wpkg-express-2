@@ -27,6 +27,7 @@
 
 App::uses('AppModel', 'Model');
 App::uses('ClassRegistry', 'Utility');
+App::uses('RenderCheckData', 'Utility');
 
 /**
  * The model is used to manage checks.
@@ -1437,6 +1438,38 @@ class Check extends AppModel {
  *
  * @param int|string|array $id ID of record or array data
  *  for retrieving name.
+ * @return string|bool Return name of data,
+ *  or False on failure.
+ */
+	public function getName($id = null) {
+		$result = false;
+		if (empty($id)) {
+			return $result;
+		}
+
+		if (is_array($id)) {
+			if (!isset($id[$this->alias])) {
+				return $result;
+			}
+			$data = $id;
+		} elseif (ctype_digit((string)$id)) {
+			$data = $this->get($id);
+			if (empty($data)) {
+				return $result;
+			}
+		} else {
+			return $result;
+		}
+		$result = RenderCheckData::getTextCheckCondition($data[$this->alias]);
+
+		return $result;
+	}
+
+/**
+ * Return name of data.
+ *
+ * @param int|string|array $id ID of record or array data
+ *  for retrieving name.
  * @param string $typeName Object type name
  * @param bool $primary Flag of direct method call or nested
  * @return string|bool Return name of data,
@@ -1446,11 +1479,14 @@ class Check extends AppModel {
 		if (empty($typeName)) {
 			return false;
 		}
-
+		$name = (string)$this->getName($id);
+		if ($name !== '') {
+			$name = "'" . $name . "' ";
+		}
 		if ($primary) {
-			$result = __('Check of the %s', $typeName);
+			$result = __('Check %sof the %s', $name, $typeName);
 		} else {
-			$result = __('check %s', $typeName);
+			$result = __('check %s%s', $name, $typeName);
 		}
 
 		return $result;
@@ -1503,8 +1539,14 @@ class Check extends AppModel {
 		$refTypeId = $modelType->getRefId($refId);
 		$refTypeBind = $modelType->getRefType($refId);
 		$result = $modelType->getBreadcrumbInfo($refId, $refTypeBind, null, $refTypeId);
-		$param = ['action' => 'view', $refType, $refId];
-		$result[] = $this->createBreadcrumb($id, $param);
+		$link = false;
+		if (!empty($refType) && !empty($refId)) {
+			$link = ['action' => 'view', $refType, $refId];
+		}
+		$result[] = $this->createBreadcrumb(null, $link);
+		if (!empty($id)) {
+			$result[] = $this->createBreadcrumb($id, false, false);
+		}
 
 		return $result;
 	}
