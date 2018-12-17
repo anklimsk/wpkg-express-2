@@ -59,7 +59,7 @@ if ($expandAll) {
 	$treeWrapOptions = [
 		'data-url' => $dropUrl,
 		'data-nested' => 'true',
-		'data-change-parent' => 'false',
+		'data-change-parent' => 'true',
 		'data-toggle' => 'draggable',
 
 	];
