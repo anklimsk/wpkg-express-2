@@ -219,6 +219,22 @@ class Setting extends SettingBase {
 	}
 
 /**
+ * Called after each successful save operation.
+ *
+ * Actions:
+ *  - Clear the View cache.
+ *
+ * @param bool $created True if this save created a new record
+ * @param array $options Options passed from Model::save().
+ * @return void
+ * @link https://book.cakephp.org/2.0/en/models/callback-methods.html#aftersave
+ * @see Model::save()
+ */
+	public function afterSave($created, $options = []) {
+		clearCache(null, 'views', '.php');
+	}
+
+/**
  * Return list of fields to encrypt
  *
  * @return array Return list of fields.
