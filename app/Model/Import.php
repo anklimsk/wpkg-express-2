@@ -29,6 +29,7 @@ App::uses('AppModel', 'Model');
 App::uses('ClassRegistry', 'Utility');
 App::uses('Hash', 'Utility');
 App::uses('Xml', 'Utility');
+App::uses('RenderXmlData', 'Utility');
 
 /**
  * The model is used to import information from XML.
@@ -934,7 +935,7 @@ class Import extends AppModel {
 		$this->_modelExtendQueuedTask->updateTaskProgress($idTask, $step, $maxStep);
 
 		if (!empty($idTask) && !empty($errorMessages)) {
-			$errorMessagesText = $this->renderErrorMessages($errorMessages);
+			$errorMessagesText = RenderXmlData::renderErrorMessages($errorMessages);
 			$this->_modelExtendQueuedTask->updateTaskErrorMessage($idTask, $errorMessagesText, true);
 		}
 
@@ -2080,7 +2081,7 @@ class Import extends AppModel {
 		$this->_modelExtendQueuedTask->updateTaskProgress($idTask, $step, $maxStep);
 
 		if (!empty($idTask) && !empty($errorMessages)) {
-			$errorMessagesText = $this->renderErrorMessages($errorMessages);
+			$errorMessagesText = RenderXmlData::renderErrorMessages($errorMessages);
 			$this->_modelExtendQueuedTask->updateTaskErrorMessage($idTask, $errorMessagesText, true);
 		}
 
@@ -2270,7 +2271,7 @@ class Import extends AppModel {
 		$step = $maxStep - 1;
 		$this->_modelExtendQueuedTask->updateTaskProgress($idTask, $step, $maxStep);
 		if (!empty($idTask) && !empty($errorMessages)) {
-			$errorMessagesText = $this->renderErrorMessages($errorMessages);
+			$errorMessagesText = RenderXmlData::renderErrorMessages($errorMessages);
 			$this->_modelExtendQueuedTask->updateTaskErrorMessage($idTask, $errorMessagesText, true);
 		}
 
@@ -2448,7 +2449,7 @@ class Import extends AppModel {
 			$this->_modelExtendQueuedTask->updateTaskProgress($idTask, $step, $maxStep);
 		}
 		if (!empty($idTask) && !empty($errorMessages)) {
-			$errorMessagesText = $this->renderErrorMessages($errorMessages);
+			$errorMessagesText = RenderXmlData::renderErrorMessages($errorMessages);
 			$this->_modelExtendQueuedTask->updateTaskErrorMessage($idTask, $errorMessagesText, true);
 		}
 
@@ -2626,7 +2627,7 @@ class Import extends AppModel {
 
 		$this->_modelExtendQueuedTask->updateTaskProgress($idTask, $step, $maxStep);
 		if (!empty($idTask) && !empty($errorMessages)) {
-			$errorMessagesText = $this->renderErrorMessages($errorMessages);
+			$errorMessagesText = RenderXmlData::renderErrorMessages($errorMessages);
 			$this->_modelExtendQueuedTask->updateTaskErrorMessage($idTask, $errorMessagesText, true);
 		}
 

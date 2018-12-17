@@ -31,6 +31,7 @@ App::uses('Hash', 'Utility');
 App::uses('File', 'Utility');
 App::uses('Folder', 'Utility');
 App::uses('Router', 'Routing');
+App::uses('RenderXmlData', 'Utility');
 App::import(
 	'Vendor',
 	'SMB',
@@ -416,7 +417,7 @@ class Log extends AppModel {
 			}
 		}
 		if (!empty($errorMessages)) {
-			$errorMessagesText = $this->renderErrorMessages($errorMessages);
+			$errorMessagesText = RenderXmlData::renderErrorMessages($errorMessages);
 			$this->_modelExtendQueuedTask->updateTaskErrorMessage($idTask, $errorMessagesText, true);
 			return false;
 		}
@@ -461,7 +462,7 @@ class Log extends AppModel {
 		$step = $maxStep - 1;
 		$this->_modelExtendQueuedTask->updateTaskProgress($idTask, $step, $maxStep);
 		if (!empty($idTask) && !empty($errorMessages)) {
-			$errorMessagesText = $this->renderErrorMessages($errorMessages);
+			$errorMessagesText = RenderXmlData::renderErrorMessages($errorMessages);
 			$this->_modelExtendQueuedTask->updateTaskErrorMessage($idTask, $errorMessagesText, true);
 		}
 

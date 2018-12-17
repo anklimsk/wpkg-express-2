@@ -31,6 +31,7 @@ App::uses('Hash', 'Utility');
 App::uses('File', 'Utility');
 App::uses('Folder', 'Utility');
 App::uses('Router', 'Routing');
+App::uses('RenderXmlData', 'Utility');
 App::import(
 	'Vendor',
 	'SMB',
@@ -61,7 +62,6 @@ class Report extends AppModel {
 	public $actsAs = [
 		'BreadCrumbExt',
 		'GroupAction',
-		'ParseData',
 		'GetNumber' => ['cacheConfig' => CACHE_KEY_STATISTICS_INFO_REPORT],
 		'ValidationRules'
 	];
@@ -409,7 +409,7 @@ class Report extends AppModel {
 			}
 		}
 		if (!empty($errorMessages)) {
-			$errorMessagesText = $this->renderErrorMessages($errorMessages);
+			$errorMessagesText = RenderXmlData::renderErrorMessages($errorMessages);
 			$this->_modelExtendQueuedTask->updateTaskErrorMessage($idTask, $errorMessagesText, true);
 			return false;
 		}
@@ -423,10 +423,10 @@ class Report extends AppModel {
 		}
 
 		$modelImport = ClassRegistry::init('Import');
-		$cacheLastUpdate = $this->ReportHost->getListLastUpdate();
+		$cacheMD5hash = $this->ReportHost->getListMD5hash();
 		$maxStep += count($localFiles);
 		foreach ($localFiles as $i => $localFilePath) {
-			if (!$modelImport->importXmlDatabases($localFilePath, $idTask, $cacheLastUpdate)) {
+			if (!$modelImport->importXmlDatabases($localFilePath, $idTask, $cacheMD5hash)) {
 				$result = false;
 			}
 

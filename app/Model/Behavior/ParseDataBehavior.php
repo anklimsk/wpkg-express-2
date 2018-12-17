@@ -217,47 +217,4 @@ class ParseDataBehavior extends ModelBehavior {
 		return $objModel;
 	}
 
-/**
- * Return a formatted list of XML parsing errors
- *
- * @param Model $model Model using this behavior
- * @param array $data Data of XML parsing errors
- * @param int|string $deep Limit for deep recursion
- * @param int|string $level Current level of recursion
- * @return string Return a formatted list of XML parsing errors
- */
-	public function renderErrorMessages(Model $model, $data = [], $deep = 10, $level = 0) {
-		$result = '';
-		if (empty($data) || ($level > $deep)) {
-			return $result;
-		}
-
-		$level++;
-		$needCloseTag = false;
-		foreach ($data as $msgtype => $msginfo) {
-			if (!is_int($msgtype)) {
-				$result .= '<li><b>' . $msgtype . ':</b>';
-				$needCloseTag = true;
-			}
-			if (is_array($msginfo)) {
-				$result .= $this->renderErrorMessages($model, $msginfo, $deep, $level);
-				if ($needCloseTag) {
-					$needCloseTag = false;
-					$result .= '</li>';
-				}
-			} else {
-				if ($needCloseTag) {
-					$needCloseTag = false;
-					$result .= '</li>';
-				}
-				$result .= '<li>' . $msginfo . '</li>';
-			}
-		}
-		if (!empty($result)) {
-			$result = '<ul>' . $result . '</ul>';
-		}
-
-		return $result;
-	}
-
 }
