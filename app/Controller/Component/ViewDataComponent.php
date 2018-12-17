@@ -98,13 +98,13 @@ class ViewDataComponent extends BaseDataComponent {
 			}
 
 			$groupAction = $this->_controller->Filter->getGroupAction(array_keys($groupActions));
-			$resultGroupProcess = $this->_modelTarget->processGroupAction($groupAction, $conditions);
+			$resultGroupProcess = $this->_modelTarget->putQueueProcessGroupAction($groupAction, $conditions);
 			if ($resultGroupProcess !== null) {
 				if ($resultGroupProcess) {
-					$conditions = null;
-					$this->_controller->Flash->success(__('Selected items has been processed.'));
+					$this->_controller->Flash->success(__('Processing selected items put in queue...'));
+					$this->_controller->ViewExtension->setProgressSseTask('ProcessGroupAction');
 				} else {
-					$this->_controller->Flash->error(__('Selected items could not be processed. Please, try again.'));
+					$this->_controller->Flash->error(__('Processing selected items put in queue unsuccessfully.'));
 				}
 			}
 		} else {

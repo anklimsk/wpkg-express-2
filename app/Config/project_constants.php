@@ -2083,6 +2083,15 @@ if (!defined('DISABLE_UNUSED_TIME_LIMIT')) {
 }
 
 /**
+ * Time limit for processing group of data
+ *
+ * Used for set time limit of processing group of data. Default value `120`
+ */
+if (!defined('PROCESSING_GROUP_DATA_TIME_LIMIT')) {
+	define('PROCESSING_GROUP_DATA_TIME_LIMIT', 120);
+}
+
+/**
  * Autocomplete data limit for package action command
  *
  * Used to set the limit for autocomplete data. Default value `10`
