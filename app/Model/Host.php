@@ -704,7 +704,10 @@ class Host extends AppModel {
 
 		$modelConfig = ClassRegistry::init('Config');
 		$caseSensitivity = $modelConfig->getConfig('caseSensitivity');
-		$conditions = [$this->alias . '.id_text like' => $query . '%'];
+		$conditions = [
+			$this->alias . '.id_text like' => $query . '%',
+			$this->alias . '.enabled' => [false, true]
+		];
 		$hosts = $this->getList($conditions);
 		if (!$caseSensitivity) {
 			$hosts = array_map('mb_strtolower', $hosts);
@@ -737,32 +740,52 @@ class Host extends AppModel {
  * @param int|string $hostTemplateId ID of template host for processing
  * @param int|string|null $profileTemplateId ID of template profile for processing.
  *  If empty, use empty profile.
+ * @param int $idTask The ID of the QueuedTask
  * @return bool Success
  */
-	public function generateFromTemplate($computers = null, $hostTemplateId = null, $profileTemplateId = null) {
-		if (empty($computers) || empty($hostTemplateId)) {
+	public function generateFromTemplate($computers = null, $hostTemplateId = null, $profileTemplateId = null, $idTask = null) {
+		$step = 0;
+		$maxStep = 1;
+		$result = true;
+		set_time_limit(GENERATE_XML_TIME_LIMIT);
+		$modelExtendQueuedTask = ClassRegistry::init('CakeTheme.ExtendQueuedTask');
+		$modelExtendQueuedTask->updateProgress($idTask, 0);
+
+		if (empty($computers)) {
+			$modelExtendQueuedTask->updateTaskErrorMessage($idTask, __('The list of computers for generating XML is empty'));
+			return false;
+		}
+		if (empty($hostTemplateId)) {
+			$modelExtendQueuedTask->updateTaskErrorMessage($idTask, __('Invalid host template ID'));
 			return false;
 		}
 		if (!is_array($computers)) {
 			$computers = [$computers];
 		}
 
-		$result = true;
+		$maxStep += count($computers);
 		foreach ($computers as $computerName) {
-			$infoCheckUnique = ['id_text' => $computerName];
+			$step++;
+			if ($step % 10 == 0) {
+				$modelExtendQueuedTask->updateTaskProgress($idTask, $step, $maxStep);
+			}
+
 			$mainProfile = null;
 			if (!empty($profileTemplateId)) {
 				$mainProfile = $computerName;
-				if ($this->MainProfile->isUniqueID($infoCheckUnique) &&
-					!$this->MainProfile->createFromTemplate($profileTemplateId, $mainProfile, null, true)) {
+				$infoCheckUnique = ['id_text' => $computerName];
+				if (!$this->MainProfile->isUniqueID($infoCheckUnique) ||
+					!$this->MainProfile->createFromTemplate($profileTemplateId, $mainProfile, null, $idTask)) {
 					$result = false;
 					continue;
 				}
 			}
-			if (!$this->createFromTemplate($hostTemplateId, $computerName, $mainProfile, true)) {
+			if (!$this->createFromTemplate($hostTemplateId, $computerName, $mainProfile, $idTask)) {
 				$result = false;
 			}
 		}
+		$step = $maxStep - 1;
+		$modelExtendQueuedTask->updateTaskProgress($idTask, $step, $maxStep);
 
 		return $result;
 	}

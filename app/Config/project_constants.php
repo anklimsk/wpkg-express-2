@@ -2083,6 +2083,15 @@ if (!defined('DISABLE_UNUSED_TIME_LIMIT')) {
 }
 
 /**
+ * Time limit for generate XML data
+ *
+ * Used for set time limit of generate XML data. Default value `120`
+ */
+if (!defined('GENERATE_XML_TIME_LIMIT')) {
+	define('GENERATE_XML_TIME_LIMIT', 120);
+}
+
+/**
  * Time limit for processing group of data
  *
  * Used for set time limit of processing group of data. Default value `120`

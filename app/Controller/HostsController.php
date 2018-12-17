@@ -483,16 +483,19 @@ class HostsController extends AppController {
 		}
 
 		if ($this->request->is('post')) {
+			$this->loadModel('CakeTheme.ExtendQueuedTask');
 			$computers = $this->request->data('Host.computers');
 			$hostTemplateId = $this->request->data('Host.host_template_id');
 			$profileTemplateId = $this->request->data('Host.profile_template_id');
-			if ($this->Host->generateFromTemplate($computers, $hostTemplateId, $profileTemplateId)) {
-				$this->Flash->success(__('The hosts has been generated. Information will be processed by queue.'));
-				$this->ViewExtension->setProgressSseTask('ImportXml');
+			$taskParam = compact('computers', 'hostTemplateId', 'profileTemplateId');
+			if (!empty($computers) && !empty($hostTemplateId) &&
+				(bool)$this->ExtendQueuedTask->createJob('GenerateXml', $taskParam, null, 'generate')) {
+				$this->Flash->success(__('Generating XML put in queue...'));
+				$this->ViewExtension->setProgressSseTask('GenerateXml');
 
 				return $this->ViewExtension->redirectByUrl(null, 'host');
 			} else {
-				$this->Flash->error(__('The host could not be generated. Please, try again.'));
+				$this->Flash->error(__('Generating XML put in queue unsuccessfully'));
 			}
 		} else {
 			$host = [
