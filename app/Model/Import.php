@@ -2848,4 +2848,30 @@ class Import extends AppModel {
 		return $result;
 	}
 
+/**
+ * Return the ID of the last processed record by model name
+ *
+ * @param string $modelName Name of model
+ * @return string|bool Return the ID of the last processed record,
+ *  or False on failure.
+ */
+	public function getLastProcessedID($modelName = null) {
+		if (empty($modelName)) {
+			return false;
+		}
+		$property = '_model' . ucfirst($modelName);
+		if (!property_exists($this, $property)) {
+			return false;
+		}
+
+		$lastId = $this->$property->getLastInsertID();
+		if (!$lastId) {
+			$lastId = $this->$property->id;
+		}
+		if (empty($lastId)) {
+			return false;
+		}
+
+		return $lastId;
+	}
 }
