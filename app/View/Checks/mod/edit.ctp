@@ -30,7 +30,7 @@ echo $this->ViewExtension->headerPage($pageHeader);
 	<div class="row">
 		<div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
 <?php
-	echo $this->element('formCheckBase', compact('fullName', 'listParent', 'listType', 'listCondition'));
+	echo $this->element('formCheckBase', compact('fullName', 'listParent', 'listType', 'listCondition', 'listValues'));
 ?>
 		</div>
 	</div>

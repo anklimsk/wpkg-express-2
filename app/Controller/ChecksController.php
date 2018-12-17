@@ -214,6 +214,7 @@ class ChecksController extends AppController {
 		$listType = $this->Check->getListCheckTypes();
 		$listParent = $this->Check->getLogicalChecksList($refType, $refId);
 		$listCondition = $this->_getListCondition();
+		$listValues = $this->_getListValues();
 		$this->Check->createValidationRules(
 			$this->request->data('Check.type'),
 			$this->request->data('Check.condition')
@@ -221,7 +222,7 @@ class ChecksController extends AppController {
 		$pageHeader = __('Adding check');
 
 		$this->set(compact('breadCrumbs', 'fullName', 'refType', 'refId',
-			'listType', 'listParent', 'listCondition', 'pageHeader'));
+			'listType', 'listParent', 'listCondition', 'listValues', 'pageHeader'));
 	}
 
 /**
@@ -277,6 +278,7 @@ class ChecksController extends AppController {
 		$listType = $this->Check->getListCheckTypes();
 		$listParent = $this->Check->getLogicalChecksList($refType, $refId);
 		$listCondition = $this->_getListCondition();
+		$listValues = $this->_getListValues();
 		$this->Check->createValidationRules(
 			$this->request->data('Check.type'),
 			$this->request->data('Check.condition')
@@ -284,7 +286,7 @@ class ChecksController extends AppController {
 		$pageHeader = __('Editing check');
 
 		$this->set(compact('breadCrumbs', 'fullName', 'refType', 'refId',
-			'listType', 'listParent', 'listCondition', 'pageHeader'));
+			'listType', 'listParent', 'listCondition', 'listValues', 'pageHeader'));
 	}
 
 /**
@@ -475,6 +477,39 @@ class ChecksController extends AppController {
 		$this->request->data('Check.condition', $checkTypeCond);
 
 		return $listCondition;
+	}
+
+/**
+ * Processing form data `Check.type` and `Check.condition`.
+ *  Used to set list of values for check.
+ *
+ * @return array List of values for check
+ */
+	protected function _getListValues() {
+		$listValues = [];
+		$checkType = $this->request->data('Check.type');
+		$checkTypeCond = $this->request->data('Check.condition');
+		if ($checkType != CHECK_TYPE_HOST) {
+			return $listValues;
+		}
+
+		$this->loadModel('Attribute');
+		switch ($checkTypeCond) {
+			case CHECK_CONDITION_HOST_OS:
+				$listValues = $this->Attribute->getListOS();
+				break;
+
+			case CHECK_CONDITION_HOST_ARCHITECTURE:
+				$listValues = $this->Attribute->getListArchitecture();
+				break;
+
+			case CHECK_CONDITION_HOST_LCID:
+			case CHECK_CONDITION_HOST_LCID_OS:
+				$listValues = $this->Attribute->getListLangID();
+				break;
+		}
+
+		return $listValues;
 	}
 
 }

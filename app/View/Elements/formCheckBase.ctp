@@ -115,10 +115,18 @@ switch ($checkType) {
 
 			case CHECK_CONDITION_HOST_OS:
 				$valueLabel = __('OS');
+				$valueOptions = [
+					'type' => 'select',
+					'options' => $listValues
+				];
 				break;
 
 			case CHECK_CONDITION_HOST_ARCHITECTURE:
 				$valueLabel = __('Architecture');
+				$valueOptions = [
+					'type' => 'select',
+					'options' => $listValues
+				];
 				break;
 
 			case CHECK_CONDITION_HOST_IP_ADDRESSES:
@@ -135,10 +143,20 @@ switch ($checkType) {
 
 			case CHECK_CONDITION_HOST_LCID:
 				$valueLabel = __('Language ID');
+				$valueOptions = [
+					'type' => 'select',
+					'multiple' => true,
+					'options' => $listValues
+				];
 				break;
 
 			case CHECK_CONDITION_HOST_LCID_OS:
 				$valueLabel = __('Language ID OS');
+				$valueOptions = [
+					'type' => 'select',
+					'multiple' => true,
+					'options' => $listValues
+				];
 				break;
 
 			case CHECK_CONDITION_HOST_ENVIRONMENT:

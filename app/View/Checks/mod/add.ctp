@@ -31,7 +31,8 @@ echo $this->ViewExtension->headerPage($pageHeader);
 		<div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
 <?php
 	$isAddAction = true;
-	echo $this->element('formCheckBase', compact('fullName', 'listParent', 'listType', 'listCondition', 'isAddAction'));
+	echo $this->element('formCheckBase', compact('fullName', 'listParent', 'listType',
+		'listCondition', 'listValues', 'isAddAction'));
 ?>
 		</div>
 	</div>

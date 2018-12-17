@@ -864,7 +864,8 @@ class Check extends AppModel {
  * Called during validation operations, before validation.
  *
  * Actions:
- *  - Create validation rules.
+ *  - Create validation rules;
+ *  - Converting an array of language code IDs to a string.
  *
  * @param array $options Options passed from Model::save().
  * @return bool True if validate operation should continue, false to abort
@@ -877,13 +878,19 @@ class Check extends AppModel {
 			return false;
 		}
 
-		return $this->createValidationRules($this->data[$this->alias]['type'], $this->data[$this->alias]['condition']);
+		if (!$this->createValidationRules($this->data[$this->alias]['type'], $this->data[$this->alias]['condition']) ||
+			!$this->_convertLcidToString()) {
+			return false;
+		}
+
+		return true;
 	}
 
 /**
  * Called before each save operation, after validation.
  *
  * Actions:
+ *  - Converting an array of language code IDs to a string;
  *  - Set field `parent_id` to Null for empty values.
  *
  * @param array $options Options passed from Model::save().
@@ -892,6 +899,10 @@ class Check extends AppModel {
  * @see Model::save()
  */
 	public function beforeSave($options = []) {
+		if (!$this->_convertLcidToString()) {
+			return false;
+		}
+
 		if (isset($this->data[$this->alias]['parent_id']) &&
 			empty($this->data[$this->alias]['parent_id'])) {
 			$this->data[$this->alias]['parent_id'] = null;
@@ -917,6 +928,31 @@ class Check extends AppModel {
 		}
 		$this->validate = Hash::merge($this->_validateDefault, $this->_validateExt[$typeId][$conditionId]);
 
+		return true;
+	}
+
+/**
+ * Convert an array of language code IDs to a string.
+ *
+ * @return bool Return success.
+ */
+	protected function _convertLcidToString() {
+		if (!isset($this->data[$this->alias]['type']) ||
+			!isset($this->data[$this->alias]['condition'])) {
+			return false;
+		}
+
+		if (!isset($this->data[$this->alias]['value']) ||
+			empty($this->data[$this->alias]['value'])) {
+			return true;
+		}
+
+		if (($this->data[$this->alias]['type'] != CHECK_TYPE_HOST) ||
+			(!in_array($this->data[$this->alias]['condition'], [CHECK_CONDITION_HOST_LCID, CHECK_CONDITION_HOST_LCID_OS]))) {
+			return true;
+		}
+
+		$this->data[$this->alias]['value'] = $this->Attribute->lcidToString($this->data[$this->alias]['value']);
 		return true;
 	}
 
