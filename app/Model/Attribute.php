@@ -401,7 +401,7 @@ class Attribute extends AppModel {
  * @param array|string $lcid Language code IDs
  * @return string Return list of language code IDs.
  */
-	protected function _lcidToString($lcid = []) {
+	public function lcidToString($lcid = []) {
 		$result = '';
 		if (empty($lcid)) {
 			return $result;
@@ -429,7 +429,7 @@ class Attribute extends AppModel {
 		$fields = ['lcid', 'lcidOS'];
 		foreach ($fields as $field) {
 			if (isset($this->data[$this->alias][$field])) {
-				$this->data[$this->alias][$field] = $this->_lcidToString($this->data[$this->alias][$field]);
+				$this->data[$this->alias][$field] = $this->lcidToString($this->data[$this->alias][$field]);
 			}
 		}
 
