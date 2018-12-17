@@ -46,6 +46,7 @@ class ScopeTreeBehavior extends ModelBehavior {
 		if (!$model->Behaviors->loaded('Tree')) {
 			throw new InternalErrorException(__('Behavior %s not loaded in %s', 'Tree', $model->name));
 		}
+		$model->Behaviors->setPriority('ScopeTree', 5);
 	}
 
 /**
