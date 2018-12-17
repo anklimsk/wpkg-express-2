@@ -202,6 +202,7 @@ class ExportDataComponent extends BaseDataComponent {
 			return $this->_controller->ViewExtension->setExceptionMessage(new NotFoundException(__('Invalid ID for %s', $targetNameI18n)));
 		}
 
+		$this->_controller->response->disableCache();
 		$this->_controller->cacheAction = [
 			$this->_controller->view => [
 				'callbacks' => true,
