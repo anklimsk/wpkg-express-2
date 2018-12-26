@@ -260,7 +260,7 @@ class AppController extends Controller {
 			'packages' . DS . 'add'
 		]);
 		$specificCSS = array_merge($specificCSS, [
-			'graph' . DS . 'view',
+			'graph' . DS . 'view'
 		]);
 
 		$targetFieldsSelected = (array)Hash::get($this->viewVars, 'search_targetFieldsSelected');
