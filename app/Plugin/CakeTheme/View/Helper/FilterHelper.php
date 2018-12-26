@@ -250,12 +250,15 @@ class FilterHelper extends CakeThemeAppHelper {
 			'string' => [
 				'div' => false,
 				'type' => 'autocomplete',
-				'url' => $this->url([
-					'controller' => 'filter',
-					'action' => 'autocomplete',
-					'plugin' => 'cake_theme',
-					'ext' => 'json'
-				])
+				'url' => $this->url(
+					$this->ViewExtension->addUserPrefixUrl([
+						'controller' => 'filter',
+						'action' => 'autocomplete',
+						'plugin' => 'cake_theme',
+						'ext' => 'json',
+						'prefix' => false
+					])
+				)
 			],
 			'integer' => [
 				'div' => 'input-group'

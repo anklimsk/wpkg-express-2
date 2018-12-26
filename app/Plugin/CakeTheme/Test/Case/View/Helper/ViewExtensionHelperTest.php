@@ -32,6 +32,8 @@ class ViewExtensionHelperTest extends AppCakeTestCase {
 			'id' => '1'
 		];
 		$this->setDefaultUserInfo($userInfo);
+		Configure::write('Routing.prefixes', ['admin']);
+		Router::reload();
 
 		parent::setUp();
 		$View = new View();

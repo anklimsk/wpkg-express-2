@@ -32,8 +32,6 @@ class AppCakeTestCase extends ExtendCakeTestCase {
 
 		$path = __DIR__ . DS;
 		$this->applyTestConfig($path);
-		Configure::write('Routing.prefixes', ['admin']);
-		Router::reload();
 	}
 
 /**

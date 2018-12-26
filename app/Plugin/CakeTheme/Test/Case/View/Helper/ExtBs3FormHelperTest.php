@@ -18,6 +18,7 @@ class ExtBs3FormHelperTest extends AppCakeTestCase {
  * @var array
  */
 	public $fixtures = [
+		'core.cake_session',
 		'plugin.cake_theme.employees',
 	];
 
@@ -27,8 +28,28 @@ class ExtBs3FormHelperTest extends AppCakeTestCase {
  * @return void
  */
 	public function setUp() {
+		$userInfo = [
+			'user' => 'Моисеева Л.Б.',
+			'role' => CAKE_THEME_TEST_USER_ROLE_USER | CAKE_THEME_TEST_USER_ROLE_ADMIN,
+			'prefix' => 'admin',
+			'id' => '1'
+		];
+		$this->setDefaultUserInfo($userInfo);
+		Configure::write('Routing.prefixes', ['admin']);
+		Router::reload();
 		parent::setUp();
+
 		$View = new View();
+		$request = new CakeRequest();
+		$request->addParams(array(
+				'plugin' => null, 'controller' => 'employees', 'action' => 'add',
+				'prefix' => 'admin', 'admin' => true,
+				'url' => array('url' => 'admin/employees/add')
+			))->addPaths(array(
+				'base' => '', 'here' => '/admin/employees/add', 'webroot' => '/'
+			))->query = [];
+		$View->request = $request;
+		Router::setRequestInfo($request);
 		$this->_targetObject = new ExtBs3FormHelper($View);
 
 		ClassRegistry::addObject('EmployeeTest', new EmployeeTest());
@@ -409,7 +430,7 @@ class ExtBs3FormHelperTest extends AppCakeTestCase {
 				'EmployeeTest.position', // $fieldName
 				[
 					'type' => 'EmployeeTest.position',
-					'url' => '/some_controller/autocompl.json'
+					'url' => '/admin/some_controller/autocompl.json'
 				], // $options
 			],
 		];
@@ -417,7 +438,7 @@ class ExtBs3FormHelperTest extends AppCakeTestCase {
 			'<input name="data[EmployeeTest]" data-toggle="autocomplete" data-autocomplete-url="/cake_theme/filter/autocomplete.json" type="text" id="EmployeeTest"/>',
 			'<input name="data[EmployeeTest][position]" data-toggle="autocomplete" title="Some title" data-autocomplete-min-length="2" data-autocomplete-local="[&quot;\u0412\u043e\u0434\u0438\u0442\u0435\u043b\u044c&quot;,&quot;\u0412\u0435\u0434\u0443\u0449\u0438\u0439 \u0438\u043d\u0436\u0435\u043d\u0435\u0440&quot;]" type="text" id="EmployeeTestPosition"/>',
 			'<input name="data[EmployeeTest][position]" data-toggle="autocomplete" data-autocomplete-type="EmployeeTest.mail" data-autocomplete-url="/cake_theme/filter/autocomplete.json" type="text" id="EmployeeTestPosition"/>',
-			'<input name="data[EmployeeTest][position]" data-toggle="autocomplete" data-autocomplete-type="EmployeeTest.position" data-autocomplete-url="/some_controller/autocompl.json" type="text" id="EmployeeTestPosition"/>',
+			'<input name="data[EmployeeTest][position]" data-toggle="autocomplete" data-autocomplete-type="EmployeeTest.position" data-autocomplete-url="/admin/some_controller/autocompl.json" type="text" id="EmployeeTestPosition"/>',
 		];
 		$this->runClassMethodGroup('autocomplete', $params, $expected);
 	}
@@ -439,8 +460,8 @@ class ExtBs3FormHelperTest extends AppCakeTestCase {
 			],
 		];
 		$expected = [
-			'<form role="form" requiredcheck="1" data-required-msg="' . __d('view_extension', 'Please fill in this field') . '" id="Form" onsubmit="event.returnValue = false; return false;" enctype="multipart/form-data" method="post" accept-charset="utf-8"><div style="display:none;"><input type="hidden" name="_method" value="POST"/></div>',
-			'<form  role="form" requiredcheck="1" data-required-msg="' . __d('view_extension', 'Please fill in this field') . '" id="EmployeeTestForm" onsubmit="event.returnValue = false; return false;" enctype="multipart/form-data" method="post" accept-charset="utf-8"><div style="display:none;"><input type="hidden" name="_method" value="POST"/></div>',
+			'<form  role="form" requiredcheck="1" data-required-msg="' . __d('view_extension', 'Please fill in this field') . '" id="addForm" onsubmit="event.returnValue = false; return false;" enctype="multipart/form-data" method="post" accept-charset="utf-8"><div style="display:none;"><input type="hidden" name="_method" value="POST"/></div>',
+			'<form  role="form" requiredcheck="1" data-required-msg="' . __d('view_extension', 'Please fill in this field') . '" id="EmployeeTestAddForm" onsubmit="event.returnValue = false; return false;" enctype="multipart/form-data" method="post" accept-charset="utf-8"><div style="display:none;"><input type="hidden" name="_method" value="POST"/></div>',
 		];
 		$this->runClassMethodGroup('createUploadForm', $params, $expected);
 	}
@@ -456,23 +477,23 @@ class ExtBs3FormHelperTest extends AppCakeTestCase {
 				'', // $url
 				1024, // $maxfilesize
 				'/\.(jpe?g)$/i', // $acceptfiletypes
-				'/some_controller/some_action', // $redirecturl
+				'/admin/some_controller/some_action', // $redirecturl
 				'Upload...', // $btnTitle
 				'btn-danger', // $btnClass
 			],
 			[
-				'/some_controller/upload.json', // $url
+				'/admin/some_controller/upload.json', // $url
 				1024, // $maxfilesize
 				'/\.(jpe?g)$/i', // $acceptfiletypes
-				'/some_controller/some_action', // $redirecturl
+				'/admin/some_controller/some_action', // $redirecturl
 				'', // $btnTitle
 				'', // $btnClass
 			],
 			[
-				'/some_controller/upload.json', // $url
+				'/admin/some_controller/upload.json', // $url
 				1024, // $maxfilesize
 				'/\.(jpe?g)$/i', // $acceptfiletypes
-				'/some_controller/some_action', // $redirecturl
+				'/admin/some_controller/some_action', // $redirecturl
 				'Upload...', // $btnTitle
 				'btn-danger', // $btnClass
 			],
@@ -480,10 +501,10 @@ class ExtBs3FormHelperTest extends AppCakeTestCase {
 		$expected = [
 			null,
 			[
-				'assertRegExp' => '/\<span class\="fileinput\-button btn btn\-success"\>\<span class\="fas fa\-file\-upload fa\-lg"\>\<\/span\>&nbsp;\<span\>' . __d('view_extension', 'Select file...') . '\<\/span\>\<input type\="file" name\="files" id\="input_[0-9a-f]+" data\-progress\-id\="progress_[0-9a-f]+" data\-files\-id\="files_[0-9a-f]+" data\-fileupload\-url\="\/some_controller\/upload.json" data\-fileupload\-maxfilesize\="1024" data\-fileupload\-acceptfiletypes\="\/\\\.\(jpe\?g\)\$\/i" data\-fileupload\-redirecturl\="\/some_controller\/some_action"\ data\-toggle\="fileupload" data\-fileupload\-btntext\-upload\="' . __d('view_extension', 'Upload') . '" data\-fileupload\-btntext\-abort\="' . __d('view_extension', 'Abort') . '" data\-fileupload\-msgtext\-processing\="' . __d('view_extension', 'Processing...') . '" data\-fileupload\-msgtext\-error\="' . __d('view_extension', 'File upload failed') . '"\/\>\<\/span\>\<br\>\<br\>\<div id\="progress_[0-9a-f]+" class\="progress"\>\<div class\="progress\-bar progress\-bar\-success"\>\<\/div\>\<\/div\>\<hr\>\<div id\="files_[0-9a-f]+" class\="files"\>\<\/div\>\<br\>/',
+				'assertRegExp' => '/\<span class\="fileinput\-button btn btn\-success"\>\<span class\="fas fa\-file\-upload fa\-lg"\>\<\/span\>&nbsp;\<span\>' . __d('view_extension', 'Select file...') . '\<\/span\>\<input type\="file" name\="files" id\="input_[0-9a-f]+" data\-progress\-id\="progress_[0-9a-f]+" data\-files\-id\="files_[0-9a-f]+" data\-fileupload\-url\="\/admin\/some_controller\/upload.json" data\-fileupload\-maxfilesize\="1024" data\-fileupload\-acceptfiletypes\="\/\\\.\(jpe\?g\)\$\/i" data\-fileupload\-redirecturl\="\/admin\/some_controller\/some_action"\ data\-toggle\="fileupload" data\-fileupload\-btntext\-upload\="' . __d('view_extension', 'Upload') . '" data\-fileupload\-btntext\-abort\="' . __d('view_extension', 'Abort') . '" data\-fileupload\-msgtext\-processing\="' . __d('view_extension', 'Processing...') . '" data\-fileupload\-msgtext\-error\="' . __d('view_extension', 'File upload failed') . '"\/\>\<\/span\>\<br\>\<br\>\<div id\="progress_[0-9a-f]+" class\="progress"\>\<div class\="progress\-bar progress\-bar\-success"\>\<\/div\>\<\/div\>\<hr\>\<div id\="files_[0-9a-f]+" class\="files"\>\<\/div\>\<br\>/',
 			],
 			[
-				'assertRegExp' => '/\<span class\="fileinput\-button btn btn\-danger"\>Upload...\<input type\="file" name\="files" id\="input_[0-9a-f]+" data\-progress\-id\="progress_[0-9a-f]+" data\-files\-id\="files_[0-9a-f]+" data\-fileupload\-url\="\/some_controller\/upload.json" data\-fileupload\-maxfilesize\="1024" data\-fileupload\-acceptfiletypes\="\/\\\.\(jpe\?g\)\$\/i" data\-fileupload\-redirecturl\="\/some_controller\/some_action" data\-toggle\="fileupload" data\-fileupload\-btntext\-upload\="' . __d('view_extension', 'Upload') . '" data\-fileupload\-btntext\-abort\="' . __d('view_extension', 'Abort') . '" data\-fileupload\-msgtext\-processing\="' . __d('view_extension', 'Processing...') . '" data\-fileupload\-msgtext\-error\="' . __d('view_extension', 'File upload failed') . '"\/\>\<\/span\>\<br\>\<br\>\<div id\="progress_[0-9a-f]+" class\="progress"\>\<div class\="progress\-bar progress\-bar\-success"\>\<\/div\>\<\/div\>\<hr\>\<div id\="files_[0-9a-f]+" class\="files"\>\<\/div\>\<br\>/',
+				'assertRegExp' => '/\<span class\="fileinput\-button btn btn\-danger"\>Upload...\<input type\="file" name\="files" id\="input_[0-9a-f]+" data\-progress\-id\="progress_[0-9a-f]+" data\-files\-id\="files_[0-9a-f]+" data\-fileupload\-url\="\/admin\/some_controller\/upload.json" data\-fileupload\-maxfilesize\="1024" data\-fileupload\-acceptfiletypes\="\/\\\.\(jpe\?g\)\$\/i" data\-fileupload\-redirecturl\="\/admin\/some_controller\/some_action" data\-toggle\="fileupload" data\-fileupload\-btntext\-upload\="' . __d('view_extension', 'Upload') . '" data\-fileupload\-btntext\-abort\="' . __d('view_extension', 'Abort') . '" data\-fileupload\-msgtext\-processing\="' . __d('view_extension', 'Processing...') . '" data\-fileupload\-msgtext\-error\="' . __d('view_extension', 'File upload failed') . '"\/\>\<\/span\>\<br\>\<br\>\<div id\="progress_[0-9a-f]+" class\="progress"\>\<div class\="progress\-bar progress\-bar\-success"\>\<\/div\>\<\/div\>\<hr\>\<div id\="files_[0-9a-f]+" class\="files"\>\<\/div\>\<br\>/',
 			]
 		];
 		$this->runClassMethodGroup('upload', $params, $expected);
@@ -661,7 +682,7 @@ class ExtBs3FormHelperTest extends AppCakeTestCase {
 		$expected = [
 			null,
 			null,
-			'<form action="/some_controller/some_action" role="form" requiredcheck="1" data-required-msg="' . __d('view_extension', 'Please fill in this field') . '" class="form-tabs form-default" progressfill="1" id="EmployeeTestSomeActionForm" method="post" accept-charset="utf-8"><div style="display:none;"><input type="hidden" name="_method" value="POST"/></div><fieldset><legend>Some legend</legend><div class="row bottom-buffer"><div class="tabbable"><ul class="nav nav-pills nav-stacked col-xs-4 col-sm-4 col-md-4 col-lg-4"><li class="active"><a href="#tabForm1" data-toggle="tab">Name&nbsp;<span class="fas fa-exclamation-triangle fa-lg"></span></a></li><li><a href="#tabForm2" data-toggle="tab">E-mail&nbsp;<span class="fas fa-exclamation-triangle fa-lg"></span></a></li></ul><div class="tab-content col-xs-8 col-lg-8 col-sm-8 col-md-8 col-lg-8"><div id="tabForm1" class="tab-pane active"><input type="hidden" name="data[EmployeeTest][id]" id="EmployeeTestId" class="form-error"/><div class="form-group has-error"><div class="help-block">Invalid ID</div></div><input type="hidden" name="data[EmployeeTest][department_id]" id="EmployeeTestDepartmentId"/><input type="hidden" name="data[EmployeeTest][position]" id="EmployeeTestPosition"/><div class="form-group required"><label for="EmployeeTestUpn" class="control-label">User  principal name&nbsp;<abbr title="UPN of employee" data-toggle="tooltip">[?]</abbr>:</label> <input name="data[EmployeeTest][upn]" class="form-control" maxlength="255" type="text" id="EmployeeTestUpn" required="required"/></div><div class="form-group"><label for="EmployeeTestLastName" class="control-label">Last name&nbsp;<abbr title="Last name of employee" data-toggle="tooltip">[?]</abbr>:</label> <input name="data[EmployeeTest][last_name]" class="form-control" maxlength="255" type="text" id="EmployeeTestLastName"/></div><div class="form-group"><label for="EmployeeTestFirstName" class="control-label">First name&nbsp;<abbr title="First name of employee" data-toggle="tooltip">[?]</abbr>:</label> <input name="data[EmployeeTest][first_name]" class="form-control" maxlength="255" type="text" id="EmployeeTestFirstName"/></div><div class="form-group"><label for="EmployeeTestMiddleName" class="control-label">Middle name&nbsp;<abbr title="Middle name of employee" data-toggle="tooltip">[?]</abbr>:</label> <input name="data[EmployeeTest][middle_name]" class="form-control" maxlength="255" type="text" id="EmployeeTestMiddleName"/></div><div class="form-group required has-error error"><label for="EmployeeTestFullName" class="control-label">Full name&nbsp;<abbr title="Full name of employee" data-toggle="tooltip">[?]</abbr>:</label> <input name="data[EmployeeTest][full_name]" class="form-control form-error" maxlength="255" type="text" id="EmployeeTestFullName" required="required"/><div class="help-block">Invalid full name</div></div></div><div id="tabForm2" class="tab-pane"><div class="form-group required has-error error"><label for="EmployeeTestMail" class="control-label">E-mail&nbsp;<abbr title="E-mail name of employee" data-toggle="tooltip">[?]</abbr>:</label> <input name="data[EmployeeTest][mail]" class="form-control form-error" maxlength="256" data-inputmask-alias="email" type="text" id="EmployeeTestMail" required="required"/><div class="help-block">Invalid E-mail</div></div><div class="form-group required has-error error"><label for="EmployeeTestManager" class="control-label">Manager&nbsp;<abbr title="Manager of employee" data-toggle="tooltip">[?]</abbr>:</label> <select name="data[EmployeeTest][manager]" class="form-control form-error" data-toggle="select" id="EmployeeTestManager" required="required">' . "\n" .
+			'<form action="/admin/some_controller/some_action" role="form" requiredcheck="1" data-required-msg="' . __d('view_extension', 'Please fill in this field') . '" class="form-tabs form-default" progressfill="1" id="EmployeeTestSomeActionForm" method="post" accept-charset="utf-8"><div style="display:none;"><input type="hidden" name="_method" value="POST"/></div><fieldset><legend>Some legend</legend><div class="row bottom-buffer"><div class="tabbable"><ul class="nav nav-pills nav-stacked col-xs-4 col-sm-4 col-md-4 col-lg-4"><li class="active"><a href="#tabForm1" data-toggle="tab">Name&nbsp;<span class="fas fa-exclamation-triangle fa-lg"></span></a></li><li><a href="#tabForm2" data-toggle="tab">E-mail&nbsp;<span class="fas fa-exclamation-triangle fa-lg"></span></a></li></ul><div class="tab-content col-xs-8 col-lg-8 col-sm-8 col-md-8 col-lg-8"><div id="tabForm1" class="tab-pane active"><input type="hidden" name="data[EmployeeTest][id]" id="EmployeeTestId" class="form-error"/><div class="form-group has-error"><div class="help-block">Invalid ID</div></div><input type="hidden" name="data[EmployeeTest][department_id]" id="EmployeeTestDepartmentId"/><input type="hidden" name="data[EmployeeTest][position]" id="EmployeeTestPosition"/><div class="form-group required"><label for="EmployeeTestUpn" class="control-label">User  principal name&nbsp;<abbr title="UPN of employee" data-toggle="tooltip">[?]</abbr>:</label> <input name="data[EmployeeTest][upn]" class="form-control" maxlength="255" type="text" id="EmployeeTestUpn" required="required"/></div><div class="form-group"><label for="EmployeeTestLastName" class="control-label">Last name&nbsp;<abbr title="Last name of employee" data-toggle="tooltip">[?]</abbr>:</label> <input name="data[EmployeeTest][last_name]" class="form-control" maxlength="255" type="text" id="EmployeeTestLastName"/></div><div class="form-group"><label for="EmployeeTestFirstName" class="control-label">First name&nbsp;<abbr title="First name of employee" data-toggle="tooltip">[?]</abbr>:</label> <input name="data[EmployeeTest][first_name]" class="form-control" maxlength="255" type="text" id="EmployeeTestFirstName"/></div><div class="form-group"><label for="EmployeeTestMiddleName" class="control-label">Middle name&nbsp;<abbr title="Middle name of employee" data-toggle="tooltip">[?]</abbr>:</label> <input name="data[EmployeeTest][middle_name]" class="form-control" maxlength="255" type="text" id="EmployeeTestMiddleName"/></div><div class="form-group required has-error error"><label for="EmployeeTestFullName" class="control-label">Full name&nbsp;<abbr title="Full name of employee" data-toggle="tooltip">[?]</abbr>:</label> <input name="data[EmployeeTest][full_name]" class="form-control form-error" maxlength="255" type="text" id="EmployeeTestFullName" required="required"/><div class="help-block">Invalid full name</div></div></div><div id="tabForm2" class="tab-pane"><div class="form-group required has-error error"><label for="EmployeeTestMail" class="control-label">E-mail&nbsp;<abbr title="E-mail name of employee" data-toggle="tooltip">[?]</abbr>:</label> <input name="data[EmployeeTest][mail]" class="form-control form-error" maxlength="256" data-inputmask-alias="email" type="text" id="EmployeeTestMail" required="required"/><div class="help-block">Invalid E-mail</div></div><div class="form-group required has-error error"><label for="EmployeeTestManager" class="control-label">Manager&nbsp;<abbr title="Manager of employee" data-toggle="tooltip">[?]</abbr>:</label> <select name="data[EmployeeTest][manager]" class="form-control form-error" data-toggle="select" id="EmployeeTestManager" required="required">' . "\n" .
 				'<option value="1">Сазонов А.П.</option>' . "\n" .
 				'<option value="2">Костин Д.И.</option>' . "\n" .
 				'<option value="3">Герасимова Н.М.</option>' . "\n" .

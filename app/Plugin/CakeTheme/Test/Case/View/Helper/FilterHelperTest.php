@@ -18,6 +18,7 @@ class FilterHelperTest extends AppCakeTestCase {
  * @var array
  */
 	public $fixtures = [
+		'core.cake_session',
 		'plugin.cake_theme.employees',
 	];
 
@@ -27,10 +28,28 @@ class FilterHelperTest extends AppCakeTestCase {
  * @return void
  */
 	public function setUp() {
+		$userInfo = [
+			'user' => 'Моисеева Л.Б.',
+			'role' => CAKE_THEME_TEST_USER_ROLE_USER | CAKE_THEME_TEST_USER_ROLE_ADMIN,
+			'prefix' => 'admin',
+			'id' => '1'
+		];
+		$this->setDefaultUserInfo($userInfo);
+		Configure::write('Routing.prefixes', ['admin']);
+		Router::reload();
 		parent::setUp();
 
 		$View = new View();
-		$View->request = new CakeRequest('/employees/filter', false);
+		$request = new CakeRequest();
+		$request->addParams(array(
+				'plugin' => null, 'controller' => 'employees', 'action' => 'filter',
+				'prefix' => 'admin', 'admin' => true,
+				'url' => array('url' => 'admin/employees/filter')
+			))->addPaths(array(
+				'base' => '', 'here' => '/admin/employees/filter', 'webroot' => '/'
+			))->query = [];
+		$View->request = $request;
+		Router::setRequestInfo($request);
 		$this->_targetObject = new FilterHelper($View);
 	}
 
@@ -52,11 +71,11 @@ class FilterHelperTest extends AppCakeTestCase {
  */
 	public function testOpenFilterForm() {
 		$result = $this->_targetObject->openFilterForm(false);
-		$expected = '<form action="/employees/filter" role="form" data-toggle="pjax-form" class="filter-form clone-wrapper" autocomplete="off" data-max-clone="' . CAKE_THEME_FILTER_ROW_LIMIT . '" id="Form" method="get" accept-charset="utf-8">';
+		$expected = '<form action="/admin/employees/filter" role="form" data-toggle="pjax-form" class="filter-form clone-wrapper" autocomplete="off" data-max-clone="' . CAKE_THEME_FILTER_ROW_LIMIT . '" id="filterForm" method="get" accept-charset="utf-8">';
 		$this->assertData($expected, $result);
 
 		$result = $this->_targetObject->openFilterForm(true);
-		$expected = '<form action="/employees/filter" role="form" data-toggle="ajax-form" class="filter-form clone-wrapper" autocomplete="off" data-max-clone="' . CAKE_THEME_FILTER_ROW_LIMIT . '" id="Form" method="post" accept-charset="utf-8">' .
+		$expected = '<form action="/admin/employees/filter" role="form" data-toggle="ajax-form" class="filter-form clone-wrapper" autocomplete="off" data-max-clone="' . CAKE_THEME_FILTER_ROW_LIMIT . '" id="filterForm" method="post" accept-charset="utf-8">' .
 			'<div style="display:none;"><input type="hidden" name="_method" value="POST"/></div>';
 		$this->assertData($expected, $result);
 	}
@@ -122,7 +141,7 @@ class FilterHelperTest extends AppCakeTestCase {
 		];
 		$expected = [
 			'',
-			'<tr><th><a href="/index/sort:EmployeeTest.upn/direction:asc" title="' . __d('view_extension', 'Click to sort by this fiels') . '" data-toggle="pjax">EmployeeTest.upn</a></th> <th class="some-class"><a href="/index/sort:EmployeeTest.position/direction:asc" title="' . __d('view_extension', 'Click to sort by this fiels') . '" data-toggle="pjax">EmployeeTest.position</a></th> <th><a href="/index/sort:EmployeeTest.birthday/direction:asc" title="' . __d('view_extension', 'Click to sort by this fiels') . '" data-toggle="pjax">EmployeeTest.birthday</a></th> <th><a href="/index/sort:EmployeeTest.full_name/direction:asc" title="' . __d('view_extension', 'Click to sort by this fiels') . '" data-toggle="pjax">EmployeeTest.full_name</a></th> <th><a href="/index/sort:EmployeeTest.manager/direction:asc" title="' . __d('view_extension', 'Click to sort by this fiels') . '" data-toggle="pjax">EmployeeTest.manager</a></th> <th><a href="/index/sort:SomeModel.some_field/direction:asc" title="' . __d('view_extension', 'Click to sort by this fiels') . '" data-toggle="pjax"><b>Block</b></a></th> <th>EmployeeTest.mail</th> <th class="action hide-popup">' . __d('view_extension', 'Actions') . '</th></tr><tr class="active filter-header-row"><th colspan="10" class="text-center"><span class="action pull-left hidden-print hide-popup"><button class="btn btn-default btn-xs show-filter-btn" title="' . __d('view_extension', 'Show or hide filter') . '" data-toggle="collapse" data-target=".filter-collapse" aria-expanded="false" data-toggle-icons="fa-caret-square-down,fa-caret-square-up" type="button"><span class="far fa-caret-square-down fa-fw fa-lg"></span></button><a href=".prt" title="' . __d('view_extension', 'Print informations') . '" data-toggle="tooltip" target="_blank" class="btn btn-default btn-xs"><span class="fas fa-print fa-fw fa-lg"></span></a><a href=".docx" title="' . __d('view_extension', 'Export informations') . '" data-toggle="tooltip" class="btn btn-default btn-xs"><span class="far fa-file-word fa-fw fa-lg"></span></a></span>' . __d('view_extension', 'Data filter for the table: %s', '<code data-toggle="filter-conditions" data-empty-text="' . htmlentities(__d('view_extension', '&lt;None&gt;')) . '">' . __d('view_extension', '&lt;None&gt;') . '</code>') . '<span class="action pull-right hidden-print hide-popup"><select name="data[FilterCond][group]" title="' . __d('view_extension', 'Change the logical condition of the group') . '" class="form-control show-tick filter-condition input-xs" autocomplete="off" id="FilterCondGroup" data-toggle="select" data-style="btn-default btn-filter-condition btn-xs" data-width="fit" data-live-search="false">' . "\n" .
+			'<tr><th><a href="/admin/employees/filter/sort:EmployeeTest.upn/direction:asc" title="' . __d('view_extension', 'Click to sort by this fiels') . '" data-toggle="pjax">EmployeeTest.upn</a></th> <th class="some-class"><a href="/admin/employees/filter/sort:EmployeeTest.position/direction:asc" title="' . __d('view_extension', 'Click to sort by this fiels') . '" data-toggle="pjax">EmployeeTest.position</a></th> <th><a href="/admin/employees/filter/sort:EmployeeTest.birthday/direction:asc" title="' . __d('view_extension', 'Click to sort by this fiels') . '" data-toggle="pjax">EmployeeTest.birthday</a></th> <th><a href="/admin/employees/filter/sort:EmployeeTest.full_name/direction:asc" title="' . __d('view_extension', 'Click to sort by this fiels') . '" data-toggle="pjax">EmployeeTest.full_name</a></th> <th><a href="/admin/employees/filter/sort:EmployeeTest.manager/direction:asc" title="' . __d('view_extension', 'Click to sort by this fiels') . '" data-toggle="pjax">EmployeeTest.manager</a></th> <th><a href="/admin/employees/filter/sort:SomeModel.some_field/direction:asc" title="' . __d('view_extension', 'Click to sort by this fiels') . '" data-toggle="pjax"><b>Block</b></a></th> <th>EmployeeTest.mail</th> <th class="action hide-popup">' . __d('view_extension', 'Actions') . '</th></tr><tr class="active filter-header-row"><th colspan="10" class="text-center"><span class="action pull-left hidden-print hide-popup"><button class="btn btn-default btn-xs show-filter-btn" title="' . __d('view_extension', 'Show or hide filter') . '" data-toggle="collapse" data-target=".filter-collapse" aria-expanded="false" data-toggle-icons="fa-caret-square-down,fa-caret-square-up" type="button"><span class="far fa-caret-square-down fa-fw fa-lg"></span></button><a href="/admin/employees/filter.prt" title="' . __d('view_extension', 'Print informations') . '" data-toggle="tooltip" target="_blank" class="btn btn-default btn-xs"><span class="fas fa-print fa-fw fa-lg"></span></a><a href="/admin/employees/filter.docx" title="' . __d('view_extension', 'Export informations') . '" data-toggle="tooltip" class="btn btn-default btn-xs"><span class="far fa-file-word fa-fw fa-lg"></span></a></span>' . __d('view_extension', 'Data filter for the table: %s', '<code data-toggle="filter-conditions" data-empty-text="' . htmlentities(__d('view_extension', '&lt;None&gt;')) . '">' . __d('view_extension', '&lt;None&gt;') . '</code>') . '<span class="action pull-right hidden-print hide-popup"><select name="data[FilterCond][group]" title="' . __d('view_extension', 'Change the logical condition of the group') . '" class="form-control show-tick filter-condition input-xs" autocomplete="off" id="FilterCondGroup" data-toggle="select" data-style="btn-default btn-filter-condition btn-xs" data-width="fit" data-live-search="false">' . "\n" .
 				'<option value="" title="&amp;nbsp;&amp;&amp;" data-subtext="' . __d('view_extension', 'And') . '">&nbsp;&&</option>' . "\n" .
 				'<option value="or" title="&amp;nbsp;||" data-subtext="' . __d('view_extension', 'Or') . '">&nbsp;||</option>' . "\n" .
 				'<option value="not" title="&amp;nbsp;!" data-subtext="' . __d('view_extension', 'Not') . '">&nbsp;!</option>' . "\n" .

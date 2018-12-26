@@ -712,12 +712,15 @@ class ExtBs3FormHelper extends Bs3FormHelper {
 		$this->_prepareExtraOptions($options, $listExtraOptions, 'data-autocomplete-');
 
 		if (!isset($options['data-autocomplete-url']) && !isset($options['data-autocomplete-local'])) {
-			$options['data-autocomplete-url'] = $this->url([
-				'controller' => 'filter',
-				'action' => 'autocomplete',
-				'plugin' => 'cake_theme',
-				'ext' => 'json'
-			]);
+			$options['data-autocomplete-url'] = $this->url(
+				$this->ViewExtension->addUserPrefixUrl([
+					'controller' => 'filter',
+					'action' => 'autocomplete',
+					'plugin' => 'cake_theme',
+					'ext' => 'json',
+					'prefix' => false
+				])
+			);
 		}
 		if (isset($options['data-autocomplete-local']) && !empty($options['data-autocomplete-local'])) {
 			if (!is_array($options['data-autocomplete-local'])) {
