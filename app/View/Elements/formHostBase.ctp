@@ -50,7 +50,7 @@ if (!isset($isAddAction)) {
 	echo $this->Form->input('Host.template', ['label' => [__('Template'),
 		__('If enabled, this host is used as a template.'), ':'],
 		'type' => 'checkbox', 'autocomplete' => 'off']);
-	echo $this->Form->input('Host.id_text', ['label' => __('Name') . ':', 'title' => __('Either a regular expression or a literal host name. (e.g. libraryPC[0-9]+ OR principalcomp OR .+).'),
+	echo $this->Form->input('Host.id_text', ['label' => __('Name') . ':', 'title' => nl2br(__("Hostname might contain regular expressions as well as well as IP-address ranges.\n<i>Direct match:</i> This is tried first always. If the hostname matches exactly the value of 'name' this host node is applied to the machine. \n<i>IP-Ranges:</i> format has to be specified as follows: start[-end].start[-end].start[-end].start[-end], e.g.: 192.168.1.1 192.168.1.1-254 192.168.1-5.20-50\n<i>Regular expressions:</i> example: 'test-.*' will match all machines where the hostname is starting with 'test-' string.")),
 		'type' => 'text', 'data-toggle' => 'tooltip', 'autocomplete' => 'off', 'autofocus' => true]);
 	echo $this->Form->input('Host.mainprofile_id', ['label' => [__('Main profile'), __('The main profile that will always be evaluated for this host.'), ':'],
 		'type' => 'select', 'data-toggle' => 'tooltip', 'options' => $profiles, 'autocomplete' => 'off']);

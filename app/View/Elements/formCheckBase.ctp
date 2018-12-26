@@ -53,6 +53,7 @@ $checkType = $this->request->data('Check.type');
 $checkCondition = $this->request->data('Check.condition');
 $pathLabel = __('Path');
 $valueLabel = __('Value');
+$pathTooltip = $valueTooltip = '';
 $showPath = true;
 $showValue = true;
 $valueOptions = [];
@@ -64,20 +65,36 @@ switch ($checkType) {
 		break;
 	case CHECK_TYPE_UNINSTALL:
 		$pathLabel = __('Add/remove name');
-		if ($checkCondition >= CHECK_CONDITION_UNINSTALL_VERSION_SMALLER_THAN
-			&& $checkCondition <= CHECK_CONDITION_UNINSTALL_VERSION_GREATER_THAN_OR_EQUAL_TO) {
-			$valueLabel = __('Version');
-		} elseif ($checkCondition == CHECK_CONDITION_UNINSTALL_EXISTS) {
-			$showValue = false;
+		$pathTooltip = __("Checking the Microsoft software installation registry keys (as displayed in Windows 'Add/Remove Programs' section) for the existence of a particular package. Microsoft maintains the list of applications installed and available for uninstallation in the 'HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall' registry key. The 'DisplayName' registry key is used.");
+		switch ($checkCondition) {
+			case CHECK_CONDITION_UNINSTALL_VERSION_SMALLER_THAN:
+			case CHECK_CONDITION_UNINSTALL_VERSION_LESS_THAN_OR_EQUAL_TO:
+			case CHECK_CONDITION_UNINSTALL_VERSION_EQUAL_TO:
+			case CHECK_CONDITION_UNINSTALL_VERSION_GREATER_THAN:
+			case CHECK_CONDITION_UNINSTALL_VERSION_GREATER_THAN_OR_EQUAL_TO:
+				$valueLabel = __('Version');
+				$valueTooltip = __("The 'DisplayVersion' registry key is used");
+				break;
+
+			case CHECK_CONDITION_UNINSTALL_EXISTS:
+				$showValue = false;
+				break;
 		}
 		break;
 	case CHECK_TYPE_REGISTRY:
-		if ($checkCondition == CHECK_CONDITION_REGISTRY_EXISTS) {
-			$showValue = false;
+		$pathTooltip = __('Registry key.');
+		switch ($checkCondition) {
+			case CHECK_CONDITION_REGISTRY_EXISTS:
+				$showValue = false;
+				break;
+
+			case CHECK_CONDITION_REGISTRY_EQUALS:
+				$valueTooltip = __('Registry value. If you are checking the value of a DWORD, make sure to check the decimal and not the hexadecimal value.');
+				break;
 		}
 		break;
 	case CHECK_TYPE_FILE:
-		$pathLabel = __('File path');
+		$pathLabel = $pathTooltip = __('File path');
 		switch ($checkCondition) {
 			case CHECK_CONDITION_FILE_VERSION_SMALLER_THAN:
 			case CHECK_CONDITION_FILE_VERSION_LESS_THAN_OR_EQUAL_TO:
@@ -85,13 +102,18 @@ switch ($checkType) {
 			case CHECK_CONDITION_FILE_VERSION_GREATER_THAN:
 			case CHECK_CONDITION_FILE_VERSION_GREATER_THAN_OR_EQUAL_TO:
 				$valueLabel = __('Version');
+				$valueTooltip = __('File version');
 				break;
+
 			case CHECK_CONDITION_FILE_EXISTS:
 				$showValue = false;
 				break;
+
 			case CHECK_CONDITION_FILE_SIZE_EQUALS:
-				$valueLabel = __('Size (in bytes)');
+				$valueLabel = __('Size');
+				$valueTooltip = __('File size in bytes');
 				break;
+
 			case CHECK_CONDITION_FILE_DATE_MODIFY_EQUAL_TO:
 			case CHECK_CONDITION_FILE_DATE_MODIFY_NEWER_THAN:
 			case CHECK_CONDITION_FILE_DATE_MODIFY_OLDER_THAN:
@@ -106,22 +128,50 @@ switch ($checkType) {
 					'data-inputmask-regex' => '^@.+|^%.+|^[\+-]{1}[\d]+|(last-week|last-month|last-year|yesterday)|[\d]{4}-[\d]{2}-[\d]{2}(\s|T)[\d]{2}:[\d]{2}(:[\d]{2}\.[\d]{3}|:[\d]{2}|\+[\d]{2}:[\d]{2}|Z|)$'
 				];
 				$valueLabel = __('Date');
+				$valueTooltip = '<div class="text-left">' .
+__("Format:
+- Relative timestamp (in minutes):
+* -100 Means the file timestamp is compared to the timestamp 100 minutes ago.
+* +50 Means the file timestamp is compared to the timestamp 50 minutes in the future.
+- Absolute timestamp in ISO 8601 format:
+* '2007-11-23 22:00' (22:00 local time).
+* '2007-11-23T22:00' (Both, 'T' and space delimiter are allowed).
+* '2007-11-23 22:00:00' (specifies seconds which default to 0 above).
+* '2007-11-23 22:00:00.000' (specifies milliseconds which default to 0).
+- You can specify the timezone as well:
+'2007-11-23 22:00+01:00' (22:00 CET)
+'2007-11-23 21:00Z' (21:00 UTC/GMT = 22:00 CET)
+'2007-11-23 22:00+00:00' (21:00 UTC/GMT = 22:00 CET)
+- File-Comparison:
+Prefix your value with the '@' character in order to point to a file to which the timestamp of the file referred in path is compared.
+Examples:
+* @%SystemRoot%\\explorer.exe
+* @c:\\myfile.txt
+- Special terms:
+* 'last-week' Check against timestamp of exactly one week ago (7 days).
+* 'last-month' Check against timestamp of exactly one month ago (30 days).
+* 'last-year' Check against timestamp of exactly one year ago (365 days).
+* 'yesterday' Check against timestamp of yesterday (24 hours ago).") . '</div>';
 				break;
 		}
 		break;
 	case CHECK_TYPE_EXECUTE:
 		$pathLabel = __('Executable path');
+		$pathTooltip = __('Path to the script to be executed');
 		$valueLabel = __('Exit code');
+		$valueTooltip = __('Exit code for comparison');
 		break;
 	case CHECK_TYPE_HOST:
 		$showPath = false;
 		switch ($checkCondition) {
 			case CHECK_CONDITION_HOST_NAME:
 				$valueLabel = __('Host name');
+				$valueTooltip = __('This contains the name of the system, which is also contained in the Windows environment variable %COMPUTERNAME%.');
 				break;
 
 			case CHECK_CONDITION_HOST_OS:
 				$valueLabel = __('OS');
+				$valueTooltip = __('This contains the full description of the operations system, which consists of the following parts: OS-caption; OS-description; CSD-version (usually the service pack); OS-version.');
 				$valueOptions = [
 					'type' => 'select',
 					'options' => $listValues
@@ -130,6 +180,7 @@ switch ($checkType) {
 
 			case CHECK_CONDITION_HOST_ARCHITECTURE:
 				$valueLabel = __('Architecture');
+				$valueTooltip = __('This contains the processor architecture of the current operating system: x86, x64 or ia64.');
 				$valueOptions = [
 					'type' => 'select',
 					'options' => $listValues
@@ -138,18 +189,22 @@ switch ($checkType) {
 
 			case CHECK_CONDITION_HOST_IP_ADDRESSES:
 				$valueLabel = __('IP addresses');
+				$valueTooltip = __('This contains all currently active IP addresses of the system or an empty string, if no network adapter is currently active.');
 				break;
 
 			case CHECK_CONDITION_HOST_DOMAIN_NAME:
 				$valueLabel = __('Domain name');
+				$valueTooltip = __('This contains the name of the domain the system belongs to or an empty string, if it is not a domain member.');
 				break;
 
 			case CHECK_CONDITION_HOST_GROUPS:
 				$valueLabel = __('Groups');
+				$valueTooltip = __('This contains the names of all groups the system belongs to or an empty string, if it is not a member of any group.');
 				break;
 
 			case CHECK_CONDITION_HOST_LCID:
 				$valueLabel = __('Language ID');
+				$valueTooltip = __('This contains the language identifier of the operating system (e.g. 407,c07,1407).');
 				$valueOptions = [
 					'type' => 'select',
 					'multiple' => true,
@@ -159,6 +214,7 @@ switch ($checkType) {
 
 			case CHECK_CONDITION_HOST_LCID_OS:
 				$valueLabel = __('Language ID OS');
+				$valueTooltip = __('This contains the language identifier of the operating system INSTALL (e.g. 407,c07,1407).');
 				$valueOptions = [
 					'type' => 'select',
 					'multiple' => true,
@@ -168,6 +224,7 @@ switch ($checkType) {
 
 			case CHECK_CONDITION_HOST_ENVIRONMENT:
 				$valueLabel = __('Environment');
+				$valueTooltip = __("This contains condition for checking environment variables, e.g.: 'PKG_VER=^$'.");
 				break;
 		}
 		break;
@@ -209,13 +266,15 @@ switch ($checkType) {
 		]
 	];
 if ($showPath) {
-	echo $this->Form->input('Check.path', ['label' => $pathLabel . ':', 'title' => __('The contents of this field vary depending on the check type and condition.'),
+	echo $this->Form->input('Check.path', ['label' => [$pathLabel, nl2br($pathTooltip), ':'],
+		'title' => (empty($pathTooltip) ? __('The contents of this field vary depending on the check type and condition.') : null),
 		'type' => 'text', 'autocomplete' => 'off',
 		'data-toggle' => 'textcomplete', 'data-textcomplete-strategies' => json_encode($strategies)
 	]);
 }
 if ($showValue) {
-	echo $this->Form->input('Check.value', $valueOptions + ['label' => $valueLabel . ':', 'title' => __('The contents of this field vary depending on the check type and condition.'),
+	echo $this->Form->input('Check.value', $valueOptions + ['label' => [$valueLabel, nl2br($valueTooltip), ':'],
+		'title' => (empty($valueTooltip) ? __('The contents of this field vary depending on the check type and condition.') : null),
 		'type' => 'text', 'autocomplete' => 'off',
 		'data-toggle' => 'textcomplete', 'data-textcomplete-strategies' => json_encode($strategies)
 	]);

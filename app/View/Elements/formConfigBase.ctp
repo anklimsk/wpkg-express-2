@@ -120,7 +120,7 @@ if (!isset($listlogLevel)) {
 			'title' => __('This might be an UNC path on the network as well as a local path. Environment variables are expanded.'),
 			'type' => 'text', 'data-toggle' => 'tooltip', 'disabled' => true],
 		$modelName . '.logfilePattern' => ['label' => __('Pattern to generate the log file name') . ':',
-			'title' => __('Recognized patterns:<br />[HOSTNAME] replaced by the executing hostname<br />[PROFILE] replaced by the applying profile name<br />[YYYY] replaced by year (4 digits)<br />[MM] replaced by month number (2 digits)<br />[DD] replaced by the day of the month (2 digits)<br />[hh] replaced by hour of the day (24h format, 2 digits)<br />[mm] replaced by minutes (2 digits)<br />[ss] replaced by seconds (2 digits)'),
+			'title' => nl2br(__("Recognized patterns:\n[HOSTNAME] replaced by the executing hostname\n[PROFILE] replaced by the applying profile name\n[YYYY] replaced by year (4 digits)\n[MM] replaced by month number (2 digits)\n[DD] replaced by the day of the month (2 digits)\n[hh] replaced by hour of the day (24h format, 2 digits)\n[mm] replaced by minutes (2 digits)\n[ss] replaced by seconds (2 digits)")),
 			'type' => 'text', 'data-toggle' => 'tooltip', 'disabled' => true],
 		$modelName . '.packages_path' => ['label' => __('Define paths where WPKG looks for XML packages files') . ':',
 			'title' => __('Multiple paths can be specified using the pipe symbol (|) as paths-separrator. If any of the paths are specified WPKG will ignore the built-in defaults.'),

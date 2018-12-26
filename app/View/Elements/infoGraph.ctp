@@ -45,7 +45,7 @@ if (!isset($useBuildGraph)) {
 			[
 				'type' => 'text',
 				'label' => __('Host name') . ':',
-				'title' => __('Build graph for host by name.'),
+				'title' => __('Build graph for host by name. Supports autocomplete.'),
 				'maxlength' => '50',
 				'autocomplete' => 'off',
 				'data-toggle' => 'autocomplete',

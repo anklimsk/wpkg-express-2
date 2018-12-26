@@ -52,7 +52,7 @@ if (!isset($isAddAction)) {
 	}
 	echo $this->Form->hiddenFields($hiddenFields);
 	echo $this->Form->staticControl(__('Variable type') . ':', h($fullName));
-	echo $this->Form->input('Variable.name', ['label' => __('Variable name') . ':', 'title' => __('Name of variable'),
+	echo $this->Form->input('Variable.name', ['label' => __('Variable name') . ':', 'title' => __('Name of variable. Supports autocomplete.'),
 		'type' => 'text', 'autocomplete' => 'off', 'autofocus' => true,
 		'data-toggle' => 'autocomplete', 'data-autocomplete-url' => '/cake_theme/filter/autocomplete.json',
 		'data-autocomplete-type' => 'Variable.name',
@@ -71,7 +71,7 @@ if (!isset($isAddAction)) {
 			'replace' => 'return "$1" + value + "%";'
 		]
 	];
-	echo $this->Form->input('Variable.value', ['label' => __('Value') . ':', 'title' => __('Value of variable'),
+	echo $this->Form->input('Variable.value', ['label' => __('Value') . ':', 'title' => __('Value of variable. Supports autocomplete.'),
 		'type' => 'text', 'autocomplete' => 'off',
 		'data-toggle' => 'textcomplete', 'data-textcomplete-strategies' => json_encode($strategies)
 	]);

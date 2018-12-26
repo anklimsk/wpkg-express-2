@@ -90,11 +90,11 @@ if (!empty($varsExt)) {
 	echo $this->Form->inputs([
 		'legend' => __('Search on LDAP server'),
 			'Setting.SearchBaseUser' => ['label' => __('Search base of users') . ':',
-				'title' => __('Distinguished name of the search base object for search employee on LDAP server (e.g. CN=Users,DC=fabrikam,DC=com)'), 'type' => 'text',
+				'title' => __('Distinguished name of the search base object for search employee on LDAP server (e.g. CN=Users,DC=fabrikam,DC=com). Supports autocomplete.'), 'type' => 'text',
 				'data-toggle' => 'autocomplete', 'data-autocomplete-local' => json_encode($containerList),
 				'data-autocomplete-min-length' => 1],
 			'Setting.SearchBaseComp' => ['label' => __('Search base of computers') . ':',
-				'title' => __('Distinguished name of the search base object for search computers on LDAP server (e.g. CN=Computers,DC=fabrikam,DC=com)'), 'type' => 'text',
+				'title' => __('Distinguished name of the search base object for search computers on LDAP server (e.g. CN=Computers,DC=fabrikam,DC=com). Supports autocomplete.'), 'type' => 'text',
 				'data-toggle' => 'autocomplete', 'data-autocomplete-local' => json_encode($containerList),
 				'data-autocomplete-min-length' => 1],
 	]);

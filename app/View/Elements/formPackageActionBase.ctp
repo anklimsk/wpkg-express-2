@@ -53,7 +53,8 @@ if (!isset($refId)) {
 			$commandTypeOptions = ['type' => 'hidden', 'data-toggle' => null, 'autocomplete' => null];
 			$commandOptions = ['label' => __('URL') . ':', 'title' => __('URL for download.')];
 			$workDirOptions = ['label' => __('Target') . ':', 'title' => __('Path to file for saving.')];
-			$timeoutOptions = ['label' => __('Expand URL'), 'title' => __('Expansion of environment variables in download URLs.'),
+			$timeoutOptions = ['label' => [__('Expand URL'), __('Defines whether the url attribute is expanded (ie. environment variables are replaced).'), ':'],
+				'title' => __('Expansion of environment variables in download URLs.'),
 				'type' => 'checkbox'];
 		break;
 		default:
@@ -100,12 +101,12 @@ if (!isset($refId)) {
 						'replace' => 'return "$1" + value;'
 					]
 				];
-				$commandOptions = ['label' => __('Command') . ':', 'title' => __('The command to be executed. Autocompletion is available for global variables, package variables and console commands like "%ComSpec% /С".'),
+				$commandOptions = ['label' => __('Command') . ':', 'title' => __('The command to be executed. Autocompletion is available for global variables, package variables, console commands like "%ComSpec% /C" and installer command line switches.'),
 					'type' => 'textarea', 'rows' => 4, 'autocorrect' => 'off', 'autocapitalize' => 'off', 'spellcheck' => 'false',
 					'data-toggle' => 'textcomplete', 'data-textcomplete-strategies' => json_encode($strategies),
 				];
 				$workDirOptions = ['label' => __('Work directory') . ':', 'title' => __('The working directory to use when executing this action.')];
-				$timeoutOptions = ['label' => __('Timeout') . ':', 'title' => __('The maximum number of seconds to wait for the action to execute. Default is %d.', ACTION_COMMAND_DEFAULT_TIMEOUT),
+				$timeoutOptions = ['label' => __('Timeout') . ':', 'title' => __('The maximum number of seconds to wait for the action to execute.'),
 					'type' => 'spin', 'max' => ACTION_COMMAND_MAX_TIMEOUT];
 			}
 	}
