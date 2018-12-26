@@ -52,12 +52,13 @@ if (!isset($useBuildGraph)) {
 				'data-autocomplete-url' => '/cake_theme/filter/autocomplete.json',
 				'data-autocomplete-type' => 'Host.id_text',
 				'data-autocomplete-min-length' => CAKE_SEARCH_INFO_QUERY_SEARCH_MIN_LENGTH,
-				'between' => '<div class="input-group">',
-				'after' => $this->Html->tag('span',
+				'beforeInput' => '<div class="input-group">',
+				'afterInput' => $this->Html->div(
+					'input-group-btn',
 					$this->ViewExtension->button('fas fa-pencil-ruler', 'btn btn-default',
-					['id' => 'btnGenerateId', 'title' => __('Build a graph.'), 'data-toggle' => 'title',
-					'type' => 'submit']),
-					['class' => 'input-group-btn']) . '</div>'
+						['id' => 'btnGenerateId', 'title' => __('Build a graph.'), 'data-toggle' => 'title',
+						'type' => 'submit'])
+					) . '</div>'
 			]
 		);
 	} else {

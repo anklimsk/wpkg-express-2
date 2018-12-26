@@ -67,8 +67,8 @@ if (!isset($isAddAction)) {
 		$modelName . '.id_text' => ['label' => __('Package ID') . ':', 'title' => __('Unique ID containing only letters, numbers, underscores and hyphens (e.g. fooBarBaz_ultra OR foo-bar-baz-ultra).'),
 			'type' => 'text', 'data-toggle' => 'tooltip', 'autocomplete' => 'off',
 			'data-inputmask-regex' => '^[a-zA-Z0-9]{1}[a-zA-Z0-9_\-]+', 'autofocus' => true,
-			'between' => '<div class="input-group">',
-			'after' => $this->Html->div('input-group-btn',
+			'beforeInput' => '<div class="input-group">',
+			'afterInput' => $this->Html->div('input-group-btn',
 				$this->ViewExtension->button('fas fa-sync-alt', 'btn btn-default',
 				['id' => 'btnGenerateId', 'title' => __('Create a package ID based on his name. Repeated click changes the strategy for creating an ID.'), 'data-toggle' => 'title'])
 			) . '</div>'],
@@ -78,8 +78,9 @@ if (!isset($isAddAction)) {
 			'type' => 'text', 'data-toggle' => 'tooltip', 'autocomplete' => 'off'],
 		$modelName . '.priority' => ['label' => __('Priority') . ':', 'title' => __('An integer value (any positive non-decimal number) that indicates this package\'s priority. Higher priorities take precedence over lower priorities (e.g. 10).'),
 			'type' => 'text', 'data-toggle' => 'tooltip', 'autocomplete' => 'off',
-			'data-inputmask-mask' => '9{1,}', 'between' => '<div class="input-group">',
-			'after' => $this->Html->div('input-group-btn',
+			'data-inputmask-mask' => '9{1,}',
+			'beforeInput' => '<div class="input-group">',
+			'afterInput' => $this->Html->div('input-group-btn',
 				$this->ViewExtension->button(__('Priorities') . ' ' .
 					$this->Html->tag('span', '', ['class' => 'caret']),
 					'btn btn-default dropdown-toggle',
