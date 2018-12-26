@@ -87,7 +87,10 @@ if (!isset($showBtnExpand)) {
 				}
 				$timeOut = $emptyText;
 			} else {
-				$timeOut = gmdate('H:i:s', $packageAction['timeout']);
+				$timeOut = $emptyText;
+				if (!empty($packageAction['timeout'])) {
+					$timeOut = gmdate('H:i:s', $packageAction['timeout']);
+				}
 			}
 			$exitCodes = $this->element('infoExitCodes', ['exitCodes' => $packageAction['ExitCode'], 'showShort' => true]);
 		}
