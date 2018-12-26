@@ -147,7 +147,7 @@ class UploadsController extends AppController {
 		$this->loadModel('CakeTheme.ExtendQueuedTask');
 		$taskParam = compact('fileName');
 		if ($this->ExtendQueuedTask->createJob('ImportXml', $taskParam, null, 'import')) {
-			$this->Flash->success(__('XML file uploaded successfully.<br />Information will be processed by queue.'));
+			$this->Flash->success(nl2br(__("XML file uploaded successfully.\nInformation will be processed by queue.")));
 			$this->ViewExtension->setProgressSseTask('ImportXml');
 		} else {
 			$oFile->error = __('Unable to create queue task.');
