@@ -49,8 +49,7 @@ if (!isset($useBuildGraph)) {
 				'maxlength' => '50',
 				'autocomplete' => 'off',
 				'data-toggle' => 'autocomplete',
-				'data-autocomplete-url' => '/cake_theme/filter/autocomplete.json',
-				'data-autocomplete-type' => 'Host.id_text',
+				'data-autocomplete-url' => $this->Html->url(['controller' => 'hosts', 'action' => 'autocomplete', 'ext' => 'json']),
 				'data-autocomplete-min-length' => CAKE_SEARCH_INFO_QUERY_SEARCH_MIN_LENGTH,
 				'beforeInput' => '<div class="input-group">',
 				'afterInput' => $this->Html->div(

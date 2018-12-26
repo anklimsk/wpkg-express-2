@@ -114,17 +114,26 @@ class LdapComputer extends AppModel {
 	}
 
 /**
- * Return array information of all computers
+ * Return list information of all computers
  *
  * @param string|null $name Name for select computers
  * @param int|string $limit Limit for result
  * @return array Return array of informationa about a computers.
  */
-	public function getListComputers($name = '', $limit = CAKE_LDAP_SYNC_AD_LIMIT) {
-		$result = [];
+	protected function _getListComputers($name = '', $limit = CAKE_LDAP_SYNC_AD_LIMIT) {
+		$dataStr = serialize($limit);
+		$cachePath = 'ListInfo.LdapComputer.' . md5($dataStr);
 		$name = trim($name);
+		if (empty($name)) {
+			$cached = Cache::read($cachePath, CACHE_KEY_LISTS_INFO_LDAP_COMPUTER);
+			if (!empty($cached)) {
+				return $cached;
+			}
+		}
+
+		$result = [];
 		$conditions = '(&(!(useraccountcontrol:1.2.840.113556.1.4.803:=2))(objectClass=computer)(name=' . $name . '*))';
-		$order = CAKE_LDAP_LDAP_ATTRIBUTE_NAME;
+		$order = [CAKE_LDAP_LDAP_ATTRIBUTE_NAME];
 		$fields = [
 			CAKE_LDAP_LDAP_ATTRIBUTE_NAME,
 			CAKE_LDAP_LDAP_ATTRIBUTE_DISTINGUISHED_NAME
@@ -138,7 +147,51 @@ class LdapComputer extends AppModel {
 			'{n}.' . $this->alias . '.' . CAKE_LDAP_LDAP_ATTRIBUTE_DISTINGUISHED_NAME,
 			'{n}.' . $this->alias . '.' . CAKE_LDAP_LDAP_ATTRIBUTE_NAME
 		);
+		if (empty($name)) {
+			Cache::write($cachePath, $result, CACHE_KEY_LISTS_INFO_LDAP_COMPUTER);
+		}
 
 		return $result;
+	}
+
+/**
+ * Return list information of all computers from cache
+ *
+ * @param string|null $name Name for select computers
+ * @param int|string $limit Limit for result
+ * @return array Return array of informationa about a computers.
+ */
+	public function getListComputersFromCache($name = '', $limit = null) {
+		$result = [];
+		$name = trim($name);
+		$listComputers = $this->_getListComputers();
+		if (empty($listComputers)) {
+			return $result;
+		}
+		$result = $listComputers;
+		if (!empty($name)) {
+			$result = array_filter(
+				$listComputers,
+				function ($val) use ($name) {
+					return (mb_stripos($val, $name) !== false);
+				}
+			);
+		}
+		if (!empty($result) && !empty($limit)) {
+			$result = array_slice($result, 0, $limit);
+		}
+
+		return $result;
+	}
+
+/**
+ * Return list information of all computers
+ *
+ * @param string|null $name Name for select computers
+ * @param int|string $limit Limit for result
+ * @return array Return array of informationa about a computers.
+ */
+	public function getListComputers($name = '', $limit = CAKE_LDAP_SYNC_AD_LIMIT) {
+		return $this->_getListComputers($name, $limit);
 	}
 }

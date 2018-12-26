@@ -2499,6 +2499,16 @@ if (!defined('CACHE_KEY_LISTS_INFO_REPORT_STATE')) {
 }
 
 /**
+ * Cache configuration for store lists information of model `LdapComputer`
+ *
+ * Used for access to cached data of for store lists information
+ *  of model `LdapComputer`. Default value `lists_info_ldap_computer`.
+ */
+if (!defined('CACHE_KEY_LISTS_INFO_LDAP_COMPUTER')) {
+	define('CACHE_KEY_LISTS_INFO_LDAP_COMPUTER', 'lists_info_ldap_computer');
+}
+
+/**
  * Cache configuration for store lists information of model `Wpi`
  *
  * Used for access to cached data of for store lists information

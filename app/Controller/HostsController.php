@@ -38,7 +38,8 @@ App::uses('AppController', 'Controller');
  *  - set or unset the host usage flag as a template;
  *  - to copy host;
  *  - to create new host based on template;
- *  - to generate new hosts based on template by name from LDAP.
+ *  - to generate new hosts based on template by name from LDAP;
+ *  - autocomplete name of computers from LDAP.
  *
  * @package app.Controller
  */
@@ -124,6 +125,7 @@ class HostsController extends AppController {
 			'admin_drop',
 			'admin_move',
 			'admin_computers',
+			'admin_autocomplete'
 		];
 
 		parent::beforeFilter();
@@ -591,6 +593,41 @@ class HostsController extends AppController {
  */
 	public function admin_computers() {
 		$this->_computers();
+	}
+
+/**
+ * Base of action `autocomplete`. Is used to autocomplete computer name.
+ *
+ * POST Data:
+ *  - `query`: query string for autocomple.
+ *
+ * @throws BadRequestException if request is not `AJAX`, or not `POST`
+ *  or not `JSON`
+ * @return void
+ */
+	protected function _autocomplete() {
+		Configure::write('debug', 0);
+		if (!$this->request->is('ajax') || !$this->request->is('post') ||
+			!$this->RequestHandler->prefers('json')) {
+			throw new BadRequestException();
+		}
+
+		$query = (string)$this->request->data('query');
+		$limit = $this->Setting->getConfig('AutocompleteLimit');
+		$data = $this->Host->getListComputersByQuery($query, $limit);
+
+		$this->set(compact('data'));
+		$this->set('_serialize', 'data');
+	}
+
+/**
+ * Action `autocomplete`. Is used to autocomplete computer name.
+ *  User role - administrator.
+ *
+ * @return void
+ */
+	public function admin_autocomplete() {
+		$this->_autocomplete();
 	}
 
 /**
