@@ -57,6 +57,24 @@ if (!isset($label)) {
 	$label = null;
 }
 
+if (!isset($extInfoElement)) {
+	$extInfoElement = null;
+}
+
+if (!isset($extBtnElement)) {
+	$extBtnElement = null;
+}
+
+$useExtInfoElement = false;
+if (!empty($extInfoElement) && $this->elementExists($extInfoElement)) {
+	$useExtInfoElement = true;
+}
+
+$useExtBtnElement = false;
+if (!empty($extBtnElement) && $this->elementExists($extBtnElement)) {
+	$useExtBtnElement = true;
+}
+
 $list = [];
 	foreach ($dependencies as $dependencyItem) {
 		$actions = '';
@@ -78,46 +96,62 @@ $list = [];
 					'btn-success',
 					['controller' => 'checks', 'action' => 'view', $checkRefType, $dependencyItem['id']],
 					[
+						'title' => __('Edit checks'),
 						'action-type' => 'modal',
 						'data-modal-size' => 'lg'
 					]
 				);
 			}
 		}
-		$attributes = '';
-		$checks = '';
-		if (isset($dependencyItem['Attribute']) && !empty($dependencyItem['Attribute'])) {
-			$attributes = ' ' . $this->element('infoAttributes', ['attributes' => $dependencyItem['Attribute'], 'displayInline' => true]);
+		if ($useExtBtnElement) {
+			$actions .= $this->element($extBtnElement, ['data' => $dependencyItem]);
 		}
-		if (isset($dependencyItem['Check']) && !empty($dependencyItem['Check'])) {
-			$checks = $this->element('infoChecks', ['checks' => $dependencyItem['Check'], 'nest' => true, 'expandAll' => false]);
-		}
-		if (!empty($modelName) && isset($dependencyItem[$modelName])) {
-			$dependencyItem = $dependencyItem[$modelName];
-		}
-
+		$dependencyInfo = [];
 		$dependencyName = '';
-		if (isset($dependencyItem['name'])) {
-			$dependencyName = h($dependencyItem['name']);
-		} elseif (isset($dependencyItem['id_text'])) {
-			 $dependencyName = h($dependencyItem['id_text']);
-		} elseif (isset($dependencyItem['id'])) {
-			$dependencyName = $dependencyItem['id'];
+		$checks = '';
+		$dependencyItemData = $dependencyItem;
+		if (!empty($modelName) && isset($dependencyItem[$modelName])) {
+			$dependencyItemData = $dependencyItem[$modelName];
 		}
-		if (!$dependencyItem['enabled']) {
+		if (isset($dependencyItemData['name'])) {
+			$dependencyName = h($dependencyItemData['name']);
+		} elseif (isset($dependencyItemData['id_text'])) {
+			 $dependencyName = h($dependencyItemData['id_text']);
+		} elseif (isset($dependencyItemData['id'])) {
+			$dependencyName = $dependencyItemData['id'];
+		}
+		if (!$dependencyItemData['enabled']) {
 			$dependencyName = $this->Html->tag('s', $dependencyName);
 		}
-		if (!empty($controllerName) && isset($dependencyItem['id'])) {
+		if (!empty($controllerName) && isset($dependencyItemData['id'])) {
 			$dependencyName = $this->ViewExtension->popupModalLink(
 				$dependencyName,
-				['controller' => $controllerName, 'action' => 'view', $dependencyItem['id']],
+				['controller' => $controllerName, 'action' => 'view', $dependencyItemData['id']],
 				[
 					'data-modal-size' => 'lg',
 					'data-popover-size' => 'lg'
 				]
 			);
 		}
-		$row = $this->Html->div('dependency', $this->Html->tag('span', $dependencyName . $attributes) . ' ' . $this->Html->tag('span', $actions, ['class' => 'action hide-popup'])) . $checks;
+		$dependencyInfo[] = $dependencyName;
+		if (isset($dependencyItem['Attribute']) && !empty($dependencyItem['Attribute'])) {
+			$attributes = $this->element('infoAttributes', ['attributes' => $dependencyItem['Attribute'], 'displayInline' => true]);
+			if (!empty($attributes)) {
+				$dependencyInfo[] = $attributes;
+			}
+		}
+		if (isset($dependencyItem['Check']) && !empty($dependencyItem['Check'])) {
+			$checks = $this->element('infoChecks', ['checks' => $dependencyItem['Check'], 'nest' => true, 'expandAll' => false]);
+		}
+		if ($useExtInfoElement) {
+			$extInfo = $this->element($extInfoElement, ['data' => $dependencyItem]);
+			if (!empty($extInfo)) {
+				$dependencyInfo[] = $extInfo;
+			}
+		}
+		$dependencyLabel = implode(' ', $dependencyInfo);
+		$row = $this->Html->div('dependency', $this->Html->tag('span', $dependencyLabel) .
+			' ' . $this->Html->tag('span', $actions, ['class' => 'action hide-popup'])) . $checks;
 		$list[] = $row;
 	}
 
