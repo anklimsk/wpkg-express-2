@@ -25,10 +25,6 @@
  * @package app.View.Elements
  */
 
-if (!isset($profiles)) {
-	$profiles = [];
-}
-
 if (!isset($isAddAction)) {
 	$isAddAction = false;
 }
