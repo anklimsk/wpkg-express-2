@@ -26,7 +26,6 @@
  */
 
 App::uses('AppModel', 'Model');
-App::uses('Hash', 'Utility');
 
 /**
  * The model is used to manage associated packages of profile.
@@ -81,6 +80,20 @@ class PackagesProfile extends AppModel {
 			'message' => 'Incorrect foreign key',
 			'allowEmpty' => false,
 			'required' => true,
+			'last' => true,
+		],
+		'installdate' => [
+			'rule' => ['custom', '/^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:Z|[+-][01]\d:[0-5]\d)$/'],
+			'message' => 'Incorrect installation date',
+			'allowEmpty' => true,
+			'required' => false,
+			'last' => true,
+		],
+		'uninstalldate' => [
+			'rule' => ['custom', '/^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:Z|[+-][01]\d:[0-5]\d)$/'],
+			'message' => 'Incorrect uninstallation date',
+			'allowEmpty' => true,
+			'required' => false,
 			'last' => true,
 		],
 	];
@@ -165,6 +178,31 @@ class PackagesProfile extends AppModel {
 	];
 
 /**
+ * Return information of package in profile
+ *
+ * @param int|string $id The ID of the record to read.
+ * @return array|bool Return information of package in profile,
+ *  or False on failure.
+ */
+	public function get($id = null) {
+		if (empty($id)) {
+			return false;
+		}
+
+		$conditions = [$this->alias . '.id' => $id];
+		$fields = [
+			$this->alias . '.id',
+			$this->alias . '.profile_id',
+			$this->alias . '.package_id',
+			$this->alias . '.installdate',
+			$this->alias . '.uninstalldate',
+		];
+		$recursive = -1;
+
+		return $this->find('first', compact('conditions', 'fields', 'recursive'));
+	}
+
+/**
  * Return array for render profile package XML elements
  *
  * @param array $data Information of package dependencies
@@ -172,7 +210,11 @@ class PackagesProfile extends AppModel {
  * @see RenderXmlData::renderXml()
  */
 	public function getXMLdata($data = []) {
-		return $this->getDependsXMLdata($data, 'package-id', 'package');
+		$extAttributes = [
+			'installdate',
+			'uninstalldate'
+		];
+		return $this->getDependsXMLdata($data, 'package-id', 'package', $extAttributes);
 	}
 
 /**

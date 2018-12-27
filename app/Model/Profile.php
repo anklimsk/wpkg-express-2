@@ -136,7 +136,9 @@ class Profile extends AppModel {
 			'fields' => [
 				'PackagesProfile.id',
 				'PackagesProfile.profile_id',
-				'PackagesProfile.package_id'
+				'PackagesProfile.package_id',
+				'PackagesProfile.installdate',
+				'PackagesProfile.uninstalldate'
 			]
 		],
 		'ProfilesProfile' => [

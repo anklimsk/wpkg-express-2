@@ -38,7 +38,8 @@ App::uses('AppController', 'Controller');
  *  - to copy profile;
  *  - to create new profile based on template;
  *  - to edit packages included in profile;
- *  - to edit profile inclusion in hosts.
+ *  - to edit profile inclusion in hosts;
+ *  - to edit installation date of package in profile.
  *
  * @package app.Controller
  */
@@ -534,4 +535,52 @@ class ProfilesController extends AppController {
 		$this->_hosts($id);
 	}
 
+/**
+ * Base of action `installdate`. Used to edit information about installation
+ *  date of package in profile.
+ *
+ * POST Data:
+ *  - PackagesProfile: array data of package in profile
+ *
+ * @param int|string $id ID of record for editing
+ * @throws NotFoundException if record for parameter $id was not found
+ * @return void
+ */
+	protected function _installdate($id = null) {
+		$this->view = 'installdate';
+		$packagesProfile = $this->Profile->PackagesProfile->get($id);
+		if (empty($packagesProfile)) {
+			return $this->ViewExtension->setExceptionMessage(new NotFoundException(__('Invalid ID for package in profile')));
+		}
+
+		$fullName = $this->Profile->PackagesProfile->getFullName($id);
+		$breadCrumbs = $this->Profile->PackagesProfile->getBreadcrumbInfo($id);
+		$breadCrumbs[] = __('Editing');
+		if ($this->request->is(['post', 'put'])) {
+			if ($this->Profile->PackagesProfile->save($this->request->data)) {
+				$this->Flash->success(__('Installation date of package has been saved.'));
+
+				return $this->ViewExtension->redirectByUrl(null, 'profile');
+			} else {
+				$this->Flash->error(__('Installation date of package could not be saved. Please, try again.'));
+			}
+		} else {
+			$this->ViewExtension->setRedirectUrl(null, 'profile');
+			$this->request->data = $packagesProfile;
+		}
+		$pageHeader = __('Editing installation date of package');
+
+		$this->set(compact('fullName', 'breadCrumbs', 'pageHeader'));
+	}
+
+/**
+ * Action `installdate`. Used to edit information about installation
+ *  date of package in profile.
+ *
+ * @param int|string $id ID of record for editing
+ * @return void
+ */
+	public function admin_installdate($id = null) {
+		$this->_installdate($id);
+	}
 }

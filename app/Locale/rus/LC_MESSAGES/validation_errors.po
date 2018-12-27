@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wpkgExpress II\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2018-12-13 15:32+0300\n"
+"PO-Revision-Date: 2018-12-27 17:00+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -30,9 +30,9 @@ msgstr "Эта версия пакета уже существует."
 #: host_id;validation profile_id Model/Log.php:validation host_id
 #: Model/PackagesChain.php:validation package_id;validation dependency_id
 #: Model/PackagesInclude.php:validation Model/PackagesPackage.php:validation
-#: Model/PackagesProfile.php:validation Model/ProfileDependency.php:validation
-#: profile_id;validation Model/ProfilesProfile.php:validation
-#: Model/Report.php:validation package_id Model/Wpi.php:validation category_id
+#: Model/PackagesProfile.php:validation Model/ProfilesProfile.php:validation
+#: profile_id;validation Model/Report.php:validation package_id
+#: Model/Wpi.php:validation category_id
 msgid "Incorrect foreign key"
 msgstr "Неверный внешний ключ"
 
@@ -167,24 +167,23 @@ msgstr "Недопустимый атрибут пакета execute."
 msgid "The package's notify attribute must be true or false."
 msgstr "Атрибут уведомления пакета должен быть истинным или ложным."
 
-#: Model/Package.php:validation for field DependedOnBy
+#: Model/Package.php:validation for field DependsOn
 #: Model/PackagesPackage.php:validation dependency_id
-#: Model/Profile.php:validation ProfileDependency
-#: Model/ProfileDependency.php:validation Model/ProfilesProfile.php:validation
+#: Model/Profile.php:validation Model/ProfilesProfile.php:validation
 msgid "Depended on self"
 msgstr "Зависит от себя"
 
-#: Model/Package.php:validation for field DependedOnBy;validation
-#: IncludedOnBy;validation ChainOnBy
+#: Model/Package.php:validation for field DependsOn;validation
+#: Includes;validation Chains
 msgid "Dependency intersection"
 msgstr "Пересечение зависимостей"
 
-#: Model/Package.php:validation for field IncludedOnBy
+#: Model/Package.php:validation for field Includes
 #: Model/PackagesInclude.php:validation dependency_id
 msgid "Included on self"
 msgstr "Включено в себя"
 
-#: Model/Package.php:validation for field ChainOnBy
+#: Model/Package.php:validation for field Chains
 #: Model/PackagesChain.php:validation dependency_id
 msgid "Chain on self"
 msgstr "В цепочке у себя"
@@ -228,6 +227,14 @@ msgstr "Приоритет не является целым числом."
 #: Model/PackagePriority.php:validation for field value
 msgid "The priority already exists."
 msgstr "Приоритет уже существует."
+
+#: Model/PackagesProfile.php:validation for field installdate
+msgid "Incorrect installation date"
+msgstr "Неверная дата установки"
+
+#: Model/PackagesProfile.php:validation for field uninstalldate
+msgid "Incorrect uninstallation date"
+msgstr "Неверная дата удаления"
 
 #: Model/Profile.php:validation for field id_text
 msgid ""

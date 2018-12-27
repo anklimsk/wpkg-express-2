@@ -1340,9 +1340,13 @@ class Import extends AppModel {
 		}
 
 		$this->_arrayIfY($xmlData);
+		$listAttributes = [
+			'installdate',
+			'uninstalldate'
+		];
 		foreach ($xmlData as $xmlDataItem) {
-			$packageId = $this->getIdFromNamesCache('Package', $xmlDataItem['@package-id'], $xmlDataItem['@package-id'], !$this->_caseSensitivity);
-			$packageInfo = ['PackagesProfile' => ['package_id' => $packageId]];
+			$packageInfo = ['PackagesProfile' => $this->_extractAttributes($xmlDataItem, $listAttributes)];
+			$packageInfo['PackagesProfile']['package_id'] = $this->getIdFromNamesCache('Package', $xmlDataItem['@package-id'], $xmlDataItem['@package-id'], !$this->_caseSensitivity);
 			$packageInfo['Attribute'] = $this->_prepareAttributes($xmlDataItem);
 			$packageInfo['Check'] = [];
 			if (isset($xmlDataItem['condition']['check'])) {

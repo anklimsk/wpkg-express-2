@@ -467,6 +467,8 @@ class AppSchema extends CakeSchema {
 		'id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'unsigned' => false, 'key' => 'primary'],
 		'profile_id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'unsigned' => false],
 		'package_id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'unsigned' => false],
+		'installdate' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 30, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
+		'uninstalldate' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 30, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
 		'indexes' => [
 			'PRIMARY' => ['column' => 'id', 'unique' => 1]
 		],
