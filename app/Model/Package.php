@@ -148,7 +148,7 @@ class Package extends AppModel {
 			'message' => "The package's notify attribute must be true or false.",
 			'last' => true
 		],
-		'DependedOnBy' => [
+		'DependsOn' => [
 			'selfDependency' => [
 				'rule' => ['selfDependency', 'id'],
 				'message' => 'Depended on self',
@@ -164,7 +164,7 @@ class Package extends AppModel {
 				'last' => true,
 			]
 		],
-		'IncludedOnBy' => [
+		'Includes' => [
 			'selfDependency' => [
 				'rule' => ['selfDependency', 'id'],
 				'message' => 'Included on self',
@@ -180,7 +180,7 @@ class Package extends AppModel {
 				'last' => true,
 			]
 		],
-		'ChainOnBy' => [
+		'Chains' => [
 			'selfDependency' => [
 				'rule' => ['selfDependency', 'id'],
 				'message' => 'Chain on self',
@@ -387,9 +387,9 @@ class Package extends AppModel {
 		$value = reset($data);
 		$field = key($data);
 		$listDependModels = [
-			'DependedOnBy',
-			'IncludedOnBy',
-			'ChainOnBy'
+			'DependsOn',
+			'Includes',
+			'Chains'
 		];
 		$listProcessModels = array_diff($listDependModels, (array)$field);
 		foreach ($listProcessModels as $modelName) {
@@ -531,6 +531,39 @@ class Package extends AppModel {
 	}
 
 /**
+ * Saving package information use transactions.
+ *
+ * @param array $data Array information package to save.
+ * @return bool Success.
+ */
+	public function savePackage($data = []) {
+		$result = true;
+		$dataSource = $this->getDataSource();
+		$dataSource->begin();
+
+		$this->bindHabtmPackageDependecies(false);
+		$result = $this->saveAll($data);
+		if ($result) {
+			if (!$this->PackagesPackage->Attribute->clearUnusedAttributes(ATTRIBUTE_TYPE_PACKAGE, ATTRIBUTE_NODE_DEPENDS)) {
+				$result = false;
+			}
+			if (!$this->PackagesInclude->Attribute->clearUnusedAttributes(ATTRIBUTE_TYPE_PACKAGE, ATTRIBUTE_NODE_INCLUDE)) {
+				$result = false;
+			}
+			if (!$this->PackagesChain->Attribute->clearUnusedAttributes(ATTRIBUTE_TYPE_PACKAGE, ATTRIBUTE_NODE_CHAIN)) {
+				$result = false;
+			}
+		}
+		if ($result) {
+			$dataSource->commit();
+		} else {
+			$dataSource->rollback();
+		}
+
+		return $result;
+	}
+
+/**
  * Temporarily bind an additional new 'reverse' HABTM relationship,
  *  which gives us which packages depend on this package
  *
@@ -539,14 +572,19 @@ class Package extends AppModel {
  */
 	public function bindHabtmPackageDependecies($reverse = false) {
 		$dependModelsInfo = [
-			'DependedOnBy' => 'packages_packages',
-			'IncludedOnBy' => 'packages_includes',
-			'ChainOnBy' => 'packages_chains'
+			'DependsOn' => 'packages_packages',
+			'Includes' => 'packages_includes',
+			'Chains' => 'packages_chains'
 		];
 
 		$foreignKey = 'package_id';
 		$associationForeignKey = 'dependency_id';
 		if ($reverse) {
+			$dependModelsInfo = [
+				'InDependencies' => 'packages_packages',
+				'InInclusions' => 'packages_includes',
+				'InChains' => 'packages_chains'
+			];
 			$foreignKey = 'dependency_id';
 			$associationForeignKey = 'package_id';
 		}
@@ -554,7 +592,7 @@ class Package extends AppModel {
 		$bindCfg = [];
 		$hasAndBelongsToMany = $this->getAssociated('hasAndBelongsToMany');
 		foreach ($dependModelsInfo as $dependModel => $dependTable) {
-			if (in_array($dependModel, $hasAndBelongsToMany)) {
+			if (!empty($hasAndBelongsToMany) && in_array($dependModel, $hasAndBelongsToMany)) {
 				continue;
 			}
 
@@ -568,7 +606,8 @@ class Package extends AppModel {
 					$dependModel . '.id',
 					$dependModel . '.enabled',
 					$dependModel . '.id_text',
-					$dependModel . '.name'],
+					$dependModel . '.name'
+				],
 				'order' => [$dependModel . '.name' => 'asc']
 			];
 		}
@@ -609,11 +648,7 @@ class Package extends AppModel {
 			$this->alias . '.modified'
 		];
 		$conditions = [$this->alias . '.id' => $id];
-		$contain = [
-			'DependedOnBy',
-			'IncludedOnBy',
-			'ChainOnBy'
-		];
+		$contain = [];
 		if ($full) {
 			$extContain = [
 				'PackagePriority',
@@ -635,6 +670,9 @@ class Package extends AppModel {
 				'Variable.Check',
 				'Variable.Check.Attribute' => ['fields' => '*'],
 				'Profile',
+				'InDependencies',
+				'InInclusions',
+				'InChains',
 				'PackagesPackage.PackageDependency',
 				'PackagesPackage.Attribute' => ['fields' => '*'],
 				'PackagesInclude.PackageDependency',
@@ -646,6 +684,11 @@ class Package extends AppModel {
 
 			$this->bindHabtmPackageDependecies(true);
 		} else {
+			$contain = [
+				'DependsOn',
+				'Includes',
+				'Chains'
+			];
 			$this->bindHabtmPackageDependecies(false);
 		}
 
@@ -654,21 +697,9 @@ class Package extends AppModel {
 			return $result;
 		}
 
-		$sortModels = [
-			'PackagesPackage',
-			'PackagesInclude',
-			'PackagesChain'
-		];
-		foreach ($sortModels as $sortModel) {
-			if (isset($result[$sortModel])) {
-				$result[$sortModel] = Hash::sort(
-					$result[$sortModel],
-					'{n}.Package.id_text',
-					'asc',
-					['type' => 'string', 'ignoreCase' => true]
-				);
-			}
-		}
+		$result = $this->PackagesPackage->sortDependencyData($result);
+		$result = $this->PackagesInclude->sortDependencyData($result);
+		$result = $this->PackagesChain->sortDependencyData($result);
 
 		return $result;
 	}
@@ -883,9 +914,9 @@ class Package extends AppModel {
 		}
 
 		$bindModelInfo = [
-			'DependedOnBy' => __x('check disable', 'dependencies'),
-			'IncludedOnBy' => __x('check disable', 'inclusions'),
-			'ChainOnBy' => __x('check disable', 'chains'),
+			'InDependencies' => __x('check disable', 'dependencies'),
+			'InInclusions' => __x('check disable', 'inclusions'),
+			'InChains' => __x('check disable', 'chains'),
 		];
 		$fields = [
 			$this->alias . '.id',
@@ -1216,9 +1247,9 @@ class Package extends AppModel {
 		];
 		$conditions = [$this->alias . '.id' => $id];
 		$contain = [
-			'DependedOnBy',
-			'IncludedOnBy',
-			'ChainOnBy',
+			'DependsOn',
+			'Includes',
+			'Chains',
 		];
 
 		return $this->find('first', compact('conditions', 'fields', 'contain'));
@@ -1282,9 +1313,9 @@ class Package extends AppModel {
  */
 	public function getGraphDependencyInfo() {
 		$result = [
-			'DependedOnBy' => ['dependLabel' => __x('dependency', 'Depends on'), 'arrowhead' => 'normal'],
-			'IncludedOnBy' => ['dependLabel' => __x('dependency', 'Includes on'), 'arrowhead' => 'open'],
-			'ChainOnBy' => ['dependLabel' => __x('dependency', 'Chain on'), 'arrowhead' => 'empty']
+			'DependsOn' => ['dependLabel' => __x('dependency', 'Depends on'), 'arrowhead' => 'normal'],
+			'Includes' => ['dependLabel' => __x('dependency', 'Includes on'), 'arrowhead' => 'open'],
+			'Chains' => ['dependLabel' => __x('dependency', 'Chain on'), 'arrowhead' => 'empty']
 		];
 
 		return $result;

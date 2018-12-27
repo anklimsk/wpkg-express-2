@@ -118,7 +118,7 @@ if (empty($package)) {
 				</div>
 				<div class="col-md-6 col-xs-12">
 <?php
-	echo $this->element('infoDependency', ['dependencies' => $package['DependedOnBy'], 'controllerName' => 'packages',
+	echo $this->element('infoDependency', ['dependencies' => $package['InDependencies'], 'controllerName' => 'packages',
 		'label' => __('Exists in dependencies'), 'bindLimit' => $bindLimit]);
 ?>
 				</div>
@@ -135,7 +135,7 @@ if (empty($package)) {
 				</div>
 				<div class="col-md-6 col-xs-12">
 <?php
-	echo $this->element('infoDependency', ['dependencies' => $package['IncludedOnBy'], 'controllerName' => 'packages',
+	echo $this->element('infoDependency', ['dependencies' => $package['InInclusions'], 'controllerName' => 'packages',
 		'label' => __('Exists in inclusions'), 'bindLimit' => $bindLimit]);
 ?>
 				</div>
@@ -152,7 +152,7 @@ if (empty($package)) {
 				</div>
 				<div class="col-md-6 col-xs-12">
 <?php
-	echo $this->element('infoDependency', ['dependencies' => $package['ChainOnBy'], 'controllerName' => 'packages',
+	echo $this->element('infoDependency', ['dependencies' => $package['InChains'], 'controllerName' => 'packages',
 		'label' => __('Exists in chains'), 'bindLimit' => $bindLimit]);
 ?>
 				</div>

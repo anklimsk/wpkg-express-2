@@ -224,9 +224,9 @@ class PackagesController extends AppController {
  *
  * POST Data:
  *  - Package: array data of package;
- *  - DependedOnBy: array data of depends on packages;
- *  - IncludedOnBy: array data of includes packages;
- *  - ChainOnBy: array data of chains packages.
+ *  - DependsOn: array data of depends on packages;
+ *  - Includes: array data of includes packages;
+ *  - Chains: array data of chains packages.
  *
  * @return void
  */
@@ -235,7 +235,7 @@ class PackagesController extends AppController {
 		$this->Package->bindHabtmPackageDependecies(false);
 		if ($this->request->is('post')) {
 			$this->Package->create();
-			if ($this->Package->save($this->request->data)) {
+			if ($this->Package->savePackage($this->request->data)) {
 				$this->Flash->success(__('Package has been saved.'));
 
 				return $this->ViewExtension->redirectByUrl(null, 'package');
@@ -284,9 +284,9 @@ class PackagesController extends AppController {
  *
  * POST Data:
  *  - Package: array data of package;
- *  - DependedOnBy: array data of depends on packages;
- *  - IncludedOnBy: array data of includes packages;
- *  - ChainOnBy: array data of chains packages.
+ *  - DependsOn: array data of depends on packages;
+ *  - Includes: array data of includes packages;
+ *  - Chains: array data of chains packages.
  *
  * @param int|string $id ID of record for editing
  * @throws NotFoundException if record for parameter $id was not found
@@ -301,7 +301,7 @@ class PackagesController extends AppController {
 
 		$this->Package->bindHabtmPackageDependecies(false);
 		if ($this->request->is(['post', 'put'])) {
-			if ($this->Package->saveAll($this->request->data)) {
+			if ($this->Package->savePackage($this->request->data)) {
 				$this->Flash->success(__('Package has been saved.'));
 
 				return $this->ViewExtension->redirectByUrl(null, 'package');

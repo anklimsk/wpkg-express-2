@@ -137,9 +137,9 @@ if (!isset($isAddAction)) {
 			$modelName . '.notes',
 		],
 		__('Dependencies') => [
-			'DependedOnBy',
-			'IncludedOnBy',
-			'ChainOnBy',
+			'DependsOn',
+			'Includes',
+			'Chains',
 		]
 	];
 	if (!$isAddAction) {

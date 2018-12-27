@@ -192,9 +192,9 @@ var AppActionScriptsPackagesAdd = AppActionScriptsPackagesAdd || {};
 		var currentSelVal = $(this).val();
 		var currentSelId = $(this).attr('id');
 		var listSelectId = [
-			'DependedOnByDependedOnBy',
-			'IncludedOnByIncludedOnBy',
-			'ChainOnByChainOnBy'
+			'DependsOnDependsOn',
+			'IncludesIncludes',
+			'ChainsChains'
 		];
 
 		$.each(listSelectId, function(i, selectId) {
