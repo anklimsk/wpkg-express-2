@@ -576,7 +576,6 @@ class Package extends AppModel {
 			'Includes' => 'packages_includes',
 			'Chains' => 'packages_chains'
 		];
-
 		$foreignKey = 'package_id';
 		$associationForeignKey = 'dependency_id';
 		if ($reverse) {
@@ -814,6 +813,15 @@ class Package extends AppModel {
 				'@notify' => $package['PackageNotifyType']['name'],
 				'@execute' => $package['PackageExecuteType']['name'],
 			];
+
+			if ($packageAttribs['@notify'] === 'true') {
+				unset($packageAttribs['@notify']);
+			}
+
+			if (empty($packageAttribs['@execute']) ||
+				($packageAttribs['@execute'] === 'default')) {
+				unset($packageAttribs['@execute']);
+			}
 
 			if (isset($package[$this->alias]['notes']) && !empty($package[$this->alias]['notes'])) {
 				$packageAttribs[XML_SPECIFIC_TAG_NOTES] = preg_replace('/[\-]{2,}/', '-', $package[$this->alias]['notes']);
