@@ -107,12 +107,13 @@ class DependencyInfoBehavior extends ModelBehavior {
  * @param array $data Information of dependency
  * @param string $dependencyIdAttribute ID attribute of dependency element
  * @param string $elementName Name of dependency element
+ * @param array $extAttributes Array of extended attributes of dependency item
  * @throws InternalErrorException if $dependencyIdAttribute is empty
  * @throws InternalErrorException if $elementName is empty
  * @return array Return array for render XML elements
  * @see RenderXmlData::renderXml()
  */
-	public function getDependsXMLdata(Model $model, $data = [], $dependencyIdAttribute = null, $elementName = null) {
+	public function getDependsXMLdata(Model $model, $data = [], $dependencyIdAttribute = null, $elementName = null, $extAttributes = []) {
 		if (empty($dependencyIdAttribute)) {
 			throw new InternalErrorException(__("Invalid dependency ID attribute for model '%s'", $model->name));
 		}
@@ -123,6 +124,10 @@ class DependencyInfoBehavior extends ModelBehavior {
 		$result = [];
 		if (empty($data) || !is_array($data)) {
 			return $result;
+		}
+
+		if (empty($extAttributes) || !is_array($extAttributes)) {
+			$extAttributes = [];
 		}
 
 		$dependencyModelName = $this->settings[$model->alias]['dependencyModelName'];
@@ -137,6 +142,21 @@ class DependencyInfoBehavior extends ModelBehavior {
 			}
 			if (isset($dataItem['Check']) && !empty($dataItem['Check'])) {
 				$attribs['condition'] = $model->Check->getXMLdata($dataItem['Check']);
+			}
+			if (!empty($extAttributes)) {
+				foreach ($extAttributes as $extAttributeField => $extAttributeName) {
+					if (is_int($extAttributeField)) {
+						$extAttributeField = $extAttributeName;
+					}
+
+					if (empty($extAttributeField) || empty($extAttributeName) ||
+						!isset($dataItem[$extAttributeField]) ||
+						empty($dataItem[$extAttributeField])) {
+						continue;
+					}
+
+					$attribs['@' . $extAttributeName] = $dataItem[$extAttributeField];
+				}
 			}
 			$result[$elementName][] = $attribs;
 		}
