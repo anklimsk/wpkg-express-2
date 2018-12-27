@@ -255,6 +255,7 @@ class Package extends AppModel {
 				'PackageAction.command',
 				'PackageAction.timeout',
 				'PackageAction.workdir',
+				'PackageAction.expand_url',
 				'PackageAction.id'
 			],
 			'order' => [

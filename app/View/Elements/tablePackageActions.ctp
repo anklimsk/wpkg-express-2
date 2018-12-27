@@ -82,15 +82,13 @@ if (!isset($showBtnExpand)) {
 			}
 
 			if ($actionTypeId == ACTION_TYPE_DOWNLOAD) {
-				if ($packageAction['timeout']) {
+				if ($packageAction['expand_url']) {
 					$command .= ' ' . __('Expand URL');
 				}
-				$timeOut = $emptyText;
-			} else {
-				$timeOut = $emptyText;
-				if (!empty($packageAction['timeout'])) {
-					$timeOut = gmdate('H:i:s', $packageAction['timeout']);
-				}
+			}
+			$timeOut = $emptyText;
+			if (!empty($packageAction['timeout'])) {
+				$timeOut = gmdate('H:i:s', $packageAction['timeout']);
 			}
 			$exitCodes = $this->element('infoExitCodes', ['exitCodes' => $packageAction['ExitCode'], 'showShort' => true]);
 		}

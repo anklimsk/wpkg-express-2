@@ -52,14 +52,17 @@ if (!isset($refId)) {
 		case ACTION_TYPE_DOWNLOAD:
 			$commandTypeOptions = ['type' => 'hidden', 'data-toggle' => null, 'autocomplete' => null];
 			$commandOptions = ['label' => __('URL') . ':', 'title' => __('URL for download.')];
+			$timeoutOptions = ['label' => __('Timeout') . ':', 'title' => __('The maximum number of seconds to wait for the action to execute.'),
+				'type' => 'spin', 'max' => ACTION_COMMAND_MAX_TIMEOUT];
 			$workDirOptions = ['label' => __('Target') . ':', 'title' => __('Path to file for saving.')];
-			$timeoutOptions = ['label' => [__('Expand URL'), __('Defines whether the url attribute is expanded (ie. environment variables are replaced).'), ':'],
+			$expandUrlOptions = ['label' => [__('Expand URL'), __('Defines whether the url attribute is expanded (ie. environment variables are replaced).'), ':'],
 				'title' => __('Expansion of environment variables in download URLs.'),
 				'type' => 'checkbox'];
 		break;
 		default:
 			$commandTypeOptions = ['label' => [__('Command type'), __('The type of command to be executed.'), ':'],
 				'type' => 'select', 'data-toggle' => 'tooltip', 'options' => $listCommandType, 'autocomplete' => 'off'];
+			$expandUrlOptions = ['type' => 'hidden', 'data-toggle' => null, 'autocomplete' => null];
 			if ($commandType == ACTION_COMMAND_TYPE_INCLUDE) {
 				$commandOptions = ['type' => 'hidden', 'autocomplete' => null, 'autofocus' => null,
 				'data-toggle' => null];
@@ -146,6 +149,7 @@ if (!isset($refId)) {
 			'data-toggle' => 'tooltip']);
 	echo $this->Form->input('PackageAction.workdir', $workDirOptions + ['type' => 'text', 'data-toggle' => 'tooltip', 'autocomplete' => 'off']);
 	echo $this->Form->input('PackageAction.timeout', $timeoutOptions + ['data-toggle' => 'tooltip', 'autocomplete' => 'off']);
+	echo $this->Form->input('PackageAction.expand_url', $expandUrlOptions + ['autocomplete' => 'off']);
 	echo $this->Form->input('PackageAction.include_action_id', $includeOptions);
 ?>
 	</fieldset>

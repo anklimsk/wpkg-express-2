@@ -145,7 +145,18 @@ class PackageAction extends AppModel {
 			'required' => true,
 			'allowEmpty' => false,
 			'message' => 'The package action download URL is invalid.'
-		]
+		],
+		'timeout' => [
+			'rule' => 'numeric',
+			'required' => false,
+			'allowEmpty' => true,
+			'message' => 'The package action timeout attribute is invalid.'
+		],
+		'expand_url' => [
+			'rule' => 'boolean',
+			'message' => "The package action's expandURL attribute must be true or false.",
+			'last' => true
+		],
 	];
 
 /**
@@ -354,6 +365,7 @@ class PackageAction extends AppModel {
 			$this->alias . '.command',
 			$this->alias . '.timeout',
 			$this->alias . '.workdir',
+			$this->alias . '.expand_url',
 		];
 		$conditions = [$this->alias . '.package_id' => $refId];
 		$contain = [
@@ -397,6 +409,7 @@ class PackageAction extends AppModel {
 			$this->alias . '.command',
 			$this->alias . '.timeout',
 			$this->alias . '.workdir',
+			$this->alias . '.expand_url',
 		];
 		$conditions = [$this->alias . '.id' => $id];
 		$recursive = -1;
@@ -695,7 +708,10 @@ class PackageAction extends AppModel {
 					case ACTION_TYPE_DOWNLOAD:
 						$actionAttribs['@url'] = $action['command'];
 						$actionAttribs['@target'] = $action['workdir'];
-						if ($action['timeout']) {
+						if (!empty($action['timeout'])) {
+							$actionAttribs['@timeout'] = $action['timeout'];
+						}
+						if ($action['expand_url']) {
 							$actionAttribs['@expandURL'] = 'true';
 						} else {
 							$actionAttribs['@expandURL'] = 'false';

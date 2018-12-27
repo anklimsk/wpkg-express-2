@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wpkgExpress II\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2018-12-27 16:51+0300\n"
+"PO-Revision-Date: 2018-12-27 18:48+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "Package ID"
 msgstr "Идентификатор пакета"
 
-#: Config/cakesearchinfo.php:21 Model/Package.php:1076
+#: Config/cakesearchinfo.php:21 Model/Package.php:1077
 #: View/Elements/formHostBase.ctp:53 View/Elements/formPackageBase.ctp:75
 #: View/Elements/formPackageExistsProfilesEdit.ctp:46
 #: View/Elements/infoPackage.ctp:63 View/Elements/tableArchive.ctp:67
@@ -41,7 +41,7 @@ msgstr "Наименование"
 msgid "Notes"
 msgstr "Примечания"
 
-#: Config/cakesearchinfo.php:25 Model/Package.php:1097
+#: Config/cakesearchinfo.php:25 Model/Package.php:1098
 #: View/Elements/barNav.ctp:76 View/Home/index.ctp:73
 msgid "Packages"
 msgstr "Пакеты"
@@ -272,12 +272,12 @@ msgid "Information of package actions"
 msgstr "Информация о действиях пакета"
 
 #: Controller/ActionsController.php:143;146
-#: View/Elements/tablePackageActions.ctp:212
+#: View/Elements/tablePackageActions.ctp:210
 msgid "Add action"
 msgstr "Добавить действие"
 
 #: Controller/ActionsController.php:152
-#: View/Elements/tablePackageActions.ctp:231
+#: View/Elements/tablePackageActions.ctp:229
 msgid "Verify state of list actions"
 msgstr "Проверить состояния списка действий"
 
@@ -286,7 +286,7 @@ msgid "Verify state of list package actions"
 msgstr "Проверка состояния списка действий пакета"
 
 #: Controller/ActionsController.php:162
-#: View/Elements/tablePackageActions.ctp:221
+#: View/Elements/tablePackageActions.ctp:219
 msgid "Edit action types"
 msgstr "Изменить типы действий"
 
@@ -426,7 +426,7 @@ msgstr "Информация об атрибутах"
 
 #: Controller/AttributesController.php:102 View/Elements/infoDependency.ctp:88
 #: View/Elements/infoHost.ctp:97 View/Elements/infoVariables.ctp:105
-#: View/Elements/tablePackageActions.ctp:124
+#: View/Elements/tablePackageActions.ctp:122
 #: View/Elements/treeItemCheckDraggable.ctp:56
 msgid "Edit attributes"
 msgstr "Редактировать атрибуты"
@@ -1629,7 +1629,7 @@ msgctxt "graph"
 msgid "full"
 msgstr "полный"
 
-#: Model/Host.php:423 Model/Package.php:831 Model/Profile.php:424
+#: Model/Host.php:423 Model/Package.php:832 Model/Profile.php:424
 #: View/Elements/infoHost.ctp:63 View/Elements/infoPackage.ctp:58
 #: View/Elements/infoProfile.ctp:54 View/Elements/tableHost.ctp:213
 #: View/Elements/tablePackage.ctp:219 View/Elements/tableProfile.ctp:186
@@ -1712,7 +1712,7 @@ msgstr "Входной XML-файл пуст"
 msgid "Invalid name of dependency model"
 msgstr "Недопустимое имя зависимой модели"
 
-#: Model/Import.php:1836 Model/PackageAction.php:538
+#: Model/Import.php:1836 Model/PackageAction.php:551
 #: View/Elements/infoPackage.ctp:96
 msgid "Package actions"
 msgstr "Действия пакета"
@@ -1793,7 +1793,7 @@ msgstr "Ошибка при разборе имени файла журнала"
 msgid "Error on parsing log file content"
 msgstr "Ошибка при разборе содержимого файла журнала"
 
-#: Model/Package.php:957
+#: Model/Package.php:958
 msgid ""
 "The package '%s' cannot be deleted or disabled because it is exists in %s "
 "for the following packages: %s"
@@ -1801,74 +1801,74 @@ msgstr ""
 "Пакет '%s' не может быть удалён или отключен, поскольку он существует в %s "
 "для следующих пакетов: %s"
 
-#: Model/Package.php:1086 View/Elements/formPackageBase.ctp:58
+#: Model/Package.php:1087 View/Elements/formPackageBase.ctp:58
 #: View/Elements/formWpiBase.ctp:56 View/Elements/tableReport.ctp:59
 msgid "Package"
 msgstr "Пакет"
 
-#: Model/Package.php:1121
+#: Model/Package.php:1122
 msgid "Package '%s'"
 msgstr "Пакет '%s'"
 
-#: Model/Package.php:1123
+#: Model/Package.php:1124
 msgid "package '%s'"
 msgstr "пакета '%s'"
 
-#: Model/Package.php:1135
+#: Model/Package.php:1136
 msgid "full data of packages"
 msgstr "полные данные пакетов"
 
-#: Model/Package.php:1303
+#: Model/Package.php:1304
 msgid "Present in"
 msgstr "Присутствует в"
 
-#: Model/Package.php:925
+#: Model/Package.php:926
 msgctxt "check disable"
 msgid "dependencies"
 msgstr "зависимостях"
 
-#: Model/Package.php:926
+#: Model/Package.php:927
 msgctxt "check disable"
 msgid "inclusions"
 msgstr "включениях"
 
-#: Model/Package.php:927
+#: Model/Package.php:928
 msgctxt "check disable"
 msgid "chains"
 msgstr "цепочках"
 
-#: Model/Package.php:1324 Model/Profile.php:911
+#: Model/Package.php:1325 Model/Profile.php:911
 msgctxt "dependency"
 msgid "Depends on"
 msgstr "Зависит от"
 
-#: Model/Package.php:1325
+#: Model/Package.php:1326
 msgctxt "dependency"
 msgid "Includes on"
 msgstr "Включает"
 
-#: Model/Package.php:1326
+#: Model/Package.php:1327
 msgctxt "dependency"
 msgid "Chain on"
 msgstr "Цепочки"
 
-#: Model/PackageAction.php:414 View/Elements/formPackageActionBase.ctp:68;104
+#: Model/PackageAction.php:427 View/Elements/formPackageActionBase.ctp:71;107
 msgid "Command"
 msgstr "Команда"
 
-#: Model/PackageAction.php:415
+#: Model/PackageAction.php:428
 msgid "Include"
 msgstr "Включает"
 
-#: Model/PackageAction.php:527 View/Elements/formPackageActionBase.ctp:117
+#: Model/PackageAction.php:540 View/Elements/formPackageActionBase.ctp:120
 msgid "Package action"
 msgstr "Действие пакета"
 
-#: Model/PackageAction.php:600
+#: Model/PackageAction.php:613
 msgid "Action(s) %sof the %s"
 msgstr "Действиe(я) %s %s"
 
-#: Model/PackageAction.php:602
+#: Model/PackageAction.php:615
 msgid "action(s) %s%s"
 msgstr "действиe(я) %s%s"
 
@@ -2569,7 +2569,7 @@ msgstr ""
 "потенциальные родители перечислены по порядку."
 
 #: View/Elements/formCheckBase.ctp:250
-#: View/Elements/formPackageActionBase.ctp:135
+#: View/Elements/formPackageActionBase.ctp:138
 #: View/Elements/infoResultVerify.ctp:38 View/Elements/tableGarbage.ctp:53
 #: View/Elements/tableLog.ctp:81;98
 msgid "Type"
@@ -2594,7 +2594,7 @@ msgstr "Содержимое этого поля зависит от типа и
 
 #: View/Elements/formCheckBase.ctp:285 View/Elements/formExitCodeBase.ctp:58
 #: View/Elements/formHostBase.ctp:64
-#: View/Elements/formPackageActionBase.ctp:153
+#: View/Elements/formPackageActionBase.ctp:157
 #: View/Elements/formPackageActionTypeBase.ctp:55
 #: View/Elements/formPackageExistsProfilesEdit.ctp:52
 #: View/Elements/formPackagePriorityBase.ctp:51
@@ -2981,7 +2981,7 @@ msgid "Registry paths"
 msgstr "Пути реестра"
 
 #: View/Elements/formExitCodeBase.ctp:38
-#: View/Elements/formPackageActionBase.ctp:133
+#: View/Elements/formPackageActionBase.ctp:136
 #: View/Elements/formPackageActionTypeBase.ctp:39
 msgid "Package action type"
 msgstr "Тип действия пакета"
@@ -3281,20 +3281,29 @@ msgstr "URL"
 msgid "URL for download."
 msgstr "URL для загрузки."
 
-#: View/Elements/formPackageActionBase.ctp:55
+#: View/Elements/formPackageActionBase.ctp:55;112
+#: View/Elements/tablePackageActions.ctp:251
+msgid "Timeout"
+msgstr "Время ожидания"
+
+#: View/Elements/formPackageActionBase.ctp:55;112
+msgid "The maximum number of seconds to wait for the action to execute."
+msgstr "Максимальное количество секунд для ожидания выполнения действия."
+
+#: View/Elements/formPackageActionBase.ctp:57
 msgid "Target"
 msgstr "Цель"
 
-#: View/Elements/formPackageActionBase.ctp:55
+#: View/Elements/formPackageActionBase.ctp:57
 msgid "Path to file for saving."
 msgstr "Путь к файлу для сохранения."
 
-#: View/Elements/formPackageActionBase.ctp:56
+#: View/Elements/formPackageActionBase.ctp:58
 #: View/Elements/tablePackageActions.ctp:86
 msgid "Expand URL"
 msgstr "Развернуть URL"
 
-#: View/Elements/formPackageActionBase.ctp:56
+#: View/Elements/formPackageActionBase.ctp:58
 msgid ""
 "Defines whether the url attribute is expanded (ie. environment variables are "
 "replaced)."
@@ -3302,23 +3311,23 @@ msgstr ""
 "Определяет, будет ли расширен атрибут url (т. е. переменные окружения "
 "заменены)."
 
-#: View/Elements/formPackageActionBase.ctp:57
+#: View/Elements/formPackageActionBase.ctp:59
 msgid "Expansion of environment variables in download URLs."
 msgstr "Расширение переменных окружения в URL-адресах загрузки."
 
-#: View/Elements/formPackageActionBase.ctp:61
+#: View/Elements/formPackageActionBase.ctp:63
 msgid "Command type"
 msgstr "Тип команды"
 
-#: View/Elements/formPackageActionBase.ctp:61
+#: View/Elements/formPackageActionBase.ctp:63
 msgid "The type of command to be executed."
 msgstr "Тип команды, которая будет выполнена."
 
-#: View/Elements/formPackageActionBase.ctp:68
+#: View/Elements/formPackageActionBase.ctp:71
 msgid "The command to be executed."
 msgstr "Команда, которая будет выполнена."
 
-#: View/Elements/formPackageActionBase.ctp:104
+#: View/Elements/formPackageActionBase.ctp:107
 msgid ""
 "The command to be executed. Autocompletion is available for global "
 "variables, package variables, console commands like \"%ComSpec% /C\" and "
@@ -3328,33 +3337,24 @@ msgstr ""
 "переменных, переменных пакета, консольных команд вида \"%ComSpec% /C\" и "
 "ключей командной строки установщика."
 
-#: View/Elements/formPackageActionBase.ctp:108
+#: View/Elements/formPackageActionBase.ctp:111
 msgid "Work directory"
 msgstr "Рабочий каталог"
 
-#: View/Elements/formPackageActionBase.ctp:108
+#: View/Elements/formPackageActionBase.ctp:111
 msgid "The working directory to use when executing this action."
 msgstr "Рабочий каталог, используемый при выполнении этого действия."
 
-#: View/Elements/formPackageActionBase.ctp:109
-#: View/Elements/tablePackageActions.ctp:253
-msgid "Timeout"
-msgstr "Время ожидания"
-
-#: View/Elements/formPackageActionBase.ctp:109
-msgid "The maximum number of seconds to wait for the action to execute."
-msgstr "Максимальное количество секунд для ожидания выполнения действия."
-
-#: View/Elements/formPackageActionBase.ctp:135
+#: View/Elements/formPackageActionBase.ctp:138
 msgid "The kind of action to be executed."
 msgstr "Вид действия, которое нужно выполнить."
 
-#: View/Elements/formPackageActionBase.ctp:138 View/Elements/formWpiBase.ctp:41
+#: View/Elements/formPackageActionBase.ctp:141 View/Elements/formWpiBase.ctp:41
 #: View/Elements/tablePackageActions.ctp:71
 msgid "Unknown"
 msgstr "Неизвестный"
 
-#: View/Elements/formPackageActionBase.ctp:142
+#: View/Elements/formPackageActionBase.ctp:145
 msgid "The kind of action to be executed"
 msgstr "Вид действия, которое нужно выполнить"
 
@@ -3435,7 +3435,7 @@ msgstr "Список приоритетов."
 
 #: View/Elements/formPackageBase.ctp:98 View/Elements/infoChecksControls.ctp:90
 #: View/Elements/infoVariables.ctp:173
-#: View/Elements/tablePackageActions.ctp:242
+#: View/Elements/tablePackageActions.ctp:240
 msgid "Open in new window"
 msgstr "Открыть в новом окне"
 
@@ -3773,7 +3773,7 @@ msgid "Add checks"
 msgstr "Добавить проверки"
 
 #: View/Elements/infoDependency.ctp:99 View/Elements/infoVariables.ctp:115
-#: View/Elements/tablePackageActions.ctp:133
+#: View/Elements/tablePackageActions.ctp:131
 msgid "Edit checks"
 msgstr "Изменить проверки"
 
@@ -3960,7 +3960,7 @@ msgid "Statistics"
 msgstr "Статистика"
 
 #: View/Elements/infoVariables.ctp:87 View/Elements/tableHost.ctp:108
-#: View/Elements/tablePackageActions.ctp:106
+#: View/Elements/tablePackageActions.ctp:104
 #: View/Elements/treeItemCheckDraggable.ctp:38
 msgid "Show or hide move buttons"
 msgstr "Показать или скрыть кнопки перемещения"
@@ -4156,31 +4156,31 @@ msgstr "Вы действительно хотите удалить пакет '
 msgid "Includes the action: %s"
 msgstr "Включает действие: %s"
 
-#: View/Elements/tablePackageActions.ctp:143
+#: View/Elements/tablePackageActions.ctp:141
 msgid "Edit exit codes"
 msgstr "Изменить коды выхода"
 
-#: View/Elements/tablePackageActions.ctp:152
+#: View/Elements/tablePackageActions.ctp:150
 msgid "Edit package action"
 msgstr "Изменить действие пакета"
 
-#: View/Elements/tablePackageActions.ctp:161
+#: View/Elements/tablePackageActions.ctp:159
 msgid "Delete package action"
 msgstr "Удалить действие пакета"
 
-#: View/Elements/tablePackageActions.ctp:162
+#: View/Elements/tablePackageActions.ctp:160
 msgid "Are you sure you wish to delete package action '%s'?"
 msgstr "Вы уверены, что хотите удалить действие пакета '%s'?"
 
-#: View/Elements/tablePackageActions.ctp:252
+#: View/Elements/tablePackageActions.ctp:250
 msgid "Command, work directory"
 msgstr "Команда, рабочий каталог"
 
-#: View/Elements/tablePackageActions.ctp:254
+#: View/Elements/tablePackageActions.ctp:252
 msgid "Exit codes, reboot"
 msgstr "Коды выхода, перезагрузка"
 
-#: View/Elements/tablePackageActions.ctp:255
+#: View/Elements/tablePackageActions.ctp:253
 msgid "Actions"
 msgstr "Действия"
 

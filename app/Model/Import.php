@@ -1120,7 +1120,7 @@ class Import extends AppModel {
 			'@include' => 'include_action_id',
 			'@url' => 'command',
 			'@target' => 'workdir',
-			'@expandURL' => 'timeout'
+			'@expandURL' => 'expand_url'
 		];
 		$listFieldsActionType = [
 			'action_type_id',
@@ -1147,10 +1147,10 @@ class Import extends AppModel {
 				$packageActionInfo['PackageAction']['include_action_id'] = null;
 			}
 			if ($packageActionInfo['PackageAction']['action_type_id'] == ACTION_TYPE_DOWNLOAD) {
-				if (isset($packageActionInfo['PackageAction']['timeout']) && (mb_stripos($packageActionInfo['PackageAction']['timeout'], 'true') !== false)) {
-					$packageActionInfo['PackageAction']['timeout'] = 1;
+				if (isset($packageActionInfo['PackageAction']['expand_url']) && (mb_stripos($packageActionInfo['PackageAction']['expand_url'], 'true') !== false)) {
+					$packageActionInfo['PackageAction']['expand_url'] = 1;
 				} else {
-					$packageActionInfo['PackageAction']['timeout'] = 0;
+					$packageActionInfo['PackageAction']['expand_url'] = 0;
 				}
 			}
 			$packageActionInfo['Attribute'] = $this->_prepareAttributes($xmlDataItem);

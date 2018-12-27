@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wpkgExpress II\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2018-12-27 17:00+0300\n"
+"PO-Revision-Date: 2018-12-27 18:50+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -164,8 +164,8 @@ msgid "The package's execute attribute is invalid."
 msgstr "Недопустимый атрибут пакета execute."
 
 #: Model/Package.php:validation for field notify
-msgid "The package's notify attribute must be true or false."
-msgstr "Атрибут уведомления пакета должен быть истинным или ложным."
+msgid "The package's notify attribute is invalid."
+msgstr "Недопустимый атрибут пакета notify."
 
 #: Model/Package.php:validation for field DependsOn
 #: Model/PackagesPackage.php:validation dependency_id
@@ -352,3 +352,6 @@ msgstr ""
 #: Plugin/Tools/Model/Qurl.php:validation for field url
 msgid "valErrInvalidQurlUrl"
 msgstr ""
+
+#~ msgid "The package's notify attribute must be true or false."
+#~ msgstr "Атрибут уведомления пакета должен быть истинным или ложным."
