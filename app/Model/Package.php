@@ -210,7 +210,7 @@ class Package extends AppModel {
 			'joinTable' => 'packages_profiles',
 			'foreignKey' => 'package_id',
 			'associationForeignKey' => 'profile_id',
-			'unique' => true,
+			'unique' => 'keepExisting',
 			'conditions' => '',
 			'fields' => [
 				'Profile.id',

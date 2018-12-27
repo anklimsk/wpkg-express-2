@@ -111,7 +111,7 @@ class Profile extends AppModel {
 			'joinTable' => 'hosts_profiles',
 			'foreignKey' => 'profile_id',
 			'associationForeignKey' => 'host_id',
-			'unique' => true,
+			'unique' => 'keepExisting',
 			'conditions' => '',
 			'fields' => [
 				'Host.id',
