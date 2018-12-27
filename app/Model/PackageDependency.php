@@ -42,12 +42,4 @@ class PackageDependency extends AppModel {
  */
 	public $useTable = 'packages';
 
-/**
- * List of behaviors to load when the model object is initialized.
- *
- * @var array
- * @link https://book.cakephp.org/2.0/en/models/behaviors.html#using-behaviors
- */
-	public $actsAs = ['BreadCrumbExt'];
-
 }

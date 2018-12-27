@@ -51,7 +51,13 @@ class PackagesProfile extends AppModel {
  */
 	public $actsAs = [
 		'BreadCrumbExt',
-		'ClearViewCache'
+		'ClearViewCache',
+		'DependencyInfo' => [
+			'mainModelName' => 'Profile',
+			'dependencyModelName' => 'Package',
+			'mainFieldName' => 'profile_id',
+			'dependencyFieldName' => 'package_id',
+		]
 	];
 
 /**
@@ -159,79 +165,14 @@ class PackagesProfile extends AppModel {
 	];
 
 /**
- * Return information of association package with profile
+ * Return array for render profile package XML elements
  *
- * @param int|string $id The ID of the record to read.
- * @return array|bool Return information of association
- *  package with profile, or False on failure.
- */
-	public function get($id = null) {
-		if (empty($id)) {
-			return false;
-		}
-		$conditions = [$this->alias . '.id' => $id];
-		$fields = [
-			$this->alias . '.profile_id',
-			$this->alias . '.package_id',
-		];
-		$recursive = -1;
-
-		return $this->find('first', compact('conditions', 'fields', 'recursive'));
-	}
-
-/**
- * Return array for render package XML elements
- *
- * @param array $data Information of package
+ * @param array $data Information of package dependencies
  * @return array Return array for render XML elements
  * @see RenderXmlData::renderXml()
  */
 	public function getXMLdata($data = []) {
-		$result = [];
-		if (empty($data) || !is_array($data)) {
-			return $result;
-		}
-
-		$data = Hash::sort(
-			$data,
-			'{n}.Package.id_text',
-			'asc',
-			[
-				'type' => 'string',
-				'ignoreCase' => true
-			]
-		);
-		foreach ($data as $PackagesProfile) {
-			if (!$PackagesProfile['Package']['enabled']) {
-				continue;
-			}
-
-			$packageAttribs = ['@package-id' => $PackagesProfile['Package']['id_text']];
-			if (isset($PackagesProfile['Attribute'])) {
-				$packageAttribs += $this->Attribute->getXMLnodeAttr($PackagesProfile['Attribute']);
-			}
-
-			if (isset($PackagesProfile['Check']) && !empty($PackagesProfile['Check'])) {
-				$packageAttribs['condition'] = $this->Check->getXMLdata($PackagesProfile['Check']);
-			}
-
-			$result['package'][] = $packageAttribs;
-		}
-
-		return $result;
-	}
-
-/**
- * Return ID of the associated record by the record ID
- *
- * @param int|string $id ID of record
- *  for retrieving associated record ID
- * @return string|bool Return associated record ID,
- *  or False on failure.
- */
-	public function getRefId($id = null) {
-		$this->id = $id;
-		return $this->field('profile_id');
+		return $this->getDependsXMLdata($data, 'package-id', 'package');
 	}
 
 /**
@@ -245,31 +186,8 @@ class PackagesProfile extends AppModel {
  *  or False on failure.
  */
 	public function getNameExt($id = null, $typeName = null, $primary = true) {
-		if (is_array($id)) {
-			if (!isset($id[$this->alias]['package_id']) || !isset($id[$this->alias]['profile_id'])) {
-				return false;
-			}
-			$data = $id;
-		} else {
-			$data = $this->get($id);
-			if (empty($data)) {
-				return false;
-			}
-		}
-		$profileId = $data[$this->alias]['profile_id'];
-		$packageId = $data[$this->alias]['package_id'];
-		$profileName = $this->Profile->getFullName($profileId, null, null, null, false);
-		$packageName = $this->Package->getFullName($packageId, null, null, null, false);
-		if (empty($packageName) || empty($profileName)) {
-			return false;
-		}
-
-		$result = __('associated %s of the %s', $packageName, $profileName);
-		if ($primary) {
-			$result = mb_ucfirst($result);
-		}
-
-		return $result;
+		$format = __('associated %s of the %s');
+		return $this->getDependsNameExt($id, $typeName, $primary, $format, true);
 	}
 
 /**
@@ -285,22 +203,8 @@ class PackagesProfile extends AppModel {
  * @return array Return an array of information for creating a breadcrumbs.
  */
 	public function getBreadcrumbInfo($id = null, $refType = null, $refNode = null, $refId = null, $includeRoot = null) {
-		$result = [];
-		if (empty($id)) {
-			return $result;
-		}
-		$data = $this->get($id);
-		if (empty($data)) {
-			return $result;
-		}
-		$profileId = $data[$this->alias]['profile_id'];
-		$packageId = $data[$this->alias]['package_id'];
-		$result = $this->Profile->getBreadcrumbInfo($profileId);
-		$result[] = __x('attribute', 'Associated packages');
-		$package = $this->Package->getBreadcrumbInfo($packageId, null, null, null, false);
-		$result = array_merge($result, $package);
-
-		return $result;
+		$label = __x('attribute', 'Associated packages');
+		return $this->getDependsBreadcrumbInfo($id, $refType, $refNode, $refId, $includeRoot, $label);
 	}
 
 /**

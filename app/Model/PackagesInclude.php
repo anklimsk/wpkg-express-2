@@ -52,7 +52,9 @@ class PackagesInclude extends AppModel {
 		'BreadCrumbExt',
 		'ClearViewCache',
 		'ValidationRules',
-		'DependencyInfo'
+		'DependencyInfo' => [
+			'dependencyModelName' => 'PackageDependency'
+		]
 	];
 
 /**
@@ -161,7 +163,7 @@ class PackagesInclude extends AppModel {
  * @see RenderXmlData::renderXml()
  */
 	public function getXMLdata($data = []) {
-		return $this->getDependsXMLdata($data, 'include');
+		return $this->getDependsXMLdata($data, 'package-id', 'include');
 	}
 
 /**

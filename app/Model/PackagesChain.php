@@ -52,7 +52,9 @@ class PackagesChain extends AppModel {
 		'BreadCrumbExt',
 		'ClearViewCache',
 		'ValidationRules',
-		'DependencyInfo'
+		'DependencyInfo' => [
+			'dependencyModelName' => 'PackageDependency'
+		]
 	];
 
 /**
@@ -159,7 +161,7 @@ class PackagesChain extends AppModel {
  * @see RenderXmlData::renderXml()
  */
 	public function getXMLdata($data = []) {
-		return $this->getDependsXMLdata($data, 'chain');
+		return $this->getDependsXMLdata($data, 'package-id', 'chain');
 	}
 
 /**

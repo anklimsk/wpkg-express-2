@@ -51,7 +51,13 @@ class ProfilesProfile extends AppModel {
 	public $actsAs = [
 		'BreadCrumbExt',
 		'ValidationRules',
-		'ClearViewCache'
+		'ClearViewCache',
+		'DependencyInfo' => [
+			'mainModelName' => 'Profile',
+			'dependencyModelName' => 'ProfileDependency',
+			'mainFieldName' => 'profile_id',
+			'dependencyFieldName' => 'dependency_id',
+		]
 	];
 
 /**
@@ -89,35 +95,75 @@ class ProfilesProfile extends AppModel {
 	];
 
 /**
+ * Detailed list of hasMany associations.
+ *
+ * @var array
+ * @link https://book.cakephp.org/2.0/en/models/associations-linking-models-together.html#hasmany
+ */
+	public $hasMany = [
+		'Attribute' => [
+			'className' => 'Attribute',
+			'foreignKey' => 'ref_id',
+			'dependent' => true,
+			'conditions' => [
+				'Attribute.ref_type' => ATTRIBUTE_TYPE_PROFILE,
+				'Attribute.ref_node' => ATTRIBUTE_NODE_DEPENDS
+			],
+			'fields' => [
+				'Attribute.pcre_parsing',
+				'Attribute.hostname',
+				'Attribute.os',
+				'Attribute.architecture',
+				'Attribute.ipaddresses',
+				'Attribute.domainname',
+				'Attribute.groups',
+				'Attribute.lcid',
+				'Attribute.lcidOS'
+			]
+		]
+	];
+
+/**
  * Detailed list of belongsTo associations.
  *
  * @var array
  * @link https://book.cakephp.org/2.0/en/models/associations-linking-models-together.html#belongsto
  */
 	public $belongsTo = [
-			'Profile' => [
-				'className' => 'Profile',
-				'foreignKey' => 'profile_id',
-				'dependent' => true,
-				'fields' => [
-					'Profile.id',
-					'Profile.enabled',
-					'Profile.id_text'
-				],
-				'order' => ['Profile.id_text' => 'asc']
+		'Profile' => [
+			'className' => 'Profile',
+			'foreignKey' => 'profile_id',
+			'dependent' => true,
+			'fields' => [
+				'Profile.id',
+				'Profile.enabled',
+				'Profile.id_text'
 			],
-			'ProfileDependency' => [
-				'className' => 'Profile',
-				'foreignKey' => 'dependency_id',
-				'dependent' => true,
-				'fields' => [
-					'ProfileDependency.id',
-					'ProfileDependency.enabled',
-					'ProfileDependency.id_text'
-				],
-				'order' => ['ProfileDependency.id_text' => 'asc']
-			]
+			'order' => ['Profile.id_text' => 'asc']
+		],
+		'ProfileDependency' => [
+			'className' => 'Profile',
+			'foreignKey' => 'dependency_id',
+			'dependent' => true,
+			'fields' => [
+				'ProfileDependency.id',
+				'ProfileDependency.enabled',
+				'ProfileDependency.id_text'
+			],
+			'order' => ['ProfileDependency.id_text' => 'asc']
+		]
 	];
+
+/**
+ * Return array for render profile dependencies XML elements
+ *
+ * @param array $data Information of profile dependencies
+ * @return array Return array for render XML elements
+ * @see RenderXmlData::renderXml()
+ */
+	public function getXMLdata($data = []) {
+		return $this->getDependsXMLdata($data, 'profile-id', 'depends');
+	}
 
 /**
  * Return name of data.
@@ -130,30 +176,8 @@ class ProfilesProfile extends AppModel {
  *  or False on failure.
  */
 	public function getNameExt($id = null, $typeName = null, $primary = true) {
-		if (is_array($id)) {
-			if (!isset($id[$this->alias]['profile_id']) || !isset($id[$this->alias]['dependency_id'])) {
-				return false;
-			}
-			$data = $id;
-		} else {
-			$data = $this->get($id);
-			if (empty($data)) {
-				return false;
-			}
-		}
-		$profileId = $data[$this->alias]['profile_id'];
-		$dependencyId = $data[$this->alias]['dependency_id'];
-		$profileName = $this->Profile->getFullName($profileId, null, null, null, false);
-		$profileDependencyName = $this->ProfileDependency->getFullName($dependencyId, null, null, null, false);
-		if (empty($profileName) || empty($profileDependencyName)) {
-			return false;
-		}
-
-		$result = __('dependency %s of the %s', $profileName, $profileDependencyName);
-		if ($primary) {
-			$result = mb_ucfirst($result);
-		}
-		return $result;
+		$format = __('dependency %s of the %s');
+		return $this->getDependsNameExt($id, $typeName, $primary, $format);
 	}
 
 /**
@@ -169,22 +193,8 @@ class ProfilesProfile extends AppModel {
  * @return array Return an array of information for creating a breadcrumbs.
  */
 	public function getBreadcrumbInfo($id = null, $refType = null, $refNode = null, $refId = null, $includeRoot = null) {
-		$result = [];
-		if (empty($refId)) {
-			return $result;
-		}
-		$data = $this->get($refId);
-		if (empty($data)) {
-			return $result;
-		}
-		$profileId = $data[$this->alias]['profile_id'];
-		$dependencyId = $data[$this->alias]['dependency_id'];
-		$result = $this->Profile->getBreadcrumbInfo($profileId);
-		$result[] = __('Dependency of profile');
-		$profile = $this->ProfileDependency->getBreadcrumbInfo($dependencyId, null, null, null, false);
-		$result = array_merge($result, $profile);
-
-		return $result;
+		$label = __('Dependency of profile');
+		return $this->getDependsBreadcrumbInfo($id, $refType, $refNode, $refId, $includeRoot, $label);
 	}
 
 /**
@@ -195,4 +205,5 @@ class ProfilesProfile extends AppModel {
 	public function getParamClearCache() {
 		return $this->Profile->getParamClearCache();
 	}
+
 }

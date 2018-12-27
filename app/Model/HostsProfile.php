@@ -51,7 +51,13 @@ class HostsProfile extends AppModel {
  */
 	public $actsAs = [
 		'BreadCrumbExt',
-		'ClearViewCache'
+		'ClearViewCache',
+		'DependencyInfo' => [
+			'mainModelName' => 'Host',
+			'dependencyModelName' => 'Profile',
+			'mainFieldName' => 'host_id',
+			'dependencyFieldName' => 'profile_id',
+		]
 	];
 
 /**
@@ -120,33 +126,25 @@ class HostsProfile extends AppModel {
  *  or False on failure.
  */
 	public function getNameExt($id = null, $typeName = null, $primary = true) {
-		if (is_array($id)) {
-			if (!isset($id[$this->alias]['host_id']) || !isset($id[$this->alias]['profile_id'])) {
-				return false;
-			}
-			$data = $id;
-		} else {
-			$data = $this->get($id);
-			if (empty($data)) {
-				return false;
-			}
-		}
-		$hostId = $data[$this->alias]['host_id'];
-		$profileId = $data[$this->alias]['profile_id'];
-		$hostName = $this->Host->getFullName($hostId, null, null, null, false);
-		$profileName = $this->Profile->getFullName($profileId, null, null, null, false);
-		if (empty($hostName)) {
-			return false;
-		}
-		if (empty($profileName)) {
-			$profileName = __('profile');
-		}
+		$format = __('associated %s of the %s');
+		return $this->getDependsNameExt($id, $typeName, $primary, $format, true);
+	}
 
-		$result = __('associated %s of the %s', $profileName, $hostName);
-		if ($primary) {
-			$result = mb_ucfirst($result);
-		}
-		return $result;
+/**
+ * Return an array of information for creating a breadcrumbs.
+ *
+ * @param int|string|array $id ID of record or array data
+ *  for retrieving name.
+ * @param int|string $refType ID type of object
+ * @param int|string $refNode ID node of object
+ * @param int|string $refId Record ID of the node
+ * @param bool|null $includeRoot If True, include information of root breadcrumb.
+ *  If Null, include information of root breadcrumb if $ID is not empty.
+ * @return array Return an array of information for creating a breadcrumbs.
+ */
+	public function getBreadcrumbInfo($id = null, $refType = null, $refNode = null, $refId = null, $includeRoot = null) {
+		$label = __('Associated profile');
+		return $this->getDependsBreadcrumbInfo($id, $refType, $refNode, $refId, $includeRoot, $label);
 	}
 
 /**
