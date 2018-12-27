@@ -109,10 +109,11 @@ class GetListBehavior extends ModelBehavior {
  * @param string|array|null $order SQL ORDER BY
  * @param string|null $nameField Name of field for value of cache
  * @param bool $ucFirst Flag of conversion first char to uppercase
+ * @param bool $excludeDisabled Flag of excluding disabled records
  * @param int|string|null $limit Limit of list
  * @return array Return list of data
  */
-	public function getList(Model $model, $conditions = [], $domain = null, $order = null, $nameField = null, $ucFirst = false, $limit = null) {
+	public function getList(Model $model, $conditions = [], $domain = null, $order = null, $nameField = null, $ucFirst = false, $excludeDisabled = false, $limit = null) {
 		if (empty($conditions)) {
 			$conditions = [];
 		} elseif (!is_array($conditions)) {
@@ -123,14 +124,15 @@ class GetListBehavior extends ModelBehavior {
 		}
 
 		$currUIlang = (string)Configure::read('Config.language');
-		$dataStr = serialize(compact('conditions', 'domain', 'order', 'limit', 'currUIlang'));
+		$modelName = $model->name;
+		$dataStr = serialize(compact('modelName', 'conditions', 'domain', 'order', 'excludeDisabled', 'limit', 'currUIlang'));
 		$cachePath = 'ListInfo.' . md5($dataStr);
 		$cached = Cache::read($cachePath, $this->settings[$model->alias]['cacheConfig']);
 		if (!empty($cached)) {
 			return $cached;
 		}
 
-		if ($model->hasField('enabled')) {
+		if ($excludeDisabled && $model->hasField('enabled')) {
 			$defaultConditions = [$model->alias . '.enabled' => true];
 			$conditions = Hash::merge($defaultConditions, $conditions);
 		}

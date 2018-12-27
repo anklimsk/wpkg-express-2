@@ -835,14 +835,7 @@ class Package extends AppModel {
  * @return array Return list of packages
  */
 	public function getListPackages($enabled = false) {
-		$conditions = [
-			$this->alias . '.enabled' => [true, false]
-		];
-		if ($enabled) {
-			$conditions[$this->alias . '.enabled'] = true;
-		}
-
-		return $this->getList($conditions, null, null, 'full_name');
+		return $this->getList(null, null, null, 'full_name', false, $enabled);
 	}
 
 /**
