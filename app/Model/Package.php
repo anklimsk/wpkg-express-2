@@ -144,8 +144,8 @@ class Package extends AppModel {
 			]
 		],
 		'notify' => [
-			'rule' => 'boolean',
-			'message' => "The package's notify attribute must be true or false.",
+			'rule' => 'numeric',
+			'message' => "The package's notify attribute is invalid.",
 			'last' => true
 		],
 		'DependsOn' => [
