@@ -499,7 +499,7 @@ class Attribute extends AppModel {
 				}
 			break;
 			case ATTRIBUTE_TYPE_PROFILE:
-				$invalidNodeList = [ATTRIBUTE_NODE_PACKAGE];
+				$invalidNodeList = [ATTRIBUTE_NODE_PACKAGE, ATTRIBUTE_NODE_DEPENDS];
 				if (in_array($refNode, $invalidNodeList)) {
 					return false;
 				}
@@ -533,7 +533,11 @@ class Attribute extends AppModel {
 				}
 			break;
 			case ATTRIBUTE_NODE_DEPENDS:
-				$modelName = 'PackagesPackage';
+				if ($refType == ATTRIBUTE_TYPE_PACKAGE) {
+					$modelName = 'PackagesPackage';
+				} elseif ($refType == ATTRIBUTE_TYPE_PROFILE) {
+					$modelName = 'ProfilesProfile';
+				}
 			break;
 			case ATTRIBUTE_NODE_INCLUDE:
 				$modelName = 'PackagesInclude';
@@ -860,5 +864,42 @@ class Attribute extends AppModel {
 		}
 
 		return $modelNode->getParamClearCache($refId);
+	}
+
+/**
+ * Remove attributes without reference records
+ *
+ * @param int|string $refType ID type of object
+ * @param int|string $refNode ID node of object
+ * @return bool Success
+ */
+	public function clearUnusedAttributes($refType = null, $refNode = null) {
+		$modelNode = $this->getRefNodeModel($refType, $refNode);
+		if (empty($modelNode)) {
+			return $result;
+		}
+		$bindCfg = [
+			'belongsTo' => [
+				$modelNode->name => [
+					'className' => $modelNode->name,
+					'foreignKey' => '',
+					'conditions' => [
+						$this->alias . '.ref_type' => $refType,
+						$this->alias . '.ref_node' => $refNode,
+						$this->alias . '.ref_id = ' . $modelNode->alias . '.id',
+					],
+					'dependent' => false
+				]
+			]
+		];
+		$this->bindModel($bindCfg, true);
+		$conditions = [
+			$this->alias . '.ref_type' => $refType,
+			$this->alias . '.ref_node' => $refNode,
+			$modelNode->alias . '.id' => null
+		];
+		$this->recursive = 0;
+
+		return $this->deleteAll($conditions, false);
 	}
 }

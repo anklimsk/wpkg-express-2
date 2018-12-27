@@ -187,15 +187,16 @@ class ProfilesController extends AppController {
  *
  * POST Data:
  *  - Profile: array data of profile;
- *  - ProfileDependency: array data of depends on profiles.
+ *  - DependsOn: array data of depends on profiles.
  *
  * @return void
  */
 	protected function _add() {
 		$this->view = 'add';
+		$this->Profile->bindHabtmProfileDependecies(false);
 		if ($this->request->is('post')) {
 			$this->Profile->create();
-			if ($this->Profile->save($this->request->data)) {
+			if ($this->Profile->saveProfile($this->request->data)) {
 				$this->Flash->success(__('Profile has been saved.'));
 
 				return $this->ViewExtension->redirectByUrl(null, 'profile');
@@ -235,7 +236,7 @@ class ProfilesController extends AppController {
  *
  * POST Data:
  *  - Profile: array data of profile;
- *  - ProfileDependency: array data of depends on profiles.
+ *  - DependsOn: array data of depends on profiles.
  *
  * @param int|string $id ID of record for editing
  * @throws NotFoundException if record for parameter $id was not found
@@ -248,8 +249,9 @@ class ProfilesController extends AppController {
 			return $this->ViewExtension->setExceptionMessage(new NotFoundException(__('Invalid ID for profile')));
 		}
 
+		$this->Profile->bindHabtmProfileDependecies(false);
 		if ($this->request->is(['post', 'put'])) {
-			if ($this->Profile->save($this->request->data)) {
+			if ($this->Profile->saveProfile($this->request->data)) {
 				$this->Flash->success(__('Profile has been saved.'));
 
 				return $this->ViewExtension->redirectByUrl(null, 'profile');
@@ -450,7 +452,7 @@ class ProfilesController extends AppController {
 		}
 
 		if ($this->request->is(['post', 'put'])) {
-			if ($this->Profile->saveAll($this->request->data)) {
+			if ($this->Profile->savePackagesProfile($this->request->data)) {
 				$this->Flash->success(__('Profile has been saved.'));
 
 				return $this->ViewExtension->redirectByUrl(null, 'profile');

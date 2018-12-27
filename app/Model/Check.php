@@ -1571,4 +1571,38 @@ class Check extends AppModel {
 
 		return $modelType->getParamClearCache($refId);
 	}
+
+/**
+ * Remove checks without reference records
+ *
+ * @param int|string $refType ID type of object
+ * @return bool Success
+ */
+	public function clearUnusedChecks($refType = null) {
+		$modelType = $this->getRefTypeModel($refType);
+		if (empty($modelType)) {
+			return $result;
+		}
+		$bindCfg = [
+			'belongsTo' => [
+				$modelType->name => [
+					'className' => $modelType->name,
+					'foreignKey' => '',
+					'conditions' => [
+						$this->alias . '.ref_type' => $refType,
+						$this->alias . '.ref_id = ' . $modelType->alias . '.id',
+					],
+					'dependent' => false
+				]
+			]
+		];
+		$this->bindModel($bindCfg, true);
+		$conditions = [
+			$this->alias . '.ref_type' => $refType,
+			$modelType->alias . '.id' => null
+		];
+		$this->recursive = 0;
+
+		return $this->deleteAll($conditions, true);
+	}
 }

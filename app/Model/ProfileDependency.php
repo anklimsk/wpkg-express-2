@@ -49,63 +49,7 @@ class ProfileDependency extends AppModel {
  * @link https://book.cakephp.org/2.0/en/models/behaviors.html#using-behaviors
  */
 	public $actsAs = [
-		'BreadCrumbExt',
-		'GetGraphInfo',
-		'ValidationRules'
+		'GetGraphInfo'
 	];
 
-/**
- * List of validation rules. It must be an array with the field name as key and using
- * as value one of the following possibilities
- *
- * @var array
- * @link https://book.cakephp.org/2.0/en/models/model-attributes.html#validate
- * @link https://book.cakephp.org/2.0/en/models/data-validation.html
- */
-	public $validate = [
-		'profile_id' => [
-			'rule' => 'naturalNumber',
-			'message' => 'Incorrect foreign key',
-			'allowEmpty' => false,
-			'required' => true,
-			'last' => true,
-		],
-		'dependency_id' => [
-			'naturalNumber' => [
-				'rule' => 'naturalNumber',
-				'message' => 'Incorrect foreign key',
-				'allowEmpty' => false,
-				'required' => true,
-				'last' => true,
-			],
-			'selfDependency' => [
-				'rule' => ['selfDependency', 'profile_id'],
-				'message' => 'Depended on self',
-				'allowEmpty' => false,
-				'required' => true,
-				'last' => true,
-			]
-		],
-	];
-
-/**
- * Return array for render depends XML elements
- *
- * @param array $data Information of depend profiles
- * @return array Return array for render XML elements
- * @see RenderXmlData::renderXml()
- */
-	public function getXMLdata($data = null) {
-		$result = [];
-		if (empty($data) || !is_array($data)) {
-			return $result;
-		}
-
-		foreach ($data as $depend) {
-			$dependAttribs = ['@profile-id' => $depend['id_text']];
-			$result['depends'][] = $dependAttribs;
-		}
-
-		return $result;
-	}
 }

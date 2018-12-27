@@ -1320,6 +1320,7 @@ class Import extends AppModel {
 			$dependencyInfo = [
 				'ProfilesProfile' => ['dependency_id' => $dependencyId]
 			];
+			$dependencyInfo['Attribute'] = $this->_prepareAttributes($xmlDataItem);
 			$result[] = $dependencyInfo;
 		}
 
@@ -2165,6 +2166,13 @@ class Import extends AppModel {
 				$result = false;
 				$errorType = $modelProfilesProfile->getFullName($profDependency);
 				$messages[__('Errors')][$errorType] = $modelProfilesProfile->validationErrors;
+				continue;
+			}
+
+			$dependProfId = $modelProfilesProfile->id;
+			if (!$this->_saveExtAttributes($messages, $profDependencyInfo, ATTRIBUTE_TYPE_PROFILE, ATTRIBUTE_NODE_DEPENDS, $dependProfId)) {
+				$result = false;
+				continue;
 			}
 		}
 

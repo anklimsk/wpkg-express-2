@@ -88,7 +88,7 @@ class Profile extends AppModel {
 				'last' => true
 			],
 		],
-		'ProfileDependency' => [
+		'DependsOn' => [
 			'selfDependency' => [
 				'rule' => ['selfDependency', 'id'],
 				'message' => 'Depended on self',
@@ -106,21 +106,6 @@ class Profile extends AppModel {
  * @link https://book.cakephp.org/2.0/en/models/associations-linking-models-together.html#hasandbelongstomany-habtm
  */
 	public $hasAndBelongsToMany = [
-		'ProfileDependency' => [
-			'className' => 'ProfileDependency',
-			'joinTable' => 'profiles_profiles',
-			'foreignKey' => 'profile_id',
-			'associationForeignKey' => 'dependency_id',
-			'unique' => true,
-			'conditions' => '',
-			'dependent' => true,
-			'fields' => [
-				'ProfileDependency.id',
-				'ProfileDependency.id_text',
-				'ProfileDependency.enabled'
-			],
-			'order' => ['ProfileDependency.id_text' => 'asc']
-		],
 		'Host' => [
 			'className' => 'Host',
 			'joinTable' => 'hosts_profiles',
@@ -150,8 +135,18 @@ class Profile extends AppModel {
 			'dependent' => true,
 			'fields' => [
 				'PackagesProfile.id',
-				'PackagesProfile.profile_id,
-				PackagesProfile.package_id'
+				'PackagesProfile.profile_id',
+				'PackagesProfile.package_id'
+			]
+		],
+		'ProfilesProfile' => [
+			'className' => 'ProfilesProfile',
+			'foreignKey' => 'profile_id',
+			'dependent' => true,
+			'fields' => [
+				'ProfilesProfile.id',
+				'ProfilesProfile.profile_id',
+				'ProfilesProfile.dependency_id'
 			]
 		],
 		'HostsProfile' => [
@@ -209,6 +204,63 @@ class Profile extends AppModel {
 	}
 
 /**
+ * Saving profile information use transactions.
+ *
+ * @param array $data Array information profile to save.
+ * @return bool Success.
+ */
+	public function saveProfile($data = []) {
+		$result = true;
+		$dataSource = $this->getDataSource();
+		$dataSource->begin();
+
+		$this->bindHabtmProfileDependecies(false);
+		$result = $this->saveAll($data);
+		if ($result) {
+			if (!$this->PackagesProfile->Attribute->clearUnusedAttributes(ATTRIBUTE_TYPE_PROFILE, ATTRIBUTE_NODE_DEPENDS)) {
+				$result = false;
+			}
+		}
+		if ($result) {
+			$dataSource->commit();
+		} else {
+			$dataSource->rollback();
+		}
+
+		return $result;
+	}
+
+/**
+ * Saving packages of profile information use transactions.
+ *
+ * @param array $data Array information packages of profile to save.
+ * @return bool Success.
+ */
+	public function savePackagesProfile($data = []) {
+		$result = true;
+		$dataSource = $this->getDataSource();
+		$dataSource->begin();
+
+		$this->bindHabtmPackages();
+		$result = $this->saveAll($data);
+		if ($result) {
+			if (!$this->PackagesProfile->Attribute->clearUnusedAttributes(ATTRIBUTE_TYPE_PROFILE, ATTRIBUTE_NODE_PACKAGE)) {
+				$result = false;
+			}
+			if (!$this->PackagesProfile->Check->clearUnusedChecks(CHECK_PARENT_TYPE_PROFILE)) {
+				$result = false;
+			}
+		}
+		if ($result) {
+			$dataSource->commit();
+		} else {
+			$dataSource->rollback();
+		}
+
+		return $result;
+	}
+
+/**
  * Return information of profile
  *
  * @param int|string $id The ID of the record to read.
@@ -232,16 +284,14 @@ class Profile extends AppModel {
 			$this->alias . '.modified'
 		];
 		$conditions = [$this->alias . '.id' => $id];
-		$contain = [
-			'ProfileDependency',
-		];
+		$contain = [];
 		if ($full) {
-			if (!$this->_bindHabtmProfileDependedOnBy() || !$this->_bindHasManyHostMainProfiles()) {
+			if (!$this->_bindHasManyHostMainProfiles()) {
 				return false;
 			};
 			$containExt = [
-				'DependedOnBy',
-				'HostMainProfiles',
+				'ProfilesProfile.ProfileDependency',
+				'ProfilesProfile.Attribute' => ['fields' => '*'],
 				'PackagesProfile.Package',
 				'PackagesProfile.Attribute' => ['fields' => '*'],
 				'PackagesProfile.Check',
@@ -250,9 +300,18 @@ class Profile extends AppModel {
 				'Variable.Attribute' => ['fields' => '*'],
 				'Variable.Check',
 				'Variable.Check.Attribute' => ['fields' => '*'],
-				'Host'
+				'InDependencies',
+				'HostMainProfiles',
+				'Host',
 			];
 			$contain = array_merge($contain, $containExt);
+
+			$this->bindHabtmProfileDependecies(true);
+		} else {
+			$contain = [
+				'DependsOn',
+			];
+			$this->bindHabtmProfileDependecies(false);
 		}
 
 		$result = $this->find('first', compact('conditions', 'fields', 'contain'));
@@ -260,17 +319,8 @@ class Profile extends AppModel {
 			return $result;
 		}
 
-		if (isset($result['PackagesProfile'])) {
-			$result['PackagesProfile'] = Hash::sort(
-				$result['PackagesProfile'],
-				'{n}.Package.name',
-				'asc',
-				[
-					'type' => 'string',
-					'ignoreCase' => true
-				]
-			);
-		}
+		$result = $this->PackagesProfile->sortDependencyData($result);
+		$result = $this->ProfilesProfile->sortDependencyData($result);
 
 		return $result;
 	}
@@ -305,18 +355,13 @@ class Profile extends AppModel {
 		}
 
 		$order = [$this->alias . '.id_text' => 'asc'];
-
 		$contain = [
 			'Variable',
 			'Variable.Attribute',
 			'Variable.Check',
 			'Variable.Check.Attribute',
-			'ProfileDependency' => [
-				'fields' => [
-					'ProfileDependency.id',
-					'ProfileDependency.id_text'],
-				'conditions' => ['ProfileDependency.enabled' => true]
-			],
+			'ProfilesProfile.ProfileDependency',
+			'ProfilesProfile.Attribute',
 			'PackagesProfile.Package',
 			'PackagesProfile.Attribute',
 			'PackagesProfile.Check',
@@ -339,16 +384,6 @@ class Profile extends AppModel {
  * @see RenderXmlData::renderXml()
  */
 	public function getXMLdata($id = null, $exportdisable = false, $exportnotes = false, $exportdisabled = false) {
-		$result = [];
-		if (is_array($id)) { // Build XML data for Profiles in Host
-			foreach ($id as $profile) {
-				$result['profile'][] = ['@id' => $profile['id_text']];
-			}
-
-			return $result;
-		}
-
-		// Build XML data for Profiles
 		$baseUrl = Configure::read('App.fullBaseUrl');
 		$result = [
 			'profiles:profiles' => [
@@ -392,8 +427,8 @@ class Profile extends AppModel {
 				$xmlItemArray += $this->Variable->getXMLdata($profile['Variable']);
 			}
 
-			if (isset($profile['ProfileDependency'])) {
-				$xmlItemArray += $this->ProfileDependency->getXMLdata($profile['ProfileDependency']);
+			if (isset($profile['ProfilesProfile'])) {
+				$xmlItemArray += $this->ProfilesProfile->getXMLdata($profile['ProfilesProfile']);
 			}
 
 			if (isset($profile['PackagesProfile'])) {
@@ -406,6 +441,51 @@ class Profile extends AppModel {
 				$result['profiles:profiles']['profile'][] = $xmlItemArray;
 			}
 		}
+
+		return $result;
+	}
+
+/**
+ * Temporarily bind an additional new 'reverse' HABTM relationship,
+ *  which gives us which profiles depend on this profile
+ *
+ * @param bool $reverse Flag of reverse bind.
+ * @return bool Success.
+ */
+	public function bindHabtmProfileDependecies($reverse = false) {
+		$dependModel = 'DependsOn';
+		$foreignKey = 'profile_id';
+		$associationForeignKey = 'dependency_id';
+		if ($reverse) {
+			$dependModel = 'InDependencies';
+			$foreignKey = 'dependency_id';
+			$associationForeignKey = 'profile_id';
+		}
+		$hasAndBelongsToMany = $this->getAssociated('hasAndBelongsToMany');
+		if (!empty($hasAndBelongsToMany) && in_array($dependModel, $hasAndBelongsToMany)) {
+			return true;
+		}
+
+		$result = $this->bindModel(
+			[
+				'hasAndBelongsToMany' => [
+					$dependModel => [
+						'className' => 'ProfileDependency',
+						'joinTable' => 'profiles_profiles',
+						'foreignKey' => $foreignKey,
+						'associationForeignKey' => $associationForeignKey,
+						'unique' => 'keepExisting',
+						'fields' => [
+							$dependModel . '.id',
+							$dependModel . '.enabled',
+							$dependModel . '.id_text'
+						],
+						'order' => [$dependModel . '.id_text' => 'asc']
+					],
+				]
+			],
+			false
+		);
 
 		return $result;
 	}
@@ -712,17 +792,12 @@ class Profile extends AppModel {
 			!$this->Variable->deleteAll($conditions, true, false)) {
 			return false;
 		}
-		$conditions = [$this->HostsProfile->alias . '.profile_id' => $id];
-		if (!$this->HostsProfile->deleteAll($conditions, true, false)) {
-			return false;
-		}
 		$conditions = [$this->PackagesProfile->alias . '.profile_id' => $id];
 		if (!$this->PackagesProfile->deleteAll($conditions, true, false)) {
 			return false;
 		}
-		$modelProfilesProfile = ClassRegistry::init('ProfilesProfile');
-		$conditions = [$modelProfilesProfile->alias . '.profile_id' => $id];
-		if (!$modelProfilesProfile->deleteAll($conditions, true, false)) {
+		$conditions = [$this->ProfilesProfile->alias . '.profile_id' => $id];
+		if (!$this->ProfilesProfile->deleteAll($conditions, true, false)) {
 			return false;
 		}
 
@@ -753,39 +828,6 @@ class Profile extends AppModel {
 	}
 
 /**
- * Temporarily bind an additional new HABTM relationship,
- *  which gives us which profiles depend on this profile
- *
- * @return bool Success.
- */
-	protected function _bindHabtmProfileDependedOnBy() {
-		$result = $this->bindModel(
-			[
-				'hasAndBelongsToMany' => [
-					'DependedOnBy' => [
-						'className' => 'ProfileDependency',
-						'joinTable' => 'profiles_profiles',
-						'foreignKey' => 'dependency_id',
-						'associationForeignKey' => 'profile_id',
-						'unique' => true,
-						'conditions' => '',
-						'dependent' => false,
-						'fields' => [
-							'DependedOnBy.id',
-							'DependedOnBy.id_text',
-							'DependedOnBy.enabled'
-						],
-						'order' => ['DependedOnBy.id_text' => 'asc']
-					]
-				]
-			],
-			true
-		);
-
-		return $result;
-	}
-
-/**
  * Return list of hosts and depended profiles for profile by ID
  *
  * @param int|string $profileId The ID of the record to retrieve data
@@ -793,7 +835,7 @@ class Profile extends AppModel {
  *  on failure.
  */
 	public function getListHostsAndDependProfiles($profileId = null) {
-		if (!$this->_bindHasManyHostMainProfiles() || !$this->_bindHabtmProfileDependedOnBy()) {
+		if (!$this->_bindHasManyHostMainProfiles() || !$this->bindHabtmProfileDependecies(true)) {
 			return false;
 		}
 		$fields = [
@@ -805,7 +847,7 @@ class Profile extends AppModel {
 		$contain = [
 			'Host',
 			'HostMainProfiles',
-			'DependedOnBy'
+			'InDependencies'
 		];
 
 		return $this->find('first', compact('fields', 'conditions', 'contain'));
@@ -823,6 +865,7 @@ class Profile extends AppModel {
 			return false;
 		}
 
+		$this->bindHabtmProfileDependecies(false);
 		$fields = [
 			$this->alias . '.id',
 			$this->alias . '.enabled',
@@ -830,7 +873,7 @@ class Profile extends AppModel {
 		];
 		$conditions = [$this->alias . '.id' => $id];
 		$contain = [
-			'ProfileDependency'
+			'DependsOn'
 		];
 
 		return $this->find('first', compact('conditions', 'fields', 'contain'));
@@ -863,7 +906,7 @@ class Profile extends AppModel {
  */
 	public function getGraphDependencyInfo() {
 		$result = [
-			'ProfileDependency' => ['dependLabel' => __x('dependency', 'Depends on'), 'arrowhead' => 'normal'],
+			'DependsOn' => ['dependLabel' => __x('dependency', 'Depends on'), 'arrowhead' => 'normal'],
 		];
 
 		return $result;
@@ -880,8 +923,9 @@ class Profile extends AppModel {
  * @return void
  */
 	public function getGraphDataHostRec(array &$result, $id = null, $parent = null, $level = 1, $deepLimit = GRAPH_DEEP_LIMIT) {
-		if (($level > $deepLimit) || $this->ProfileDependency->checkIsProcessedId($id) ||
-			!$this->ProfileDependency->checkLimitListProcessedId()) {
+		$this->bindHabtmProfileDependecies(true);
+		if (($level > $deepLimit) || $this->InDependencies->checkIsProcessedId($id) ||
+			!$this->InDependencies->checkLimitListProcessedId()) {
 			return;
 		}
 		if (empty($parent)) {
@@ -893,10 +937,10 @@ class Profile extends AppModel {
 			return;
 		}
 
-		$this->ProfileDependency->addToListProcessedId($id);
+		$this->InDependencies->addToListProcessedId($id);
 		$dependencyInfo = [
 			'HostMainProfiles' => ['dependLabel' => __('Through main profile'), 'arrowhead' => 'normal', 'dependModel' => 'Host'],
-			'DependedOnBy' => ['dependLabel' => __('Through dependent profile'), 'arrowhead' => 'open', 'dependModel' => ''],
+			'InDependencies' => ['dependLabel' => __('Through dependent profile'), 'arrowhead' => 'open', 'dependModel' => ''],
 			'Host' => ['dependLabel' => __('Through prof. assoc. host'), 'arrowhead' => 'empty', 'dependModel' => 'Host']
 		];
 

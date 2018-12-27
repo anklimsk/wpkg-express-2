@@ -92,13 +92,14 @@ $profileName = h($profile['Profile']['id_text']);
 			<div class="row">
 				<div class="col-md-6 col-xs-12">
 <?php
-	echo $this->element('infoDependency', ['dependencies' => $profile['ProfileDependency'], 'controllerName' => 'profiles',
-		'label' => __('Depends on profiles'), 'modelName' => 'ProfileDependency', 'bindLimit' => $bindLimit]);
+	echo $this->element('infoDependency', ['dependencies' => $profile['ProfilesProfile'], 'controllerName' => 'profiles',
+		'label' => __('Depends on profiles'), 'modelName' => 'ProfileDependency', 'bindLimit' => $bindLimit,
+		'attrRefType' => ATTRIBUTE_TYPE_PROFILE, 'attrRefNode' => ATTRIBUTE_NODE_DEPENDS]);
 ?>
 				</div>
 				<div class="col-md-6 col-xs-12">
 <?php
-	echo $this->element('infoDependency', ['dependencies' => $profile['DependedOnBy'], 'controllerName' => 'profiles',
+	echo $this->element('infoDependency', ['dependencies' => $profile['InDependencies'], 'controllerName' => 'profiles',
 		'label' => __('Exists in dependencies'), 'bindLimit' => $bindLimit]);
 ?>
 				</div>
