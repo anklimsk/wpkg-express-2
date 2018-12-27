@@ -1164,7 +1164,7 @@ if (!defined('ATTRIBUTE_NODE_VARIABLE')) {
 }
 
 /**
- * Node of object attribute `Package depends`
+ * Node of object attribute `Package depends` and `Profile depends`
  *
  * Used for determine the node of object attribute. Default value `4`
  */
@@ -1215,6 +1215,15 @@ if (!defined('ATTRIBUTE_NODE_CHECK')) {
  */
 if (!defined('ATTRIBUTE_NODE_REPORT')) {
 	define('ATTRIBUTE_NODE_REPORT', 9);
+}
+
+/**
+ * Node of object attribute `Profile`
+ *
+ * Used for determine the node of object attribute. Default value `10`
+ */
+if (!defined('ATTRIBUTE_NODE_PROFILE')) {
+	define('ATTRIBUTE_NODE_PROFILE', 10);
 }
 
 /**

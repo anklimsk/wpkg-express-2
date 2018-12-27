@@ -99,35 +99,22 @@ class Host extends AppModel {
 	];
 
 /**
- * Detailed list of hasAndBelongsToMany associations.
- *
- * @var array
- * @link https://book.cakephp.org/2.0/en/models/associations-linking-models-together.html#hasandbelongstomany-habtm
- */
-	public $hasAndBelongsToMany = [
-		'Profile' => [
-			'className' => 'Profile',
-			'joinTable' => 'hosts_profiles',
-			'foreignKey' => 'host_id',
-			'associationForeignKey' => 'profile_id',
-			'unique' => true,
-			'conditions' => '',
-			'fields' => [
-				'Profile.id',
-				'Profile.enabled',
-				'Profile.id_text'
-			],
-			'order' => ['Profile.id_text' => 'asc']
-		]
-	];
-
-/**
  * Detailed list of hasMany associations.
  *
  * @var array
  * @link https://book.cakephp.org/2.0/en/models/associations-linking-models-together.html#hasmany
  */
 	public $hasMany = [
+		'HostsProfile' => [
+			'className' => 'HostsProfile',
+			'foreignKey' => 'host_id',
+			'dependent' => true,
+			'fields' => [
+				'HostsProfile.id',
+				'HostsProfile.host_id',
+				'HostsProfile.profile_id'
+			]
+		],
 		'Variable' => [
 			'className' => 'Variable',
 			'foreignKey' => 'ref_id',
@@ -253,6 +240,33 @@ class Host extends AppModel {
 	}
 
 /**
+ * Saving host information use transactions.
+ *
+ * @param array $data Array information host to save.
+ * @return bool Success.
+ */
+	public function saveHost($data = []) {
+		$result = true;
+		$dataSource = $this->getDataSource();
+		$dataSource->begin();
+
+		$this->bindHabtmAssocProfiles();
+		$result = $this->saveAll($data);
+		if ($result) {
+			if (!$this->HostsProfile->Attribute->clearUnusedAttributes(ATTRIBUTE_TYPE_HOST, ATTRIBUTE_NODE_PROFILE)) {
+				$result = false;
+			}
+		}
+		if ($result) {
+			$dataSource->commit();
+		} else {
+			$dataSource->rollback();
+		}
+
+		return $result;
+	}
+
+/**
  * Return information of host
  *
  * @param int|string $id The ID of the record to read.
@@ -280,20 +294,31 @@ class Host extends AppModel {
 		$conditions = [$this->alias . '.id' => $id];
 		$contain = [
 			'MainProfile',
-			'Profile'
 		];
 		if ($full) {
 			$containExt = [
+				'HostsProfile.Profile',
+				'HostsProfile.Attribute' => ['fields' => '*'],
 				'Variable',
 				'Variable.Attribute' => ['fields' => '*'],
 				'Variable.Check',
 				'Variable.Check.Attribute' => ['fields' => '*'],
 				'Attribute' => ['fields' => '*'],
-				];
+			];
 			$contain = array_merge($contain, $containExt);
+		} else {
+			$contain[] = 'Profile';
+			$this->bindHabtmAssocProfiles();
 		}
 
-		return $this->find('first', compact('conditions', 'fields', 'contain'));
+		$result = $this->find('first', compact('conditions', 'fields', 'contain'));
+		if (empty($result) || !$full) {
+			return $result;
+		}
+
+		$result = $this->HostsProfile->sortDependencyData($result);
+
+		return $result;
 	}
 
 /**
@@ -330,18 +355,14 @@ class Host extends AppModel {
 			'MainProfile' => [
 				'fields' => ['MainProfile.id_text']
 			],
-			'Profile' => [
-				'conditions' => ['Profile.enabled' => true],
-				'fields' => [
-					'Profile.id',
-					'Profile.id_text'],
-				'order' => ['Profile.id_text' => 'asc'],
-			],
 			'Attribute',
 			'Variable',
 			'Variable.Attribute',
 			'Variable.Check',
-			'Variable.Check.Attribute'];
+			'Variable.Check.Attribute',
+			'HostsProfile.Profile',
+			'HostsProfile.Attribute'
+		];
 
 		return $this->find('all', compact('conditions', 'fields', 'order', 'contain'));
 	}
@@ -407,8 +428,8 @@ class Host extends AppModel {
 				$xmlItemArray += $this->Variable->getXMLdata($host['Variable']);
 			}
 
-			if (isset($host['Profile'])) {
-				$xmlItemArray += $this->Profile->getXMLdata($host['Profile']);
+			if (isset($host['HostsProfile'])) {
+				$xmlItemArray += $this->HostsProfile->getXMLdata($host['HostsProfile']);
 			}
 
 			if (!$host[$this->alias]['enabled'] && $exportdisabled) {
@@ -417,6 +438,37 @@ class Host extends AppModel {
 				$result['hosts:wpkg']['host'][] = $xmlItemArray;
 			}
 		}
+
+		return $result;
+	}
+
+/**
+ * Temporarily bind an additional new HABTM relationship,
+ *  which gives us which additional associated profiles of host.
+ *
+ * @return bool Success.
+ */
+	public function bindHabtmAssocProfiles() {
+		$hasAndBelongsToMany = $this->getAssociated('hasAndBelongsToMany');
+		if (!empty($hasAndBelongsToMany) && in_array('Profile', $hasAndBelongsToMany)) {
+			return true;
+		}
+
+		$result = $this->bindModel(
+			[
+				'hasAndBelongsToMany' => [
+					'Profile' => [
+						'className' => 'Profile',
+						'joinTable' => 'hosts_profiles',
+						'foreignKey' => 'host_id',
+						'associationForeignKey' => 'profile_id',
+						'unique' => 'keepExisting',
+						'order' => ['Profile.id_text' => 'asc']
+					]
+				]
+			],
+			false
+		);
 
 		return $result;
 	}
@@ -559,9 +611,8 @@ class Host extends AppModel {
 		if (!$this->Attribute->deleteAll($conditions, true, false)) {
 			return false;
 		}
-		$modelHostsProfile = ClassRegistry::init('HostsProfile');
-		$conditions = [$modelHostsProfile->alias . '.host_id' => $id];
-		if (!$modelHostsProfile->deleteAll($conditions, true, false)) {
+		$conditions = [$this->HostsProfile->alias . '.host_id' => $id];
+		if (!$this->HostsProfile->deleteAll($conditions, true, false)) {
 			return false;
 		}
 
@@ -613,6 +664,7 @@ class Host extends AppModel {
 			'MainProfile',
 			'Profile'
 		];
+		$this->bindHabtmAssocProfiles();
 
 		return $this->find('first', compact('conditions', 'fields', 'contain'));
 	}
@@ -697,12 +749,13 @@ class Host extends AppModel {
  *  query string
  *
  * @param string $query Query string
+ * @param int $limit Limit for find
  * @return array Return list of computer names
  */
-	public function getListNotProcessedComputersByQuery($query = null) {
+	public function getListNotProcessedComputersByQuery($query = null, $limit = null) {
 		$result = [];
 		$modelLdapComputer = ClassRegistry::init('LdapComputer');
-		$computers = $modelLdapComputer->getListComputers($query);
+		$computers = $modelLdapComputer->getListComputers($query, $limit);
 		if (empty($computers)) {
 			return $result;
 		}
@@ -710,8 +763,7 @@ class Host extends AppModel {
 		$modelConfig = ClassRegistry::init('Config');
 		$caseSensitivity = $modelConfig->getConfig('caseSensitivity');
 		$conditions = [
-			$this->alias . '.id_text like' => $query . '%',
-			$this->alias . '.enabled' => [false, true]
+			$this->alias . '.id_text like' => $query . '%'
 		];
 		$hosts = $this->getList($conditions);
 		if (!$caseSensitivity) {
@@ -734,6 +786,25 @@ class Host extends AppModel {
 				]
 			];
 		}
+
+		return $result;
+	}
+
+/**
+ * Return a list of computer names by query string
+ *
+ * @param string $query Query string
+ * @param int $limit Limit for find
+ * @return array Return list of computer names
+ */
+	public function getListComputersByQuery($query = null, $limit = null) {
+		$result = [];
+		$modelLdapComputer = ClassRegistry::init('LdapComputer');
+		$computers = $modelLdapComputer->getListComputersFromCache($query, $limit);
+		if (empty($computers)) {
+			return $result;
+		}
+		$result = array_values($computers);
 
 		return $result;
 	}

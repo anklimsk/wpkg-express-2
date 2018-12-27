@@ -1369,8 +1369,9 @@ class Import extends AppModel {
 		$this->_arrayIfY($xmlData);
 		foreach ($xmlData as $xmlDataItem) {
 			$profileId = $this->getIdFromNamesCache('Profile', $xmlDataItem['@id'], $xmlDataItem['@id'], !$this->_caseSensitivity);
-			$packageInfo = ['HostsProfile' => ['profile_id' => $profileId]];
-			$result[] = $packageInfo;
+			$profileInfo = ['HostsProfile' => ['profile_id' => $profileId]];
+			$profileInfo['Attribute'] = $this->_prepareAttributes($xmlDataItem);
+			$result[] = $profileInfo;
 		}
 
 		return $result;
@@ -2324,6 +2325,13 @@ class Import extends AppModel {
 				$result = false;
 				$errorType = $modelHostsProfile->getFullName($hostProfile);
 				$messages[__('Errors')][$errorType] = $modelHostsProfile->validationErrors;
+				continue;
+			}
+
+			$hostProfId = $modelHostsProfile->id;
+			if (!$this->_saveExtAttributes($messages, $hostProfileInfo, ATTRIBUTE_TYPE_HOST, ATTRIBUTE_NODE_PROFILE, $hostProfId)) {
+				$result = false;
+				continue;
 			}
 		}
 

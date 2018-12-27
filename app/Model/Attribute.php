@@ -504,6 +504,12 @@ class Attribute extends AppModel {
 					return false;
 				}
 			break;
+			case ATTRIBUTE_TYPE_HOST:
+				$invalidNodeList = [ATTRIBUTE_NODE_PROFILE];
+				if (in_array($refNode, $invalidNodeList)) {
+					return false;
+				}
+			break;
 		}
 
 		$type = $this->getNameTypeFor($refType);
@@ -547,6 +553,9 @@ class Attribute extends AppModel {
 			break;
 			case ATTRIBUTE_NODE_ACTION:
 				$modelName = 'PackageAction';
+			break;
+			case ATTRIBUTE_NODE_PROFILE:
+				$modelName = 'HostsProfile';
 			break;
 		}
 		if (empty($modelName)) {

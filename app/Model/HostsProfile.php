@@ -85,6 +85,35 @@ class HostsProfile extends AppModel {
 	];
 
 /**
+ * Detailed list of hasMany associations.
+ *
+ * @var array
+ * @link https://book.cakephp.org/2.0/en/models/associations-linking-models-together.html#hasmany
+ */
+	public $hasMany = [
+		'Attribute' => [
+			'className' => 'Attribute',
+			'foreignKey' => 'ref_id',
+			'dependent' => true,
+			'conditions' => [
+				'Attribute.ref_type' => ATTRIBUTE_TYPE_HOST,
+				'Attribute.ref_node' => ATTRIBUTE_NODE_PROFILE
+			],
+			'fields' => [
+				'Attribute.pcre_parsing',
+				'Attribute.hostname',
+				'Attribute.os',
+				'Attribute.architecture',
+				'Attribute.ipaddresses',
+				'Attribute.domainname',
+				'Attribute.groups',
+				'Attribute.lcid',
+				'Attribute.lcidOS'
+			]
+		]
+	];
+
+/**
  * Detailed list of belongsTo associations.
  *
  * @var array
@@ -114,6 +143,18 @@ class HostsProfile extends AppModel {
 			'order' => ['Profile.id_text' => 'asc']
 		]
 	];
+
+/**
+ * Return array for render additional associated profiles of host
+ *  XML elements
+ *
+ * @param array $data Information of package dependencies
+ * @return array Return array for render XML elements
+ * @see RenderXmlData::renderXml()
+ */
+	public function getXMLdata($data = []) {
+		return $this->getDependsXMLdata($data, 'id', 'profile');
+	}
 
 /**
  * Return name of data.

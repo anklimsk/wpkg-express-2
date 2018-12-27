@@ -243,9 +243,10 @@ class HostsController extends AppController {
  */
 	protected function _add() {
 		$this->view = 'add';
+		$this->Host->bindHabtmAssocProfiles();
 		if ($this->request->is('post')) {
 			$this->Host->create();
-			if ($this->Host->save($this->request->data)) {
+			if ($this->Host->saveHost($this->request->data)) {
 				$this->Flash->success(__('Host has been saved.'));
 
 				return $this->ViewExtension->redirectByUrl(null, 'host');
@@ -298,8 +299,9 @@ class HostsController extends AppController {
 			return $this->ViewExtension->setExceptionMessage(new NotFoundException(__('Invalid ID for host')));
 		}
 
+		$this->Host->bindHabtmAssocProfiles();
 		if ($this->request->is(['post', 'put'])) {
-			if ($this->Host->save($this->request->data)) {
+			if ($this->Host->saveHost($this->request->data)) {
 				$this->Flash->success(__('Host has been saved.'));
 
 				return $this->ViewExtension->redirectByUrl(null, 'host');
