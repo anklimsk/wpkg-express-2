@@ -252,6 +252,10 @@ class PackagesController extends AppController {
 					'reboot_id' => PACKAGE_REBOOT_FALSE,
 					'execute_id' => PACKAGE_EXECUTE_DEFAULT,
 					'notify_id' => PACKAGE_NOTIFY_TRUE,
+					'precheck_install_id' => PACKAGE_PRECHECK_ALWAYS,
+					'precheck_remove_id' => PACKAGE_PRECHECK_NEVER,
+					'precheck_upgrade_id' => PACKAGE_PRECHECK_NEVER,
+					'precheck_downgrade_id' => PACKAGE_PRECHECK_NEVER
 				]
 			];
 			$this->request->data = $package;
@@ -261,12 +265,14 @@ class PackagesController extends AppController {
 		$listExecute = $this->Package->PackageExecuteType->getListPackageExecuteTypes();
 		$listNotify = $this->Package->PackageNotifyType->getListPackageNotifyTypes();
 		$listPriority = $this->Package->PackagePriority->getListPriorities();
+		$listPrecheck = $this->Package->PackagePrecheckTypeInstall->getListPackagePrecheckTypes();
 		$packageDependencies = $this->Package->getList();
 		$breadCrumbs = $this->Package->getBreadcrumbInfo();
 		$breadCrumbs[] = __('Adding');
 		$pageHeader = __('Adding package');
 
-		$this->set(compact('listReboot', 'listExecute', 'listNotify', 'listPriority', 'packageDependencies', 'breadCrumbs', 'pageHeader'));
+		$this->set(compact('listReboot', 'listExecute', 'listNotify', 'listPriority',
+			'listPrecheck', 'packageDependencies', 'breadCrumbs', 'pageHeader'));
 	}
 
 /**
@@ -321,12 +327,14 @@ class PackagesController extends AppController {
 		$listExecute = $this->Package->PackageExecuteType->getListPackageExecuteTypes();
 		$listNotify = $this->Package->PackageNotifyType->getListPackageNotifyTypes();
 		$listPriority = $this->Package->PackagePriority->getListPriorities();
+		$listPrecheck = $this->Package->PackagePrecheckTypeInstall->getListPackagePrecheckTypes();
 		$packageDependencies = $this->Package->getListDependencyPackages($id);
 		$breadCrumbs = $this->Package->getBreadcrumbInfo($id);
 		$breadCrumbs[] = __('Editing');
 		$pageHeader = __('Editing package');
 
-		$this->set(compact('listReboot', 'listExecute', 'listNotify', 'listPriority', 'packageDependencies', 'breadCrumbs', 'pageHeader'));
+		$this->set(compact('listReboot', 'listExecute', 'listNotify', 'listPriority',
+			'listPrecheck', 'packageDependencies', 'breadCrumbs', 'pageHeader'));
 	}
 
 /**

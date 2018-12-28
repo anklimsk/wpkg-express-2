@@ -389,6 +389,20 @@ class AppSchema extends CakeSchema {
 	];
 
 /**
+ * Schema of table `package_precheck_types`.
+ *
+ * @var array
+ */
+	public $package_precheck_types = [
+		'id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'unsigned' => false, 'key' => 'primary'],
+		'name' => ['type' => 'string', 'null' => false, 'default' => null, 'length' => 25, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
+		'indexes' => [
+			'PRIMARY' => ['column' => 'id', 'unique' => 1]
+		],
+		'tableParameters' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB']
+	];
+
+/**
  * Schema of table `packages`.
  *
  * @var array
@@ -398,6 +412,10 @@ class AppSchema extends CakeSchema {
 		'reboot_id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'unsigned' => false],
 		'execute_id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'unsigned' => false],
 		'notify_id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'unsigned' => false],
+		'precheck_install_id' => ['type' => 'integer', 'null' => false, 'default' => '1', 'length' => 10, 'unsigned' => false],
+		'precheck_remove_id' => ['type' => 'integer', 'null' => false, 'default' => '2', 'length' => 10, 'unsigned' => false],
+		'precheck_upgrade_id' => ['type' => 'integer', 'null' => false, 'default' => '2', 'length' => 10, 'unsigned' => false],
+		'precheck_downgrade_id' => ['type' => 'integer', 'null' => false, 'default' => '2', 'length' => 10, 'unsigned' => false],
 		'name' => ['type' => 'string', 'null' => false, 'default' => null, 'length' => 100, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
 		'id_text' => ['type' => 'string', 'null' => false, 'default' => null, 'length' => 100, 'key' => 'unique', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
 		'enabled' => ['type' => 'boolean', 'null' => false, 'default' => '1'],

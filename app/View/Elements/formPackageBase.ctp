@@ -37,6 +37,10 @@ if (!isset($listNotify)) {
 	$listNotify = [];
 }
 
+if (!isset($listPrecheck)) {
+	$listPrecheck = [];
+}
+
 if (!isset($listPriority)) {
 	$listPriority = [];
 }
@@ -106,6 +110,14 @@ if (!isset($isAddAction)) {
 			'type' => 'select', 'data-toggle' => 'tooltip', 'options' => $listExecute, 'autocomplete' => 'off'],
 		$modelName . '.notify_id' => ['label' => [__('Notify'), __('Specify if the user should be notified about the installation of packages due to this package.'), ':'],
 			'type' => 'select', 'data-toggle' => 'tooltip', 'options' => $listNotify, 'autocomplete' => 'off'],
+		$modelName . '.precheck_install_id' => ['label' => [__('Precheck install'), nl2br(__("Specify how package checks are used during package installation:\n- 'always' (default): When a package is new to the host\nthen first the checks are run in order to verify whether the package is already installed. If the checks succeed then it is assumed that no further installation is needed. The package is silently added to the host without executing any commands.\n- 'never': When a package is new to the host then the install commands are run in any case (without doing checks first). Note: Checks will still be done after package installation to verify whether installation was successful.")), ':'],
+			'type' => 'select', 'data-toggle' => 'tooltip', 'options' => $listPrecheck, 'autocomplete' => 'off'],
+		$modelName . '.precheck_remove_id' => ['label' => [__('Precheck remove'), nl2br(__("Specify how package checks are used during package removal:\n- 'always': When a package is removed from a host then the checks will be executed before removal is processes. If the checks fail this potentially means that the package has been removed already. In such case the package remove commands will be skipped.\n- 'never' (default): When a package is about to be removed from the host then WPKG will execute the remove commands in any case without executing the checks first. Note: Checks will still be done after package removal to verify whether the removal was successful.")), ':'],
+			'type' => 'select', 'data-toggle' => 'tooltip', 'options' => $listPrecheck, 'autocomplete' => 'off'],
+		$modelName . '.precheck_upgrade_id' => ['label' => [__('Precheck upgrade'), nl2br(__("Specify how package checks are used during package upgrade:\n- 'always': When a package is upgraded the checks specified will be be executed before the upgrade takes place. If checks succeed, then the upgrade will not be performed (WPKG just assumes that the new version is already applied correctly. Please note that your checks shall verify a specific software version and not just a generic check which is true for all versions. If your checks are true for the old version too then WPKG would never perform the upgrade in this mode.\n- 'never' (default): When a package is about to be upgraded then WPKG will execute the upgrade commands in any case without executing the checks first. This is the recommended behavior. Note: Checks will still be done after package upgrade to verify whether the upgrade was successful.")), ':'],
+			'type' => 'select', 'data-toggle' => 'tooltip', 'options' => $listPrecheck, 'autocomplete' => 'off'],
+		$modelName . '.precheck_downgrade_id' => ['label' => [__('Precheck downgrade'), nl2br(__("Specify how package checks are used during package downgrade:\n - 'always': When a package is downgraded the checks specified will be be executed before the downgrade takes place. If checks succeed, then the downgrade will not be performed (WPKG just assumes that the old version is already applied correctly. Please note that your checks shall verify a specific software version and not just a generic check which is true for all versions. If your checks are true for the new/current version too then WPKG would never perform the downgrade in this mode.\n- 'never' (default): When a package is about to be downgraded then WPKG will execute the downgrade commands in any case without executing the checks first. This is the recommended behavior. Note: Checks will still be done after package downgrade to verify whether the downgrade was successful.")), ':'],
+			'type' => 'select', 'data-toggle' => 'tooltip', 'options' => $listPrecheck, 'autocomplete' => 'off'],
 		$modelName . '.notes' => ['label' => __('Notes') . ':', 'title' => __('Additional notes about this package. Not used by WPKG.'),
 			'type' => 'textarea', 'escape' => false, 'data-toggle' => 'tooltip', 'rows' => '3', 'autocomplete' => 'off'],
 		'DependsOn' => ['label' => [__('Depends on packages'), __('By using <i>depend</i> you make a package depending on another package, meaning that this package needs the other package for correct functionality. This dependency can already be needed during the installation or upgrade, therefore a dependency is always installed right <u>before</u> the current package independently of the priority of the packages.'), ':'],
@@ -132,6 +144,12 @@ if (!isset($isAddAction)) {
 			$modelName . '.reboot_id',
 			$modelName . '.execute_id',
 			$modelName . '.notify_id',
+		],
+		__('Prechecks') => [
+			$modelName . '.precheck_install_id',
+			$modelName . '.precheck_remove_id',
+			$modelName . '.precheck_upgrade_id',
+			$modelName . '.precheck_downgrade_id',
 		],
 		__('Notes') => [
 			$modelName . '.notes',

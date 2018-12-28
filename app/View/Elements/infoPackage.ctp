@@ -41,9 +41,16 @@ if (empty($package)) {
 	return;
 }
 ?>
-<div class="row">
-	<div class="col-sm-6 col-xs-12">
-		<dl class="dl-horizontal dl-wt-bottom-margin">
+<div class="container-fluid top-buffer">
+	<ul class="nav nav-tabs" role="tablist">
+		<li role="presentation" class="active"><a href="#basicInfo" aria-controls="basicInfo" role="tab" data-toggle="tab"><?php echo __('Basic information'); ?></a></li>
+		<li role="presentation" class="hide-popup"><a href="#extendInfo" aria-controls="extendInfo" role="tab" data-toggle="tab"><?php echo __('Extended information'); ?></a></li>
+	</ul>
+	<div class="tab-content top-buffer">
+		<div role="tabpanel" class="tab-pane active" id="basicInfo">
+			<div class="row">
+				<div class="col-sm-6 col-xs-12">
+					<dl class="dl-horizontal dl-wt-bottom-margin">
 <?php
 	echo $this->Html->tag('dt', __('Enabled') . ':');
 	echo $this->Html->tag('dd', $this->ViewExtension->ajaxLink(
@@ -51,17 +58,17 @@ if (empty($package)) {
 		['controller' => 'packages', 'action' => 'enabled', $package['Package']['id'], !$package['Package']['enabled']],
 		['title' => ($package['Package']['enabled'] ? __('Disable package') : __('Enable package'))]
 	));
-	echo $this->Html->tag('dt', __('Template') . ':');
-	echo $this->Html->tag('dd', $this->ViewExtension->ajaxLink(
-		$this->ViewExtension->yesNo($package['Package']['template']),
-		['controller' => 'packages', 'action' => 'template', $package['Package']['id'], !$package['Package']['template']],
-		['title' => ($package['Package']['template'] ? __('Don\'t use as template') : __('Use as template'))]
-	));
 	echo $this->Html->tag('dt', __('Package ID') . ':');
 	echo $this->Html->tag('dd', h($package['Package']['id_text']) .
 		$this->Indicator->createIndicator($package['Package']['template'], __('template'), __('Use this package as a template')));
 	echo $this->Html->tag('dt', __('Name') . ':');
 	echo $this->Html->tag('dd', h($package['Package']['name']));
+?>
+					</dl>
+				</div>
+				<div class="col-sm-6 col-xs-12">
+					<dl class="dl-horizontal">
+<?php
 	echo $this->Html->tag('dt', __('Revision') . ':');
 	echo $this->Html->tag('dd', h($package['Package']['revision']) .
 		$this->Indicator->createIndicator($autoVarRevision, '%Revision%', __('The automatic creation of the variable %%%s%% based on the package version is enabled', VARIABLE_AUTO_REVISION_NAME)));
@@ -71,24 +78,56 @@ if (empty($package)) {
 		['thousands' => ' ', 'before' => '', 'places' => 0]) .
 		(!empty($package['PackagePriority']['name']) ? ' (' . __d('package_priority', h($package['PackagePriority']['name'])) . ')' : '')
 	);
+	echo $this->Html->tag('dt', __('Notes') . ':');
+	echo $this->Html->tag('dd', $this->ViewExtension->showEmpty(h($package['Package']['notes'])));
 ?>
-		</dl>
-	</div>
-	<div class="col-sm-6 col-xs-12">
-		<dl class="dl-horizontal">
+					</dl>
+				</div>
+			</div>
+		</div>
+		<div role="tabpanel" class="tab-pane" id="extendInfo">
+			<div class="row">
+				<div class="col-sm-6 col-xs-12">
+					<dl class="dl-horizontal dl-wt-bottom-margin">
 <?php
+	echo $this->Html->tag('dt', __('Template') . ':');
+	echo $this->Html->tag('dd', $this->ViewExtension->ajaxLink(
+		$this->ViewExtension->yesNo($package['Package']['template']),
+		['controller' => 'packages', 'action' => 'template', $package['Package']['id'], !$package['Package']['template']],
+		['title' => ($package['Package']['template'] ? __('Don\'t use as template') : __('Use as template'))]
+	));
 	echo $this->Html->tag('dt', __('Reboot') . ':');
 	echo $this->Html->tag('dd', mb_ucfirst(__d('package_reboot', h($package['PackageRebootType']['name']))));
 	echo $this->Html->tag('dt', __('Execute') . ':');
 	echo $this->Html->tag('dd', mb_ucfirst(__d('package_execute', h($package['PackageExecuteType']['name']))));
 	echo $this->Html->tag('dt', __('Notify') . ':');
 	echo $this->Html->tag('dd', mb_ucfirst(__d('package_notify', h($package['PackageNotifyType']['name']))));
-	echo $this->Html->tag('dt', __('Notes') . ':');
-	echo $this->Html->tag('dd', $this->ViewExtension->showEmpty(h($package['Package']['notes'])));
 	echo $this->Html->tag('dt', __('Last modified') . ':');
 	echo $this->Html->tag('dd', $this->ViewExtension->timeAgo($package['Package']['modified']));
 ?>
-		</dl>
+					</dl>
+				</div>
+				<div class="col-sm-6 col-xs-12">
+					<dl class="dl-horizontal">
+<?php
+	echo $this->Html->tag('dt', __('Prechecks') . ':');
+?>
+						<dd>
+<?php
+	echo $this->Html->tag('dt', __x('precheck', 'Install') . ':');
+	echo $this->Html->tag('dd', mb_ucfirst(__d('package_precheck', h($package['PackagePrecheckTypeInstall']['name']))));
+	echo $this->Html->tag('dt', __x('precheck', 'Remove') . ':');
+	echo $this->Html->tag('dd', mb_ucfirst(__d('package_precheck', h($package['PackagePrecheckTypeRemove']['name']))));
+	echo $this->Html->tag('dt', __x('precheck', 'Upgrade') . ':');
+	echo $this->Html->tag('dd', mb_ucfirst(__d('package_precheck', h($package['PackagePrecheckTypeUpgrade']['name']))));
+	echo $this->Html->tag('dt', __x('precheck', 'Downgrade') . ':');
+	echo $this->Html->tag('dd', mb_ucfirst(__d('package_precheck', h($package['PackagePrecheckTypeDowngrade']['name']))));
+?>
+						</dd>
+					</dl>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 <div class="container-fluid top-buffer">

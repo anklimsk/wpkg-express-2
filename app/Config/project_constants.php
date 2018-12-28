@@ -364,6 +364,26 @@ if (!defined('PACKAGE_NOTIFY_TRUE')) {
 }
 
 /**
+ * State `Always` of precheck flag
+ *
+ * Used to defines how package checks are used during package process.
+ *  Default value `1`
+ */
+if (!defined('PACKAGE_PRECHECK_ALWAYS')) {
+	define('PACKAGE_PRECHECK_ALWAYS', 1);
+}
+
+/**
+ * State `Never` of precheck flag
+ *
+ * Used to defines how package checks are used during package process.
+ *  Default value `2`
+ */
+if (!defined('PACKAGE_PRECHECK_NEVER')) {
+	define('PACKAGE_PRECHECK_NEVER', 2);
+}
+
+/**
  * Preset package priority `Normal`
  *
  * Used as preset package priority from list. Default value `0`
@@ -2475,6 +2495,16 @@ if (!defined('CACHE_KEY_LISTS_INFO_PACKAGE_NOTIFY_TYPE')) {
  */
 if (!defined('CACHE_KEY_LISTS_INFO_PACKAGE_REBOOT_TYPE')) {
 	define('CACHE_KEY_LISTS_INFO_PACKAGE_REBOOT_TYPE', 'lists_info_package_reboot_type');
+}
+
+/**
+ * Cache configuration for store lists information of model `PackagePrecheckType`
+ *
+ * Used for access to cached data of for store lists information
+ *  of model `PackagePrecheckType`. Default value `lists_info_package_precheck_type`.
+ */
+if (!defined('CACHE_KEY_LISTS_INFO_PACKAGE_PRECHECK_TYPE')) {
+	define('CACHE_KEY_LISTS_INFO_PACKAGE_PRECHECK_TYPE', 'lists_info_package_precheck_type');
 }
 
 /**

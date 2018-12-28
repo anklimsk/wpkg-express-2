@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wpkgExpress II\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2018-12-27 18:48+0300\n"
+"PO-Revision-Date: 2018-12-28 13:30+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -16,32 +16,32 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 "X-Generator: Poedit 2.2\n"
 
-#: Config/cakesearchinfo.php:20 View/Elements/formPackageBase.ctp:67
+#: Config/cakesearchinfo.php:20 View/Elements/formPackageBase.ctp:71
 #: View/Elements/formPackageExistsProfilesEdit.ctp:45
-#: View/Elements/infoPackage.ctp:60 View/Elements/tablePackage.ctp:75
+#: View/Elements/infoPackage.ctp:61 View/Elements/tablePackage.ctp:75
 #: View/Elements/tableWpiPackage.ctp:57
 msgid "Package ID"
 msgstr "Идентификатор пакета"
 
-#: Config/cakesearchinfo.php:21 Model/Package.php:1077
-#: View/Elements/formHostBase.ctp:53 View/Elements/formPackageBase.ctp:75
+#: Config/cakesearchinfo.php:21 Model/Package.php:1149
+#: View/Elements/formHostBase.ctp:53 View/Elements/formPackageBase.ctp:79
 #: View/Elements/formPackageExistsProfilesEdit.ctp:46
-#: View/Elements/infoPackage.ctp:63 View/Elements/tableArchive.ctp:67
+#: View/Elements/infoPackage.ctp:64 View/Elements/tableArchive.ctp:67
 #: View/Elements/tableGarbage.ctp:57 View/Elements/tablePackage.ctp:78
 #: View/Elements/tableWpiPackage.ctp:60
 msgid "Name"
 msgstr "Наименование"
 
 #: Config/cakesearchinfo.php:22;30;38 View/Elements/formHostBase.ctp:59
-#: View/Elements/formPackageBase.ctp:109;136
+#: View/Elements/formPackageBase.ctp:121;154
 #: View/Elements/formProfileBase.ctp:58 View/Elements/infoHost.ctp:77
-#: View/Elements/infoPackage.ctp:86 View/Elements/infoProfile.ctp:59
+#: View/Elements/infoPackage.ctp:81 View/Elements/infoProfile.ctp:59
 #: View/Elements/tableHost.ctp:77 View/Elements/tablePackage.ctp:99
 #: View/Elements/tableProfile.ctp:66 View/Elements/tableWpiPackage.ctp:63
 msgid "Notes"
 msgstr "Примечания"
 
-#: Config/cakesearchinfo.php:25 Model/Package.php:1098
+#: Config/cakesearchinfo.php:25 Model/Package.php:1170
 #: View/Elements/barNav.ctp:76 View/Home/index.ctp:73
 msgid "Packages"
 msgstr "Пакеты"
@@ -208,7 +208,7 @@ msgstr "Указатель типов действий пакета"
 #: Controller/ChecksController.php:188 Controller/ExitCodesController.php:169
 #: Controller/HostsController.php:268
 #: Controller/PackagePrioritiesController.php:121
-#: Controller/PackagesController.php:266 Controller/ProfilesController.php:219
+#: Controller/PackagesController.php:271 Controller/ProfilesController.php:219
 #: Controller/VariablesController.php:217
 #: Controller/WpiCategoriesController.php:131 Controller/WpiController.php:304
 msgid "Adding"
@@ -236,7 +236,7 @@ msgstr "Недопустимый идентификатор для типа де
 #: Controller/ChecksController.php:261 Controller/ExitCodesController.php:206
 #: Controller/HostsController.php:317
 #: Controller/PackagePrioritiesController.php:167
-#: Controller/PackagesController.php:326
+#: Controller/PackagesController.php:334
 #: Controller/ProfilesController.php:273;558
 #: Controller/VariablesController.php:256
 #: Controller/WpiCategoriesController.php:183 Controller/WpiController.php:363
@@ -343,7 +343,7 @@ msgid "Package archive"
 msgstr "Архив пакетов"
 
 #: Controller/ArchivesController.php:151
-#: Controller/PackagesController.php:299;500
+#: Controller/PackagesController.php:305;509
 msgid "Invalid ID for package"
 msgstr "Недопустимый идентификатор для пакета"
 
@@ -836,32 +836,32 @@ msgstr "Информация о пакете"
 msgid "Archive of package"
 msgstr "Архив пакета"
 
-#: Controller/PackagesController.php:239;305;510
+#: Controller/PackagesController.php:239;311;519
 msgid "Package has been saved."
 msgstr "Пакет сохранён."
 
-#: Controller/PackagesController.php:243;313;514
+#: Controller/PackagesController.php:243;320;523
 msgid "Package could not be saved. Please, try again."
 msgstr "Не удалось сохранить пакет. Пожалуйста, попробуйте ещё раз."
 
-#: Controller/PackagesController.php:267
+#: Controller/PackagesController.php:272
 msgid "Adding package"
 msgstr "Добавление пакета"
 
-#: Controller/PackagesController.php:327
+#: Controller/PackagesController.php:335
 msgid "Editing package"
 msgstr "Редактирование пакета"
 
-#: Controller/PackagesController.php:505 Controller/ProfilesController.php:452
+#: Controller/PackagesController.php:514 Controller/ProfilesController.php:452
 #: Controller/WpiController.php:294
 msgid "There are no packages to add/remove"
 msgstr "Нет пакетов для добавления/удаления"
 
-#: Controller/PackagesController.php:521 View/Elements/infoPackage.ctp:102
+#: Controller/PackagesController.php:530 View/Elements/infoPackage.ctp:141
 msgid "Exists in profiles"
 msgstr "Находиться в профилях"
 
-#: Controller/PackagesController.php:522
+#: Controller/PackagesController.php:531
 msgid "Modifying list of profiles"
 msgstr "Изменение списка профилей"
 
@@ -976,7 +976,7 @@ msgstr ""
 msgid "File selection"
 msgstr "Выбор файла"
 
-#: Controller/UploadsController.php:98 Model/Import.php:2866
+#: Controller/UploadsController.php:98 Model/Import.php:2891
 msgid "Uploading XML files"
 msgstr "Загрузка XML файлов"
 
@@ -1218,12 +1218,12 @@ msgstr "не используется в качестве шаблона"
 msgid "Method '%s' is not found in target model"
 msgstr "Метод '%s' не найден в целевой модели"
 
-#: Controller/Component/ExportDataComponent.php:110 Model/Import.php:2778
+#: Controller/Component/ExportDataComponent.php:110 Model/Import.php:2803
 msgid "Fatal errors"
 msgstr "Неустранимые ошибки"
 
 #: Controller/Component/ExportDataComponent.php:111
-#: Model/Import.php:626;639;684;1763;1792;1836;1845;1884;1900;1962;1994;2123;2173;2204;2331;2362;2468;2531;2594;2729;2754;2775
+#: Model/Import.php:626;639;684;1788;1817;1861;1870;1909;1925;1987;2019;2148;2198;2229;2356;2387;2493;2556;2619;2754;2779;2800
 #: Model/Log.php:402;416;458;529;548;554;572;702 Model/Report.php:408;440
 #: Model/Behavior/GroupActionBehavior.php:157
 msgid "Errors"
@@ -1533,7 +1533,7 @@ msgstr "Корневой узел"
 msgid "Check"
 msgstr "Проверка"
 
-#: Model/Check.php:1432 Model/Import.php:1884 View/Elements/infoPackage.ctp:101
+#: Model/Check.php:1432 Model/Import.php:1909 View/Elements/infoPackage.ctp:140
 msgid "Checks"
 msgstr "Проверки"
 
@@ -1629,8 +1629,8 @@ msgctxt "graph"
 msgid "full"
 msgstr "полный"
 
-#: Model/Host.php:423 Model/Package.php:832 Model/Profile.php:424
-#: View/Elements/infoHost.ctp:63 View/Elements/infoPackage.ctp:58
+#: Model/Host.php:423 Model/Package.php:904 Model/Profile.php:424
+#: View/Elements/infoHost.ctp:63 View/Elements/infoPackage.ctp:97
 #: View/Elements/infoProfile.ctp:54 View/Elements/tableHost.ctp:213
 #: View/Elements/tablePackage.ctp:219 View/Elements/tableProfile.ctp:186
 msgid "Use as template"
@@ -1683,12 +1683,12 @@ msgid "Package, profile, host, WPKG configuration or client database."
 msgstr "Пакет, профиль, хост, конфигурация WPKG или клиентская база данных."
 
 #: Model/Import.php:626 Model/Variable.php:228 View/Elements/infoHost.ctp:86
-#: View/Elements/infoPackage.ctp:100 View/Elements/infoProfile.ctp:69
+#: View/Elements/infoPackage.ctp:139 View/Elements/infoProfile.ctp:69
 #: View/Elements/infoVariables.ctp:199
 msgid "Variables"
 msgstr "Переменные"
 
-#: Model/Import.php:626;1836;1884
+#: Model/Import.php:626;1861;1909
 msgid "Error on settings scope"
 msgstr "Ошибка при настройке области"
 
@@ -1696,7 +1696,7 @@ msgstr "Ошибка при настройке области"
 msgid "Invalid file path"
 msgstr "Недопустимый путь к файлу"
 
-#: Model/Import.php:846;2853
+#: Model/Import.php:846;2878
 msgid "Invalid file type. Can be one of: %s"
 msgstr "Недопустимый тип файла. Может быть одним из следующих: %s"
 
@@ -1708,40 +1708,40 @@ msgstr "Недопустимый входной файл XML"
 msgid "Input XML file is empty"
 msgstr "Входной XML-файл пуст"
 
-#: Model/Import.php:1209
+#: Model/Import.php:1210
 msgid "Invalid name of dependency model"
 msgstr "Недопустимое имя зависимой модели"
 
-#: Model/Import.php:1836 Model/PackageAction.php:551
-#: View/Elements/infoPackage.ctp:96
+#: Model/Import.php:1861 Model/PackageAction.php:551
+#: View/Elements/infoPackage.ctp:135
 msgid "Package actions"
 msgstr "Действия пакета"
 
-#: Model/Import.php:2468
+#: Model/Import.php:2493
 msgid "Error on deleting records of report"
 msgstr "Ошибка при удалении записей отчета"
 
-#: Model/Import.php:2594
+#: Model/Import.php:2619
 msgid "Error on saving report record"
 msgstr "Ошибка сохранения записи отчета"
 
-#: Model/Import.php:2729
+#: Model/Import.php:2754
 msgid "Error on saving WPKG configuration"
 msgstr "Ошибка при сохранении конфигурации WPKG"
 
-#: Model/Import.php:2754
+#: Model/Import.php:2779
 msgid "Error on saving WPKG configuration language"
 msgstr "Ошибка при сохранении языка конфигурации WPKG"
 
-#: Model/Import.php:2769
+#: Model/Import.php:2794
 msgid "Other messages"
 msgstr "Другие сообщения"
 
-#: Model/Import.php:2772
+#: Model/Import.php:2797
 msgid "Warnings"
 msgstr "Предупреждения"
 
-#: Model/Import.php:2821
+#: Model/Import.php:2846
 msgid "Invalid path to XSD schema file"
 msgstr "Недопустимый путь к файлу схемы XSD"
 
@@ -1793,7 +1793,7 @@ msgstr "Ошибка при разборе имени файла журнала"
 msgid "Error on parsing log file content"
 msgstr "Ошибка при разборе содержимого файла журнала"
 
-#: Model/Package.php:958
+#: Model/Package.php:1030
 msgid ""
 "The package '%s' cannot be deleted or disabled because it is exists in %s "
 "for the following packages: %s"
@@ -1801,53 +1801,53 @@ msgstr ""
 "Пакет '%s' не может быть удалён или отключен, поскольку он существует в %s "
 "для следующих пакетов: %s"
 
-#: Model/Package.php:1087 View/Elements/formPackageBase.ctp:58
+#: Model/Package.php:1159 View/Elements/formPackageBase.ctp:62
 #: View/Elements/formWpiBase.ctp:56 View/Elements/tableReport.ctp:59
 msgid "Package"
 msgstr "Пакет"
 
-#: Model/Package.php:1122
+#: Model/Package.php:1194
 msgid "Package '%s'"
 msgstr "Пакет '%s'"
 
-#: Model/Package.php:1124
+#: Model/Package.php:1196
 msgid "package '%s'"
 msgstr "пакета '%s'"
 
-#: Model/Package.php:1136
+#: Model/Package.php:1208
 msgid "full data of packages"
 msgstr "полные данные пакетов"
 
-#: Model/Package.php:1304
+#: Model/Package.php:1376
 msgid "Present in"
 msgstr "Присутствует в"
 
-#: Model/Package.php:926
+#: Model/Package.php:998
 msgctxt "check disable"
 msgid "dependencies"
 msgstr "зависимостях"
 
-#: Model/Package.php:927
+#: Model/Package.php:999
 msgctxt "check disable"
 msgid "inclusions"
 msgstr "включениях"
 
-#: Model/Package.php:928
+#: Model/Package.php:1000
 msgctxt "check disable"
 msgid "chains"
 msgstr "цепочках"
 
-#: Model/Package.php:1325 Model/Profile.php:911
+#: Model/Package.php:1397 Model/Profile.php:911
 msgctxt "dependency"
 msgid "Depends on"
 msgstr "Зависит от"
 
-#: Model/Package.php:1326
+#: Model/Package.php:1398
 msgctxt "dependency"
 msgid "Includes on"
 msgstr "Включает"
 
-#: Model/Package.php:1327
+#: Model/Package.php:1399
 msgctxt "dependency"
 msgid "Chain on"
 msgstr "Цепочки"
@@ -3000,8 +3000,8 @@ msgstr ""
 "Если вас не волнует код выхода, используйте 'any' или '*'. Поддерживает "
 "автозаполнение."
 
-#: View/Elements/formExitCodeBase.ctp:53 View/Elements/formPackageBase.ctp:103
-#: View/Elements/infoPackage.ctp:80 View/Elements/tablePackage.ctp:87
+#: View/Elements/formExitCodeBase.ctp:53 View/Elements/formPackageBase.ctp:107
+#: View/Elements/infoPackage.ctp:99 View/Elements/tablePackage.ctp:87
 msgid "Reboot"
 msgstr "Перезагрузка"
 
@@ -3179,9 +3179,9 @@ msgstr ""
 "Имя общего ресурса SMB, содержащего файлы базы данных клиента, например: "
 "wpkg/db."
 
-#: View/Elements/formHostBase.ctp:47 View/Elements/formPackageBase.ctp:61
+#: View/Elements/formHostBase.ctp:47 View/Elements/formPackageBase.ctp:65
 #: View/Elements/formProfileBase.ctp:47 View/Elements/infoHost.ctp:53
-#: View/Elements/infoPackage.ctp:48 View/Elements/infoProfile.ctp:44
+#: View/Elements/infoPackage.ctp:55 View/Elements/infoProfile.ctp:44
 #: View/Elements/tableHost.ctp:61 View/Elements/tablePackage.ctp:65
 #: View/Elements/tableProfile.ctp:53
 msgid "Enabled"
@@ -3191,9 +3191,9 @@ msgstr "Включено"
 msgid "If enabled, this host will appear in hosts (xml) lists."
 msgstr "Если включен, этот хост будет отображаться в списках хостов (xml)."
 
-#: View/Elements/formHostBase.ctp:50 View/Elements/formPackageBase.ctp:64
+#: View/Elements/formHostBase.ctp:50 View/Elements/formPackageBase.ctp:68
 #: View/Elements/formProfileBase.ctp:50 View/Elements/formTemplateCreate.ctp:45
-#: View/Elements/infoHost.ctp:59 View/Elements/infoPackage.ctp:54
+#: View/Elements/infoHost.ctp:59 View/Elements/infoPackage.ctp:93
 #: View/Elements/infoProfile.ctp:50 View/Elements/tableHost.ctp:66
 #: View/Elements/tablePackage.ctp:70 View/Elements/tableProfile.ctp:58
 msgid "Template"
@@ -3362,15 +3362,15 @@ msgstr "Вид действия, которое нужно выполнить"
 msgid "The name of the type of package action."
 msgstr "Название типа действия пакета."
 
-#: View/Elements/formPackageBase.ctp:62
+#: View/Elements/formPackageBase.ctp:66
 msgid "If enabled, this package will appear in packages (xml) lists."
 msgstr "Если включен, этот пакет появится в списках пакетов (xml)."
 
-#: View/Elements/formPackageBase.ctp:65
+#: View/Elements/formPackageBase.ctp:69
 msgid "If enabled, this package is used as a template."
 msgstr "Если включен, этот пакет используется в качестве шаблона."
 
-#: View/Elements/formPackageBase.ctp:67
+#: View/Elements/formPackageBase.ctp:71
 msgid ""
 "Unique ID containing only letters, numbers, underscores and hyphens (e.g. "
 "fooBarBaz_ultra OR foo-bar-baz-ultra)."
@@ -3378,7 +3378,7 @@ msgstr ""
 "Уникальный идентификатор, содержащий только буквы, цифры, символы "
 "подчеркивания и дефисы (например, fooBarBaz_ultra ИЛИ foo-bar-baz-ultra)."
 
-#: View/Elements/formPackageBase.ctp:73
+#: View/Elements/formPackageBase.ctp:77
 msgid ""
 "Create a package ID based on his name. Repeated click changes the strategy "
 "for creating an ID."
@@ -3386,7 +3386,7 @@ msgstr ""
 "Создать идентификатор пакета, основанный на его имени. Повторный щелчок "
 "изменяет стратегию создания идентификатора."
 
-#: View/Elements/formPackageBase.ctp:75
+#: View/Elements/formPackageBase.ctp:79
 msgid ""
 "Human-readable name that identifies this package (e.g. Foo Bar Baz Ultra "
 "Edition)."
@@ -3394,12 +3394,12 @@ msgstr ""
 "Человеко-читаемое имя, которое идентифицирует этот пакет (например, Foo Bar "
 "Baz Ultra Edition)."
 
-#: View/Elements/formPackageBase.ctp:77 View/Elements/infoPackage.ctp:65
+#: View/Elements/formPackageBase.ctp:81 View/Elements/infoPackage.ctp:72
 #: View/Elements/tableArchive.ctp:70 View/Elements/tablePackage.ctp:81
 msgid "Revision"
 msgstr "Ревизия"
 
-#: View/Elements/formPackageBase.ctp:77
+#: View/Elements/formPackageBase.ctp:81
 msgid ""
 "An positive integer or positive decimal value that denotes the version/"
 "revision of this package (e.g. 1 OR 1.0.3). If you have periods in the "
@@ -3410,12 +3410,12 @@ msgstr ""
 "есть периоды в ревизии, вы должны иметь по крайней мере одну цифру после "
 "каждого периода."
 
-#: View/Elements/formPackageBase.ctp:79 View/Elements/infoPackage.ctp:68
+#: View/Elements/formPackageBase.ctp:83 View/Elements/infoPackage.ctp:75
 #: View/Elements/tablePackage.ctp:84
 msgid "Priority"
 msgstr "Приоритет"
 
-#: View/Elements/formPackageBase.ctp:79
+#: View/Elements/formPackageBase.ctp:83
 msgid ""
 "An integer value (any positive non-decimal number) that indicates this "
 "package's priority. Higher priorities take precedence over lower priorities "
@@ -3425,21 +3425,21 @@ msgstr ""
 "указывающее приоритет пакета. Более высокие приоритеты имеют приоритет над "
 "более низкими приоритетами (например, 10)."
 
-#: View/Elements/formPackageBase.ctp:84
+#: View/Elements/formPackageBase.ctp:88
 msgid "Priorities"
 msgstr "Приоритеты"
 
-#: View/Elements/formPackageBase.ctp:88
+#: View/Elements/formPackageBase.ctp:92
 msgid "List of priorities."
 msgstr "Список приоритетов."
 
-#: View/Elements/formPackageBase.ctp:98 View/Elements/infoChecksControls.ctp:90
-#: View/Elements/infoVariables.ctp:173
+#: View/Elements/formPackageBase.ctp:102
+#: View/Elements/infoChecksControls.ctp:90 View/Elements/infoVariables.ctp:173
 #: View/Elements/tablePackageActions.ctp:240
 msgid "Open in new window"
 msgstr "Открыть в новом окне"
 
-#: View/Elements/formPackageBase.ctp:103
+#: View/Elements/formPackageBase.ctp:107
 msgid ""
 "Specifies if and how the system reboots when installing, removing or "
 "upgrading a given package:\n"
@@ -3457,12 +3457,12 @@ msgstr ""
 "- 'отложено': перезагрузка после того, как WPKG завершил обработку всех "
 "пакетов, если проверки пакетов были успешными после выполнения действия."
 
-#: View/Elements/formPackageBase.ctp:105 View/Elements/infoPackage.ctp:82
+#: View/Elements/formPackageBase.ctp:109 View/Elements/infoPackage.ctp:101
 #: View/Elements/tablePackage.ctp:91
 msgid "Execute"
-msgstr "Выполнять"
+msgstr "Выполнение"
 
-#: View/Elements/formPackageBase.ctp:105
+#: View/Elements/formPackageBase.ctp:109
 msgid ""
 "Specify how the package should be executed:\n"
 "- 'always': execute on each synchronization - regardless of the current "
@@ -3482,12 +3482,12 @@ msgstr ""
 "выполняться на следующих запросах синхронизации, если версия пакета на "
 "стороне сервера не будет изменена."
 
-#: View/Elements/formPackageBase.ctp:107 View/Elements/infoPackage.ctp:84
+#: View/Elements/formPackageBase.ctp:111 View/Elements/infoPackage.ctp:103
 #: View/Elements/tablePackage.ctp:95
 msgid "Notify"
-msgstr "Уведомлять"
+msgstr "Уведомление"
 
-#: View/Elements/formPackageBase.ctp:107
+#: View/Elements/formPackageBase.ctp:111
 msgid ""
 "Specify if the user should be notified about the installation of packages "
 "due to this package."
@@ -3495,15 +3495,133 @@ msgstr ""
 "Указывает, следует ли уведомлять пользователя об установке пакетов из-за "
 "этого пакета."
 
-#: View/Elements/formPackageBase.ctp:109
+#: View/Elements/formPackageBase.ctp:113
+msgid "Precheck install"
+msgstr "Предпроверка установки"
+
+#: View/Elements/formPackageBase.ctp:113
+msgid ""
+"Specify how package checks are used during package installation:\n"
+"- 'always' (default): When a package is new to the host\n"
+"then first the checks are run in order to verify whether the package is "
+"already installed. If the checks succeed then it is assumed that no further "
+"installation is needed. The package is silently added to the host without "
+"executing any commands.\n"
+"- 'never': When a package is new to the host then the install commands are "
+"run in any case (without doing checks first). Note: Checks will still be "
+"done after package installation to verify whether installation was "
+"successful."
+msgstr ""
+"Указывает, как проверки пакетов используются при установке пакета:\n"
+"- 'всегда' (по умолчанию): когда пакет является новым для хоста\n"
+"затем сначала выполняются проверки, чтобы убедиться, что пакет уже "
+"установлен. Если проверки пройдены успешно, предполагается, что дальнейшая "
+"установка не требуется. Пакет автоматически добавляется в хост без "
+"выполнения каких-либо команд.\n"
+"- 'никогда': когда пакет является новым для хоста, команды установки "
+"выполняются в любом случае (без предварительной проверки). Примечание. После "
+"установки пакета всё ещё будут выполняться проверки, чтобы убедиться, что "
+"установка прошла успешно."
+
+#: View/Elements/formPackageBase.ctp:115
+msgid "Precheck remove"
+msgstr "Предпроверка удаления"
+
+#: View/Elements/formPackageBase.ctp:115
+msgid ""
+"Specify how package checks are used during package removal:\n"
+"- 'always': When a package is removed from a host then the checks will be "
+"executed before removal is processes. If the checks fail this potentially "
+"means that the package has been removed already. In such case the package "
+"remove commands will be skipped.\n"
+"- 'never' (default): When a package is about to be removed from the host "
+"then WPKG will execute the remove commands in any case without executing the "
+"checks first. Note: Checks will still be done after package removal to "
+"verify whether the removal was successful."
+msgstr ""
+"Указывает, как проверки пакетов используются при удалении пакетов:\n"
+"- 'всегда': когда пакет удалён с хоста, проверки будут выполнены до того, "
+"как процесс удаления будет обработан. Если проверки не пройдены, это "
+"потенциально означает, что пакет уже удалён. В этом случае команды удаления "
+"пакета будут пропущены.\n"
+"- 'никогда' (по умолчанию): когда пакет собирается быть удалённым с хоста, "
+"WPKG выполнит команды удаления в любом случае, не выполняя проверки в первую "
+"очередь. Примечание. После удаления пакета всё ещё будут выполняться "
+"проверки, чтобы убедиться, что удаление прошло успешно."
+
+#: View/Elements/formPackageBase.ctp:117
+msgid "Precheck upgrade"
+msgstr "Предпроверка обновления"
+
+#: View/Elements/formPackageBase.ctp:117
+msgid ""
+"Specify how package checks are used during package upgrade:\n"
+"- 'always': When a package is upgraded the checks specified will be be "
+"executed before the upgrade takes place. If checks succeed, then the upgrade "
+"will not be performed (WPKG just assumes that the new version is already "
+"applied correctly. Please note that your checks shall verify a specific "
+"software version and not just a generic check which is true for all "
+"versions. If your checks are true for the old version too then WPKG would "
+"never perform the upgrade in this mode.\n"
+"- 'never' (default): When a package is about to be upgraded then WPKG will "
+"execute the upgrade commands in any case without executing the checks first. "
+"This is the recommended behavior. Note: Checks will still be done after "
+"package upgrade to verify whether the upgrade was successful."
+msgstr ""
+"Указывает, как проверки пакетов используются при обновлении пакета:\n"
+"- 'всегда': при обновлении пакета указанные проверки будут выполнены до "
+"того, как произойдет обновление. Если проверки пройдены успешно, обновление "
+"не будет выполнено (WPKG просто предполагает, что новая версия уже применена "
+"правильно. Обратите внимание, что ваши проверки должны проверять конкретную "
+"версию программного обеспечения, а не только общую проверку, которая верна "
+"для всех версий. Если ваш проверки верны и для старой версии, тогда WPKG "
+"никогда не выполнит обновление в этом режиме.\n"
+"- 'никогда' (по умолчанию): когда пакет будет обновлен, WPKG в любом случае "
+"выполнит команды обновления без предварительной проверки. Это рекомендуемое "
+"поведение. Примечание. После обновления пакета всё ещё будут выполняться "
+"проверки, чтобы убедиться, что обновление прошло успешно."
+
+#: View/Elements/formPackageBase.ctp:119
+msgid "Precheck downgrade"
+msgstr "Предпроверка понижения"
+
+#: View/Elements/formPackageBase.ctp:119
+msgid ""
+"Specify how package checks are used during package downgrade:\n"
+" - 'always': When a package is downgraded the checks specified will be be "
+"executed before the downgrade takes place. If checks succeed, then the "
+"downgrade will not be performed (WPKG just assumes that the old version is "
+"already applied correctly. Please note that your checks shall verify a "
+"specific software version and not just a generic check which is true for all "
+"versions. If your checks are true for the new/current version too then WPKG "
+"would never perform the downgrade in this mode.\n"
+"- 'never' (default): When a package is about to be downgraded then WPKG will "
+"execute the downgrade commands in any case without executing the checks "
+"first. This is the recommended behavior. Note: Checks will still be done "
+"after package downgrade to verify whether the downgrade was successful."
+msgstr ""
+"Указывает, как проверки пакетов используются во время понижения пакета:\n"
+" - 'всегда': когда пакет понизился, указанные проверки будут выполнены до "
+"того, как произойдет понижение рейтинга. Если проверки успешны, то понижение "
+"не будет выполнено (WPKG просто предполагает, что старая версия уже "
+"применена правильно. Обратите внимание, что ваши проверки должны проверять "
+"конкретную версию программного обеспечения, а не только общую проверку, "
+"которая верна для всех версий. Если ваши проверки верны и для новой/текущей "
+"версии, тогда WPKG никогда не выполнит понижение в этом режиме.\n"
+"- 'никогда' (по умолчанию): когда пакет собирается понизиться, WPKG в любом "
+"случае выполнит команды понижения, не выполнив сначала проверки. Это "
+"рекомендуемое поведение. Примечание: Проверки всё ещё будут выполняться "
+"после понижения пакета, чтобы убедиться, что понижение прошло успешно."
+
+#: View/Elements/formPackageBase.ctp:121
 msgid "Additional notes about this package. Not used by WPKG."
 msgstr "Дополнительные примечания об этом пакете. Не используется WPKG."
 
-#: View/Elements/formPackageBase.ctp:111 View/Elements/infoPackage.ctp:115
+#: View/Elements/formPackageBase.ctp:123 View/Elements/infoPackage.ctp:154
 msgid "Depends on packages"
 msgstr "Зависит от пакетов"
 
-#: View/Elements/formPackageBase.ctp:111
+#: View/Elements/formPackageBase.ctp:123
 msgid ""
 "By using <i>depend</i> you make a package depending on another package, "
 "meaning that this package needs the other package for correct functionality. "
@@ -3517,11 +3635,11 @@ msgstr ""
 "установки или обновления, поэтому зависимость всегда устанавливается прямо "
 "<u>перед</u> текущим пакетом независимо от приоритета пакетов."
 
-#: View/Elements/formPackageBase.ctp:114 View/Elements/infoPackage.ctp:132
+#: View/Elements/formPackageBase.ctp:126 View/Elements/infoPackage.ctp:171
 msgid "Includes packages"
 msgstr "Включает пакеты"
 
-#: View/Elements/formPackageBase.ctp:114
+#: View/Elements/formPackageBase.ctp:126
 msgid ""
 "By using <i>include</i> you include a package to the list of packages, "
 "meaning that if you install this package the included package will also be "
@@ -3540,11 +3658,11 @@ msgstr ""
 "обеспечить соблюдение определенного порядка установки, пожалуйста, "
 "рассмотрите возможность указать <i>зависимость</i>."
 
-#: View/Elements/formPackageBase.ctp:117 View/Elements/infoPackage.ctp:149
+#: View/Elements/formPackageBase.ctp:129 View/Elements/infoPackage.ctp:188
 msgid "Chains packages"
 msgstr "Цепочки пакетов"
 
-#: View/Elements/formPackageBase.ctp:117
+#: View/Elements/formPackageBase.ctp:129
 msgid ""
 "By using <i>chain</i> you chain a package to the current package, meaning "
 "that if this package is installed, the other package also has to be "
@@ -3564,16 +3682,20 @@ msgstr ""
 "приоритет, чем пакет, который ссылается на него по цепочке. Если требуется "
 "установка перед другим пакетом, укажите <i>зависимость</i>."
 
-#: View/Elements/formPackageBase.ctp:123;146
+#: View/Elements/formPackageBase.ctp:135;164
 msgid "Package ID, revision, ..."
 msgstr "Идентификатор пакета, ревизия, ..."
 
-#: View/Elements/formPackageBase.ctp:130
+#: View/Elements/formPackageBase.ctp:142
 msgid "Priority, reboot, ..."
 msgstr "Приоритет, перезагрузка, ..."
 
-#: View/Elements/formPackageBase.ctp:139 View/Elements/formProfileBase.ctp:56
-#: View/Elements/infoPackage.ctp:97
+#: View/Elements/formPackageBase.ctp:148 View/Elements/infoPackage.ctp:113
+msgid "Prechecks"
+msgstr "Предпроверки"
+
+#: View/Elements/formPackageBase.ctp:157 View/Elements/formProfileBase.ctp:56
+#: View/Elements/infoPackage.ctp:136
 msgid "Dependencies"
 msgstr "Зависимости"
 
@@ -3829,13 +3951,13 @@ msgstr "Отключить хост"
 msgid "Enable host"
 msgstr "Включить хост"
 
-#: View/Elements/infoHost.ctp:63 View/Elements/infoPackage.ctp:58
+#: View/Elements/infoHost.ctp:63 View/Elements/infoPackage.ctp:97
 #: View/Elements/infoProfile.ctp:54 View/Elements/tableHost.ctp:213
 #: View/Elements/tablePackage.ctp:219 View/Elements/tableProfile.ctp:186
 msgid "Don't use as template"
 msgstr "Не использовать в качестве шаблона"
 
-#: View/Elements/infoHost.ctp:67 View/Elements/infoPackage.ctp:62
+#: View/Elements/infoHost.ctp:67 View/Elements/infoPackage.ctp:63
 #: View/Elements/infoProfile.ctp:58
 msgid "template"
 msgstr "шаблон"
@@ -3844,55 +3966,83 @@ msgstr "шаблон"
 msgid "Use this host as a template"
 msgstr "Использовать этот хост в качестве шаблона"
 
-#: View/Elements/infoHost.ctp:79 View/Elements/infoPackage.ctp:88
+#: View/Elements/infoHost.ctp:79 View/Elements/infoPackage.ctp:105
 #: View/Elements/infoProfile.ctp:61 View/Elements/tableArchive.ctp:73
 #: View/Elements/tableGarbage.ctp:60 View/Elements/tableHost.ctp:80
 #: View/Elements/tablePackage.ctp:102 View/Elements/tableProfile.ctp:69
 msgid "Last modified"
 msgstr "Последнее изменение"
 
-#: View/Elements/infoPackage.ctp:52 View/Elements/tablePackage.ctp:211
+#: View/Elements/infoPackage.ctp:46
+msgid "Basic information"
+msgstr "Основная информация"
+
+#: View/Elements/infoPackage.ctp:47
+msgid "Extended information"
+msgstr "Расширенная информация"
+
+#: View/Elements/infoPackage.ctp:59 View/Elements/tablePackage.ctp:211
 msgid "Disable package"
 msgstr "Отключить пакет"
 
-#: View/Elements/infoPackage.ctp:52 View/Elements/tablePackage.ctp:211
+#: View/Elements/infoPackage.ctp:59 View/Elements/tablePackage.ctp:211
 msgid "Enable package"
 msgstr "Включить пакет"
 
-#: View/Elements/infoPackage.ctp:62
+#: View/Elements/infoPackage.ctp:63
 msgid "Use this package as a template"
 msgstr "Использовать этот пакет в качестве шаблона"
 
-#: View/Elements/infoPackage.ctp:67
+#: View/Elements/infoPackage.ctp:74
 msgid ""
 "The automatic creation of the variable %%%s%% based on the package version "
 "is enabled"
 msgstr ""
 "Включено автоматическое создание переменной %%%s%% на основе версии пакета"
 
-#: View/Elements/infoPackage.ctp:98
+#: View/Elements/infoPackage.ctp:137
 msgid "Inclusions"
 msgstr "Включения"
 
-#: View/Elements/infoPackage.ctp:99
+#: View/Elements/infoPackage.ctp:138
 msgid "Chains"
 msgstr "Цепочки"
 
-#: View/Elements/infoPackage.ctp:122 View/Elements/infoProfile.ctp:105
+#: View/Elements/infoPackage.ctp:161 View/Elements/infoProfile.ctp:105
 msgid "Exists in dependencies"
 msgstr "Находиться в зависимостях"
 
-#: View/Elements/infoPackage.ctp:139
+#: View/Elements/infoPackage.ctp:178
 msgid "Exists in inclusions"
 msgstr "Находиться во включениях"
 
-#: View/Elements/infoPackage.ctp:156
+#: View/Elements/infoPackage.ctp:195
 msgid "Exists in chains"
 msgstr "Находиться в цепочках"
 
-#: View/Elements/infoPackage.ctp:180
+#: View/Elements/infoPackage.ctp:219
 msgid "Edit existing package in profiles"
 msgstr "Редактирование наличия пакета в профилях"
+
+#: View/Elements/infoPackage.ctp:117
+msgctxt "precheck"
+msgid "Install"
+msgstr "Установки"
+
+#: View/Elements/infoPackage.ctp:119
+msgctxt "precheck"
+msgid "Remove"
+msgstr "Удаления"
+
+#: View/Elements/infoPackage.ctp:121
+msgctxt "precheck"
+msgid "Upgrade"
+msgstr "Повышения"
+
+#: View/Elements/infoPackage.ctp:123
+msgctxt "precheck"
+msgid "Downgrade"
+msgstr "Понижения"
 
 #: View/Elements/infoPreviewXml.ctp:52
 msgid "Preview type"

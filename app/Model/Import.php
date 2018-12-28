@@ -910,6 +910,7 @@ class Import extends AppModel {
 		$this->createNamesCache('PackageExecuteType');
 		$this->createNamesCache('PackageNotifyType');
 		$this->createNamesCache('PackageRebootType');
+		$this->createNamesCache('PackagePrecheckType');
 		$this->createNamesCache('PackageActionType');
 		$this->createNamesCache('ExitcodeRebootType');
 		$this->_createCheckTypesCache();
@@ -1286,6 +1287,26 @@ class Import extends AppModel {
 				'bindField' => 'notify_id',
 				'default' => PACKAGE_NOTIFY_TRUE,
 			],
+			'@precheck-install' => [
+				'bindModel' => 'PackagePrecheckType',
+				'bindField' => 'precheck_install_id',
+				'default' => PACKAGE_PRECHECK_ALWAYS,
+			],
+			'@precheck-remove' => [
+				'bindModel' => 'PackagePrecheckType',
+				'bindField' => 'precheck_remove_id',
+				'default' => PACKAGE_PRECHECK_NEVER,
+			],
+			'@precheck-upgrade' => [
+				'bindModel' => 'PackagePrecheckType',
+				'bindField' => 'precheck_upgrade_id',
+				'default' => PACKAGE_PRECHECK_NEVER,
+			],
+			'@precheck-downgrade' => [
+				'bindModel' => 'PackagePrecheckType',
+				'bindField' => 'precheck_downgrade_id',
+				'default' => PACKAGE_PRECHECK_NEVER,
+			],
 		];
 		foreach ($bindInfoCfg as $attribute => $bindCfg) {
 			if (isset($xmlData[$attribute])) {
@@ -1397,6 +1418,10 @@ class Import extends AppModel {
 			'reboot_id' => PACKAGE_REBOOT_FALSE,
 			'execute_id' => PACKAGE_EXECUTE_DEFAULT,
 			'notify_id' => PACKAGE_NOTIFY_TRUE,
+			'precheck_install_id' => PACKAGE_PRECHECK_ALWAYS,
+			'precheck_remove_id' => PACKAGE_PRECHECK_NEVER,
+			'precheck_upgrade_id' => PACKAGE_PRECHECK_NEVER,
+			'precheck_downgrade_id' => PACKAGE_PRECHECK_NEVER,
 			'name' => '',
 			'id_text' => '',
 			'enabled' => true,

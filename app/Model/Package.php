@@ -140,6 +140,34 @@ class Package extends AppModel {
 			'message' => "The package's notify attribute is invalid.",
 			'last' => true
 		],
+		'precheck_install_id' => [
+			'rule' => 'naturalNumber',
+			'required' => true,
+			'allowEmpty' => false,
+			'message' => "The package's precheck-install attribute is invalid.",
+			'last' => true
+		],
+		'precheck_remove_id' => [
+			'rule' => 'naturalNumber',
+			'required' => true,
+			'allowEmpty' => false,
+			'message' => "The package's precheck-remove attribute is invalid.",
+			'last' => true
+		],
+		'precheck_upgrade_id' => [
+			'rule' => 'naturalNumber',
+			'required' => true,
+			'allowEmpty' => false,
+			'message' => "The package's precheck-upgrade attribute is invalid.",
+			'last' => true
+		],
+		'precheck_downgrade_id' => [
+			'rule' => 'naturalNumber',
+			'required' => true,
+			'allowEmpty' => false,
+			'message' => "The package's precheck-downgrade attribute is invalid.",
+			'last' => true
+		],
 		'DependsOn' => [
 			'selfDependency' => [
 				'rule' => ['selfDependency', 'id'],
@@ -340,6 +368,30 @@ class Package extends AppModel {
 			'foreignKey' => 'notify_id',
 			'conditions' => '',
 			'fields' => 'PackageNotifyType.name'
+		],
+		'PackagePrecheckTypeInstall' => [
+			'className' => 'PackagePrecheckType',
+			'foreignKey' => 'precheck_install_id',
+			'conditions' => '',
+			'fields' => 'PackagePrecheckTypeInstall.name'
+		],
+		'PackagePrecheckTypeRemove' => [
+			'className' => 'PackagePrecheckType',
+			'foreignKey' => 'precheck_remove_id',
+			'conditions' => '',
+			'fields' => 'PackagePrecheckTypeRemove.name'
+		],
+		'PackagePrecheckTypeUpgrade' => [
+			'className' => 'PackagePrecheckType',
+			'foreignKey' => 'precheck_upgrade_id',
+			'conditions' => '',
+			'fields' => 'PackagePrecheckTypeUpgrade.name'
+		],
+		'PackagePrecheckTypeDowngrade' => [
+			'className' => 'PackagePrecheckType',
+			'foreignKey' => 'precheck_downgrade_id',
+			'conditions' => '',
+			'fields' => 'PackagePrecheckTypeDowngrade.name'
 		],
 	];
 
@@ -629,6 +681,10 @@ class Package extends AppModel {
 			$this->alias . '.reboot_id',
 			$this->alias . '.execute_id',
 			$this->alias . '.notify_id',
+			$this->alias . '.precheck_install_id',
+			$this->alias . '.precheck_remove_id',
+			$this->alias . '.precheck_upgrade_id',
+			$this->alias . '.precheck_downgrade_id',
 			$this->alias . '.enabled',
 			$this->alias . '.template',
 			$this->alias . '.name',
@@ -647,6 +703,10 @@ class Package extends AppModel {
 				'PackageRebootType',
 				'PackageExecuteType',
 				'PackageNotifyType',
+				'PackagePrecheckTypeInstall',
+				'PackagePrecheckTypeRemove',
+				'PackagePrecheckTypeUpgrade',
+				'PackagePrecheckTypeDowngrade',
 				'Check',
 				'Check.Attribute' => ['fields' => '*'],
 				'PackageAction',
@@ -736,6 +796,10 @@ class Package extends AppModel {
 			'PackageRebootType',
 			'PackageExecuteType',
 			'PackageNotifyType',
+			'PackagePrecheckTypeInstall',
+			'PackagePrecheckTypeRemove',
+			'PackagePrecheckTypeUpgrade',
+			'PackagePrecheckTypeDowngrade',
 			'Check',
 			'Check.Attribute',
 			'PackageAction',
@@ -805,6 +869,10 @@ class Package extends AppModel {
 				'@reboot' => $package['PackageRebootType']['name'],
 				'@notify' => $package['PackageNotifyType']['name'],
 				'@execute' => $package['PackageExecuteType']['name'],
+				'@precheck-install' => $package['PackagePrecheckTypeInstall']['name'],
+				'@precheck-remove' => $package['PackagePrecheckTypeRemove']['name'],
+				'@precheck-upgrade' => $package['PackagePrecheckTypeUpgrade']['name'],
+				'@precheck-downgrade' => $package['PackagePrecheckTypeDowngrade']['name'],
 			];
 
 			if ($packageAttribs['@notify'] === 'true') {
@@ -814,6 +882,18 @@ class Package extends AppModel {
 			if (empty($packageAttribs['@execute']) ||
 				($packageAttribs['@execute'] === 'default')) {
 				unset($packageAttribs['@execute']);
+			}
+
+			$listPrecheckAttribs = [
+				'@precheck-install' => 'always',
+				'@precheck-remove' => 'never',
+				'@precheck-upgrade' => 'never',
+				'@precheck-downgrade' => 'never'
+			];
+			foreach ($listPrecheckAttribs as $precheckAttribName => $precheckAttribValue) {
+				if ($packageAttribs[$precheckAttribName] === $precheckAttribValue) {
+					unset($packageAttribs[$precheckAttribName]);
+				}
 			}
 
 			if (isset($package[$this->alias]['notes']) && !empty($package[$this->alias]['notes'])) {

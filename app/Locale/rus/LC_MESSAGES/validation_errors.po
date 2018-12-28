@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wpkgExpress II\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2018-12-27 18:50+0300\n"
+"PO-Revision-Date: 2018-12-28 11:28+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -155,17 +155,33 @@ msgstr "Недопустимая версия пакета."
 msgid "The package's priority attribute is not an integer."
 msgstr "Атрибут приоритета пакета не является целым числом."
 
-#: Model/Package.php:validation for field reboot
+#: Model/Package.php:validation for field reboot_id
 msgid "The package's reboot attribute is invalid."
 msgstr "Недопустимый атрибут перезагрузки пакета."
 
-#: Model/Package.php:validation for field execute
+#: Model/Package.php:validation for field execute_id
 msgid "The package's execute attribute is invalid."
 msgstr "Недопустимый атрибут пакета execute."
 
-#: Model/Package.php:validation for field notify
+#: Model/Package.php:validation for field notify_id
 msgid "The package's notify attribute is invalid."
 msgstr "Недопустимый атрибут пакета notify."
+
+#: Model/Package.php:validation for field precheck_install_id
+msgid "The package's precheck-install attribute is invalid."
+msgstr "Недопустимый атрибут пакета precheck-install."
+
+#: Model/Package.php:validation for field precheck_remove_id
+msgid "The package's precheck-remove attribute is invalid."
+msgstr "Недопустимый атрибут пакета precheck-remove."
+
+#: Model/Package.php:validation for field precheck_upgrade_id
+msgid "The package's precheck-upgrade attribute is invalid."
+msgstr "Недопустимый атрибут пакета precheck-upgrade."
+
+#: Model/Package.php:validation for field precheck_downgrade_id
+msgid "The package's precheck-downgrade attribute is invalid."
+msgstr "Недопустимый атрибут пакета precheck-downgrade."
 
 #: Model/Package.php:validation for field DependsOn
 #: Model/PackagesPackage.php:validation dependency_id
@@ -211,6 +227,14 @@ msgstr "Недопустимый тип уведомления."
 #: Model/PackageNotifyType.php:validation for field name
 msgid "The notify type already exists."
 msgstr "Тип уведомления уже существует."
+
+#: Model/PackagePrecheckType.php:validation for field name
+msgid "The precheck type is invalid."
+msgstr "Недопустимый тип предварительной проверки."
+
+#: Model/PackagePrecheckType.php:validation for field name
+msgid "The precheck type already exists."
+msgstr "Тип предварительной проверки уже существует."
 
 #: Model/PackagePriority.php:validation for field name
 msgid "The priority name is invalid."
