@@ -90,15 +90,15 @@ class Check extends AppModel {
 			'message' => 'Invalid check reference ID.',
 		],
 		'ref_type' => [
-			'rule' => ['checkRange', 'CHECK_TYPE_', false],
+			'rule' => ['checkRange', 'CHECK_PARENT_TYPE_', false],
 			'message' => 'Invalid check type.'
 		],
 		'type' => [
-			'rule' => ['checkRange', 'CHECK_', true],
+			'rule' => ['checkRange', 'CHECK_TYPE_', false],
 			'message' => 'Check type attribute is invalid.'
 		],
 		'condition' => [
-			'rule' => ['checkRange', 'CHECK_', false],
+			'rule' => ['checkRange', 'CHECK_CONDITION_', false],
 			'message' => 'Check condition attribute is invalid.'
 		]
 	];

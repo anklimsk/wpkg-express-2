@@ -119,32 +119,24 @@ class Package extends AppModel {
 			'message' => "The package's priority attribute is not an integer.",
 			'last' => true
 		],
-		'reboot' => [
-			'isinteger' => [
-				'rule' => 'numeric',
-				'message' => "The package's reboot attribute is invalid.",
-				'last' => true
-			],
-			'validrange' => [
-				'rule' => ['checkRange', 'PACKAGE_', true],
-				'message' => "The package's reboot attribute is invalid.",
-				'last' => true
-			]
+		'reboot_id' => [
+			'rule' => 'naturalNumber',
+			'required' => true,
+			'allowEmpty' => false,
+			'message' => "The package's reboot attribute is invalid.",
+			'last' => true
 		],
-		'execute' => [
-			'isinteger' => [
-				'rule' => 'numeric',
-				'message' => "The package's execute attribute is invalid.",
-				'last' => true
-			],
-			'validrange' => [
-				'rule' => ['checkRange', 'PACKAGE_', true],
-				'message' => "The package's execute attribute is invalid.",
-				'last' => true
-			]
+		'execute_id' => [
+			'rule' => 'naturalNumber',
+			'required' => true,
+			'allowEmpty' => false,
+			'message' => "The package's execute attribute is invalid.",
+			'last' => true
 		],
-		'notify' => [
-			'rule' => 'numeric',
+		'notify_id' => [
+			'rule' => 'naturalNumber',
+			'required' => true,
+			'allowEmpty' => false,
 			'message' => "The package's notify attribute is invalid.",
 			'last' => true
 		],
