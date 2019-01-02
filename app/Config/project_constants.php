@@ -2130,6 +2130,15 @@ if (!defined('PROCESSING_GROUP_DATA_TIME_LIMIT')) {
 }
 
 /**
+ * Time limit for moving host item
+ *
+ * Used for set time limit of moving host item. Default value `90`
+ */
+if (!defined('MOVE_HOST_TIME_LIMIT')) {
+	define('MOVE_HOST_TIME_LIMIT', 90);
+}
+
+/**
  * Autocomplete data limit for package action command
  *
  * Used to set the limit for autocomplete data. Default value `10`

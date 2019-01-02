@@ -642,6 +642,7 @@ class HostsController extends AppController {
  * @return void
  */
 	protected function _move($direct = null, $id = null, $delta = 1) {
+		set_time_limit(MOVE_HOST_TIME_LIMIT);
 		$this->Move->moveItem($direct, $id, $delta);
 	}
 
