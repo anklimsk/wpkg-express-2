@@ -620,7 +620,7 @@ class AppSchema extends CakeSchema {
 		'id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'unsigned' => false, 'key' => 'primary'],
 		'package_id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'unsigned' => false],
 		'category_id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'unsigned' => false],
-		'default' => ['type' => 'boolean', 'null' => false, 'default' => '1'],
+		'default' => ['type' => 'boolean', 'null' => false, 'default' => '0'],
 		'force' => ['type' => 'boolean', 'null' => false, 'default' => '0'],
 		'indexes' => [
 			'PRIMARY' => ['column' => 'id', 'unique' => 1]
