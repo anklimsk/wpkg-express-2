@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wpkgExpress II\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2018-12-28 13:30+0300\n"
+"PO-Revision-Date: 2019-01-04 16:09+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "Package ID"
 msgstr "Идентификатор пакета"
 
-#: Config/cakesearchinfo.php:21 Model/Package.php:1149
+#: Config/cakesearchinfo.php:21 Model/Package.php:1178
 #: View/Elements/formHostBase.ctp:53 View/Elements/formPackageBase.ctp:79
 #: View/Elements/formPackageExistsProfilesEdit.ctp:46
 #: View/Elements/infoPackage.ctp:64 View/Elements/tableArchive.ctp:67
@@ -41,7 +41,7 @@ msgstr "Наименование"
 msgid "Notes"
 msgstr "Примечания"
 
-#: Config/cakesearchinfo.php:25 Model/Package.php:1170
+#: Config/cakesearchinfo.php:25 Model/Package.php:1199
 #: View/Elements/barNav.ctp:76 View/Home/index.ctp:73
 msgid "Packages"
 msgstr "Пакеты"
@@ -54,7 +54,7 @@ msgstr "Пакеты"
 msgid "Profile ID"
 msgstr "Идентификатор профиля"
 
-#: Config/cakesearchinfo.php:33 Model/Profile.php:736
+#: Config/cakesearchinfo.php:33 Model/Profile.php:756
 #: View/Elements/barNav.ctp:104
 #: View/Elements/formPackageExistsProfilesEdit.ctp:35
 #: View/Elements/formProfileExistsHostsEdit.ctp:35 View/Home/index.ctp:78
@@ -66,7 +66,7 @@ msgstr "Профили"
 msgid "Host ID"
 msgstr "Идентификатор хоста"
 
-#: Config/cakesearchinfo.php:41 Model/Host.php:546 View/Elements/barNav.ctp:160
+#: Config/cakesearchinfo.php:41 Model/Host.php:568 View/Elements/barNav.ctp:160
 #: View/Home/index.ctp:85
 msgid "Hosts"
 msgstr "Хосты"
@@ -119,7 +119,7 @@ msgstr ""
 "Отключение неиспользуемых хостов и профилей успешно помещено в очередь."
 
 #: Console/Command/Task/DisableUnusedTask.php:67
-#: Controller/HostsController.php:547
+#: Controller/HostsController.php:541
 msgid "Disabling unused hosts and profiles put in queue unsuccessfully."
 msgstr ""
 "Отключение неиспользуемых хостов и профилей безуспешно помещено в очередь."
@@ -204,65 +204,65 @@ msgid "Index of types of package actions"
 msgstr "Указатель типов действий пакета"
 
 #: Controller/ActionTypesController.php:135
-#: Controller/ActionsController.php:234 Controller/AttributesController.php:152
-#: Controller/ChecksController.php:188 Controller/ExitCodesController.php:169
-#: Controller/HostsController.php:268
+#: Controller/ActionsController.php:224 Controller/AttributesController.php:152
+#: Controller/ChecksController.php:188 Controller/ExitCodesController.php:163
+#: Controller/HostsController.php:262
 #: Controller/PackagePrioritiesController.php:121
-#: Controller/PackagesController.php:271 Controller/ProfilesController.php:219
-#: Controller/VariablesController.php:217
-#: Controller/WpiCategoriesController.php:131 Controller/WpiController.php:304
+#: Controller/PackagesController.php:256 Controller/ProfilesController.php:213
+#: Controller/VariablesController.php:210
+#: Controller/WpiCategoriesController.php:131 Controller/WpiController.php:374
 msgid "Adding"
 msgstr "Добавление"
 
-#: Controller/ActionTypesController.php:139;192
+#: Controller/ActionTypesController.php:139;186
 msgid "Package action type has been saved."
 msgstr "Тип действия пакета сохранён."
 
-#: Controller/ActionTypesController.php:143;196
+#: Controller/ActionTypesController.php:143;190
 msgid "Package action type could not be saved. Please, try again."
 msgstr ""
 "Не удалось сохранить тип действия пакета. Пожалуйста, попробуйте ещё раз."
 
-#: Controller/ActionTypesController.php:155
+#: Controller/ActionTypesController.php:149
 msgid "Adding package action type"
 msgstr "Добавление типа действия пакета"
 
-#: Controller/ActionTypesController.php:185
+#: Controller/ActionTypesController.php:179
 msgid "Invalid ID for package action type"
 msgstr "Недопустимый идентификатор для типа действия пакета"
 
-#: Controller/ActionTypesController.php:189
-#: Controller/ActionsController.php:273 Controller/AttributesController.php:225
-#: Controller/ChecksController.php:261 Controller/ExitCodesController.php:206
-#: Controller/HostsController.php:317
+#: Controller/ActionTypesController.php:183
+#: Controller/ActionsController.php:263 Controller/AttributesController.php:217
+#: Controller/ChecksController.php:252 Controller/ExitCodesController.php:200
+#: Controller/HostsController.php:311
 #: Controller/PackagePrioritiesController.php:167
-#: Controller/PackagesController.php:334
-#: Controller/ProfilesController.php:273;558
-#: Controller/VariablesController.php:256
-#: Controller/WpiCategoriesController.php:183 Controller/WpiController.php:363
+#: Controller/PackagesController.php:318
+#: Controller/ProfilesController.php:267;552
+#: Controller/VariablesController.php:249
+#: Controller/WpiCategoriesController.php:178 Controller/WpiController.php:426
 msgid "Editing"
 msgstr "Редактирование"
 
-#: Controller/ActionTypesController.php:202
+#: Controller/ActionTypesController.php:196
 msgid "Editing package action type"
 msgstr "Редактирование типа действия пакета"
 
-#: Controller/ActionTypesController.php:206;209
+#: Controller/ActionTypesController.php:200;203
 msgid "Delete package action type"
 msgstr "Удалить тип действия пакета"
 
-#: Controller/ActionTypesController.php:210
+#: Controller/ActionTypesController.php:204
 msgid "Are you sure you wish to delete this package action type?"
 msgstr "Вы действительно хотите удалить этот тип действия пакета?"
 
-#: Controller/ActionsController.php:134;268
+#: Controller/ActionsController.php:134;258
 msgid "Invalid ID for package action"
 msgstr "Недопустимый идентификатор для действия пакета"
 
 #: Controller/ActionsController.php:137 Controller/ArchivesController.php:164
 #: Controller/AttributesController.php:96 Controller/ChecksController.php:129
 #: Controller/ExitCodesController.php:103 Controller/GraphController.php:138
-#: Controller/VariablesController.php:132 Controller/WpiController.php:201
+#: Controller/VariablesController.php:132 Controller/WpiController.php:218
 #: Controller/Component/ViewDataComponent.php:191
 msgid "Viewing"
 msgstr "Просмотр"
@@ -298,34 +298,34 @@ msgstr "Редактирование типа действия пакета"
 msgid "Invalid referrer ID or type for package action"
 msgstr "Недопустимый ссылающийся идентификатор или тип для действия пакета"
 
-#: Controller/ActionsController.php:205;277
+#: Controller/ActionsController.php:205;267
 msgid "Package action has been saved."
 msgstr "Действие пакета сохранено."
 
-#: Controller/ActionsController.php:209;281
+#: Controller/ActionsController.php:209;271
 msgid "Package action could not be saved. Please, try again."
 msgstr "Не удалось сохранить действие пакета. Пожалуйста, попробуйте ещё раз."
 
-#: Controller/ActionsController.php:235
+#: Controller/ActionsController.php:225
 msgid "Adding package action"
 msgstr "Добавление действия пакета"
 
-#: Controller/ActionsController.php:295
+#: Controller/ActionsController.php:285
 msgid "Editing package action"
 msgstr "Редактирование действия пакета"
 
-#: Controller/ActionsController.php:401
+#: Controller/ActionsController.php:391
 msgid "Verifying state list package actions"
 msgstr "Проверка состояния списка действий пакета"
 
-#: Controller/ActionsController.php:403
+#: Controller/ActionsController.php:393
 #: Controller/Component/VerifyDataComponent.php:86
 msgid "Verifying"
 msgstr "Проверка"
 
 #: Controller/ArchivesController.php:109;158
 #: Controller/GarbageController.php:107 Controller/LogsController.php:96
-#: Controller/WpiController.php:128
+#: Controller/WpiController.php:130
 #: Controller/Component/ViewDataComponent.php:90
 msgid "Delete selected items"
 msgstr "Удалить выбранные элементы"
@@ -343,7 +343,7 @@ msgid "Package archive"
 msgstr "Архив пакетов"
 
 #: Controller/ArchivesController.php:151
-#: Controller/PackagesController.php:305;509
+#: Controller/PackagesController.php:290;493
 msgid "Invalid ID for package"
 msgstr "Недопустимый идентификатор для пакета"
 
@@ -416,7 +416,7 @@ msgstr ""
 "Не удалось восстановить информация о пакете из архива. Пожалуйста, "
 "попробуйте ещё раз."
 
-#: Controller/AttributesController.php:89;217
+#: Controller/AttributesController.php:89;209
 msgid "Invalid ID for attributes"
 msgstr "Недопустимый идентификатор для атрибутов"
 
@@ -435,11 +435,11 @@ msgstr "Редактировать атрибуты"
 msgid "Editing information of this attributes"
 msgstr "Редактирование информации об этих атрибутах"
 
-#: Controller/AttributesController.php:108;111;257;260
+#: Controller/AttributesController.php:108;111;249;252
 msgid "Delete attributes"
 msgstr "Удалить атрибуты"
 
-#: Controller/AttributesController.php:112;261
+#: Controller/AttributesController.php:112;253
 msgid "Are you sure you wish to delete this attributes?"
 msgstr "Вы уверены, что хотите удалить эти атрибуты?"
 
@@ -447,19 +447,19 @@ msgstr "Вы уверены, что хотите удалить эти атри�
 msgid "Invalid referrer ID, type or node for attributes"
 msgstr "Недопустимый ссылающийся идентификатор, тип или узел атрибутов"
 
-#: Controller/AttributesController.php:159;229
+#: Controller/AttributesController.php:159;221
 msgid "Attributes has been saved."
 msgstr "Атрибуты сохранены."
 
-#: Controller/AttributesController.php:163;233
+#: Controller/AttributesController.php:163;225
 msgid "Attributes could not be saved. Please, try again."
 msgstr "Атрибуты не могут быть сохранены. Пожалуйста, попробуйте ещё раз."
 
-#: Controller/AttributesController.php:184
+#: Controller/AttributesController.php:176
 msgid "Adding attribute"
 msgstr "Добавление атрибута"
 
-#: Controller/AttributesController.php:253
+#: Controller/AttributesController.php:245
 msgid "Editing attributes"
 msgstr "Редактирование атрибутов"
 
@@ -480,23 +480,23 @@ msgstr "Добавить проверку"
 msgid "Verify state of tree checks"
 msgstr "Проверка состояния дерева проверок"
 
-#: Controller/ChecksController.php:192;265
+#: Controller/ChecksController.php:192;256
 msgid "Check has been saved."
 msgstr "Проверка сохранена."
 
-#: Controller/ChecksController.php:196;269
+#: Controller/ChecksController.php:196;260
 msgid "Check could not be saved. Please, try again."
 msgstr "Не удалось сохранить проверку. Пожалуйста, попробуйте ещё раз."
 
-#: Controller/ChecksController.php:222
+#: Controller/ChecksController.php:213
 msgid "Adding check"
 msgstr "Добавление проверки"
 
-#: Controller/ChecksController.php:254
+#: Controller/ChecksController.php:245
 msgid "Invalid ID for check"
 msgstr "Недопустимый идентификатор для проверки"
 
-#: Controller/ChecksController.php:286
+#: Controller/ChecksController.php:277
 msgid "Editing check"
 msgstr "Редактирование проверки"
 
@@ -524,11 +524,11 @@ msgstr ""
 "Вы действительно хотите сбросить конфигурацию WPKG по умолчанию, включая "
 "глобальные переменные?"
 
-#: Controller/ConfigsController.php:100 View/Elements/barNav.ctp:260
+#: Controller/ConfigsController.php:100 View/Elements/barNav.ctp:266
 msgid "Global variables"
 msgstr "Глобальные переменные"
 
-#: Controller/ConfigsController.php:102 View/Elements/barNav.ctp:262
+#: Controller/ConfigsController.php:102 View/Elements/barNav.ctp:268
 msgid "Variables of the global environment"
 msgstr "Переменные глобального окружения"
 
@@ -562,7 +562,7 @@ msgstr ""
 msgid "Downloading XML files"
 msgstr "Скачивание XML файлов"
 
-#: Controller/ExitCodesController.php:100;201
+#: Controller/ExitCodesController.php:100;195
 msgid "Invalid ID for exit code"
 msgstr "Недопустимый идентификатор для кода выхода"
 
@@ -578,23 +578,23 @@ msgstr "Добавить код выхода"
 msgid "Invalid referrer ID or type for exit code"
 msgstr "Недопустимый ссылающийся идентификатор или тип для кода выхода"
 
-#: Controller/ExitCodesController.php:152;210
+#: Controller/ExitCodesController.php:152;204
 msgid "Exit code has been saved."
 msgstr "Код выхода сохранён."
 
-#: Controller/ExitCodesController.php:156;214
+#: Controller/ExitCodesController.php:156;208
 msgid "Exit code could not be saved. Please, try again."
 msgstr "Не удалось сохранить код выхода. Пожалуйста, попробуйте ещё раз."
 
-#: Controller/ExitCodesController.php:170
+#: Controller/ExitCodesController.php:164
 msgid "Adding exit code"
 msgstr "Добавление кода выхода"
 
-#: Controller/ExitCodesController.php:220
+#: Controller/ExitCodesController.php:214
 msgid "Editing exit code"
 msgstr "Редактирование кода выхода"
 
-#: Controller/GarbageController.php:110 View/Elements/barNav.ctp:280
+#: Controller/GarbageController.php:110 View/Elements/barNav.ctp:286
 msgid "Recycle bin"
 msgstr "Корзина"
 
@@ -696,51 +696,52 @@ msgstr "Проверка состояния списка переменных"
 msgid "Information of host"
 msgstr "Информация о хосте"
 
-#: Controller/HostsController.php:250;305
+#: Controller/HostsController.php:250;299
 msgid "Host has been saved."
 msgstr "Хост сохранён."
 
-#: Controller/HostsController.php:254;309
+#: Controller/HostsController.php:254;303
 msgid "Host could not be saved. Please, try again."
 msgstr "Не удалось сохранить хост. Пожалуйста, попробуйте ещё раз."
 
-#: Controller/HostsController.php:269
+#: Controller/HostsController.php:263
 msgid "Adding host"
 msgstr "Добавление хоста"
 
-#: Controller/HostsController.php:299
+#: Controller/HostsController.php:293
 msgid "Invalid ID for host"
 msgstr "Недопустимый идентификатор для хоста"
 
-#: Controller/HostsController.php:318
+#: Controller/HostsController.php:312
 msgid "Editing host"
 msgstr "Редактирование хоста"
 
-#: Controller/HostsController.php:486
+#: Controller/HostsController.php:480
 msgid "Hosts template list is empty"
 msgstr "Пустой список шаблонов хостов"
 
-#: Controller/HostsController.php:497
+#: Controller/HostsController.php:491
 msgid "Generating XML put in queue..."
 msgstr "Генерация XML помещена в очередь..."
 
-#: Controller/HostsController.php:502
+#: Controller/HostsController.php:496
 msgid "Generating XML put in queue unsuccessfully"
 msgstr "Генерация XML безуспешно помещена в очередь"
 
-#: Controller/HostsController.php:517
+#: Controller/HostsController.php:511
 msgid "Generating"
 msgstr "Генерирование"
 
-#: Controller/HostsController.php:518
+#: Controller/HostsController.php:512
 msgid "Generating host"
 msgstr "Создание хоста"
 
-#: Controller/HostsController.php:544
+#: Controller/HostsController.php:538
 msgid "Disabling unused hosts and profiles put in queue..."
 msgstr "Отключение неиспользуемых хостов и профилей помещено в очередь..."
 
-#: Controller/HostsController.php:578 Controller/UploadsController.php:123
+#: Controller/HostsController.php:572 Controller/UploadsController.php:123
+#: Controller/WpiController.php:316
 #: Controller/Component/ExportDataComponent.php:153;195
 #: Controller/Component/ViewDataComponent.php:66
 msgid "Invalid request"
@@ -836,32 +837,32 @@ msgstr "Информация о пакете"
 msgid "Archive of package"
 msgstr "Архив пакета"
 
-#: Controller/PackagesController.php:239;311;519
+#: Controller/PackagesController.php:239;296;503
 msgid "Package has been saved."
 msgstr "Пакет сохранён."
 
-#: Controller/PackagesController.php:243;320;523
+#: Controller/PackagesController.php:243;304;507
 msgid "Package could not be saved. Please, try again."
 msgstr "Не удалось сохранить пакет. Пожалуйста, попробуйте ещё раз."
 
-#: Controller/PackagesController.php:272
+#: Controller/PackagesController.php:257
 msgid "Adding package"
 msgstr "Добавление пакета"
 
-#: Controller/PackagesController.php:335
+#: Controller/PackagesController.php:319
 msgid "Editing package"
 msgstr "Редактирование пакета"
 
-#: Controller/PackagesController.php:514 Controller/ProfilesController.php:452
-#: Controller/WpiController.php:294
+#: Controller/PackagesController.php:498 Controller/ProfilesController.php:446
+#: Controller/WpiController.php:364
 msgid "There are no packages to add/remove"
 msgstr "Нет пакетов для добавления/удаления"
 
-#: Controller/PackagesController.php:530 View/Elements/infoPackage.ctp:141
+#: Controller/PackagesController.php:514 View/Elements/infoPackage.ctp:141
 msgid "Exists in profiles"
 msgstr "Находиться в профилях"
 
-#: Controller/PackagesController.php:531
+#: Controller/PackagesController.php:515
 msgid "Modifying list of profiles"
 msgstr "Изменение списка профилей"
 
@@ -873,61 +874,61 @@ msgstr "Указатель профилей"
 msgid "Information of profile"
 msgstr "Информация о профиле"
 
-#: Controller/ProfilesController.php:201;256;457;510
+#: Controller/ProfilesController.php:201;250;451;504
 msgid "Profile has been saved."
 msgstr "Профиль сохранён."
 
-#: Controller/ProfilesController.php:205;264;461;514
+#: Controller/ProfilesController.php:205;258;455;508
 msgid "Profile could not be saved. Please, try again."
 msgstr "Не удалось сохранить профиль. Пожалуйста, попробуйте ещё раз."
 
-#: Controller/ProfilesController.php:220
+#: Controller/ProfilesController.php:214
 msgid "Adding profile"
 msgstr "Добавление профиля"
 
-#: Controller/ProfilesController.php:250;447;500
+#: Controller/ProfilesController.php:244;441;494
 msgid "Invalid ID for profile"
 msgstr "Недопустимый идентификатор для профиля"
 
-#: Controller/ProfilesController.php:274
+#: Controller/ProfilesController.php:268
 msgid "Editing profile"
 msgstr "Редактирование профиля"
 
-#: Controller/ProfilesController.php:468
+#: Controller/ProfilesController.php:462
 msgid "Associating packages"
 msgstr "Связывание пакетов"
 
-#: Controller/ProfilesController.php:469
+#: Controller/ProfilesController.php:463
 msgid "Modifying associated packages for profile"
 msgstr "Изменение связанных пакетов для профиля"
 
-#: Controller/ProfilesController.php:505
+#: Controller/ProfilesController.php:499
 msgid "There are no hosts to add/remove"
 msgstr "Нет хостов для добавления/удаления"
 
-#: Controller/ProfilesController.php:521 View/Elements/infoProfile.ctp:70
+#: Controller/ProfilesController.php:515 View/Elements/infoProfile.ctp:70
 msgid "Exists in hosts"
 msgstr "Находиться в хостах"
 
-#: Controller/ProfilesController.php:522
+#: Controller/ProfilesController.php:516
 msgid "Modifying list of hosts"
 msgstr "Изменение списка хостов"
 
-#: Controller/ProfilesController.php:553
+#: Controller/ProfilesController.php:547
 msgid "Invalid ID for package in profile"
 msgstr "Недопустимый идентификатор для пакета в профиле"
 
-#: Controller/ProfilesController.php:561
+#: Controller/ProfilesController.php:555
 msgid "Installation date of package has been saved."
 msgstr "Дата установки пакета сохранена."
 
-#: Controller/ProfilesController.php:565
+#: Controller/ProfilesController.php:559
 msgid "Installation date of package could not be saved. Please, try again."
 msgstr ""
 "Дата установки пакета не может быть сохранена. Пожалуйста, попробуйте ещё "
 "раз."
 
-#: Controller/ProfilesController.php:571
+#: Controller/ProfilesController.php:565
 msgid "Editing installation date of package"
 msgstr "Редактирование даты установки пакета"
 
@@ -976,7 +977,7 @@ msgstr ""
 msgid "File selection"
 msgstr "Выбор файла"
 
-#: Controller/UploadsController.php:98 Model/Import.php:2891
+#: Controller/UploadsController.php:98 Model/Import.php:2865
 msgid "Uploading XML files"
 msgstr "Загрузка XML файлов"
 
@@ -1005,23 +1006,23 @@ msgstr "Информация о переменных"
 msgid "Add variable"
 msgstr "Добавить переменную"
 
-#: Controller/VariablesController.php:199;260
+#: Controller/VariablesController.php:199;253
 msgid "Variable has been saved."
 msgstr "Переменная сохранена."
 
-#: Controller/VariablesController.php:203;264
+#: Controller/VariablesController.php:203;257
 msgid "Variable could not be saved. Please, try again."
 msgstr "Не удалось сохранить переменную. Пожалуйста, попробуйте ещё раз."
 
-#: Controller/VariablesController.php:218
+#: Controller/VariablesController.php:211
 msgid "Adding variable"
 msgstr "Добавление переменной"
 
-#: Controller/VariablesController.php:249
+#: Controller/VariablesController.php:242
 msgid "Invalid ID for variable"
 msgstr "Недопустимый идентификатор переменной"
 
-#: Controller/VariablesController.php:270
+#: Controller/VariablesController.php:263
 msgid "Editing variable"
 msgstr "Редактирование переменной"
 
@@ -1033,124 +1034,144 @@ msgstr "Категории WPI не найдены"
 msgid "Index of WPI categories"
 msgstr "Указатель категорий WPI"
 
-#: Controller/WpiCategoriesController.php:135;186
+#: Controller/WpiCategoriesController.php:135;181
 msgid "WPI category has been saved."
 msgstr "Категория WPI сохранена."
 
-#: Controller/WpiCategoriesController.php:139;190
+#: Controller/WpiCategoriesController.php:139;185
 msgid "WPI category could not be saved. Please, try again."
 msgstr "Не удалось сохранить категорию WPI. Пожалуйста, попробуйте ещё раз."
 
-#: Controller/WpiCategoriesController.php:150
+#: Controller/WpiCategoriesController.php:145
 msgid "Adding WPI category"
 msgstr "Добавление категории WPI"
 
-#: Controller/WpiCategoriesController.php:179
+#: Controller/WpiCategoriesController.php:174
 msgid "Invalid ID for WPI category"
 msgstr "Недопустимый идентификатор категории WPI"
 
-#: Controller/WpiCategoriesController.php:196
+#: Controller/WpiCategoriesController.php:191
 msgid "Editing WPI category"
 msgstr "Редактирование категории WPI"
 
-#: Controller/WpiCategoriesController.php:200;203
+#: Controller/WpiCategoriesController.php:195;198
 #: View/Elements/listWpiCategory.ctp:53
 msgid "Delete WPI category"
 msgstr "Удалить категорию WPI"
 
-#: Controller/WpiCategoriesController.php:204
+#: Controller/WpiCategoriesController.php:199
 msgid "Are you sure you wish to delete this WPI category?"
 msgstr "Вы действительно хотите удалить эту категорию WPI?"
 
-#: Controller/WpiController.php:131
+#: Controller/WpiController.php:133
 msgid "Index of WPI packages"
 msgstr "Указатель пакетов WPI"
 
-#: Controller/WpiController.php:135;138
+#: Controller/WpiController.php:137;140
 msgid "Add package WPI"
 msgstr "Добавить пакет WPI"
 
-#: Controller/WpiController.php:145 View/Elements/barNav.ctp:219
+#: Controller/WpiController.php:147 View/Elements/barNav.ctp:219
 msgid "Categories"
 msgstr "Категории"
 
-#: Controller/WpiController.php:148 View/Elements/barNav.ctp:221
+#: Controller/WpiController.php:150 View/Elements/barNav.ctp:221
 msgid "Categories of packages"
 msgstr "Категории пакетов"
 
-#: Controller/WpiController.php:155 View/Elements/barNav.ctp:226
+#: Controller/WpiController.php:157 View/Elements/barNav.ctp:226
 msgid "Configuration of WPI"
 msgstr "Конфигурация WPI"
 
-#: Controller/WpiController.php:158 View/Elements/barNav.ctp:228
+#: Controller/WpiController.php:160 View/Elements/barNav.ctp:228
 msgid "Download WPI configuration file"
 msgstr "Скачать конфигурационный файл WPI"
 
-#: Controller/WpiController.php:164
-msgid "Extension for WPI"
-msgstr "Расширение для WPI"
+#: Controller/WpiController.php:165 View/Elements/barNav.ctp:232
+msgid "Configuration of WPKG for WPI"
+msgstr "Конфигурация WPKG для WPI"
 
-#: Controller/WpiController.php:167
-msgid "Download extension for WPI"
-msgstr "Скачать расширение для WPI"
+#: Controller/WpiController.php:168 View/Elements/barNav.ctp:234
+msgid "Download WPKG configuration file for WPI"
+msgstr "Скачать конфигурационный файл WPKG для WPI"
 
-#: Controller/WpiController.php:198;354
+#: Controller/WpiController.php:173
+msgid "Profiles of WPKG for WPI"
+msgstr "Профили WPKG для WPI"
+
+#: Controller/WpiController.php:176
+msgid "Download WPKG profiles file for WPI"
+msgstr "Скачать файл профилей WPKG для WPI"
+
+#: Controller/WpiController.php:181
+msgid "Hosts of WPKG for WPI"
+msgstr "Хосты WPKG для WPI"
+
+#: Controller/WpiController.php:184
+msgid "Download WPKG hosts file for WPI"
+msgstr "Скачать файл хостов WPKG для WPI"
+
+#: Controller/WpiController.php:215;417
 msgid "Invalid ID for WPI package"
 msgstr "Недопустимый идентификатор для пакета WPI"
 
-#: Controller/WpiController.php:204
+#: Controller/WpiController.php:221
 msgid "Information of WPI package"
 msgstr "Информация о пакете WPI"
 
-#: Controller/WpiController.php:208;211 View/Elements/tableWpiPackage.ctp:102
+#: Controller/WpiController.php:225;228 View/Elements/tableWpiPackage.ctp:102
 msgid "Edit WPI package"
 msgstr "Изменить пакет WPI"
 
-#: Controller/WpiController.php:217;220;380;383
+#: Controller/WpiController.php:234;237;443;446
 #: View/Elements/tableWpiPackage.ctp:111
 msgid "Delete WPI package"
 msgstr "Удалить пакет WPI"
 
-#: Controller/WpiController.php:221;384
+#: Controller/WpiController.php:238;447
 msgid "Are you sure you wish to delete this WPI package?"
 msgstr "Вы действительно хотите удалить этот пакет WPI?"
 
-#: Controller/WpiController.php:299;359
+#: Controller/WpiController.php:313
+msgid "Invalid XML type"
+msgstr "Недопустимый тип XML"
+
+#: Controller/WpiController.php:369;422
 msgid "List of categories of WPI is empty"
 msgstr "Список категорий WPI пуст"
 
-#: Controller/WpiController.php:308;366
+#: Controller/WpiController.php:378;429
 msgid "WPI package has been saved."
 msgstr "Пакет WPI сохранён."
 
-#: Controller/WpiController.php:312;370
+#: Controller/WpiController.php:382;433
 msgid "WPI package could not be saved. Please, try again."
 msgstr "Не удалось сохранить пакет WPI. Пожалуйста, попробуйте ещё раз."
 
-#: Controller/WpiController.php:325
+#: Controller/WpiController.php:388
 msgid "Adding WPI package"
 msgstr "Добавление пакета WPI"
 
-#: Controller/WpiController.php:376
+#: Controller/WpiController.php:439
 msgid "Editing WPI package"
 msgstr "Редактирование пакета WPI"
 
-#: Controller/WpiController.php:438
+#: Controller/WpiController.php:501
 msgctxt "change state"
 msgid "selected by default"
 msgstr "выбирается по умолчанию"
 
-#: Controller/WpiController.php:440
+#: Controller/WpiController.php:503
 msgctxt "change state"
 msgid "don't selected by default"
 msgstr "не выбирается по умолчанию"
 
-#: Controller/WpiController.php:469
+#: Controller/WpiController.php:532
 msgctxt "change state"
 msgid "forced selected"
 msgstr "выбирается принудительно"
 
-#: Controller/WpiController.php:471
+#: Controller/WpiController.php:534
 msgctxt "change state"
 msgid "don't selected forcibly"
 msgstr "не выбирается принудительно"
@@ -1218,12 +1239,12 @@ msgstr "не используется в качестве шаблона"
 msgid "Method '%s' is not found in target model"
 msgstr "Метод '%s' не найден в целевой модели"
 
-#: Controller/Component/ExportDataComponent.php:110 Model/Import.php:2803
+#: Controller/Component/ExportDataComponent.php:110 Model/Import.php:2777
 msgid "Fatal errors"
 msgstr "Неустранимые ошибки"
 
 #: Controller/Component/ExportDataComponent.php:111
-#: Model/Import.php:626;639;684;1788;1817;1861;1870;1909;1925;1987;2019;2148;2198;2229;2356;2387;2493;2556;2619;2754;2779;2800
+#: Model/Import.php:626;639;684;1762;1791;1835;1844;1883;1899;1961;1993;2122;2172;2203;2330;2361;2467;2530;2593;2728;2753;2774
 #: Model/Log.php:402;416;458;529;548;554;572;702 Model/Report.php:408;440
 #: Model/Behavior/GroupActionBehavior.php:157
 msgid "Errors"
@@ -1396,7 +1417,7 @@ msgstr "Вы действительно хотите скопировать эт
 msgid "Create %s from this template"
 msgstr "Создать %s из этого шаблона"
 
-#: Lib/Utility/RenderCheckData.php:55 Model/Check.php:1057
+#: Lib/Utility/RenderCheckData.php:55 Model/Check.php:1082
 msgid "Logical %s"
 msgstr "Логическое %s"
 
@@ -1408,7 +1429,7 @@ msgstr "существует"
 msgid "equals '%s'"
 msgstr "равно '%s'"
 
-#: Lib/Utility/RenderCheckData.php:67;150;181;215
+#: Lib/Utility/RenderCheckData.php:67;150;181;215 Model/Wpi.php:411
 #: Model/Behavior/GetXmlInfoBehavior.php:92;104
 #: Model/Behavior/RestoreBehavior.php:260
 msgid "unknown"
@@ -1524,32 +1545,32 @@ msgstr "Атрибуты %s"
 msgid "attributes %s"
 msgstr "атрибуты %s"
 
-#: Model/Check.php:1060
+#: Model/Check.php:1085
 msgid "Root node"
 msgstr "Корневой узел"
 
-#: Model/Check.php:1421 View/Elements/formCheckBase.ctp:236
+#: Model/Check.php:1446 View/Elements/formCheckBase.ctp:236
 #: View/Elements/infoChecksControls.ctp:115
 msgid "Check"
 msgstr "Проверка"
 
-#: Model/Check.php:1432 Model/Import.php:1909 View/Elements/infoPackage.ctp:140
+#: Model/Check.php:1457 Model/Import.php:1883 View/Elements/infoPackage.ctp:140
 msgid "Checks"
 msgstr "Проверки"
 
-#: Model/Check.php:1487
+#: Model/Check.php:1512
 msgid "Check %sof the %s"
 msgstr "Проверка %s %s"
 
-#: Model/Check.php:1489
+#: Model/Check.php:1514
 msgid "check %s%s"
 msgstr "проверки %s%s"
 
-#: Model/Config.php:453 View/Elements/barNav.ctp:247
+#: Model/Config.php:470 View/Elements/barNav.ctp:253
 msgid "Settings of WPKG"
 msgstr "Настройки WPKG"
 
-#: Model/Config.php:473
+#: Model/Config.php:490
 msgid "Configuration for script WPKG ver. %s"
 msgstr "Конфигурация для скрипта WPKG вер. %s"
 
@@ -1574,20 +1595,20 @@ msgid "Error on putting sending e-mail for \"%s\" in queue..."
 msgstr ""
 "Ошибка при помещении отправки электронной почты для \"%s\" в очередь..."
 
-#: Model/ExitCode.php:227 View/Elements/formCheckBase.ctp:161
+#: Model/ExitCode.php:247 View/Elements/formCheckBase.ctp:161
 #: View/Elements/formExitCodeBase.ctp:48
 msgid "Exit code"
 msgstr "Код выхода"
 
-#: Model/ExitCode.php:238 View/Elements/infoExitCodes.ctp:96
+#: Model/ExitCode.php:258 View/Elements/infoExitCodes.ctp:96
 msgid "Exit codes"
 msgstr "Коды выхода"
 
-#: Model/ExitCode.php:262
+#: Model/ExitCode.php:282
 msgid "Exit codes %sof the %s"
 msgstr "Код выхода %s %s"
 
-#: Model/ExitCode.php:264
+#: Model/ExitCode.php:284
 msgid "exit codes %s%s"
 msgstr "коды выхода %s%s"
 
@@ -1629,44 +1650,44 @@ msgctxt "graph"
 msgid "full"
 msgstr "полный"
 
-#: Model/Host.php:423 Model/Package.php:904 Model/Profile.php:424
+#: Model/Host.php:445 Model/Package.php:934 Model/Profile.php:444
 #: View/Elements/infoHost.ctp:63 View/Elements/infoPackage.ctp:97
 #: View/Elements/infoProfile.ctp:54 View/Elements/tableHost.ctp:213
 #: View/Elements/tablePackage.ctp:219 View/Elements/tableProfile.ctp:186
 msgid "Use as template"
 msgstr "Использовать в качестве шаблона"
 
-#: Model/Host.php:535 View/Elements/formHostBase.ctp:39
+#: Model/Host.php:557 View/Elements/formHostBase.ctp:39
 #: View/Elements/formHostGenerate.ctp:40 View/Elements/tableLog.ctp:97
 msgid "Host"
 msgstr "Хост"
 
-#: Model/Host.php:569
+#: Model/Host.php:591
 msgid "Host '%s'"
 msgstr "Хост '%s'"
 
-#: Model/Host.php:571
+#: Model/Host.php:593
 msgid "host '%s'"
 msgstr "хоста '%s'"
 
-#: Model/Host.php:583
+#: Model/Host.php:605
 msgid "full data of hosts"
 msgstr "полные данные хостов"
 
-#: Model/Host.php:740 View/Elements/formHostBase.ctp:55
+#: Model/Host.php:762 View/Elements/formHostBase.ctp:55
 #: View/Elements/infoHost.ctp:68 View/Elements/tableHost.ctp:74
 msgid "Main profile"
 msgstr "Основной профиль"
 
-#: Model/Host.php:741
+#: Model/Host.php:763
 msgid "Assoc. profile"
 msgstr "Связ. профиль"
 
-#: Model/Host.php:831
+#: Model/Host.php:853
 msgid "The list of computers for generating XML is empty"
 msgstr "Список компьютеров для генерации XML пуст"
 
-#: Model/Host.php:835
+#: Model/Host.php:857
 msgid "Invalid host template ID"
 msgstr "Неверный идентификатор шаблона хоста"
 
@@ -1688,7 +1709,7 @@ msgstr "Пакет, профиль, хост, конфигурация WPKG ил
 msgid "Variables"
 msgstr "Переменные"
 
-#: Model/Import.php:626;1861;1909
+#: Model/Import.php:626;1835;1883
 msgid "Error on settings scope"
 msgstr "Ошибка при настройке области"
 
@@ -1696,7 +1717,7 @@ msgstr "Ошибка при настройке области"
 msgid "Invalid file path"
 msgstr "Недопустимый путь к файлу"
 
-#: Model/Import.php:846;2878
+#: Model/Import.php:846;2852
 msgid "Invalid file type. Can be one of: %s"
 msgstr "Недопустимый тип файла. Может быть одним из следующих: %s"
 
@@ -1712,36 +1733,36 @@ msgstr "Входной XML-файл пуст"
 msgid "Invalid name of dependency model"
 msgstr "Недопустимое имя зависимой модели"
 
-#: Model/Import.php:1861 Model/PackageAction.php:551
+#: Model/Import.php:1835 Model/PackageAction.php:577
 #: View/Elements/infoPackage.ctp:135
 msgid "Package actions"
 msgstr "Действия пакета"
 
-#: Model/Import.php:2493
+#: Model/Import.php:2467
 msgid "Error on deleting records of report"
 msgstr "Ошибка при удалении записей отчета"
 
-#: Model/Import.php:2619
+#: Model/Import.php:2593
 msgid "Error on saving report record"
 msgstr "Ошибка сохранения записи отчета"
 
-#: Model/Import.php:2754
+#: Model/Import.php:2728
 msgid "Error on saving WPKG configuration"
 msgstr "Ошибка при сохранении конфигурации WPKG"
 
-#: Model/Import.php:2779
+#: Model/Import.php:2753
 msgid "Error on saving WPKG configuration language"
 msgstr "Ошибка при сохранении языка конфигурации WPKG"
 
-#: Model/Import.php:2794
+#: Model/Import.php:2768
 msgid "Other messages"
 msgstr "Другие сообщения"
 
-#: Model/Import.php:2797
+#: Model/Import.php:2771
 msgid "Warnings"
 msgstr "Предупреждения"
 
-#: Model/Import.php:2846
+#: Model/Import.php:2820
 msgid "Invalid path to XSD schema file"
 msgstr "Недопустимый путь к файлу схемы XSD"
 
@@ -1793,7 +1814,7 @@ msgstr "Ошибка при разборе имени файла журнала"
 msgid "Error on parsing log file content"
 msgstr "Ошибка при разборе содержимого файла журнала"
 
-#: Model/Package.php:1030
+#: Model/Package.php:1059
 msgid ""
 "The package '%s' cannot be deleted or disabled because it is exists in %s "
 "for the following packages: %s"
@@ -1801,98 +1822,98 @@ msgstr ""
 "Пакет '%s' не может быть удалён или отключен, поскольку он существует в %s "
 "для следующих пакетов: %s"
 
-#: Model/Package.php:1159 View/Elements/formPackageBase.ctp:62
+#: Model/Package.php:1188 View/Elements/formPackageBase.ctp:62
 #: View/Elements/formWpiBase.ctp:56 View/Elements/tableReport.ctp:59
 msgid "Package"
 msgstr "Пакет"
 
-#: Model/Package.php:1194
+#: Model/Package.php:1223
 msgid "Package '%s'"
 msgstr "Пакет '%s'"
 
-#: Model/Package.php:1196
+#: Model/Package.php:1225
 msgid "package '%s'"
 msgstr "пакета '%s'"
 
-#: Model/Package.php:1208
+#: Model/Package.php:1237
 msgid "full data of packages"
 msgstr "полные данные пакетов"
 
-#: Model/Package.php:1376
+#: Model/Package.php:1405
 msgid "Present in"
 msgstr "Присутствует в"
 
-#: Model/Package.php:998
+#: Model/Package.php:1027
 msgctxt "check disable"
 msgid "dependencies"
 msgstr "зависимостях"
 
-#: Model/Package.php:999
+#: Model/Package.php:1028
 msgctxt "check disable"
 msgid "inclusions"
 msgstr "включениях"
 
-#: Model/Package.php:1000
+#: Model/Package.php:1029
 msgctxt "check disable"
 msgid "chains"
 msgstr "цепочках"
 
-#: Model/Package.php:1397 Model/Profile.php:911
+#: Model/Package.php:1426 Model/Profile.php:931
 msgctxt "dependency"
 msgid "Depends on"
 msgstr "Зависит от"
 
-#: Model/Package.php:1398
+#: Model/Package.php:1427
 msgctxt "dependency"
 msgid "Includes on"
 msgstr "Включает"
 
-#: Model/Package.php:1399
+#: Model/Package.php:1428
 msgctxt "dependency"
 msgid "Chain on"
 msgstr "Цепочки"
 
-#: Model/PackageAction.php:427 View/Elements/formPackageActionBase.ctp:71;107
+#: Model/PackageAction.php:453 View/Elements/formPackageActionBase.ctp:71;107
 msgid "Command"
 msgstr "Команда"
 
-#: Model/PackageAction.php:428
+#: Model/PackageAction.php:454
 msgid "Include"
 msgstr "Включает"
 
-#: Model/PackageAction.php:540 View/Elements/formPackageActionBase.ctp:120
+#: Model/PackageAction.php:566 View/Elements/formPackageActionBase.ctp:120
 msgid "Package action"
 msgstr "Действие пакета"
 
-#: Model/PackageAction.php:613
+#: Model/PackageAction.php:639
 msgid "Action(s) %sof the %s"
 msgstr "Действиe(я) %s %s"
 
-#: Model/PackageAction.php:615
+#: Model/PackageAction.php:641
 msgid "action(s) %s%s"
 msgstr "действиe(я) %s%s"
 
-#: Model/PackageActionType.php:245
+#: Model/PackageActionType.php:264
 msgid ""
 "The action type of the package cannot be removed because it is used in %d %s."
 msgstr ""
 "Тип действия пакета не может быть удалён, поскольку он используется в %d %s."
 
-#: Model/PackageActionType.php:279
+#: Model/PackageActionType.php:298
 #: View/Elements/formPackageActionTypeBase.ctp:49
 #: View/Elements/infoResultVerifyAction.ctp:49
 msgid "Action type"
 msgstr "Тип действия"
 
-#: Model/PackageActionType.php:290 View/Elements/listActionTypes.ctp:68
+#: Model/PackageActionType.php:309 View/Elements/listActionTypes.ctp:68
 msgid "Action types"
 msgstr "Типы действий"
 
-#: Model/PackageActionType.php:311
+#: Model/PackageActionType.php:330
 msgid "Package action type %s"
 msgstr "Тип действия пакета %s"
 
-#: Model/PackageActionType.php:313
+#: Model/PackageActionType.php:332
 msgid "package action type %s"
 msgstr "тип действия пакета %s"
 
@@ -1946,7 +1967,7 @@ msgstr "Связанные пакеты"
 msgid "Associated packages"
 msgstr "Связанные пакеты"
 
-#: Model/Profile.php:563
+#: Model/Profile.php:583
 msgid ""
 "The profile '%s' cannot be deleted or disabled because it is the main "
 "profile for the following hosts: %s"
@@ -1954,35 +1975,35 @@ msgstr ""
 "Профиль '%s' не может быть удалён или отключен, поскольку он является "
 "основным профилем для следующих хостов: %s"
 
-#: Model/Profile.php:725 View/Elements/formProfileBase.ctp:39
+#: Model/Profile.php:745 View/Elements/formProfileBase.ctp:39
 msgid "Profile"
 msgstr "Профиль"
 
-#: Model/Profile.php:760
+#: Model/Profile.php:780
 msgid "Profile '%s'"
 msgstr "Профиль '%s'"
 
-#: Model/Profile.php:762
+#: Model/Profile.php:782
 msgid "profile '%s'"
 msgstr "профиля '%s'"
 
-#: Model/Profile.php:774
+#: Model/Profile.php:794
 msgid "full data of profiles"
 msgstr "полные данные профилей"
 
-#: Model/Profile.php:944
+#: Model/Profile.php:964
 msgid "Through main profile"
 msgstr "Через основной профиль"
 
-#: Model/Profile.php:945
+#: Model/Profile.php:965
 msgid "Through dependent profile"
 msgstr "Через зависимый профиль"
 
-#: Model/Profile.php:946
+#: Model/Profile.php:966
 msgid "Through prof. assoc. host"
 msgstr "Через проф. связ. с хостом"
 
-#: Model/Profile.php:998
+#: Model/Profile.php:1018
 msgid "Contains"
 msgstr "Содержит"
 
@@ -2034,33 +2055,33 @@ msgstr "переменной %s%s"
 msgid "global environment"
 msgstr "глобального окружения"
 
-#: Model/Wpi.php:335 View/Elements/formWpiBase.ctp:47
+#: Model/Wpi.php:514 View/Elements/formWpiBase.ctp:47
 #: View/Elements/infoWpiPackage.ctp:38
 msgid "WPI package"
 msgstr "Пакет WPI"
 
-#: Model/Wpi.php:346
+#: Model/Wpi.php:525
 msgid "WPI packages"
 msgstr "Пакеты WPI"
 
-#: Model/Wpi.php:393
+#: Model/Wpi.php:572
 msgid "WPI package %s"
 msgstr "Пакет WPI %s"
 
-#: Model/WpiCategory.php:236
+#: Model/WpiCategory.php:254
 msgid "The category of WPI cannot be removed because it is used in %d %s."
 msgstr ""
 "Категория WPI не может быть удалена, поскольку она используется в %d %s."
 
-#: Model/WpiCategory.php:251 View/Elements/formWpiCategoryBase.ctp:35;44
+#: Model/WpiCategory.php:269 View/Elements/formWpiCategoryBase.ctp:35;44
 msgid "WPI category"
 msgstr "Категория WPI"
 
-#: Model/WpiCategory.php:262 View/Elements/listWpiCategory.ctp:66
+#: Model/WpiCategory.php:280 View/Elements/listWpiCategory.ctp:66
 msgid "WPI categories"
 msgstr "Категории WPI"
 
-#: Model/WpiCategory.php:282
+#: Model/WpiCategory.php:300
 msgid "WPI category %s"
 msgstr "Категория WPI %s"
 
@@ -2222,47 +2243,47 @@ msgstr "Список состояний установки пакетов"
 msgid "List of packages for WPI"
 msgstr "Список пакетов для WPI"
 
-#: View/Elements/barNav.ctp:233
+#: View/Elements/barNav.ctp:239
 msgid "Windows Post-Install Wizard"
 msgstr "Windows Post-Install Wizard"
 
-#: View/Elements/barNav.ctp:241;243;287
+#: View/Elements/barNav.ctp:247;249;293
 msgid "Application settings"
 msgstr "Настройки приложения"
 
-#: View/Elements/barNav.ctp:249
+#: View/Elements/barNav.ctp:255
 msgid "Creating a WPKG configuration file"
 msgstr "Создание файла конфигурации WPKG"
 
-#: View/Elements/barNav.ctp:253
+#: View/Elements/barNav.ctp:259
 msgid "Queue of tasks"
 msgstr "Очередь заданий"
 
-#: View/Elements/barNav.ctp:255
+#: View/Elements/barNav.ctp:261
 msgid "Task queue list"
 msgstr "Список задач"
 
-#: View/Elements/barNav.ctp:267
+#: View/Elements/barNav.ctp:273
 msgid "Uploading XML"
 msgstr "Загрузка XML"
 
-#: View/Elements/barNav.ctp:269
+#: View/Elements/barNav.ctp:275
 msgid "Upload XML files"
 msgstr "Загрузка файлов XML"
 
-#: View/Elements/barNav.ctp:273
+#: View/Elements/barNav.ctp:279
 msgid "Downloading XML"
 msgstr "Скачивание XML"
 
-#: View/Elements/barNav.ctp:275
+#: View/Elements/barNav.ctp:281
 msgid "Download XML files"
 msgstr "Скачивание файлов XML"
 
-#: View/Elements/barNav.ctp:282
+#: View/Elements/barNav.ctp:288
 msgid "Manage removed data"
 msgstr "Управление удалёнными данными"
 
-#: View/Elements/barNav.ctp:296
+#: View/Elements/barNav.ctp:302
 msgid "Logout"
 msgstr "Выход"
 
@@ -4460,6 +4481,9 @@ msgstr "Экспорт XML файлов"
 #: View/Reports/index.ctp:35
 msgid "State of packages"
 msgstr "Состояние пакетов"
+
+#~ msgid "Extension for WPI"
+#~ msgstr "Расширение для WPI"
 
 #~ msgid "profile"
 #~ msgstr "профиль"

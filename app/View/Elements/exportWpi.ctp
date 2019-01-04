@@ -69,7 +69,7 @@ cat[pn]=[<?php echo $this->WpiJs->toString($program['cat']); ?>];
 pfro[pn]=['no'];
 cmds[pn]=[<?php echo $this->WpiJs->toString($program['cmds']); ?>];
 cond[pn]=[''];
-gcond[pn]=[''];
+gcond[pn]=[<?php echo $this->WpiJs->toString('checkWPKGpkg("' . $program['uid'] . '")'); ?>];
 deps[pn]=[''];
 desc[pn]=[<?php echo $this->WpiJs->toString($program['desc']); ?>];
 pn++;

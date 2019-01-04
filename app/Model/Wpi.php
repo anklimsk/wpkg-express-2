@@ -26,6 +26,8 @@
  */
 
 App::uses('AppModel', 'Model');
+App::uses('ClassRegistry', 'Utility');
+App::uses('Hash', 'Utility');
 
 /**
  * The model is used to manage packages of WPI.
@@ -150,6 +152,7 @@ class Wpi extends AppModel {
  */
 	public function afterSave($created, $options = []) {
 		clearCache('wpkg_wpi_config_js');
+		clearCache('wpkg_wpi_profiles_xml');
 	}
 
 /**
@@ -163,6 +166,7 @@ class Wpi extends AppModel {
  */
 	public function afterDelete() {
 		clearCache('wpkg_wpi_config_js');
+		clearCache('wpkg_wpi_profiles_xml');
 	}
 
 /**
@@ -263,6 +267,161 @@ class Wpi extends AppModel {
 		];
 
 		return $this->find('all', compact('conditions', 'fields', 'order', 'contain'));
+	}
+
+/**
+ * Return data array for XML
+ *
+ * @param int|string $type ID of type XML.
+ * @return array Return data array for XML
+ */
+	public function getAllForXML($type = null) {
+		$result = [];
+		if ($type != WPI_XML_TYPE_PROFILES) {
+			return $result;
+		}
+
+		$conditions = [
+			'Package.enabled' => true
+		];
+		$fields = [
+			$this->alias . '.package_id',
+		];
+		$order = ['Package.id_text' => 'asc'];
+		$contain = [
+			'Package'
+		];
+
+		return $this->find('all', compact('conditions', 'fields', 'order', 'contain'));
+	}
+
+/**
+ * Return data array for render XML
+ *
+ * @param int|string $type ID of type XML.
+ * @param bool $exportdisable The flag of disable data export to XML.
+ * @return array Return data array for render XML
+ * @see RenderXmlData::renderXml()
+ */
+	public function getXMLdata($type = null, $exportdisable = false) {
+		$result = [];
+		$modelName = null;
+		switch ($type) {
+			case WPI_XML_TYPE_PROFILES;
+				$modelName = 'Profile';
+				break;
+			case WPI_XML_TYPE_HOSTS;
+				$modelName = 'Host';
+				break;
+			case WPI_XML_TYPE_WPKG;
+				$modelName = 'Config';
+				break;
+			default:
+				return $result;
+		}
+
+		$modelType = ClassRegistry::init($modelName);
+		$result = $modelType->getXMLdata(null, true);
+		if ($exportdisable) {
+			return $result;
+		}
+
+		$xmlItemArray = [];
+		$xpathAttr = null;
+		if ($type == WPI_XML_TYPE_HOSTS) {
+			$xmlItemArray = [
+				'@name' => WPI_XML_HOST_NAME,
+				'@profile-id' => WPI_XML_PROFILE_NAME
+			];
+			$xpathAttr = 'hosts:wpkg.host.0';
+		} elseif ($type == WPI_XML_TYPE_PROFILES) {
+			$xmlItemArray = [
+			'@id' => WPI_XML_PROFILE_NAME
+			];
+			$packages = $this->getAllForXML($type);
+			$modelPackagesProfile = ClassRegistry::init('PackagesProfile');
+			$xmlItemArray += $modelPackagesProfile->getXMLdata($packages);
+			$xpathAttr = 'profiles:profiles.profile.0';
+		} elseif ($type == WPI_XML_TYPE_WPKG) {
+			$paramOrder = ['@name', '@value'];
+			$xmlItemArray = Hash::extract($result, 'config.param');
+			foreach ($xmlItemArray as &$param) {
+				switch ($param['@name']) {
+					case 'forceInstall':
+						$param['@value'] = 'true';
+						break;
+					case 'quiet':
+						$param['@value'] = 'false';
+						break;
+					case 'nonotify':
+						$param['@value'] = 'true';
+						break;
+					case 'noreboot':
+						$param['@value'] = 'true';
+						break;
+					case 'noRunningState':
+						$param['@value'] = 'true';
+						break;
+					case 'settings_file_name':
+						$param['@value'] = 'wpkg-wpi.xml';
+						break;
+					case 'settings_file_path':
+						$param['@value'] = '%TEMP%';
+						break;
+					case 'noRemove':
+						$param['@value'] = 'true';
+						break;
+					case 'sendStatus':
+						$param['@value'] = 'false';
+						break;
+					case 'logLevel':
+						$param['@value'] = '0x1f';
+						break;
+					case 'log_file_path':
+						$param['@value'] = '%TEMP%';
+						break;
+					case 'profiles_path':
+					case 'hosts_path':
+						$pathType = mb_strstr($param['@name'], '_path', true);
+						if ($pathType === false) {
+							continue;
+						}
+
+						$param['@value'] = mb_ereg_replace($pathType . '\.xml$', 'wpi/' . $pathType . '.xml', $param['@value']);
+						break;
+				}
+				$param = array_merge(array_flip($paramOrder), $param);
+			}
+			unset($param);
+			$xpathAttr = 'config.param';
+		}
+		$result = Hash::insert($result, $xpathAttr, $xmlItemArray);
+
+		return $result;
+	}
+
+/**
+ * Return download name from XML data array
+ *
+ * @param array $xmlDataArray Array of XML data
+ * @param bool $isFullData Flag of full data
+ * @return string Return download name
+ */
+	public function getDownloadName($xmlDataArray = [], $isFullData = false) {
+		$downloadName = __('unknown') . '.xml';
+		$listPaths = [
+			'hosts:wpkg.host' => 'hosts.xml',
+			'profiles:profiles.profile' => 'profiles.xml',
+			'config.param' => 'config.xml',
+		];
+		foreach ($listPaths as $path => $name) {
+			if (Hash::check($xmlDataArray, $path)) {
+				$downloadName = $name;
+				break;
+			}
+		}
+
+		return $downloadName;
 	}
 
 /**

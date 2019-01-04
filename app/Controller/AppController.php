@@ -121,8 +121,9 @@ class AppController extends Controller {
 
 		if (((in_array($controller, ['packages', 'profiles', 'hosts']) &&
 			($action === 'index') && $this->RequestHandler->isXml()) ||
-			(($controller === 'wpi') && ($action === 'config') &&
-			$this->RequestHandler->prefers('js'))) &&
+			(($controller === 'wpi') &&
+			((in_array($action, ['profiles', 'hosts']) && $this->RequestHandler->isXml()) ||
+			(($action === 'config') && $this->RequestHandler->prefers('js'))))) &&
 			$this->UserInfo->checkUserRole([USER_ROLE_EXPORT, USER_ROLE_ADMIN], true, $user)) {
 			return true;
 		}
@@ -162,8 +163,9 @@ class AppController extends Controller {
 		$action = $this->request->param('action');
 		if ((in_array($controller, ['packages', 'profiles', 'hosts']) &&
 			($action === 'index') && $this->RequestHandler->isXml()) ||
-			(($controller === 'wpi') && ($action === 'config') &&
-			$this->RequestHandler->prefers('js'))) {
+			(($controller === 'wpi') &&
+			((in_array($action, ['profiles', 'hosts']) && $this->RequestHandler->isXml()) ||
+			(($action === 'config') && $this->RequestHandler->prefers('js'))))) {
 			$protectXml = $this->Setting->getConfig('ProtectXml');
 			if ($protectXml &&
 				!$this->UserInfo->checkUserRole([USER_ROLE_EXPORT, USER_ROLE_ADMIN], true)) {

@@ -29,7 +29,7 @@
 	Router::connect('/packages_xml_out.php', ['controller' => 'packages', 'action' => 'index', 'ext' => 'xml']);
 	Router::connect('/profiles_xml_out.php', ['controller' => 'profiles', 'action' => 'index', 'ext' => 'xml']);
 	Router::connect('/hosts_xml_out.php', ['controller' => 'hosts', 'action' => 'index', 'ext' => 'xml']);
-	Router::parseExtensions('json', 'xml', 'js', 'zip');
+	Router::parseExtensions('json', 'xml', 'js');
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on

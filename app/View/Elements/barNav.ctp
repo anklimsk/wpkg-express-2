@@ -226,6 +226,12 @@ if ($this->UserInfo->checkUserRole(USER_ROLE_ADMIN)) {
 			__('Configuration of WPI'),
 			['controller' => 'wpi', 'action' => 'download', 'config', 'ext' => 'js'],
 			['title' => __('Download WPI configuration file')]
+		),
+		$this->ViewExtension->menuActionLink(
+			'fas fa-file-download',
+			__('Configuration of WPKG for WPI'),
+			['controller' => 'wpi', 'action' => 'download', 'config', 'ext' => 'xml'],
+			['title' => __('Download WPKG configuration file for WPI')]
 		)
 	];
 	$iconList[] = [$this->ViewExtension->menuItemLink(

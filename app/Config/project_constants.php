@@ -1694,6 +1694,51 @@ if (!defined('WPI_INSTALL_CMD_WPKG')) {
 }
 
 /**
+ * XML type `Profiles` for WPI
+ *
+ * Used for determine the `Profiless` XML type for WPI. Default value `1`
+ */
+if (!defined('WPI_XML_TYPE_PROFILES')) {
+	define('WPI_XML_TYPE_PROFILES', 1);
+}
+
+/**
+ * XML type `Hosts` for WPI
+ *
+ * Used for determine the `Hosts` XML type for WPI. Default value `2`
+ */
+if (!defined('WPI_XML_TYPE_HOSTS')) {
+	define('WPI_XML_TYPE_HOSTS', 2);
+}
+
+/**
+ * XML type `WPKG` for WPI
+ *
+ * Used for determine the `WPKG` XML type for WPI. Default value `3`
+ */
+if (!defined('WPI_XML_TYPE_WPKG')) {
+	define('WPI_XML_TYPE_WPKG', 3);
+}
+
+/**
+ * Profile name for WPI
+ *
+ * Used as profile name. Default value `WPI_WPKG_PROFILE`
+ */
+if (!defined('WPI_XML_PROFILE_NAME')) {
+	define('WPI_XML_PROFILE_NAME', 'WPI_WPKG_PROFILE');
+}
+
+/**
+ * Host name for WPI
+ *
+ * Used as host name. Default value `.+`
+ */
+if (!defined('WPI_XML_HOST_NAME')) {
+	define('WPI_XML_HOST_NAME', '.+');
+}
+
+/**
  * Command line switch for MSI installer
  *
  * Used as information for autocomplete string in package action command.

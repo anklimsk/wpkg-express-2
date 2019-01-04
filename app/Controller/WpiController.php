@@ -32,7 +32,7 @@ App::uses('AppController', 'Controller');
  *
  * This controller allows to perform the following operations:
  *  - to veiw, edit and delete packages for configuration of WPI;
- *  - download files of configuration WPI and extensions for WPI.
+ *  - download files of configuration WPI.
  *
  * @package app.Controller
  */
@@ -57,6 +57,7 @@ class WpiController extends AppController {
 		'Paginator',
 		'CakeTheme.Filter',
 		'ViewData' => ['TargetModel' => 'Wpi'],
+		'ExportData' => ['TargetModel' => 'Wpi'],
 		'ChangeState' => ['TargetModel' => 'Wpi'],
 	];
 
@@ -79,6 +80,7 @@ class WpiController extends AppController {
  * @link http://book.cakephp.org/2.0/en/controllers.html#components-helpers-and-uses
  */
 	public $uses = [
+		'Config',
 		'Wpi',
 	];
 
@@ -158,13 +160,28 @@ class WpiController extends AppController {
 					'title' => __('Download WPI configuration file'),
 				]
 			],
-			'divider',
 			[
-				'fas fa-file-archive',
-				__('Extension for WPI'),
-				['controller' => 'wpi', 'action' => 'download', 'extension', 'ext' => 'zip'],
+				'fas fa-file-download',
+				__('Configuration of WPKG for WPI'),
+				['controller' => 'wpi', 'action' => 'download', 'config', 'ext' => 'xml'],
 				[
-					'title' => __('Download extension for WPI'),
+					'title' => __('Download WPKG configuration file for WPI'),
+				]
+			],
+			[
+				'fas fa-file-download',
+				__('Profiles of WPKG for WPI'),
+				['controller' => 'wpi', 'action' => 'download', 'profiles', 'ext' => 'xml'],
+				[
+					'title' => __('Download WPKG profiles file for WPI'),
+				]
+			],
+			[
+				'fas fa-file-download',
+				__('Hosts of WPKG for WPI'),
+				['controller' => 'wpi', 'action' => 'download', 'hosts', 'ext' => 'xml'],
+				[
+					'title' => __('Download WPKG hosts file for WPI'),
 				]
 			],
 		];
@@ -241,33 +258,28 @@ class WpiController extends AppController {
 /**
  * Base of action `config`. Used to export a JS file of configuration WPI.
  *
- * @param bool $download Flag of send header for download
  * @throws BadRequestException if request is not JS
  * @return void
  */
-	protected function _config($download = false) {
+	protected function _config() {
 		$this->view = 'config';
 		$this->layout = 'wpi';
 		if (!$this->RequestHandler->prefers('js')) {
 			throw new BadRequestException();
 		}
 
+		$this->cacheAction = [
+			$this->view => [
+				'callbacks' => true,
+				'duration' => WEEK
+			]
+		];
 		$exportDisable = $this->Setting->getConfig('ExportDisable');
 		$exportNotes = $this->Setting->getConfig('ExportNotes');
 		$exportDisabled = $this->Setting->getConfig('ExportDisabled');
 		$jsDataArray = $this->Wpi->getJSdata(null, $exportDisable, $exportNotes, $exportDisabled);
+
 		$this->set(compact('jsDataArray'));
-		if ($download) {
-			$this->response->disableCache();
-			$this->RequestHandler->renderAs($this, 'js', array('attachment' => 'config.js'));
-		} else {
-			$this->cacheAction = [
-				$this->view => [
-					'callbacks' => true,
-					'duration' => WEEK
-				]
-			];
-		}
 	}
 
 /**
@@ -277,7 +289,65 @@ class WpiController extends AppController {
  * @return void
  */
 	public function config() {
-		$this->_config(false);
+		$this->_config();
+	}
+
+/**
+ * Base of action `profiles` and `hosts`. Used to export a XML data
+ *  of profiles for WPI.
+ *
+ * @param int|string $type ID of type XML for export
+ * @throws InternalErrorException if invalid ID of type XML
+ * @throws BadRequestException if request is not XML
+ * @return void
+ */
+	protected function _export($type = null) {
+		switch ($type) {
+			case WPI_XML_TYPE_PROFILES;
+				$this->view = 'profiles';
+				break;
+			case WPI_XML_TYPE_HOSTS;
+				$this->view = 'hosts';
+				break;
+			default:
+				throw new InternalErrorException(__('Invalid XML type'));
+		}
+		if (!$this->RequestHandler->isXml()) {
+			throw new BadRequestException(__('Invalid request'));
+		}
+
+		$this->cacheAction = [
+			$this->view => [
+				'callbacks' => true,
+				'duration' => WEEK
+			]
+		];
+		$formatXml = $this->Setting->getConfig('FormatXml');
+		$exportDisable = $this->Setting->getConfig('ExportDisable');
+		$xmlDataArray = $this->Wpi->getXMLdata($type, $exportDisable);
+		$outXML = RenderXmlData::renderXml($xmlDataArray, $formatXml);
+
+		$this->set(compact('outXML'));
+	}
+
+/**
+ * Action `profiles`. Used to export a XML data of profiles for WPI.
+ *  User role - user.
+ *
+ * @return void
+ */
+	public function profiles() {
+		$this->_export(WPI_XML_TYPE_PROFILES);
+	}
+
+/**
+ * Action `hosts`. Used to export a XML data of hosts for WPI.
+ *  User role - user.
+ *
+ * @return void
+ */
+	public function hosts() {
+		$this->_export(WPI_XML_TYPE_HOSTS);
 	}
 
 /**
@@ -483,8 +553,9 @@ class WpiController extends AppController {
 /**
  * Base of action `download`. Used to download files for WPI.
  *
- * @param string $type Type of file for download: `config` or `extension`
- * @throws BadRequestException if $type is not `config` or `extension`
+ * @param string $type Type of file for download: `config`, `profiles`, or `hosts`
+ * @throws BadRequestException if $type is not `config`, `profiles`, or `hosts`
+ * @throws BadRequestException if $type is `config` and request is not JS or XML
  * @return void
  */
 	protected function _download($type = null) {
@@ -493,16 +564,35 @@ class WpiController extends AppController {
 		}
 
 		$type = mb_strtolower($type);
+		$xmlType = null;
 		switch ($type) {
 			case 'config':
-				return $this->_config(true);
-				// break;
-			case 'extension':
-				$filePath = WWW_ROOT . 'files' . DS . 'WPI' . DS . 'WPI-extension.zip';
-				$fileName = 'WPI extension.zip';
-				$this->response->file($filePath, ['download' => true, 'name' => $fileName]);
-				return $this->response;
-				// break;
+				if ($this->RequestHandler->isXml()) {
+					return $this->ExportData->download(WPI_XML_TYPE_WPKG);
+				} elseif ($this->RequestHandler->prefers('js')) {
+					$this->view = 'download';
+					$this->layout = 'wpi';
+					$fullBaseUrl = Configure::read('App.fullBaseUrl');
+					$configUrl = $this->Config->getPathXml('wpi', 'config', 'js', false);
+
+					$this->set(compact('fullBaseUrl', 'configUrl'));
+					$this->response->disableCache();
+					return $this->RequestHandler->renderAs($this, 'js', array('attachment' => 'config.js'));
+				} else {
+					throw new BadRequestException();
+				}
+				break;
+			case 'profiles':
+				$xmlType = WPI_XML_TYPE_PROFILES;
+			case 'hosts':
+				if (empty($xmlType)) {
+					$xmlType = WPI_XML_TYPE_HOSTS;
+				}
+				if ($this->RequestHandler->isXml()) {
+					return $this->ExportData->download($xmlType);
+				} else {
+					throw new BadRequestException();
+				}
 			default:
 				throw new BadRequestException();
 		}
@@ -512,7 +602,7 @@ class WpiController extends AppController {
  * Action `download`. Used to download files for WPI.
  *  User role - administrator.
  *
- * @param string $type Type of file for download: `config` or `extension`
+ * @param string $type Type of file for download: `config`, `profiles`, or `hosts`
  * @return void
  */
 	public function admin_download($type = null) {
