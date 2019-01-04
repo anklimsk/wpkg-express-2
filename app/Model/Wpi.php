@@ -272,12 +272,12 @@ class Wpi extends AppModel {
  */
 	public function getListPackagesForWPI() {
 		$existsPackages = $this->getList();
-		$conditions = [];
+		$conditions = ['Package.enabled' => true];
 		if (!empty($existsPackages)) {
 			$conditions['Package.id NOT IN'] = $existsPackages;
 		}
 
-		return $this->Package->getList($conditions);
+		return $this->Package->getListPackages($conditions);
 	}
 
 /**

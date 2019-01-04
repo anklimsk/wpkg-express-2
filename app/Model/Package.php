@@ -972,12 +972,11 @@ class Package extends AppModel {
 /**
  * Return list of packages
  *
- * @param bool $enabled Flag of inclusion in the result
- *  only enabled packages.
+ * @param array|null $conditions SQL conditions
  * @return array Return list of packages
  */
-	public function getListPackages($enabled = false) {
-		return $this->getList(null, null, null, 'full_name', false, $enabled);
+	public function getListPackages($conditions = false) {
+		return $this->getList($conditions, null, null, 'full_name');
 	}
 
 /**
@@ -992,7 +991,7 @@ class Package extends AppModel {
 			$conditions = [$this->alias . '.id <>' => $id];
 		}
 
-		return $this->getList($conditions);
+		return $this->getListPackages($conditions);
 	}
 
 /**
