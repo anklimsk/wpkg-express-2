@@ -297,15 +297,27 @@ class Config extends AppModel {
  * Return path to XML files: packages, profiles and hosts.
  *  Include user name and password, if needed.
  *
- * @param string $type Type of path: `package`, `profile` or `host`.
+ * @param string $controller Controller of path: `package`, `profile`, `host`
+ *  or `wpi`.
+ * @param string $action Action of path.
+ * @param string $extension File extension. Default `XML`.
  * @param bool $hidePass Flag of hiding password.
  * @return string|bool Return path to XML files,
  *  or False on failure.
  */
-	protected function _getPathXml($type = null, $hidePass = false) {
-		$type = mb_strtolower($type);
-		$listTypes = ['packages', 'profiles', 'hosts'];
-		if (empty($type) || !in_array($type, $listTypes)) {
+	public function getPathXml($controller = null, $action = null, $extension = null, $hidePass = false) {
+		$controller = mb_strtolower($controller);
+		if (empty($extension)) {
+			$extension = 'xml';
+		}
+
+		$listControllers = [
+			'packages',
+			'profiles',
+			'hosts',
+			'wpi'
+		];
+		if (empty($controller) || !in_array($controller, $listControllers)) {
 			return false;
 		}
 
@@ -341,7 +353,12 @@ class Config extends AppModel {
 				$pass = $pswd . '@';
 			}
 		}
-		$path = '/' . $type . '.xml';
+
+		$path = '/' . $controller;
+		if (!empty($action)) {
+			$path .= '/' . $action;
+		}
+		$path .= '.' . $extension;
 		$data = [$scheme, $user, $pass, $host, $path];
 		$result = implode('', $data);
 
@@ -401,7 +418,7 @@ class Config extends AppModel {
 		}
 		$xmlTypes = ['packages', 'profiles', 'hosts'];
 		foreach ($xmlTypes as $xmlType) {
-			$pathXml = $this->_getPathXml($xmlType, $hidePass);
+			$pathXml = $this->getPathXml($xmlType, null, null, $hidePass);
 			if (!empty($pathXml)) {
 				$configField = $xmlType . '_path';
 				$result[$this->alias][$configField] = $pathXml;
