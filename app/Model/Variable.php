@@ -641,23 +641,23 @@ class Variable extends AppModel {
 				switch ($refType) {
 					case CHECK_PARENT_TYPE_PACKAGE:
 						$refType = VARIABLE_TYPE_PACKAGE;
-					break;
+						break;
 					case CHECK_PARENT_TYPE_PROFILE:
 						$refType = VARIABLE_TYPE_PROFILE;
 						$refId = $modelType->getRefId($refId);
-					break;
+						break;
 					case CHECK_PARENT_TYPE_ACTION:
 						$refType = VARIABLE_TYPE_PACKAGE;
 						$refId = $modelType->getRefId($refId);
-					break;
+						break;
 					case CHECK_PARENT_TYPE_VARIABLE:
 						$refType = $modelType->getRefType($refId);
 						$refId = $modelType->getRefId($refId);
-					break;
+						break;
 					default:
 						return $result;
 				}
-			break;
+				break;
 			default:
 				return $result;
 		}

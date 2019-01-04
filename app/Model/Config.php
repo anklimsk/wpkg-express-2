@@ -273,10 +273,10 @@ class Config extends AppModel {
 		switch ($type) {
 			case 'logs':
 				$setttingParam = 'SmbLogShare';
-			break;
+				break;
 			case 'databases':
 				$setttingParam = 'SmbDbShare';
-			break;
+				break;
 			default:
 				return $result;
 		}

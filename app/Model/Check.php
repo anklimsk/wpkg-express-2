@@ -1420,10 +1420,10 @@ class Check extends AppModel {
 		switch ($refType) {
 			case CHECK_PARENT_TYPE_ACTION:
 				$modelName = 'PackageAction';
-			break;
+				break;
 			case CHECK_PARENT_TYPE_PROFILE:
 				$modelName = 'PackagesProfile';
-			break;
+				break;
 		}
 		if (empty($modelName)) {
 			$type = $this->getNameTypeFor($refType);

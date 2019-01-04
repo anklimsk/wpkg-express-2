@@ -737,10 +737,10 @@ class Import extends AppModel {
 			case 'package':
 			case 'checkResults':
 				$result = 'databases';
-			break;
+				break;
 			case 'host':
 				$result = 'hosts';
-			break;
+				break;
 			default:
 				return false;
 		}

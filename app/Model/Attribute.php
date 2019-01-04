@@ -497,19 +497,19 @@ class Attribute extends AppModel {
 				if (in_array($refNode, $invalidNodeList)) {
 					return false;
 				}
-			break;
+				break;
 			case ATTRIBUTE_TYPE_PROFILE:
 				$invalidNodeList = [ATTRIBUTE_NODE_PACKAGE, ATTRIBUTE_NODE_DEPENDS];
 				if (in_array($refNode, $invalidNodeList)) {
 					return false;
 				}
-			break;
+				break;
 			case ATTRIBUTE_TYPE_HOST:
 				$invalidNodeList = [ATTRIBUTE_NODE_PROFILE];
 				if (in_array($refNode, $invalidNodeList)) {
 					return false;
 				}
-			break;
+				break;
 		}
 
 		$type = $this->getNameTypeFor($refType);
@@ -537,26 +537,26 @@ class Attribute extends AppModel {
 				if ($refType == ATTRIBUTE_TYPE_PROFILE) {
 					$modelName = 'PackagesProfile';
 				}
-			break;
+				break;
 			case ATTRIBUTE_NODE_DEPENDS:
 				if ($refType == ATTRIBUTE_TYPE_PACKAGE) {
 					$modelName = 'PackagesPackage';
 				} elseif ($refType == ATTRIBUTE_TYPE_PROFILE) {
 					$modelName = 'ProfilesProfile';
 				}
-			break;
+				break;
 			case ATTRIBUTE_NODE_INCLUDE:
 				$modelName = 'PackagesInclude';
-			break;
+				break;
 			case ATTRIBUTE_NODE_CHAIN:
 				$modelName = 'PackagesChain';
-			break;
+				break;
 			case ATTRIBUTE_NODE_ACTION:
 				$modelName = 'PackageAction';
-			break;
+				break;
 			case ATTRIBUTE_NODE_PROFILE:
 				$modelName = 'HostsProfile';
-			break;
+				break;
 		}
 		if (empty($modelName)) {
 			$node = $this->getNameNodeFor($refNode);

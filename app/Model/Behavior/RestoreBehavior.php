@@ -149,7 +149,7 @@ class RestoreBehavior extends ModelBehavior {
 		switch ($model->name) {
 			case 'Archive':
 				$dataToSave['revision'] = $revision;
-			break;
+				break;
 		}
 		$dataToSave = [$model->alias => $dataToSave];
 
