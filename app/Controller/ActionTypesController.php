@@ -143,13 +143,7 @@ class ActionTypesController extends AppController {
 				$this->Flash->error(__('Package action type could not be saved. Please, try again.'));
 			}
 		} else {
-			$packageActionType = [
-				'PackageActionType' => [
-					'builtin' => false,
-					'command' => true,
-				]
-			];
-			$this->request->data = $packageActionType;
+			$this->request->data = $this->PackageActionType->getDefaultValues();
 			$this->ViewExtension->setRedirectUrl(null, 'package');
 		}
 		$pageHeader = __('Adding package action type');

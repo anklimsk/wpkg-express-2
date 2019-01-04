@@ -418,6 +418,32 @@ class PackageAction extends AppModel {
 	}
 
 /**
+ * Return default values of package action
+ *
+ * @param int|string $refId ID of package record
+ * @param bool $includeModelAlias Flag of including the model alias in the result
+ * @return array Return default values of package action.
+ */
+	public function getDefaultValues($refId = null, $includeModelAlias = true) {
+		$defaultValues = [
+			'package_id' => $refId,
+			'action_type_id' => ACTION_TYPE_INSTALL,
+			'command_type_id' => ACTION_COMMAND_TYPE_COMMAND,
+			'include_action_id' => null,
+			'parent_id' => null,
+			'command' => '',
+			'timeout' => ACTION_COMMAND_DEFAULT_TIMEOUT,
+			'workdir' => '',
+			'expand_url' => false
+		];
+		if ($includeModelAlias) {
+			$defaultValues = [$this->alias => $defaultValues];
+		}
+
+		return $defaultValues;
+	}
+
+/**
  * Return list of command types
  *
  * @return array Return list of command types

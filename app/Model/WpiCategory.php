@@ -213,6 +213,24 @@ class WpiCategory extends AppModel {
 	}
 
 /**
+ * Return default values of WPI category
+ *
+ * @param bool $includeModelAlias Flag of including the model alias in the result
+ * @return array Return default values of WPI category.
+ */
+	public function getDefaultValues($includeModelAlias = true) {
+		$defaultValues = [
+			'name' => '',
+			'builtin' => false,
+		];
+		if ($includeModelAlias) {
+			$defaultValues = [$this->alias => $defaultValues];
+		}
+
+		return $defaultValues;
+	}
+
+/**
  * Checking the ability to perform operations `delete`
  *
  * @param int|string $id Record ID to check

@@ -156,13 +156,7 @@ class ExitCodesController extends AppController {
 				$this->Flash->error(__('Exit code could not be saved. Please, try again.'));
 			}
 		} else {
-			$exitCode = [
-				'ExitCode' => [
-					'package_action_id' => $refId,
-					'reboot_id' => EXITCODE_REBOOT_FALSE,
-				]
-			];
-			$this->request->data = $exitCode;
+			$this->request->data = $this->ExitCode->getDefaultValues($refId);
 			$this->ViewExtension->setRedirectUrl(null, 'package');
 		}
 		$breadCrumbs = $this->ExitCode->getBreadcrumbInfo(null, null, null, $refId);

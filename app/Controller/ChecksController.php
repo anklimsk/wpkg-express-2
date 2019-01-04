@@ -196,16 +196,7 @@ class ChecksController extends AppController {
 				$this->Flash->error(__('Check could not be saved. Please, try again.'));
 			}
 		} else {
-			$check = [
-				'Check' => [
-					'ref_type' => $refType,
-					'ref_id' => $refId,
-					'parent_id' => null,
-					'type' => CHECK_TYPE_UNINSTALL,
-					'condition' => CHECK_CONDITION_UNINSTALL_EXISTS,
-				]
-			];
-			$this->request->data = $check;
+			$this->request->data = $this->Check->getDefaultValues($refType, $refId);
 			$namedParams = $this->request->param('named');
 			if (empty($namedParams)) {
 				$this->ViewExtension->setRedirectUrl(null, $refTypeName);

@@ -139,12 +139,7 @@ class WpiCategoriesController extends AppController {
 				$this->Flash->error(__('WPI category could not be saved. Please, try again.'));
 			}
 		} else {
-			$wpiCategory = [
-				'WpiCategory' => [
-					'builtin' => false,
-				]
-			];
-			$this->request->data = $wpiCategory;
+			$this->request->data = $this->WpiCategory->getDefaultValues();
 			$this->ViewExtension->setRedirectUrl(null, 'wpi');
 		}
 		$pageHeader = __('Adding WPI category');

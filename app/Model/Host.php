@@ -322,6 +322,28 @@ class Host extends AppModel {
 	}
 
 /**
+ * Return default values of host
+ *
+ * @param bool $includeModelAlias Flag of including the model alias in the result
+ * @return array Return default values of host.
+ */
+	public function getDefaultValues($includeModelAlias = true) {
+		$defaultValues = [
+			'mainprofile_id' => null,
+			'parent_id' => null,
+			'enabled' => true,
+			'template' => false,
+			'id_text' => '',
+			'notes' => ''
+		];
+		if ($includeModelAlias) {
+			$defaultValues = [$this->alias => $defaultValues];
+		}
+
+		return $defaultValues;
+	}
+
+/**
  * Return data array for XML
  *
  * @param int|string $id The ID of the record to retrieve data.

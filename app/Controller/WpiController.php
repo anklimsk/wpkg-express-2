@@ -312,14 +312,7 @@ class WpiController extends AppController {
 				$this->Flash->error(__('WPI package could not be saved. Please, try again.'));
 			}
 		} else {
-			$wpi = [
-				'Wpi' => [
-					'category_id' => null,
-					'default' => false,
-					'force' => false,
-				]
-			];
-			$this->request->data = $wpi;
+			$this->request->data = $this->Wpi->getDefaultValues();
 			$this->ViewExtension->setRedirectUrl(null, 'wpi');
 		}
 		$pageHeader = __('Adding WPI package');

@@ -344,6 +344,29 @@ class Variable extends AppModel {
 	}
 
 /**
+ * Return default values of variable
+ *
+ * @param int|string $refType ID of type
+ * @param int|string $refId ID of associated record
+ * @param bool $includeModelAlias Flag of including the model alias in the result
+ * @return array Return default values of variable.
+ */
+	public function getDefaultValues($refType = null, $refId = null, $includeModelAlias = true) {
+		$defaultValues = [
+			'ref_id' => $refId,
+			'ref_type' => $refType,
+			'parent_id' => null,
+			'name' => '',
+			'value' => ''
+		];
+		if ($includeModelAlias) {
+			$defaultValues = [$this->alias => $defaultValues];
+		}
+
+		return $defaultValues;
+	}
+
+/**
  * Return all variables for ID type and ID of the associated record.
  *
  * @param int|string $refType ID of type

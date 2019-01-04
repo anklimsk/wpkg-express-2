@@ -205,13 +205,7 @@ class ProfilesController extends AppController {
 				$this->Flash->error(__('Profile could not be saved. Please, try again.'));
 			}
 		} else {
-			$profile = [
-				'Profile' => [
-					'enabled' => true,
-					'template' => false,
-				]
-			];
-			$this->request->data = $profile;
+			$this->request->data = $this->Profile->getDefaultValues();
 			$this->ViewExtension->setRedirectUrl(null, 'profile');
 		}
 		$profileDependencies = $this->Profile->getList();

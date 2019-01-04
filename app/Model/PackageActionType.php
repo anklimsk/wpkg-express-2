@@ -213,6 +213,25 @@ class PackageActionType extends AppModel {
 	}
 
 /**
+ * Return default values of package action type
+ *
+ * @param bool $includeModelAlias Flag of including the model alias in the result
+ * @return array Return default values of package action type.
+ */
+	public function getDefaultValues($includeModelAlias = true) {
+		$defaultValues = [
+			'name' => '',
+			'builtin' => false,
+			'command' => true,
+		];
+		if ($includeModelAlias) {
+			$defaultValues = [$this->alias => $defaultValues];
+		}
+
+		return $defaultValues;
+	}
+
+/**
  * Return list of package actions types
  *
  * @return array Return list of package actions types

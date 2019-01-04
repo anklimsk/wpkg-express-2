@@ -853,6 +853,37 @@ class Attribute extends AppModel {
 	}
 
 /**
+ * Return default values of attributes
+ *
+ * @param int|string $refType ID type of object
+ * @param int|string $refNode ID node of object
+ * @param int|string $refId Record ID of the node
+ * @param bool $includeModelAlias Flag of including the model alias in the result
+ * @return array Return default values of attributes.
+ */
+	public function getDefaultValues($refType = null, $refNode = null, $refId = null, $includeModelAlias = true) {
+		$defaultValues = [
+			'ref_id' => $refId,
+			'ref_type' => $refType,
+			'ref_node' => $refNode,
+			'pcre_parsing' => false,
+			'hostname' => '',
+			'os' => '',
+			'architecture' => '',
+			'ipaddresses' => '',
+			'domainname' => '',
+			'groups' => '',
+			'lcid' => '',
+			'lcidOS' => ''
+		];
+		if ($includeModelAlias) {
+			$defaultValues = [$this->alias => $defaultValues];
+		}
+
+		return $defaultValues;
+	}
+
+/**
  * Return parameters for clearCache
  *
  * @param int|string $id Record ID to retrieve parameters

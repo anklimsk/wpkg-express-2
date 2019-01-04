@@ -254,13 +254,7 @@ class HostsController extends AppController {
 				$this->Flash->error(__('Host could not be saved. Please, try again.'));
 			}
 		} else {
-			$host = [
-				'Host' => [
-					'enabled' => true,
-					'template' => false,
-				]
-			];
-			$this->request->data = $host;
+			$this->request->data = $this->Host->getDefaultValues();
 			$this->ViewExtension->setRedirectUrl(null, 'host');
 		}
 		$profiles = $this->Host->MainProfile->getList();

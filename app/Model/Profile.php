@@ -328,6 +328,26 @@ class Profile extends AppModel {
 	}
 
 /**
+ * Return default values of profile
+ *
+ * @param bool $includeModelAlias Flag of including the model alias in the result
+ * @return array Return default values of profile.
+ */
+	public function getDefaultValues($includeModelAlias = true) {
+		$defaultValues = [
+			'enabled' => true,
+			'template' => false,
+			'id_text' => '',
+			'notes' => ''
+		];
+		if ($includeModelAlias) {
+			$defaultValues = [$this->alias => $defaultValues];
+		}
+
+		return $defaultValues;
+	}
+
+/**
  * Return data array for XML
  *
  * @param int|string $id The ID of the record to retrieve data.

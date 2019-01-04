@@ -243,22 +243,7 @@ class PackagesController extends AppController {
 				$this->Flash->error(__('Package could not be saved. Please, try again.'));
 			}
 		} else {
-			$package = [
-				'Package' => [
-					'enabled' => true,
-					'template' => false,
-					'revision' => 0,
-					'priority' => 0,
-					'reboot_id' => PACKAGE_REBOOT_FALSE,
-					'execute_id' => PACKAGE_EXECUTE_DEFAULT,
-					'notify_id' => PACKAGE_NOTIFY_TRUE,
-					'precheck_install_id' => PACKAGE_PRECHECK_ALWAYS,
-					'precheck_remove_id' => PACKAGE_PRECHECK_NEVER,
-					'precheck_upgrade_id' => PACKAGE_PRECHECK_NEVER,
-					'precheck_downgrade_id' => PACKAGE_PRECHECK_NEVER
-				]
-			];
-			$this->request->data = $package;
+			$this->request->data = $this->Package->getDefaultValues();
 			$this->ViewExtension->setRedirectUrl(null, 'package');
 		}
 		$listReboot = $this->Package->PackageRebootType->getListPackageRebootTypes();

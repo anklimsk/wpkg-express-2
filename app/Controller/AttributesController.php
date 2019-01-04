@@ -163,15 +163,7 @@ class AttributesController extends AppController {
 				$this->Flash->error(__('Attributes could not be saved. Please, try again.'));
 			}
 		} else {
-			$attribute = [
-				'Attribute' => [
-					'ref_type' => $refType,
-					'ref_node' => $refNode,
-					'ref_id' => $refId,
-					'pcre_parsing' => false,
-				]
-			];
-			$this->request->data = $attribute;
+			$this->request->data = $this->Attribute->getDefaultValues($refType, $refNode, $refId);
 			$namedParams = $this->request->param('named');
 			if (empty($namedParams)) {
 				$this->ViewExtension->setRedirectUrl(null, $refTypeName);

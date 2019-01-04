@@ -757,6 +757,36 @@ class Package extends AppModel {
 	}
 
 /**
+ * Return default values of package
+ *
+ * @param bool $includeModelAlias Flag of including the model alias in the result
+ * @return array Return default values of package.
+ */
+	public function getDefaultValues($includeModelAlias = true) {
+		$defaultValues = [
+			'reboot_id' => PACKAGE_REBOOT_FALSE,
+			'execute_id' => PACKAGE_EXECUTE_DEFAULT,
+			'notify_id' => PACKAGE_NOTIFY_TRUE,
+			'precheck_install_id' => PACKAGE_PRECHECK_ALWAYS,
+			'precheck_remove_id' => PACKAGE_PRECHECK_NEVER,
+			'precheck_upgrade_id' => PACKAGE_PRECHECK_NEVER,
+			'precheck_downgrade_id' => PACKAGE_PRECHECK_NEVER,
+			'name' => '',
+			'id_text' => '',
+			'enabled' => true,
+			'template' => false,
+			'revision' => '',
+			'priority' => 0,
+			'notes' => ''
+		];
+		if ($includeModelAlias) {
+			$defaultValues = [$this->alias => $defaultValues];
+		}
+
+		return $defaultValues;
+	}
+
+/**
  * Return data array for XML
  *
  * @param int|string $id The ID of the record to retrieve data.

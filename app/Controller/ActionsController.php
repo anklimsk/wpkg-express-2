@@ -209,17 +209,7 @@ class ActionsController extends AppController {
 				$this->Flash->error(__('Package action could not be saved. Please, try again.'));
 			}
 		} else {
-			$packageAction = [
-				'PackageAction' => [
-					'package_id' => $refId,
-					'action_type_id' => ACTION_TYPE_INSTALL,
-					'command_type_id' => ACTION_COMMAND_TYPE_COMMAND,
-					'include_action_id' => null,
-					'parent_id' => null,
-					'timeout' => ACTION_COMMAND_DEFAULT_TIMEOUT,
-				]
-			];
-			$this->request->data = $packageAction;
+			$this->request->data = $this->PackageAction->getDefaultValues($refId);
 			$namedParams = $this->request->param('named');
 			if (empty($namedParams)) {
 				$this->ViewExtension->setRedirectUrl(null, 'package');

@@ -1414,22 +1414,7 @@ class Import extends AppModel {
 			return $result;
 		}
 
-		$packageInfoDefault = [
-			'reboot_id' => PACKAGE_REBOOT_FALSE,
-			'execute_id' => PACKAGE_EXECUTE_DEFAULT,
-			'notify_id' => PACKAGE_NOTIFY_TRUE,
-			'precheck_install_id' => PACKAGE_PRECHECK_ALWAYS,
-			'precheck_remove_id' => PACKAGE_PRECHECK_NEVER,
-			'precheck_upgrade_id' => PACKAGE_PRECHECK_NEVER,
-			'precheck_downgrade_id' => PACKAGE_PRECHECK_NEVER,
-			'name' => '',
-			'id_text' => '',
-			'enabled' => true,
-			'template' => false,
-			'revision' => '',
-			'priority' => 0,
-			'notes' => ''
-		];
+		$packageInfoDefault = $this->_modelPackage->getDefaultValues(false);
 		$listAttributes = [
 			'@id' => 'id_text',
 			'name',
@@ -1474,12 +1459,7 @@ class Import extends AppModel {
 			return $result;
 		}
 
-		$profileInfoDefault = [
-			'id_text' => '',
-			'enabled' => true,
-			'template' => false,
-			'notes' => ''
-		];
+		$profileInfoDefault = $this->_modelProfile->getDefaultValues(false);
 		$listAttributes = [
 			'@id' => 'id_text',
 			'notes',
@@ -1519,13 +1499,7 @@ class Import extends AppModel {
 			return $result;
 		}
 
-		$hostInfoDefault = [
-			'mainprofile_id' => null,
-			'id_text' => '',
-			'enabled' => true,
-			'template' => false,
-			'notes' => ''
-		];
+		$hostInfoDefault = $this->_modelHost->getDefaultValues(false);
 		$listAttributes = [
 			'@name' => 'id_text',
 			'notes',

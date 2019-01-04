@@ -203,14 +203,7 @@ class VariablesController extends AppController {
 				$this->Flash->error(__('Variable could not be saved. Please, try again.'));
 			}
 		} else {
-			$variable = [
-				'Variable' => [
-					'ref_type' => $refType,
-					'ref_id' => $refId,
-					'parent_id' => null,
-				]
-			];
-			$this->request->data = $variable;
+			$this->request->data = $this->Variable->getDefaultValues($refType, $refId);
 			$this->ViewExtension->setRedirectUrl(null, $refTypeName);
 		}
 		$breadCrumbs = $this->Variable->getBreadcrumbInfo(null, $refType, null, $refId);

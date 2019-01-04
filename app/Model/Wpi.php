@@ -199,6 +199,26 @@ class Wpi extends AppModel {
 	}
 
 /**
+ * Return default values of WPI package
+ *
+ * @param bool $includeModelAlias Flag of including the model alias in the result
+ * @return array Return default values of WPI package.
+ */
+	public function getDefaultValues($includeModelAlias = true) {
+		$defaultValues = [
+			'package_id' => null,
+			'category_id' => null,
+			'default' => false,
+			'force' => false,
+		];
+		if ($includeModelAlias) {
+			$defaultValues = [$this->alias => $defaultValues];
+		}
+
+		return $defaultValues;
+	}
+
+/**
  * Return data array for JS
  *
  * @param int|string $id The ID of the record to retrieve data.

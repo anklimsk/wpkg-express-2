@@ -1016,6 +1016,31 @@ class Check extends AppModel {
 	}
 
 /**
+ * Return default values of check
+ *
+ * @param int|string $refType ID of type
+ * @param int|string $refId ID of associated record
+ * @param bool $includeModelAlias Flag of including the model alias in the result
+ * @return array Return default values of check.
+ */
+	public function getDefaultValues($refType = null, $refId = null, $includeModelAlias = true) {
+		$defaultValues = [
+			'ref_id' => $refId,
+			'ref_type' => $refType,
+			'parent_id' => null,
+			'type' => CHECK_TYPE_UNINSTALL,
+			'condition' => CHECK_CONDITION_UNINSTALL_EXISTS,
+			'path' => '',
+			'value' => ''
+		];
+		if ($includeModelAlias) {
+			$defaultValues = [$this->alias => $defaultValues];
+		}
+
+		return $defaultValues;
+	}
+
+/**
  * Return logical check name by condition ID
  *
  * @param int|string $conditionId ID of condition for check

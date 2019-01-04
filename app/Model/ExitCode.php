@@ -154,6 +154,26 @@ class ExitCode extends AppModel {
 	}
 
 /**
+ * Return default values of exit code
+ *
+ * @param int|string $refId The ID of the package action.
+ * @param bool $includeModelAlias Flag of including the model alias in the result
+ * @return array Return default values of exit code.
+ */
+	public function getDefaultValues($refId = null, $includeModelAlias = true) {
+		$defaultValues = [
+			'package_action_id' => $refId,
+			'reboot_id' => EXITCODE_REBOOT_FALSE,
+			'code' => ''
+		];
+		if ($includeModelAlias) {
+			$defaultValues = [$this->alias => $defaultValues];
+		}
+
+		return $defaultValues;
+	}
+
+/**
  * Return information of exit codes for package action
  *
  * @param int|string $refId The ID of the package action.
