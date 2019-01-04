@@ -1678,10 +1678,10 @@ if (!defined('GRAPH_STORE_FILE_TIME_LIMIT')) {
 /**
  * The path to the wpkg.js script in the WPI command
  *
- * Used in installation command WPI. Default value `%WPIPATH%\Tools\wpkg\wpkg.js`
+ * Used in installation command WPI. Default value `%WPIPATH%\Tools\Wpkg\wpkg.js`
  */
 if (!defined('WPI_WPKG_SCRIPT_PATH')) {
-	define('WPI_WPKG_SCRIPT_PATH', '%WPIPATH%\Tools\wpkg\wpkg.js');
+	define('WPI_WPKG_SCRIPT_PATH', '%WPIPATH%\Tools\Wpkg\wpkg.js');
 }
 
 /**
