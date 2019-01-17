@@ -165,10 +165,14 @@ class Log extends AppModel {
  * @return mixed On success array data or null|false on failure.
  */
 	public function paginate($conditions, $fields, $order, $limit, $page = 1, $recursive = null, $extra = []) {
+		$orderDir = 'asc';
 		if (!is_array($order)) {
 			$order = [$order];
+		} else {
+			$orderDir = reset($order);
 		}
-		$order[$this->alias . '.id'] = 'asc';
+
+		$order[$this->alias . '.id'] = $orderDir;
 		$parameters = compact('conditions', 'fields', 'order', 'limit', 'page');
 		if ($recursive != $this->recursive) {
 			$parameters['recursive'] = $recursive;
