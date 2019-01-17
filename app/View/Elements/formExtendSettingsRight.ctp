@@ -63,6 +63,6 @@ if (!empty($varsExt)) {
 			'type' => 'text', 'data-toggle' => 'tooltip'],
 		'Setting.SmbLogShare' => ['label' => __('Share name containing logs') . ':', 'title' => __('The name of the SMB share containing the log files, e.g.: wpkg/log.'),
 			'type' => 'text', 'data-toggle' => 'tooltip'],
-		'Setting.SmbDbShare' => ['label' => __('Share name containing client databases') . ':', 'title' => nl2br(__("The name of the SMB share containing the client database files, e.g.: wpkg/db.\n<b>Not necessary.</b> The report files containing the console output of the '<i>%s</i>' command, put in the '%s' subdirectory. File name format: <i>%COMPUTERNAME%.log</i>", 'cscript.exe wpkg.js //NoLogo /query:iml', REPORT_SHARE_SUBDIR)),
+		'Setting.SmbDbShare' => ['label' => __('Share name containing client databases') . ':', 'title' => nl2br(__("The name of the SMB share containing the client database files, e.g.: wpkg/db.\n<b>Not necessary.</b> The report files containing the console output of the '<i>%s</i>' command, put in the '%s' subdirectory. File name format: <i>%%COMPUTERNAME%%.log</i>", 'cscript.exe wpkg.js //NoLogo /query:iml', REPORT_SHARE_SUBDIR)),
 			'type' => 'text', 'data-toggle' => 'tooltip'],
 	]);
