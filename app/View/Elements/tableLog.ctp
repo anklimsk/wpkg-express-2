@@ -45,8 +45,8 @@ if (!isset($shortInfo)) {
 	$shortInfo = false;
 }
 
-if (!isset($moreRecords)) {
-	$moreRecords = 0;
+if (!isset($moreLogs)) {
+	$moreLogs = 0;
 }
 
 if (!isset($created)) {
@@ -187,14 +187,14 @@ foreach ($logs as $log) {
 <?php
 	if (!$shortInfo) {
 		echo $this->ViewExtension->buttonsPaging();
-	} elseif ($moreRecords > 0) {
+	} elseif ($moreLogs > 0) {
 		echo $this->Html->para(
 			'text-right',
 			$this->Html->tag('i',
 				__(
 					'...And %s more %s',
-					$this->Number->format($moreRecords, ['thousands' => ' ', 'before' => '', 'places' => 0]),
-					__n('record', 'records', $moreRecords)
+					$this->Number->format($moreLogs, ['thousands' => ' ', 'before' => '', 'places' => 0]),
+					__n('log', 'logs', $moreLogs)
 				)
 			)
 		);

@@ -108,6 +108,13 @@ class Import extends AppModel {
 	protected $_modelReport = null;
 
 /**
+ * Object of model `Log`
+ *
+ * @var object
+ */
+	protected $_modelLog = null;
+
+/**
  * Object of model `Config`
  *
  * @var object
@@ -164,6 +171,7 @@ class Import extends AppModel {
 		$this->_modelProfile = ClassRegistry::init('Profile');
 		$this->_modelHost = ClassRegistry::init('Host');
 		$this->_modelReport = ClassRegistry::init('Report');
+		$this->_modelLog = ClassRegistry::init('Log');
 		$this->_modelConfig = ClassRegistry::init('Config');
 		$this->_modelConfigLanguage = ClassRegistry::init('ConfigLanguage');
 		$this->_modelVariable = ClassRegistry::init('Variable');
@@ -555,6 +563,7 @@ class Import extends AppModel {
 				$path = 'config';
 				break;
 			case 'report':
+			case 'log':
 				break;
 			default:
 				return false;
@@ -567,6 +576,19 @@ class Import extends AppModel {
 		}
 
 		switch ($type) {
+			case 'log':
+				foreach ($data as $dataItem) {
+					if (!preg_match(LOG_PARSE_PCRE_CONTENT, $dataItem, $logInfo)) {
+						continue;
+					}
+					$logInfo[3] = trim($logInfo[3]);
+					if (empty($logInfo[3])) {
+						continue;
+					}
+					$logInfo[2] = mb_strtoupper($logInfo[2]);
+					$result[] = array_slice($logInfo, 1);
+				}
+				break;
 			case 'report':
 				$packages = [];
 				$lengthData = count($data);
@@ -656,12 +678,21 @@ class Import extends AppModel {
 						}
 						$attrPos++;
 					}
-					$md5Hash = md5_file($xmlFile, false);
 				}
 				if (!empty($dataAttributes)) {
 					$pathAttributes = 'attributes';
 					$data[$pathAttributes] = $dataAttributes;
 				}
+				break;
+			case 'log':
+				$fileName = basename($file, '.log');
+				if (empty($fileName) ||
+					!preg_match(LOG_PARSE_PCRE_FILE_NAME, $fileName, $fileNameInfo) ||
+					empty($fileNameInfo[1])) {
+					return false;
+				}
+
+				$result['host'] = mb_strtoupper($fileNameInfo[1]);
 				break;
 			default:
 				return false;
@@ -1005,6 +1036,9 @@ class Import extends AppModel {
 
 		$inputCharset = null;
 		switch ($textType) {
+			case 'log':
+				$inputCharset = 'CP1251';
+				break;
 			case 'report':
 				$inputCharset = 'CP866';
 				break;
@@ -1736,7 +1770,6 @@ class Import extends AppModel {
 /**
  * Preparing data of packages for report from XML or text information array.
  *
- * @param array &$listRevisions List of packages revision
  * @param array &$listPackages List of packages for host
  * @param array $data XML or text data array for processing
  * @param array $info XML or text information array for processing
@@ -1922,6 +1955,165 @@ class Import extends AppModel {
 		}
 		if (isset($xmlData['variables']['variable'])) {
 			$result['Variable'] = $this->_prepareVariable($xmlData['variables']['variable']);
+		}
+
+		return $result;
+	}
+
+/**
+ * Preparing data of hosts for log from text information array.
+ *
+ * @param array $textInfo Text information array for processing
+ * @return array Information of hosts.
+ */
+	protected function _prepareLogHost($textInfo = []) {
+		$result = [];
+		if (empty($textInfo)) {
+			return $result;
+		}
+
+		$name = Hash::get($textInfo, 'host');
+		$id = $this->getIdFromNamesCache('LogHost', $name);
+		if (empty($name)) {
+			return $result;
+		}
+		$result = ['LogHost' => compact('name')];
+		if (!empty($id)) {
+			$result['LogHost']['id'] = $id;
+		}
+
+		return $result;
+	}
+
+/**
+ * Preparing data of records for log from text information array.
+ *
+ * @param array $textData Text data array for processing
+ * @param array $textInfo Text information array for processing
+ * @return array Information of records for log.
+ */
+	protected function _prepareLogRecords($textData = [], $textInfo = []) {
+		$result = [];
+		if (empty($textData) || !is_array($textData) ||
+			empty($textInfo)) {
+			return $result;
+		}
+
+		if (!isset($textInfo['host']) || empty($textInfo['host'])) {
+			return false;
+		}
+
+		$hostName = $textInfo['host'];
+		$hostId = $this->getIdFromNamesCache('LogHost', $hostName);
+		if (empty($hostId)) {
+			$hostId = $hostName;
+		}
+		$msgPatterns = [
+			'/(http[s]?\:\/{2}[^\s]+)/',
+			'/(\'[^\']+\')/',
+			'/\|$/',
+			'/\|/',
+			'/\s{2,}/'
+		];
+		$msgReplaces = [
+			'<a target="_blank" href="$1">$1</a>',
+			'<i>$1</i>',
+			'',
+			'<br />',
+			' '
+		];
+
+		$prevDate = null;
+		$prevTypeId = null;
+		$result = [];
+		foreach ($textData as $numLine => $logLine) {
+			$date = $logLine[0];
+			$msgType = $logLine[1];
+			$msgText = $logLine[2];
+			$typeId = $this->getIdFromNamesCache('LogType', $msgType, LOG_TYPE_DEBUG);
+
+			$patternPCRE = [
+				'packages' => [
+					'patterns' => [],
+					'cacheModel' => 'Package'
+				],
+				'profiles' => [
+					'patterns' => [],
+					'cacheModel' => 'Profile'
+				],
+				'hosts' => [
+					'patterns' => [],
+					'cacheModel' => 'Host'
+				]
+			];
+			switch ($typeId) {
+				case LOG_TYPE_INFORMATION:
+					$patternPCRE['packages']['patterns'] = [
+						LOG_PKG_PCRE_INFO_PACKAGE_NAME => ['name']
+					];
+					break;
+				case LOG_TYPE_DEBUG:
+					$patternPCRE['packages']['patterns'] = [
+						LOG_PKG_PCRE_DEBUG_PACKAGE_ID_TEXT => ['id_text'],
+						LOG_PKG_PCRE_DEBUG_PACKAGE_ID_TEXT_NAME => ['id_text', 'name']
+					];
+					$patternPCRE['profiles']['patterns'] = [
+						LOG_PKG_PCRE_DEBUG_PROFILE_ID_TEXT => [null]
+					];
+					break;
+				case LOG_TYPE_ERROR:
+					$patternPCRE['packages']['patterns'] = [
+						LOG_PKG_PCRE_ERROR_PACKAGE_NAME => ['name']
+					];
+					break;
+			}
+
+			foreach ($patternPCRE as $controller => $patternPCREcfg) {
+				foreach ($patternPCREcfg['patterns'] as $pattern => $cacheKey) {
+					$matches = [];
+					if (!preg_match('/' . $pattern . '/iu', $msgText, $matches)) {
+						continue;
+					}
+
+					foreach ($cacheKey as $cacheKeyItem) {
+						$id = $this->getIdFromNamesCache($patternPCREcfg['cacheModel'], $matches[1], null, false, $cacheKeyItem);
+						if (!empty($id)) {
+							break;
+						}
+					}
+
+					if (!empty($id)) {
+						$pkgUrl = Router::url(['controller' => $controller, 'action' => 'view', $id, 'admin' => true]);
+						$msgText = str_replace($matches[1], '<a target="_blank" href="' . $pkgUrl . '">' . $matches[1] . '</a>', $msgText);
+					}
+				}
+			}
+			if (empty($msgText)) {
+				continue;
+			}
+			$msgText = preg_replace($msgPatterns, $msgReplaces, $msgText);
+			if (($prevDate === $date) && ($prevTypeId === $typeId)) {
+				$dataToSave = array_pop($result);
+				if (!empty($dataToSave)) {
+					$dataToSave[$this->_modelLog->alias]['message'] .= (!empty($dataToSave[$this->_modelLog->alias]['message']) ? '<br />' : '') .
+						$msgText;
+					$result[] = $dataToSave;
+					continue;
+				}
+			} else {
+				$prevDate = $date;
+				$prevTypeId = $typeId;
+			}
+
+			$dataToSave = [
+				$this->_modelLog->alias => [
+					'type_id' => $typeId,
+					'host_id' => $hostId,
+					'message' => $msgText,
+					'date' => $date
+				]
+			];
+			$result[] = $dataToSave;
 		}
 
 		return $result;
@@ -2998,6 +3190,179 @@ class Import extends AppModel {
 				$result = false;
 				$messages[__('Errors')][__('Error on saving WPKG configuration language')][] = $this->_modelConfigLanguage->validationErrors;
 			}
+		}
+
+		return $result;
+	}
+
+/**
+ * Import information of client log from string or file.
+ *  Used for log.
+ *
+ * @param string $logFile Log string or file to processing
+ * @param int $idTask The ID of the QueuedTask
+ * @param bool $updateProgress Flag of updating the progress value
+ *  in the task queue
+ * @return array|bool Return array of data information.
+ *  True if data is empty, or False on failure.
+ */
+	public function importTextLogs($logFile = '', $idTask = null, $updateProgress = true) {
+		$step = 0;
+		$maxStep = 2;
+		$dataToSave = [];
+		$errorMessages = [];
+		$result = true;
+		set_time_limit(IMPORT_TIME_LIMIT);
+
+		if ($updateProgress) {
+			$this->_modelExtendQueuedTask->updateProgress($idTask, 0);
+		}
+		$dataArray = $this->_extarctDataFromText($logFile, 'log', $idTask);
+		if (is_bool($dataArray)) {
+			return $dataArray;
+		}
+
+		$this->createNamesCache('Package', 'id_text', false, 'id_text');
+		$this->createNamesCache('Package', 'name', false, 'name');
+		$this->createNamesCache('Profile', null, false);
+		$this->createNamesCache('Host', null, false);
+		$this->createNamesCache('LogHost');
+		$this->createNamesCache('LogType');
+		$dataToSave = ['Log' => $this->_prepareLogRecords($dataArray['data'], $dataArray['info'])];
+		$dataToSave['LogHost'] = $this->_prepareLogHost($dataArray['info']);
+
+		if ($updateProgress) {
+			$this->_modelExtendQueuedTask->updateTaskProgress($idTask, $step, $maxStep);
+		}
+
+		if ($this->_saveLog($errorMessages, $dataToSave)) {
+			$result = $dataToSave;
+		} else {
+			$result = false;
+		}
+
+		if ($updateProgress) {
+			$this->_modelExtendQueuedTask->updateTaskProgress($idTask, $step, $maxStep);
+		}
+
+		if (!empty($idTask) && !empty($errorMessages)) {
+			$errorMessagesText = RenderXmlData::renderErrorMessages($errorMessages);
+			$this->_modelExtendQueuedTask->updateTaskErrorMessage($idTask, $errorMessagesText, true);
+		}
+
+		return $result;
+	}
+
+/**
+ * Saving log hosts information.
+ *
+ * @param array &$messages Array of messages.
+ * @param array $info Array information log hosts to save.
+ * @return bool Success.
+ */
+	protected function _saveHostLog(array &$messages, $info = []) {
+		if (empty($info) || !isset($info['LogHost']) ||
+			empty($info['LogHost'])) {
+			return false;
+		}
+
+		$this->_modelLog->LogHost->create(false);
+		$result = (bool)$this->_modelLog->LogHost->save($info['LogHost']);
+		if (!$result) {
+			$errorType = $this->_modelLog->LogHost->getFullName($info['LogHost']);
+			$messages[__('Errors')][$errorType] = $this->_modelLog->LogHost->validationErrors;
+			return false;
+		}
+
+		$hostId = $this->_modelLog->LogHost->id;
+		if (!isset($info['LogHost']['id'])) {
+			$this->setIdNamesCache('LogHost', $info['LogHost']['LogHost']['name'], $hostId);
+		}
+
+		return true;
+	}
+
+/**
+ * Saving log information.
+ *
+ * @param array &$messages Array of messages.
+ * @param array $logInfo Array information log to save.
+ * @return bool Success.
+ */
+	protected function _saveInfoLog(array &$messages, $logInfo = []) {
+		if (empty($logInfo)) {
+			return false;
+		}
+
+		if (!$this->_saveHostLog($messages, $logInfo)) {
+			return false;
+		}
+
+		if (!$this->_saveRecordsLog($messages, $logInfo)) {
+			return false;
+		}
+
+		return true;
+	}
+
+/**
+ * Saving log record information.
+ *
+ * @param array &$messages Array of messages.
+ * @param array $info Array information log records to save.
+ * @return bool Success.
+ */
+	protected function _saveRecordsLog(array &$messages, $info = []) {
+		if (empty($info) || !isset($info['Log']) ||
+			empty($info['Log'])) {
+			return true;
+		}
+
+		$result = true;
+		$dataToSave = [];
+		foreach ($info['Log'] as $logInfo) {
+			$hostId = $logInfo['Log']['host_id'];
+			if (!empty($hostId) && !ctype_digit((string)$hostId)) {
+				$logInfo['Log']['host_id'] = $this->getIdFromNamesCache('LogHost', $hostId, $hostId);
+			}
+
+			$this->_modelLog->create(false);
+			$this->_modelLog->set($logInfo);
+			$resultValidation = (bool)$this->_modelLog->validates();
+			if ($resultValidation) {
+				$dataToSave[] = $logInfo;
+			} else {
+				$result = false;
+				$messages[__('Errors')][__('Error on saving log record')][] = $this->_modelLog->validationErrors;
+			}
+		}
+
+		if (!$this->_modelLog->saveAll($dataToSave)) {
+			$result = false;
+			$messages[__('Errors')][__('Error on saving log records')][] = $this->_modelLog->validationErrors;
+		}
+
+		return $result;
+	}
+
+/**
+ * Saving log information use transactions.
+ *
+ * @param array &$messages Array of messages.
+ * @param array $logInfo Array information log to save.
+ * @return bool Success.
+ */
+	protected function _saveLog(array &$messages, $logInfo = []) {
+		$dataSource = $this->_modelLog->getDataSource();
+		$dataSource->begin();
+
+		$result = $this->_saveInfoLog($messages, $logInfo);
+		if ($result) {
+			$dataSource->commit();
+		} else {
+			$dataSource->rollback();
+			$this->clearNamesCache('LogHost');
+			$this->createNamesCache('LogHost');
 		}
 
 		return $result;

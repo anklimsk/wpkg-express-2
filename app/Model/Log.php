@@ -30,7 +30,7 @@ App::uses('ClassRegistry', 'Utility');
 App::uses('Hash', 'Utility');
 App::uses('File', 'Utility');
 App::uses('Folder', 'Utility');
-App::uses('Router', 'Routing');
+App::uses('CakeNumber', 'Utility');
 App::uses('RenderXmlData', 'Utility');
 App::import(
 	'Vendor',
@@ -62,7 +62,6 @@ class Log extends AppModel {
 	public $actsAs = [
 		'BreadCrumbExt',
 		'GroupAction',
-		'ParseData',
 		'GetNumber' => ['cacheConfig' => CACHE_KEY_STATISTICS_INFO_LOG],
 		'ValidationRules'
 	];
@@ -309,39 +308,6 @@ class Log extends AppModel {
 	}
 
 /**
- * Saving log information.
- *
- * @param array $logInfo Array information log to save.
- * @return bool Success.
- */
-	protected function _saveLog($logInfo = []) {
-		if (empty($logInfo)) {
-			return false;
-		}
-
-		$hostName = $logInfo['LogHost']['name'];
-		if (!isset($logInfo[$this->alias]['host_id'])) {
-			$hostId = $this->getIdFromNamesCache('LogHost', $hostName);
-		} else {
-			$hostId = $logInfo[$this->alias]['host_id'];
-		}
-		if (!empty($hostId)) {
-			$logInfo[$this->alias]['host_id'] = $hostId;
-			unset($logInfo['LogHost']);
-		}
-		unset($logInfo['LogType']);
-
-		$this->create(false);
-		$result = (bool)$this->saveAll($logInfo, ['validate' => false]);
-		if ($result && isset($logInfo['LogHost']['name'])) {
-			$hostId = $this->LogHost->id;
-			$this->setIdNamesCache('LogHost', $hostName, $hostId);
-		}
-
-		return $result;
-	}
-
-/**
  * Parsing log files.
  *
  * @param string|null $hostName Host name for parsing log files.
@@ -357,6 +323,7 @@ class Log extends AppModel {
 
 		$this->_modelExtendQueuedTask->updateProgress($idTask, 0);
 		$oLocalLogDir = new Folder(LOG_DIR, true, 0755);
+
 		list(, $localFiles) = $oLocalLogDir->read(false, false, true);
 		if (!empty($localFiles)) {
 			array_map('unlink', $localFiles);
@@ -429,19 +396,15 @@ class Log extends AppModel {
 			return true;
 		}
 
-		$this->createNamesCache('Package', 'id_text', false, 'id_text');
-		$this->createNamesCache('Package', 'name', false, 'name');
-		$this->createNamesCache('Profile', null, false);
-		$this->createNamesCache('Host', null, false);
-		$this->createNamesCache('LogHost');
-		$this->createNamesCache('LogType');
-		$dataToSave = $this->_prepareLogData($errorMessages, $localFiles);
-
-		$maxStep += count($dataToSave);
-		foreach ($dataToSave as $i => &$dataToSaveItem) {
-			if (!$this->_saveLog($dataToSaveItem)) {
-				unset($dataToSave[$i]);
+		$modelImport = ClassRegistry::init('Import');
+		$maxStep += count($localFiles);
+		$dataToEmail = [];
+		foreach ($localFiles as $i => $localFilePath) {
+			$resultImport = $modelImport->importTextLogs($localFilePath, $idTask, false);
+			if (!$resultImport) {
 				$result = false;
+			} elseif (is_array($resultImport)) {
+				$dataToEmail[] = $resultImport;
 			}
 
 			$step++;
@@ -449,9 +412,8 @@ class Log extends AppModel {
 				$this->_modelExtendQueuedTask->updateTaskProgress($idTask, $step, $maxStep);
 			}
 		}
-		unset($dataToSaveItem);
 
-		if (!empty($dataToSave) && !$this->_sendEmail($errorMessages, $dataToSave)) {
+		if (!empty($dataToEmail) && !$this->_sendEmail($errorMessages, $dataToEmail)) {
 			$result = false;
 		}
 		if (!$this->LogHost->clearUnusedHosts()) {
@@ -466,6 +428,68 @@ class Log extends AppModel {
 			$this->_modelExtendQueuedTask->updateTaskErrorMessage($idTask, $errorMessagesText, true);
 		}
 
+		return $result;
+	}
+
+/**
+ * Preparing data of records for log for E-mail.
+ *
+ * @param array $data Data array for processing
+ * @param int $limitLogs Limit for logs.
+ * @param int $limitRecords Limit for record of log.
+ * @return array Information of for E-mail.
+ */
+	protected function _prepareEmailData($data = [], $limitLogs = EMAIL_REPORT_ERRORS_SHOW_LOGS_LIMIT, $limitRecords = EMAIL_REPORT_ERRORS_SHOW_RECORDS_LIMIT) {
+		if (empty($data)) {
+			return false;
+		}
+
+		$moreLogs = count($data) - $limitLogs;
+		if ($moreLogs < 0) {
+			$moreLogs = 0;
+		}
+		$logsInfo = array_slice($data, 0, $limitLogs);
+		if (count($logsInfo) == 0) {
+			return false;
+		}
+
+		$logs = [];
+		$listLogTypes = $this->LogType->getList();
+		foreach ($logsInfo as $logInfoFull) {
+			if (!isset($logInfoFull['Log']) || empty($logInfoFull['Log']) ||
+				!isset($logInfoFull['LogHost']) || empty($logInfoFull['LogHost'])) {
+				continue;
+			}
+
+			$logInfoPart = array_slice($logInfoFull['Log'], 0, $limitRecords);
+			$moreRecords = count($logInfoFull['Log']) - $limitRecords;
+			foreach ($logInfoPart as $logRecord) {
+				$logType = [
+					'LogType' => [
+						'name' => Hash::get($listLogTypes, $logRecord['Log']['type_id'])
+					]
+				];
+				$logs[] = $logRecord + $logInfoFull['LogHost'] + $logType;
+			}
+			if ($moreRecords <= 0) {
+				continue;
+			}
+
+			$logRecord['Log']['type_id'] = LOG_TYPE_INFORMATION;
+			$logRecord['Log']['message'] = '<i>' . __(
+				'...And %s more %s',
+				CakeNumber::format($moreRecords, ['thousands' => ' ', 'before' => '', 'places' => 0]),
+				__n('record', 'records', $moreLogs) . '</i>'
+			);
+			$logType = [
+				'LogType' => [
+					'name' => Hash::get($listLogTypes, LOG_TYPE_INFORMATION)
+				]
+			];
+			$logs[] = $logRecord + $logInfoFull['LogHost'] + $logType;
+		}
+
+		$result = compact('logs', 'moreLogs');
 		return $result;
 	}
 
@@ -492,8 +516,12 @@ class Log extends AppModel {
 			}
 		}
 
-		$moreRecords = count($data) - EMAIL_REPORT_ERRORS_SHOW_RECORDS_LIMIT;
-		$logs = array_slice($data, 0, EMAIL_REPORT_ERRORS_SHOW_RECORDS_LIMIT);
+		$preparedData = $this->_prepareEmailData($data);
+		if (!$preparedData) {
+			return false;
+		}
+		extract($preparedData);
+
 		$modelSendEmail = ClassRegistry::init('CakeNotify.SendEmail');
 		$projectName = __dx('project', 'mail', PROJECT_NAME);
 		$config = 'smtp';
@@ -520,7 +548,7 @@ class Log extends AppModel {
 			'shortInfo',
 			'logsUrl',
 			'created',
-			'moreRecords',
+			'moreLogs',
 			'projectName'
 		);
 		foreach ($listEmails as $email => $name) {
@@ -528,201 +556,6 @@ class Log extends AppModel {
 			if (!$modelSendEmail->putQueueEmail(compact('config', 'from', 'to', 'subject', 'template', 'vars', 'helpers'))) {
 				$errorMessages[__('Errors')][__('Error on sending e-mail')][] = __('Error on putting sending e-mail for "%s" in queue...', $to);
 				$result = false;
-			}
-		}
-
-		return $result;
-	}
-
-/**
- * Extracting data from a log file.
- *
- * @param array &$errorMessages Array of error messages.
- * @param string $filePath Log file path.
- * @return array Data of logs.
- */
-	protected function _extractDataFromLogFile(array &$errorMessages, $filePath = null) {
-		$result = [];
-		$oLogFile = new File($filePath);
-		if (!$oLogFile->exists()) {
-			$errorMessages[__('Errors')][__('Invalid file for parsing')][] = $filePath;
-			return $result;
-		}
-
-		$fileName = $oLogFile->name();
-		if (!preg_match(LOG_PARSE_PCRE_FILE_NAME, $fileName, $matches)) {
-			$errorMessages[__('Errors')][__('Error on parsing log file name')][] = $fileName;
-			return $result;
-		}
-
-		$logContent = $oLogFile->read();
-		if (empty($logContent)) {
-			return $result;
-		}
-		$oLogFile->close();
-
-		$hostName = $matches[1];
-		if (empty($hostName)) {
-			return $result;
-		}
-
-		$hostName = mb_strtoupper($hostName);
-		$hostId = $this->getIdFromNamesCache('LogHost', $hostName);
-		if (!preg_match_all(LOG_PARSE_PCRE_CONTENT, $logContent, $logLines, PREG_SET_ORDER)) {
-			$errorMessages[__('Errors')][__('Error on parsing log file content')][] = $hostName;
-			return $result;
-		}
-
-		$msgPatterns = [
-			'/(http[s]?\:\/{2}[^\s]+)/',
-			'/([^|][\w\s]+\:\s)/',
-			'/(\'[^\']+\')/',
-			'/\|$/',
-			'/\|/',
-			'/\s{2,}/'
-		];
-		$msgReplaces = [
-			'<a target="_blank" href="$1">$1</a>',
-			'<b>$1</b>',
-			'<i>$1</i>',
-			'',
-			'<br />',
-			' '
-		];
-
-		$prevDate = null;
-		$prevTypeId = null;
-		$prevMessage = '';
-		$lastLine = count($logLines) - 1;
-		$result = [];
-		foreach ($logLines as $numLine => $logLine) {
-			$message = trim($logLine[3]);
-			if (empty($message)) {
-				continue;
-			}
-			$message = iconv('CP1251', 'UTF-8', $message);
-
-			$msgType = mb_strtoupper($logLine[2]);
-			$typeId = $this->getIdFromNamesCache('LogType', $msgType, LOG_TYPE_DEBUG);
-			$date = $logLine[1];
-
-			$patternPCRE = [
-				'packages' => [
-					'patterns' => [],
-					'cacheModel' => 'Package'
-				],
-				'profiles' => [
-					'patterns' => [],
-					'cacheModel' => 'Profile'
-				],
-				'hosts' => [
-					'patterns' => [],
-					'cacheModel' => 'Host'
-				]
-			];
-			switch ($typeId) {
-				case LOG_TYPE_INFORMATION:
-					$patternPCRE['packages']['patterns'] = [
-						LOG_PKG_PCRE_INFO_PACKAGE_NAME => ['name']
-					];
-					break;
-				case LOG_TYPE_DEBUG:
-					$patternPCRE['packages']['patterns'] = [
-						LOG_PKG_PCRE_DEBUG_PACKAGE_ID_TEXT => ['id_text'],
-						LOG_PKG_PCRE_DEBUG_PACKAGE_ID_TEXT_NAME => ['id_text', 'name']
-					];
-					$patternPCRE['profiles']['patterns'] = [
-						LOG_PKG_PCRE_DEBUG_PROFILE_ID_TEXT => [null]
-					];
-					break;
-				case LOG_TYPE_ERROR:
-					$patternPCRE['packages']['patterns'] = [
-						LOG_PKG_PCRE_ERROR_PACKAGE_NAME => ['name']
-					];
-					break;
-			}
-
-			foreach ($patternPCRE as $controller => $patternPCREcfg) {
-				foreach ($patternPCREcfg['patterns'] as $pattern => $cacheKey) {
-					$matches = [];
-					if (!preg_match('/' . $pattern . '/iu', $message, $matches)) {
-						continue;
-					}
-
-					foreach ($cacheKey as $cacheKeyItem) {
-						$id = $this->getIdFromNamesCache($patternPCREcfg['cacheModel'], $matches[1], null, false, $cacheKeyItem);
-						if (!empty($id)) {
-							break;
-						}
-					}
-
-					if (!empty($id)) {
-						$pkgUrl = Router::url(['controller' => $controller, 'action' => 'view', $id, 'admin' => true]);
-						$message = str_replace($matches[1], '<a target="_blank" href="' . $pkgUrl . '">' . $matches[1] . '</a>', $message);
-					}
-				}
-			}
-			if (empty($message)) {
-				continue;
-			}
-			$message = preg_replace($msgPatterns, $msgReplaces, $message);
-			if (($prevDate === $date) && ($prevTypeId === $typeId)) {
-				if (!empty($prevMessage)) {
-					$prevMessage .= '<br />';
-				}
-				$prevMessage .= $message;
-				if ($numLine === $lastLine) {
-					$message = $prevMessage;
-				} else {
-					continue;
-				}
-			} else {
-				$prevDate = $date;
-				$prevTypeId = $typeId;
-				$prevMessage = $message;
-			}
-
-			$dataToSave = [
-				$this->alias => [
-					'type_id' => $typeId,
-					'message' => $message,
-					'date' => $date
-				]
-			];
-			if (!empty($hostId)) {
-				$dataToSave[$this->alias]['host_id'] = $hostId;
-			}
-			$this->create($dataToSave);
-			if ($this->validates()) {
-				$dataToSave[$this->LogHost->alias]['name'] = $hostName;
-				$dataToSave[$this->LogType->alias]['name'] = $msgType;
-				$result[] = $dataToSave;
-			} else {
-				$errorType = $this->getFullName($dataToSave);
-				$errorMessages[__('Errors')][$errorType][] = $this->validationErrors;
-			}
-		}
-
-		return $result;
-	}
-
-/**
- * Preparing data from a log files to save.
- *
- * @param array &$errorMessages Array of error messages.
- * @param array $logFiles List of log files path.
- * @return array Data of logs.
- */
-	protected function _prepareLogData(array &$errorMessages, $logFiles = null) {
-		$result = [];
-		if (empty($logFiles)) {
-			return $result;
-		}
-
-		foreach ($logFiles as $logFilePath) {
-			$logData = $this->_extractDataFromLogFile($errorMessages, $logFilePath);
-			if (!empty($logData)) {
-				$result = array_merge($result, $logData);
 			}
 		}
 

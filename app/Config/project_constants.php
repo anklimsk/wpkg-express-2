@@ -1567,7 +1567,7 @@ if (!defined('LOG_PARSE_PCRE_FILE_NAME')) {
  *  Default value `/^(\d{4}-\d{2}-\d{2} \d{2}\:\d{2}:\d{2}),\s(\w+)\s+:\s(.+)$/im`
  */
 if (!defined('LOG_PARSE_PCRE_CONTENT')) {
-	define('LOG_PARSE_PCRE_CONTENT', '/^(\d{4}-\d{2}-\d{2} \d{2}\:\d{2}:\d{2}),\s(\w+)\s+:\s(.+)$/im');
+	define('LOG_PARSE_PCRE_CONTENT', '/^(\d{4}-\d{2}-\d{2} \d{2}\:\d{2}:\d{2}),\s(\w+)\s+:\s(.+)$/');
 }
 
 /**
@@ -2244,13 +2244,23 @@ if (!defined('AUTOCOMPLETE_ARRAY_DATA_LIMIT')) {
 }
 
 /**
+ * The limit for displaying error report logs in email
+ *
+ * Used to set the limit for displaying error report logs.
+ *  Default value `5`
+ */
+if (!defined('EMAIL_REPORT_ERRORS_SHOW_LOGS_LIMIT')) {
+	define('EMAIL_REPORT_ERRORS_SHOW_LOGS_LIMIT', 5);
+}
+
+/**
  * The limit for displaying error report entries in email
  *
- * Used to set the limit for displaying error report entries. 
- *  Default value `10`
+ * Used to set the limit for displaying error report entries.
+ *  Default value `3`
  */
 if (!defined('EMAIL_REPORT_ERRORS_SHOW_RECORDS_LIMIT')) {
-	define('EMAIL_REPORT_ERRORS_SHOW_RECORDS_LIMIT', 10);
+	define('EMAIL_REPORT_ERRORS_SHOW_RECORDS_LIMIT', 3);
 }
 
 /**
