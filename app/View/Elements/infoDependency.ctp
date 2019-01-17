@@ -65,6 +65,10 @@ if (!isset($extBtnElement)) {
 	$extBtnElement = null;
 }
 
+if (!isset($includeIdText)) {
+	$includeIdText = false;
+}
+
 $useExtInfoElement = false;
 if (!empty($extInfoElement) && $this->elementExists($extInfoElement)) {
 	$useExtInfoElement = true;
@@ -115,6 +119,9 @@ $list = [];
 		}
 		if (isset($dependencyItemData['name'])) {
 			$dependencyName = h($dependencyItemData['name']);
+			if ($includeIdText && isset($dependencyItemData['id_text'])) {
+				$dependencyName .= ' (' . h($dependencyItemData['id_text']) . ')';
+			}
 		} elseif (isset($dependencyItemData['id_text'])) {
 			 $dependencyName = h($dependencyItemData['id_text']);
 		} elseif (isset($dependencyItemData['id'])) {

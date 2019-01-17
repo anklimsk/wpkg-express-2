@@ -86,7 +86,8 @@ $profileName = h($profile['Profile']['id_text']);
 		'modelName' => 'Package', 'btnActions' => $btnModifyAssociatedPackages,
 		'attrRefType' => ATTRIBUTE_TYPE_PROFILE, 'attrRefNode' => ATTRIBUTE_NODE_PACKAGE,
 		'checkRefType' => CHECK_PARENT_TYPE_PROFILE, 'bindLimit' => $bindLimit,
-		'extInfoElement' => 'infoProfilePackageAttributes', 'extBtnElement' => 'buttonEditProfilePackageAttributes'
+		'extInfoElement' => 'infoProfilePackageAttributes', 'extBtnElement' => 'buttonEditProfilePackageAttributes',
+		'includeIdText' => true
 		]);
 ?>
 		</div>
