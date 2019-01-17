@@ -200,7 +200,7 @@ class ProfilesController extends AppController {
 			if ($this->Profile->saveProfile($this->request->data)) {
 				$this->Flash->success(__('Profile has been saved.'));
 
-				return $this->ViewExtension->redirectByUrl(null, 'profile');
+				return $this->ViewData->redirectToNewData('profile');
 			} else {
 				$this->Flash->error(__('Profile could not be saved. Please, try again.'));
 			}

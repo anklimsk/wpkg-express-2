@@ -273,4 +273,28 @@ class ViewDataComponent extends BaseDataComponent {
 		$this->_controller->set($targetName, $data);
 		$this->_controller->set(compact('breadCrumbs', 'pageHeader', 'headerMenuActions', 'bindLimit'));
 	}
+
+/**
+ * Redirect to action `View` new data
+ *
+ * @param string $key Key for cache
+ * @return CakeResponse|null
+ * @see ViewExtensionComponent::redirectByUrl()
+ */
+	public function redirectToNewData($key = null) {
+		$newId = $this->_modelTarget->getLastInsertID();
+		if (empty($newId)) {
+			return $this->_controller->ViewExtension->redirectByUrl(null, $key);
+		}
+		$controllerName = $this->_getTargetNamePlural();
+		if ($this->_modelTarget->Behaviors->loaded('BreadCrumbExt') || method_exists($this->_modelTarget, 'getControllerName')) {
+			$controllerName = $this->_modelTarget->getControllerName();
+		}
+		$redirectUrl = [
+			'controller' => $controllerName,
+			'action' => 'view',
+			$newId
+		];
+		return $this->_controller->redirect($redirectUrl);
+	}
 }

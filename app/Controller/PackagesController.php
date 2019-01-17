@@ -238,7 +238,7 @@ class PackagesController extends AppController {
 			if ($this->Package->savePackage($this->request->data)) {
 				$this->Flash->success(__('Package has been saved.'));
 
-				return $this->ViewExtension->redirectByUrl(null, 'package');
+				return $this->ViewData->redirectToNewData('package');
 			} else {
 				$this->Flash->error(__('Package could not be saved. Please, try again.'));
 			}

@@ -249,7 +249,7 @@ class HostsController extends AppController {
 			if ($this->Host->saveHost($this->request->data)) {
 				$this->Flash->success(__('Host has been saved.'));
 
-				return $this->ViewExtension->redirectByUrl(null, 'host');
+				return $this->ViewData->redirectToNewData('host');
 			} else {
 				$this->Flash->error(__('Host could not be saved. Please, try again.'));
 			}
