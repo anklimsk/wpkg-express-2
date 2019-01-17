@@ -1741,7 +1741,7 @@ if (!defined('WPI_WPKG_SCRIPT_PATH')) {
  * Used for installation package from WPI.
  */
 if (!defined('WPI_INSTALL_CMD_WPKG')) {
-	define('WPI_INSTALL_CMD_WPKG', 'cscript.exe //NoLogo %s /install:%s /quiet:false /nonotify:true /noreboot:true /sendStatus:false /noremove:true /norunningstate:true /forceInstall:true /settings:%%TEMP%%\wpkg-wpi.xml /log_file_path:%%TEMP%%');
+	define('WPI_INSTALL_CMD_WPKG', 'cscript.exe %s //NoLogo /install:%s /quiet:false /nonotify:true /noreboot:true /sendStatus:false /noremove:true /norunningstate:true /forceInstall:true /settings:%%TEMP%%\wpkg-wpi.xml /log_file_path:%%TEMP%%');
 }
 
 /**
