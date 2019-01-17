@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wpkgExpress II\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2019-01-04 16:09+0300\n"
+"PO-Revision-Date: 2019-01-17 08:36+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -33,7 +33,7 @@ msgid "Name"
 msgstr "Наименование"
 
 #: Config/cakesearchinfo.php:22;30;38 View/Elements/formHostBase.ctp:59
-#: View/Elements/formPackageBase.ctp:121;154
+#: View/Elements/formPackageBase.ctp:122;155
 #: View/Elements/formProfileBase.ctp:58 View/Elements/infoHost.ctp:77
 #: View/Elements/infoPackage.ctp:81 View/Elements/infoProfile.ctp:59
 #: View/Elements/tableHost.ctp:77 View/Elements/tablePackage.ctp:99
@@ -208,7 +208,7 @@ msgstr "Указатель типов действий пакета"
 #: Controller/ChecksController.php:188 Controller/ExitCodesController.php:163
 #: Controller/HostsController.php:262
 #: Controller/PackagePrioritiesController.php:121
-#: Controller/PackagesController.php:256 Controller/ProfilesController.php:213
+#: Controller/PackagesController.php:257 Controller/ProfilesController.php:213
 #: Controller/VariablesController.php:210
 #: Controller/WpiCategoriesController.php:131 Controller/WpiController.php:374
 msgid "Adding"
@@ -236,7 +236,7 @@ msgstr "Недопустимый идентификатор для типа де
 #: Controller/ChecksController.php:252 Controller/ExitCodesController.php:200
 #: Controller/HostsController.php:311
 #: Controller/PackagePrioritiesController.php:167
-#: Controller/PackagesController.php:318
+#: Controller/PackagesController.php:319
 #: Controller/ProfilesController.php:267;552
 #: Controller/VariablesController.php:249
 #: Controller/WpiCategoriesController.php:178 Controller/WpiController.php:426
@@ -343,7 +343,7 @@ msgid "Package archive"
 msgstr "Архив пакетов"
 
 #: Controller/ArchivesController.php:151
-#: Controller/PackagesController.php:290;493
+#: Controller/PackagesController.php:291;494
 msgid "Invalid ID for package"
 msgstr "Недопустимый идентификатор для пакета"
 
@@ -424,7 +424,7 @@ msgstr "Недопустимый идентификатор для атрибу�
 msgid "Information of attributes"
 msgstr "Информация об атрибутах"
 
-#: Controller/AttributesController.php:102 View/Elements/infoDependency.ctp:88
+#: Controller/AttributesController.php:102 View/Elements/infoDependency.ctp:92
 #: View/Elements/infoHost.ctp:97 View/Elements/infoVariables.ctp:105
 #: View/Elements/tablePackageActions.ctp:122
 #: View/Elements/treeItemCheckDraggable.ctp:56
@@ -816,53 +816,53 @@ msgstr "Удалить приоритет пакета"
 msgid "Are you sure you wish to delete this package priority?"
 msgstr "Вы уверены, что хотите удалить этот приоритет пакета?"
 
-#: Controller/PackagesController.php:126
+#: Controller/PackagesController.php:127
 msgid "Index of packages"
 msgstr "Указатель пакетов"
 
-#: Controller/PackagesController.php:131;176 Model/Archive.php:195
+#: Controller/PackagesController.php:132;177 Model/Archive.php:195
 #: View/Elements/barNav.ctp:69
 msgid "Archive"
 msgstr "Архив"
 
-#: Controller/PackagesController.php:133 View/Elements/barNav.ctp:71
+#: Controller/PackagesController.php:134 View/Elements/barNav.ctp:71
 msgid "Archive of packages"
 msgstr "Архив пакетов"
 
-#: Controller/PackagesController.php:171
+#: Controller/PackagesController.php:172
 msgid "Information of package"
 msgstr "Информация о пакете"
 
-#: Controller/PackagesController.php:179 View/Elements/tablePackage.ctp:145
+#: Controller/PackagesController.php:180 View/Elements/tablePackage.ctp:145
 msgid "Archive of package"
 msgstr "Архив пакета"
 
-#: Controller/PackagesController.php:239;296;503
+#: Controller/PackagesController.php:240;297;504
 msgid "Package has been saved."
 msgstr "Пакет сохранён."
 
-#: Controller/PackagesController.php:243;304;507
+#: Controller/PackagesController.php:244;305;508
 msgid "Package could not be saved. Please, try again."
 msgstr "Не удалось сохранить пакет. Пожалуйста, попробуйте ещё раз."
 
-#: Controller/PackagesController.php:257
+#: Controller/PackagesController.php:258
 msgid "Adding package"
 msgstr "Добавление пакета"
 
-#: Controller/PackagesController.php:319
+#: Controller/PackagesController.php:320
 msgid "Editing package"
 msgstr "Редактирование пакета"
 
-#: Controller/PackagesController.php:498 Controller/ProfilesController.php:446
+#: Controller/PackagesController.php:499 Controller/ProfilesController.php:446
 #: Controller/WpiController.php:364
 msgid "There are no packages to add/remove"
 msgstr "Нет пакетов для добавления/удаления"
 
-#: Controller/PackagesController.php:514 View/Elements/infoPackage.ctp:141
+#: Controller/PackagesController.php:515 View/Elements/infoPackage.ctp:141
 msgid "Exists in profiles"
 msgstr "Находиться в профилях"
 
-#: Controller/PackagesController.php:515
+#: Controller/PackagesController.php:516
 msgid "Modifying list of profiles"
 msgstr "Изменение списка профилей"
 
@@ -977,7 +977,7 @@ msgstr ""
 msgid "File selection"
 msgstr "Выбор файла"
 
-#: Controller/UploadsController.php:98 Model/Import.php:2865
+#: Controller/UploadsController.php:98 Model/Import.php:3476
 msgid "Uploading XML files"
 msgstr "Загрузка XML файлов"
 
@@ -1239,13 +1239,13 @@ msgstr "не используется в качестве шаблона"
 msgid "Method '%s' is not found in target model"
 msgstr "Метод '%s' не найден в целевой модели"
 
-#: Controller/Component/ExportDataComponent.php:110 Model/Import.php:2777
+#: Controller/Component/ExportDataComponent.php:110 Model/Import.php:3388
 msgid "Fatal errors"
 msgstr "Неустранимые ошибки"
 
 #: Controller/Component/ExportDataComponent.php:111
-#: Model/Import.php:626;639;684;1762;1791;1835;1844;1883;1899;1961;1993;2122;2172;2203;2330;2361;2467;2530;2593;2728;2753;2774
-#: Model/Log.php:402;416;458;529;548;554;572;702 Model/Report.php:408;440
+#: Model/Import.php:738;751;796;2151;2180;2224;2233;2272;2288;2350;2382;2511;2561;2592;2719;2750;2871;2947;3014;3020;3166;3191;3273;3336;3342;3385
+#: Model/Log.php:373;387;424;561 Model/Report.php:430;462
 #: Model/Behavior/GroupActionBehavior.php:157
 msgid "Errors"
 msgstr "Ошибки"
@@ -1554,7 +1554,7 @@ msgstr "Корневой узел"
 msgid "Check"
 msgstr "Проверка"
 
-#: Model/Check.php:1457 Model/Import.php:1883 View/Elements/infoPackage.ctp:140
+#: Model/Check.php:1457 Model/Import.php:2272 View/Elements/infoPackage.ctp:140
 msgid "Checks"
 msgstr "Проверки"
 
@@ -1582,7 +1582,7 @@ msgstr "Список компьютеров для обработки пуст"
 msgid "The list of hosts for processing is empty"
 msgstr "Список хостов для обработки пуст"
 
-#: Model/Disable.php:179 Model/Log.php:491
+#: Model/Disable.php:179 Model/Log.php:519
 msgid "Administrator of WPKG"
 msgstr "Администратор WPKG"
 
@@ -1590,7 +1590,7 @@ msgstr "Администратор WPKG"
 msgid "Unused hosts and profiles is disabled"
 msgstr "Неиспользуемые хосты и профили отключены"
 
-#: Model/Disable.php:202 Model/Log.php:529
+#: Model/Disable.php:202 Model/Log.php:561
 msgid "Error on putting sending e-mail for \"%s\" in queue..."
 msgstr ""
 "Ошибка при помещении отправки электронной почты для \"%s\" в очередь..."
@@ -1699,120 +1699,139 @@ msgstr "связанного %s %s"
 msgid "Associated profile"
 msgstr "Связанный профиль"
 
-#: Model/Import.php:211
+#: Model/Import.php:220
 msgid "Package, profile, host, WPKG configuration or client database."
 msgstr "Пакет, профиль, хост, конфигурация WPKG или клиентская база данных."
 
-#: Model/Import.php:626 Model/Variable.php:228 View/Elements/infoHost.ctp:86
+#: Model/Import.php:738 Model/Variable.php:228 View/Elements/infoHost.ctp:86
 #: View/Elements/infoPackage.ctp:139 View/Elements/infoProfile.ctp:69
 #: View/Elements/infoVariables.ctp:199
 msgid "Variables"
 msgstr "Переменные"
 
-#: Model/Import.php:626;1835;1883
+#: Model/Import.php:738;2224;2272
 msgid "Error on settings scope"
 msgstr "Ошибка при настройке области"
 
-#: Model/Import.php:839
+#: Model/Import.php:952
 msgid "Invalid file path"
 msgstr "Недопустимый путь к файлу"
 
-#: Model/Import.php:846;2852
+#: Model/Import.php:959;3463
 msgid "Invalid file type. Can be one of: %s"
 msgstr "Недопустимый тип файла. Может быть одним из следующих: %s"
 
-#: Model/Import.php:877
+#: Model/Import.php:990
 msgid "Invalid input XML file"
 msgstr "Недопустимый входной файл XML"
 
-#: Model/Import.php:881
+#: Model/Import.php:994
 msgid "Input XML file is empty"
 msgstr "Входной XML-файл пуст"
 
-#: Model/Import.php:1210
+#: Model/Import.php:1013
+msgid "Invalid input text file"
+msgstr "Недопустимый входной текстовый файл"
+
+#: Model/Import.php:1017
+msgid "Input text file is empty"
+msgstr "Входной текстовый файл пуст"
+
+#: Model/Import.php:1400
 msgid "Invalid name of dependency model"
 msgstr "Недопустимое имя зависимой модели"
 
-#: Model/Import.php:1835 Model/PackageAction.php:577
+#: Model/Import.php:2224 Model/PackageAction.php:577
 #: View/Elements/infoPackage.ctp:135
 msgid "Package actions"
 msgstr "Действия пакета"
 
-#: Model/Import.php:2467
+#: Model/Import.php:2871
 msgid "Error on deleting records of report"
 msgstr "Ошибка при удалении записей отчета"
 
-#: Model/Import.php:2593
+#: Model/Import.php:3014
 msgid "Error on saving report record"
 msgstr "Ошибка сохранения записи отчета"
 
-#: Model/Import.php:2728
+#: Model/Import.php:3020
+msgid "Error on saving report records"
+msgstr "Ошибка сохранения записей отчёта"
+
+#: Model/Import.php:3166
 msgid "Error on saving WPKG configuration"
 msgstr "Ошибка при сохранении конфигурации WPKG"
 
-#: Model/Import.php:2753
+#: Model/Import.php:3191
 msgid "Error on saving WPKG configuration language"
 msgstr "Ошибка при сохранении языка конфигурации WPKG"
 
-#: Model/Import.php:2768
+#: Model/Import.php:3336
+msgid "Error on saving log record"
+msgstr "Ошибка сохранения записи журнала"
+
+#: Model/Import.php:3342
+msgid "Error on saving log records"
+msgstr "Ошибка сохранения записей журнала"
+
+#: Model/Import.php:3379
 msgid "Other messages"
 msgstr "Другие сообщения"
 
-#: Model/Import.php:2771
+#: Model/Import.php:3382
 msgid "Warnings"
 msgstr "Предупреждения"
 
-#: Model/Import.php:2820
+#: Model/Import.php:3431
 msgid "Invalid path to XSD schema file"
 msgstr "Недопустимый путь к файлу схемы XSD"
 
-#: Model/Log.php:187
+#: Model/Log.php:190
 msgid "Log record"
 msgstr "Запись журнала"
 
-#: Model/Log.php:198 View/Elements/barNav.ctp:168;182
+#: Model/Log.php:201 View/Elements/barNav.ctp:168;182
 msgid "Logs"
 msgstr "Журналы"
 
-#: Model/Log.php:252
+#: Model/Log.php:255
 msgid "Log of host %s"
 msgstr "Журнал хостов %s"
 
-#: Model/Log.php:394;427
+#: Model/Log.php:365;398
 msgid "No log files to parsing."
 msgstr "Нет файлов журналов для разбора."
 
-#: Model/Log.php:402
+#: Model/Log.php:373
 msgid "Error on retrieving log file name"
 msgstr "Ошибка при получении имени файла журнала"
 
-#: Model/Log.php:416 Model/Report.php:408
+#: Model/Log.php:387 Model/Report.php:430
 msgid "Error on copying files"
 msgstr "Ошибка при копировании файлов"
 
-#: Model/Log.php:458 Model/Report.php:440
+#: Model/Log.php:424 Model/Report.php:462
 msgid "Error on removing unused hosts"
 msgstr "Ошибка при удалении неиспользуемых хостов"
 
-#: Model/Log.php:502
+#: Model/Log.php:483 View/Elements/tableLog.ctp:194
+msgid "...And %s more %s"
+msgstr "...И еще %s %s"
+
+#: Model/Log.php:534
 msgid "Found new errors of WPKG"
 msgstr "Найдены новые ошибки WPKG"
 
-#: Model/Log.php:529
+#: Model/Log.php:561
 msgid "Error on sending e-mail"
 msgstr "Ошибка при отправке электронной почты"
 
-#: Model/Log.php:548
-msgid "Invalid file for parsing"
-msgstr "Недопустимый файл для разбора"
-
-#: Model/Log.php:554
-msgid "Error on parsing log file name"
-msgstr "Ошибка при разборе имени файла журнала"
-
-#: Model/Log.php:572
-msgid "Error on parsing log file content"
-msgstr "Ошибка при разборе содержимого файла журнала"
+#: Model/Log.php:486
+msgid "record"
+msgid_plural "records"
+msgstr[0] "запись"
+msgstr[1] "записи"
+msgstr[2] "записей"
 
 #: Model/Package.php:1059
 msgid ""
@@ -2031,7 +2050,7 @@ msgstr "Отчёты"
 msgid "Report of host %s"
 msgstr "Отчет хоста %s"
 
-#: Model/Report.php:399;419
+#: Model/Report.php:421;441
 msgid "No database files to parsing."
 msgstr "Нет файлов базы данных для разбора."
 
@@ -3021,7 +3040,7 @@ msgstr ""
 "Если вас не волнует код выхода, используйте 'any' или '*'. Поддерживает "
 "автозаполнение."
 
-#: View/Elements/formExitCodeBase.ctp:53 View/Elements/formPackageBase.ctp:107
+#: View/Elements/formExitCodeBase.ctp:53 View/Elements/formPackageBase.ctp:108
 #: View/Elements/infoPackage.ctp:99 View/Elements/tablePackage.ctp:87
 msgid "Reboot"
 msgstr "Перезагрузка"
@@ -3195,10 +3214,16 @@ msgstr "Имя общего ресурса, содержащее базы дан
 #: View/Elements/formExtendSettingsRight.ctp:66
 msgid ""
 "The name of the SMB share containing the client database files, e.g.: wpkg/"
-"db."
+"db.\n"
+"<b>Not necessary.</b> The report files containing the console output of the "
+"'<i>%s</i>' command, put in the '%s' subdirectory. File name format: <i>"
+"%COMPUTERNAME%.log</i>"
 msgstr ""
 "Имя общего ресурса SMB, содержащего файлы базы данных клиента, например: "
-"wpkg/db."
+"wpkg/db.\n"
+"<b>Не обязательно.</b> Файлы отчетов, содержащие выходные данные комадны "
+"консоли '<i>%s</i>', поместите в подкаталог '%s'. Формат имени файла: <i>"
+"%COMPUTERNAME%.log</i>"
 
 #: View/Elements/formHostBase.ctp:47 View/Elements/formPackageBase.ctp:65
 #: View/Elements/formProfileBase.ctp:47 View/Elements/infoHost.ctp:53
@@ -3415,12 +3440,12 @@ msgstr ""
 "Человеко-читаемое имя, которое идентифицирует этот пакет (например, Foo Bar "
 "Baz Ultra Edition)."
 
-#: View/Elements/formPackageBase.ctp:81 View/Elements/infoPackage.ctp:72
+#: View/Elements/formPackageBase.ctp:82 View/Elements/infoPackage.ctp:72
 #: View/Elements/tableArchive.ctp:70 View/Elements/tablePackage.ctp:81
 msgid "Revision"
 msgstr "Ревизия"
 
-#: View/Elements/formPackageBase.ctp:81
+#: View/Elements/formPackageBase.ctp:82
 msgid ""
 "An positive integer or positive decimal value that denotes the version/"
 "revision of this package (e.g. 1 OR 1.0.3). If you have periods in the "
@@ -3431,12 +3456,12 @@ msgstr ""
 "есть периоды в ревизии, вы должны иметь по крайней мере одну цифру после "
 "каждого периода."
 
-#: View/Elements/formPackageBase.ctp:83 View/Elements/infoPackage.ctp:75
+#: View/Elements/formPackageBase.ctp:84 View/Elements/infoPackage.ctp:75
 #: View/Elements/tablePackage.ctp:84
 msgid "Priority"
 msgstr "Приоритет"
 
-#: View/Elements/formPackageBase.ctp:83
+#: View/Elements/formPackageBase.ctp:84
 msgid ""
 "An integer value (any positive non-decimal number) that indicates this "
 "package's priority. Higher priorities take precedence over lower priorities "
@@ -3446,21 +3471,21 @@ msgstr ""
 "указывающее приоритет пакета. Более высокие приоритеты имеют приоритет над "
 "более низкими приоритетами (например, 10)."
 
-#: View/Elements/formPackageBase.ctp:88
+#: View/Elements/formPackageBase.ctp:89
 msgid "Priorities"
 msgstr "Приоритеты"
 
-#: View/Elements/formPackageBase.ctp:92
+#: View/Elements/formPackageBase.ctp:93
 msgid "List of priorities."
 msgstr "Список приоритетов."
 
-#: View/Elements/formPackageBase.ctp:102
+#: View/Elements/formPackageBase.ctp:103
 #: View/Elements/infoChecksControls.ctp:90 View/Elements/infoVariables.ctp:173
 #: View/Elements/tablePackageActions.ctp:240
 msgid "Open in new window"
 msgstr "Открыть в новом окне"
 
-#: View/Elements/formPackageBase.ctp:107
+#: View/Elements/formPackageBase.ctp:108
 msgid ""
 "Specifies if and how the system reboots when installing, removing or "
 "upgrading a given package:\n"
@@ -3478,12 +3503,12 @@ msgstr ""
 "- 'отложено': перезагрузка после того, как WPKG завершил обработку всех "
 "пакетов, если проверки пакетов были успешными после выполнения действия."
 
-#: View/Elements/formPackageBase.ctp:109 View/Elements/infoPackage.ctp:101
+#: View/Elements/formPackageBase.ctp:110 View/Elements/infoPackage.ctp:101
 #: View/Elements/tablePackage.ctp:91
 msgid "Execute"
 msgstr "Выполнение"
 
-#: View/Elements/formPackageBase.ctp:109
+#: View/Elements/formPackageBase.ctp:110
 msgid ""
 "Specify how the package should be executed:\n"
 "- 'always': execute on each synchronization - regardless of the current "
@@ -3503,12 +3528,12 @@ msgstr ""
 "выполняться на следующих запросах синхронизации, если версия пакета на "
 "стороне сервера не будет изменена."
 
-#: View/Elements/formPackageBase.ctp:111 View/Elements/infoPackage.ctp:103
+#: View/Elements/formPackageBase.ctp:112 View/Elements/infoPackage.ctp:103
 #: View/Elements/tablePackage.ctp:95
 msgid "Notify"
 msgstr "Уведомление"
 
-#: View/Elements/formPackageBase.ctp:111
+#: View/Elements/formPackageBase.ctp:112
 msgid ""
 "Specify if the user should be notified about the installation of packages "
 "due to this package."
@@ -3516,11 +3541,11 @@ msgstr ""
 "Указывает, следует ли уведомлять пользователя об установке пакетов из-за "
 "этого пакета."
 
-#: View/Elements/formPackageBase.ctp:113
+#: View/Elements/formPackageBase.ctp:114
 msgid "Precheck install"
 msgstr "Предпроверка установки"
 
-#: View/Elements/formPackageBase.ctp:113
+#: View/Elements/formPackageBase.ctp:114
 msgid ""
 "Specify how package checks are used during package installation:\n"
 "- 'always' (default): When a package is new to the host\n"
@@ -3544,11 +3569,11 @@ msgstr ""
 "установки пакета всё ещё будут выполняться проверки, чтобы убедиться, что "
 "установка прошла успешно."
 
-#: View/Elements/formPackageBase.ctp:115
+#: View/Elements/formPackageBase.ctp:116
 msgid "Precheck remove"
 msgstr "Предпроверка удаления"
 
-#: View/Elements/formPackageBase.ctp:115
+#: View/Elements/formPackageBase.ctp:116
 msgid ""
 "Specify how package checks are used during package removal:\n"
 "- 'always': When a package is removed from a host then the checks will be "
@@ -3570,11 +3595,11 @@ msgstr ""
 "очередь. Примечание. После удаления пакета всё ещё будут выполняться "
 "проверки, чтобы убедиться, что удаление прошло успешно."
 
-#: View/Elements/formPackageBase.ctp:117
+#: View/Elements/formPackageBase.ctp:118
 msgid "Precheck upgrade"
 msgstr "Предпроверка обновления"
 
-#: View/Elements/formPackageBase.ctp:117
+#: View/Elements/formPackageBase.ctp:118
 msgid ""
 "Specify how package checks are used during package upgrade:\n"
 "- 'always': When a package is upgraded the checks specified will be be "
@@ -3602,11 +3627,11 @@ msgstr ""
 "поведение. Примечание. После обновления пакета всё ещё будут выполняться "
 "проверки, чтобы убедиться, что обновление прошло успешно."
 
-#: View/Elements/formPackageBase.ctp:119
+#: View/Elements/formPackageBase.ctp:120
 msgid "Precheck downgrade"
 msgstr "Предпроверка понижения"
 
-#: View/Elements/formPackageBase.ctp:119
+#: View/Elements/formPackageBase.ctp:120
 msgid ""
 "Specify how package checks are used during package downgrade:\n"
 " - 'always': When a package is downgraded the checks specified will be be "
@@ -3634,15 +3659,15 @@ msgstr ""
 "рекомендуемое поведение. Примечание: Проверки всё ещё будут выполняться "
 "после понижения пакета, чтобы убедиться, что понижение прошло успешно."
 
-#: View/Elements/formPackageBase.ctp:121
+#: View/Elements/formPackageBase.ctp:122
 msgid "Additional notes about this package. Not used by WPKG."
 msgstr "Дополнительные примечания об этом пакете. Не используется WPKG."
 
-#: View/Elements/formPackageBase.ctp:123 View/Elements/infoPackage.ctp:154
+#: View/Elements/formPackageBase.ctp:124 View/Elements/infoPackage.ctp:154
 msgid "Depends on packages"
 msgstr "Зависит от пакетов"
 
-#: View/Elements/formPackageBase.ctp:123
+#: View/Elements/formPackageBase.ctp:124
 msgid ""
 "By using <i>depend</i> you make a package depending on another package, "
 "meaning that this package needs the other package for correct functionality. "
@@ -3656,11 +3681,11 @@ msgstr ""
 "установки или обновления, поэтому зависимость всегда устанавливается прямо "
 "<u>перед</u> текущим пакетом независимо от приоритета пакетов."
 
-#: View/Elements/formPackageBase.ctp:126 View/Elements/infoPackage.ctp:171
+#: View/Elements/formPackageBase.ctp:127 View/Elements/infoPackage.ctp:171
 msgid "Includes packages"
 msgstr "Включает пакеты"
 
-#: View/Elements/formPackageBase.ctp:126
+#: View/Elements/formPackageBase.ctp:127
 msgid ""
 "By using <i>include</i> you include a package to the list of packages, "
 "meaning that if you install this package the included package will also be "
@@ -3679,11 +3704,11 @@ msgstr ""
 "обеспечить соблюдение определенного порядка установки, пожалуйста, "
 "рассмотрите возможность указать <i>зависимость</i>."
 
-#: View/Elements/formPackageBase.ctp:129 View/Elements/infoPackage.ctp:188
+#: View/Elements/formPackageBase.ctp:130 View/Elements/infoPackage.ctp:188
 msgid "Chains packages"
 msgstr "Цепочки пакетов"
 
-#: View/Elements/formPackageBase.ctp:129
+#: View/Elements/formPackageBase.ctp:130
 msgid ""
 "By using <i>chain</i> you chain a package to the current package, meaning "
 "that if this package is installed, the other package also has to be "
@@ -3703,19 +3728,19 @@ msgstr ""
 "приоритет, чем пакет, который ссылается на него по цепочке. Если требуется "
 "установка перед другим пакетом, укажите <i>зависимость</i>."
 
-#: View/Elements/formPackageBase.ctp:135;164
+#: View/Elements/formPackageBase.ctp:136;165
 msgid "Package ID, revision, ..."
 msgstr "Идентификатор пакета, ревизия, ..."
 
-#: View/Elements/formPackageBase.ctp:142
+#: View/Elements/formPackageBase.ctp:143
 msgid "Priority, reboot, ..."
 msgstr "Приоритет, перезагрузка, ..."
 
-#: View/Elements/formPackageBase.ctp:148 View/Elements/infoPackage.ctp:113
+#: View/Elements/formPackageBase.ctp:149 View/Elements/infoPackage.ctp:113
 msgid "Prechecks"
 msgstr "Предпроверки"
 
-#: View/Elements/formPackageBase.ctp:157 View/Elements/formProfileBase.ctp:56
+#: View/Elements/formPackageBase.ctp:158 View/Elements/formProfileBase.ctp:56
 #: View/Elements/infoPackage.ctp:136
 msgid "Dependencies"
 msgstr "Зависимости"
@@ -3915,7 +3940,7 @@ msgstr "или"
 msgid "Add checks"
 msgstr "Добавить проверки"
 
-#: View/Elements/infoDependency.ctp:99 View/Elements/infoVariables.ctp:115
+#: View/Elements/infoDependency.ctp:103 View/Elements/infoVariables.ctp:115
 #: View/Elements/tablePackageActions.ctp:131
 msgid "Edit checks"
 msgstr "Изменить проверки"
@@ -4029,7 +4054,7 @@ msgstr "Включения"
 msgid "Chains"
 msgstr "Цепочки"
 
-#: View/Elements/infoPackage.ctp:161 View/Elements/infoProfile.ctp:105
+#: View/Elements/infoPackage.ctp:161 View/Elements/infoProfile.ctp:106
 msgid "Exists in dependencies"
 msgstr "Находиться в зависимостях"
 
@@ -4085,7 +4110,7 @@ msgstr "Включить профиль"
 msgid "Use this profile as a template"
 msgstr "Использовать этот профиль в качестве шаблона"
 
-#: View/Elements/infoProfile.ctp:68;98
+#: View/Elements/infoProfile.ctp:68;99
 msgid "Depends on profiles"
 msgstr "Зависит от профилей"
 
@@ -4093,15 +4118,15 @@ msgstr "Зависит от профилей"
 msgid "Modify list of associated packages"
 msgstr "Изменить список связанных пакетов"
 
-#: View/Elements/infoProfile.ctp:125
+#: View/Elements/infoProfile.ctp:126
 msgid "Edit existing profile in hosts"
 msgstr "Редактирование наличия профиля в хостах"
 
-#: View/Elements/infoProfile.ctp:130
+#: View/Elements/infoProfile.ctp:131
 msgid "Associated profiles"
 msgstr "Связанные профили"
 
-#: View/Elements/infoProfile.ctp:136
+#: View/Elements/infoProfile.ctp:137
 msgid "Main profiles"
 msgstr "Основные профили"
 
@@ -4288,16 +4313,12 @@ msgstr "Удалить запись журнала"
 msgid "Are you sure you wish to delete this log record?"
 msgstr "Вы действительно хотите удалить эту запись?"
 
-#: View/Elements/tableLog.ctp:194
-msgid "...And %s more %s"
-msgstr "...И еще %s %s"
-
 #: View/Elements/tableLog.ctp:197
-msgid "record"
-msgid_plural "records"
-msgstr[0] "запись"
-msgstr[1] "записи"
-msgstr[2] "записей"
+msgid "log"
+msgid_plural "logs"
+msgstr[0] "журнал"
+msgstr[1] "хурнала"
+msgstr[2] "журналов"
 
 #: View/Elements/tablePackage.ctp:154
 msgid "Graph of package"
@@ -4462,6 +4483,21 @@ msgstr "Чтобы просмотреть полный список ошибок
 msgid "here"
 msgstr "здесь"
 
+#: View/Helper/TimeOutHelper.php:58
+msgctxt "time out"
+msgid "%dh"
+msgstr "%dч"
+
+#: View/Helper/TimeOutHelper.php:61
+msgctxt "time out"
+msgid "%dm"
+msgstr "%dм"
+
+#: View/Helper/TimeOutHelper.php:64
+msgctxt "time out"
+msgid "%ds"
+msgstr "%dс"
+
 #: View/Home/index.ctp:42
 msgid "Installation state of packages"
 msgstr "Состояние установки пакетов"
@@ -4481,6 +4517,22 @@ msgstr "Экспорт XML файлов"
 #: View/Reports/index.ctp:35
 msgid "State of packages"
 msgstr "Состояние пакетов"
+
+#~ msgid "Invalid file for parsing"
+#~ msgstr "Недопустимый файл для разбора"
+
+#~ msgid "Error on parsing log file name"
+#~ msgstr "Ошибка при разборе имени файла журнала"
+
+#~ msgid "Error on parsing log file content"
+#~ msgstr "Ошибка при разборе содержимого файла журнала"
+
+#~ msgid ""
+#~ "The name of the SMB share containing the client database files, e.g.: "
+#~ "wpkg/db."
+#~ msgstr ""
+#~ "Имя общего ресурса SMB, содержащего файлы базы данных клиента, например: "
+#~ "wpkg/db."
 
 #~ msgid "Extension for WPI"
 #~ msgstr "Расширение для WPI"
