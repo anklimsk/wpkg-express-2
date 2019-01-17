@@ -86,9 +86,9 @@ if (!isset($showBtnExpand)) {
 					$command .= ' ' . __('Expand URL');
 				}
 			}
-			$timeOut = $emptyText;
-			if (!empty($packageAction['timeout'])) {
-				$timeOut = gmdate('H:i:s', $packageAction['timeout']);
+			$timeOut = $this->TimeOut->getTimeOut($packageAction['timeout']);
+			if (empty($timeOut)) {
+				$timeOut = $emptyText;
 			}
 			$exitCodes = $this->element('infoExitCodes', ['exitCodes' => $packageAction['ExitCode'], 'showShort' => true]);
 		}

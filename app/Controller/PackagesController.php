@@ -78,7 +78,8 @@ class PackagesController extends AppController {
 		'Cache',
 		'GeshiExt',
 		'Tools.Tree',
-		'Indicator'
+		'Indicator',
+		'TimeOut'
 	];
 
 /**
