@@ -775,7 +775,7 @@ class Package extends AppModel {
 			'id_text' => '',
 			'enabled' => true,
 			'template' => false,
-			'revision' => '',
+			'revision' => 0,
 			'priority' => 0,
 			'notes' => ''
 		];
