@@ -345,6 +345,22 @@ class Report extends AppModel {
 	}
 
 /**
+ * Return PCRE pattern for parse report file name.
+ *
+ * @param string|null $hostName Host name for parsing report file.
+ * @return string Return PCRE pattern.
+ */
+	protected function _getReportFilePattern($hostName = null) {
+		if (empty($hostName)) {
+			$dbFilePattern = '^.*\.log$';
+		} else {
+			$dbFilePattern = '^' . preg_quote($hostName, '/') . '\.log$';
+		}
+
+		return $dbFilePattern;
+	}
+
+/**
  * Parsing client database files for create reports.
  *
  * @param string|null $hostName Host name for parsing client
@@ -367,8 +383,6 @@ class Report extends AppModel {
 			array_map('unlink', $localFiles);
 		}
 
-		$dbFilePattern = $this->_getDbFilePattern($hostName);
-
 		$modelSetting = ClassRegistry::init('Setting');
 		$user = $modelSetting->getConfig('SmbAuthUser');
 		$pswd = $modelSetting->getConfig('SmbAuthPassword');
@@ -382,14 +396,22 @@ class Report extends AppModel {
 		$share = $server->getShare($shareName);
 
 		$aRemoteFiles = [];
-		$files = $share->dir('/');
+		try {
+			$files = $share->dir(REPORT_SHARE_SUBDIR);
+			$filePattern = $this->_getReportFilePattern($hostName);
+			$importMethodName = 'importTextReports';
+		} catch (\Icewind\SMB\Exception\NotFoundException $e) {
+			$files = $share->dir('/');
+			$filePattern = $this->_getDbFilePattern($hostName);
+			$importMethodName = 'importXmlDatabases';
+		}
 		foreach ($files as $info) {
 			if ($info->isDirectory()) {
 				continue;
 			}
 
 			$fileName = $info->getName();
-			if (!preg_match('/' . $dbFilePattern . '/i', $fileName)) {
+			if (!preg_match('/' . $filePattern . '/i', $fileName)) {
 				continue;
 			}
 			$aRemoteFiles[] = $fileName;
@@ -426,7 +448,7 @@ class Report extends AppModel {
 		$cacheMD5hash = $this->ReportHost->getListMD5hash();
 		$maxStep += count($localFiles);
 		foreach ($localFiles as $i => $localFilePath) {
-			if (!$modelImport->importXmlDatabases($localFilePath, $idTask, $cacheMD5hash)) {
+			if (!$modelImport->$importMethodName($localFilePath, $idTask, $cacheMD5hash)) {
 				$result = false;
 			}
 
@@ -562,10 +584,13 @@ class Report extends AppModel {
  */
 	public function getListBarStateClass() {
 		$result = [
-			REPORT_STATE_OK => 'progress-bar-success',
-			REPORT_STATE_OK_MANUAL => 'progress-bar-success progress-bar-striped',
+			REPORT_STATE_INSTALLED => 'progress-bar-success',
+			REPORT_STATE_MANUALLY_INSTALLED => 'progress-bar-success progress-bar-striped',
+			REPORT_STATE_INSTALL => 'progress-bar-info progress-bar-striped',
 			REPORT_STATE_UPGRADE => 'progress-bar-info',
 			REPORT_STATE_DOWNGRADE => 'progress-bar-warning',
+			REPORT_STATE_REMOVE => 'progress-bar-danger',
+			REPORT_STATE_NOT_INSTALLED => 'progress-bar-danger progress-bar-striped',
 		];
 
 		return $result;

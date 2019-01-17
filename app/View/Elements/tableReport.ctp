@@ -121,8 +121,12 @@ foreach ($reports as $report) {
 
 	$revision = $report['Report']['revision'];
 	switch ($report['Report']['state_id']) {
-		case REPORT_STATE_OK_MANUAL:
+		case REPORT_STATE_INSTALL:
 			$attrRow['class'] = 'active';
+		break;
+		case REPORT_STATE_INSTALLED:
+		case REPORT_STATE_MANUALLY_INSTALLED:
+			$attrRow['class'] = 'success';
 		break;
 		case REPORT_STATE_UPGRADE:
 			$attrRow['class'] = 'info';
@@ -133,6 +137,9 @@ foreach ($reports as $report) {
 			$attrRow['class'] = 'warning';
 			$revision .= ' ' . $this->ViewExtension->iconTag('fas fa-long-arrow-alt-left') . ' ';
 			$revision .= $report['Package']['revision'];
+		break;
+		case REPORT_STATE_REMOVE:
+			$attrRow['class'] = 'danger';
 		break;
 	}
 	$tableRow[] = [

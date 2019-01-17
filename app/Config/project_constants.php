@@ -1410,23 +1410,23 @@ if (!defined('ATTRIBUTE_LCID_ENGLISH')) {
 }
 
 /**
- * Report package state `OK`
+ * Report package state `Installed`
  *
  * Used as preset report package state from list.
  *  Default value `1`
  */
-if (!defined('REPORT_STATE_OK')) {
-	define('REPORT_STATE_OK', 1);
+if (!defined('REPORT_STATE_INSTALLED')) {
+	define('REPORT_STATE_INSTALLED', 1);
 }
 
 /**
- * Report package state `OK manual`
+ * Report package state `Manually installed`
  *
  * Used as preset report package state from list.
  *  Default value `2`
  */
-if (!defined('REPORT_STATE_OK_MANUAL')) {
-	define('REPORT_STATE_OK_MANUAL', 2);
+if (!defined('REPORT_STATE_MANUALLY_INSTALLED')) {
+	define('REPORT_STATE_MANUALLY_INSTALLED', 2);
 }
 
 /**
@@ -1447,6 +1447,57 @@ if (!defined('REPORT_STATE_UPGRADE')) {
  */
 if (!defined('REPORT_STATE_DOWNGRADE')) {
 	define('REPORT_STATE_DOWNGRADE', 4);
+}
+
+/**
+ * Report package state `Remove`
+ *
+ * Used as preset report package state from list.
+ *  Default value `5`
+ */
+if (!defined('REPORT_STATE_REMOVE')) {
+	define('REPORT_STATE_REMOVE', 5);
+}
+
+/**
+ * Report package state `Install`
+ *
+ * Used as preset report package state from list.
+ *  Default value `6`
+ */
+if (!defined('REPORT_STATE_INSTALL')) {
+	define('REPORT_STATE_INSTALL', 6);
+}
+
+/**
+ * Report package state `Not installed`
+ *
+ * Used as preset report package state from list.
+ *  Default value `7`
+ */
+if (!defined('REPORT_STATE_NOT_INSTALLED')) {
+	define('REPORT_STATE_NOT_INSTALLED', 7);
+}
+
+/**
+ * PCRE pattern for parsing data in report file contents
+ *
+ * Used to extract data from the report file content.
+ *  Default value `/^\s+(\w+)\:\s+(\S.*)$/`
+ */
+if (!defined('REPORT_PARSE_PCRE_DATA')) {
+	define('REPORT_PARSE_PCRE_DATA', '/^\s+(\w.*).*\:\s+(\S.*)$/');
+}
+
+/**
+ * The name of the subdirectory with the reports within the
+ *  share with the client databases
+ *
+ * Used to store package synchronization result reports.
+ *  Default value `reports`
+ */
+if (!defined('REPORT_SHARE_SUBDIR')) {
+	define('REPORT_SHARE_SUBDIR', 'reports');
 }
 
 /**

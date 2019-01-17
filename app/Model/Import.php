@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is the model file of the application. Used to
- *  import information from XML.
+ *  import information from XML and text.
  *
  * This file is part of wpkgExpress II.
  *
@@ -27,12 +27,13 @@
 
 App::uses('AppModel', 'Model');
 App::uses('ClassRegistry', 'Utility');
+App::uses('File', 'Utility');
 App::uses('Hash', 'Utility');
 App::uses('Xml', 'Utility');
 App::uses('RenderXmlData', 'Utility');
 
 /**
- * The model is used to import information from XML.
+ * The model is used to import information from XML and text.
  *
  * @package app.Model
  */
@@ -524,19 +525,20 @@ class Import extends AppModel {
 	}
 
 /**
- * Retrieving data from XML data array by type
+ * Retrieving data from XML or text data array by type
  *
- * @param array $xmlData XML data array
- * @param string $xmlType Type for processing
- * @return array|bool Return data of XML, or False on failure.
+ * @param array $data Data array
+ * @param string $type Type for processing
+ * @return array|bool Return extracted data, or False on failure.
  */
-	protected function _extarctDataFromArray($xmlData = [], $xmlType = null) {
-		if (empty($xmlData) || !is_array($xmlData) || empty($xmlType)) {
+	protected function _extarctDataFromArray($data = [], $type = null) {
+		if (empty($data) || !is_array($data) || empty($type)) {
 			return false;
 		}
 
-		$xmlType = mb_strtolower($xmlType);
-		switch ($xmlType) {
+		$path = null;
+		$type = mb_strtolower($type);
+		switch ($type) {
 			case 'package':
 				$path = 'packages.package';
 				break;
@@ -552,48 +554,127 @@ class Import extends AppModel {
 			case 'config':
 				$path = 'config';
 				break;
+			case 'report':
+				break;
 			default:
 				return false;
 		}
 
-		$result = Hash::extract($xmlData, $path);
-		$this->_arrayIfY($result);
+		if (!empty($path)) {
+			$result = Hash::extract($data, $path);
+			$this->_arrayIfY($result);
+			return $result;
+		}
+
+		switch ($type) {
+			case 'report':
+				$packages = [];
+				$lengthData = count($data);
+				$i = 0;
+				while ($i < $lengthData) {
+					$line = $data[$i++];
+					if (empty($line)) {
+						continue;
+					}
+
+					$info = [];
+					$id = null;
+					while (isset($data[$i]) && !empty($data[$i])) {
+						if (!preg_match(REPORT_PARSE_PCRE_DATA, $data[$i++], $matches)) {
+							continue;
+						}
+
+						$key = '@' . mb_strtolower($matches[1]);
+						$value = $matches[2];
+						if ($key === '@id') {
+							$id = $value;
+						}
+						$info[$key] = $value;
+					}
+					if (!empty($id)) {
+						$packages[$id] = $info;
+					}
+				}
+				$result = array_values($packages);
+				break;
+		}
 
 		return $result;
 	}
 
 /**
- * Retrieving information from XML data array by type and XML file
+ * Retrieving information from file
  *
- * @param array $xmlData XML data array
- * @param string $xmlType Type for processing
- * @param string $xmlFile XML file for processing
+ * @param string $textFile Text file for processing
  * @return array|bool Return information, or False on failure.
  */
-	protected function _extarctInfoFromArray($xmlData = [], $xmlType = null, $xmlFile = null) {
-		if (empty($xmlData) || !is_array($xmlData) || empty($xmlType)) {
+	protected function _extarctInfoFromFile($textFile = null) {
+		if (empty($textFile) || !is_file($textFile)) {
+			return false;
+		}
+
+		$timestamp = filemtime($textFile);
+		if ($timestamp) {
+			$lastChange = date('Y-m-d H:i:s', $timestamp);
+		}
+		$md5Hash = md5_file($textFile, false);
+		$result = compact('lastChange', 'md5Hash');
+
+		return $result;
+	}
+
+/**
+ * Retrieving information from prepared array of XML or text
+ *  data array by type and file
+ *
+ * @param array $data Data array
+ * @param string $type Type for processing
+ * @param string $file File for processing
+ * @return array|bool Return information, or False on failure.
+ */
+	protected function _extarctInfoFromArray($data = [], $type = null, $file = null) {
+		if (empty($data) || !is_array($data) || empty($type)) {
 			return false;
 		}
 
 		$result = [];
-		$xmlType = mb_strtolower($xmlType);
-		switch ($xmlType) {
+		$lastChange = null;
+		$md5Hash = null;
+		$pathAttributes = '';
+		$type = mb_strtolower($type);
+		switch ($type) {
 			case 'database':
-				$xmlData = Hash::extract($xmlData, 'wpkg');
-				$Attribute = $this->_prepareAttributes($xmlData);
-				$lastChange = null;
-				$md5Hash = null;
-				if (is_file($xmlFile)) {
-					$timestamp = filemtime($xmlFile);
-					if ($timestamp) {
-						$lastChange = date('Y-m-d H:i:s', $timestamp);
+				$pathAttributes = 'wpkg';
+				break;
+			case 'report':
+				$dataAttributes = [];
+				$attrPos = array_search('Host information attributes from local host:', $data);
+				if (($attrPos !== false) && (isset($data[++$attrPos]))) {
+					while (isset($data[$attrPos]) && !empty($data[$attrPos])) {
+						if (preg_match(REPORT_PARSE_PCRE_DATA, $data[$attrPos], $matches)) {
+							$dataAttributes['@' . $matches[1]] = $matches[2];
+						}
+						$attrPos++;
 					}
 					$md5Hash = md5_file($xmlFile, false);
 				}
-				$result = compact('Attribute', 'lastChange', 'md5Hash');
+				if (!empty($dataAttributes)) {
+					$pathAttributes = 'attributes';
+					$data[$pathAttributes] = $dataAttributes;
+				}
 				break;
 			default:
 				return false;
+		}
+		$fileInfo = $this->_extarctInfoFromFile($file);
+		if ($fileInfo) {
+			extract($fileInfo);
+		}
+		$result += compact('lastChange', 'md5Hash');
+
+		if (!empty($pathAttributes)) {
+			$dataAttributes = Hash::extract($data, $pathAttributes);
+			$result['Attribute'] = $this->_prepareAttributes($dataAttributes);
 		}
 
 		return $result;
@@ -771,13 +852,14 @@ class Import extends AppModel {
  *
  * @param string $xmlFile XML string or file to processing
  * @param string $xmlType Type for processing
- * @return array|bool Return array data and information,
+ * @return array|bool Return array of data information,
  *  or False on failure.
  */
 	protected function _parseXml($xmlFile = null, $xmlType = null) {
-		if (empty($xmlType)) {
+		if (empty($xmlFile) || empty($xmlType)) {
 			return false;
 		}
+
 		try {
 			$options = ['return' => 'domdocument'];
 			$xmlObject = Xml::build($xmlFile, $options);
@@ -864,8 +946,8 @@ class Import extends AppModel {
  * @param string $xmlFile XML string or file to processing
  * @param string $xmlType Type for processing
  * @param int $idTask The ID of the QueuedTask
- * @return array|bool Return array data and information.
- *  Trun if data is empty, or False on failure.
+ * @return array|bool Return array of data information.
+ *  True if data is empty, or False on failure.
  */
 	protected function _extarctDataFromXml($xmlFile = null, $xmlType = null, $idTask = null) {
 		if (!$this->_validateXml($xmlFile, $xmlType, $idTask)) {
@@ -883,6 +965,80 @@ class Import extends AppModel {
 		}
 
 		return $xmlDataArray;
+	}
+
+/**
+ * Return data and information from text string or file by type.
+ *
+ * @param string $textFile Text string or file to processing
+ * @param string $textType Type for processing
+ * @param int $idTask The ID of the QueuedTask
+ * @return array|bool Return array of data information.
+ *  True if data is empty, or False on failure.
+ */
+	protected function _extarctDataFromText($textFile = null, $textType = null, $idTask = null) {
+		$textDataArray = $this->_parseText($textFile, $textType);
+		if ($textDataArray === false) {
+			$this->_modelExtendQueuedTask->updateTaskErrorMessage($idTask, __('Invalid input text file'));
+			return false;
+		}
+		if (empty($textDataArray['data'])) {
+			$this->_modelExtendQueuedTask->updateTaskErrorMessage($idTask, __('Input text file is empty'));
+			return true;
+		}
+
+		return $textDataArray;
+	}
+
+/**
+ * Return data and information from text string or file by type
+ *
+ * @param string $textFile Text string or file to processing
+ * @param string $textType Type for processing
+ * @return array|bool Return array of data information,
+ *  or False on failure.
+ */
+	protected function _parseText($textFile = null, $textType = null) {
+		if (empty($textFile) || empty($textType)) {
+			return false;
+		}
+
+		$inputCharset = null;
+		switch ($textType) {
+			case 'report':
+				$inputCharset = 'CP866';
+				break;
+			default:
+				return false;
+		}
+
+		if (is_file($textFile)) {
+			$oTextFile = new File($textFile);
+			if (!$oTextFile->exists()) {
+				return false;
+			}
+
+			$fileContent = $oTextFile->read();
+			$oTextFile->close();
+		} else {
+			$fileContent = $textFile;
+		}
+		if (empty($fileContent)) {
+			return false;
+		}
+		$fileContent = iconv($inputCharset, 'UTF-8', $fileContent);
+		if (!$fileContent) {
+			return false;
+		}
+		$textArray = explode("\r\n", $fileContent);
+		if (!$textArray) {
+			return false;
+		}
+		$data = $this->_extarctDataFromArray($textArray, $textType);
+		$info = $this->_extarctInfoFromArray($textArray, $textType, $textFile);
+		$result = compact('data', 'info');
+
+		return $result;
 	}
 
 /**
@@ -1578,28 +1734,37 @@ class Import extends AppModel {
 	}
 
 /**
- * Preparing data of packages for report from XML information array.
+ * Preparing data of packages for report from XML or text information array.
  *
  * @param array &$listRevisions List of packages revision
  * @param array &$listPackages List of packages for host
- * @param array $xmlData XML data array for processing
- * @param array $xmlInfo XML information array for processing
+ * @param array $data XML or text data array for processing
+ * @param array $info XML or text information array for processing
+ * @param array $listRevisions List of packages revision
+ * @param string $type Type for processing
  * @return array Information of packages for report.
  */
-	protected function _prepareDatabasePackage(array &$listRevisions, array &$listPackages, $xmlData = [], $xmlInfo = []) {
+	protected function _prepareReportPackage(array &$listPackages, $data = [], $info = [], $listRevisions = [], $type = null) {
 		$result = [];
-		if (empty($listRevisions) || empty($xmlData) ||
-			!is_array($xmlData) || empty($xmlInfo)) {
+		if (empty($data) || !is_array($data) ||
+			empty($info) || empty($type)) {
 			return $result;
 		}
+		if (empty($listRevisions)) {
+			$listRevisions = [];
+		}
 
-		$hostName = Hash::get($xmlInfo, 'Attribute.hostname');
-		$packageIdText = $xmlData['@id'];
-		$revision = $xmlData['@revision'];
+		$type = mb_strtolower($type);
+		$hostName = Hash::get($info, 'Attribute.hostname');
+		$packageIdText = Hash::get($data, '@id');
+		$revision = Hash::get($data, '@revision');
+		if (empty($revision)) {
+			$revision = Hash::get($data, '@revision (old)');
+		}
+
 		$packageId = $this->getIdFromNamesCache('Package', $packageIdText, null, !$this->_caseSensitivity);
 		if (empty($hostName) || empty($packageIdText) || empty($packageId) ||
-			(empty($revision) && ($revision !== '0')) ||
-			!isset($listRevisions[$packageIdText])) {
+			(empty($revision) && ($revision !== '0'))) {
 			return $result;
 		}
 		$hostId = $this->getIdFromNamesCache('ReportHost', $hostName);
@@ -1607,19 +1772,51 @@ class Import extends AppModel {
 			$hostId = $hostName;
 		}
 		$stateId = null;
-		$packageManualInstall = (string)Hash::get($xmlData, '@manualInstall');
-		if (mb_stripos($packageManualInstall, 'true') === 0) {
-			$stateId = REPORT_STATE_OK_MANUAL;
-		} else {
-			$currentRevision = $listRevisions[$packageIdText];
-			$resultVerCompare = $this->versionCompare($currentRevision, $revision);
-			if ($resultVerCompare === 0) {
-				$stateId = REPORT_STATE_OK;
-			} elseif ($resultVerCompare > 0) {
-				$stateId = REPORT_STATE_UPGRADE;
-			} else {
-				$stateId = REPORT_STATE_DOWNGRADE;
-			}
+		switch ($type) {
+			case 'database':
+				$packageManualInstall = (string)Hash::get($data, '@manualInstall');
+				if (mb_stripos($packageManualInstall, 'true') === 0) {
+					$stateId = REPORT_STATE_MANUALLY_INSTALLED;
+				} else {
+					if (!isset($listRevisions[$packageIdText])) {
+						return $result;
+					}
+					$currentRevision = $listRevisions[$packageIdText];
+					$resultVerCompare = $this->versionCompare($currentRevision, $revision);
+					if ($resultVerCompare === 0) {
+						$stateId = REPORT_STATE_INSTALLED;
+					} elseif ($resultVerCompare > 0) {
+						$stateId = REPORT_STATE_UPGRADE;
+					} else {
+						$stateId = REPORT_STATE_DOWNGRADE;
+					}
+				}
+				break;
+			case 'report':
+				$action = (string)Hash::get($data, '@action');
+				$status = (string)Hash::get($data, '@status');
+				switch ($action) {
+					case 'Installation pending':
+						$stateId = REPORT_STATE_INSTALL;
+						break;
+					case 'Upgrade pending':
+						$stateId = REPORT_STATE_UPGRADE;
+						break;
+					case 'Downgrade pending':
+						$stateId = REPORT_STATE_DOWNGRADE;
+						break;
+					case 'Remove pending':
+						$stateId = REPORT_STATE_REMOVE;
+						break;
+					default:
+						$stateId = REPORT_STATE_NOT_INSTALLED;
+						if ($status === 'Installed') {
+							$stateId = REPORT_STATE_INSTALLED;
+						}
+				}
+				break;
+			default:
+				return $result;
 		}
 		$result['Report'] = [
 			'host_id' => $hostId,
@@ -2404,15 +2601,16 @@ class Import extends AppModel {
 	}
 
 /**
- * Import information of client databases from XML string or file.
+ * Import information of client databases from XML string, text or file.
  *  Used for report.
  *
- * @param string $xmlFile XML string or file to processing
+ * @param string $data Data to processing
  * @param int $idTask The ID of the QueuedTask
  * @param array $cacheMD5hash Cache of MD5 hash reports
+ * @param string $type Type for processing
  * @return bool Success
  */
-	public function importXmlDatabases($xmlFile = '', $idTask = null, $cacheMD5hash = []) {
+	protected function _importReport($data = '', $idTask = null, $cacheMD5hash = [], $type = null) {
 		$step = 0;
 		$maxStep = 2;
 		$dataToSave = [];
@@ -2420,20 +2618,33 @@ class Import extends AppModel {
 		$result = true;
 		$updateProgress = true;
 		set_time_limit(IMPORT_TIME_LIMIT);
+
+		$methodNameExtractData = null;
+		$type = mb_strtolower($type);
+		switch ($type) {
+			case 'database':
+				$methodNameExtractData = '_extarctDataFromXml';
+				break;
+			case 'report':
+				$methodNameExtractData = '_extarctDataFromText';
+				break;
+			default:
+				return false;
+		}
 		if (!empty($cacheMD5hash)) {
 			$updateProgress = false;
 		}
 		if ($updateProgress) {
 			$this->_modelExtendQueuedTask->updateProgress($idTask, 0);
 		}
-		$xmlDataArray = $this->_extarctDataFromXml($xmlFile, 'database', $idTask);
-		if (is_bool($xmlDataArray)) {
-			return $xmlDataArray;
+		$dataArray = $this->$methodNameExtractData($data, $type, $idTask);
+		if (is_bool($dataArray)) {
+			return $dataArray;
 		}
 
-		$hostName = (string)Hash::get($xmlDataArray, 'info.Attribute.hostname');
+		$hostName = (string)Hash::get($dataArray, 'info.Attribute.hostname');
 		$hostName = mb_strtolower($hostName);
-		$md5Hash = Hash::get($xmlDataArray, 'info.md5Hash');
+		$md5Hash = Hash::get($dataArray, 'info.md5Hash');
 		if (empty($cacheMD5hash)) {
 			$cacheMD5hash = $this->_modelReport->ReportHost->getListMD5hash($hostName);
 		}
@@ -2447,18 +2658,19 @@ class Import extends AppModel {
 		$this->createNamesCache('ReportHost');
 		$listRevisions = $this->_modelPackage->getListRevisions();
 		$listPackages = $this->_modelReport->getListPackagesForHost($hostName);
-		foreach ($xmlDataArray['data'] as $xmlDataItem) {
-			$dataToSaveItem = $this->_prepareDatabasePackage($listRevisions, $listPackages, $xmlDataItem, $xmlDataArray['info']);
+		foreach ($dataArray['data'] as $dataItem) {
+			$dataToSaveItem = $this->_prepareReportPackage($listPackages, $dataItem, $dataArray['info'], $listRevisions, $type);
 			if (!empty($dataToSaveItem)) {
 				$dataToSave['Report'][] = $dataToSaveItem;
 			}
 		}
-		$dataToSave['ReportHost'] = $this->_prepareDatabaseHost($xmlDataArray['info']);
-		$dataToSave['Attribute'] = $this->_prepareDatabaseAttributes($xmlDataArray['info']);
+		$dataToSave['ReportHost'] = $this->_prepareDatabaseHost($dataArray['info']);
+		$dataToSave['Attribute'] = $this->_prepareDatabaseAttributes($dataArray['info']);
 
 		if ($updateProgress) {
 			$this->_modelExtendQueuedTask->updateTaskProgress($idTask, $step, $maxStep);
 		}
+
 		if (!$this->_saveReport($errorMessages, $dataToSave)) {
 			$result = false;
 		}
@@ -2477,6 +2689,19 @@ class Import extends AppModel {
 		}
 
 		return $result;
+	}
+
+/**
+ * Import information of client databases from XML string or file.
+ *  Used for report.
+ *
+ * @param string $xmlFile XML string or file to processing
+ * @param int $idTask The ID of the QueuedTask
+ * @param array $cacheMD5hash Cache of MD5 hash reports
+ * @return bool Success
+ */
+	public function importXmlDatabases($xmlFile = '', $idTask = null, $cacheMD5hash = []) {
+		return $this->_importReport($xmlFile, $idTask, $cacheMD5hash, 'database');
 	}
 
 /**
@@ -2559,7 +2784,7 @@ class Import extends AppModel {
 			return false;
 		}
 
-		if (!$this->_saveRecordReport($messages, $reportInfo)) {
+		if (!$this->_saveRecordsReport($messages, $reportInfo)) {
 			return false;
 		}
 
@@ -2570,16 +2795,17 @@ class Import extends AppModel {
  * Saving report record information.
  *
  * @param array &$messages Array of messages.
- * @param array $info Array information report record to save.
+ * @param array $info Array information report records to save.
  * @return bool Success.
  */
-	protected function _saveRecordReport(array &$messages, $info = []) {
+	protected function _saveRecordsReport(array &$messages, $info = []) {
 		if (empty($info) || !isset($info['Report']) ||
 			empty($info['Report'])) {
 			return true;
 		}
 
 		$result = true;
+		$dataToSave = [];
 		foreach ($info['Report'] as $reportInfo) {
 			$hostId = $reportInfo['Report']['host_id'];
 			if (!empty($hostId) && !ctype_digit((string)$hostId)) {
@@ -2587,11 +2813,19 @@ class Import extends AppModel {
 			}
 
 			$this->_modelReport->create(false);
-			$resultSaving = (bool)$this->_modelReport->save($reportInfo);
-			if (!$resultSaving) {
+			$this->_modelReport->set($reportInfo);
+			$resultValidation = (bool)$this->_modelReport->validates();
+			if ($resultValidation) {
+				$dataToSave[] = $reportInfo;
+			} else {
 				$result = false;
 				$messages[__('Errors')][__('Error on saving report record')][] = $this->_modelReport->validationErrors;
 			}
+		}
+
+		if (!$this->_modelReport->saveAll($dataToSave)) {
+			$result = false;
+			$messages[__('Errors')][__('Error on saving report records')][] = $this->_modelReport->validationErrors;
 		}
 
 		return $result;
@@ -2621,8 +2855,20 @@ class Import extends AppModel {
 	}
 
 /**
- * Import information of client databases from XML string or file.
+ * Import information of client report from string or file.
  *  Used for report.
+ *
+ * @param string $reportFile Report string or file to processing
+ * @param int $idTask The ID of the QueuedTask
+ * @param array $cacheMD5hash Cache of MD5 hash reports
+ * @return bool Success
+ */
+	public function importTextReports($reportFile = '', $idTask = null, $cacheMD5hash = []) {
+		return $this->_importReport($reportFile, $idTask, $cacheMD5hash, 'report');
+	}
+
+/**
+ * Import information of client databases from XML string or file.
  *
  * @param string $xmlFile XML string or file to processing
  * @param int $idTask The ID of the QueuedTask
