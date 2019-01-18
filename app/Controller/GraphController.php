@@ -31,7 +31,7 @@ App::uses('AppController', 'Controller');
  * The controller is used for generate a graph.
  *
  * This controller allows to perform the following operations:
- *  - to generate a grap for package, profile and host;
+ *  - to generate a graph for package, profile and host;
  *  - to generate a full graph for host by hostname.
  *
  * @package app.Controller
@@ -173,7 +173,6 @@ class GraphController extends AppController {
  *  - `GraphViz.host_name`: hostname for build graph.
  *
  * @throws BadRequestException if request is not `AJAX`, or not `POST`
- *  or not `JSON`
  * @throws InternalErrorException if the error in the process of 
  *  generating the graph
  * @return void
