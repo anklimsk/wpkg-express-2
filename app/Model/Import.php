@@ -30,6 +30,7 @@ App::uses('ClassRegistry', 'Utility');
 App::uses('File', 'Utility');
 App::uses('Hash', 'Utility');
 App::uses('Xml', 'Utility');
+App::uses('Router', 'Routing');
 App::uses('RenderXmlData', 'Utility');
 
 /**
