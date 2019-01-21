@@ -400,7 +400,7 @@ class Report extends AppModel {
 			$filePattern = $this->_getReportFilePattern($hostName);
 			$importMethodName = 'importTextReports';
 		} catch (\Icewind\SMB\Exception\NotFoundException $e) {
-			$files = $share->dir('/');
+			$files = $share->dir('');
 			$filePattern = $this->_getDbFilePattern($hostName);
 			$importMethodName = 'importXmlDatabases';
 		}
@@ -410,10 +410,11 @@ class Report extends AppModel {
 			}
 
 			$fileName = $info->getName();
+			$filePath = $info->getPath();
 			if (!preg_match('/' . $filePattern . '/i', $fileName)) {
 				continue;
 			}
-			$aRemoteFiles[] = $fileName;
+			$aRemoteFiles[] = $filePath;
 		}
 
 		if (empty($aRemoteFiles)) {
@@ -423,10 +424,10 @@ class Report extends AppModel {
 			return true;
 		}
 
-		foreach ($aRemoteFiles as $fileName) {
+		foreach ($aRemoteFiles as $filePath) {
 			$localFile = REPORT_DIR . uniqid('db_');
-			if (!$share->get($fileName, $localFile)) {
-				$errorMessages[__('Errors')][__('Error on copying files')][] = $fileName;
+			if (!$share->get($filePath, $localFile)) {
+				$errorMessages[__('Errors')][] = __('Error on copying files');
 			}
 		}
 		if (!empty($errorMessages)) {
