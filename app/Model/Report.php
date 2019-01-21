@@ -663,4 +663,29 @@ class Report extends AppModel {
 	public function getParamClearCache($id = null) {
 		return false;
 	}
+
+/**
+ * Returns data array of version number information for a package.
+ *
+ * @param int|string $packageId The ID of the package to retrieve data.
+ * @return array|bool Return data array of version number information,
+ *  or False on failure.
+ */
+	public function getRevisionInfo($packageId = null) {
+		if (empty($packageId)) {
+			return false;
+		}
+
+		$conditions = [
+			$this->alias . '.package_id' => $packageId
+		];
+		$fields = [
+			$this->alias . '.revision',
+			'count(*) AS number',
+		];
+		$group = $this->alias . '.revision';
+		$recursive = -1;
+
+		return $this->find('all', compact('conditions', 'fields', 'group', 'recursive'));
+	}
 }

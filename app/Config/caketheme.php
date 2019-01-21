@@ -19,7 +19,8 @@ $config['CakeTheme'] = [
 		'js' => [
 			'CakeTheme.tree',
 			'svg-pan-zoom.min',
-			'textcomplete.min'
+			'textcomplete.min',
+			'Chart.min.js'
 		],
 	],
 	'AjaxFlash' => [

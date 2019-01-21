@@ -155,6 +155,16 @@ foreach ($packages as $package) {
 				'action-type' => 'modal',
 				'data-modal-size' => 'lg',
 			]
+		) .
+		$this->ViewExtension->buttonLink(
+			'fas fa-chart-pie',
+			'btn-info',
+			['controller' => 'charts', 'action' => 'view', CHART_TYPE_PACKAGE, $package['Package']['id']],
+			[
+				'title' => __('Chart of installed package versions'),
+				'action-type' => 'modal',
+				'data-modal-size' => 'lg',
+			]
 		);
 		if ($package['Package']['template']) {
 			$actions .= $this->ViewExtension->buttonLink(

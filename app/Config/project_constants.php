@@ -1790,6 +1790,15 @@ if (!defined('WPI_XML_HOST_NAME')) {
 }
 
 /**
+ * Type of object chart `Package`
+ *
+ * Used for determine the type of object chart. Default value `1`
+ */
+if (!defined('CHART_TYPE_PACKAGE')) {
+	define('CHART_TYPE_PACKAGE', 1);
+}
+
+/**
  * Command line switch for MSI installer
  *
  * Used as information for autocomplete string in package action command.

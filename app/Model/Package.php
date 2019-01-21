@@ -60,6 +60,7 @@ class Package extends AppModel {
 		'GroupAction',
 		'ChangeState',
 		'GetGraphInfo',
+		'GetChartInfo',
 		'TemplateData',
 		'ValidationRules',
 		'ClearViewCache'
@@ -1426,6 +1427,93 @@ class Package extends AppModel {
 			'DependsOn' => ['dependLabel' => __x('dependency', 'Depends on'), 'arrowhead' => 'normal'],
 			'Includes' => ['dependLabel' => __x('dependency', 'Includes on'), 'arrowhead' => 'open'],
 			'Chains' => ['dependLabel' => __x('dependency', 'Chain on'), 'arrowhead' => 'empty']
+		];
+
+		return $result;
+	}
+
+/**
+ * Return data array for render chart
+ *
+ * @param int|string $id The ID of the package to retrieve data.
+ * @return array Return data array for render chart
+ */
+	public function getChartData($id = null) {
+		$result = [];
+		if (empty($id)) {
+			return $result;
+		}
+
+		$modelReport = ClassRegistry::init('Report');
+		$versionInfo = $modelReport->getRevisionInfo($id);
+		if (empty($versionInfo)) {
+			return $result;
+		}
+		$labels = [];
+		$packageName = $this->getName($id);
+		$dataset = [
+			'label' => __("Versions of package '%s'", $packageName),
+			'data' => []
+		];
+
+		foreach ($versionInfo as $versionInfoItem) {
+			$labels[] = $versionInfoItem[$modelReport->alias]['revision'];
+			$dataset['data'][] = (int)$versionInfoItem[0]['number'];
+			$dataset['backgroundColor'][] = $this->getRandomColor();
+		}
+		$datasets = [$dataset];
+		$result = compact('labels', 'datasets');
+
+		return $result;
+	}
+
+/**
+ * Return title for chart.
+ *
+ * @param int|string $refType ID of type
+ * @param int|string $refId Record ID for generating chart
+ * @return string Return title for chart.
+ */
+	public function getChartTitle($refType = null, $refId = null) {
+		$result = '';
+		$packageName = $this->getName($refId);
+		if (empty($packageName)) {
+			return $result;
+		}
+		$result = __("Chart of the installed versions of the package '%s'", $packageName);
+
+		return $result;
+	}
+
+/**
+ * Return the URL to use when clicking on the chart element.
+ *
+ * @param int|string $refType ID of type
+ * @param int|string $refId Record ID for generating chart
+ * @return array Return array URL.
+ */
+	public function getChartClickUrl($refType = null, $refId = null) {
+		$result = [];
+		if (empty($refId)) {
+			return $result;
+		}
+
+		$data = [
+			'data' => [
+				'FilterData' => [
+					[
+						'Report' => [
+							'package_id' => $refId,
+							'revision' => ''
+						]
+					]
+				]
+			]
+		];
+		$result = [
+			'controller' => 'reports',
+			'action' => 'index',
+			'?' => $data
 		];
 
 		return $result;

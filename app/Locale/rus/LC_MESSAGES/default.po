@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wpkgExpress II\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2019-01-17 10:46+0300\n"
+"PO-Revision-Date: 2019-01-18 12:02+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "Package ID"
 msgstr "Идентификатор пакета"
 
-#: Config/cakesearchinfo.php:21 Model/Package.php:1178
+#: Config/cakesearchinfo.php:21 Model/Package.php:1179
 #: View/Elements/formHostBase.ctp:53 View/Elements/formPackageBase.ctp:79
 #: View/Elements/formPackageExistsProfilesEdit.ctp:46
 #: View/Elements/infoPackage.ctp:64 View/Elements/tableArchive.ctp:67
@@ -41,7 +41,7 @@ msgstr "Наименование"
 msgid "Notes"
 msgstr "Примечания"
 
-#: Config/cakesearchinfo.php:25 Model/Package.php:1199
+#: Config/cakesearchinfo.php:25 Model/Package.php:1200
 #: View/Elements/barNav.ctp:76 View/Home/index.ctp:73
 msgid "Packages"
 msgstr "Пакеты"
@@ -260,9 +260,10 @@ msgid "Invalid ID for package action"
 msgstr "Недопустимый идентификатор для действия пакета"
 
 #: Controller/ActionsController.php:137 Controller/ArchivesController.php:164
-#: Controller/AttributesController.php:96 Controller/ChecksController.php:129
-#: Controller/ExitCodesController.php:103 Controller/GraphController.php:138
-#: Controller/VariablesController.php:132 Controller/WpiController.php:218
+#: Controller/AttributesController.php:96 Controller/ChartsController.php:115
+#: Controller/ChecksController.php:129 Controller/ExitCodesController.php:103
+#: Controller/GraphController.php:138 Controller/VariablesController.php:132
+#: Controller/WpiController.php:218
 #: Controller/Component/ViewDataComponent.php:191
 msgid "Viewing"
 msgstr "Просмотр"
@@ -376,7 +377,7 @@ msgid "Are you sure you wish to restore this package from archive?"
 msgstr "Вы действительно хотите восстановить этот пакет из архива?"
 
 #: Controller/ArchivesController.php:224;227 View/Elements/tableArchive.ctp:125
-#: View/Elements/tablePackage.ctp:193
+#: View/Elements/tablePackage.ctp:203
 msgid "Delete package"
 msgstr "Удалить пакет"
 
@@ -462,6 +463,10 @@ msgstr "Добавление атрибута"
 #: Controller/AttributesController.php:245
 msgid "Editing attributes"
 msgstr "Редактирование атрибутов"
+
+#: Controller/ChartsController.php:105;110
+msgid "Invalid referrer ID or type for chart"
+msgstr "Недопустимый ссылающийся идентификатор или тип для диаграммы"
 
 #: Controller/ChecksController.php:126;185
 msgid "Invalid referrer ID or type for check"
@@ -654,7 +659,7 @@ msgstr "Скачать этот граф"
 msgid "Building a graph"
 msgstr "Построение графа"
 
-#: Controller/GraphController.php:203 View/Elements/infoGraph.ctp:97
+#: Controller/GraphController.php:202 View/Elements/infoGraph.ctp:97
 msgid "Error on creating graph"
 msgstr "Ошибка при создании графа"
 
@@ -977,7 +982,7 @@ msgstr ""
 msgid "File selection"
 msgstr "Выбор файла"
 
-#: Controller/UploadsController.php:98 Model/Import.php:3476
+#: Controller/UploadsController.php:98 Model/Import.php:3477
 msgid "Uploading XML files"
 msgstr "Загрузка XML файлов"
 
@@ -1239,13 +1244,13 @@ msgstr "не используется в качестве шаблона"
 msgid "Method '%s' is not found in target model"
 msgstr "Метод '%s' не найден в целевой модели"
 
-#: Controller/Component/ExportDataComponent.php:110 Model/Import.php:3388
+#: Controller/Component/ExportDataComponent.php:110 Model/Import.php:3389
 msgid "Fatal errors"
 msgstr "Неустранимые ошибки"
 
 #: Controller/Component/ExportDataComponent.php:111
-#: Model/Import.php:738;751;796;2151;2180;2224;2233;2272;2288;2350;2382;2511;2561;2592;2719;2750;2871;2947;3014;3020;3166;3191;3273;3336;3342;3385
-#: Model/Log.php:373;387;424;561 Model/Report.php:430;462
+#: Model/Import.php:739;752;797;2152;2181;2225;2234;2273;2289;2351;2383;2512;2562;2593;2720;2751;2872;2948;3015;3021;3167;3192;3274;3337;3343;3386
+#: Model/Log.php:373;387;424;561 Model/Report.php:429;461
 #: Model/Behavior/GroupActionBehavior.php:157
 msgid "Errors"
 msgstr "Ошибки"
@@ -1355,7 +1360,7 @@ msgstr "Указатель %s"
 msgid "Add %s"
 msgstr "Добавить %s"
 
-#: Controller/Component/ViewDataComponent.php:137;263
+#: Controller/Component/ViewDataComponent.php:137;273
 #: View/Elements/barNav.ctp:62;97;125
 msgid "Create from template"
 msgstr "Создать из шаблона"
@@ -1401,19 +1406,23 @@ msgstr "Вы действительно хотите удалить этот %s?
 msgid "Preview XML file"
 msgstr "Предварительный просмотр файла XML"
 
-#: Controller/Component/ViewDataComponent.php:240;242
+#: Controller/Component/ViewDataComponent.php:241;243
 msgid "Graph of relations"
 msgstr "Граф отношений"
 
-#: Controller/Component/ViewDataComponent.php:250;253
+#: Controller/Component/ViewDataComponent.php:251 Model/Chart.php:81
+msgid "Chart"
+msgstr "Диаграмма"
+
+#: Controller/Component/ViewDataComponent.php:260;263
 msgid "Copy %s"
 msgstr "Копировать %s"
 
-#: Controller/Component/ViewDataComponent.php:254
+#: Controller/Component/ViewDataComponent.php:264
 msgid "Are you sure you wish to copy this %s?"
 msgstr "Вы действительно хотите скопировать этот %s?"
 
-#: Controller/Component/ViewDataComponent.php:266
+#: Controller/Component/ViewDataComponent.php:276
 msgid "Create %s from this template"
 msgstr "Создать %s из этого шаблона"
 
@@ -1545,6 +1554,14 @@ msgstr "Атрибуты %s"
 msgid "attributes %s"
 msgstr "атрибуты %s"
 
+#: Model/Chart.php:120 Model/Behavior/GetChartInfoBehavior.php:88
+msgid "Chart of the %s"
+msgstr "Диаграмма %s"
+
+#: Model/Chart.php:122
+msgid "chart %s"
+msgstr "диаграмма %s"
+
 #: Model/Check.php:1085
 msgid "Root node"
 msgstr "Корневой узел"
@@ -1554,7 +1571,7 @@ msgstr "Корневой узел"
 msgid "Check"
 msgstr "Проверка"
 
-#: Model/Check.php:1457 Model/Import.php:2272 View/Elements/infoPackage.ctp:140
+#: Model/Check.php:1457 Model/Import.php:2273 View/Elements/infoPackage.ctp:140
 msgid "Checks"
 msgstr "Проверки"
 
@@ -1650,10 +1667,10 @@ msgctxt "graph"
 msgid "full"
 msgstr "полный"
 
-#: Model/Host.php:445 Model/Package.php:934 Model/Profile.php:444
+#: Model/Host.php:445 Model/Package.php:935 Model/Profile.php:444
 #: View/Elements/infoHost.ctp:63 View/Elements/infoPackage.ctp:97
 #: View/Elements/infoProfile.ctp:54 View/Elements/tableHost.ctp:213
-#: View/Elements/tablePackage.ctp:219 View/Elements/tableProfile.ctp:186
+#: View/Elements/tablePackage.ctp:229 View/Elements/tableProfile.ctp:186
 msgid "Use as template"
 msgstr "Использовать в качестве шаблона"
 
@@ -1699,90 +1716,90 @@ msgstr "связанного %s %s"
 msgid "Associated profile"
 msgstr "Связанный профиль"
 
-#: Model/Import.php:220
+#: Model/Import.php:221
 msgid "Package, profile, host, WPKG configuration or client database."
 msgstr "Пакет, профиль, хост, конфигурация WPKG или клиентская база данных."
 
-#: Model/Import.php:738 Model/Variable.php:228 View/Elements/infoHost.ctp:86
+#: Model/Import.php:739 Model/Variable.php:228 View/Elements/infoHost.ctp:86
 #: View/Elements/infoPackage.ctp:139 View/Elements/infoProfile.ctp:69
 #: View/Elements/infoVariables.ctp:199
 msgid "Variables"
 msgstr "Переменные"
 
-#: Model/Import.php:738;2224;2272
+#: Model/Import.php:739;2225;2273
 msgid "Error on settings scope"
 msgstr "Ошибка при настройке области"
 
-#: Model/Import.php:952
+#: Model/Import.php:953
 msgid "Invalid file path"
 msgstr "Недопустимый путь к файлу"
 
-#: Model/Import.php:959;3463
+#: Model/Import.php:960;3464
 msgid "Invalid file type. Can be one of: %s"
 msgstr "Недопустимый тип файла. Может быть одним из следующих: %s"
 
-#: Model/Import.php:990
+#: Model/Import.php:991
 msgid "Invalid input XML file"
 msgstr "Недопустимый входной файл XML"
 
-#: Model/Import.php:994
+#: Model/Import.php:995
 msgid "Input XML file is empty"
 msgstr "Входной XML-файл пуст"
 
-#: Model/Import.php:1013
+#: Model/Import.php:1014
 msgid "Invalid input text file"
 msgstr "Недопустимый входной текстовый файл"
 
-#: Model/Import.php:1017
+#: Model/Import.php:1018
 msgid "Input text file is empty"
 msgstr "Входной текстовый файл пуст"
 
-#: Model/Import.php:1400
+#: Model/Import.php:1401
 msgid "Invalid name of dependency model"
 msgstr "Недопустимое имя зависимой модели"
 
-#: Model/Import.php:2224 Model/PackageAction.php:577
+#: Model/Import.php:2225 Model/PackageAction.php:577
 #: View/Elements/infoPackage.ctp:135
 msgid "Package actions"
 msgstr "Действия пакета"
 
-#: Model/Import.php:2871
+#: Model/Import.php:2872
 msgid "Error on deleting records of report"
 msgstr "Ошибка при удалении записей отчета"
 
-#: Model/Import.php:3014
+#: Model/Import.php:3015
 msgid "Error on saving report record"
 msgstr "Ошибка сохранения записи отчета"
 
-#: Model/Import.php:3020
+#: Model/Import.php:3021
 msgid "Error on saving report records"
 msgstr "Ошибка сохранения записей отчёта"
 
-#: Model/Import.php:3166
+#: Model/Import.php:3167
 msgid "Error on saving WPKG configuration"
 msgstr "Ошибка при сохранении конфигурации WPKG"
 
-#: Model/Import.php:3191
+#: Model/Import.php:3192
 msgid "Error on saving WPKG configuration language"
 msgstr "Ошибка при сохранении языка конфигурации WPKG"
 
-#: Model/Import.php:3336
+#: Model/Import.php:3337
 msgid "Error on saving log record"
 msgstr "Ошибка сохранения записи журнала"
 
-#: Model/Import.php:3342
+#: Model/Import.php:3343
 msgid "Error on saving log records"
 msgstr "Ошибка сохранения записей журнала"
 
-#: Model/Import.php:3379
+#: Model/Import.php:3380
 msgid "Other messages"
 msgstr "Другие сообщения"
 
-#: Model/Import.php:3382
+#: Model/Import.php:3383
 msgid "Warnings"
 msgstr "Предупреждения"
 
-#: Model/Import.php:3431
+#: Model/Import.php:3432
 msgid "Invalid path to XSD schema file"
 msgstr "Недопустимый путь к файлу схемы XSD"
 
@@ -1806,11 +1823,11 @@ msgstr "Нет файлов журналов для разбора."
 msgid "Error on retrieving log file name"
 msgstr "Ошибка при получении имени файла журнала"
 
-#: Model/Log.php:387 Model/Report.php:430
+#: Model/Log.php:387 Model/Report.php:429
 msgid "Error on copying files"
 msgstr "Ошибка при копировании файлов"
 
-#: Model/Log.php:424 Model/Report.php:462
+#: Model/Log.php:424 Model/Report.php:461
 msgid "Error on removing unused hosts"
 msgstr "Ошибка при удалении неиспользуемых хостов"
 
@@ -1833,7 +1850,7 @@ msgstr[0] "запись"
 msgstr[1] "записи"
 msgstr[2] "записей"
 
-#: Model/Package.php:1059
+#: Model/Package.php:1060
 msgid ""
 "The package '%s' cannot be deleted or disabled because it is exists in %s "
 "for the following packages: %s"
@@ -1841,53 +1858,61 @@ msgstr ""
 "Пакет '%s' не может быть удалён или отключен, поскольку он существует в %s "
 "для следующих пакетов: %s"
 
-#: Model/Package.php:1188 View/Elements/formPackageBase.ctp:62
+#: Model/Package.php:1189 View/Elements/formPackageBase.ctp:62
 #: View/Elements/formWpiBase.ctp:56 View/Elements/tableReport.ctp:59
 msgid "Package"
 msgstr "Пакет"
 
-#: Model/Package.php:1223
+#: Model/Package.php:1224
 msgid "Package '%s'"
 msgstr "Пакет '%s'"
 
-#: Model/Package.php:1225
+#: Model/Package.php:1226
 msgid "package '%s'"
 msgstr "пакета '%s'"
 
-#: Model/Package.php:1237
+#: Model/Package.php:1238
 msgid "full data of packages"
 msgstr "полные данные пакетов"
 
-#: Model/Package.php:1405
+#: Model/Package.php:1406
 msgid "Present in"
 msgstr "Присутствует в"
 
-#: Model/Package.php:1027
+#: Model/Package.php:1455
+msgid "Versions of package '%s'"
+msgstr "Версии пакета '%s'"
+
+#: Model/Package.php:1483
+msgid "Chart of the installed versions of the package '%s'"
+msgstr "Диаграмма установленных версий пакета '%s'"
+
+#: Model/Package.php:1028
 msgctxt "check disable"
 msgid "dependencies"
 msgstr "зависимостях"
 
-#: Model/Package.php:1028
+#: Model/Package.php:1029
 msgctxt "check disable"
 msgid "inclusions"
 msgstr "включениях"
 
-#: Model/Package.php:1029
+#: Model/Package.php:1030
 msgctxt "check disable"
 msgid "chains"
 msgstr "цепочках"
 
-#: Model/Package.php:1426 Model/Profile.php:931
+#: Model/Package.php:1427 Model/Profile.php:931
 msgctxt "dependency"
 msgid "Depends on"
 msgstr "Зависит от"
 
-#: Model/Package.php:1427
+#: Model/Package.php:1428
 msgctxt "dependency"
 msgid "Includes on"
 msgstr "Включает"
 
-#: Model/Package.php:1428
+#: Model/Package.php:1429
 msgctxt "dependency"
 msgid "Chain on"
 msgstr "Цепочки"
@@ -2038,19 +2063,19 @@ msgstr "Недопустимые аргументы"
 msgid "Error on recovering tree (list)"
 msgstr "Ошибка при восстановлении дерева (списка)"
 
-#: Model/Report.php:222
+#: Model/Report.php:221
 msgid "Report"
 msgstr "Отчёт"
 
-#: Model/Report.php:233 View/Elements/barNav.ctp:191;205
+#: Model/Report.php:232 View/Elements/barNav.ctp:191;205
 msgid "Reports"
 msgstr "Отчёты"
 
-#: Model/Report.php:287
+#: Model/Report.php:286
 msgid "Report of host %s"
 msgstr "Отчет хоста %s"
 
-#: Model/Report.php:421;441
+#: Model/Report.php:420;440
 msgid "No database files to parsing."
 msgstr "Нет файлов базы данных для разбора."
 
@@ -3936,6 +3961,18 @@ msgstr "Название категории."
 msgid "or"
 msgstr "или"
 
+#: View/Elements/infoChart.ctp:60 View/Elements/infoGraph.ctp:87
+msgid "No data to display"
+msgstr "Нет данных для отображения"
+
+#: View/Elements/infoChart.ctp:65
+msgid "Please wait. Creating a chart in progress..."
+msgstr "Пожалуйста, подождите. Выполняется создание диаграммы..."
+
+#: View/Elements/infoChart.ctp:70
+msgid "Error on creating chart"
+msgstr "Ошибка при создании диаграммы"
+
 #: View/Elements/infoChecksControls.ctp:68
 msgid "Add checks"
 msgstr "Добавить проверки"
@@ -3977,10 +4014,6 @@ msgstr "Показать полную информацию"
 msgid "Show full information about relations."
 msgstr "Показать полную информацию об отношениях."
 
-#: View/Elements/infoGraph.ctp:87
-msgid "No data to display"
-msgstr "Нет данных для отображения"
-
 #: View/Elements/infoGraph.ctp:92
 msgid "Please wait. Creating a graph in progress..."
 msgstr "Пожалуйста, подождите. Выполняется создание графа..."
@@ -3999,7 +4032,7 @@ msgstr "Включить хост"
 
 #: View/Elements/infoHost.ctp:63 View/Elements/infoPackage.ctp:97
 #: View/Elements/infoProfile.ctp:54 View/Elements/tableHost.ctp:213
-#: View/Elements/tablePackage.ctp:219 View/Elements/tableProfile.ctp:186
+#: View/Elements/tablePackage.ctp:229 View/Elements/tableProfile.ctp:186
 msgid "Don't use as template"
 msgstr "Не использовать в качестве шаблона"
 
@@ -4027,11 +4060,11 @@ msgstr "Основная информация"
 msgid "Extended information"
 msgstr "Расширенная информация"
 
-#: View/Elements/infoPackage.ctp:59 View/Elements/tablePackage.ctp:211
+#: View/Elements/infoPackage.ctp:59 View/Elements/tablePackage.ctp:221
 msgid "Disable package"
 msgstr "Отключить пакет"
 
-#: View/Elements/infoPackage.ctp:59 View/Elements/tablePackage.ctp:211
+#: View/Elements/infoPackage.ctp:59 View/Elements/tablePackage.ctp:221
 msgid "Enable package"
 msgstr "Включить пакет"
 
@@ -4324,23 +4357,27 @@ msgstr[2] "журналов"
 msgid "Graph of package"
 msgstr "Граф пакета"
 
-#: View/Elements/tablePackage.ctp:165
+#: View/Elements/tablePackage.ctp:164
+msgid "Chart of installed package versions"
+msgstr "Диаграмма версий установленных пакетов"
+
+#: View/Elements/tablePackage.ctp:175
 msgid "Create package from this template"
 msgstr "Создать пакет из этого шаблона"
 
-#: View/Elements/tablePackage.ctp:175
+#: View/Elements/tablePackage.ctp:185
 msgid "Copy package"
 msgstr "Копировать пакет"
 
-#: View/Elements/tablePackage.ctp:176
+#: View/Elements/tablePackage.ctp:186
 msgid "Are you sure you wish to copy package '%s'?"
 msgstr "Вы действительно хотите скопировать пакет '%s'?"
 
-#: View/Elements/tablePackage.ctp:184
+#: View/Elements/tablePackage.ctp:194
 msgid "Edit package"
 msgstr "Редактировать пакет"
 
-#: View/Elements/tablePackage.ctp:194
+#: View/Elements/tablePackage.ctp:204
 msgid "Are you sure you wish to delete package '%s'?"
 msgstr "Вы действительно хотите удалить пакет '%s'?"
 

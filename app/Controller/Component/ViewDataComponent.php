@@ -231,18 +231,28 @@ class ViewDataComponent extends BaseDataComponent {
 			}
 			$headerMenuActions = array_merge($headerMenuActions, $headerMenuActionsExt);
 		}
-		if ($this->_modelTarget->Behaviors->loaded('GetGraphInfo')) {
-			$graphType = constant('GRAPH_TYPE_' . mb_strtoupper($targetName));
-			$headerMenuActionsExt = [
-				'divider',
-				[
+		if ($this->_modelTarget->Behaviors->loaded('GetGraphInfo') ||
+			$this->_modelTarget->Behaviors->loaded('GetChartInfo')) {
+			$headerMenuActions[] = 'divider';
+			if ($this->_modelTarget->Behaviors->loaded('GetGraphInfo')) {
+				$graphType = constant('GRAPH_TYPE_' . mb_strtoupper($targetName));
+				$headerMenuActions[] = [
 					'fas fa-project-diagram',
 					__('Graph of relations'),
 					['controller' => 'graph', 'action' => 'view', $graphType, $data[$this->_modelTarget->alias]['id']],
 					['title' => __('Graph of relations'), 'data-toggle' => 'modal', 'data-modal-size' => 'lg']
-				]
-			];
-			$headerMenuActions = array_merge($headerMenuActions, $headerMenuActionsExt);
+				];
+			}
+			if ($this->_modelTarget->Behaviors->loaded('GetChartInfo')) {
+				$chartType = constant('CHART_TYPE_' . mb_strtoupper($targetName));
+				$chartTitle = $this->_modelTarget->getChartTitle($chartType, $data[$this->_modelTarget->alias]['id']);
+				$headerMenuActions[] = [
+					'fas fa-chart-pie',
+					__('Chart'),
+					['controller' => 'charts', 'action' => 'view', $chartType, $data[$this->_modelTarget->alias]['id']],
+					['title' => $chartTitle, 'data-toggle' => 'modal', 'data-modal-size' => 'lg']
+				];
+			}
 		}
 		if ($this->_modelTarget->Behaviors->loaded('TemplateData')) {
 			$headerMenuActionsExt = [
