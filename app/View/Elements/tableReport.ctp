@@ -114,7 +114,8 @@ foreach ($reports as $report) {
 	$tableRow = [];
 	$attrRow = [];
 	$packageState = $report['Package']['enabled'];
-	$packageName = h($report['Package']['name']);
+	$packageName = h($report['Package']['name']) . ' (' .
+		h($report['Package']['id_text']) . ')';
 	if (!$packageState) {
 		$packageName = $this->Html->tag('s', $packageName);
 	}
