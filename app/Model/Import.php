@@ -1832,6 +1832,9 @@ class Import extends AppModel {
 				switch ($action) {
 					case 'Installation pending':
 						$stateId = REPORT_STATE_INSTALL;
+						if ($status === 'Installed') {
+							$stateId = REPORT_STATE_INSTALLED;
+						}
 						break;
 					case 'Upgrade pending':
 						$stateId = REPORT_STATE_UPGRADE;
