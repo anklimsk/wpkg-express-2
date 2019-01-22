@@ -55,7 +55,7 @@ if (!isset($isAddAction)) {
 	echo $this->Form->input('Host.mainprofile_id', ['label' => [__('Main profile'), __('The main profile that will always be evaluated for this host.'), ':'],
 		'type' => 'select', 'data-toggle' => 'tooltip', 'options' => $profiles, 'autocomplete' => 'off']);
 	echo $this->Form->input('Profile', ['label' => [__('Additional associated profiles'), __('Additional profiles associated with the host.'), ':'],
-		'type' => 'select', 'data-toggle' => 'tooltip', 'multiple' => true, 'options' => $profiles, 'autocomplete' => 'off']);
+		'type' => 'select', 'data-toggle' => 'tooltip', 'multiple' => true, 'options' => $profiles, 'actions-box' => 'true', 'autocomplete' => 'off']);
 	echo $this->Form->input('Host.notes', ['label' => __('Notes') . ':', 'title' => __('Additional notes about this host. Not used by WPKG.'),
 		'type' => 'textarea', 'escape' => false, 'data-toggle' => 'tooltip', 'rows' => '3', 'autocomplete' => 'off']);
 ?>

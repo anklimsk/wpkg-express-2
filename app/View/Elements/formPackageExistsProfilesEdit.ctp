@@ -52,7 +52,8 @@ if (!isset($profiles)) {
 	echo $this->Form->staticControl(__('Package ID') . ':', h($this->request->data('Package.id_text')));
 	echo $this->Form->staticControl(__('Name') . ':', h($this->request->data('Package.name')));
 	echo $this->Form->input('Profile', ['label' => [__('Profiles including this package'), __('Profiles including this package.'), ':'],
-		'type' => 'select', 'data-toggle' => 'tooltip', 'multiple' => true, 'options' => $profiles, 'autocomplete' => 'off']);
+		'type' => 'select', 'data-toggle' => 'tooltip', 'multiple' => true,
+		'options' => $profiles, 'actions-box' => 'true', 'autocomplete' => 'off']);
 ?>
 	</fieldset>
 <?php

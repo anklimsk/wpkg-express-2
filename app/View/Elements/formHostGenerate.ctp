@@ -40,7 +40,7 @@ if (!isset($listProfileTemplates)) {
 		<legend><?php echo __('Host'); ?></legend>
 <?php
 	echo $this->Form->input('Host.computers', ['label' => [__('Computers to generate'), __('The list of computers from LDAP to create an XML file.'), ':'],
-		'type' => 'select', 'data-toggle' => 'tooltip', 'multiple' => true, 'autocomplete' => 'off',
+		'type' => 'select', 'data-toggle' => 'tooltip', 'multiple' => true, 'actions-box' => 'true', 'autocomplete' => 'off',
 		'data-abs-ajax-url' => $this->Html->url(['controller' => 'hosts', 'action' => 'computers', 'ext' => 'json']),
 		'data-abs-min-length' => '2', 'data-abs-request-delay' => '1200',
 		'data-actions-box' => 'true']);

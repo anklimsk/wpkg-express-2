@@ -54,7 +54,8 @@ if (!isset($isAddAction)) {
 		'type' => 'text', 'data-toggle' => 'tooltip', 'autocomplete' => 'off',
 		'data-inputmask-regex' => '^[a-zA-Z0-9]{1}[a-zA-Z0-9_\-]+', 'autofocus' => true]);
 	echo $this->Form->input('DependsOn', ['label' => [__('Dependencies'), __('Profiles that this profile depends on.'), ':'],
-		'type' => 'select', 'data-toggle' => 'tooltip', 'multiple' => true, 'options' => $profileDependencies, 'autocomplete' => 'off']);
+		'type' => 'select', 'data-toggle' => 'tooltip', 'multiple' => true,
+		'actions-box' => 'true', 'options' => $profileDependencies, 'autocomplete' => 'off']);
 	echo $this->Form->input('Profile.notes', ['label' => __('Notes') . ':', 'title' => __('Additional notes about this profile. Not used by WPKG.'),
 		'type' => 'textarea', 'escape' => false, 'data-toggle' => 'tooltip', 'rows' => '3', 'autocomplete' => 'off']);
 ?>

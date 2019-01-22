@@ -41,7 +41,8 @@ if (!isset($packages)) {
 	echo $this->Form->hiddenFields($hiddenFields);
 	echo $this->Form->staticControl(__('Profile ID') . ':', h($this->request->data('Profile.id_text')));
 	echo $this->Form->input('Package', ['label' => [__('Associated packages'), __('Associated packages of this profile'), ':'],
-		'type' => 'select', 'data-toggle' => 'tooltip', 'multiple' => true, 'options' => $packages, 'autocomplete' => 'off']);
+		'type' => 'select', 'data-toggle' => 'tooltip', 'multiple' => true, 'options' => $packages,
+		'actions-box' => 'true', 'autocomplete' => 'off']);
 ?>
 	</fieldset>
 <?php

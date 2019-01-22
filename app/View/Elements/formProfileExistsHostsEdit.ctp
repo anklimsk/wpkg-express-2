@@ -41,7 +41,8 @@ if (!isset($hosts)) {
 	echo $this->Form->hiddenFields($hiddenFields);
 	echo $this->Form->staticControl(__('Profile ID') . ':', h($this->request->data('Profile.id_text')));
 	echo $this->Form->input('Host', ['label' => [__('Hosts containing this profile'), __('Hosts that contain this profile as an additional associated profile.'), ':'],
-		'type' => 'select', 'data-toggle' => 'tooltip', 'multiple' => true, 'options' => $hosts, 'autocomplete' => 'off']);
+		'type' => 'select', 'data-toggle' => 'tooltip', 'multiple' => true, 'options' => $hosts,
+		'actions-box' => 'true', 'autocomplete' => 'off']);
 ?>
 	</fieldset>
 <?php

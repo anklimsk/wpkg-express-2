@@ -123,13 +123,13 @@ if (!isset($isAddAction)) {
 			'type' => 'textarea', 'escape' => false, 'data-toggle' => 'tooltip', 'rows' => '3', 'autocomplete' => 'off'],
 		'DependsOn' => ['label' => [__('Depends on packages'), __('By using <i>depend</i> you make a package depending on another package, meaning that this package needs the other package for correct functionality. This dependency can already be needed during the installation or upgrade, therefore a dependency is always installed right <u>before</u> the current package independently of the priority of the packages.'), ':'],
 			'type' => 'select', 'data-toggle' => 'tooltip', 'options' => $packageDependencies, 'multiple' => true,
-			'autocomplete' => 'off', 'class' => 'dependency-select'],
+			'actions-box' => 'true', 'autocomplete' => 'off', 'class' => 'dependency-select'],
 		'Includes' => ['label' => [__('Includes packages'), __('By using <i>include</i> you include a package to the list of packages, meaning that if you install this package the included package will also be installed. This included package will be installed <u>based on its priority</u>. So if the included package has high priority it will be installed early during synchronization. If the included package has low priority it will be installed late. If you would like to enforce a certain installation order please consider to specify a <i>dependency</i>.'), ':'],
 			'type' => 'select', 'data-toggle' => 'tooltip', 'options' => $packageDependencies, 'multiple' => true,
-			'autocomplete' => 'off', 'class' => 'dependency-select'],
+			'actions-box' => 'true', 'autocomplete' => 'off', 'class' => 'dependency-select'],
 		'Chains' => ['label' => [__('Chains packages'), nl2br(__("By using <i>chain</i> you chain a package to the current package, meaning that if this package is installed, the other package also has to be installed but right <u>after</u> the current package.\n<u>Attention</u>: a chained package might also be installed before the package chaining it. This might happen if the chained package is either already installed (possible by another dependency) or has higher priority than the package which references it by chain. If you need to ensure that a package is installed before another one please specify a <i>dependency</i>.")), ':'],
 			'type' => 'select', 'data-toggle' => 'tooltip', 'options' => $packageDependencies, 'multiple' => true,
-			'autocomplete' => 'off', 'class' => 'dependency-select'],
+			'actions-box' => 'true', 'autocomplete' => 'off', 'class' => 'dependency-select'],
 	];
 	$inputStatic = [];
 	$tabsList = [
