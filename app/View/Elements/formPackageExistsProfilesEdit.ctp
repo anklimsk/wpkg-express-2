@@ -36,6 +36,13 @@ if (!isset($profiles)) {
 <?php
 	$hiddenFields = [
 		'Package.id',
+		'Package.reboot_id',
+		'Package.execute_id',
+		'Package.notify_id',
+		'Package.precheck_install_id',
+		'Package.precheck_remove_id',
+		'Package.precheck_upgrade_id',
+		'Package.precheck_downgrade_id',
 		'Package.template',
 		'Package.id_text',
 		'Package.name',

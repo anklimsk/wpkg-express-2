@@ -1084,6 +1084,13 @@ class Package extends AppModel {
 
 		$fields = [
 			$this->alias . '.id',
+			$this->alias . '.reboot_id',
+			$this->alias . '.execute_id',
+			$this->alias . '.notify_id',
+			$this->alias . '.precheck_install_id',
+			$this->alias . '.precheck_remove_id',
+			$this->alias . '.precheck_upgrade_id',
+			$this->alias . '.precheck_downgrade_id',
 			$this->alias . '.id_text',
 			$this->alias . '.name',
 			$this->alias . '.revision',
