@@ -1,0 +1,5 @@
+title: A web-based frontend to WPKG
+description: A web-based frontend to WPKG. Based on wpkgExpress by Brian White. WPKG is an automated software deployment, upgrade and removal program for Windows.
+logo: /img/logo.png
+theme: jekyll-theme-minimal
+show_downloads: true

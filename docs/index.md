@@ -63,7 +63,7 @@ by Brian White &copy;2009.
 
 ## Using
 
-[Using this frontend to WPKG](docs/using.md)
+[Using this frontend to WPKG](using.md)
 
 ## Links
 

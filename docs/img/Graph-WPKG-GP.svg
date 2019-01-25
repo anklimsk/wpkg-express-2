@@ -1,0 +1,86 @@
+<?xml version="1.0" standalone="no"?>
+<svg width="540pt" height="241pt" viewBox="0.00 0.00 539.89 241.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 237)">
+<title>Graph of the package 'WPKG-GP' full</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-237 535.886,-237 535.886,4 -4,4"/>
+<text text-anchor="middle" x="265.943" y="-7.8" font-family="Times,serif" font-size="14.00">Graph of the package 'WPKG-GP' full</text>
+<!-- Package_WPKG_GP -->
+<g id="node1" class="node"><title>Package_WPKG_GP</title>
+<g id="a_node1"><a xlink:href="/admin/packages/view/152" xlink:title="WPKG-GP" target="_blank">
+<ellipse fill="none" stroke="black" cx="264.794" cy="-215" rx="51.1914" ry="18"/>
+<text text-anchor="middle" x="264.794" y="-211.3" font-family="Times,serif" font-size="14.00">WPKG-GP</text>
+</a>
+</g>
+</g>
+<!-- Package_WPKG_SCRIPT -->
+<g id="node2" class="node"><title>Package_WPKG_SCRIPT</title>
+<g id="a_node2"><a xlink:href="/admin/packages/view/95" xlink:title="WPKG-SCRIPT" target="_blank">
+<ellipse fill="none" stroke="black" cx="91.7935" cy="-128" rx="69.5877" ry="18"/>
+<text text-anchor="middle" x="91.7935" y="-124.3" font-family="Times,serif" font-size="14.00">WPKG-SCRIPT</text>
+</a>
+</g>
+</g>
+<!-- Package_WPKG_GP&#45;&gt;Package_WPKG_SCRIPT -->
+<g id="edge1" class="edge"><title>Package_WPKG_GP-&gt;Package_WPKG_SCRIPT</title>
+<path fill="none" stroke="black" d="M236.226,-199.964C207.751,-185.973 163.773,-164.366 131.824,-148.668"/>
+<polygon fill="black" stroke="black" points="133.26,-145.474 122.741,-144.205 130.173,-151.757 133.26,-145.474"/>
+<text text-anchor="middle" x="221.294" y="-167.8" font-family="Times,serif" font-size="14.00">Depends on</text>
+</g>
+<!-- Package_WPKG_GP_Client -->
+<g id="node3" class="node"><title>Package_WPKG_GP_Client</title>
+<g id="a_node3"><a xlink:href="/admin/packages/view/246" xlink:title="WPKG-GP-Client" target="_blank">
+<ellipse fill="none" stroke="black" cx="264.794" cy="-128" rx="75.2868" ry="18"/>
+<text text-anchor="middle" x="264.794" y="-124.3" font-family="Times,serif" font-size="14.00">WPKG-GP-Client</text>
+</a>
+</g>
+</g>
+<!-- Package_WPKG_GP&#45;&gt;Package_WPKG_GP_Client -->
+<g id="edge2" class="edge"><title>Package_WPKG_GP-&gt;Package_WPKG_GP_Client</title>
+<path fill="none" stroke="black" d="M264.794,-196.799C264.794,-185.163 264.794,-169.548 264.794,-156.237"/>
+<polygon fill="none" stroke="black" points="268.294,-156.175 264.794,-146.175 261.294,-156.175 268.294,-156.175"/>
+<text text-anchor="middle" x="289.794" y="-167.8" font-family="Times,serif" font-size="14.00">Chain on</text>
+</g>
+<!-- Package_WPKG_GP_CONFIG -->
+<g id="node4" class="node"><title>Package_WPKG_GP_CONFIG</title>
+<g id="a_node4"><a xlink:href="/admin/packages/view/252" xlink:title="WPKG-GP-CONFIG" target="_blank">
+<ellipse fill="none" stroke="black" cx="444.794" cy="-128" rx="87.1846" ry="18"/>
+<text text-anchor="middle" x="444.794" y="-124.3" font-family="Times,serif" font-size="14.00">WPKG-GP-CONFIG</text>
+</a>
+</g>
+</g>
+<!-- Package_WPKG_GP&#45;&gt;Package_WPKG_GP_CONFIG -->
+<g id="edge3" class="edge"><title>Package_WPKG_GP-&gt;Package_WPKG_GP_CONFIG</title>
+<path fill="none" stroke="black" d="M294.114,-200.154C323.526,-186.265 369.121,-164.734 402.456,-148.993"/>
+<polygon fill="none" stroke="black" points="403.961,-152.153 411.509,-144.718 400.972,-145.823 403.961,-152.153"/>
+<text text-anchor="middle" x="390.794" y="-167.8" font-family="Times,serif" font-size="14.00">Chain on</text>
+</g>
+<!-- Package_WPKG_CONFIG -->
+<g id="node6" class="node"><title>Package_WPKG_CONFIG</title>
+<g id="a_node6"><a xlink:href="/admin/packages/view/14" xlink:title="WPKG-CONFIG" target="_blank">
+<ellipse fill="none" stroke="black" cx="72.7935" cy="-41" rx="72.5877" ry="18"/>
+<text text-anchor="middle" x="72.7935" y="-37.3" font-family="Times,serif" font-size="14.00">WPKG-CONFIG</text>
+</a>
+</g>
+</g>
+<!-- Package_WPKG_SCRIPT&#45;&gt;Package_WPKG_CONFIG -->
+<g id="edge5" class="edge"><title>Package_WPKG_SCRIPT-&gt;Package_WPKG_CONFIG</title>
+<path fill="none" stroke="black" d="M87.9486,-109.799C85.3475,-98.1626 81.8572,-82.5479 78.8818,-69.2368"/>
+<polygon fill="none" stroke="black" points="82.23,-68.1711 76.6328,-59.1754 75.3986,-69.6981 82.23,-68.1711"/>
+<text text-anchor="middle" x="108.794" y="-80.8" font-family="Times,serif" font-size="14.00">Chain on</text>
+</g>
+<!-- Package_WPKG_GP_Client_CONFIG -->
+<g id="node5" class="node"><title>Package_WPKG_GP_Client_CONFIG</title>
+<g id="a_node5"><a xlink:href="/admin/packages/view/251" xlink:title="WPKG-GP-Client-CONFIG" target="_blank">
+<ellipse fill="none" stroke="black" cx="274.794" cy="-41" rx="111.28" ry="18"/>
+<text text-anchor="middle" x="274.794" y="-37.3" font-family="Times,serif" font-size="14.00">WPKG-GP-Client-CONFIG</text>
+</a>
+</g>
+</g>
+<!-- Package_WPKG_GP_Client&#45;&gt;Package_WPKG_GP_Client_CONFIG -->
+<g id="edge4" class="edge"><title>Package_WPKG_GP_Client-&gt;Package_WPKG_GP_Client_CONFIG</title>
+<path fill="none" stroke="black" d="M266.817,-109.799C268.186,-98.1626 270.023,-82.5479 271.589,-69.2368"/>
+<polygon fill="none" stroke="black" points="275.08,-69.5159 272.773,-59.1754 268.128,-68.698 275.08,-69.5159"/>
+<text text-anchor="middle" x="295.794" y="-80.8" font-family="Times,serif" font-size="14.00">Chain on</text>
+</g>
+</g>
+</svg>
