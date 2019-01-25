@@ -133,7 +133,7 @@ $profileName = h($profile['Profile']['id_text']);
 				</div>
 				<div class="col-md-6 col-xs-12">
 <?php
-	echo $this->element('infoDependency', ['dependencies' => $profile['HostMainProfiles'], 'controllerName' => 'profiles',
+	echo $this->element('infoDependency', ['dependencies' => $profile['HostMainProfiles'], 'controllerName' => 'hosts',
 		'label' => __('Main profiles'), 'bindLimit' => $bindLimit]);
 ?>
 				</div>
