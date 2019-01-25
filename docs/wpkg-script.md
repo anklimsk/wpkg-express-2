@@ -2,7 +2,7 @@
 
 ## Preparing a WPKG configuration file
 
-- Configuration [WPKG settings](wpkg-express.md#configuration-WPKG-settings);
+- Configuration [WPKG settings](wpkg-express.md#configuration-wpkg-express-2-settings);
 - Configuration [global variables](wpkg-express.md#configuration-global-variables);
 - Open WPKG Express 2 in web browser and navigate to menu `Application settings` ->
   `Settings of WPKG`;

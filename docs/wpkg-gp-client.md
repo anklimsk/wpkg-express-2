@@ -117,7 +117,7 @@
   where:
     * `%SOFTWARE_NETLOGON%` - global variable containing the path to the WPKG script,
       e.g.: `\\fabrikam.com\netlogon`;
-    * `%COUNTRYCODE%` - Look at the (gnuttext manual)[https://www.gnu.org/software/gettext/manual/html_node/Country-Codes.html#Country-Codes]
+    * `%COUNTRYCODE%` - Look at the [gnuttext manual](https://www.gnu.org/software/gettext/manual/html_node/Country-Codes.html#Country-Codes)
       for the 2 character code of your country. 4 character codes seperated by "_" can also be
       used (e.g. de_at for German - Austria or en_GB for English - Britain).
 
