@@ -121,7 +121,7 @@ foreach ($wpis as $wpiPackage) {
 		$attrRow['class'] = 'danger';
 	}
 	$tableRow[] = [
-		$this->Filter->createFilterRowCheckbox('Package.id', $wpiPackage['Wpi']['id']),
+		$this->Filter->createFilterRowCheckbox('Wpi.id', $wpiPackage['Wpi']['id']),
 		['class' => 'action text-center']
 	];
 	if (!$packageState) {
