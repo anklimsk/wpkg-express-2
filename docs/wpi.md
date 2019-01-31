@@ -20,11 +20,19 @@
   * `profiles.xml`;
   * `wpkg.js`.
 - Copy main configuration file `config.js` to `/path/to/WPI/UserFiles`.
+- Run `WPI.exe` and press `F2` to open the `Options Wizard`;
+- Open the `Tools` tab and find groups `Execute before` and `Execute after`:
+  * select the checkboxes `Script or program to execute before installation begins.`
+    and `Script or program to execute after installation is complete.`;
+  * insert the following line in the text inputs: `%ComSpec% /C del /F /Q "%TEMP%\wpkg-wpi.xml"`;
+  * press the `Save` and `Exit` buttons.
 
-`WPI` directory structure:
+## `WPI` directory structure:
+
+The structure of the directory containing `WPI`
 
   ```text
-  WPI root
+  WPI.exe
   +-- Tools
   |   +-- Wpkg
   |       +-- config.xml
@@ -57,4 +65,4 @@
 
 - Change to the temporary directory, e.g.:
   `cd %TEMP%`;
-- View log files by pattern `wpkg-[HOSTNAME]@[DD]-[MM]-[YYYY]-[hh]-[mm]-[ss].log`.
+- View log files by pattern `wpkg-wpi-%COMPUTERNAME%@*.log`.

@@ -7,8 +7,11 @@
 - Open WPKG Express 2 in web browser and navigate to menu `Application settings` ->
   `Settings of WPKG`;
 - In the page menu, click on the menu item `Download XML file`;
-- Open the `config.xml` file and change the `settings_file_path` and `log_file_path`
-  parameters to `%TEMP%`.
+- Open the file `config.xml` and change the following parameters:
+  * `settings_file_path` and `log_file_path` to `%SystemRoot%\\Temp`;
+  * `settings_file_name` to `wpkg-gpo.xml`;
+  * `logfilePattern` to `wpkg-gpo-[HOSTNAME]@[DD]-[MM]-[YYYY]-[hh]-[mm]-[ss].log`;
+  * `logLevel` to `0x13`.
 - Copy the file `config.xml` to `%SOFTWARE_NETLOGON%\WPKG\Config\%Revision%`,
   where:
     * `%SOFTWARE_NETLOGON%` - global variable containing the path to the WPKG script,
