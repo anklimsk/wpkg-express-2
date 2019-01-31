@@ -375,10 +375,15 @@ class Wpi extends AppModel {
 						$param['@value'] = 'false';
 						break;
 					case 'logLevel':
-						$param['@value'] = '0x1f';
+						$logLevels = constsVals('WPKG_CONFIG_LOG_LEVEL_');
+						$logLevel = array_sum($logLevels);
+						$param['@value'] = '0x' . dechex($logLevel);
 						break;
 					case 'log_file_path':
 						$param['@value'] = '%TEMP%';
+						break;
+					case 'logfilePattern':
+						$param['@value'] = 'wpkg-wpi-[HOSTNAME]@[DD]-[MM]-[YYYY]-[hh]-[mm]-[ss].log';
 						break;
 					case 'profiles_path':
 					case 'hosts_path':
