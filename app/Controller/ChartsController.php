@@ -41,7 +41,7 @@ class ChartsController extends AppController {
  * The name of this controller. Controller names are plural, named after the model they manipulate.
  *
  * @var string
- * @link http://book.cakephp.org/2.0/en/controllers.html#controller-ActionTypes
+ * @link http://book.cakephp.org/2.0/en/controllers.html#controller-attributes
  */
 	public $name = 'Charts';
 
