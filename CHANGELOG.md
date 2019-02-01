@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v1.0.0 (2019-02-01)
+
+### New
+
+* Added feature to remove an item from the list of dependencies when viewing information. [Andrey Klimov]
+
+### Fix
+
+* Fixed confirmation of actions. [Andrey Klimov]
+
+* Fixed the filter row checkbox in the WPI package table. [Andrey Klimov]
+
+
 ## v1.0.0-rc.1 (2019-01-29)
 
 ### New
