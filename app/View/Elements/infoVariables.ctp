@@ -181,10 +181,11 @@ if (!isset($showBtnExpand)) {
 	$infoVariables = $this->ViewExtension->showEmpty($list, $this->Html->tag('ul', $list, ['class' => 'list-unstyled']));
 	$infoVariablesFull .= $this->Html->div('pull-left', $this->Html->div(null, $infoVariables, $treeWrapOptions));
 
-	echo $this->Html->div('confirm-form-block', $this->fetch('confirm-form'));
 	if ($showShort) {
 		echo $infoVariablesFull;
 		return;
+	} else {
+		echo $this->Html->div('confirm-form-block', $this->fetch('confirm-form'));
 	}
 ?>
 <dl class="dl-horizontal dl-popup-modal">

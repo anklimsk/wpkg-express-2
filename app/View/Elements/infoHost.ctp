@@ -118,3 +118,5 @@ if (!$host['MainProfile']['enabled']) {
 		</div>
 	</div>
 </div>
+<?php
+	echo $this->Html->div('confirm-form-block', $this->fetch('confirm-form'));

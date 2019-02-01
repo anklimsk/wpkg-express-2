@@ -97,10 +97,11 @@ if (!isset($showBtnExpand)) {
 	}
 	$infoChecksFull .= $this->Html->div('pull-left', $this->element('infoChecks', compact('checks', 'nest', 'expandAll', 'draggable', 'dropUrl')));
 
-	echo $this->Html->div('confirm-form-block', $this->fetch('confirm-form'));
 	if ($showShort) {
 		echo $infoChecksFull;
 		return;
+	} else {
+		echo $this->Html->div('confirm-form-block', $this->fetch('confirm-form'));
 	}
 ?>
 <dl class="dl-horizontal dl-popup-modal">
