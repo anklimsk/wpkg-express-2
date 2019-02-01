@@ -113,7 +113,8 @@ if (!$host['MainProfile']['enabled']) {
 <?php
 	echo $this->element('infoDependency', ['dependencies' => $host['HostsProfile'], 'controllerName' => 'profiles',
 		'modelName' => 'Profile', 'bindLimit' => $bindLimit,
-		'attrRefType' => ATTRIBUTE_TYPE_HOST, 'attrRefNode' => ATTRIBUTE_NODE_PROFILE]);
+		'attrRefType' => ATTRIBUTE_TYPE_HOST, 'attrRefNode' => ATTRIBUTE_NODE_PROFILE,
+		'dependencyType' => 'HostsProfile']);
 ?>
 		</div>
 	</div>

@@ -87,7 +87,7 @@ $profileName = h($profile['Profile']['id_text']);
 		'attrRefType' => ATTRIBUTE_TYPE_PROFILE, 'attrRefNode' => ATTRIBUTE_NODE_PACKAGE,
 		'checkRefType' => CHECK_PARENT_TYPE_PROFILE, 'bindLimit' => $bindLimit,
 		'extInfoElement' => 'infoProfilePackageAttributes', 'extBtnElement' => 'buttonEditProfilePackageAttributes',
-		'includeIdText' => true
+		'includeIdText' => true, 'dependencyType' => 'PackagesProfile'
 		]);
 ?>
 		</div>
@@ -97,7 +97,8 @@ $profileName = h($profile['Profile']['id_text']);
 <?php
 	echo $this->element('infoDependency', ['dependencies' => $profile['ProfilesProfile'], 'controllerName' => 'profiles',
 		'label' => __('Depends on profiles'), 'modelName' => 'ProfileDependency', 'bindLimit' => $bindLimit,
-		'attrRefType' => ATTRIBUTE_TYPE_PROFILE, 'attrRefNode' => ATTRIBUTE_NODE_DEPENDS]);
+		'attrRefType' => ATTRIBUTE_TYPE_PROFILE, 'attrRefNode' => ATTRIBUTE_NODE_DEPENDS,
+		'dependencyType' => 'ProfilesProfile']);
 ?>
 				</div>
 				<div class="col-md-6 col-xs-12">

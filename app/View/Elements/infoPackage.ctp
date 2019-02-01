@@ -152,7 +152,8 @@ if (empty($package)) {
 <?php
 	echo $this->element('infoDependency', ['dependencies' => $package['PackagesPackage'], 'controllerName' => 'packages',
 		'label' => __('Depends on packages'), 'modelName' => 'PackageDependency', 'bindLimit' => $bindLimit,
-		'attrRefType' => ATTRIBUTE_TYPE_PACKAGE, 'attrRefNode' => ATTRIBUTE_NODE_DEPENDS]);
+		'attrRefType' => ATTRIBUTE_TYPE_PACKAGE, 'attrRefNode' => ATTRIBUTE_NODE_DEPENDS,
+		'dependencyType' => 'PackagesPackage']);
 ?>
 				</div>
 				<div class="col-md-6 col-xs-12">
@@ -169,7 +170,8 @@ if (empty($package)) {
 <?php
 	echo $this->element('infoDependency', ['dependencies' => $package['PackagesInclude'], 'controllerName' => 'packages',
 		'label' => __('Includes packages'), 'modelName' => 'PackageDependency', 'bindLimit' => $bindLimit,
-		'attrRefType' => ATTRIBUTE_TYPE_PACKAGE, 'attrRefNode' => ATTRIBUTE_NODE_INCLUDE]);
+		'attrRefType' => ATTRIBUTE_TYPE_PACKAGE, 'attrRefNode' => ATTRIBUTE_NODE_INCLUDE,
+		'dependencyType' => 'PackagesInclude']);
 ?>
 				</div>
 				<div class="col-md-6 col-xs-12">
@@ -186,7 +188,8 @@ if (empty($package)) {
 <?php
 	echo $this->element('infoDependency', ['dependencies' => $package['PackagesChain'], 'controllerName' => 'packages',
 		'label' => __('Chains packages'), 'modelName' => 'PackageDependency', 'bindLimit' => $bindLimit,
-		'attrRefType' => ATTRIBUTE_TYPE_PACKAGE, 'attrRefNode' => ATTRIBUTE_NODE_CHAIN]);
+		'attrRefType' => ATTRIBUTE_TYPE_PACKAGE, 'attrRefNode' => ATTRIBUTE_NODE_CHAIN,
+		'dependencyType' => 'PackagesChain']);
 ?>
 				</div>
 				<div class="col-md-6 col-xs-12">

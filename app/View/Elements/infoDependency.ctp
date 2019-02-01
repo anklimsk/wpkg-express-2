@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.View.Elements
  */
 
@@ -47,6 +47,10 @@ if (!isset($attrRefNode)) {
 
 if (!isset($checkRefType)) {
 	$checkRefType = null;
+}
+
+if (!isset($dependencyType)) {
+	$dependencyType = null;
 }
 
 if (!isset($btnActions)) {
@@ -109,6 +113,17 @@ $list = [];
 		}
 		if ($useExtBtnElement) {
 			$actions .= $this->element($extBtnElement, ['data' => $dependencyItem]);
+		}
+		if (!empty($dependencyType) && isset($dependencyItem['id'])) {
+			$actions .= $this->ViewExtension->buttonLink(
+				'fas fa-trash-alt',
+				'btn-danger',
+				['controller' => 'dependencies', 'action' => 'delete', $dependencyType, $dependencyItem['id']],
+				[
+					'title' => __('Delete record'), 'action-type' => 'confirm-post',
+					'data-confirm-msg' => __('Are you sure you wish to delete this record?')
+				]
+			);
 		}
 		$dependencyInfo = [];
 		$dependencyName = '';

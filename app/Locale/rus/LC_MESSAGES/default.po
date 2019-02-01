@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wpkgExpress II\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2019-01-18 12:02+0300\n"
+"PO-Revision-Date: 2019-02-01 10:45+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -17,15 +17,15 @@ msgstr ""
 "X-Generator: Poedit 2.2\n"
 
 #: Config/cakesearchinfo.php:20 View/Elements/formPackageBase.ctp:71
-#: View/Elements/formPackageExistsProfilesEdit.ctp:45
+#: View/Elements/formPackageExistsProfilesEdit.ctp:52
 #: View/Elements/infoPackage.ctp:61 View/Elements/tablePackage.ctp:75
 #: View/Elements/tableWpiPackage.ctp:57
 msgid "Package ID"
 msgstr "Идентификатор пакета"
 
-#: Config/cakesearchinfo.php:21 Model/Package.php:1179
+#: Config/cakesearchinfo.php:21 Model/Package.php:1186
 #: View/Elements/formHostBase.ctp:53 View/Elements/formPackageBase.ctp:79
-#: View/Elements/formPackageExistsProfilesEdit.ctp:46
+#: View/Elements/formPackageExistsProfilesEdit.ctp:53
 #: View/Elements/infoPackage.ctp:64 View/Elements/tableArchive.ctp:67
 #: View/Elements/tableGarbage.ctp:57 View/Elements/tablePackage.ctp:78
 #: View/Elements/tableWpiPackage.ctp:60
@@ -34,14 +34,14 @@ msgstr "Наименование"
 
 #: Config/cakesearchinfo.php:22;30;38 View/Elements/formHostBase.ctp:59
 #: View/Elements/formPackageBase.ctp:122;155
-#: View/Elements/formProfileBase.ctp:58 View/Elements/infoHost.ctp:77
+#: View/Elements/formProfileBase.ctp:59 View/Elements/infoHost.ctp:77
 #: View/Elements/infoPackage.ctp:81 View/Elements/infoProfile.ctp:59
 #: View/Elements/tableHost.ctp:77 View/Elements/tablePackage.ctp:99
 #: View/Elements/tableProfile.ctp:66 View/Elements/tableWpiPackage.ctp:63
 msgid "Notes"
 msgstr "Примечания"
 
-#: Config/cakesearchinfo.php:25 Model/Package.php:1200
+#: Config/cakesearchinfo.php:25 Model/Package.php:1207
 #: View/Elements/barNav.ctp:76 View/Home/index.ctp:73
 msgid "Packages"
 msgstr "Пакеты"
@@ -425,7 +425,7 @@ msgstr "Недопустимый идентификатор для атрибу�
 msgid "Information of attributes"
 msgstr "Информация об атрибутах"
 
-#: Controller/AttributesController.php:102 View/Elements/infoDependency.ctp:92
+#: Controller/AttributesController.php:102 View/Elements/infoDependency.ctp:96
 #: View/Elements/infoHost.ctp:97 View/Elements/infoVariables.ctp:105
 #: View/Elements/tablePackageActions.ctp:122
 #: View/Elements/treeItemCheckDraggable.ctp:56
@@ -562,6 +562,14 @@ msgid "The WPKG configuration could not be set default. Please, try again."
 msgstr ""
 "Не удалось установить конфигурацию WPKG по умолчанию. Пожалуйста, попробуйте "
 "ещё раз."
+
+#: Controller/DependenciesController.php:60
+msgid "Record has been deleted."
+msgstr "Запись удалена."
+
+#: Controller/DependenciesController.php:63
+msgid "Record could not be deleted. Please, try again."
+msgstr "Не удалось удалить запись. Пожалуйста, попробуйте ещё раз."
 
 #: Controller/DownloadsController.php:58 Model/Download.php:80
 msgid "Downloading XML files"
@@ -955,7 +963,7 @@ msgstr "Вы уверены, что хотите очистить отчеты?"
 
 #: Controller/ReportsController.php:148
 msgid "Parsing client database files put in queue..."
-msgstr "Разбор файлов баз данных клиента помещён в очеред..."
+msgstr "Разбор файлов баз данных клиента помещён в очередь..."
 
 #: Controller/ReportsController.php:151
 msgid "Parsing client database files put in queue unsuccessfully"
@@ -982,7 +990,7 @@ msgstr ""
 msgid "File selection"
 msgstr "Выбор файла"
 
-#: Controller/UploadsController.php:98 Model/Import.php:3477
+#: Controller/UploadsController.php:98 Model/Import.php:3480
 msgid "Uploading XML files"
 msgstr "Загрузка XML файлов"
 
@@ -1244,13 +1252,13 @@ msgstr "не используется в качестве шаблона"
 msgid "Method '%s' is not found in target model"
 msgstr "Метод '%s' не найден в целевой модели"
 
-#: Controller/Component/ExportDataComponent.php:110 Model/Import.php:3389
+#: Controller/Component/ExportDataComponent.php:110 Model/Import.php:3392
 msgid "Fatal errors"
 msgstr "Неустранимые ошибки"
 
 #: Controller/Component/ExportDataComponent.php:111
-#: Model/Import.php:739;752;797;2152;2181;2225;2234;2273;2289;2351;2383;2512;2562;2593;2720;2751;2872;2948;3015;3021;3167;3192;3274;3337;3343;3386
-#: Model/Log.php:373;387;424;561 Model/Report.php:429;461
+#: Model/Import.php:739;752;797;2155;2184;2228;2237;2276;2292;2354;2386;2515;2565;2596;2723;2754;2875;2951;3018;3024;3170;3195;3277;3340;3346;3389
+#: Model/Log.php:373;387;424;561 Model/Report.php:430;462
 #: Model/Behavior/GroupActionBehavior.php:157
 msgid "Errors"
 msgstr "Ошибки"
@@ -1438,7 +1446,7 @@ msgstr "существует"
 msgid "equals '%s'"
 msgstr "равно '%s'"
 
-#: Lib/Utility/RenderCheckData.php:67;150;181;215 Model/Wpi.php:411
+#: Lib/Utility/RenderCheckData.php:67;150;181;215 Model/Wpi.php:416
 #: Model/Behavior/GetXmlInfoBehavior.php:92;104
 #: Model/Behavior/RestoreBehavior.php:260
 msgid "unknown"
@@ -1571,7 +1579,7 @@ msgstr "Корневой узел"
 msgid "Check"
 msgstr "Проверка"
 
-#: Model/Check.php:1457 Model/Import.php:2273 View/Elements/infoPackage.ctp:140
+#: Model/Check.php:1457 Model/Import.php:2276 View/Elements/infoPackage.ctp:140
 msgid "Checks"
 msgstr "Проверки"
 
@@ -1590,6 +1598,14 @@ msgstr "Настройки WPKG"
 #: Model/Config.php:490
 msgid "Configuration for script WPKG ver. %s"
 msgstr "Конфигурация для скрипта WPKG вер. %s"
+
+#: Model/Dependency.php:91
+msgid "Invalid type for deleting record"
+msgstr "Недопустимый тип для удаления записи"
+
+#: Model/Dependency.php:96
+msgid "Invalid ID for deleting record"
+msgstr "Недопустимый идентификатор для удаления записи"
 
 #: Model/Disable.php:78
 msgid "The list of computers for processing is empty"
@@ -1726,7 +1742,7 @@ msgstr "Пакет, профиль, хост, конфигурация WPKG ил
 msgid "Variables"
 msgstr "Переменные"
 
-#: Model/Import.php:739;2225;2273
+#: Model/Import.php:739;2228;2276
 msgid "Error on settings scope"
 msgstr "Ошибка при настройке области"
 
@@ -1734,7 +1750,7 @@ msgstr "Ошибка при настройке области"
 msgid "Invalid file path"
 msgstr "Недопустимый путь к файлу"
 
-#: Model/Import.php:960;3464
+#: Model/Import.php:960;3467
 msgid "Invalid file type. Can be one of: %s"
 msgstr "Недопустимый тип файла. Может быть одним из следующих: %s"
 
@@ -1758,48 +1774,48 @@ msgstr "Входной текстовый файл пуст"
 msgid "Invalid name of dependency model"
 msgstr "Недопустимое имя зависимой модели"
 
-#: Model/Import.php:2225 Model/PackageAction.php:577
+#: Model/Import.php:2228 Model/PackageAction.php:577
 #: View/Elements/infoPackage.ctp:135
 msgid "Package actions"
 msgstr "Действия пакета"
 
-#: Model/Import.php:2872
+#: Model/Import.php:2875
 msgid "Error on deleting records of report"
 msgstr "Ошибка при удалении записей отчета"
 
-#: Model/Import.php:3015
+#: Model/Import.php:3018
 msgid "Error on saving report record"
 msgstr "Ошибка сохранения записи отчета"
 
-#: Model/Import.php:3021
+#: Model/Import.php:3024
 msgid "Error on saving report records"
 msgstr "Ошибка сохранения записей отчёта"
 
-#: Model/Import.php:3167
+#: Model/Import.php:3170
 msgid "Error on saving WPKG configuration"
 msgstr "Ошибка при сохранении конфигурации WPKG"
 
-#: Model/Import.php:3192
+#: Model/Import.php:3195
 msgid "Error on saving WPKG configuration language"
 msgstr "Ошибка при сохранении языка конфигурации WPKG"
 
-#: Model/Import.php:3337
+#: Model/Import.php:3340
 msgid "Error on saving log record"
 msgstr "Ошибка сохранения записи журнала"
 
-#: Model/Import.php:3343
+#: Model/Import.php:3346
 msgid "Error on saving log records"
 msgstr "Ошибка сохранения записей журнала"
 
-#: Model/Import.php:3380
+#: Model/Import.php:3383
 msgid "Other messages"
 msgstr "Другие сообщения"
 
-#: Model/Import.php:3383
+#: Model/Import.php:3386
 msgid "Warnings"
 msgstr "Предупреждения"
 
-#: Model/Import.php:3432
+#: Model/Import.php:3435
 msgid "Invalid path to XSD schema file"
 msgstr "Недопустимый путь к файлу схемы XSD"
 
@@ -1823,11 +1839,11 @@ msgstr "Нет файлов журналов для разбора."
 msgid "Error on retrieving log file name"
 msgstr "Ошибка при получении имени файла журнала"
 
-#: Model/Log.php:387 Model/Report.php:429
+#: Model/Log.php:387 Model/Report.php:430
 msgid "Error on copying files"
 msgstr "Ошибка при копировании файлов"
 
-#: Model/Log.php:424 Model/Report.php:461
+#: Model/Log.php:424 Model/Report.php:462
 msgid "Error on removing unused hosts"
 msgstr "Ошибка при удалении неиспользуемых хостов"
 
@@ -1858,32 +1874,32 @@ msgstr ""
 "Пакет '%s' не может быть удалён или отключен, поскольку он существует в %s "
 "для следующих пакетов: %s"
 
-#: Model/Package.php:1189 View/Elements/formPackageBase.ctp:62
+#: Model/Package.php:1196 View/Elements/formPackageBase.ctp:62
 #: View/Elements/formWpiBase.ctp:56 View/Elements/tableReport.ctp:59
 msgid "Package"
 msgstr "Пакет"
 
-#: Model/Package.php:1224
+#: Model/Package.php:1231
 msgid "Package '%s'"
 msgstr "Пакет '%s'"
 
-#: Model/Package.php:1226
+#: Model/Package.php:1233
 msgid "package '%s'"
 msgstr "пакета '%s'"
 
-#: Model/Package.php:1238
+#: Model/Package.php:1245
 msgid "full data of packages"
 msgstr "полные данные пакетов"
 
-#: Model/Package.php:1406
+#: Model/Package.php:1413
 msgid "Present in"
 msgstr "Присутствует в"
 
-#: Model/Package.php:1455
+#: Model/Package.php:1462
 msgid "Versions of package '%s'"
 msgstr "Версии пакета '%s'"
 
-#: Model/Package.php:1483
+#: Model/Package.php:1490
 msgid "Chart of the installed versions of the package '%s'"
 msgstr "Диаграмма установленных версий пакета '%s'"
 
@@ -1902,17 +1918,17 @@ msgctxt "check disable"
 msgid "chains"
 msgstr "цепочках"
 
-#: Model/Package.php:1427 Model/Profile.php:931
+#: Model/Package.php:1434 Model/Profile.php:931
 msgctxt "dependency"
 msgid "Depends on"
 msgstr "Зависит от"
 
-#: Model/Package.php:1428
+#: Model/Package.php:1435
 msgctxt "dependency"
 msgid "Includes on"
 msgstr "Включает"
 
-#: Model/Package.php:1429
+#: Model/Package.php:1436
 msgctxt "dependency"
 msgid "Chain on"
 msgstr "Цепочки"
@@ -2075,7 +2091,7 @@ msgstr "Отчёты"
 msgid "Report of host %s"
 msgstr "Отчет хоста %s"
 
-#: Model/Report.php:420;440
+#: Model/Report.php:421;441
 msgid "No database files to parsing."
 msgstr "Нет файлов базы данных для разбора."
 
@@ -2099,16 +2115,16 @@ msgstr "переменной %s%s"
 msgid "global environment"
 msgstr "глобального окружения"
 
-#: Model/Wpi.php:514 View/Elements/formWpiBase.ctp:47
+#: Model/Wpi.php:519 View/Elements/formWpiBase.ctp:47
 #: View/Elements/infoWpiPackage.ctp:38
 msgid "WPI package"
 msgstr "Пакет WPI"
 
-#: Model/Wpi.php:525
+#: Model/Wpi.php:530
 msgid "WPI packages"
 msgstr "Пакеты WPI"
 
-#: Model/Wpi.php:572
+#: Model/Wpi.php:577
 msgid "WPI package %s"
 msgstr "Пакет WPI %s"
 
@@ -2661,12 +2677,12 @@ msgstr "Содержимое этого поля зависит от типа и
 #: View/Elements/formHostBase.ctp:64
 #: View/Elements/formPackageActionBase.ctp:157
 #: View/Elements/formPackageActionTypeBase.ctp:55
-#: View/Elements/formPackageExistsProfilesEdit.ctp:52
+#: View/Elements/formPackageExistsProfilesEdit.ctp:60
 #: View/Elements/formPackagePriorityBase.ctp:51
 #: View/Elements/formPackagesProfileBase.ctp:56
-#: View/Elements/formProfileAssociatedPackagesEdit.ctp:48
-#: View/Elements/formProfileBase.ctp:63
-#: View/Elements/formProfileExistsHostsEdit.ctp:48
+#: View/Elements/formProfileAssociatedPackagesEdit.ctp:49
+#: View/Elements/formProfileBase.ctp:64
+#: View/Elements/formProfileExistsHostsEdit.ctp:49
 #: View/Elements/formVariableBase.ctp:81 View/Elements/formWpiBase.ctp:70
 #: View/Elements/formWpiCategoryBase.ctp:50
 msgid "Save"
@@ -3770,11 +3786,11 @@ msgstr "Предпроверки"
 msgid "Dependencies"
 msgstr "Зависимости"
 
-#: View/Elements/formPackageExistsProfilesEdit.ctp:47
+#: View/Elements/formPackageExistsProfilesEdit.ctp:54
 msgid "Profiles including this package"
 msgstr "Профили, включающие этот пакет"
 
-#: View/Elements/formPackageExistsProfilesEdit.ctp:47
+#: View/Elements/formPackageExistsProfilesEdit.ctp:54
 msgid "Profiles including this package."
 msgstr "Профили, включающие этот пакет."
 
@@ -3856,7 +3872,7 @@ msgstr ""
 msgid "Profiles that this profile depends on."
 msgstr "Профили, от которых зависит этот профиль."
 
-#: View/Elements/formProfileBase.ctp:58
+#: View/Elements/formProfileBase.ctp:59
 msgid "Additional notes about this profile. Not used by WPKG."
 msgstr "Дополнительные примечания об этом профиле. Не используется WPKG ."
 
@@ -3977,10 +3993,18 @@ msgstr "Ошибка при создании диаграммы"
 msgid "Add checks"
 msgstr "Добавить проверки"
 
-#: View/Elements/infoDependency.ctp:103 View/Elements/infoVariables.ctp:115
+#: View/Elements/infoDependency.ctp:107 View/Elements/infoVariables.ctp:115
 #: View/Elements/tablePackageActions.ctp:131
 msgid "Edit checks"
 msgstr "Изменить проверки"
+
+#: View/Elements/infoDependency.ctp:123
+msgid "Delete record"
+msgstr "Удалить запись"
+
+#: View/Elements/infoDependency.ctp:124
+msgid "Are you sure you wish to delete this record?"
+msgstr "Вы уверены, что хотите удалить эту запись?"
 
 #: View/Elements/infoExitCodes.ctp:52
 msgid "Reboot: %s"
@@ -4087,7 +4111,7 @@ msgstr "Включения"
 msgid "Chains"
 msgstr "Цепочки"
 
-#: View/Elements/infoPackage.ctp:161 View/Elements/infoProfile.ctp:106
+#: View/Elements/infoPackage.ctp:161 View/Elements/infoProfile.ctp:107
 msgid "Exists in dependencies"
 msgstr "Находиться в зависимостях"
 
@@ -4151,15 +4175,15 @@ msgstr "Зависит от профилей"
 msgid "Modify list of associated packages"
 msgstr "Изменить список связанных пакетов"
 
-#: View/Elements/infoProfile.ctp:126
+#: View/Elements/infoProfile.ctp:127
 msgid "Edit existing profile in hosts"
 msgstr "Редактирование наличия профиля в хостах"
 
-#: View/Elements/infoProfile.ctp:131
+#: View/Elements/infoProfile.ctp:132
 msgid "Associated profiles"
 msgstr "Связанные профили"
 
-#: View/Elements/infoProfile.ctp:137
+#: View/Elements/infoProfile.ctp:138
 msgid "Main profiles"
 msgstr "Основные профили"
 
