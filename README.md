@@ -1,6 +1,6 @@
 # WPKG Express 2
 [![Build Status](https://travis-ci.com/anklimsk/wpkg-express-2.svg?branch=master)](https://travis-ci.com/anklimsk/wpkg-express-2)
-[![Latest Unstable Version](https://poser.pugx.org/anklimsk/wpkg-express-2/v/unstable)](https://packagist.org/packages/anklimsk/wpkg-express-2)
+[![Latest Stable Version](https://poser.pugx.org/anklimsk/wpkg-express-2/v/stable)](https://packagist.org/packages/anklimsk/wpkg-express-2)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 A web-based frontend to [WPKG](https://wpkg.org)
@@ -50,7 +50,7 @@ by Brian White &copy;2009.
 ## Installation
 
 1. Install WPKG Express 2 using composer:
-  `composer create-project anklimsk/wpkg-express-2 /path/to/wpkg --stability beta`.
+  `composer create-project anklimsk/wpkg-express-2 /path/to/wpkg`.
 2. Copy applicaton files from `/path/to/wpkg`
   to VirtualHost document root directory, e.g.: `/var/www/wpkg`.
 3. Navigate to the directory `app` application (`/var/www/wpkg/app`),
