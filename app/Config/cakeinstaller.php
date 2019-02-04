@@ -45,6 +45,12 @@ $config['CakeInstaller'] = [
 			// Critical need
 			true
 		],
+		[
+			// Extension name
+			'openssl',
+			// Critical need
+			true
+		],
 /*
 		[
 			// Extension name
