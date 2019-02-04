@@ -388,6 +388,13 @@ class Report extends AppModel {
 		$workgroup = $modelSetting->getConfig('SmbWorkgroup');
 		$host = $modelSetting->getConfig('SmbServer');
 		$shareName = $modelSetting->getConfig('SmbDbShare');
+		if (empty($user) || empty($pswd) || empty($workgroup) ||
+			empty($host) || empty($shareName)) {
+			$this->_modelExtendQueuedTask->updateTaskErrorMessage($idTask, __('Parsing database files is not configured.'));
+			$this->_modelExtendQueuedTask->updateProgress($idTask, 1);
+
+			return true;
+		}
 
 		$auth = new \Icewind\SMB\BasicAuth($user, $workgroup, $pswd);
 		$serverFactory = new \Icewind\SMB\ServerFactory();
@@ -487,12 +494,17 @@ class Report extends AppModel {
 		$pswd = $modelSetting->getConfig('SmbAuthPassword');
 		$workgroup = $modelSetting->getConfig('SmbWorkgroup');
 		$host = $modelSetting->getConfig('SmbServer');
-		$share = $modelSetting->getConfig('SmbDbShare');
+		$shareName = $modelSetting->getConfig('SmbDbShare');
+		if (empty($user) || empty($pswd) || empty($workgroup) ||
+			empty($host) || empty($shareName)) {
+
+			return false;
+		}
 
 		$auth = new \Icewind\SMB\BasicAuth($user, $workgroup, $pswd);
 		$serverFactory = new \Icewind\SMB\ServerFactory();
 		$server = $serverFactory->createServer($host, $auth);
-		$share = $server->getShare($share);
+		$share = $server->getShare($shareName);
 		$files = $share->dir('');
 		$dbFileNamePath = null;
 		foreach ($files as $info) {

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wpkgExpress II\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2019-02-01 10:45+0300\n"
+"PO-Revision-Date: 2019-02-04 13:40+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -563,11 +563,11 @@ msgstr ""
 "Не удалось установить конфигурацию WPKG по умолчанию. Пожалуйста, попробуйте "
 "ещё раз."
 
-#: Controller/DependenciesController.php:60
+#: Controller/DependenciesController.php:61
 msgid "Record has been deleted."
 msgstr "Запись удалена."
 
-#: Controller/DependenciesController.php:63
+#: Controller/DependenciesController.php:64
 msgid "Record could not be deleted. Please, try again."
 msgstr "Не удалось удалить запись. Пожалуйста, попробуйте ещё раз."
 
@@ -1258,7 +1258,7 @@ msgstr "Неустранимые ошибки"
 
 #: Controller/Component/ExportDataComponent.php:111
 #: Model/Import.php:739;752;797;2155;2184;2228;2237;2276;2292;2354;2386;2515;2565;2596;2723;2754;2875;2951;3018;3024;3170;3195;3277;3340;3346;3389
-#: Model/Log.php:373;387;424;561 Model/Report.php:430;462
+#: Model/Log.php:380;394;431;568 Model/Report.php:437;469
 #: Model/Behavior/GroupActionBehavior.php:157
 msgid "Errors"
 msgstr "Ошибки"
@@ -1575,7 +1575,7 @@ msgid "Root node"
 msgstr "Корневой узел"
 
 #: Model/Check.php:1446 View/Elements/formCheckBase.ctp:236
-#: View/Elements/infoChecksControls.ctp:115
+#: View/Elements/infoChecksControls.ctp:116
 msgid "Check"
 msgstr "Проверка"
 
@@ -1599,11 +1599,11 @@ msgstr "Настройки WPKG"
 msgid "Configuration for script WPKG ver. %s"
 msgstr "Конфигурация для скрипта WPKG вер. %s"
 
-#: Model/Dependency.php:91
+#: Model/Dependency.php:101
 msgid "Invalid type for deleting record"
 msgstr "Недопустимый тип для удаления записи"
 
-#: Model/Dependency.php:96
+#: Model/Dependency.php:106
 msgid "Invalid ID for deleting record"
 msgstr "Недопустимый идентификатор для удаления записи"
 
@@ -1615,7 +1615,7 @@ msgstr "Список компьютеров для обработки пуст"
 msgid "The list of hosts for processing is empty"
 msgstr "Список хостов для обработки пуст"
 
-#: Model/Disable.php:179 Model/Log.php:519
+#: Model/Disable.php:179 Model/Log.php:526
 msgid "Administrator of WPKG"
 msgstr "Администратор WPKG"
 
@@ -1623,7 +1623,7 @@ msgstr "Администратор WPKG"
 msgid "Unused hosts and profiles is disabled"
 msgstr "Неиспользуемые хосты и профили отключены"
 
-#: Model/Disable.php:202 Model/Log.php:561
+#: Model/Disable.php:202 Model/Log.php:568
 msgid "Error on putting sending e-mail for \"%s\" in queue..."
 msgstr ""
 "Ошибка при помещении отправки электронной почты для \"%s\" в очередь..."
@@ -1738,7 +1738,7 @@ msgstr "Пакет, профиль, хост, конфигурация WPKG ил
 
 #: Model/Import.php:739 Model/Variable.php:228 View/Elements/infoHost.ctp:86
 #: View/Elements/infoPackage.ctp:139 View/Elements/infoProfile.ctp:69
-#: View/Elements/infoVariables.ctp:199
+#: View/Elements/infoVariables.ctp:200
 msgid "Variables"
 msgstr "Переменные"
 
@@ -1831,35 +1831,39 @@ msgstr "Журналы"
 msgid "Log of host %s"
 msgstr "Журнал хостов %s"
 
-#: Model/Log.php:365;398
+#: Model/Log.php:346
+msgid "Parsing log files is not configured."
+msgstr "Разбор файлов журналов не настроен."
+
+#: Model/Log.php:372;405
 msgid "No log files to parsing."
 msgstr "Нет файлов журналов для разбора."
 
-#: Model/Log.php:373
+#: Model/Log.php:380
 msgid "Error on retrieving log file name"
 msgstr "Ошибка при получении имени файла журнала"
 
-#: Model/Log.php:387 Model/Report.php:430
+#: Model/Log.php:394 Model/Report.php:437
 msgid "Error on copying files"
 msgstr "Ошибка при копировании файлов"
 
-#: Model/Log.php:424 Model/Report.php:462
+#: Model/Log.php:431 Model/Report.php:469
 msgid "Error on removing unused hosts"
 msgstr "Ошибка при удалении неиспользуемых хостов"
 
-#: Model/Log.php:483 View/Elements/tableLog.ctp:194
+#: Model/Log.php:490 View/Elements/tableLog.ctp:194
 msgid "...And %s more %s"
 msgstr "...И еще %s %s"
 
-#: Model/Log.php:534
+#: Model/Log.php:541
 msgid "Found new errors of WPKG"
 msgstr "Найдены новые ошибки WPKG"
 
-#: Model/Log.php:561
+#: Model/Log.php:568
 msgid "Error on sending e-mail"
 msgstr "Ошибка при отправке электронной почты"
 
-#: Model/Log.php:486
+#: Model/Log.php:493
 msgid "record"
 msgid_plural "records"
 msgstr[0] "запись"
@@ -2091,7 +2095,11 @@ msgstr "Отчёты"
 msgid "Report of host %s"
 msgstr "Отчет хоста %s"
 
-#: Model/Report.php:421;441
+#: Model/Report.php:393
+msgid "Parsing database files is not configured."
+msgstr "Разбор файлов базы данных не настроен."
+
+#: Model/Report.php:428;448
 msgid "No database files to parsing."
 msgstr "Нет файлов базы данных для разбора."
 
@@ -2633,7 +2641,7 @@ msgid ""
 msgstr ""
 "Содержит условие для проверки переменных среды, например: 'PKG_VER=^$'."
 
-#: View/Elements/formCheckBase.ctp:247 View/Elements/infoChecksControls.ctp:110
+#: View/Elements/formCheckBase.ctp:247 View/Elements/infoChecksControls.ctp:111
 msgid "Check type"
 msgstr "Тип проверки"
 
@@ -3722,7 +3730,7 @@ msgstr ""
 "установки или обновления, поэтому зависимость всегда устанавливается прямо "
 "<u>перед</u> текущим пакетом независимо от приоритета пакетов."
 
-#: View/Elements/formPackageBase.ctp:127 View/Elements/infoPackage.ctp:171
+#: View/Elements/formPackageBase.ctp:127 View/Elements/infoPackage.ctp:172
 msgid "Includes packages"
 msgstr "Включает пакеты"
 
@@ -3745,7 +3753,7 @@ msgstr ""
 "обеспечить соблюдение определенного порядка установки, пожалуйста, "
 "рассмотрите возможность указать <i>зависимость</i>."
 
-#: View/Elements/formPackageBase.ctp:130 View/Elements/infoPackage.ctp:188
+#: View/Elements/formPackageBase.ctp:130 View/Elements/infoPackage.ctp:190
 msgid "Chains packages"
 msgstr "Цепочки пакетов"
 
@@ -3922,7 +3930,7 @@ msgstr "Максимальный размер файла XML"
 msgid "Upload XML file"
 msgstr "Загрузить файл XML"
 
-#: View/Elements/formVariableBase.ctp:54 View/Elements/infoVariables.ctp:194
+#: View/Elements/formVariableBase.ctp:54 View/Elements/infoVariables.ctp:195
 msgid "Variable type"
 msgstr "Тип переменной"
 
@@ -4111,19 +4119,19 @@ msgstr "Включения"
 msgid "Chains"
 msgstr "Цепочки"
 
-#: View/Elements/infoPackage.ctp:161 View/Elements/infoProfile.ctp:107
+#: View/Elements/infoPackage.ctp:162 View/Elements/infoProfile.ctp:107
 msgid "Exists in dependencies"
 msgstr "Находиться в зависимостях"
 
-#: View/Elements/infoPackage.ctp:178
+#: View/Elements/infoPackage.ctp:180
 msgid "Exists in inclusions"
 msgstr "Находиться во включениях"
 
-#: View/Elements/infoPackage.ctp:195
+#: View/Elements/infoPackage.ctp:198
 msgid "Exists in chains"
 msgstr "Находиться в цепочках"
 
-#: View/Elements/infoPackage.ctp:219
+#: View/Elements/infoPackage.ctp:222
 msgid "Edit existing package in profiles"
 msgstr "Редактирование наличия пакета в профилях"
 

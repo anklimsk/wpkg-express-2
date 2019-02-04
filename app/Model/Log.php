@@ -341,6 +341,13 @@ class Log extends AppModel {
 		$workgroup = $modelSetting->getConfig('SmbWorkgroup');
 		$host = $modelSetting->getConfig('SmbServer');
 		$shareName = $modelSetting->getConfig('SmbLogShare');
+		if (empty($user) || empty($pswd) || empty($workgroup) ||
+			empty($host) || empty($shareName)) {
+			$this->_modelExtendQueuedTask->updateTaskErrorMessage($idTask, __('Parsing log files is not configured.'));
+			$this->_modelExtendQueuedTask->updateProgress($idTask, 1);
+
+			return true;
+		}
 
 		$auth = new \Icewind\SMB\BasicAuth($user, $workgroup, $pswd);
 		$serverFactory = new \Icewind\SMB\ServerFactory();
