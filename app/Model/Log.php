@@ -348,7 +348,7 @@ class Log extends AppModel {
 		$share = $server->getShare($shareName);
 
 		$aRemoteFiles = [];
-		$files = $share->dir('/');
+		$files = $share->dir('');
 		foreach ($files as $info) {
 			if ($info->isDirectory()) {
 				continue;

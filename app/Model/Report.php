@@ -493,7 +493,7 @@ class Report extends AppModel {
 		$serverFactory = new \Icewind\SMB\ServerFactory();
 		$server = $serverFactory->createServer($host, $auth);
 		$share = $server->getShare($share);
-		$files = $share->dir('/');
+		$files = $share->dir('');
 		$dbFileNamePath = null;
 		foreach ($files as $info) {
 			if ($info->isDirectory()) {
