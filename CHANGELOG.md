@@ -1,6 +1,15 @@
 # Changelog
 
 
+## v1.0.1 (2019-02-04)
+
+### Fix
+
+* Fixed parsing of logs and reports files without settings. [Andrey Klimov]
+
+* Replacing OpenSSL instead of outdated mcrpyt extension. [Andrey Klimov]
+
+
 ## v1.0.0 (2019-02-01)
 
 ### New
