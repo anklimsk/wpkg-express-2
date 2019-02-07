@@ -748,46 +748,6 @@
         "homepage": "https://github.com/anklimsk/cakephp-search-info"
     },
     {
-        "name": "anklimsk/cakephp-settings-app",
-        "version": "v1.0.5",
-        "version_normalized": "1.0.5.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/anklimsk/cakephp-settings-app.git",
-            "reference": "02e0f551a67cd51ee26877579343135d3ed082b5"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/anklimsk/cakephp-settings-app/zipball/02e0f551a67cd51ee26877579343135d3ed082b5",
-            "reference": "02e0f551a67cd51ee26877579343135d3ed082b5",
-            "shasum": ""
-        },
-        "require": {
-            "anklimsk/cakephp-config-plugin": "^1.0.0",
-            "anklimsk/cakephp-extended-test": "^1.0.0",
-            "anklimsk/cakephp2-theme": "^1.0.0",
-            "composer/installers": "^1.5.0",
-            "php": ">=5.4"
-        },
-        "time": "2018-11-19 10:55:33",
-        "type": "cakephp-plugin",
-        "extra": {
-            "installer-name": "CakeSettingsApp"
-        },
-        "installation-source": "dist",
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Andrey Klimov"
-            }
-        ],
-        "description": " UI for CakePHP 2.x application settings",
-        "homepage": "https://github.com/anklimsk/cakephp-settings-app"
-    },
-    {
         "name": "anklimsk/cakephp2-theme",
         "version": "v1.1.1",
         "version_normalized": "1.1.1.0",
@@ -828,5 +788,45 @@
         ],
         "description": "Full UI theme for CakePHP 2.x",
         "homepage": "https://github.com/anklimsk/cakephp-theme"
+    },
+    {
+        "name": "anklimsk/cakephp-settings-app",
+        "version": "v1.0.6",
+        "version_normalized": "1.0.6.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/anklimsk/cakephp-settings-app.git",
+            "reference": "c333bf6e649c173ae0a4f944db918140837fc406"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/anklimsk/cakephp-settings-app/zipball/c333bf6e649c173ae0a4f944db918140837fc406",
+            "reference": "c333bf6e649c173ae0a4f944db918140837fc406",
+            "shasum": ""
+        },
+        "require": {
+            "anklimsk/cakephp-config-plugin": "^1.0.0",
+            "anklimsk/cakephp-extended-test": "^1.0.0",
+            "anklimsk/cakephp2-theme": "^1.0.0",
+            "composer/installers": "^1.5.0",
+            "php": ">=5.4"
+        },
+        "time": "2019-02-07 10:51:12",
+        "type": "cakephp-plugin",
+        "extra": {
+            "installer-name": "CakeSettingsApp"
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Andrey Klimov"
+            }
+        ],
+        "description": " UI for CakePHP 2.x application settings",
+        "homepage": "https://github.com/anklimsk/cakephp-settings-app"
     }
 ]

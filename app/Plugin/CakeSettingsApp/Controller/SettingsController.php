@@ -4,7 +4,7 @@
  * Management settings of application.
  *
  * CakeSettingsApp: Manage settings of application.
- * @copyright Copyright 2016-2018, Andrey Klimov.
+ * @copyright Copyright 2016-2019, Andrey Klimov.
  * @license https://opensource.org/licenses/mit-license.php MIT License
  * @package plugin.Controller
  */
@@ -147,10 +147,11 @@ class SettingsController extends CakeSettingsAppAppController {
 				$currentConfig
 			);
 			$this->request->data('Setting', $appSetting['Setting']);
-			foreach ($passFields as $passField) {
-				$this->request->data('Setting.' . $passField, '');
-			}
 			$this->Setting->createValidationRules();
+		}
+		foreach ($passFields as $passField) {
+			$this->request->data('Setting.' . $passField, '');
+			$this->request->data('Setting.' . $passField . '_confirm', '');
 		}
 
 		$country = $this->Setting->getCountryCodeByLanguage($currLanguage);
