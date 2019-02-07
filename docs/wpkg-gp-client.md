@@ -66,7 +66,7 @@
   `%SOFTWARE_NETLOGON%\WPKG\Client\GP-Client\Common`
   where:
     * `%SOFTWARE_NETLOGON%` - global variable containing the path to the WPKG script,
-      e.g.: `\\fabrikam.com\netlogon`;
+      e.g.: `\\fabrikam.com\NETLOGON`;
     * `%Revision%` - current version of the WPKG configuration file, e.g.,
       the modification date: `2018.12.05`.
 
@@ -116,7 +116,7 @@
 - Copy the `wpkg-gp-client.mo` file to `%SOFTWARE_NETLOGON%\WPKG\Client\GP-Client\Common\locale\%COUNTRYCODE%\LC_MESSAGES`,
   where:
     * `%SOFTWARE_NETLOGON%` - global variable containing the path to the WPKG script,
-      e.g.: `\\fabrikam.com\netlogon`;
+      e.g.: `\\fabrikam.com\NETLOGON`;
     * `%COUNTRYCODE%` - Look at the [gnuttext manual](https://www.gnu.org/software/gettext/manual/html_node/Country-Codes.html#Country-Codes)
       for the 2 character code of your country. 4 character codes seperated by "_" can also be
       used (e.g. de_at for German - Austria or en_GB for English - Britain).
@@ -127,7 +127,7 @@
 - Copy the `wpkg-gp-client_v%Revision%.exe` file to `%SOFTWARE_NETLOGON%\WPKG\GP-Client\%Revision%`,
   where:
     * `%SOFTWARE_NETLOGON%` - global variable containing the path to the WPKG script,
-      e.g.: `\\fabrikam.com\netlogon`;
+      e.g.: `\\fabrikam.com\NETLOGON`;
     * `%Revision%` - current version of the WPKG-GP, e.g.: `0.9.7.4`.
 - Create a XML package file:
 

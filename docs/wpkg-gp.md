@@ -182,7 +182,7 @@
   `%SOFTWARE_NETLOGON%\WPKG\Client\GP\Common`
   where:
     * `%SOFTWARE_NETLOGON%` - global variable containing the path to the WPKG script,
-      e.g.: `\\fabrikam.com\netlogon`;
+      e.g.: `\\fabrikam.com\NETLOGON`;
     * `%Revision%` - current version of the WPKG configuration file, e.g.,
       the modification date: `2018.12.05`.
 
@@ -232,7 +232,7 @@
 - Copy the `wpkg-gp.mo` file to `%SOFTWARE_NETLOGON%\WPKG\Client\GP\Common\locale\%COUNTRYCODE%\LC_MESSAGES`,
   where:
     * `%SOFTWARE_NETLOGON%` - global variable containing the path to the WPKG script,
-      e.g.: `\\fabrikam.com\netlogon`;
+      e.g.: `\\fabrikam.com\NETLOGON`;
     * `%COUNTRYCODE%` - Look at the [gnuttext manual](https://www.gnu.org/software/gettext/manual/html_node/Country-Codes.html#Country-Codes)
       for the 2 character code of your country. 4 character codes seperated by "_" can also be
       used (e.g. de_at for German - Austria or en_GB for English - Britain).
@@ -284,7 +284,7 @@
 - Copy the `ConfigService.exe` file to `%SOFTWARE_NETLOGON%\WPKG\Client\GP\Common`,
   where:
     * `%SOFTWARE_NETLOGON%` - global variable containing the path to the WPKG script,
-      e.g.: `\\fabrikam.com\netlogon`.
+      e.g.: `\\fabrikam.com\NETLOGON`.
 
 ## Preparing a WPKG-GP
 
@@ -292,7 +292,7 @@
 - Copy the `Wpkg-GP-%Revision%_w7_%ARCH%.exe` files to `%SOFTWARE_NETLOGON%\WPKG\GP\%Revision%\%ARCH%`,
   where:
     * `%SOFTWARE_NETLOGON%` - global variable containing the path to the WPKG script,
-      e.g.: `\\fabrikam.com\netlogon`;
+      e.g.: `\\fabrikam.com\NETLOGON`;
     * `%Revision%` - current version of the WPKG-GP, e.g.: `0.17.17`;
     * `%ARCH%` - architecture `x86` or `x64`.
 - Create a XML package file:
@@ -355,11 +355,11 @@
   ```batchfile
   @Echo off
   
-  Set _SOFTWARE_NETLOGON=\\fabrikam.com\netlogon
+  Set _SOFTWARE_NETLOGON=\\fabrikam.com\NETLOGON
   Set _WPKG_SCRIPT_REVISION=1.3.1
   Set _WPKG_SCRIPT_PATH=%_SOFTWARE_NETLOGON%\WPKG\Script\%_WPKG_SCRIPT_REVISION%
   
-  cscript.exe //NoLogo %_WPKG_SCRIPT_PATH%\wpkg.js /install:WPKG-GP /quiet:true /nonotify:true /noreboot:true /sendStatus:false /noremove:true /norunningstate:true
+  cscript.exe //NoLogo %_WPKG_SCRIPT_PATH%\wpkg.js /synchronize /quiet:true /nonotify:true /noreboot:true /sendStatus:false /noremove:true /norunningstate:true
   ```
 
 - Check the variables `_SOFTWARE_NETLOGON` and `_WPKG_SCRIPT_REVISION`;

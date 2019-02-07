@@ -7,15 +7,23 @@
 - Open WPKG Express 2 in web browser and navigate to menu `Application settings` ->
   `Settings of WPKG`;
 - In the page menu, click on the menu item `Download XML file`;
+- Copy the file `config.xml` to `%SOFTWARE_NETLOGON%\WPKG\Config\%Revision%`,
+  where:
+    * `%SOFTWARE_NETLOGON%` - global variable containing the path to the WPKG script,
+      e.g.: `\\fabrikam.com\NETLOGON`;
+    * `%Revision%` - current version of the WPKG configuration file, e.g.,
+      the modification date: `2018.12.05`.
 - Open the file `config.xml` and change the following parameters:
   * `settings_file_path` and `log_file_path` to `%SystemRoot%\\Temp`;
   * `settings_file_name` to `wpkg-gpo.xml`;
   * `logfilePattern` to `wpkg-gpo-[HOSTNAME]@[DD]-[MM]-[YYYY]-[hh]-[mm]-[ss].log`;
-  * `logLevel` to `0x13`.
-- Copy the file `config.xml` to `%SOFTWARE_NETLOGON%\WPKG\Config\%Revision%`,
+  * `logLevel` to `0x13`;
+  * `profiles_path` to `profiles.xml`;
+  * `hosts_path` to `hosts.xml`.
+- Copy the file `config.xml` to `%SOFTWARE_NETLOGON%\WPKG\Script\%Revision%`,
   where:
     * `%SOFTWARE_NETLOGON%` - global variable containing the path to the WPKG script,
-      e.g.: `\\fabrikam.com\netlogon`;
+      e.g.: `\\fabrikam.com\NETLOGON`;
     * `%Revision%` - current version of the WPKG configuration file, e.g.,
       the modification date: `2018.12.05`.
 - Create a XML package file:
@@ -54,13 +62,46 @@
   `Upload XML files`;
 - Upload created XML file.
 
+## Preparing the `profiles.xml` and `hosts.xml` files
+
+- Create a XML profile file:
+
+  ```xml
+  <?xml version="1.0" encoding="UTF-8"?>
+  <profiles:profiles xmlns:profiles="http://www.wpkg.org/profiles" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wpkg.org/profiles">
+    <profile id="WPKG_Common">
+      <!-- Notes: WPKG common profile. -->
+      <package package-id="WPKG-GP"/>
+    </profile>
+  </profiles:profiles>
+  ```
+
+- Save as `profiles.xml`;
+- Create a XML host file:
+
+  ```xml
+  <?xml version="1.0" encoding="UTF-8"?>
+  <hosts:wpkg xmlns:hosts="http://www.wpkg.org/hosts" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wpkg.org/hosts">
+    <host name=".+" profile-id="WPKG_Common">
+      <!-- Notes: WPKG common host. -->
+    </host>
+  </hosts:wpkg>
+  ```
+
+- Save as `hosts.xml`;
+- Copy the files `profiles.xml` and `hosts.xml` to `%SOFTWARE_NETLOGON%\WPKG\Script\%Revision%`,
+  where:
+    * `%SOFTWARE_NETLOGON%` - global variable containing the path to the WPKG script,
+      e.g.: `\\fabrikam.com\NETLOGON`;
+    * `%Revision%` - current version of the WPKG script, e.g.: `1.3.1`.
+
 ## Preparing a WPKG script file
 
 - Download and extract [WPKG](https://wpkg.org/Download);
 - Copy the `config.xml` and `wpkg.js` files to `%SOFTWARE_NETLOGON%\WPKG\Script\%Revision%`,
   where:
     * `%SOFTWARE_NETLOGON%` - global variable containing the path to the WPKG script,
-      e.g.: `\\fabrikam.com\netlogon`;
+      e.g.: `\\fabrikam.com\NETLOGON`;
     * `%Revision%` - current version of the WPKG script, e.g.: `1.3.1`.
 - Create a XML package file:
 
@@ -112,5 +153,7 @@ The structure of the directory `WPKG` located in the %SOFTWARE_NETLOGON%
   +-- Script
       +-- 1.3.1
           +-- config.xml
+          +-- hosts.xml
+          +-- profiles.xml
           +-- wpkg.js
   ```
