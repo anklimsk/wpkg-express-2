@@ -32,11 +32,6 @@ App::uses('File', 'Utility');
 App::uses('Folder', 'Utility');
 App::uses('CakeNumber', 'Utility');
 App::uses('RenderXmlData', 'Utility');
-App::import(
-	'Vendor',
-	'SMB',
-	['file' => 'SMB' . DS . 'vendor' . DS . 'autoload.php']
-);
 
 /**
  * The model is used to manage logs.
@@ -63,6 +58,7 @@ class Log extends AppModel {
 		'BreadCrumbExt',
 		'GroupAction',
 		'GetNumber' => ['cacheConfig' => CACHE_KEY_STATISTICS_INFO_LOG],
+		'SmbClient',
 		'ValidationRules'
 	];
 
@@ -334,35 +330,36 @@ class Log extends AppModel {
 		}
 
 		$logFilePattern = $this->_getLogFilePattern($hostName);
-
-		$modelSetting = ClassRegistry::init('Setting');
-		$user = $modelSetting->getConfig('SmbAuthUser');
-		$pswd = $modelSetting->getConfig('SmbAuthPassword');
-		$workgroup = $modelSetting->getConfig('SmbWorkgroup');
-		$host = $modelSetting->getConfig('SmbServer');
-		$shareName = $modelSetting->getConfig('SmbLogShare');
-		if (empty($user) || empty($pswd) || empty($workgroup) ||
-			empty($host) || empty($shareName)) {
-			$this->_modelExtendQueuedTask->updateTaskErrorMessage($idTask, __('Parsing log files is not configured.'));
+		$configKeyShare = 'SmbLogShare';
+		$share = $this->getShareObj($configKeyShare);
+		$shareInfo = $this->getShareInfo($configKeyShare);
+		if (!$share || !$shareInfo) {
+			$this->_modelExtendQueuedTask->updateTaskErrorMessage($idTask, __('Error processing the log file parsing configuration.'));
 			$this->_modelExtendQueuedTask->updateProgress($idTask, 1);
 
-			return true;
+			return false;
+		}
+		extract($shareInfo);
+
+		try {
+			$files = $share->dir($sharePath);
+		} catch (Exception $e) {
+			$message = $e->getMessage();
+			$this->_modelExtendQueuedTask->updateTaskErrorMessage($idTask, __('Error on connection to SMB share: %s.', $message));
+			$this->_modelExtendQueuedTask->updateProgress($idTask, 1);
+
+			return false;
 		}
 
-		$auth = new \Icewind\SMB\BasicAuth($user, $workgroup, $pswd);
-		$serverFactory = new \Icewind\SMB\ServerFactory();
-		$server = $serverFactory->createServer($host, $auth);
-		$share = $server->getShare($shareName);
-
 		$aRemoteFiles = [];
-		$files = $share->dir('');
 		foreach ($files as $info) {
 			if ($info->isDirectory()) {
 				continue;
 			}
 
-			$filePath = $info->getName();
-			if (!preg_match('/' . $logFilePattern . '/i', $filePath)) {
+			$fileName = $info->getName();
+			$filePath = $info->getPath();
+			if (!preg_match('/' . $logFilePattern . '/i', $fileName)) {
 				continue;
 			}
 			$aRemoteFiles[] = $filePath;

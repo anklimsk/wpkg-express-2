@@ -31,11 +31,6 @@ App::uses('Hash', 'Utility');
 App::uses('File', 'Utility');
 App::uses('Folder', 'Utility');
 App::uses('RenderXmlData', 'Utility');
-App::import(
-	'Vendor',
-	'SMB',
-	['file' => 'SMB' . DS . 'vendor' . DS . 'autoload.php']
-);
 
 /**
  * The model is used to manage reports.
@@ -62,6 +57,7 @@ class Report extends AppModel {
 		'BreadCrumbExt',
 		'GroupAction',
 		'GetNumber' => ['cacheConfig' => CACHE_KEY_STATISTICS_INFO_REPORT],
+		'SmbClient',
 		'ValidationRules'
 	];
 
@@ -382,35 +378,33 @@ class Report extends AppModel {
 			array_map('unlink', $localFiles);
 		}
 
-		$modelSetting = ClassRegistry::init('Setting');
-		$user = $modelSetting->getConfig('SmbAuthUser');
-		$pswd = $modelSetting->getConfig('SmbAuthPassword');
-		$workgroup = $modelSetting->getConfig('SmbWorkgroup');
-		$host = $modelSetting->getConfig('SmbServer');
-		$shareName = $modelSetting->getConfig('SmbDbShare');
-		if (empty($user) || empty($pswd) || empty($workgroup) ||
-			empty($host) || empty($shareName)) {
-			$this->_modelExtendQueuedTask->updateTaskErrorMessage($idTask, __('Parsing database files is not configured.'));
+		$configKeyShare = 'SmbDbShare';
+		$share = $this->getShareObj($configKeyShare);
+		$shareInfo = $this->getShareInfo($configKeyShare);
+		if (!$share || !$shareInfo) {
+			$this->_modelExtendQueuedTask->updateTaskErrorMessage($idTask, __('Error processing the database files parsing configuration.'));
 			$this->_modelExtendQueuedTask->updateProgress($idTask, 1);
 
-			return true;
+			return false;
 		}
+		extract($shareInfo);
 
-		$auth = new \Icewind\SMB\BasicAuth($user, $workgroup, $pswd);
-		$serverFactory = new \Icewind\SMB\ServerFactory();
-		$server = $serverFactory->createServer($host, $auth);
-		$share = $server->getShare($shareName);
-
-		$aRemoteFiles = [];
 		try {
-			$files = $share->dir(REPORT_SHARE_SUBDIR);
+			$sharePathReport = $sharePath;
+			if (!empty($sharePathReport)) {
+				$sharePathReport .= '/';
+			}
+			$sharePathReport .= REPORT_SHARE_SUBDIR;
+			$files = $share->dir($sharePathReport);
 			$filePattern = $this->_getReportFilePattern($hostName);
 			$importMethodName = 'importTextReports';
 		} catch (\Icewind\SMB\Exception\NotFoundException $e) {
-			$files = $share->dir('');
+			$files = $share->dir($sharePath);
 			$filePattern = $this->_getDbFilePattern($hostName);
 			$importMethodName = 'importXmlDatabases';
 		}
+
+		$aRemoteFiles = [];
 		foreach ($files as $info) {
 			if ($info->isDirectory()) {
 				continue;
@@ -488,24 +482,20 @@ class Report extends AppModel {
 		}
 
 		$dbFilePattern = $this->_getDbFilePattern($hostName);
+		$configKeyShare = 'SmbDbShare';
+		$share = $this->getShareObj($configKeyShare);
+		$shareInfo = $this->getShareInfo($configKeyShare);
+		if (!$share || !$shareInfo) {
+			return false;
+		}
+		extract($shareInfo);
 
-		$modelSetting = ClassRegistry::init('Setting');
-		$user = $modelSetting->getConfig('SmbAuthUser');
-		$pswd = $modelSetting->getConfig('SmbAuthPassword');
-		$workgroup = $modelSetting->getConfig('SmbWorkgroup');
-		$host = $modelSetting->getConfig('SmbServer');
-		$shareName = $modelSetting->getConfig('SmbDbShare');
-		if (empty($user) || empty($pswd) || empty($workgroup) ||
-			empty($host) || empty($shareName)) {
-
+		try {
+			$files = $share->dir($sharePath);
+		} catch (Exception $e) {
 			return false;
 		}
 
-		$auth = new \Icewind\SMB\BasicAuth($user, $workgroup, $pswd);
-		$serverFactory = new \Icewind\SMB\ServerFactory();
-		$server = $serverFactory->createServer($host, $auth);
-		$share = $server->getShare($shareName);
-		$files = $share->dir('');
 		$dbFileNamePath = null;
 		foreach ($files as $info) {
 			if ($info->isDirectory()) {
