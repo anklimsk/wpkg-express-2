@@ -21,13 +21,19 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.Model
  */
 
 App::uses('SettingBase', 'CakeSettingsApp.Model');
 App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 App::uses('Security', 'Utility');
+App::uses('Hash', 'Utility');
+App::import(
+	'Vendor',
+	'SMB',
+	['file' => 'SMB' . DS . 'vendor' . DS . 'autoload.php']
+);
 
 /**
  * The model is used to manage settings of application.
@@ -129,12 +135,78 @@ class Setting extends SettingBase {
 			'allowEmpty' => true,
 		],
 		'SmbLogShare' => [
-			'rule' => 'notBlank',
+			'rule' => ['checkSmbSettings'],
 			'required' => true,
 			'message' => 'Invalid SMB share name for logs',
 			'allowEmpty' => true,
 		],
+		'SmbDbShare' => [
+			'rule' => ['checkSmbSettings'],
+			'required' => true,
+			'message' => 'Invalid SMB share name for client databases',
+			'allowEmpty' => true,
+		],
 	];
+
+/**
+ * SMB settings validation
+ *
+ * @param array $data Data to check
+ * @return bool Return True, if valid
+ */
+	public function checkSmbSettings($data = null) {
+		if (empty($data) || (DS === '\\')) {
+			return true;
+		}
+
+		$user = Hash::get($this->data, $this->alias . '.SmbAuthUser');
+		$pswd = Hash::get($this->data, $this->alias . '.SmbAuthPassword');
+		$workgroup = Hash::get($this->data, $this->alias . '.SmbWorkgroup');
+		$host = Hash::get($this->data, $this->alias . '.SmbServer');
+
+		$value = reset($data);
+		$field = key($data);
+		$path = $this->_prepareSmbPath($value);
+		$shareInfo = explode('/', $path, 2);
+		if (empty($shareInfo)) {
+			return false;
+		}
+
+		$shareName = (string)Hash::get($shareInfo, 0);
+		$sharePath = (string)Hash::get($shareInfo, 1);
+
+		$auth = new \Icewind\SMB\BasicAuth($user, $workgroup, $pswd);
+		$serverFactory = new \Icewind\SMB\ServerFactory();
+		try {
+			$server = $serverFactory->createServer($host, $auth);
+		} catch (Exception $e) {
+			$message = $e->getMessage();
+			$this->invalidate($field, $message);
+			return false;
+		}
+
+		$result = true;
+		$share = $server->getShare($shareName);
+		try {
+			$files = $share->dir($sharePath);
+		} catch (\Icewind\SMB\Exception\AuthenticationException $e) {
+			$message = $e->getMessage();
+			$this->invalidate('SmbAuthUser', $message);
+			$this->invalidate('SmbAuthPassword', $message);
+			$this->invalidate('SmbWorkgroup', $message);
+			$result = false;
+		} catch (\Icewind\SMB\Exception\InvalidHostException $e) {
+			$message = $e->getMessage();
+			$this->invalidate('SmbServer', $message);
+			$result = false;
+		} catch (Exception $e) {
+			$message = $e->getMessage();
+			$this->invalidate($field, $message);
+			$result = false;
+		}
+
+		return $result;
+	}
 
 /**
  * Decrypt a stettings value using AES-256.
@@ -185,6 +257,23 @@ class Setting extends SettingBase {
 	}
 
 /**
+ * Called during validation operations, before validation. Please note that custom
+ * validation rules can be defined in $validate.
+ *
+ * @param array $options Options passed from Model::save().
+ * @return bool True if validate operation should continue, false to abort
+ * @link http://book.cakephp.org/2.0/en/models/callback-methods.html#beforevalidate
+ * @see Model::save()
+ */
+	public function beforeValidate($options = []) {
+		if (!$this->_prepareDataForSave()) {
+			return false;
+		}
+
+		return parent::beforeValidate($options);
+	}
+
+/**
  * Called before each save operation, after validation. Return a non-true result
  * to halt the save.
  *
@@ -198,6 +287,10 @@ class Setting extends SettingBase {
  * @see Model::save()
  */
 	public function beforeSave($options = []) {
+		if (!$this->_prepareDataForSave()) {
+			return false;
+		}
+
 		$hashType = 'sha256';
 		$passFieldsHash = $this->_getListPassFieldsHash();
 		foreach ($passFieldsHash as $passField) {
@@ -232,6 +325,55 @@ class Setting extends SettingBase {
  */
 	public function afterSave($created, $options = []) {
 		clearCache(null, 'views', '.php');
+	}
+
+/**
+ * Preparing SMB path.
+ *  Replace the directory separator in the SMB path and delete
+ *  the directory separator at the end of the line.
+ *
+ * @param string $path Path for processing
+ * @return string Processed path.
+ */
+	protected function _prepareSmbPath($path = null) {
+		if (empty($path)) {
+			return $path;
+		}
+
+		$result = str_replace('\\', '/', $path);
+		$result = rtrim($result, '/');
+		return $result;
+	}
+
+/**
+ * Preparing data to save.
+ *  Replace directory separator in SMB path.
+ *
+ * @return bool Success.
+ */
+	protected function _prepareDataForSave() {
+		$fieldsReplaceDS = $this->_getListFieldsReplaceDS();
+		foreach ($fieldsReplaceDS as $fieldName) {
+			if (isset($this->data[$this->alias][$fieldName]) && !empty($this->data[$this->alias][$fieldName])) {
+				$this->data[$this->alias][$fieldName] = $this->_prepareSmbPath($this->data[$this->alias][$fieldName]);
+			}
+		}
+
+		return true;
+	}
+
+/**
+ * Returns list of fields to replace the directory separator
+ *
+ * @return array Return list of fields.
+ */
+	protected function _getListFieldsReplaceDS() {
+		$fieldsReplaceDS = [
+			'SmbLogShare',
+			'SmbDbShare'
+		];
+
+		return $fieldsReplaceDS;
 	}
 
 /**
