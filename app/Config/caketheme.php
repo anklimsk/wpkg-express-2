@@ -32,7 +32,7 @@ $config['CakeTheme'] = [
 		// Time out for message types: flash_information, flash_success, flash_notification
 		'timeOut' => 30,
 		// Delay to delete flash messages
-		'delayDeleteFlash' => 5,
+		'delayDeleteFlash' => 2,
 		// Register global ajax callback complete() for checking update part of page
 		'globalAjaxComplete' => false,
 		// Options for 'jQuery.noty' plugin (see http://ned.im/noty/#/about or https://github.com/needim/noty)
@@ -64,8 +64,8 @@ $config['CakeTheme'] = [
 			],
 			// The number of repeated attempts to start pending tasks
 			'retries' => 100,
-			// Delay to delete flash messages
-			'delayDeleteTask' => 5,
+			// Delay to delete task messages
+			'delayDeleteTask' => 2,
 		],
 		// ViewExtension Helper
 		'Helper' => [
