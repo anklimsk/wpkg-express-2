@@ -1,130 +1,137 @@
 # Changelog
 
 
+## v1.0.2 (2019-02-08)
+
+### Changes
+
+* Added validation of SMB application settings.
+
+
 ## v1.0.1 (2019-02-04)
 
 ### Fix
 
-* Fixed parsing of logs and reports files without settings. [Andrey Klimov]
+* Fixed parsing of logs and reports files without settings.
 
-* Replacing OpenSSL instead of outdated mcrpyt extension. [Andrey Klimov]
+* Replacing OpenSSL instead of outdated mcrpyt extension.
 
 
 ## v1.0.0 (2019-02-01)
 
 ### New
 
-* Added feature to remove an item from the list of dependencies when viewing information. [Andrey Klimov]
+* Added feature to remove an item from the list of dependencies when viewing information.
 
 ### Fix
 
-* Fixed confirmation of actions. [Andrey Klimov]
+* Fixed confirmation of actions.
 
-* Fixed the filter row checkbox in the WPI package table. [Andrey Klimov]
+* Fixed the filter row checkbox in the WPI package table.
 
 
 ## v1.0.0-rc.1 (2019-01-29)
 
 ### New
 
-* Added feature to view the version chart of the installed package. [Andrey Klimov]
+* Added feature to view the version chart of the installed package.
 
-* Added feature to parse report files containing the console output of the command `cscript.exe wpkg.js //NoLogo /query:iml` [Andrey Klimov]
+* Added feature to parse report files containing the console output of the command `cscript.exe wpkg.js //NoLogo /query:iml`
 
 ### Changes
 
-* Updated the feature to use WPI to quickly test WPKG packages. [Andrey Klimov]
+* Updated the feature to use WPI to quickly test WPKG packages.
 
 ### Fix
 
-* Fixed the Controller name in the list of hosts containing the current profile as the main profile. [Andrey Klimov]
+* Fixed the Controller name in the list of hosts containing the current profile as the main profile.
 
-* Fixed sorting direction when paginating `Logs` data. [Andrey Klimov]
+* Fixed sorting direction when paginating `Logs` data.
 
 
 ## v1.0.0-beta.4 (2018-12-28)
 
 ### New
 
-* Added feature to change, import and export package attributes `precheck-*` [Andrey Klimov]
+* Added feature to change, import and export package attributes `precheck-*`
 
-* Added feature changing installation date of package in profile. [Andrey Klimov]
+* Added feature changing installation date of package in profile.
 
 ### Changes
 
-* Removed default value of package attributes `notify` and `execute` from XML. [Andrey Klimov]
+* Removed default value of package attributes `notify` and `execute` from XML.
 
-* Added auto-complete computer name from LDAP to generate graph of this computer. [Andrey Klimov]
+* Added auto-complete computer name from LDAP to generate graph of this computer.
 
-* Updated tooltip for form input items. [Andrey Klimov]
+* Updated tooltip for form input items.
 
-* Added parent change on drag and drop check item. [Andrey Klimov]
+* Added parent change on drag and drop check item.
 
-* Added input mask for the check condition of the `File date` form. [Andrey Klimov]
+* Added input mask for the check condition of the `File date` form.
 
-* Added a list of check values for the host: `OS`, `Architecture`, `Language ID` and `Language ID OS` [Andrey Klimov]
+* Added a list of check values for the host: `OS`, `Architecture`, `Language ID` and `Language ID OS`
 
-* Updated autocomplete for checks, variables, and package actions. [Andrey Klimov]
+* Updated autocomplete for checks, variables, and package actions.
 
 ### Fix
 
-* Fixed attribute `expandURL` for the package action `Download` [Andrey Klimov]
+* Fixed attribute `expandURL` for the package action `Download`
 
-* Fixed display empty timeout of command. [Andrey Klimov]
+* Fixed display empty timeout of command.
 
-* Fixed case sensitively for ID of package, profile and host. [Andrey Klimov]
+* Fixed case sensitively for ID of package, profile and host.
 
-* Fixed clearing value of group action in filter form. [Andrey Klimov]
+* Fixed clearing value of group action in filter form.
 
-* Fixed disabling browser cache on displaying XML configurations. [Andrey Klimov]
+* Fixed disabling browser cache on displaying XML configurations.
 
-* Fixed clearing of the View files cache after saving application settings. [Andrey Klimov]
+* Fixed clearing of the View files cache after saving application settings.
 
-* Fixed XML configuration on disabled XML output. [Andrey Klimov]
+* Fixed XML configuration on disabled XML output.
 
 
 ## v1.0.0-beta.3 (2018-12-04)
 
 ### New
 
-* Added feature to disable unused hosts and profiles. [Andrey Klimov]
+* Added feature to disable unused hosts and profiles.
 
 ### Changes
 
-* Added translation for message type from task queue. [Andrey Klimov]
+* Added translation for message type from task queue.
 
 ### Fix
 
-* Fixed exporting package note for WPI. [Andrey Klimov]
+* Fixed exporting package note for WPI.
 
-* Fixed checking the ability to perform operations `delete` or `disable` [Andrey Klimov]
+* Fixed checking the ability to perform operations `delete` or `disable`
 
-* Fixed internal authentication. [Andrey Klimov]
+* Fixed internal authentication.
 
 
 ## v1.0.0-beta.2 (2018-11-30)
 
 ### Changes
 
-* Added static text describing the valid type of XML file in the form of uploading XML files. [Andrey Klimov]
+* Added static text describing the valid type of XML file in the form of uploading XML files.
 
 ### Fix
 
-* Fixed parsing logs for open files. [Andrey Klimov]
+* Fixed parsing logs for open files.
 
-* Fixed importing XML for new records. [Andrey Klimov]
+* Fixed importing XML for new records.
 
-* Fixed clearing the cache when a transaction is rolled back when importing a package and client database. [Andrey Klimov]
+* Fixed clearing the cache when a transaction is rolled back when importing a package and client database.
 
-* Fixed determination of the client database XML file for the `checkResults` element when importing XML. [Andrey Klimov]
+* Fixed determination of the client database XML file for the `checkResults` element when importing XML.
 
-* Fixed getting the ID of the last processed entry when importing XML and log files. [Andrey Klimov]
+* Fixed getting the ID of the last processed entry when importing XML and log files.
 
 
 ## v1.0.0-beta (2018-11-29)
 
 ### Fix
 
-* Fixed deletion of related attributes along with global variables. [Andrey Klimov]
+* Fixed deletion of related attributes along with global variables.
 
 
