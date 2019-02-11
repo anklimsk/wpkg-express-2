@@ -20,12 +20,10 @@
   * `logLevel` to `0x13`;
   * `profiles_path` to `profiles.xml`;
   * `hosts_path` to `hosts.xml`.
-- Copy the file `config.xml` to `%SOFTWARE_NETLOGON%\WPKG\Script\%Revision%`,
+- Copy the file `config.xml` to `%SOFTWARE_NETLOGON%\WPKG\Script\Logon`,
   where:
     * `%SOFTWARE_NETLOGON%` - global variable containing the path to the WPKG script,
-      e.g.: `\\fabrikam.com\NETLOGON`;
-    * `%Revision%` - current version of the WPKG configuration file, e.g.,
-      the modification date: `2018.12.05`.
+      e.g.: `\\fabrikam.com\NETLOGON`.
 - Create a XML package file:
 
   ```xml
@@ -89,20 +87,23 @@
   ```
 
 - Save as `hosts.xml`;
-- Copy the files `profiles.xml` and `hosts.xml` to `%SOFTWARE_NETLOGON%\WPKG\Script\%Revision%`,
+- Copy the files `profiles.xml` and `hosts.xml` to `%SOFTWARE_NETLOGON%\WPKG\Script\Logon`,
   where:
     * `%SOFTWARE_NETLOGON%` - global variable containing the path to the WPKG script,
-      e.g.: `\\fabrikam.com\NETLOGON`;
-    * `%Revision%` - current version of the WPKG script, e.g.: `1.3.1`.
+      e.g.: `\\fabrikam.com\NETLOGON`.
 
 ## Preparing a WPKG script file
 
 - Download and extract [WPKG](https://wpkg.org/Download);
-- Copy the `config.xml` and `wpkg.js` files to `%SOFTWARE_NETLOGON%\WPKG\Script\%Revision%`,
+- Copy the file `wpkg.js` to `%SOFTWARE_NETLOGON%\WPKG\Script\%Revision%`,
   where:
     * `%SOFTWARE_NETLOGON%` - global variable containing the path to the WPKG script,
       e.g.: `\\fabrikam.com\NETLOGON`;
     * `%Revision%` - current version of the WPKG script, e.g.: `1.3.1`.
+- Copy the file `wpkg.js` to `%SOFTWARE_NETLOGON%\WPKG\Script\Logon`,
+  where:
+    * `%SOFTWARE_NETLOGON%` - global variable containing the path to the WPKG script,
+      e.g.: `\\fabrikam.com\NETLOGON`.
 - Create a XML package file:
 
   ```xml
@@ -152,6 +153,8 @@ The structure of the directory `WPKG` located in the %SOFTWARE_NETLOGON%
   |       +-- config.xml
   +-- Script
       +-- 1.3.1
+      |   +-- wpkg.js
+      +-- Logon
           +-- config.xml
           +-- hosts.xml
           +-- profiles.xml

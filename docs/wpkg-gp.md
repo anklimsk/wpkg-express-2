@@ -30,7 +30,7 @@
       +-- Windows Settings
           |   +-- Scripts (Logon/Logoff)
           |   |   +-- Logon
-          |   |       +-- install_wpkg_gp.cmd (see below)
+          |   |       +-- install_wpkg.cmd (see below)
           |   +-- Security Settings
           |       +-- Restricted Groups
           |       |   +-- BUILTIN\Administrators: FABRIKAM\WpkgUser
@@ -350,26 +350,25 @@
 
 ## Preparing install WPKG-GP
 
-- Create a command file `install_wpkg_gp.cmd`:
+- Create a command file `install_wpkg.cmd`:
 
   ```batchfile
   @Echo off
   
   Set _SOFTWARE_NETLOGON=\\fabrikam.com\NETLOGON
-  Set _WPKG_SCRIPT_REVISION=1.3.1
-  Set _WPKG_SCRIPT_PATH=%_SOFTWARE_NETLOGON%\WPKG\Script\%_WPKG_SCRIPT_REVISION%
+  Set _WPKG_SCRIPT_PATH=%_SOFTWARE_NETLOGON%\WPKG\Script\Logon
   
   cscript.exe //NoLogo %_WPKG_SCRIPT_PATH%\wpkg.js /synchronize /quiet:true /nonotify:true /noreboot:true /sendStatus:false /noremove:true /norunningstate:true
   ```
 
 - Check the variables `_SOFTWARE_NETLOGON` and `_WPKG_SCRIPT_REVISION`;
-- Copy the `install_wpkg_gp.cmd` file to logon script location, e.g.
+- Copy the `install_wpkg.cmd` file to logon script location, e.g.
   `\\fabrikam.com\SYSVOL\fabrikam.com\Policies\{GUID}\Machine\Scripts\Startup`:
   * Open Group Policy Management Console;
   * Navigate to path `Computer Configuration` -> `Policies` -> `Windows Settings` ->
     `Scripts (Logon/Logoff)` and double click to `Logon` in the right-hand pane;
   * In the `Logon` properties window, click `Show Files... `;
-  * Paste the logon script `install_wpkg_gp.cmd` and close the window;
+  * Paste the logon script `install_wpkg.cmd` and close the window;
   * In the `Logon` properties window, click `Add`;
   * In  the `Add a Script` window, click `Browse`, select script file,
     click `Open` and `OK` buttons.
