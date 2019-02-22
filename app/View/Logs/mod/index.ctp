@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is the view file of the application. Used to viewing
- *  full list of log records.
+ *  full list of log records in modal window.
  *
  * This file is part of wpkgExpress II.
  *
@@ -22,14 +22,9 @@
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
  * @copyright Copyright 2018-2019, Andrey Klimov.
- * @package app.View.Logs
+ * @package app.View.Logs.mod
  */
 
-	$this->assign('title', $pageHeader);
-	$this->ViewExtension->addBreadCrumbs($breadCrumbs);
-?>
-<div class="container">
-<?php
 	echo $this->ViewExtension->headerPage($pageHeader, $headerMenuActions);
 	if (!empty($stateData) && $showStateData) {
 		echo $this->Html->tag('h3', __('State of logs'), ['class' => 'text-center']);
@@ -37,5 +32,3 @@
 	}
 	echo $this->element('tableLog', compact('logs', 'groupActions', 'usePost', 'listTypes',
 		'shortInfo', 'shortBtnPagination'));
-?>
-</div>

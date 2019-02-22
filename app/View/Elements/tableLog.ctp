@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.View.Elements
  */
 
@@ -45,12 +45,22 @@ if (!isset($shortInfo)) {
 	$shortInfo = false;
 }
 
+if (!isset($shortBtnPagination)) {
+	$shortBtnPagination = false;
+}
+
 if (!isset($moreLogs)) {
 	$moreLogs = 0;
 }
 
 if (!isset($created)) {
 	$created = null;
+}
+
+if ($this->Helpers->loaded('Paginator') && $shortBtnPagination) {
+	$this->Paginator->options([
+		'data-modal-size' => 'lg'
+	]);
 }
 ?>
 <div class="table-responsive table-filter">
@@ -122,6 +132,16 @@ foreach ($logs as $log) {
 		$colspan = 3;
 		if (!$shortInfo) {
 			$actions = $this->ViewExtension->buttonLink(
+				'far fa-file-alt',
+				'btn-info',
+				['controller' => 'logs', 'action' => 'preview', $log['Log']['host_id']],
+				[
+					'title' => __('Preview logs of host'),
+					'action-type' => 'modal',
+					'data-modal-size' => 'lg',
+				]
+			) .
+			$this->ViewExtension->buttonLink(
 				'far fa-trash-alt',
 				'btn-danger',
 				['controller' => 'logs', 'action' => 'clear', $log['Log']['host_id']],
@@ -185,9 +205,15 @@ foreach ($logs as $log) {
 ?>
 </div>
 <?php
-	if (!$shortInfo) {
-		echo $this->ViewExtension->buttonsPaging();
-	} elseif ($moreLogs > 0) {
+	if (!$shortInfo || $shortBtnPagination) {
+		$targetSelector = null;
+		$showCounterInfo = $useShowList = $useGoToPage = $useChangeNumLines = true;
+		if ($shortBtnPagination) {
+			$useShowList = $useGoToPage = $useChangeNumLines = false;
+		}
+
+		echo $this->ViewExtension->buttonsPaging($targetSelector, $showCounterInfo, $useShowList, $useGoToPage, $useChangeNumLines);
+	} elseif (($shortInfo) && ($moreLogs > 0)) {
 		echo $this->Html->para(
 			'text-right',
 			$this->Html->tag('i',

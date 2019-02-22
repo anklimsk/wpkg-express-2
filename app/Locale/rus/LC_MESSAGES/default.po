@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wpkgExpress II\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2019-02-04 13:40+0300\n"
+"PO-Revision-Date: 2019-02-22 12:13+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -721,7 +721,7 @@ msgstr "Не удалось сохранить хост. Пожалуйста, �
 msgid "Adding host"
 msgstr "Добавление хоста"
 
-#: Controller/HostsController.php:293
+#: Controller/HostsController.php:293 Controller/LogsController.php:147
 msgid "Invalid ID for host"
 msgstr "Недопустимый идентификатор для хоста"
 
@@ -776,19 +776,36 @@ msgstr "Очистить журналы"
 msgid "Are you sure you wish to clear logs?"
 msgstr "Вы уверены, что хотите очистить журналы?"
 
-#: Controller/LogsController.php:171
+#: Controller/LogsController.php:156
+#: Controller/Component/ExportDataComponent.php:116
+msgid "Previewing"
+msgstr "Предварительный просмотр"
+
+#: Controller/LogsController.php:157
+msgid "Preview logs of host '%s'"
+msgstr "Предварительный просмотр журналов хоста '%s'"
+
+#: Controller/LogsController.php:161;164 View/Elements/tableLog.ctp:149
+msgid "Clear logs of host"
+msgstr "Очистить журналы хоста"
+
+#: Controller/LogsController.php:165 View/Elements/tableLog.ctp:150
+msgid "Are you sure you wish to clear logs of host '%s'?"
+msgstr "Вы уверены, что хотите очистить журналы хоста '%s'?"
+
+#: Controller/LogsController.php:222
 msgid "Parsing logs put in queue..."
 msgstr "Разбор файлов журналов помещён в очередь..."
 
-#: Controller/LogsController.php:174
+#: Controller/LogsController.php:225
 msgid "Parsing logs put in queue unsuccessfully"
 msgstr "Разбор файлов журналов безуспешно помещён в очередь"
 
-#: Controller/LogsController.php:203
+#: Controller/LogsController.php:254
 msgid "The logs has been cleared."
 msgstr "Журналы очищены."
 
-#: Controller/LogsController.php:205
+#: Controller/LogsController.php:256
 msgid "The logs could not be cleared. Please, try again."
 msgstr "Не удалось очистить журналы. Пожалуйста, попробуйте ещё раз."
 
@@ -990,7 +1007,7 @@ msgstr ""
 msgid "File selection"
 msgstr "Выбор файла"
 
-#: Controller/UploadsController.php:98 Model/Import.php:3480
+#: Controller/UploadsController.php:98 Model/Import.php:3477
 msgid "Uploading XML files"
 msgstr "Загрузка XML файлов"
 
@@ -1252,20 +1269,16 @@ msgstr "не используется в качестве шаблона"
 msgid "Method '%s' is not found in target model"
 msgstr "Метод '%s' не найден в целевой модели"
 
-#: Controller/Component/ExportDataComponent.php:110 Model/Import.php:3392
+#: Controller/Component/ExportDataComponent.php:110 Model/Import.php:3389
 msgid "Fatal errors"
 msgstr "Неустранимые ошибки"
 
 #: Controller/Component/ExportDataComponent.php:111
-#: Model/Import.php:739;752;797;2155;2184;2228;2237;2276;2292;2354;2386;2515;2565;2596;2723;2754;2875;2951;3018;3024;3170;3195;3277;3340;3346;3389
-#: Model/Log.php:380;394;431;568 Model/Report.php:437;469
+#: Model/Import.php:739;752;797;2152;2181;2225;2234;2273;2289;2351;2383;2512;2562;2593;2720;2751;2872;2948;3015;3021;3167;3192;3274;3337;3343;3386
+#: Model/Log.php:377;391;428;565 Model/Report.php:431;463
 #: Model/Behavior/GroupActionBehavior.php:157
 msgid "Errors"
 msgstr "Ошибки"
-
-#: Controller/Component/ExportDataComponent.php:116
-msgid "Previewing"
-msgstr "Предварительный просмотр"
 
 #: Controller/Component/ExportDataComponent.php:118
 #: Controller/Component/ViewDataComponent.php:144;219
@@ -1579,7 +1592,7 @@ msgstr "Корневой узел"
 msgid "Check"
 msgstr "Проверка"
 
-#: Model/Check.php:1457 Model/Import.php:2276 View/Elements/infoPackage.ctp:140
+#: Model/Check.php:1457 Model/Import.php:2273 View/Elements/infoPackage.ctp:140
 msgid "Checks"
 msgstr "Проверки"
 
@@ -1615,7 +1628,7 @@ msgstr "Список компьютеров для обработки пуст"
 msgid "The list of hosts for processing is empty"
 msgstr "Список хостов для обработки пуст"
 
-#: Model/Disable.php:179 Model/Log.php:526
+#: Model/Disable.php:179 Model/Log.php:523
 msgid "Administrator of WPKG"
 msgstr "Администратор WPKG"
 
@@ -1623,7 +1636,7 @@ msgstr "Администратор WPKG"
 msgid "Unused hosts and profiles is disabled"
 msgstr "Неиспользуемые хосты и профили отключены"
 
-#: Model/Disable.php:202 Model/Log.php:568
+#: Model/Disable.php:202 Model/Log.php:565
 msgid "Error on putting sending e-mail for \"%s\" in queue..."
 msgstr ""
 "Ошибка при помещении отправки электронной почты для \"%s\" в очередь..."
@@ -1691,7 +1704,7 @@ msgid "Use as template"
 msgstr "Использовать в качестве шаблона"
 
 #: Model/Host.php:557 View/Elements/formHostBase.ctp:39
-#: View/Elements/formHostGenerate.ctp:40 View/Elements/tableLog.ctp:97
+#: View/Elements/formHostGenerate.ctp:40 View/Elements/tableLog.ctp:107
 msgid "Host"
 msgstr "Хост"
 
@@ -1742,7 +1755,7 @@ msgstr "Пакет, профиль, хост, конфигурация WPKG ил
 msgid "Variables"
 msgstr "Переменные"
 
-#: Model/Import.php:739;2228;2276
+#: Model/Import.php:739;2225;2273
 msgid "Error on settings scope"
 msgstr "Ошибка при настройке области"
 
@@ -1750,7 +1763,7 @@ msgstr "Ошибка при настройке области"
 msgid "Invalid file path"
 msgstr "Недопустимый путь к файлу"
 
-#: Model/Import.php:960;3467
+#: Model/Import.php:960;3464
 msgid "Invalid file type. Can be one of: %s"
 msgstr "Недопустимый тип файла. Может быть одним из следующих: %s"
 
@@ -1774,60 +1787,60 @@ msgstr "Входной текстовый файл пуст"
 msgid "Invalid name of dependency model"
 msgstr "Недопустимое имя зависимой модели"
 
-#: Model/Import.php:2228 Model/PackageAction.php:577
+#: Model/Import.php:2225 Model/PackageAction.php:577
 #: View/Elements/infoPackage.ctp:135
 msgid "Package actions"
 msgstr "Действия пакета"
 
-#: Model/Import.php:2875
+#: Model/Import.php:2872
 msgid "Error on deleting records of report"
 msgstr "Ошибка при удалении записей отчета"
 
-#: Model/Import.php:3018
+#: Model/Import.php:3015
 msgid "Error on saving report record"
 msgstr "Ошибка сохранения записи отчета"
 
-#: Model/Import.php:3024
+#: Model/Import.php:3021
 msgid "Error on saving report records"
 msgstr "Ошибка сохранения записей отчёта"
 
-#: Model/Import.php:3170
+#: Model/Import.php:3167
 msgid "Error on saving WPKG configuration"
 msgstr "Ошибка при сохранении конфигурации WPKG"
 
-#: Model/Import.php:3195
+#: Model/Import.php:3192
 msgid "Error on saving WPKG configuration language"
 msgstr "Ошибка при сохранении языка конфигурации WPKG"
 
-#: Model/Import.php:3340
+#: Model/Import.php:3337
 msgid "Error on saving log record"
 msgstr "Ошибка сохранения записи журнала"
 
-#: Model/Import.php:3346
+#: Model/Import.php:3343
 msgid "Error on saving log records"
 msgstr "Ошибка сохранения записей журнала"
 
-#: Model/Import.php:3383
+#: Model/Import.php:3380
 msgid "Other messages"
 msgstr "Другие сообщения"
 
-#: Model/Import.php:3386
+#: Model/Import.php:3383
 msgid "Warnings"
 msgstr "Предупреждения"
 
-#: Model/Import.php:3435
+#: Model/Import.php:3432
 msgid "Invalid path to XSD schema file"
 msgstr "Недопустимый путь к файлу схемы XSD"
 
-#: Model/Log.php:190
+#: Model/Log.php:186
 msgid "Log record"
 msgstr "Запись журнала"
 
-#: Model/Log.php:201 View/Elements/barNav.ctp:168;182
+#: Model/Log.php:197 View/Elements/barNav.ctp:168;182
 msgid "Logs"
 msgstr "Журналы"
 
-#: Model/Log.php:255
+#: Model/Log.php:251
 msgid "Log of host %s"
 msgstr "Журнал хостов %s"
 
@@ -1843,36 +1856,48 @@ msgstr "Ошибка при подключении к SMB-ресурсу: %s."
 msgid "No log files to parsing."
 msgstr "Нет файлов журналов для разбора."
 
-#: Model/Log.php:380
+#: Model/Log.php:377
 msgid "Error on retrieving log file name"
 msgstr "Ошибка при получении имени файла журнала"
 
-#: Model/Log.php:394 Model/Report.php:437
+#: Model/Log.php:391 Model/Report.php:431
 msgid "Error on copying files"
 msgstr "Ошибка при копировании файлов"
 
-#: Model/Log.php:431 Model/Report.php:469
+#: Model/Log.php:428 Model/Report.php:463
 msgid "Error on removing unused hosts"
 msgstr "Ошибка при удалении неиспользуемых хостов"
 
-#: Model/Log.php:490 View/Elements/tableLog.ctp:194
+#: Model/Log.php:487 View/Elements/tableLog.ctp:220
 msgid "...And %s more %s"
 msgstr "...И еще %s %s"
 
-#: Model/Log.php:541
+#: Model/Log.php:538
 msgid "Found new errors of WPKG"
 msgstr "Найдены новые ошибки WPKG"
 
-#: Model/Log.php:568
+#: Model/Log.php:565
 msgid "Error on sending e-mail"
 msgstr "Ошибка при отправке электронной почты"
 
-#: Model/Log.php:493
+#: Model/Log.php:490
 msgid "record"
 msgid_plural "records"
 msgstr[0] "запись"
 msgstr[1] "записи"
 msgstr[2] "записей"
+
+#: Model/LogHost.php:130
+msgid "Logs of host"
+msgstr "Журналы хоста"
+
+#: Model/LogHost.php:160
+msgid "Logs of host %s"
+msgstr "Журналы хоста %s"
+
+#: Model/LogHost.php:162
+msgid "logs of host %s"
+msgstr "журналы хоста %s"
 
 #: Model/Package.php:1060
 msgid ""
@@ -2087,15 +2112,15 @@ msgstr "Недопустимые аргументы"
 msgid "Error on recovering tree (list)"
 msgstr "Ошибка при восстановлении дерева (списка)"
 
-#: Model/Report.php:221
+#: Model/Report.php:217
 msgid "Report"
 msgstr "Отчёт"
 
-#: Model/Report.php:232 View/Elements/barNav.ctp:191;205
+#: Model/Report.php:228 View/Elements/barNav.ctp:191;205
 msgid "Reports"
 msgstr "Отчёты"
 
-#: Model/Report.php:286
+#: Model/Report.php:282
 msgid "Report of host %s"
 msgstr "Отчет хоста %s"
 
@@ -2103,7 +2128,7 @@ msgstr "Отчет хоста %s"
 msgid "Error processing the database files parsing."
 msgstr "Ошибка при обработке файлов базы данных."
 
-#: Model/Report.php:428;448
+#: Model/Report.php:422;442
 msgid "No database files to parsing."
 msgstr "Нет файлов базы данных для разбора."
 
@@ -2421,7 +2446,7 @@ msgstr "Разбор регулярных выражений в расширен
 
 #: View/Elements/formAttributeBase.ctp:113 View/Elements/formCheckBase.ctp:168
 #: View/Elements/infoAttributes.ctp:100 View/Elements/infoGraph.ctp:47
-#: View/Elements/tableLog.ctp:77 View/Elements/tableReport.ctp:46
+#: View/Elements/tableLog.ctp:87 View/Elements/tableReport.ctp:46
 msgid "Host name"
 msgstr "Имя хоста"
 
@@ -2561,7 +2586,7 @@ msgstr "Размер"
 msgid "File size in bytes"
 msgstr "Размер файла в байтах"
 
-#: View/Elements/formCheckBase.ctp:130 View/Elements/tableLog.ctp:100
+#: View/Elements/formCheckBase.ctp:130 View/Elements/tableLog.ctp:110
 msgid "Date"
 msgstr "Дата"
 
@@ -2664,7 +2689,7 @@ msgstr ""
 #: View/Elements/formCheckBase.ctp:250
 #: View/Elements/formPackageActionBase.ctp:138
 #: View/Elements/infoResultVerify.ctp:38 View/Elements/tableGarbage.ctp:53
-#: View/Elements/tableLog.ctp:81;98
+#: View/Elements/tableLog.ctp:91;108
 msgid "Type"
 msgstr "Тип"
 
@@ -4354,35 +4379,31 @@ msgstr "Удалить хост"
 msgid "Are you sure you wish to delete host '%s'?"
 msgstr "Вы уверены, что хотите удалить хост '%s'?"
 
-#: View/Elements/tableLog.ctp:65
+#: View/Elements/tableLog.ctp:75
 msgid "Created: %s"
 msgstr "Создано: %s"
 
-#: View/Elements/tableLog.ctp:86;99
+#: View/Elements/tableLog.ctp:96;109
 msgid "Message"
 msgstr "Сообщение"
 
-#: View/Elements/tableLog.ctp:89
+#: View/Elements/tableLog.ctp:99
 msgid "Date of event"
 msgstr "Дата события"
 
-#: View/Elements/tableLog.ctp:129
-msgid "Clear logs of host"
-msgstr "Очистить журналы хоста"
+#: View/Elements/tableLog.ctp:139
+msgid "Preview logs of host"
+msgstr "Предварительный просмотр журналов хоста"
 
-#: View/Elements/tableLog.ctp:130
-msgid "Are you sure you wish to clear logs of host '%s'?"
-msgstr "Вы уверены, что хотите очистить журналы хоста '%s'?"
-
-#: View/Elements/tableLog.ctp:152
+#: View/Elements/tableLog.ctp:172
 msgid "Delete log record"
 msgstr "Удалить запись журнала"
 
-#: View/Elements/tableLog.ctp:153
+#: View/Elements/tableLog.ctp:173
 msgid "Are you sure you wish to delete this log record?"
 msgstr "Вы действительно хотите удалить эту запись?"
 
-#: View/Elements/tableLog.ctp:197
+#: View/Elements/tableLog.ctp:223
 msgid "log"
 msgid_plural "logs"
 msgstr[0] "журнал"
@@ -4575,7 +4596,7 @@ msgstr "%dс"
 msgid "Installation state of packages"
 msgstr "Состояние установки пакетов"
 
-#: View/Home/index.ctp:54 View/Logs/index.ctp:35
+#: View/Home/index.ctp:54 View/Logs/index.ctp:35 View/Logs/mod/index.ctp:30
 msgid "State of logs"
 msgstr "Состояние журналов"
 
@@ -4591,14 +4612,11 @@ msgstr "Экспорт XML файлов"
 msgid "State of packages"
 msgstr "Состояние пакетов"
 
+#~ msgid "Parsing log files is not configured."
+#~ msgstr "Разбор файлов журналов не настроен."
+
 #~ msgid "Invalid file for parsing"
 #~ msgstr "Недопустимый файл для разбора"
-
-#~ msgid "Error on parsing log file name"
-#~ msgstr "Ошибка при разборе имени файла журнала"
-
-#~ msgid "Error on parsing log file content"
-#~ msgstr "Ошибка при разборе содержимого файла журнала"
 
 #~ msgid ""
 #~ "The name of the SMB share containing the client database files, e.g.: "

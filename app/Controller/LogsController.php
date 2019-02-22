@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.Controller
  */
 
@@ -118,9 +118,11 @@ class LogsController extends AppController {
 		];
 		$stateData = $this->Log->getBarStateInfo();
 		$showStateData = !(bool)$this->Filter->getFilterConditions();
+		$shortInfo = false;
+		$shortBtnPagination = false;
 
 		$this->set(compact('listTypes', 'pageHeader', 'headerMenuActions',
-			'stateData', 'showStateData'));
+			'stateData', 'showStateData', 'shortInfo', 'shortBtnPagination'));
 	}
 
 /**
@@ -131,6 +133,55 @@ class LogsController extends AppController {
  */
 	public function admin_index() {
 		$this->_index();
+	}
+
+/**
+ * Base of action `preview`. Used to preview logs of host.
+ *
+ * @param int|string $id Host ID for previewing.
+ * @return void
+ */
+	protected function _preview($id = null) {
+		$hostName = $this->Log->LogHost->getName($id);
+		if (!$hostName) {
+			return $this->ViewExtension->setExceptionMessage(new NotFoundException(__('Invalid ID for host')));
+		}
+
+		$conditions = [
+			'Log.host_id' => $id
+		];
+		$this->paginate['limit'] = 50;
+		$this->ViewData->actionIndex($conditions);
+		$breadCrumbs = $this->Log->LogHost->getBreadcrumbInfo($id);
+		$breadCrumbs[] = __('Previewing');
+		$pageHeader = __("Preview logs of host '%s'", $hostName);
+		$headerMenuActions = [
+			[
+				'far fa-trash-alt',
+				__('Clear logs of host'),
+				['controller' => 'logs', 'action' => 'clear', $id],
+				[
+					'title' => __('Clear logs of host'), 'action-type' => 'confirm-post',
+					'data-confirm-msg' => __('Are you sure you wish to clear logs of host \'%s\'?', h($hostName)),
+				]
+			]
+		];
+		$shortInfo = true;
+		$shortBtnPagination = true;
+
+		$this->set(compact('breadCrumbs', 'pageHeader', 'headerMenuActions',
+			'shortInfo', 'shortBtnPagination'));
+	}
+
+/**
+ * Action `preview`. Used to preview logs of host.
+ * User role - administrator.
+ *
+ * @param int|string $id Host ID for previewing
+ * @return void
+ */
+	public function admin_preview($id = null) {
+		$this->_preview($id);
 	}
 
 /**
