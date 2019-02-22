@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.Model
  */
 
@@ -1832,9 +1832,6 @@ class Import extends AppModel {
 				switch ($action) {
 					case 'Installation pending':
 						$stateId = REPORT_STATE_INSTALL;
-						if ($status === 'Installed') {
-							$stateId = REPORT_STATE_INSTALLED;
-						}
 						break;
 					case 'Upgrade pending':
 						$stateId = REPORT_STATE_UPGRADE;
