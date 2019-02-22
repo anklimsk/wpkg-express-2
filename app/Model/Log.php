@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.Model
  */
 
@@ -334,7 +334,7 @@ class Log extends AppModel {
 		$share = $this->getShareObj($configKeyShare);
 		$shareInfo = $this->getShareInfo($configKeyShare);
 		if (!$share || !$shareInfo) {
-			$this->_modelExtendQueuedTask->updateTaskErrorMessage($idTask, __('Error processing the log file parsing configuration.'));
+			$this->_modelExtendQueuedTask->updateTaskErrorMessage($idTask, __('Error processing the log files parsing.'));
 			$this->_modelExtendQueuedTask->updateProgress($idTask, 1);
 
 			return false;

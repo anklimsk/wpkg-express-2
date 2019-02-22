@@ -1831,11 +1831,15 @@ msgstr "Журналы"
 msgid "Log of host %s"
 msgstr "Журнал хостов %s"
 
-#: Model/Log.php:346
-msgid "Parsing log files is not configured."
-msgstr "Разбор файлов журналов не настроен."
+#: Model/Log.php:337
+msgid "Error processing the log files parsing."
+msgstr "Ошибка при обработке файлов журнала."
 
-#: Model/Log.php:372;405
+#: Model/Log.php:348
+msgid "Error on connection to SMB share: %s."
+msgstr "Ошибка при подключении к SMB-ресурсу: %s."
+
+#: Model/Log.php:369;402
 msgid "No log files to parsing."
 msgstr "Нет файлов журналов для разбора."
 
@@ -2095,9 +2099,9 @@ msgstr "Отчёты"
 msgid "Report of host %s"
 msgstr "Отчет хоста %s"
 
-#: Model/Report.php:393
-msgid "Parsing database files is not configured."
-msgstr "Разбор файлов базы данных не настроен."
+#: Model/Report.php:385
+msgid "Error processing the database files parsing."
+msgstr "Ошибка при обработке файлов базы данных."
 
 #: Model/Report.php:428;448
 msgid "No database files to parsing."
