@@ -4,7 +4,7 @@
  *  of page as `error` style.
  *
  * CakeTheme: Set theme for application.
- * @copyright Copyright 2016-2018, Andrey Klimov.
+ * @copyright Copyright 2016-2019, Andrey Klimov.
  * @license https://opensource.org/licenses/mit-license.php MIT License
  * @package plugin.View.Layouts
  */
@@ -54,8 +54,9 @@ if (isset($pageTitlePostfix) && !empty($pageTitlePostfix)) {
 
 	echo $this->fetch('css');
 	echo $this->AssetCompress->css('CakeTheme.error-plugins');
-	echo $this->fetch('script');
 	echo $this->AssetCompress->script('CakeTheme.error-plugins');
+	echo $this->fetch('script');
+	echo $this->AssetCompress->script('CakeTheme.error-layout');
 ?>
 <!--[if (gte IE 6)&(lte IE 8)]>
 <?php
@@ -66,6 +67,7 @@ if (isset($pageTitlePostfix) && !empty($pageTitlePostfix)) {
 <![endif]-->
 </head>
 <body>
+	<div class="mainappscripts-ds-overlay-higher"></div>
 	<div id="container">
 		<div id="header">
 <?php

@@ -623,50 +623,6 @@
         ]
     },
     {
-        "name": "anklimsk/cakephp-ldap-sync",
-        "version": "v1.0.2",
-        "version_normalized": "1.0.2.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/anklimsk/cakephp-ldap-sync.git",
-            "reference": "8c5be520b71922507fc56e72ed02d684137e18ae"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/anklimsk/cakephp-ldap-sync/zipball/8c5be520b71922507fc56e72ed02d684137e18ae",
-            "reference": "8c5be520b71922507fc56e72ed02d684137e18ae",
-            "shasum": ""
-        },
-        "require": {
-            "anklimsk/cakephp-basic-functions": "^1.0.0",
-            "anklimsk/cakephp-config-plugin": "^1.0.0",
-            "anklimsk/cakephp-extended-test": "^1.0.0",
-            "anklimsk/cakephp2-theme": "^1.0.0",
-            "cakephp/datasources": "2.3.x-dev",
-            "composer/installers": "^1.5.0",
-            "dereuromark/cakephp-queue": "^2.3.0",
-            "dereuromark/cakephp-tools": "^0.12.4",
-            "php": ">=5.4"
-        },
-        "time": "2018-11-19 10:32:26",
-        "type": "cakephp-plugin",
-        "extra": {
-            "installer-name": "CakeLdap"
-        },
-        "installation-source": "dist",
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Andrey Klimov"
-            }
-        ],
-        "description": "Synchronizing information and authenticating users by LDAP for CakePHP 2.x",
-        "homepage": "https://github.com/anklimsk/cakephp-ldap-sync"
-    },
-    {
         "name": "anklimsk/cakephp-notify",
         "version": "v1.0.1",
         "version_normalized": "1.0.1.0",
@@ -708,88 +664,6 @@
         "homepage": "https://github.com/anklimsk/cakephp-notify"
     },
     {
-        "name": "anklimsk/cakephp-search-info",
-        "version": "v1.0.1",
-        "version_normalized": "1.0.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/anklimsk/cakephp-search-info.git",
-            "reference": "31e4ebb35ee6d01b0b8979437ca53835742543e9"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/anklimsk/cakephp-search-info/zipball/31e4ebb35ee6d01b0b8979437ca53835742543e9",
-            "reference": "31e4ebb35ee6d01b0b8979437ca53835742543e9",
-            "shasum": ""
-        },
-        "require": {
-            "anklimsk/cakephp-config-plugin": "^1.0.0",
-            "anklimsk/cakephp-extended-test": "^1.0.0",
-            "anklimsk/cakephp2-theme": "^1.0.0",
-            "composer/installers": "^1.5.0",
-            "php": ">=5.4"
-        },
-        "time": "2018-11-19 10:44:38",
-        "type": "cakephp-plugin",
-        "extra": {
-            "installer-name": "CakeSearchInfo"
-        },
-        "installation-source": "dist",
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Andrey Klimov"
-            }
-        ],
-        "description": " Search for information in the project database for CakePHP 2.x",
-        "homepage": "https://github.com/anklimsk/cakephp-search-info"
-    },
-    {
-        "name": "anklimsk/cakephp2-theme",
-        "version": "v1.1.1",
-        "version_normalized": "1.1.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/anklimsk/cakephp-theme.git",
-            "reference": "046593b9a2075d4e9531e343593b77719dc47663"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/anklimsk/cakephp-theme/zipball/046593b9a2075d4e9531e343593b77719dc47663",
-            "reference": "046593b9a2075d4e9531e343593b77719dc47663",
-            "shasum": ""
-        },
-        "require": {
-            "anklimsk/cakephp-basic-functions": "^1.0.0",
-            "anklimsk/cakephp-config-plugin": "^1.0.0",
-            "anklimsk/cakephp-extended-test": "^1.0.0",
-            "codaxis/cakephp-bootstrap3-helpers": "^1.2",
-            "composer/installers": "^1.5.0",
-            "markstory/asset_compress": "^0.25",
-            "php": ">=5.4"
-        },
-        "time": "2018-12-26 13:03:08",
-        "type": "cakephp-plugin",
-        "extra": {
-            "installer-name": "CakeTheme"
-        },
-        "installation-source": "dist",
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Andrey Klimov"
-            }
-        ],
-        "description": "Full UI theme for CakePHP 2.x",
-        "homepage": "https://github.com/anklimsk/cakephp-theme"
-    },
-    {
         "name": "anklimsk/cakephp-settings-app",
         "version": "v1.0.6",
         "version_normalized": "1.0.6.0",
@@ -828,5 +702,131 @@
         ],
         "description": " UI for CakePHP 2.x application settings",
         "homepage": "https://github.com/anklimsk/cakephp-settings-app"
+    },
+    {
+        "name": "anklimsk/cakephp2-theme",
+        "version": "v1.1.2",
+        "version_normalized": "1.1.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/anklimsk/cakephp-theme.git",
+            "reference": "b0286c4c5ced16e425786bedae34f315dab1275b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/anklimsk/cakephp-theme/zipball/b0286c4c5ced16e425786bedae34f315dab1275b",
+            "reference": "b0286c4c5ced16e425786bedae34f315dab1275b",
+            "shasum": ""
+        },
+        "require": {
+            "anklimsk/cakephp-basic-functions": "^1.0.0",
+            "anklimsk/cakephp-config-plugin": "^1.0.0",
+            "anklimsk/cakephp-extended-test": "^1.0.0",
+            "codaxis/cakephp-bootstrap3-helpers": "^1.2",
+            "composer/installers": "^1.5.0",
+            "markstory/asset_compress": "^0.25",
+            "php": ">=5.4"
+        },
+        "time": "2019-03-05 08:16:51",
+        "type": "cakephp-plugin",
+        "extra": {
+            "installer-name": "CakeTheme"
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Andrey Klimov"
+            }
+        ],
+        "description": "Full UI theme for CakePHP 2.x",
+        "homepage": "https://github.com/anklimsk/cakephp-theme"
+    },
+    {
+        "name": "anklimsk/cakephp-ldap-sync",
+        "version": "v1.0.3",
+        "version_normalized": "1.0.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/anklimsk/cakephp-ldap-sync.git",
+            "reference": "f5a9933dd1eee609e935297d95fcf1e4f8a8fec1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/anklimsk/cakephp-ldap-sync/zipball/f5a9933dd1eee609e935297d95fcf1e4f8a8fec1",
+            "reference": "f5a9933dd1eee609e935297d95fcf1e4f8a8fec1",
+            "shasum": ""
+        },
+        "require": {
+            "anklimsk/cakephp-basic-functions": "^1.0.0",
+            "anklimsk/cakephp-config-plugin": "^1.0.0",
+            "anklimsk/cakephp-extended-test": "^1.0.0",
+            "anklimsk/cakephp2-theme": "^1.0.0",
+            "cakephp/datasources": "2.3.x-dev",
+            "composer/installers": "^1.5.0",
+            "dereuromark/cakephp-queue": "^2.3.0",
+            "dereuromark/cakephp-tools": "^0.12.4",
+            "php": ">=5.4"
+        },
+        "time": "2019-03-05 11:11:24",
+        "type": "cakephp-plugin",
+        "extra": {
+            "installer-name": "CakeLdap"
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Andrey Klimov"
+            }
+        ],
+        "description": "Synchronizing information and authenticating users by LDAP for CakePHP 2.x",
+        "homepage": "https://github.com/anklimsk/cakephp-ldap-sync"
+    },
+    {
+        "name": "anklimsk/cakephp-search-info",
+        "version": "v1.0.2",
+        "version_normalized": "1.0.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/anklimsk/cakephp-search-info.git",
+            "reference": "809774a676005f82e41f7a798b2a34c3321de6e4"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/anklimsk/cakephp-search-info/zipball/809774a676005f82e41f7a798b2a34c3321de6e4",
+            "reference": "809774a676005f82e41f7a798b2a34c3321de6e4",
+            "shasum": ""
+        },
+        "require": {
+            "anklimsk/cakephp-config-plugin": "^1.0.0",
+            "anklimsk/cakephp-extended-test": "^1.0.0",
+            "anklimsk/cakephp2-theme": "^1.0.0",
+            "composer/installers": "^1.5.0",
+            "php": ">=5.4"
+        },
+        "time": "2019-03-05 12:17:27",
+        "type": "cakephp-plugin",
+        "extra": {
+            "installer-name": "CakeSearchInfo"
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Andrey Klimov"
+            }
+        ],
+        "description": " Search for information in the project database for CakePHP 2.x",
+        "homepage": "https://github.com/anklimsk/cakephp-search-info"
     }
 ]

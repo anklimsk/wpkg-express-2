@@ -34,7 +34,7 @@
        $projectName = null;
 
        // The path to the project logo file is displayed in the navigation bar
-       $projectLogo
+       $projectLogo = null;
 
        $this->set(compact(
            'isExternalAuth',

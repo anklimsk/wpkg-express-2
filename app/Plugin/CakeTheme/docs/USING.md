@@ -45,6 +45,7 @@
 - [Using `ViewExtension` helper](VIEW_EXTENSION_HELPER.md)
 - [Using `ViewExtension` component](VIEW_EXTENSION_COMPONENT.md)
 - [Creation main menu](MAIN_MENU.md)
+- [Creating a page footer](FOOTER.md)
 - [Updating libraries](UPDATING_LIBRARIES.md)
 - [Creating a collapsible tree and table with support for moving and drag and drop](TREE.md)
 - [Creating a breadcrumbs navigation](BREADCRUMBS_NAVIGATION.md)

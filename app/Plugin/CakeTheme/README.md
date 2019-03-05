@@ -46,6 +46,7 @@ Full UI theme for CakePHP
 - Showing button `Scroll to top`;
 - AJAX render the block at regular intervals;
 - Creating main menu with search input;
+- Creating a page footer;
 - Checking UI is ready to be displayed.
 
 ## Installation

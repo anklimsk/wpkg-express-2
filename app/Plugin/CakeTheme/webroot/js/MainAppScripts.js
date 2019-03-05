@@ -2,8 +2,8 @@
  * This file use for application UI
  *
  * @file    Main file for MainAppScripts
- * @version 1.1.0
- * @copyright 2016-2018 Andrey Klimov.
+ * @version 1.1.2
+ * @copyright 2016-2019 Andrey Klimov.
  * @license https://opensource.org/licenses/mit-license.php MIT License
  */
 
@@ -21,10 +21,11 @@
         'use strict';
 
         /**
-         * @version 0.20.7
+         * @version 1.1.2
          * @namespace MainAppScripts
          */
         var MainAppScripts = {};
+
         /**
          * Content container for AJAX requset
          *
@@ -5121,6 +5122,10 @@
                 }
             }
 
+            if ($('.fas,.far,.fal,.fab').length === 0) {
+                return 0;
+            }
+
             if (returnCount) {
                 return 1;
             }
@@ -5189,23 +5194,31 @@
                 return 1;
             }
 
-            var classBody = '';
+            var classBodyStr = '';
+            var classBodyArr = [];
             var objHeader = $('#header');
-            if (objHeader.length === 0) {
+            var objFooter = $('#footer');
+            if ((objHeader.length === 0) && (objFooter.length === 0)) {
                 return true;
             }
 
             if (objHeader.find('[role="navigation"]').length === 1) {
-                classBody = 'use-navbar-only';
                 if (objHeader.find('.breadcrumb').length === 1) {
-                    classBody = 'use-navbar-breadcrumb';
+                    classBodyArr.push('use-navbar-breadcrumb');
+                } else {
+                    classBodyArr.push('use-navbar-only');
                 }
             } else if (objHeader.find('.breadcrumb').length === 1) {
-                classBody = 'use-breadcrumb-only';
+                classBodyArr.push('use-breadcrumb-only');
             }
 
-            if (classBody) {
-                objBody.addClass(classBody);
+            if (objFooter.find('.footer.navbar-fixed-bottom').length === 1) {
+                classBodyArr.push('use-footer');
+            }
+
+            if (classBodyArr.length > 0) {
+                classBodyStr = classBodyArr.join(' ');
+                objBody.addClass(classBodyStr);
             }
 
             MainAppScripts.processUIReadyCounter('BodyClass');
