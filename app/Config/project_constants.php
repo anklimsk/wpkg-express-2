@@ -41,7 +41,7 @@ if (!defined('PROJECT_NAME')) {
  *  Default value `Project title`
  */
 if (!defined('PROJECT_PAGE_TITLE')) {
-	define('PROJECT_PAGE_TITLE', 'WPKG Express II');
+	define('PROJECT_PAGE_TITLE', PROJECT_NAME);
 }
 
 /**
