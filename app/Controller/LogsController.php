@@ -151,6 +151,7 @@ class LogsController extends AppController {
 			'Log.host_id' => $id
 		];
 		$this->paginate['limit'] = 50;
+		$this->paginate['order'] = ['Log.date' => 'asc'];
 		$this->ViewData->actionIndex($conditions);
 		$breadCrumbs = $this->Log->LogHost->getBreadcrumbInfo($id);
 		$breadCrumbs[] = __('Previewing');
