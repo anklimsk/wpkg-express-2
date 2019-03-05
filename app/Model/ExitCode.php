@@ -214,7 +214,7 @@ class ExitCode extends AppModel {
 			'ExitCodeDirectory'
 		];
 		$order = [
-			$this->alias . '.code' => 'asc',
+			'CAST(' . $this->alias . '.code AS UNSIGNED)',
 		];
 
 		return $this->find('all', compact('conditions', 'fields', 'contain', 'order'));
