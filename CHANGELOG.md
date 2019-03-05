@@ -1,6 +1,15 @@
 # Changelog
 
 
+## v1.0.3 (2019-03-05)
+
+### New
+
+* Added feature of exit code directory.
+
+* Added feature to preview logs of host.
+
+
 ## v1.0.2 (2019-02-08)
 
 ### Changes
