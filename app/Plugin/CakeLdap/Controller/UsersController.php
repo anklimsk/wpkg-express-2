@@ -44,7 +44,7 @@ class UsersController extends CakeLdapAppController {
  *
  * @var string
  */
-	public $layout = 'CakeLdap.login';
+	public $layout = 'CakeTheme.login';
 
 /**
  * Called before the controller action. You can use this method to configure and customize components

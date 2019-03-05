@@ -325,7 +325,7 @@ class EmployeeInfoBaseHelperTest extends AppCakeTestCase {
 			__d('cake_ldap_field_name', 'Department') => 'АТО',
 			__d('cake_ldap_field_name', 'Subdivision') => __d('view_extension', '&lt;None&gt;'),
 			__d('cake_ldap_field_name', 'Position') => 'Заместитель начальника отдела, водитель',
-			__d('cake_ldap_field_name', 'Manager') => '<a href="/employees/view/7" target="_blank" data-toggle="modal-popover" class="popup-link text-nowrap" data-popover-placement="auto top" data-modal-title="' . __d('view_extension', 'Detail information') . '">Хвощинский В.В.</a> - Начальник отдела',
+			__d('cake_ldap_field_name', 'Manager') => '<a href="/employees/view/7" target="_blank" data-toggle="modal-popover" class="popup-link" data-popover-placement="auto top" data-modal-title="' . __d('view_extension', 'Detail information') . '">Хвощинский В.В.</a> - Начальник отдела',
 			__d('cake_ldap_field_name', 'Birthday') => '12/14/1950',
 			__d('cake_ldap_field_name', 'Computer') => __d('view_extension', '&lt;None&gt;'),
 			__d('cake_ldap_field_name', 'Employee ID') => __d('view_extension', '&lt;None&gt;'),
@@ -336,9 +336,9 @@ class EmployeeInfoBaseHelperTest extends AppCakeTestCase {
 			__d('cake_ldap_field_name', 'Initials') => 'Е.В.',
 			__d('cake_ldap_field_name', 'Block') => __d('view_extension', 'No'),
 			__d('cake_ldap_field_name', 'Subordinate') => "\r\n" . '<ul class="bonsai-treeview" id="employee-tree">' . "\r\n" .
-				"\t" . '<li data-id="4" class="parent"><a href="/employees/view/4" data-toggle="modal-popover" class="popup-link text-nowrap" target="_blank" data-popover-placement="auto top" data-modal-title="' . __d('view_extension', 'Detail information') . '">Дементьева А.С.</a> - Инженер' . "\r\n" .
+				"\t" . '<li data-id="4" class="parent"><a href="/employees/view/4" data-toggle="modal-popover" class="popup-link" target="_blank" data-popover-placement="auto top" data-modal-title="' . __d('view_extension', 'Detail information') . '">Дементьева А.С.</a> - Инженер' . "\r\n" .
 					"\t" . '<ul>' . "\r\n" .
-						"\t\t" . '<li data-id="5"><a href="/employees/view/5" data-toggle="modal-popover" class="popup-link text-nowrap" target="_blank" data-popover-placement="auto top" data-modal-title="' . __d('view_extension', 'Detail information') . '">Матвеев Р.М.</a> - Водитель</li>' . "\r\n" .
+						"\t\t" . '<li data-id="5"><a href="/employees/view/5" data-toggle="modal-popover" class="popup-link" target="_blank" data-popover-placement="auto top" data-modal-title="' . __d('view_extension', 'Detail information') . '">Матвеев Р.М.</a> - Водитель</li>' . "\r\n" .
 					"\t" . '</ul>' . "\r\n" .
 				"\t" . '</li>' . "\r\n" .
 				'</ul>' . "\r\n"
@@ -389,7 +389,7 @@ class EmployeeInfoBaseHelperTest extends AppCakeTestCase {
 			__d('cake_ldap_field_name', 'Depart.') => 'АТО',
 			__d('cake_ldap_field_name', 'Subdiv.') => __d('view_extension', '&lt;None&gt;'),
 			__d('cake_ldap_field_name', 'Pos.') => 'Заместитель начальника отдела, водитель',
-			__d('cake_ldap_field_name', 'Manag.') => '<a href="/employees/view/7" target="_blank" data-toggle="modal-popover" class="popup-link text-nowrap" data-popover-placement="auto top" data-modal-title="' . __d('view_extension', 'Detail information') . '">Хвощинский В.В.</a> - Начальник отдела',
+			__d('cake_ldap_field_name', 'Manag.') => '<a href="/employees/view/7" target="_blank" data-toggle="modal-popover" class="popup-link" data-popover-placement="auto top" data-modal-title="' . __d('view_extension', 'Detail information') . '">Хвощинский В.В.</a> - Начальник отдела',
 			__d('cake_ldap_field_name', 'Birthd.') => '12/14/1950',
 			__d('cake_ldap_field_name', 'Comp.') => __d('view_extension', '&lt;None&gt;'),
 			__d('cake_ldap_field_name', 'Empl. ID') => __d('view_extension', '&lt;None&gt;'),
@@ -404,7 +404,7 @@ class EmployeeInfoBaseHelperTest extends AppCakeTestCase {
 
 		$result = $this->_targetObject->getInfo($employee, $fieldsLabel, $fieldsConfig, $linkOpt, true);
 		$expected = [
-			'<a href="/employees/view/8" target="_blank" data-toggle="modal-popover" class="popup-link text-nowrap" data-popover-placement="auto top" data-modal-title="' . __d('view_extension', 'Detail information') . '">Голубев Е.В.</a>',
+			'<a href="/employees/view/8" target="_blank" data-toggle="modal-popover" class="popup-link" data-popover-placement="auto top" data-modal-title="' . __d('view_extension', 'Detail information') . '">Голубев Е.В.</a>',
 			'Голубев Е.В.',
 			'Голубев',
 			'Егор',
@@ -419,7 +419,7 @@ class EmployeeInfoBaseHelperTest extends AppCakeTestCase {
 			'АТО',
 			__d('view_extension', '&lt;None&gt;'),
 			'<div class="collapse-text-expanded"><div class="collapse-text-truncated">Заместитель начальника<a href="#" role="button" data-toggle="collapse-text-expand" class="collapse-text-action-btn" title="' . __d('view_extension', 'Expand text') . '"><span class="fas fa-angle-double-right"></span></a></div><div class="collapse-text-original">Заместитель начальника отдела, водитель<a href="#" role="button" data-toggle="collapse-text-roll-up" class="collapse-text-action-btn" title="' . __d('view_extension', 'Roll up text') . '"><span class="fas fa-angle-double-left"></span></a></div></div>',
-			'<a href="/employees/view/7" target="_blank" data-toggle="modal-popover" class="popup-link text-nowrap" data-popover-placement="auto top" data-modal-title="' . __d('view_extension', 'Detail information') . '">Хвощинский В.В.</a> - Начальник отдела',
+			'<a href="/employees/view/7" target="_blank" data-toggle="modal-popover" class="popup-link" data-popover-placement="auto top" data-modal-title="' . __d('view_extension', 'Detail information') . '">Хвощинский В.В.</a> - Начальник отдела',
 			[
 				'12/14/1950',
 				[

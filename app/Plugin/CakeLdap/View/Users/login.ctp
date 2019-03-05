@@ -3,14 +3,16 @@
  * This file is the view file of the plugin. Used for login users.
  *
  * CakeLdap: Authentication of users by member group of Active Directory.
- * @copyright Copyright 2016-2018, Andrey Klimov.
+ * @copyright Copyright 2016-2019, Andrey Klimov.
  * @license https://opensource.org/licenses/mit-license.php MIT License
  * @package plugin.View.Elements
  */
 
+	echo $this->AssetCompress->css('CakeTheme.vertical-alignment', ['block' => 'css']);
+
 	$this->assign('title', $pageTitle);
 ?>
-	<div class="container container-table"> 
+	<div class="container container-table">
 		<div class="row vertical-center-row">
 			<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
 				<div class="panel panel-default">
