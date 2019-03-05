@@ -220,6 +220,15 @@ if (!defined('XSD_PATH_DATABASE')) {
 }
 
 /**
+ * Full path to the exit code directory XML schema file
+ *
+ * Used for validation XML document. Default value `/webroot/xsd/directory.xsd`
+ */
+if (!defined('XSD_PATH_DIRECTORY')) {
+	define('XSD_PATH_DIRECTORY', APP . 'webroot' . DS . 'xsd' . DS . 'directory.xsd');
+}
+
+/**
  * XML tag name for disabled items
  *
  * Used for render disabled items as commented out. Default value `disabled`
@@ -1626,6 +1635,16 @@ if (!defined('LOG_PKG_PCRE_ERROR_PACKAGE_NAME')) {
 }
 
 /**
+ * PCRE pattern for parsing the log file content
+ *
+ * Used to extend information from the log file content:
+ *  exit code.
+ */
+if (!defined('LOG_PKG_PCRE_REPLACE_EXIT_CODE')) {
+	define('LOG_PKG_PCRE_REPLACE_EXIT_CODE', '((?:Exit\scode\sreturned\snon\-successful\svalue(?:\:\s|\s\()|returned\sexit\scode\s\[|Command\sreturned\sresult\:\s))(\-?\d+)');
+}
+
+/**
  * Type of object garbage `Package`
  *
  * Used for determine the type of object garbage. Default value `1`
@@ -2699,4 +2718,14 @@ if (!defined('CACHE_KEY_LISTS_INFO_WPI_CATEGORY')) {
  */
 if (!defined('CACHE_KEY_MODEL_CFG_INFO')) {
 	define('CACHE_KEY_MODEL_CFG_INFO', 'model_cfg_info');
+}
+
+/**
+ * Cache configuration for store lists information of model `ExitCodeDirectory`
+ *
+ * Used for access to cached data of for store lists information
+ *  of model `ExitCodeDirectory`. Default value `lists_info_exit_code_directory`.
+ */
+if (!defined('CACHE_KEY_LISTS_INFO_EXIT_CODE_DIRECTORY')) {
+	define('CACHE_KEY_LISTS_INFO_EXIT_CODE_DIRECTORY', 'lists_info_exit_code_directory');
 }

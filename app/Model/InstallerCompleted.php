@@ -57,7 +57,8 @@ class InstallerCompleted extends CakeInstallerAppModel {
 			'CONFIG',
 			'PACKAGE',
 			'PROFILE',
-			'HOST'
+			'HOST',
+			''
 		];
 		$oXmlDir = new Folder($xmlDirPath, false, false);
 		list(, $xmlFiles) = $oXmlDir->read(true, false, true);
@@ -68,7 +69,12 @@ class InstallerCompleted extends CakeInstallerAppModel {
 		$result = true;
 		$modelImport = ClassRegistry::init('Import');
 		foreach ($orderList as $orderItem) {
-			$xmlFilesType = preg_grep('/' . $orderItem . '.*_TEMPLATE\.xml$/', $xmlFiles);
+			$fileNamePostfix = 'DATA';
+			if (!empty($orderItem)) {
+				$fileNamePostfix = 'TEMPLATE';
+			}
+			$pcrePattern = '/' . $orderItem . '.*_' . $fileNamePostfix . '\.xml$/';
+			$xmlFilesType = preg_grep($pcrePattern, $xmlFiles);
 			if (empty($xmlFilesType)) {
 				continue;
 			}

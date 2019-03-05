@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.Model
  */
 
@@ -715,6 +715,7 @@ class Package extends AppModel {
 				'PackageAction.Check.Attribute' => ['fields' => '*'],
 				'PackageAction.ExitCode',
 				'PackageAction.ExitCode.ExitcodeRebootType',
+				'PackageAction.ExitCode.ExitCodeDirectory',
 				'PackageAction.IncludeAction',
 				'PackageAction.PackageActionType',
 				'PackageAction.Attribute' => ['fields' => '*'],

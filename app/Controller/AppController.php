@@ -20,7 +20,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.Controller
  */
 
@@ -257,9 +257,10 @@ class AppController extends Controller {
 		$specificJS = array_merge($specificJS, [
 			'actions' . DS . 'add',
 			'attributes' . DS . 'add',
-			'checks' . DS . 'add',
-			'graph' . DS . 'view',
 			'charts' . DS . 'view',
+			'checks' . DS . 'add',
+			'exit_codes' . DS . 'add',
+			'graph' . DS . 'view',
 			'packages' . DS . 'add'
 		]);
 		$specificCSS = array_merge($specificCSS, [
@@ -292,6 +293,7 @@ class AppController extends Controller {
 			'ActionTypes',
 			'Attributes',
 			'Checks',
+			'ExitCodeDirectory',
 			'ExitCodes',
 			'Graph',
 			'Charts',

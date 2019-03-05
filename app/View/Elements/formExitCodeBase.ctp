@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.View.Elements
  */
 
@@ -49,7 +49,21 @@ if (!isset($isAddAction)) {
 		'type' => 'text', 'autocomplete' => 'off',
 		'data-inputmask-regex' => '^(?:any|\d+|\*)$', 'autofocus' => true,
 		'data-toggle' => 'autocomplete', 'data-autocomplete-url' => '/cake_theme/filter/autocomplete.json',
-		'data-autocomplete-type' => 'ExitCode.code']);
+		'data-description-url' => $this->Html->url(['controller' => 'exit_code_directory', 'action' => 'description', 'ext' => 'json']),
+		'data-autocomplete-type' => 'ExitCode.code',
+		'help' => $this->Html->tag('samp', '', ['id' => 'ExitCodeCodeHelpBlock']),
+		'beforeInput' => '<div class="input-group">',
+			'afterInput' => $this->Html->div('input-group-btn',
+				$this->ViewExtension->buttonLink(
+					'fas fa-list-ol',
+					'btn btn-info',
+					['controller' => 'exit_code_directory', 'action' => 'index'],
+					[
+						'title' => __('Exit code directory'),
+						'target' => '_blank'
+					]
+				)
+			) . '</div>']);
 	echo $this->Form->input('ExitCode.reboot_id', ['label' => [__('Reboot'), nl2br(__("Determines if and what kind of a reboot is performed when the specified exit code is detected:\n- 'yes': immediate reboot, without updating wpkg.xml;\n- 'no': do not require any reboot;\n- 'delayed': reboot once the package action is complete and wpkg.xml is updated;\n- 'postponed': reboot once all the packages have been processed.")), ':'],
 		'type' => 'select', 'data-toggle' => 'tooltip', 'options' => $listRebootType, 'autocomplete' => 'off']);
 ?>

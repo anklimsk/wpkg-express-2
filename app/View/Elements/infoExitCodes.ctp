@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.View.Elements
  */
 
@@ -48,7 +48,20 @@ foreach ($exitCodes as $exitCode) {
 		unset($exitCode['ExitCode']);
 	}
 
-	$exitCodeName = $this->Html->tag('strong', h($exitCode['code'])) . ' - ' .
+	$exitCodeValue = h($exitCode['code']);
+	$exitCodeName = $exitCodeValue;
+	if (isset($exitCode['ExitCodeDirectory'][0]['description']) &&
+		!empty($exitCode['ExitCodeDirectory'][0]['description'])) {
+		$exitCodeName = $this->Html->tag(
+			'abbr',
+			$exitCodeValue,
+			[
+				'title' => $exitCode['ExitCodeDirectory'][0]['description'],
+				'data-toggle' => 'tooltip'
+			]
+		);
+	}
+	$exitCodeDisplayName = $this->Html->tag('strong', $exitCodeName) . ' - ' .
 		$this->Html->tag('var', __('Reboot: %s', __d('exit_code_reboot', h($exitCode['ExitcodeRebootType']['name']))));
 
 	$actions = '';
@@ -69,14 +82,14 @@ foreach ($exitCodes as $exitCode) {
 				['controller' => 'exit_codes', 'action' => 'delete', $exitCode['id']],
 				[
 					'title' => __('Delete exit code'), 'action-type' => 'confirm-post',
-					'data-confirm-msg' => __('Are you sure you wish to delete exit code \'%s\'?', $exitCodeName),
+					'data-confirm-msg' => __('Are you sure you wish to delete exit code \'%s\'?', $exitCodeValue),
 					'data-update-modal-content' => true,
 				]
 			),
 			['class' => 'action hide-popup']
 		);
 	}
-	$list[] = $this->Html->tag('span', $exitCodeName) . $actions;
+	$list[] = $this->Html->tag('span', $exitCodeDisplayName) . $actions;
 }
 $infoExitCodes = $this->ViewExtension->showEmpty($list, $this->Html->nestedList($list, ['class' => 'list-unstyled'], [], 'ul'));
 

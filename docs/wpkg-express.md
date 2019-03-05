@@ -36,3 +36,23 @@
     to all users. Used, e.g., to install drivers.
   * `SOFTWARE_NETLOGON` - Shared resource with distributives of programs available
     to all user. Used for logon scripts.
+
+## Exit code directory
+
+- See [Win32 Error Codes](https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d);
+- Create a XML file with record for the exit code directory:
+
+  ```xml
+  <?xml version="1.0" encoding="UTF-8"?>
+  <directory xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <record code="3010">
+      <hexadecimal>0x00000BC2</hexadecimal>
+      <constant>ERROR_SUCCESS_REBOOT_REQUIRED</constant>
+      <description>The requested operation is successful. Changes will not be effective until the system is rebooted.</description>
+    </record>
+  </directory>
+  ```
+
+- Open WPKG Express 2 in web browser and navigate to menu `Application settings` ->
+  `Upload XML files`;
+- Upload created XML file.

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="directory">
+    <xsd:complexType>
+      <xsd:sequence minOccurs="1" maxOccurs="unbounded">
+        <xsd:element name="record">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:sequence minOccurs="0" maxOccurs="1">
+                <xsd:element name="hexadecimal">
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:pattern value="0x[0-9A-Fa-f]{8}"></xsd:pattern>
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+              </xsd:sequence>
+              <xsd:sequence minOccurs="0" maxOccurs="1">
+                <xsd:element name="constant">
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:pattern value="[0-9A-za-z_]{2,}"></xsd:pattern>
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+              </xsd:sequence>
+              <xsd:sequence minOccurs="1" maxOccurs="1">
+                <xsd:element name="description">
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:minLength value="2"></xsd:minLength>
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+              </xsd:sequence>
+            </xsd:sequence>
+            <xsd:attribute type="xsd:unsignedInt" name="code" use="required"/>
+            <xsd:attribute type="xsd:string" name="lcid" use="optional"/>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.Model
  */
 
@@ -107,7 +107,24 @@ class ExitCode extends AppModel {
 			'foreignKey' => 'reboot_id',
 			'conditions' => '',
 			'fields' => 'ExitcodeRebootType.name'
-		],
+		]
+	];
+
+/**
+ * Detailed list of hasMany associations.
+ *
+ * @var array
+ * @link https://book.cakephp.org/2.0/en/models/associations-linking-models-together.html#hasmany
+ */
+	public $hasMany = [
+		'ExitCodeDirectory' => [
+			'className' => 'ExitCodeDirectory',
+			'foreignKey' => '',
+			'conditions' => '',
+			'order' => '',
+			'dependent' => false,
+			'finderQuery' => 'SELECT ExitCodeDirectory.description FROM exit_code_directory AS ExitCodeDirectory JOIN exit_codes AS ExitCode ON (ExitCode.id = {$__cakeID__$}) AND (ExitCodeDirectory.code = ExitCode.code) AND (ExitCode.code NOT IN ("any", "*"));'
+		]
 	];
 
 /**
@@ -194,6 +211,7 @@ class ExitCode extends AppModel {
 		$contain = [
 			'PackageAction',
 			'ExitcodeRebootType',
+			'ExitCodeDirectory'
 		];
 		$order = [
 			$this->alias . '.code' => 'asc',

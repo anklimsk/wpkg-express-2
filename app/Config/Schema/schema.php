@@ -161,6 +161,25 @@ class AppSchema extends CakeSchema {
 	];
 
 /**
+ * Schema of table `exit_code_directory`.
+ *
+ * @var array
+ */
+	public $exit_code_directory = [
+		'id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'unsigned' => false, 'key' => 'primary'],
+		'lcid' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 20, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
+		'code' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 8, 'unsigned' => false, 'key' => 'unique'],
+		'hexadecimal' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 10, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
+		'constant' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 80, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
+		'description' => ['type' => 'text', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
+		'indexes' => [
+			'PRIMARY' => ['column' => 'id', 'unique' => 1],
+			'code' => ['column' => 'code', 'unique' => 1]
+		],
+		'tableParameters' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB']
+	];
+
+/**
  * Schema of table `exitcode_reboot_types`.
  *
  * @var array

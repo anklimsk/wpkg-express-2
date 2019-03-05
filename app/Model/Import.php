@@ -130,6 +130,13 @@ class Import extends AppModel {
 	protected $_modelConfigLanguage = null;
 
 /**
+ * Object of model `ExitCodeDirectory`
+ *
+ * @var object
+ */
+	protected $_modelExitCodeDirectory = null;
+
+/**
  * Object of model `Variable`
  *
  * @var object
@@ -175,6 +182,7 @@ class Import extends AppModel {
 		$this->_modelLog = ClassRegistry::init('Log');
 		$this->_modelConfig = ClassRegistry::init('Config');
 		$this->_modelConfigLanguage = ClassRegistry::init('ConfigLanguage');
+		$this->_modelExitCodeDirectory = ClassRegistry::init('ExitCodeDirectory');
 		$this->_modelVariable = ClassRegistry::init('Variable');
 		$this->_modelAttribute = ClassRegistry::init('Attribute');
 		$this->_modelCheck = ClassRegistry::init('Check');
@@ -218,7 +226,7 @@ class Import extends AppModel {
  * @return string Return the name valid the types of XML files for upload.
  */
 	public function getNameValidXmlTypes() {
-		$result = __('Package, profile, host, WPKG configuration or client database.');
+		$result = __('Package, profile, host, WPKG configuration, client database or exit code directory.');
 
 		return $result;
 	}
@@ -563,6 +571,9 @@ class Import extends AppModel {
 			case 'config':
 				$path = 'config';
 				break;
+			case 'directory':
+				$path = 'directory.record';
+				break;
 			case 'report':
 			case 'log':
 				break;
@@ -831,7 +842,8 @@ class Import extends AppModel {
 			'packages',
 			'profiles',
 			'wpkg',
-			'config'
+			'config',
+			'directory'
 		];
 		if (!in_array($xmlRootName, $listValidRoot)) {
 			return false;
@@ -2092,7 +2104,29 @@ class Import extends AppModel {
 			if (empty($msgText)) {
 				continue;
 			}
-			$msgText = preg_replace($msgPatterns, $msgReplaces, $msgText);
+			$msgTextNew = preg_replace($msgPatterns, $msgReplaces, $msgText);
+			if (!empty($msgTextNew)) {
+				$msgText = $msgTextNew;
+			}
+
+			$msgTextNew = preg_replace_callback(
+				'/' . LOG_PKG_PCRE_REPLACE_EXIT_CODE . '/iu',
+				function ($match) {
+					$result = $match[1];
+					$code = $match[2];
+					$description = $this->getIdFromNamesCache('ExitCodeDirectory', $code);
+					if (!empty($description)) {
+						$code = '<abbr title="' . $description . '" data-toggle="tooltip">' . $code . '</abbr>';
+					}
+					$result .= '<samp>' . $code . '</samp>';
+					return $result;
+				},
+				$msgText
+			);
+			if (!empty($msgTextNew)) {
+				$msgText = $msgTextNew;
+			}
+
 			if (($prevDate === $date) && ($prevTypeId === $typeId)) {
 				$dataToSave = array_pop($result);
 				if (!empty($dataToSave)) {
@@ -2115,6 +2149,45 @@ class Import extends AppModel {
 				]
 			];
 			$result[] = $dataToSave;
+		}
+
+		return $result;
+	}
+
+/**
+ * Preparing data of exit code directory from XML information array.
+ *
+ * @param array $xmlData XML data array for processing
+ * @return array Information of exit code directory.
+ */
+	protected function _prepareDirectory($xmlData = []) {
+		$result = [];
+		if (empty($xmlData) || !is_array($xmlData)) {
+			return $result;
+		}
+
+		$this->_arrayIfY($xmlData);
+		$exitCodeInfoDefault = $this->_modelExitCodeDirectory->getDefaultValues(false);
+		$listAttributes = [
+			'code',
+			'lcid'
+		];
+		$listElements = [
+			'hexadecimal',
+			'constant',
+			'description'
+		];
+		foreach ($xmlData as $xmlDataItem) {
+			$exitCodeInfo = $this->_extractAttributes($xmlDataItem, $listAttributes);
+			foreach ($listElements as $elementName) {
+				$exitCodeInfo[$elementName] = Hash::get($xmlDataItem, $elementName);
+			}
+			$recordId = $this->getIdFromNamesCache('ExitCodeDirectory', $xmlDataItem['@code']);
+			if (!empty($recordId)) {
+				$exitCodeInfo['id'] = $recordId;
+			}
+
+			$result[] = [$this->_modelExitCodeDirectory->alias => $exitCodeInfo + $exitCodeInfoDefault];
 		}
 
 		return $result;
@@ -3229,6 +3302,7 @@ class Import extends AppModel {
 		$this->createNamesCache('Host', null, false);
 		$this->createNamesCache('LogHost');
 		$this->createNamesCache('LogType');
+		$this->createNamesCache('ExitCodeDirectory', null, false, null, false);
 		$dataToSave = ['Log' => $this->_prepareLogRecords($dataArray['data'], $dataArray['info'])];
 		$dataToSave['LogHost'] = $this->_prepareLogHost($dataArray['info']);
 
@@ -3364,6 +3438,85 @@ class Import extends AppModel {
 			$dataSource->rollback();
 			$this->clearNamesCache('LogHost');
 			$this->createNamesCache('LogHost');
+		}
+
+		return $result;
+	}
+
+/**
+ * Import information of exit code directory from XML string or file.
+ *
+ * @param string $xmlFile XML string or file to processing
+ * @param int $idTask The ID of the QueuedTask
+ * @return bool Success
+ */
+	public function importXmlDirectory($xmlFile = '', $idTask = null) {
+		$step = 0;
+		$maxStep = 2;
+		$dataToSave = [];
+		$errorMessages = [];
+		$result = true;
+		set_time_limit(IMPORT_TIME_LIMIT);
+		$this->_modelExtendQueuedTask->updateProgress($idTask, 0);
+		$xmlDataArray = $this->_extarctDataFromXml($xmlFile, 'directory', $idTask);
+		if (is_bool($xmlDataArray)) {
+			return $xmlDataArray;
+		}
+
+		$this->createNamesCache('ExitCodeDirectory');
+		$dataToSave = $this->_prepareDirectory($xmlDataArray['data']);
+		$this->_modelExtendQueuedTask->updateTaskProgress($idTask, $step, $maxStep);
+		if (!$this->_saveDirectory($errorMessages, $dataToSave)) {
+			$result = false;
+		}
+
+		$this->_modelExtendQueuedTask->updateTaskProgress($idTask, $step, $maxStep);
+		if (!empty($idTask) && !empty($errorMessages)) {
+			$errorMessagesText = RenderXmlData::renderErrorMessages($errorMessages);
+			$this->_modelExtendQueuedTask->updateTaskErrorMessage($idTask, $errorMessagesText, true);
+		}
+
+		return $result;
+	}
+
+/**
+ * Saving exit code directory information use transactions.
+ *
+ * @param array &$messages Array of messages.
+ * @param array $directoryInfo Array information exit code directory to save.
+ * @return bool Success.
+ */
+	protected function _saveDirectory(array &$messages, $directoryInfo = []) {
+		$dataSource = $this->_modelExitCodeDirectory->getDataSource();
+		$dataSource->begin();
+
+		$result = $this->_saveInfoDirectory($messages, $directoryInfo);
+		if ($result) {
+			$dataSource->commit();
+		} else {
+			$dataSource->rollback();
+		}
+
+		return $result;
+	}
+
+/**
+ * Saving exit code directory information.
+ *
+ * @param array &$messages Array of messages.
+ * @param array $directoryInfo Array information exit code directory to save.
+ * @return bool Success.
+ */
+	protected function _saveInfoDirectory(array &$messages, $directoryInfo = []) {
+		if (empty($directoryInfo)) {
+			return true;
+		}
+
+		$result = true;
+		$this->_modelExitCodeDirectory->create(false);
+		if (!$this->_modelExitCodeDirectory->saveAll($directoryInfo)) {
+			$result = false;
+			$messages[__('Errors')][__('Error on saving exit code directory')][] = $this->_modelExitCodeDirectory->validationErrors;
 		}
 
 		return $result;
