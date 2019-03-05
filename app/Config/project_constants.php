@@ -20,7 +20,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.Config
  */
 
@@ -1840,7 +1840,7 @@ if (!defined('SWITCH_MSI_4')) {
  * Used as information for autocomplete string in package action command.
  */
 if (!defined('SWITCH_MSI_5')) {
-	define('SWITCH_MSI_5', '/passive /norestart /log "%TMP%\%PKG_NAME%.log" TRANSFORMS="%SOFTWARE%\APP\silent.mst"');
+	define('SWITCH_MSI_5', '/passive /norestart /log "%TEMP%\%PKG_NAME%.log" TRANSFORMS="%SOFTWARE%\APP\silent.mst"');
 }
 
 /**
@@ -1849,7 +1849,7 @@ if (!defined('SWITCH_MSI_5')) {
  * Used as information for autocomplete string in package action command.
  */
 if (!defined('SWITCH_MSI_6')) {
-	define('SWITCH_MSI_6', '/passive /norestart /log "%TMP%\%PKG_NAME%.log" TARGETDIR="%PKG_DESTINATION%"');
+	define('SWITCH_MSI_6', '/passive /norestart /log "%TEMP%\%PKG_NAME%.log" TARGETDIR="%PKG_DESTINATION%"');
 }
 
 /**
@@ -1867,7 +1867,7 @@ if (!defined('SWITCH_MSI_7')) {
  * Used as information for autocomplete string in package action command.
  */
 if (!defined('SWITCH_MSI_8')) {
-	define('SWITCH_MSI_8', '/qb /norestart /log "%TMP%\%PKG_NAME%.log" TRANSFORMS="%SOFTWARE%\APP\silent.mst"');
+	define('SWITCH_MSI_8', '/qb /norestart /log "%TEMP%\%PKG_NAME%.log" TRANSFORMS="%SOFTWARE%\APP\silent.mst"');
 }
 
 /**
@@ -1876,7 +1876,7 @@ if (!defined('SWITCH_MSI_8')) {
  * Used as information for autocomplete string in package action command.
  */
 if (!defined('SWITCH_MSI_9')) {
-	define('SWITCH_MSI_9', '/qb /norestart /log "%TMP%\%PKG_NAME%.log" TARGETDIR="%PKG_DESTINATION%"');
+	define('SWITCH_MSI_9', '/qb /norestart /log "%TEMP%\%PKG_NAME%.log" TARGETDIR="%PKG_DESTINATION%"');
 }
 
 /**
@@ -1921,7 +1921,7 @@ if (!defined('SWITCH_INNO_2')) {
  * Used as information for autocomplete string in package action command.
  */
 if (!defined('SWITCH_INNO_3')) {
-	define('SWITCH_INNO_3', '/SP- /VERYSILENT /SUPPRESSMSGBOXES /NORESTART /DIR="%PKG_DESTINATION%" /LOG="%TMP%\%PKG_NAME%.log"');
+	define('SWITCH_INNO_3', '/SP- /VERYSILENT /SUPPRESSMSGBOXES /NORESTART /DIR="%PKG_DESTINATION%" /LOG="%TEMP%\%PKG_NAME%.log"');
 }
 
 /**
@@ -1939,7 +1939,7 @@ if (!defined('SWITCH_INNO_4')) {
  * Used as information for autocomplete string in package action command.
  */
 if (!defined('SWITCH_INNO_5')) {
-	define('SWITCH_INNO_5', '/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /LOG="%TMP%\%PKG_NAME%.log"');
+	define('SWITCH_INNO_5', '/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /LOG="%TEMP%\%PKG_NAME%.log"');
 }
 
 /**
@@ -1966,7 +1966,7 @@ if (!defined('SWITCH_INSTALLSHIELD_2')) {
  * Used as information for autocomplete string in package action command.
  */
 if (!defined('SWITCH_INSTALLSHIELD_3')) {
-	define('SWITCH_INSTALLSHIELD_3', '/s /sms /f1"%SOFTWARE%\setup.iss" /f2"%TMP%\%PKG_NAME%.log"');
+	define('SWITCH_INSTALLSHIELD_3', '/s /sms /f1"%SOFTWARE%\setup.iss" /f2"%TEMP%\%PKG_NAME%.log"');
 }
 
 /**
@@ -1984,7 +1984,7 @@ if (!defined('SWITCH_INSTALLSHIELD_4')) {
  * Used as information for autocomplete string in package action command.
  */
 if (!defined('SWITCH_INSTALLSHIELD_5')) {
-	define('SWITCH_INSTALLSHIELD_5', '/s /v"/qb /norestart" /f2"%TMP%\%PKG_NAME%.log"');
+	define('SWITCH_INSTALLSHIELD_5', '/s /v"/qb /norestart" /f2"%TEMP%\%PKG_NAME%.log"');
 }
 
 /**
