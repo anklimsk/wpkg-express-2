@@ -114,7 +114,7 @@ class ParseDataBehavior extends ModelBehavior {
  * @return mixed Retrun record ID or default value
  */
 	public function getIdFromNamesCache(Model $model, $modelName = null, $name = null, $default = null, $toLowerCase = true, $cacheKey = null) {
-		if (empty($modelName) || empty($name)) {
+		if (empty($modelName) || (empty($name) && ($name !== '0'))) {
 			return $default;
 		}
 
@@ -143,7 +143,7 @@ class ParseDataBehavior extends ModelBehavior {
  * @return bool Success
  */
 	public function setIdNamesCache(Model $model, $modelName = null, $name = null, $id = null, $toLowerCase = true, $cacheKey = null) {
-		if (empty($modelName) || empty($name) || empty($id)) {
+		if (empty($modelName) || (empty($name) && ($name !== '0')) || empty($id)) {
 			return false;
 		}
 
@@ -172,7 +172,7 @@ class ParseDataBehavior extends ModelBehavior {
  * @return bool Success
  */
 	public function resetIdNamesCache(Model $model, $modelName = null, $name = null, $toLowerCase = true, $cacheKey = null) {
-		if (empty($modelName) || empty($name)) {
+		if (empty($modelName) || (empty($name) && ($name !== '0'))) {
 			return false;
 		}
 
