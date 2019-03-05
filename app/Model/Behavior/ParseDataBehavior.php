@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.Model.Behavior
  */
 
@@ -57,15 +57,17 @@ class ParseDataBehavior extends ModelBehavior {
  * @param string $nameField Name of field for value of cache
  * @param bool $toLowerCase Convert field value to lowercase
  * @param string $cacheKey Additional key for cache
+ * @param bool $reverseList Flag of reversing the key and value
+ *  in created cache
  * @param int|string $limit Limit of list
  * @return bool Success
  */
-	public function createNamesCache(Model $model, $modelName = null, $nameField = null, $toLowerCase = true, $cacheKey = null, $limit = null) {
+	public function createNamesCache(Model $model, $modelName = null, $nameField = null, $toLowerCase = true, $cacheKey = null, $reverseList = true, $limit = null) {
 		if (empty($cacheKey)) {
 			$cacheKey = 'default';
 		}
 		$objModel = $this->getModelNamesCache($model, $modelName);
-		$data = $objModel->getCacheData($nameField, $limit);
+		$data = $objModel->getCacheData($nameField, $reverseList, $limit);
 		if ($toLowerCase) {
 			$procData = [];
 			foreach ($data as $key => $value) {
