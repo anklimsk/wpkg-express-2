@@ -176,15 +176,17 @@ class GetListBehavior extends ModelBehavior {
  *
  * @param Model $model Model using this behavior
  * @param string $nameField Name of field for value of cache
+ * @param bool $reverseList Flag of reversing the key and value
+ *  in result
  * @param int|string $limit Limit of list
  * @return array Return list of data
  */
-	public function getCacheData(Model $model, $nameField = null, $limit = null) {
+	public function getCacheData(Model $model, $nameField = null, $reverseList = true, $limit = null) {
 		if (empty($nameField)) {
 			$nameField = $model->displayField;
 		}
 
-		$dataStr = serialize(compact('nameField', 'limit'));
+		$dataStr = serialize(compact('nameField', 'reverseList', 'limit'));
 		$cachePath = 'ListInfo.' . md5($dataStr);
 		$cached = Cache::read($cachePath, $this->settings[$model->alias]['cacheConfig']);
 		if (!empty($cached)) {
@@ -193,6 +195,10 @@ class GetListBehavior extends ModelBehavior {
 
 		$listKeyField = $this->settings[$model->alias]['keyField'];
 		$listNameField = $nameField;
+		if ($reverseList) {
+			$listNameField = $listKeyField;
+			$listKeyField = $nameField;
+		}
 		$fields = [
 			$model->alias . '.' . $listKeyField,
 			$model->alias . '.' . $listNameField
