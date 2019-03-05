@@ -216,12 +216,16 @@ class AppController extends Controller {
 
 		$useNavbarContainerFluid = false;
 		$projectName = __d('project', PROJECT_NAME);
+		$projectVersion = PROJECT_VERSION;
+		$projectAuthor = PROJECT_AUTHOR;
 
 		$this->set(compact(
 			'isExternalAuth',
 			'countLogErrors',
 			'useNavbarContainerFluid',
-			'projectName'
+			'projectName',
+			'projectVersion',
+			'projectAuthor'
 		));
 
 		parent::beforeFilter();

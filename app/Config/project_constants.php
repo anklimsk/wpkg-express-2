@@ -45,6 +45,26 @@ if (!defined('PROJECT_PAGE_TITLE')) {
 }
 
 /**
+ * Project author
+ *
+ * Used for set project author in footer of page.
+ *  Default value ``
+ */
+if (!defined('PROJECT_AUTHOR')) {
+	define('PROJECT_AUTHOR', '&copy; 2009, <a href="https://code.google.com/archive/p/wpkgexpress">Brian White</a>; &copy; 2018-2019, <a href="https://anklimsk.github.io/wpkg-express-2">Andrey Klimov</a>.');
+}
+
+/**
+ * Version of project
+ *
+ * Used for set project version in footer of page.
+ *  Default value ``
+ */
+if (!defined('PROJECT_VERSION')) {
+	define('PROJECT_VERSION', '1.0.3');
+}
+
+/**
  * Name of project without space char
  *
  * Used for set configure key. Default value `Project`
