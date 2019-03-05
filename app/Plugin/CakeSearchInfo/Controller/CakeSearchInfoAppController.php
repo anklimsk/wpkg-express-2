@@ -3,7 +3,7 @@
  * Plugin level Controller
  *
  * CakeSearchInfo: Search information in project database
- * @copyright Copyright 2016-2018, Andrey Klimov.
+ * @copyright Copyright 2016-2019, Andrey Klimov.
  * @license https://opensource.org/licenses/mit-license.php MIT License
  * @package plugin.Controller
  */
@@ -51,6 +51,7 @@ class CakeSearchInfoAppController extends AppController {
 		'Form' => [
 			'className' => 'CakeTheme.ExtBs3Form'
 		],
+		'AssetCompress.AssetCompress',
 	];
 
 /**

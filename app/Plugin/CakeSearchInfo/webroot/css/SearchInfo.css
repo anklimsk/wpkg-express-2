@@ -1,23 +1,9 @@
 /*!
  * Main file for SearchInfo plugin
  * version 0.9.0
- * copyright 2016-2018 Andrey Klimov.
+ * copyright 2016-2019 Andrey Klimov.
  * @license https://opensource.org/licenses/mit-license.php MIT License
  */
-
-html, body, #container, #content, .container-table {
-    height: 100%;
-}
-
-/* Styling grids */
-.container-table {
-    display: table;
-}
-
-.vertical-center-row {
-    display: table-cell;
-    vertical-align: middle;
-}
 
 /* Results panel */
 .panel-title > a {
