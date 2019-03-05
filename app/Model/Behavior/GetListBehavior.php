@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.Model.Behavior
  */
 
@@ -40,7 +40,8 @@ class GetListBehavior extends ModelBehavior {
  * @var array
  */
 	protected $_defaults = [
-		'cacheConfig' => null
+		'cacheConfig' => null,
+		'keyField' => 'id'
 	];
 
 /**
@@ -53,10 +54,16 @@ class GetListBehavior extends ModelBehavior {
  * @return void
  */
 	public function setup(Model $model, $config = array()) {
+		$this->_defaults['keyField'] = $model->primaryKey;
 		$this->settings[$model->alias] = $config + $this->_defaults;
 		$cacheConfig = $this->settings[$model->alias]['cacheConfig'];
 		if (empty($cacheConfig)) {
 			throw new InternalErrorException(__('Invalid name of the cache configuration to use'));
+		}
+
+		$keyField = $this->settings[$model->alias]['keyField'];
+		if (empty($keyField)) {
+			throw new InternalErrorException(__('Invalid key field name'));
 		}
 	}
 
@@ -137,7 +144,7 @@ class GetListBehavior extends ModelBehavior {
 			$conditions = Hash::merge($defaultConditions, $conditions);
 		}
 		$fields = [
-			$model->alias . '.id',
+			$model->alias . '.' . $this->settings[$model->alias]['keyField'],
 			$model->alias . '.' . $nameField,
 		];
 		if (empty($order)) {
@@ -184,11 +191,13 @@ class GetListBehavior extends ModelBehavior {
 			return $cached;
 		}
 
+		$listKeyField = $this->settings[$model->alias]['keyField'];
+		$listNameField = $nameField;
 		$fields = [
-			$model->alias . '.' . $nameField,
-			$model->alias . '.id',
+			$model->alias . '.' . $listKeyField,
+			$model->alias . '.' . $listNameField
 		];
-		$order = [$model->alias . '.' . $model->displayField => 'asc'];
+		$order = [$model->alias . '.' . $listKeyField => 'asc'];
 		$recursive = -1;
 
 		$result = $model->find('list', compact('fields', 'order', 'recursive', 'limit'));
