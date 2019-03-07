@@ -12,7 +12,7 @@
     <check type="uninstall" condition="versiongreaterorequal" path="%DisplayName%" value="%Revision%"/>
     <commands>
       <command type="install" include="remove"/>
-      <command type="install" cmd="MsiExec.exe /i &quot;%SOFTWARE%\Some company\Some product\%Revision%\%ARCH%\%Installer%&quot; /passive /norestart /log %&quot;%TEMP%\package-name-install.log%&quot;" timeout="60"/>
+      <command type="install" cmd="MsiExec.exe /i &quot;%SOFTWARE%\Some company\Some product\%Revision%\%ARCH%\%Installer%&quot; /passive /norestart /log &quot;%TEMP%\package-name-install.log&quot;" timeout="60"/>
       <command type="upgrade" include="install"/>
       <command type="downgrade" include="install"/>
       <command type="remove" include="prepare"/>
@@ -34,7 +34,7 @@
     <check type="uninstall" condition="versiongreaterorequal" path="%DisplayName%" value="%Revision%"/>
     <commands>
       <command type="install" include="remove"/>
-      <command type="install" cmd="MsiExec.exe /i &quot;%SOFTWARE%\Some company\Some product\%Revision%\%ARCH%\%Installer%&quot; /passive /norestart /log %&quot;%TEMP%\package-name-install.log%&quot; TRANSFORMS=&quot;%SOFTWARE%\Some company\Some product\%Revision%\%ARCH%\transform.mst&quot;" timeout="60"/>
+      <command type="install" cmd="MsiExec.exe /i &quot;%SOFTWARE%\Some company\Some product\%Revision%\%ARCH%\%Installer%&quot; /passive /norestart /log &quot;%TEMP%\package-name-install.log&quot; TRANSFORMS=&quot;%SOFTWARE%\Some company\Some product\%Revision%\%ARCH%\transform.mst&quot;" timeout="60"/>
       <command type="upgrade" include="install"/>
       <command type="downgrade" include="install"/>
       <command type="remove" include="prepare"/>
@@ -57,7 +57,7 @@
     <check type="uninstall" condition="versiongreaterorequal" path="%DisplayName%" value="%Revision%"/>
     <commands>
       <command type="install" include="remove"/>
-      <command type="install" cmd="MsiExec.exe /i &quot;%SOFTWARE%\Some company\Some product\%Revision%\%ARCH%\%Installer%&quot; /passive /norestart /log %&quot;%TEMP%\package-name-install.log%&quot; TARGETDIR=&quot;%ProgramDir%&quot;" timeout="60"/>
+      <command type="install" cmd="MsiExec.exe /i &quot;%SOFTWARE%\Some company\Some product\%Revision%\%ARCH%\%Installer%&quot; /passive /norestart /log &quot;%TEMP%\package-name-install.log&quot; TARGETDIR=&quot;%ProgramDir%&quot;" timeout="60"/>
       <command type="upgrade" include="install"/>
       <command type="downgrade" include="install"/>
       <command type="remove" include="prepare"/>
@@ -109,7 +109,7 @@
     <check type="uninstall" condition="versiongreaterorequal" path="%DisplayName%" value="%Revision%"/>
     <commands>
       <command type="install" include="remove"/>
-      <command type="install" cmd="&quot;%SOFTWARE%\Some company\Some product\%Revision%\%ARCH%\%Installer%&quot; /SP- /VERYSILENT /SUPPRESSMSGBOXES /NORESTART /DIR=&quot;%ProgramDir%&quot; /LOG=&quot;%TEMP%\package-name-install.log%&quot;" timeout="60"/>
+      <command type="install" cmd="&quot;%SOFTWARE%\Some company\Some product\%Revision%\%ARCH%\%Installer%&quot; /SP- /VERYSILENT /SUPPRESSMSGBOXES /NORESTART /DIR=&quot;%ProgramDir%&quot; /LOG=&quot;%TEMP%\package-name-install.log&quot;" timeout="60"/>
       <command type="upgrade" include="install"/>
       <command type="downgrade" include="install"/>
       <command type="remove" include="prepare"/>
@@ -136,11 +136,11 @@
     <check type="uninstall" condition="versiongreaterorequal" path="%DisplayName%" value="%Revision%"/>
     <commands>
       <command type="install" include="remove"/>
-      <command type="install" cmd="&quot;%SOFTWARE%\Some company\Some product\%Revision%\%ARCH%\%Installer%&quot; /s /sms /f1&quot;%SOFTWARE%\Some company\Some product\%Revision%\%ARCH%\setup.iss&quot; /f2%&quot;%TEMP%\package-name-install.log%&quot;" timeout="60"/>
+      <command type="install" cmd="&quot;%SOFTWARE%\Some company\Some product\%Revision%\%ARCH%\%Installer%&quot; /s /sms /f1&quot;%SOFTWARE%\Some company\Some product\%Revision%\%ARCH%\setup.iss&quot; /f2&quot;%TEMP%\package-name-install.log&quot;" timeout="60"/>
       <command type="upgrade" include="install"/>
       <command type="downgrade" include="install"/>
       <command type="remove" include="prepare"/>
-      <command type="remove" cmd="&quot;%SOFTWARE%\Some company\Some product\%Revision%\%ARCH%\%Installer%&quot; /s /sms /f1&quot;%SOFTWARE%\Some company\Some product\%Revision%\%ARCH%\remove.iss&quot; /f2%&quot;%TEMP%\package-name-uninstall.log%&quot;" timeout="60">
+      <command type="remove" cmd="&quot;%SOFTWARE%\Some company\Some product\%Revision%\%ARCH%\%Installer%&quot; /s /sms /f1&quot;%SOFTWARE%\Some company\Some product\%Revision%\%ARCH%\remove.iss&quot; /f2&quot;%TEMP%\package-name-uninstall.log&quot;" timeout="60">
         <condition>
           <check type="file" condition="exists" path="%ProgramDir%\%ProcessName%"/>
         </condition>
@@ -162,7 +162,7 @@
     <check type="uninstall" condition="versiongreaterorequal" path="%DisplayName%" value="%Revision%"/>
     <commands>
       <command type="install" include="remove"/>
-      <command type="install" cmd="&quot;%SOFTWARE%\Some company\Some product\%Revision%\%ARCH%\%Installer%&quot; /s /v&quot;/qb /norestart&quot; /f2%&quot;%TEMP%\package-name-install.log%&quot;" workdir="%TEMP%" timeout="60"/>
+      <command type="install" cmd="&quot;%SOFTWARE%\Some company\Some product\%Revision%\%ARCH%\%Installer%&quot; /s /v&quot;/qb /norestart&quot; /f2&quot;%TEMP%\package-name-install.log&quot;" workdir="%TEMP%" timeout="60"/>
       <command type="upgrade" include="install"/>
       <command type="downgrade" include="install"/>
       <command type="remove" include="prepare"/>
