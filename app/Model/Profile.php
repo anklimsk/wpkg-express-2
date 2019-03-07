@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.Model
  */
 
@@ -717,12 +717,23 @@ class Profile extends AppModel {
 	}
 
 /**
+ * Return Xpath for data of profiles
+ *
+ * @return string Return Xpath
+ */
+	public function getDataXpath() {
+		$dataXpath = 'profiles:profiles.profile';
+		return $dataXpath;
+	}
+
+/**
  * Return Xpath for `id` attribute of profile
  *
  * @return string Return Xpath
  */
 	public function getIdAttributeXpath() {
-		$idXpath = 'profiles:profiles.profile.0.@id';
+		$dataXpath = $this->getDataXpath();
+		$idXpath = $dataXpath . '.0.@id';
 		return $idXpath;
 	}
 
@@ -732,8 +743,20 @@ class Profile extends AppModel {
  * @return string Return Xpath
  */
 	public function getTemplateElementXpath() {
-		$idXpath = 'profiles:profiles.profile.0.template';
-		return $idXpath;
+		$dataXpath = $this->getDataXpath();
+		$templateXpath = $dataXpath . '.0.template';
+		return $templateXpath;
+	}
+
+/**
+ * Return Xpath for `notes` element of profile
+ *
+ * @return string Return Xpath
+ */
+	public function getNotesElementXpath() {
+		$dataXpath = $this->getDataXpath();
+		$notesXpath = $dataXpath . '.0.notes';
+		return $notesXpath;
 	}
 
 /**

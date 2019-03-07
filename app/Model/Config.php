@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.Model
  */
 
@@ -611,5 +611,15 @@ class Config extends AppModel {
 		$downloadName = 'config.xml';
 
 		return $downloadName;
+	}
+
+/**
+ * Return Xpath for data of configuration parameters
+ *
+ * @return string Return Xpath
+ */
+	public function getDataXpath() {
+		$dataXpath = 'config.param';
+		return $dataXpath;
 	}
 }

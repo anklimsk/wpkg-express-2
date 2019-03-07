@@ -1128,6 +1128,16 @@ class Package extends AppModel {
 	}
 
 /**
+ * Return Xpath for data of packages
+ *
+ * @return string Return Xpath
+ */
+	public function getDataXpath() {
+		$dataXpath = 'packages:packages.package';
+		return $dataXpath;
+	}
+
+/**
  * Return value for `revision` attribute of package
  *  from XML data array
  *
@@ -1135,7 +1145,8 @@ class Package extends AppModel {
  * @return string Return revision
  */
 	public function getRevisionFromXml($xmlDataArray = []) {
-		$revisionXpath = 'packages:packages.package.0.@revision';
+		$dataXpath = $this->getDataXpath();
+		$revisionXpath = $dataXpath . '.0.@revision';
 		return $this->getAttributeValueFromXml($xmlDataArray, $revisionXpath);
 	}
 
@@ -1145,7 +1156,8 @@ class Package extends AppModel {
  * @return string Return Xpath
  */
 	public function getIdAttributeXpath() {
-		$idXpath = 'packages:packages.package.0.@id';
+		$dataXpath = $this->getDataXpath();
+		$idXpath = $dataXpath . '.0.@id';
 		return $idXpath;
 	}
 
@@ -1155,8 +1167,9 @@ class Package extends AppModel {
  * @return string Return Xpath
  */
 	public function getNameAttributeXpath() {
-		$idXpath = 'packages:packages.package.0.@name';
-		return $idXpath;
+		$dataXpath = $this->getDataXpath();
+		$nameXpath = $dataXpath . '.0.@name';
+		return $nameXpath;
 	}
 
 /**
@@ -1174,8 +1187,20 @@ class Package extends AppModel {
  * @return string Return Xpath
  */
 	public function getTemplateElementXpath() {
-		$idXpath = 'packages:packages.package.0.template';
-		return $idXpath;
+		$dataXpath = $this->getDataXpath();
+		$templateXpath = $dataXpath . '.0.template';
+		return $templateXpath;
+	}
+
+/**
+ * Return Xpath for `notes` element of package
+ *
+ * @return string Return Xpath
+ */
+	public function getNotesElementXpath() {
+		$dataXpath = $this->getDataXpath();
+		$notesXpath = $dataXpath . '.0.notes';
+		return $notesXpath;
 	}
 
 /**

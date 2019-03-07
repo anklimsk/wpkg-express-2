@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.Model
  */
 
@@ -519,12 +519,23 @@ class Host extends AppModel {
 	}
 
 /**
+ * Return Xpath for data of hosts
+ *
+ * @return string Return Xpath
+ */
+	public function getDataXpath() {
+		$dataXpath = 'hosts:wpkg.host';
+		return $dataXpath;
+	}
+
+/**
  * Return Xpath for `name` attribute of host
  *
  * @return string Return Xpath
  */
 	public function getIdAttributeXpath() {
-		$idXpath = 'hosts:wpkg.host.0.@name';
+		$dataXpath = $this->getDataXpath();
+		$idXpath = $dataXpath . '.0.@name';
 		return $idXpath;
 	}
 
@@ -534,8 +545,9 @@ class Host extends AppModel {
  * @return string Return Xpath
  */
 	public function getAdditionalAttributeXpath() {
-		$idXpath = 'hosts:wpkg.host.0.@profile-id';
-		return $idXpath;
+		$dataXpath = $this->getDataXpath();
+		$additionalXpath = $dataXpath . '.0.@profile-id';
+		return $additionalXpath;
 	}
 
 /**
@@ -544,8 +556,20 @@ class Host extends AppModel {
  * @return string Return Xpath
  */
 	public function getTemplateElementXpath() {
-		$idXpath = 'hosts:wpkg.host.0.template';
-		return $idXpath;
+		$dataXpath = $this->getDataXpath();
+		$templateXpath = $dataXpath . '.0.template';
+		return $templateXpath;
+	}
+
+/**
+ * Return Xpath for `notes` element of host
+ *
+ * @return string Return Xpath
+ */
+	public function getNotesElementXpath() {
+		$dataXpath = $this->getDataXpath();
+		$notesXpath = $dataXpath . '.0.notes';
+		return $notesXpath;
 	}
 
 /**

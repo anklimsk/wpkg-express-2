@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.Model.Behavior
  */
 
@@ -184,6 +184,11 @@ class TemplateDataBehavior extends ModelBehavior {
 		$templateElemXpath = $model->getTemplateElementXpath();
 		if (!empty($templateElemXpath) || !Hash::check($xmlDataArray, $templateElemXpath)) {
 			$xmlDataArray = Hash::remove($xmlDataArray, $templateElemXpath);
+		}
+
+		$notesElemXpath = $model->getNotesElementXpath();
+		if (!empty($notesElemXpath) || !Hash::check($xmlDataArray, $notesElemXpath)) {
+			$xmlDataArray = Hash::remove($xmlDataArray, $notesElemXpath);
 		}
 
 		return $this->_processXmlDataArray($model, $xmlDataArray, $idTask);

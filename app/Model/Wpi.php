@@ -328,7 +328,8 @@ class Wpi extends AppModel {
 				'@name' => WPI_XML_HOST_NAME,
 				'@profile-id' => WPI_XML_PROFILE_NAME
 			];
-			$xpathAttr = 'hosts:wpkg.host.0';
+			$dataXpath = $modelType->getDataXpath();
+			$xpathAttr = $dataXpath . '.0';
 		} elseif ($type == WPI_XML_TYPE_PROFILES) {
 			$xmlItemArray = [
 			'@id' => WPI_XML_PROFILE_NAME
@@ -336,10 +337,12 @@ class Wpi extends AppModel {
 			$packages = $this->getAllForXML($type);
 			$modelPackagesProfile = ClassRegistry::init('PackagesProfile');
 			$xmlItemArray += $modelPackagesProfile->getXMLdata($packages);
-			$xpathAttr = 'profiles:profiles.profile.0';
+			$dataXpath = $modelType->getDataXpath();
+			$xpathAttr = $dataXpath . '.0';
 		} elseif ($type == WPI_XML_TYPE_WPKG) {
+			$xpathAttr = $modelType->getDataXpath();
 			$paramOrder = ['@name', '@value'];
-			$xmlItemArray = Hash::extract($result, 'config.param');
+			$xmlItemArray = Hash::extract($result, $xpathAttr);
 			foreach ($xmlItemArray as &$param) {
 				switch ($param['@name']) {
 					case 'forceInstall':
@@ -393,8 +396,11 @@ class Wpi extends AppModel {
 				$param = array_merge(array_flip($paramOrder), $param);
 			}
 			unset($param);
-			$xpathAttr = 'config.param';
 		}
+		if (empty($xpathAttr)) {
+			return $result;
+		}
+
 		$result = Hash::insert($result, $xpathAttr, $xmlItemArray);
 
 		return $result;
@@ -409,14 +415,20 @@ class Wpi extends AppModel {
  */
 	public function getDownloadName($xmlDataArray = [], $isFullData = false) {
 		$downloadName = __('unknown') . '.xml';
-		$listPaths = [
-			'hosts:wpkg.host' => 'hosts.xml',
-			'profiles:profiles.profile' => 'profiles.xml',
-			'config.param' => 'config.xml',
-		];
-		foreach ($listPaths as $path => $name) {
+		$listXmlTypes = $this->getListDataFromConstant('WPI_XML_TYPE_');
+		foreach ($listXmlTypes as $type => $name) {
+			$modelType = $this->getXmlTypeModel($type);
+			if (empty($modelType)) {
+				continue;
+			}
+
+			$path = $modelType->getDataXpath();
+			if (empty($path)) {
+				continue;
+			}
+
 			if (Hash::check($xmlDataArray, $path)) {
-				$downloadName = $name;
+				$downloadName = $modelType->getDownloadName($xmlDataArray, true);
 				break;
 			}
 		}
