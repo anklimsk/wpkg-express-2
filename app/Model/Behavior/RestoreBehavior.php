@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.Model.Behavior
  */
 
@@ -246,7 +246,7 @@ class RestoreBehavior extends ModelBehavior {
  * @param int|string $id Record ID for retrieve download name
  * @return string Return download name
  */
-	public function getDownloadName(Model $model, $id = []) {
+	public function getDownloadName(Model $model, $id = null) {
 		$ext = '.xml';
 		$name = '';
 
