@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.Model
  */
 
@@ -298,29 +298,24 @@ class Wpi extends AppModel {
 /**
  * Return data array for render XML
  *
- * @param int|string $type ID of type XML.
+ * @param int|string $type ID or name of type XML.
  * @param bool $exportdisable The flag of disable data export to XML.
  * @return array Return data array for render XML
  * @see RenderXmlData::renderXml()
  */
 	public function getXMLdata($type = null, $exportdisable = false) {
 		$result = [];
-		$modelName = null;
-		switch ($type) {
-			case WPI_XML_TYPE_PROFILES;
-				$modelName = 'Profile';
-				break;
-			case WPI_XML_TYPE_HOSTS;
-				$modelName = 'Host';
-				break;
-			case WPI_XML_TYPE_WPKG;
-				$modelName = 'Config';
-				break;
-			default:
-				return $result;
+		if (!empty($type) && !ctype_digit((string)$type)) {
+			// @codingStandardsIgnoreStart
+			$type = @constant('WPI_XML_TYPE_' . strtoupper($type));
+			// @codingStandardsIgnoreEnd
 		}
 
-		$modelType = ClassRegistry::init($modelName);
+		$modelType = $this->getXmlTypeModel($type);
+		if (empty($modelType)) {
+			return $result;
+		}
+
 		$result = $modelType->getXMLdata(null, true);
 		if ($exportdisable) {
 			return $result;
@@ -496,6 +491,33 @@ class Wpi extends AppModel {
 				'desc'
 			);
 		}
+
+		return $result;
+	}
+
+/**
+ * Return object Model for type by ID type.
+ *
+ * @param int|string $xmlType ID type of object
+ * @return object|bool Return object Model,
+ *  or False on failure.
+ */
+	public function getXmlTypeModel($xmlType = null) {
+		$modelName = null;
+		switch ($xmlType) {
+			case WPI_XML_TYPE_PROFILES;
+				$modelName = 'Profile';
+				break;
+			case WPI_XML_TYPE_HOSTS;
+				$modelName = 'Host';
+				break;
+			case WPI_XML_TYPE_WPKG;
+				$modelName = 'Config';
+				break;
+			default:
+				return false;
+		}
+		$result = ClassRegistry::init($modelName, true);
 
 		return $result;
 	}

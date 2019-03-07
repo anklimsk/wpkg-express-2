@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.Controller
  */
 
@@ -564,7 +564,6 @@ class WpiController extends AppController {
 		}
 
 		$type = mb_strtolower($type);
-		$xmlType = null;
 		switch ($type) {
 			case 'config':
 				if ($this->RequestHandler->isXml()) {
@@ -583,13 +582,9 @@ class WpiController extends AppController {
 				}
 				break;
 			case 'profiles':
-				$xmlType = WPI_XML_TYPE_PROFILES;
 			case 'hosts':
-				if (empty($xmlType)) {
-					$xmlType = WPI_XML_TYPE_HOSTS;
-				}
 				if ($this->RequestHandler->isXml()) {
-					return $this->ExportData->download($xmlType);
+					return $this->ExportData->download($type);
 				} else {
 					throw new BadRequestException();
 				}

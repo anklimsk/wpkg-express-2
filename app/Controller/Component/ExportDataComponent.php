@@ -22,7 +22,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.Controller.Component
  */
 
@@ -138,7 +138,7 @@ class ExportDataComponent extends BaseDataComponent {
 /**
  * Action `download`. Used to download XML data.
  *
- * @param int|string $id ID of record for downloading data
+ * @param int|string $id ID of record or type name for downloading data
  * @throws InternalErrorException if Restore behavior is not loaded on
  *  target model and method 'getDownloadName' is not found
  * @throws BadRequestException if request is not XML
@@ -152,7 +152,8 @@ class ExportDataComponent extends BaseDataComponent {
 		if (!$this->_controller->RequestHandler->isXml()) {
 			throw new BadRequestException(__('Invalid request'));
 		}
-		if (!empty($id) && !$this->_modelTarget->exists($id)) {
+		if (!empty($id) && ctype_digit((string)$id) &&
+			!$this->_modelTarget->exists($id)) {
 			$targetNameI18n = $this->_getTargetName(true);
 			if (method_exists($this->_modelTarget, 'getTargetName')) {
 				$targetNameI18n = mb_strtolower($this->_modelTarget->getTargetName());
