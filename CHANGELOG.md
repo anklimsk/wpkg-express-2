@@ -1,6 +1,17 @@
 # Changelog
 
 
+## v1.0.4 (2019-03-07)
+
+### Fix
+
+* Fixed XML package template file `PACKAGE_TEMPLATE.xml`
+
+* Fixed clearing notes when creating data from a template.
+
+* Fixed downloading XML configuration files for WPI.
+
+
 ## v1.0.3 (2019-03-05)
 
 ### New
