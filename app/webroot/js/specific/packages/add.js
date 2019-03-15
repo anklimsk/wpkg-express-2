@@ -1,5 +1,5 @@
 /**
- * File for action View of controller Graph
+ * File for action Add of controller Packages
  *
  * This file is part of wpkgExpress II.
  *
@@ -19,8 +19,8 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
- * @file File for action View of controller Graph
+ * @copyright Copyright 2018-2019, Andrey Klimov.
+ * @file File for action Add of controller Packages
  * @version 0.1
  */
 
