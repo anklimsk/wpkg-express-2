@@ -57,8 +57,9 @@
 - Update package revision;
 - Update the variables `Revision`, `RevI1`, `RevI2` and `RevI3`;
 - Open WPKG Express 2 in web browser and navigate to menu `Application settings` ->
-  `Upload XML files`;
-- Upload created XML file.
+  `Uploading XML`;
+- Upload created XML file or simply navigate to menu `Application settings` ->
+  `Creating XML`, paste this XML into the editor and click the `Create` button.
 
 ## Preparing the `profiles.xml` and `hosts.xml` files
 
@@ -139,8 +140,9 @@
 - Check package revision;
 - Check the variables `Revision`, `RevI1`, `RevI2`, `RevI3` and `WpkgModifyDate`;
 - Open WPKG Express 2 in web browser and navigate to menu `Application settings` ->
-  `Upload XML files`;
-- Upload created XML file.
+  `Uploading XML`;
+- Upload created XML file or simply navigate to menu `Application settings` ->
+  `Creating XML`, paste this XML into the editor and click the `Create` button.
 
 ## `WPKG` directory structure:
 

@@ -269,6 +269,12 @@ if ($this->UserInfo->checkUserRole(USER_ROLE_ADMIN)) {
 		),
 		'divider',
 		$this->ViewExtension->menuActionLink(
+			'fas fa-file-import',
+			__('Creating XML'),
+			['controller' => 'creations', 'action' => 'index', 'plugin' => null],
+			['title' => __('Creating XML')]
+		),
+		$this->ViewExtension->menuActionLink(
 			'fas fa-file-upload',
 			__('Uploading XML'),
 			['controller' => 'uploads', 'action' => 'index', 'plugin' => null],

@@ -2488,6 +2488,15 @@ if (!defined('WPI_CATEGORY_APPLICATIONS')) {
 }
 
 /**
+ * URL to list of XML configuration files
+ *
+ * Used as link to list of XML configuration files on create XML form. Default value `https://wpkg.org/Category:Silent_Installers`
+ */
+if (!defined('XML_CREATE_LIST_XML_CONFIG_URL')) {
+	define('XML_CREATE_LIST_XML_CONFIG_URL', 'https://wpkg.org/Category:Silent_Installers');
+}
+
+/**
  * Cache configuration for store statistics information of model `Host`
  *
  * Used for access to cached data of for store statistics information.

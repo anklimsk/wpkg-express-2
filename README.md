@@ -31,6 +31,7 @@ by Brian White &copy;2009.
 - Creates copy of a package, profile and host;
 - Preview XML configuration files for WPKG with validating XML schema;
 - Download and upload XML configuration files for WPKG with validating XML schema;
+- Creates an XML configuration for WPKG using an editor with validating XML schema;
 - Build a relationship graph for package, profile, and host;
 - Build a relationship graph for host by name;
 - Maintaining archive version of the package with the ability to switch to version;

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wpkgExpress II\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2019-02-27 14:27+0300\n"
+"PO-Revision-Date: 2019-03-15 09:15+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -23,12 +23,12 @@ msgstr ""
 msgid "Package ID"
 msgstr "Идентификатор пакета"
 
-#: Config/cakesearchinfo.php:21 Model/Package.php:1187
+#: Config/cakesearchinfo.php:21 Model/Package.php:1212
 #: View/Elements/formHostBase.ctp:53 View/Elements/formPackageBase.ctp:79
 #: View/Elements/formPackageExistsProfilesEdit.ctp:53
 #: View/Elements/infoPackage.ctp:64 View/Elements/tableArchive.ctp:67
-#: View/Elements/tableGarbage.ctp:57 View/Elements/tablePackage.ctp:78
-#: View/Elements/tableWpiPackage.ctp:60
+#: View/Elements/tableGarbage.ctp:58 View/Elements/tablePackage.ctp:80
+#: View/Elements/tableWpiPackage.ctp:62
 msgid "Name"
 msgstr "Наименование"
 
@@ -36,12 +36,12 @@ msgstr "Наименование"
 #: View/Elements/formPackageBase.ctp:122;155
 #: View/Elements/formProfileBase.ctp:59 View/Elements/infoHost.ctp:77
 #: View/Elements/infoPackage.ctp:81 View/Elements/infoProfile.ctp:59
-#: View/Elements/tableHost.ctp:77 View/Elements/tablePackage.ctp:99
-#: View/Elements/tableProfile.ctp:66 View/Elements/tableWpiPackage.ctp:63
+#: View/Elements/tableHost.ctp:81 View/Elements/tablePackage.ctp:108
+#: View/Elements/tableProfile.ctp:68 View/Elements/tableWpiPackage.ctp:65
 msgid "Notes"
 msgstr "Примечания"
 
-#: Config/cakesearchinfo.php:25 Model/Package.php:1208
+#: Config/cakesearchinfo.php:25 Model/Package.php:1233
 #: View/Elements/barNav.ctp:76 View/Home/index.ctp:73
 msgid "Packages"
 msgstr "Пакеты"
@@ -54,7 +54,7 @@ msgstr "Пакеты"
 msgid "Profile ID"
 msgstr "Идентификатор профиля"
 
-#: Config/cakesearchinfo.php:33 Model/Profile.php:756
+#: Config/cakesearchinfo.php:33 Model/Profile.php:779
 #: View/Elements/barNav.ctp:104
 #: View/Elements/formPackageExistsProfilesEdit.ctp:35
 #: View/Elements/formProfileExistsHostsEdit.ctp:35 View/Home/index.ctp:78
@@ -66,7 +66,7 @@ msgstr "Профили"
 msgid "Host ID"
 msgstr "Идентификатор хоста"
 
-#: Config/cakesearchinfo.php:41 Model/Host.php:568 View/Elements/barNav.ctp:160
+#: Config/cakesearchinfo.php:41 Model/Host.php:592 View/Elements/barNav.ctp:160
 #: View/Home/index.ctp:85
 msgid "Hosts"
 msgstr "Хосты"
@@ -369,7 +369,7 @@ msgstr "Вы уверены, что хотите очистить архив э�
 msgid "Restore package"
 msgstr "Восстановить пакет"
 
-#: Controller/ArchivesController.php:217 View/Elements/tableArchive.ctp:115
+#: Controller/ArchivesController.php:217 View/Elements/tableArchive.ctp:119
 msgid "Restore package from archive"
 msgstr "Восстановить пакет из архива"
 
@@ -377,8 +377,8 @@ msgstr "Восстановить пакет из архива"
 msgid "Are you sure you wish to restore this package from archive?"
 msgstr "Вы действительно хотите восстановить этот пакет из архива?"
 
-#: Controller/ArchivesController.php:224;227 View/Elements/tableArchive.ctp:125
-#: View/Elements/tablePackage.ctp:203
+#: Controller/ArchivesController.php:224;227 View/Elements/tableArchive.ctp:129
+#: View/Elements/tablePackage.ctp:214
 msgid "Delete package"
 msgstr "Удалить пакет"
 
@@ -564,6 +564,40 @@ msgstr ""
 "Не удалось установить конфигурацию WPKG по умолчанию. Пожалуйста, попробуйте "
 "ещё раз."
 
+#: Controller/CreationsController.php:79
+#: Controller/Component/ExportDataComponent.php:129
+#: Lib/Utility/RenderXmlData.php:139
+msgid "XML failed to pass XSD schema validation"
+msgstr "XML не прошел проверку схемы XSD"
+
+#: Controller/CreationsController.php:83
+msgid ""
+"XML created successfully.\n"
+"Information will be processed by queue."
+msgstr ""
+"XML успешно создан.\n"
+"Информация будет обрабатываться по очереди."
+
+#: Controller/CreationsController.php:86 Controller/UploadsController.php:153
+msgid "Unable to create queue task."
+msgstr "Невозможно создать задачу очереди."
+
+#: Controller/CreationsController.php:90
+msgid "XML is empty"
+msgstr "XML пуст"
+
+#: Controller/CreationsController.php:92
+msgid "XML size exceeded. Maximum size %s."
+msgstr "Превышен размер XML. Максимальный размер %s."
+
+#: Controller/CreationsController.php:100
+msgid "Inputting XML text"
+msgstr "Ввод XML-текста"
+
+#: Controller/CreationsController.php:101 View/Elements/barNav.ctp:273;275
+msgid "Creating XML"
+msgstr "Создание XML"
+
 #: Controller/DependenciesController.php:61
 msgid "Record has been deleted."
 msgstr "Запись удалена."
@@ -617,7 +651,7 @@ msgstr "Добавление кода выхода"
 msgid "Editing exit code"
 msgstr "Редактирование кода выхода"
 
-#: Controller/GarbageController.php:110 View/Elements/barNav.ctp:286
+#: Controller/GarbageController.php:110 View/Elements/barNav.ctp:292
 msgid "Recycle bin"
 msgstr "Корзина"
 
@@ -641,7 +675,7 @@ msgstr "Восстановить эти данные из корзины"
 msgid "Are you sure you wish to restore this data from recycle bin?"
 msgstr "Вы уверены, что хотите восстановить эти данные из корзины?"
 
-#: Controller/GarbageController.php:160;163 View/Elements/tableGarbage.ctp:112
+#: Controller/GarbageController.php:160;163 View/Elements/tableGarbage.ctp:115
 msgid "Delete data"
 msgstr "Удалить данные"
 
@@ -763,9 +797,9 @@ msgstr "Создание хоста"
 msgid "Disabling unused hosts and profiles put in queue..."
 msgstr "Отключение неиспользуемых хостов и профилей помещено в очередь..."
 
-#: Controller/HostsController.php:572 Controller/UploadsController.php:123
+#: Controller/HostsController.php:572 Controller/UploadsController.php:124
 #: Controller/WpiController.php:316
-#: Controller/Component/ExportDataComponent.php:153;195
+#: Controller/Component/ExportDataComponent.php:151;194
 #: Controller/Component/ViewDataComponent.php:66
 msgid "Invalid request"
 msgstr "Недопустимый запрос"
@@ -786,36 +820,36 @@ msgstr "Очистить журналы"
 msgid "Are you sure you wish to clear logs?"
 msgstr "Вы уверены, что хотите очистить журналы?"
 
-#: Controller/LogsController.php:156
-#: Controller/Component/ExportDataComponent.php:116
+#: Controller/LogsController.php:157
+#: Controller/Component/ExportDataComponent.php:114
 msgid "Previewing"
 msgstr "Предварительный просмотр"
 
-#: Controller/LogsController.php:157
+#: Controller/LogsController.php:158
 msgid "Preview logs of host '%s'"
 msgstr "Предварительный просмотр журналов хоста '%s'"
 
-#: Controller/LogsController.php:161;164 View/Elements/tableLog.ctp:149
+#: Controller/LogsController.php:162;165 View/Elements/tableLog.ctp:151
 msgid "Clear logs of host"
 msgstr "Очистить журналы хоста"
 
-#: Controller/LogsController.php:165 View/Elements/tableLog.ctp:150
+#: Controller/LogsController.php:166 View/Elements/tableLog.ctp:152
 msgid "Are you sure you wish to clear logs of host '%s'?"
 msgstr "Вы уверены, что хотите очистить журналы хоста '%s'?"
 
-#: Controller/LogsController.php:222
+#: Controller/LogsController.php:223
 msgid "Parsing logs put in queue..."
 msgstr "Разбор файлов журналов помещён в очередь..."
 
-#: Controller/LogsController.php:225
+#: Controller/LogsController.php:226
 msgid "Parsing logs put in queue unsuccessfully"
 msgstr "Разбор файлов журналов безуспешно помещён в очередь"
 
-#: Controller/LogsController.php:254
+#: Controller/LogsController.php:255
 msgid "The logs has been cleared."
 msgstr "Журналы очищены."
 
-#: Controller/LogsController.php:256
+#: Controller/LogsController.php:257
 msgid "The logs could not be cleared. Please, try again."
 msgstr "Не удалось очистить журналы. Пожалуйста, попробуйте ещё раз."
 
@@ -873,7 +907,7 @@ msgstr "Архив пакетов"
 msgid "Information of package"
 msgstr "Информация о пакете"
 
-#: Controller/PackagesController.php:180 View/Elements/tablePackage.ctp:145
+#: Controller/PackagesController.php:180 View/Elements/tablePackage.ctp:156
 msgid "Archive of package"
 msgstr "Архив пакета"
 
@@ -1013,11 +1047,11 @@ msgid "The client database could not be renamed. Please, try again."
 msgstr ""
 "Не удалось переименовать базу данных клиента. Пожалуйста, попробуйте ещё раз."
 
-#: Controller/UploadsController.php:97
+#: Controller/UploadsController.php:98
 msgid "File selection"
 msgstr "Выбор файла"
 
-#: Controller/UploadsController.php:98 Model/Import.php:3630
+#: Controller/UploadsController.php:99 Model/Import.php:3696
 msgid "Uploading XML files"
 msgstr "Загрузка XML файлов"
 
@@ -1028,10 +1062,6 @@ msgid ""
 msgstr ""
 "Файл XML успешно загружен.\n"
 "Информация будет обрабатываться по очереди."
-
-#: Controller/UploadsController.php:153
-msgid "Unable to create queue task."
-msgstr "Невозможно создать задачу очереди."
 
 #: Controller/VariablesController.php:127;194
 msgid "Invalid referrer ID or type for variable"
@@ -1159,12 +1189,12 @@ msgstr "Недопустимый идентификатор для пакета 
 msgid "Information of WPI package"
 msgstr "Информация о пакете WPI"
 
-#: Controller/WpiController.php:225;228 View/Elements/tableWpiPackage.ctp:102
+#: Controller/WpiController.php:225;228 View/Elements/tableWpiPackage.ctp:105
 msgid "Edit WPI package"
 msgstr "Изменить пакет WPI"
 
 #: Controller/WpiController.php:234;237;443;446
-#: View/Elements/tableWpiPackage.ctp:111
+#: View/Elements/tableWpiPackage.ctp:114
 msgid "Delete WPI package"
 msgstr "Удалить пакет WPI"
 
@@ -1225,7 +1255,7 @@ msgid "Target model is not found"
 msgstr "Целевая модель не найдена"
 
 #: Controller/Component/ChangeStateComponent.php:55;103
-#: Controller/Component/ExportDataComponent.php:72;160;202
+#: Controller/Component/ExportDataComponent.php:71;159;201
 #: Controller/Component/TemplateDataComponent.php:69;151
 #: Controller/Component/ViewDataComponent.php:186
 msgid "Invalid ID for %s"
@@ -1274,46 +1304,30 @@ msgctxt "change state"
 msgid "don't used as template"
 msgstr "не используется в качестве шаблона"
 
-#: Controller/Component/ExportDataComponent.php:56;150
+#: Controller/Component/ExportDataComponent.php:55;148
 #: Controller/Component/ViewDataComponent.php:171
 msgid "Method '%s' is not found in target model"
 msgstr "Метод '%s' не найден в целевой модели"
 
-#: Controller/Component/ExportDataComponent.php:110 Model/Import.php:3542
-msgid "Fatal errors"
-msgstr "Неустранимые ошибки"
-
-#: Controller/Component/ExportDataComponent.php:111
-#: Model/Import.php:750;763;808;2225;2254;2298;2307;2346;2362;2424;2456;2585;2635;2666;2793;2824;2945;3021;3088;3094;3240;3265;3348;3411;3417;3519;3539
-#: Model/Log.php:377;391;428;565 Model/Report.php:431;463
-#: Model/Behavior/GroupActionBehavior.php:157
-msgid "Errors"
-msgstr "Ошибки"
-
-#: Controller/Component/ExportDataComponent.php:118
+#: Controller/Component/ExportDataComponent.php:116
 #: Controller/Component/ViewDataComponent.php:144;219
-#: View/Elements/listDownloads.ctp:43 View/Elements/tableArchive.ctp:97
-#: View/Elements/tableGarbage.ctp:84 View/Elements/tableHost.ctp:126
-#: View/Elements/tablePackage.ctp:127 View/Elements/tableProfile.ctp:94
+#: View/Elements/listDownloads.ctp:43 View/Elements/tableArchive.ctp:101
+#: View/Elements/tableGarbage.ctp:87 View/Elements/tableHost.ctp:132
+#: View/Elements/tablePackage.ctp:138 View/Elements/tableProfile.ctp:98
 msgid "Preview XML"
 msgstr "Предварительный просмотр XML"
 
-#: Controller/Component/ExportDataComponent.php:122;124
+#: Controller/Component/ExportDataComponent.php:120;122
 #: Controller/Component/ViewDataComponent.php:229
-#: View/Elements/tableArchive.ctp:107 View/Elements/tableGarbage.ctp:94
-#: View/Elements/tableHost.ctp:136 View/Elements/tablePackage.ctp:137
-#: View/Elements/tableProfile.ctp:104
+#: View/Elements/tableArchive.ctp:111 View/Elements/tableGarbage.ctp:97
+#: View/Elements/tableHost.ctp:142 View/Elements/tablePackage.ctp:148
+#: View/Elements/tableProfile.ctp:108
 msgid "Download XML file"
 msgstr "Скачать XML файл"
 
-#: Controller/Component/ExportDataComponent.php:129
+#: Controller/Component/ExportDataComponent.php:127
 msgid "XSD schema validation passed."
 msgstr "Пройдена проверка схемы XSD."
-
-#: Controller/Component/ExportDataComponent.php:131
-#: Lib/Utility/RenderXmlData.php:135
-msgid "XML failed to pass XSD schema validation"
-msgstr "XML не прошел проверку схемы XSD"
 
 #: Controller/Component/TemplateDataComponent.php:74
 msgid "Template list is empty"
@@ -1469,7 +1483,7 @@ msgstr "существует"
 msgid "equals '%s'"
 msgstr "равно '%s'"
 
-#: Lib/Utility/RenderCheckData.php:67;150;181;215 Model/Wpi.php:416
+#: Lib/Utility/RenderCheckData.php:67;150;181;215 Model/Wpi.php:417
 #: Model/Behavior/GetXmlInfoBehavior.php:92;104
 #: Model/Behavior/RestoreBehavior.php:260
 msgid "unknown"
@@ -1559,7 +1573,7 @@ msgstr "Окружение хоста '%s'"
 msgid "Host is unknown"
 msgstr "Хост неизвестен"
 
-#: Lib/Utility/RenderXmlData.php:139
+#: Lib/Utility/RenderXmlData.php:143
 msgctxt "XML validation messages"
 msgid "line"
 msgstr "строка"
@@ -1602,7 +1616,7 @@ msgstr "Корневой узел"
 msgid "Check"
 msgstr "Проверка"
 
-#: Model/Check.php:1457 Model/Import.php:2346 View/Elements/infoPackage.ctp:140
+#: Model/Check.php:1457 Model/Import.php:2357 View/Elements/infoPackage.ctp:140
 msgid "Checks"
 msgstr "Проверки"
 
@@ -1651,21 +1665,21 @@ msgid "Error on putting sending e-mail for \"%s\" in queue..."
 msgstr ""
 "Ошибка при помещении отправки электронной почты для \"%s\" в очередь..."
 
-#: Model/ExitCode.php:277 View/Elements/formCheckBase.ctp:161
+#: Model/ExitCode.php:265 View/Elements/formCheckBase.ctp:161
 #: View/Elements/formExitCodeBase.ctp:48
 #: View/Elements/tableExitCodeDirectory.ctp:39
 msgid "Exit code"
 msgstr "Код выхода"
 
-#: Model/ExitCode.php:288 View/Elements/infoExitCodes.ctp:109
+#: Model/ExitCode.php:276 View/Elements/infoExitCodes.ctp:109
 msgid "Exit codes"
 msgstr "Коды выхода"
 
-#: Model/ExitCode.php:312
+#: Model/ExitCode.php:300
 msgid "Exit codes %sof the %s"
 msgstr "Код выхода %s %s"
 
-#: Model/ExitCode.php:314
+#: Model/ExitCode.php:302
 msgid "exit codes %s%s"
 msgstr "коды выхода %s%s"
 
@@ -1721,42 +1735,42 @@ msgstr "полный"
 
 #: Model/Host.php:445 Model/Package.php:936 Model/Profile.php:444
 #: View/Elements/infoHost.ctp:63 View/Elements/infoPackage.ctp:97
-#: View/Elements/infoProfile.ctp:54 View/Elements/tableHost.ctp:213
-#: View/Elements/tablePackage.ctp:229 View/Elements/tableProfile.ctp:186
+#: View/Elements/infoProfile.ctp:54 View/Elements/tableHost.ctp:219
+#: View/Elements/tablePackage.ctp:240 View/Elements/tableProfile.ctp:190
 msgid "Use as template"
 msgstr "Использовать в качестве шаблона"
 
-#: Model/Host.php:557 View/Elements/formHostBase.ctp:39
-#: View/Elements/formHostGenerate.ctp:40 View/Elements/tableLog.ctp:107
+#: Model/Host.php:581 View/Elements/formHostBase.ctp:39
+#: View/Elements/formHostGenerate.ctp:40 View/Elements/tableLog.ctp:109
 msgid "Host"
 msgstr "Хост"
 
-#: Model/Host.php:591
+#: Model/Host.php:615
 msgid "Host '%s'"
 msgstr "Хост '%s'"
 
-#: Model/Host.php:593
+#: Model/Host.php:617
 msgid "host '%s'"
 msgstr "хоста '%s'"
 
-#: Model/Host.php:605
+#: Model/Host.php:629
 msgid "full data of hosts"
 msgstr "полные данные хостов"
 
-#: Model/Host.php:762 View/Elements/formHostBase.ctp:55
-#: View/Elements/infoHost.ctp:68 View/Elements/tableHost.ctp:74
+#: Model/Host.php:786 View/Elements/formHostBase.ctp:55
+#: View/Elements/infoHost.ctp:68 View/Elements/tableHost.ctp:76
 msgid "Main profile"
 msgstr "Основной профиль"
 
-#: Model/Host.php:763
+#: Model/Host.php:787
 msgid "Assoc. profile"
 msgstr "Связ. профиль"
 
-#: Model/Host.php:853
+#: Model/Host.php:877
 msgid "The list of computers for generating XML is empty"
 msgstr "Список компьютеров для генерации XML пуст"
 
-#: Model/Host.php:857
+#: Model/Host.php:881
 msgid "Invalid host template ID"
 msgstr "Неверный идентификатор шаблона хоста"
 
@@ -1776,92 +1790,106 @@ msgstr ""
 "Пакет, профиль, хост, конфигурация WPKG, клиентская база данных или каталог "
 "кодов выхода."
 
+#: Model/Import.php:750;763;808;2236;2265;2309;2318;2357;2373;2435;2467;2596;2646;2677;2804;2835;2956;3032;3099;3105;3251;3276;3359;3422;3428;3530;3550
+#: Model/Log.php:377;391;428;565 Model/Report.php:431;463
+#: Model/Behavior/GroupActionBehavior.php:157
+msgid "Errors"
+msgstr "Ошибки"
+
 #: Model/Import.php:750 Model/Variable.php:228 View/Elements/infoHost.ctp:86
 #: View/Elements/infoPackage.ctp:139 View/Elements/infoProfile.ctp:69
 #: View/Elements/infoVariables.ctp:200
 msgid "Variables"
 msgstr "Переменные"
 
-#: Model/Import.php:750;2298;2346
+#: Model/Import.php:750;2309;2357
 msgid "Error on settings scope"
 msgstr "Ошибка при настройке области"
 
-#: Model/Import.php:965
+#: Model/Import.php:976
 msgid "Invalid file path"
 msgstr "Недопустимый путь к файлу"
 
-#: Model/Import.php:972;3617
+#: Model/Import.php:983;3650
 msgid "Invalid file type. Can be one of: %s"
 msgstr "Недопустимый тип файла. Может быть одним из следующих: %s"
 
-#: Model/Import.php:1003
+#: Model/Import.php:1014
 msgid "Invalid input XML file"
 msgstr "Недопустимый входной файл XML"
 
-#: Model/Import.php:1007
+#: Model/Import.php:1018
 msgid "Input XML file is empty"
 msgstr "Входной XML-файл пуст"
 
-#: Model/Import.php:1026
+#: Model/Import.php:1037
 msgid "Invalid input text file"
 msgstr "Недопустимый входной текстовый файл"
 
-#: Model/Import.php:1030
+#: Model/Import.php:1041
 msgid "Input text file is empty"
 msgstr "Входной текстовый файл пуст"
 
-#: Model/Import.php:1413
+#: Model/Import.php:1424
 msgid "Invalid name of dependency model"
 msgstr "Недопустимое имя зависимой модели"
 
-#: Model/Import.php:2298 Model/PackageAction.php:577
+#: Model/Import.php:2309 Model/PackageAction.php:577
 #: View/Elements/infoPackage.ctp:135
 msgid "Package actions"
 msgstr "Действия пакета"
 
-#: Model/Import.php:2945
+#: Model/Import.php:2956
 msgid "Error on deleting records of report"
 msgstr "Ошибка при удалении записей отчета"
 
-#: Model/Import.php:3088
+#: Model/Import.php:3099
 msgid "Error on saving report record"
 msgstr "Ошибка сохранения записи отчета"
 
-#: Model/Import.php:3094
+#: Model/Import.php:3105
 msgid "Error on saving report records"
 msgstr "Ошибка сохранения записей отчёта"
 
-#: Model/Import.php:3240
+#: Model/Import.php:3251
 msgid "Error on saving WPKG configuration"
 msgstr "Ошибка при сохранении конфигурации WPKG"
 
-#: Model/Import.php:3265
+#: Model/Import.php:3276
 msgid "Error on saving WPKG configuration language"
 msgstr "Ошибка при сохранении языка конфигурации WPKG"
 
-#: Model/Import.php:3411
+#: Model/Import.php:3422
 msgid "Error on saving log record"
 msgstr "Ошибка сохранения записи журнала"
 
-#: Model/Import.php:3417
+#: Model/Import.php:3428
 msgid "Error on saving log records"
 msgstr "Ошибка сохранения записей журнала"
 
-#: Model/Import.php:3519
+#: Model/Import.php:3530
 msgid "Error on saving exit code directory"
 msgstr "Ошибка при сохранении каталога кодов выхода"
 
-#: Model/Import.php:3533
+#: Model/Import.php:3544
 msgid "Other messages"
 msgstr "Другие сообщения"
 
-#: Model/Import.php:3536
+#: Model/Import.php:3547
 msgid "Warnings"
 msgstr "Предупреждения"
 
-#: Model/Import.php:3585
+#: Model/Import.php:3553
+msgid "Fatal errors"
+msgstr "Неустранимые ошибки"
+
+#: Model/Import.php:3597
 msgid "Invalid path to XSD schema file"
 msgstr "Недопустимый путь к файлу схемы XSD"
+
+#: Model/Import.php:3685
+msgid "Insert package here"
+msgstr "Вставьте пакет здесь"
 
 #: Model/Log.php:186
 msgid "Log record"
@@ -1899,7 +1927,7 @@ msgstr "Ошибка при копировании файлов"
 msgid "Error on removing unused hosts"
 msgstr "Ошибка при удалении неиспользуемых хостов"
 
-#: Model/Log.php:487 View/Elements/tableLog.ctp:220
+#: Model/Log.php:487 View/Elements/tableLog.ctp:219
 msgid "...And %s more %s"
 msgstr "...И еще %s %s"
 
@@ -1938,32 +1966,32 @@ msgstr ""
 "Пакет '%s' не может быть удалён или отключен, поскольку он существует в %s "
 "для следующих пакетов: %s"
 
-#: Model/Package.php:1197 View/Elements/formPackageBase.ctp:62
-#: View/Elements/formWpiBase.ctp:56 View/Elements/tableReport.ctp:59
+#: Model/Package.php:1222 View/Elements/formPackageBase.ctp:62
+#: View/Elements/formWpiBase.ctp:56 View/Elements/tableReport.ctp:61
 msgid "Package"
 msgstr "Пакет"
 
-#: Model/Package.php:1232
+#: Model/Package.php:1257
 msgid "Package '%s'"
 msgstr "Пакет '%s'"
 
-#: Model/Package.php:1234
+#: Model/Package.php:1259
 msgid "package '%s'"
 msgstr "пакета '%s'"
 
-#: Model/Package.php:1246
+#: Model/Package.php:1271
 msgid "full data of packages"
 msgstr "полные данные пакетов"
 
-#: Model/Package.php:1414
+#: Model/Package.php:1439
 msgid "Present in"
 msgstr "Присутствует в"
 
-#: Model/Package.php:1463
+#: Model/Package.php:1488
 msgid "Versions of package '%s'"
 msgstr "Версии пакета '%s'"
 
-#: Model/Package.php:1491
+#: Model/Package.php:1516
 msgid "Chart of the installed versions of the package '%s'"
 msgstr "Диаграмма установленных версий пакета '%s'"
 
@@ -1982,17 +2010,17 @@ msgctxt "check disable"
 msgid "chains"
 msgstr "цепочках"
 
-#: Model/Package.php:1435 Model/Profile.php:931
+#: Model/Package.php:1460 Model/Profile.php:954
 msgctxt "dependency"
 msgid "Depends on"
 msgstr "Зависит от"
 
-#: Model/Package.php:1436
+#: Model/Package.php:1461
 msgctxt "dependency"
 msgid "Includes on"
 msgstr "Включает"
 
-#: Model/Package.php:1437
+#: Model/Package.php:1462
 msgctxt "dependency"
 msgid "Chain on"
 msgstr "Цепочки"
@@ -2099,35 +2127,35 @@ msgstr ""
 "Профиль '%s' не может быть удалён или отключен, поскольку он является "
 "основным профилем для следующих хостов: %s"
 
-#: Model/Profile.php:745 View/Elements/formProfileBase.ctp:39
+#: Model/Profile.php:768 View/Elements/formProfileBase.ctp:39
 msgid "Profile"
 msgstr "Профиль"
 
-#: Model/Profile.php:780
+#: Model/Profile.php:803
 msgid "Profile '%s'"
 msgstr "Профиль '%s'"
 
-#: Model/Profile.php:782
+#: Model/Profile.php:805
 msgid "profile '%s'"
 msgstr "профиля '%s'"
 
-#: Model/Profile.php:794
+#: Model/Profile.php:817
 msgid "full data of profiles"
 msgstr "полные данные профилей"
 
-#: Model/Profile.php:964
+#: Model/Profile.php:987
 msgid "Through main profile"
 msgstr "Через основной профиль"
 
-#: Model/Profile.php:965
+#: Model/Profile.php:988
 msgid "Through dependent profile"
 msgstr "Через зависимый профиль"
 
-#: Model/Profile.php:966
+#: Model/Profile.php:989
 msgid "Through prof. assoc. host"
 msgstr "Через проф. связ. с хостом"
 
-#: Model/Profile.php:1018
+#: Model/Profile.php:1041
 msgid "Contains"
 msgstr "Содержит"
 
@@ -2183,16 +2211,16 @@ msgstr "переменной %s%s"
 msgid "global environment"
 msgstr "глобального окружения"
 
-#: Model/Wpi.php:519 View/Elements/formWpiBase.ctp:47
+#: Model/Wpi.php:553 View/Elements/formWpiBase.ctp:47
 #: View/Elements/infoWpiPackage.ctp:38
 msgid "WPI package"
 msgstr "Пакет WPI"
 
-#: Model/Wpi.php:530
+#: Model/Wpi.php:564
 msgid "WPI packages"
 msgstr "Пакеты WPI"
 
-#: Model/Wpi.php:577
+#: Model/Wpi.php:611
 msgid "WPI package %s"
 msgstr "Пакет WPI %s"
 
@@ -2245,12 +2273,12 @@ msgstr "Недопустимый атрибут идентификатора з�
 msgid "Invalid dependency element name for model '%s'"
 msgstr "Недопустимое имя элемента зависимости для модели '%s'"
 
-#: Model/Behavior/GetListBehavior.php:60
+#: Model/Behavior/GetListBehavior.php:61
 #: Model/Behavior/GetNumberBehavior.php:59
 msgid "Invalid name of the cache configuration to use"
 msgstr "Недопустимое имя используемой конфигурации кэша"
 
-#: Model/Behavior/GetListBehavior.php:65
+#: Model/Behavior/GetListBehavior.php:66
 msgid "Invalid key field name"
 msgstr "Недопустимое имя ключевого поля"
 
@@ -2379,7 +2407,7 @@ msgstr "Список пакетов для WPI"
 msgid "Windows Post-Install Wizard"
 msgstr "Windows Post-Install Wizard"
 
-#: View/Elements/barNav.ctp:247;249;293
+#: View/Elements/barNav.ctp:247;249;299
 msgid "Application settings"
 msgstr "Настройки приложения"
 
@@ -2395,27 +2423,27 @@ msgstr "Очередь заданий"
 msgid "Task queue list"
 msgstr "Список задач"
 
-#: View/Elements/barNav.ctp:273
+#: View/Elements/barNav.ctp:279
 msgid "Uploading XML"
 msgstr "Загрузка XML"
 
-#: View/Elements/barNav.ctp:275
+#: View/Elements/barNav.ctp:281
 msgid "Upload XML files"
 msgstr "Загрузка файлов XML"
 
-#: View/Elements/barNav.ctp:279
+#: View/Elements/barNav.ctp:285
 msgid "Downloading XML"
 msgstr "Скачивание XML"
 
-#: View/Elements/barNav.ctp:281
+#: View/Elements/barNav.ctp:287
 msgid "Download XML files"
 msgstr "Скачивание файлов XML"
 
-#: View/Elements/barNav.ctp:288
+#: View/Elements/barNav.ctp:294
 msgid "Manage removed data"
 msgstr "Управление удалёнными данными"
 
-#: View/Elements/barNav.ctp:302
+#: View/Elements/barNav.ctp:308
 msgid "Logout"
 msgstr "Выход"
 
@@ -2621,7 +2649,7 @@ msgstr "Размер"
 msgid "File size in bytes"
 msgstr "Размер файла в байтах"
 
-#: View/Elements/formCheckBase.ctp:130 View/Elements/tableLog.ctp:110
+#: View/Elements/formCheckBase.ctp:130 View/Elements/tableLog.ctp:112
 msgid "Date"
 msgstr "Дата"
 
@@ -2724,7 +2752,7 @@ msgstr ""
 #: View/Elements/formCheckBase.ctp:250
 #: View/Elements/formPackageActionBase.ctp:138
 #: View/Elements/infoResultVerify.ctp:38 View/Elements/tableGarbage.ctp:53
-#: View/Elements/tableLog.ctp:91;108
+#: View/Elements/tableLog.ctp:92;110
 msgid "Type"
 msgstr "Тип"
 
@@ -3133,6 +3161,51 @@ msgstr "Пути XML"
 msgid "Registry paths"
 msgstr "Пути реестра"
 
+#: View/Elements/formCreateXml.ctp:43
+msgid "XML text"
+msgstr "Текст XML"
+
+#: View/Elements/formCreateXml.ctp:47 View/Elements/infoPreviewXml.ctp:55
+msgid "Data"
+msgstr "Данные"
+
+#: View/Elements/formCreateXml.ctp:48
+msgid "Information"
+msgstr "Информация"
+
+#: View/Elements/formCreateXml.ctp:54
+msgid "XML"
+msgstr "XML"
+
+#: View/Elements/formCreateXml.ctp:54
+msgid "Press Ctrl-J to jump to the tag that matches the one under the cursor."
+msgstr ""
+"Нажмите Ctrl-J, чтобы перейти к тегу, который совпадает с тегом под курсором."
+
+#: View/Elements/formCreateXml.ctp:63
+msgid "Valid XML types"
+msgstr "Допустимые типы XML"
+
+#: View/Elements/formCreateXml.ctp:64
+msgid "Maximum XML size"
+msgstr "Максимальный размер XML"
+
+#: View/Elements/formCreateXml.ctp:65
+msgid ""
+"List of silent install, upgrade and uninstall configurations for many "
+"programs"
+msgstr ""
+"Список конфигураций автоматической установки, обновления и удаления для "
+"многих программ"
+
+#: View/Elements/formCreateXml.ctp:75
+msgid "Clear"
+msgstr "Очистить"
+
+#: View/Elements/formCreateXml.ctp:76 View/Elements/formTemplateCreate.ctp:59
+msgid "Create"
+msgstr "Создать"
+
 #: View/Elements/formExitCodeBase.ctp:38
 #: View/Elements/formPackageActionBase.ctp:136
 #: View/Elements/formPackageActionTypeBase.ctp:39
@@ -3154,7 +3227,7 @@ msgstr ""
 "автозаполнение."
 
 #: View/Elements/formExitCodeBase.ctp:67 View/Elements/formPackageBase.ctp:108
-#: View/Elements/infoPackage.ctp:99 View/Elements/tablePackage.ctp:87
+#: View/Elements/infoPackage.ctp:99 View/Elements/tablePackage.ctp:93
 msgid "Reboot"
 msgstr "Перезагрузка"
 
@@ -3554,7 +3627,7 @@ msgstr ""
 "Baz Ultra Edition)."
 
 #: View/Elements/formPackageBase.ctp:82 View/Elements/infoPackage.ctp:72
-#: View/Elements/tableArchive.ctp:70 View/Elements/tablePackage.ctp:81
+#: View/Elements/tableArchive.ctp:70 View/Elements/tablePackage.ctp:83
 msgid "Revision"
 msgstr "Ревизия"
 
@@ -3570,7 +3643,7 @@ msgstr ""
 "каждого периода."
 
 #: View/Elements/formPackageBase.ctp:84 View/Elements/infoPackage.ctp:75
-#: View/Elements/tablePackage.ctp:84
+#: View/Elements/tablePackage.ctp:88
 msgid "Priority"
 msgstr "Приоритет"
 
@@ -3617,7 +3690,7 @@ msgstr ""
 "пакетов, если проверки пакетов были успешными после выполнения действия."
 
 #: View/Elements/formPackageBase.ctp:110 View/Elements/infoPackage.ctp:101
-#: View/Elements/tablePackage.ctp:91
+#: View/Elements/tablePackage.ctp:98
 msgid "Execute"
 msgstr "Выполнение"
 
@@ -3642,7 +3715,7 @@ msgstr ""
 "стороне сервера не будет изменена."
 
 #: View/Elements/formPackageBase.ctp:112 View/Elements/infoPackage.ctp:103
-#: View/Elements/tablePackage.ctp:95
+#: View/Elements/tablePackage.ctp:103
 msgid "Notify"
 msgstr "Уведомление"
 
@@ -3978,10 +4051,6 @@ msgstr "Текстовый идентификатор новых данных"
 msgid "Additional attribute"
 msgstr "Дополнительный атрибут"
 
-#: View/Elements/formTemplateCreate.ctp:59
-msgid "Create"
-msgstr "Создать"
-
 #: View/Elements/formUploadXml.ctp:47
 msgid "Valid XML file types"
 msgstr "Допустимые типы XML файлов"
@@ -4015,7 +4084,7 @@ msgid "Package of WPI"
 msgstr "Пакет WPI"
 
 #: View/Elements/formWpiBase.ctp:61 View/Elements/infoWpiPackage.ctp:47
-#: View/Elements/tableWpiPackage.ctp:66
+#: View/Elements/tableWpiPackage.ctp:68
 msgid "Category"
 msgstr "Категория"
 
@@ -4024,7 +4093,7 @@ msgid "Category of WPI"
 msgstr "Категория WPI"
 
 #: View/Elements/formWpiBase.ctp:63 View/Elements/infoWpiPackage.ctp:49
-#: View/Elements/tableWpiPackage.ctp:70
+#: View/Elements/tableWpiPackage.ctp:73
 msgid "Default"
 msgstr "По умолчанию"
 
@@ -4033,7 +4102,7 @@ msgid "Default checked"
 msgstr "Отмечено по умолчанию"
 
 #: View/Elements/formWpiBase.ctp:65 View/Elements/infoWpiPackage.ctp:56
-#: View/Elements/tableWpiPackage.ctp:75
+#: View/Elements/tableWpiPackage.ctp:78
 msgid "Forcibly"
 msgstr "Принудительно"
 
@@ -4078,10 +4147,6 @@ msgstr "Удалить запись"
 msgid "Are you sure you wish to delete this record?"
 msgstr "Вы уверены, что хотите удалить эту запись?"
 
-#: View/Elements/infoExitCodes.ctp:65
-msgid "Reboot: %s"
-msgstr "Перезагрузка: %s"
-
 #: View/Elements/infoExitCodes.ctp:75
 msgid "Edit exit code"
 msgstr "Изменить код выхода"
@@ -4118,17 +4183,17 @@ msgstr "Пожалуйста, подождите. Выполняется соз�
 msgid "Position"
 msgstr "Позиция"
 
-#: View/Elements/infoHost.ctp:57 View/Elements/tableHost.ctp:205
+#: View/Elements/infoHost.ctp:57 View/Elements/tableHost.ctp:211
 msgid "Disable host"
 msgstr "Отключить хост"
 
-#: View/Elements/infoHost.ctp:57 View/Elements/tableHost.ctp:205
+#: View/Elements/infoHost.ctp:57 View/Elements/tableHost.ctp:211
 msgid "Enable host"
 msgstr "Включить хост"
 
 #: View/Elements/infoHost.ctp:63 View/Elements/infoPackage.ctp:97
-#: View/Elements/infoProfile.ctp:54 View/Elements/tableHost.ctp:213
-#: View/Elements/tablePackage.ctp:229 View/Elements/tableProfile.ctp:186
+#: View/Elements/infoProfile.ctp:54 View/Elements/tableHost.ctp:219
+#: View/Elements/tablePackage.ctp:240 View/Elements/tableProfile.ctp:190
 msgid "Don't use as template"
 msgstr "Не использовать в качестве шаблона"
 
@@ -4142,9 +4207,9 @@ msgid "Use this host as a template"
 msgstr "Использовать этот хост в качестве шаблона"
 
 #: View/Elements/infoHost.ctp:79 View/Elements/infoPackage.ctp:105
-#: View/Elements/infoProfile.ctp:61 View/Elements/tableArchive.ctp:73
-#: View/Elements/tableGarbage.ctp:60 View/Elements/tableHost.ctp:80
-#: View/Elements/tablePackage.ctp:102 View/Elements/tableProfile.ctp:69
+#: View/Elements/infoProfile.ctp:61 View/Elements/tableArchive.ctp:75
+#: View/Elements/tableGarbage.ctp:61 View/Elements/tableHost.ctp:84
+#: View/Elements/tablePackage.ctp:111 View/Elements/tableProfile.ctp:71
 msgid "Last modified"
 msgstr "Последнее изменение"
 
@@ -4156,11 +4221,11 @@ msgstr "Основная информация"
 msgid "Extended information"
 msgstr "Расширенная информация"
 
-#: View/Elements/infoPackage.ctp:59 View/Elements/tablePackage.ctp:221
+#: View/Elements/infoPackage.ctp:59 View/Elements/tablePackage.ctp:232
 msgid "Disable package"
 msgstr "Отключить пакет"
 
-#: View/Elements/infoPackage.ctp:59 View/Elements/tablePackage.ctp:221
+#: View/Elements/infoPackage.ctp:59 View/Elements/tablePackage.ctp:232
 msgid "Enable package"
 msgstr "Включить пакет"
 
@@ -4223,15 +4288,11 @@ msgstr "Понижения"
 msgid "Preview type"
 msgstr "Тип предварительного просмотра"
 
-#: View/Elements/infoPreviewXml.ctp:55
-msgid "Data"
-msgstr "Данные"
-
-#: View/Elements/infoProfile.ctp:48 View/Elements/tableProfile.ctp:178
+#: View/Elements/infoProfile.ctp:48 View/Elements/tableProfile.ctp:182
 msgid "Disable profile"
 msgstr "Отключить профиль"
 
-#: View/Elements/infoProfile.ctp:48 View/Elements/tableProfile.ctp:178
+#: View/Elements/infoProfile.ctp:48 View/Elements/tableProfile.ctp:182
 msgid "Enable profile"
 msgstr "Включить профиль"
 
@@ -4243,7 +4304,7 @@ msgstr "Использовать этот профиль в качестве ш�
 msgid "Depends on profiles"
 msgstr "Зависит от профилей"
 
-#: View/Elements/infoProfile.ctp:80 View/Elements/tableProfile.ctp:122
+#: View/Elements/infoProfile.ctp:80 View/Elements/tableProfile.ctp:126
 msgid "Modify list of associated packages"
 msgstr "Изменить список связанных пакетов"
 
@@ -4284,7 +4345,7 @@ msgstr "Восстановление состояния списка дейст�
 msgid "Statistics"
 msgstr "Статистика"
 
-#: View/Elements/infoVariables.ctp:87 View/Elements/tableHost.ctp:108
+#: View/Elements/infoVariables.ctp:87 View/Elements/tableHost.ctp:114
 #: View/Elements/tablePackageActions.ctp:104
 #: View/Elements/treeItemCheckDraggable.ctp:38
 msgid "Show or hide move buttons"
@@ -4302,15 +4363,15 @@ msgstr "Удалить переменную"
 msgid "Are you sure you wish to delete variable '%s'?"
 msgstr "Вы действительно хотите удалить переменную '%s'?"
 
-#: View/Elements/infoWpiPackage.ctp:53 View/Elements/tableWpiPackage.ctp:152
+#: View/Elements/infoWpiPackage.ctp:53 View/Elements/tableWpiPackage.ctp:155
 msgid "Don't selected by default"
 msgstr "Не выбирается по умолчанию"
 
-#: View/Elements/infoWpiPackage.ctp:53 View/Elements/tableWpiPackage.ctp:152
+#: View/Elements/infoWpiPackage.ctp:53 View/Elements/tableWpiPackage.ctp:155
 msgid "Selected by default"
 msgstr "Выбран по умолчанию"
 
-#: View/Elements/infoWpiPackage.ctp:60 View/Elements/tableWpiPackage.ctp:160
+#: View/Elements/infoWpiPackage.ctp:60 View/Elements/tableWpiPackage.ctp:163
 msgid "Don't selected forcibly"
 msgstr "Не выбирается принудительно"
 
@@ -4366,63 +4427,63 @@ msgstr "Добавить категорию WPI"
 msgid "Created"
 msgstr "Создан"
 
-#: View/Elements/tableArchive.ctp:117
+#: View/Elements/tableArchive.ctp:121
 msgid "Are you sure you wish to restore package from archive '%s'?"
 msgstr "Вы действительно хотите восстановить пакет из архива '%s'?"
 
-#: View/Elements/tableArchive.ctp:126
+#: View/Elements/tableArchive.ctp:130
 msgid "Are you sure you wish to delete package '%s' from archive?"
 msgstr "Вы уверены, что хотите удалить пакет '%s' из архива?"
 
-#: View/Elements/tableExitCodeDirectory.ctp:43
+#: View/Elements/tableExitCodeDirectory.ctp:44
 msgid "Hexadecimal"
 msgstr "Шестнадцатеричное"
 
-#: View/Elements/tableExitCodeDirectory.ctp:47
+#: View/Elements/tableExitCodeDirectory.ctp:49
 msgid "Constant"
 msgstr "Константа"
 
-#: View/Elements/tableExitCodeDirectory.ctp:51
+#: View/Elements/tableExitCodeDirectory.ctp:54
 msgid "Description"
 msgstr "Описание"
 
-#: View/Elements/tableGarbage.ctp:102
+#: View/Elements/tableGarbage.ctp:105
 msgid "Restore data from recycle bin"
 msgstr "Восстановить данные из корзины"
 
-#: View/Elements/tableGarbage.ctp:104
+#: View/Elements/tableGarbage.ctp:107
 msgid "Are you sure you wish to restore data '%s' from recycle bin?"
 msgstr "Вы действительно хотите восстановить данные '%s' из корзины?"
 
-#: View/Elements/tableGarbage.ctp:113
+#: View/Elements/tableGarbage.ctp:116
 msgid "Are you sure you wish to delete data '%s' from recycle bin?"
 msgstr "Вы уверены, что хотите удалить данные '%s' из корзины?"
 
-#: View/Elements/tableHost.ctp:144
+#: View/Elements/tableHost.ctp:150
 msgid "Graph of host"
 msgstr "Граф хоста"
 
-#: View/Elements/tableHost.ctp:155
+#: View/Elements/tableHost.ctp:161
 msgid "Create host from this template"
 msgstr "Создать хост из этого шаблона"
 
-#: View/Elements/tableHost.ctp:165
+#: View/Elements/tableHost.ctp:171
 msgid "Copy host"
 msgstr "Копировать хост"
 
-#: View/Elements/tableHost.ctp:166
+#: View/Elements/tableHost.ctp:172
 msgid "Are you sure you wish to copy host '%s'?"
 msgstr "Вы действительно хотите скопировать хост '%s'?"
 
-#: View/Elements/tableHost.ctp:174
+#: View/Elements/tableHost.ctp:180
 msgid "Edit host"
 msgstr "Редактировать хост"
 
-#: View/Elements/tableHost.ctp:183
+#: View/Elements/tableHost.ctp:189
 msgid "Delete host"
 msgstr "Удалить хост"
 
-#: View/Elements/tableHost.ctp:184
+#: View/Elements/tableHost.ctp:190
 msgid "Are you sure you wish to delete host '%s'?"
 msgstr "Вы уверены, что хотите удалить хост '%s'?"
 
@@ -4430,58 +4491,58 @@ msgstr "Вы уверены, что хотите удалить хост '%s'?"
 msgid "Created: %s"
 msgstr "Создано: %s"
 
-#: View/Elements/tableLog.ctp:96;109
+#: View/Elements/tableLog.ctp:97;111
 msgid "Message"
 msgstr "Сообщение"
 
-#: View/Elements/tableLog.ctp:99
+#: View/Elements/tableLog.ctp:100
 msgid "Date of event"
 msgstr "Дата события"
 
-#: View/Elements/tableLog.ctp:139
+#: View/Elements/tableLog.ctp:141
 msgid "Preview logs of host"
 msgstr "Предварительный просмотр журналов хоста"
 
-#: View/Elements/tableLog.ctp:172
+#: View/Elements/tableLog.ctp:174
 msgid "Delete log record"
 msgstr "Удалить запись журнала"
 
-#: View/Elements/tableLog.ctp:173
+#: View/Elements/tableLog.ctp:175
 msgid "Are you sure you wish to delete this log record?"
 msgstr "Вы действительно хотите удалить эту запись?"
 
-#: View/Elements/tableLog.ctp:223
+#: View/Elements/tableLog.ctp:222
 msgid "log"
 msgid_plural "logs"
 msgstr[0] "журнал"
 msgstr[1] "хурнала"
 msgstr[2] "журналов"
 
-#: View/Elements/tablePackage.ctp:154
+#: View/Elements/tablePackage.ctp:165
 msgid "Graph of package"
 msgstr "Граф пакета"
 
-#: View/Elements/tablePackage.ctp:164
+#: View/Elements/tablePackage.ctp:175
 msgid "Chart of installed package versions"
 msgstr "Диаграмма версий установленных пакетов"
 
-#: View/Elements/tablePackage.ctp:175
+#: View/Elements/tablePackage.ctp:186
 msgid "Create package from this template"
 msgstr "Создать пакет из этого шаблона"
 
-#: View/Elements/tablePackage.ctp:185
+#: View/Elements/tablePackage.ctp:196
 msgid "Copy package"
 msgstr "Копировать пакет"
 
-#: View/Elements/tablePackage.ctp:186
+#: View/Elements/tablePackage.ctp:197
 msgid "Are you sure you wish to copy package '%s'?"
 msgstr "Вы действительно хотите скопировать пакет '%s'?"
 
-#: View/Elements/tablePackage.ctp:194
+#: View/Elements/tablePackage.ctp:205
 msgid "Edit package"
 msgstr "Редактировать пакет"
 
-#: View/Elements/tablePackage.ctp:204
+#: View/Elements/tablePackage.ctp:215
 msgid "Are you sure you wish to delete package '%s'?"
 msgstr "Вы действительно хотите удалить пакет '%s'?"
 
@@ -4517,77 +4578,77 @@ msgstr "Коды выхода, перезагрузка"
 msgid "Actions"
 msgstr "Действия"
 
-#: View/Elements/tableProfile.ctp:112
+#: View/Elements/tableProfile.ctp:116
 msgid "Graph of profile"
 msgstr "Граф профиля"
 
-#: View/Elements/tableProfile.ctp:132
+#: View/Elements/tableProfile.ctp:136
 msgid "Create profile from this template"
 msgstr "Создать профиль из этого шаблона"
 
-#: View/Elements/tableProfile.ctp:142
+#: View/Elements/tableProfile.ctp:146
 msgid "Copy profile"
 msgstr "Копировать профиль"
 
-#: View/Elements/tableProfile.ctp:143
+#: View/Elements/tableProfile.ctp:147
 msgid "Are you sure you wish to copy profile '%s'?"
 msgstr "Вы действительно хотите скопировать профиль '%s'?"
 
-#: View/Elements/tableProfile.ctp:151
+#: View/Elements/tableProfile.ctp:155
 msgid "Edit profile"
 msgstr "Редактировать профиль"
 
-#: View/Elements/tableProfile.ctp:160
+#: View/Elements/tableProfile.ctp:164
 msgid "Delete profile"
 msgstr "Удалить профиль"
 
-#: View/Elements/tableProfile.ctp:161
+#: View/Elements/tableProfile.ctp:165
 msgid "Are you sure you wish to delete profile '%s'?"
 msgstr "Вы действительно хотите удалить профиль '%s'?"
 
-#: View/Elements/tableReport.ctp:50
+#: View/Elements/tableReport.ctp:51
 msgid "Last update"
 msgstr "Последнее обновление"
 
-#: View/Elements/tableReport.ctp:54
+#: View/Elements/tableReport.ctp:56
 msgid "State"
 msgstr "Состояние"
 
-#: View/Elements/tableReport.ctp:62
+#: View/Elements/tableReport.ctp:64
 msgid "Revision of package"
 msgstr "Ревизия пакета"
 
-#: View/Elements/tableReport.ctp:84
+#: View/Elements/tableReport.ctp:87
 msgid "Refresh report of host"
 msgstr "Обновить отчёт хоста"
 
-#: View/Elements/tableReport.ctp:85
+#: View/Elements/tableReport.ctp:88
 msgid "Are you sure you wish to refresh report of host '%s'?"
 msgstr "Вы уверены, что хотите обновить отчет хоста '%s'?"
 
-#: View/Elements/tableReport.ctp:93
+#: View/Elements/tableReport.ctp:96
 msgid "Clear reports of host"
 msgstr "Очистить отчеты хоста"
 
-#: View/Elements/tableReport.ctp:94
+#: View/Elements/tableReport.ctp:97
 msgid "Are you sure you wish to clear reports of host '%s'?"
 msgstr "Вы уверены, что хотите очистить отчеты хоста '%s'?"
 
-#: View/Elements/tableReport.ctp:102
+#: View/Elements/tableReport.ctp:105
 msgid "Remove (rename) client database"
 msgstr "Удалить (переименовать) базу данных клиента"
 
-#: View/Elements/tableReport.ctp:103
+#: View/Elements/tableReport.ctp:106
 msgid "Are you sure you wish to remove (rename) client database of host '%s'?"
 msgstr ""
 "Вы действительно хотите удалить (переименовать) клиентскую базу данных хоста "
 "'%s'?"
 
-#: View/Elements/tableWpiPackage.ctp:112
+#: View/Elements/tableWpiPackage.ctp:115
 msgid "Are you sure you wish to delete WPI package '%s'?"
 msgstr "Вы действительно хотите удалить пакет WPI '%s'?"
 
-#: View/Elements/tableWpiPackage.ctp:160
+#: View/Elements/tableWpiPackage.ctp:163
 msgid "Forced selected"
 msgstr "Выбирается принудительно"
 
@@ -4658,6 +4719,9 @@ msgstr "Экспорт XML файлов"
 #: View/Reports/index.ctp:35
 msgid "State of packages"
 msgstr "Состояние пакетов"
+
+#~ msgid "Reboot: %s"
+#~ msgstr "Перезагрузка: %s"
 
 #~ msgid "Code"
 #~ msgstr "Код"
@@ -4733,9 +4797,6 @@ msgstr "Состояние пакетов"
 
 #~ msgid "List"
 #~ msgstr "Список"
-
-#~ msgid "Information"
-#~ msgstr "Информация"
 
 #~ msgid "Disabled %d %s."
 #~ msgstr "Отключено %d %s."

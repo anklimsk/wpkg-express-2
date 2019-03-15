@@ -813,9 +813,11 @@ class Import extends AppModel {
  * Return type from XML string or file
  *
  * @param string $xmlFile XML string or file to processing
+ * @param bool $returnSingular If True, return result as singular.
+ *  Otherwise return as plural.
  * @return string|bool Return type of XML, or False on failure.
  */
-	public function getTypeFromXmlFile($xmlFile = null) {
+	public function getTypeFromXmlFile($xmlFile = null, $returnSingular = false) {
 		if (empty($xmlFile)) {
 			return false;
 		}
@@ -849,7 +851,12 @@ class Import extends AppModel {
 			return false;
 		}
 		if ($xmlRootName !== 'wpkg') {
-			return $xmlRootName;
+			$result = $xmlRootName;
+			if ($returnSingular) {
+				$result = Inflector::singularize($result);
+			}
+
+			return $result;
 		}
 
 		if ($xml->count() === 0) {
@@ -868,6 +875,10 @@ class Import extends AppModel {
 				break;
 			default:
 				return false;
+		}
+
+		if ($returnSingular) {
+			$result = Inflector::singularize($result);
 		}
 
 		return $result;
@@ -3574,7 +3585,8 @@ class Import extends AppModel {
  * @param string $xmlFile XML string or file to processing
  * @param string $xsdFile Path to XSD schema file
  * @throws InternalErrorException if invalid path to XSD schema file
- * @return array|bool 
+ * @return array|bool Return True on success or array of formatted
+ *  error messages.
  */
 	public function validateXML($xmlFile = null, $xsdFile = null) {
 		if (empty($xmlFile)) {
@@ -3640,6 +3652,39 @@ class Import extends AppModel {
 		}
 
 		return $this->{'importXml' . ucfirst($xmlType)}($xmlFile, $idTask);
+	}
+
+/**
+ * Validates the XML string against the XSD file.
+ *
+ * @param string $xmlString XML string to processing
+ * @return array|bool Return True on success. Array of formatted
+ *  error messages or False on failure.
+ */
+	public function validateXMLstring($xmlString = '') {
+		$xmlType = $this->getTypeFromXmlFile($xmlString, true);
+		if (empty($xmlType)) {
+			return false;
+		}
+
+		$xsdPath = $this->getXsdForType($xmlType);
+		if (empty($xsdPath)) {
+			return false;
+		}
+
+		return $this->validateXML($xmlString, $xsdPath);
+	}
+
+/**
+ * Return string with default XML of package
+ *
+ * @return string Return XML string.
+ */
+	public function getDefaultXML() {
+		$xmlDataArray = $this->_modelPackage->getXMLdata(null, true, true, false);
+		$xmlDataArray['packages:packages']['comment'] = __('Insert package here');
+
+		return RenderXmlData::renderXml($xmlDataArray, true);
 	}
 
 /**
