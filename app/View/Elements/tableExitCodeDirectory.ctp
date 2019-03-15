@@ -37,15 +37,18 @@ if (!isset($exitCodeDirectory)) {
 	$formInputs = [
 		'ExitCodeDirectory.code' => [
 			'label' => __('Exit code'),
-			'class-header' => 'action'
+			'class-header' => 'fit',
+			'style' => 'min-width: 60px'
 		],
 		'ExitCodeDirectory.hexadecimal' => [
 			'label' => __('Hexadecimal'),
-			'class-header' => 'action',
+			'class-header' => 'fit',
+			'style' => 'min-width: 150px'
 		],
 		'ExitCodeDirectory.constant' => [
 			'label' => __('Constant'),
-			'class-header' => 'action',
+			'class-header' => 'fit',
+			'style' => 'min-width: 230px'
 		],
 		'ExitCodeDirectory.description' => [
 			'label' => __('Description'),
@@ -58,16 +61,23 @@ if (!isset($exitCodeDirectory)) {
 <?php
 foreach ($exitCodeDirectory as $exitCodeDirectoryRecord) {
 	$tableRow = [];
-	$tableRow[] = [$this->Html->tag('samp', h($exitCodeDirectoryRecord['ExitCodeDirectory']['code'])),
-		['class' => 'text-center']];
-	$tableRow[] = [$this->ViewExtension->showEmpty(h($exitCodeDirectoryRecord['ExitCodeDirectory']['hexadecimal'])),
-		['class' => 'text-center']];
+	$tableRow[] = [
+		$this->Html->tag('samp', h($exitCodeDirectoryRecord['ExitCodeDirectory']['code'])),
+		['class' => 'text-center']
+	];
+	$tableRow[] = [
+		$this->ViewExtension->showEmpty(h($exitCodeDirectoryRecord['ExitCodeDirectory']['hexadecimal'])),
+		['class' => 'text-center']
+	];
 	$tableRow[] = $this->ViewExtension->showEmpty(h($exitCodeDirectoryRecord['ExitCodeDirectory']['constant']));
 	$tableRow[] = $this->ViewExtension->showEmpty(
 		$exitCodeDirectoryRecord['ExitCodeDirectory']['description'],
 		$this->ViewExtension->truncateText(h($exitCodeDirectoryRecord['ExitCodeDirectory']['description']), 80)
 	);
-	$tableRow[] = $this->ViewExtension->showEmpty();
+	$tableRow[] = [
+		$this->ViewExtension->showEmpty(),
+		['class' => 'text-center']
+	];
 
 	echo $this->Html->tableCells([$tableRow]);
 }

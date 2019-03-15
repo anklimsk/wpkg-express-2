@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.View.Elements
  */
 
@@ -55,6 +55,8 @@ if (!isset($listWpiCategories)) {
 		],
 		'Package.id_text' => [
 			'label' => __('Package ID'),
+			'class-header' => 'fit',
+			'style' => 'min-width: 180px'
 		],
 		'Package.name' => [
 			'label' => __('Name'),
@@ -65,16 +67,17 @@ if (!isset($listWpiCategories)) {
 		'Wpi.category_id' => [
 			'label' => __('Category'),
 			'options' => $listWpiCategories,
+			'class-header' => 'fit',
 		],
 		'Wpi.default' => [
 			'label' => __('Default'),
 			'options' => $this->ViewExtension->yesNoList(),
-			'class-header' => 'action',
+			'class-header' => 'fit',
 		],
 		'Wpi.force' => [
 			'label' => __('Forcibly'),
 			'options' => $this->ViewExtension->yesNoList(),
-			'class-header' => 'action',
+			'class-header' => 'fit',
 		],
 	];
 	echo $this->Filter->createFilterForm($formInputs);
@@ -144,7 +147,7 @@ foreach ($wpis as $wpiPackage) {
 		$this->ViewExtension->truncateText(h($wpiPackage['Package']['notes']), 50)
 	);
 	$tableRow[] = [$this->ViewExtension->showEmpty(h($wpiPackage['WpiCategory']['name'])),
-		['class' => 'action text-center']];
+		['class' => 'text-center']];
 	$tableRow[] = [
 		$this->ViewExtension->ajaxLink(
 			$this->ViewExtension->yesNo($wpiPackage['Wpi']['default']),

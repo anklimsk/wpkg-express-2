@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.View.Elements
  */
 
@@ -95,7 +95,7 @@ if (!isset($showBtnExpand)) {
 
 		$tableRow = [
 			$command . $attributes . $checks,
-			$timeOut,
+			[$timeOut, ['class' => 'text-center']],
 			$exitCodes,
 			[
 				$this->ViewExtension->button(
@@ -248,8 +248,8 @@ if (!isset($showBtnExpand)) {
 
 	$tableHeader = [
 		__('Command, work directory'),
-		[__('Timeout') => ['class' => 'action']],
-		[__('Exit codes, reboot') => ['class' => 'action']],
+		[__('Timeout') => ['class' => 'fit-compact']],
+		[__('Exit codes, reboot') => ['class' => 'fit-compact']],
 		[__('Actions') => ['class' => 'action hide-popup']],
 	];
 ?>

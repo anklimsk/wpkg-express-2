@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.View.Elements
  */
 
@@ -44,23 +44,26 @@ if (!isset($listStates)) {
 	$formInputs = [
 		'ReportHost.name' => [
 			'label' => __('Host name'),
-			'class-header' => 'action',
+			'class-header' => 'fit',
+			'style' => 'min-width: 100px'
 		],
 		'ReportHost.date' => [
 			'label' => __('Last update'),
-			'class-header' => 'action',
+			'class-header' => 'fit',
+			'style' => 'min-width: 150px'
 		],
 		'Report.state_id' => [
 			'label' => __('State'),
 			'options' => $listStates,
-			'class-header' => 'action',
+			'class-header' => 'fit',
 		],
 		'Package.name' => [
 			'label' => __('Package'),
 		],
 		'Report.revision' => [
 			'label' => __('Revision of package'),
-			'class-header' => 'action',
+			'class-header' => 'fit',
+			'style' => 'min-width: 100px'
 		],
 	];
 	echo $this->Filter->createFilterForm($formInputs);
@@ -145,7 +148,7 @@ foreach ($reports as $report) {
 	}
 	$tableRow[] = [
 		__d('report_state', h($report['ReportState']['name'])),
-		['class' => 'action text-center', 'colspan' => 3]
+		['class' => 'text-center', 'colspan' => 3]
 	];
 	$tableRow[] = $this->ViewExtension->popupModalLink(
 		$packageName,

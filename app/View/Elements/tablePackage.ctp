@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.View.Elements
  */
 
@@ -64,42 +64,53 @@ if (!isset($listNotify)) {
 		'Package.enabled' => [
 			'label' => __('Enabled'),
 			'options' => $this->ViewExtension->yesNoList(),
-			'class-header' => 'action',
+			'class-header' => 'fit',
 		],
 		'Package.template' => [
 			'label' => __('Template'),
 			'options' => $this->ViewExtension->yesNoList(),
-			'class-header' => 'action',
+			'class-header' => 'fit',
 		],
 		'Package.id_text' => [
 			'label' => __('Package ID'),
+			'class-header' => 'fit',
+			'style' => 'min-width: 180px'
 		],
 		'Package.name' => [
 			'label' => __('Name'),
 		],
 		'Package.revision' => [
 			'label' => __('Revision'),
+			'class-header' => 'fit',
+			'style' => 'min-width: 100px'
 		],
 		'Package.priority' => [
 			'label' => __('Priority'),
+			'class-header' => 'fit',
+			'style' => 'min-width: 100px'
 		],
 		'Package.reboot_id' => [
 			'label' => __('Reboot'),
 			'options' => $listReboot,
+			'class-header' => 'fit',
 		],
 		'Package.execute_id' => [
 			'label' => __('Execute'),
 			'options' => $listExecute,
+			'class-header' => 'fit',
 		],
 		'Package.notify_id' => [
 			'label' => __('Notify'),
 			'options' => $listNotify,
+			'class-header' => 'fit',
 		],
 		'Package.notes' => [
 			'label' => __('Notes'),
 		],
 		'Package.modified' => [
 			'label' => __('Last modified'),
+			'class-header' => 'fit',
+			'style' => 'min-width: 150px'
 		],
 	];
 	echo $this->Filter->createFilterForm($formInputs);
@@ -241,17 +252,26 @@ foreach ($packages as $package) {
 			'data-popover-size' => 'lg'
 		]
 	);
-	$tableRow[] = $this->ViewExtension->truncateText(h($package['Package']['name']), 30);
-	$tableRow[] = [h($package['Package']['revision']), ['class' => 'text-center']];
-	$tableRow[] = [$this->Number->format(
+	$tableRow[] = $this->ViewExtension->truncateText(h($package['Package']['name']), 35);
+	$tableRow[] = [h($package['Package']['revision']), ['class' => 'text-right text-nowrap']];
+	$priorityText = $this->Number->format(
 		$package['Package']['priority'],
-		['thousands' => ' ', 'before' => '', 'places' => 0]) .
-		(!empty($package['PackagePriority']['name']) ? ' (' . __d('package_priority', h($package['PackagePriority']['name'])) . ')' : ''),
-		['class' => 'text-right text-nowrap']
-	];
-	$tableRow[] = [mb_ucfirst(__d('package_reboot', h($package['PackageRebootType']['name']))), ['class' => 'action text-center']];
-	$tableRow[] = [mb_ucfirst(__d('package_execute', h($package['PackageExecuteType']['name']))), ['class' => 'action text-center']];
-	$tableRow[] = [mb_ucfirst(__d('package_notify', h($package['PackageNotifyType']['name']))), ['class' => 'action text-center']];
+		['thousands' => ' ', 'before' => '', 'places' => 0]
+	);
+	if (!empty($package['PackagePriority']['name'])) {
+		$priorityText = $this->Html->tag(
+			'abbr',
+			$priorityText,
+			[
+				'title' => $package['PackagePriority']['name'],
+				'data-toggle' => 'tooltip'
+			]
+		);
+	}
+	$tableRow[] = [$priorityText, ['class' => 'text-right']];
+	$tableRow[] = [mb_ucfirst(__d('package_reboot', h($package['PackageRebootType']['name']))), ['class' => 'text-center text-nowrap']];
+	$tableRow[] = [mb_ucfirst(__d('package_execute', h($package['PackageExecuteType']['name']))), ['class' => 'text-center text-nowrap']];
+	$tableRow[] = [mb_ucfirst(__d('package_notify', h($package['PackageNotifyType']['name']))), ['class' => 'text-center text-nowrap']];
 	$tableRow[] = $this->ViewExtension->showEmpty(
 		$package['Package']['notes'],
 		$this->ViewExtension->truncateText(h($package['Package']['notes']), 50)

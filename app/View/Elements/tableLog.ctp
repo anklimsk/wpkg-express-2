@@ -85,29 +85,31 @@ if ($this->Helpers->loaded('Paginator') && $shortBtnPagination) {
 		],
 		'LogHost.name' => [
 			'label' => __('Host name'),
-			'class-header' => 'action',
+			'class-header' => 'fit',
+			'style' => 'min-width: 100px'
 		],
 		'Log.type_id' => [
 			'label' => __('Type'),
 			'options' => $listTypes,
-			'class-header' => 'action',
+			'class-header' => 'fit'
 		],
 		'Log.message' => [
-			'label' => __('Message'),
+			'label' => __('Message')
 		],
 		'Log.date' => [
 			'label' => __('Date of event'),
-			'class-header' => 'action',
+			'class-header' => 'fit',
+			'style' => 'min-width: 150px'
 		],
 	];
 	if (!$shortInfo) {
 		echo $this->Filter->createFilterForm($formInputs);
 	} else {
 		$tableHeaders = [
-			[__('Host') => ['class' => 'action']],
-			[__('Type') => ['class' => 'action']],
+			[__('Host') => ['class' => 'fit']],
+			[__('Type') => ['class' => 'fit']],
 			__('Message'),
-			[__('Date') => ['class' => 'action']],
+			[__('Date') => ['class' => 'fit']],
 		];
 		echo $this->Html->tableHeaders($tableHeaders);
 	}
@@ -181,13 +183,10 @@ foreach ($logs as $log) {
 	}
 	$tableRow[] = [
 		__d('log', h($log['LogType']['name'])),
-		['class' => 'action text-center', 'colspan' => 2]
+		['class' => 'text-center', 'colspan' => 2]
 	];
 	$tableRow[] = $log['Log']['message'];
-	$tableRow[] = [
-		(!$shortInfo ? $this->ViewExtension->timeAgo($log['Log']['date']) : $this->Time->i18nFormat($log['Log']['date'], '%x %X')),
-		['class' => 'text-nowrap']
-	];
+	$tableRow[] = (!$shortInfo ? $this->ViewExtension->timeAgo($log['Log']['date']) : $this->Time->i18nFormat($log['Log']['date'], '%x %X'));
 	if (!$shortInfo) {
 		$tableRow[] = [$actions, ['class' => 'action text-right']];
 	}

@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.View.Elements
  */
 
@@ -51,13 +51,16 @@ if (!isset($listTypes)) {
 		],
 		'Garbage.ref_type' => [
 			'label' => __('Type'),
-			'options' => $listTypes
+			'options' => $listTypes,
+			'class-header' => 'fit'
 		],
 		'Garbage.name' => [
 			'label' => __('Name'),
 		],
 		'Garbage.modified' => [
 			'label' => __('Last modified'),
+			'class-header' => 'fit',
+			'style' => 'min-width: 150px'
 		],
 	];
 	echo $this->Filter->createFilterForm($formInputs);

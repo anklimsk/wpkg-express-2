@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.View.Elements
  */
 
@@ -52,21 +52,25 @@ if (!isset($usePost)) {
 		'Profile.enabled' => [
 			'label' => __('Enabled'),
 			'options' => $this->ViewExtension->yesNoList(),
-			'class-header' => 'action',
+			'class-header' => 'fit',
 		],
 		'Profile.template' => [
 			'label' => __('Template'),
 			'options' => $this->ViewExtension->yesNoList(),
-			'class-header' => 'action',
+			'class-header' => 'fit',
 		],
 		'Profile.id_text' => [
 			'label' => __('Profile ID'),
+			'class-header' => 'fit',
+			'style' => 'min-width: 180px'
 		],
 		'Profile.notes' => [
 			'label' => __('Notes'),
 		],
 		'Profile.modified' => [
 			'label' => __('Last modified'),
+			'class-header' => 'fit',
+			'style' => 'min-width: 150px'
 		],
 	];
 	echo $this->Filter->createFilterForm($formInputs);
