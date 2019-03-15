@@ -151,12 +151,15 @@ Where `$limit` - value of limit for autocomplete.
             'disabled' => true,
             'class-header' => 'action',
             'not-use-input' => true
-        ],    
+        ],
         'SomeModel.name' => [
             'label' => __('Name'),
-        ],        
+            'class' => 'text-danger'
+        ],
         'SomeModel.date' => [
             'label' => __('Date'),
+            'class-header' => 'fit',
+            'style' => 'min-width: 150px'
         ],
     ];
     $exportType = 'xlsx';

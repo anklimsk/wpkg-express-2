@@ -1,7 +1,7 @@
 /*!
  * Main file for ViewExtension
  * version 0.1
- * copyright 2016-2018 Andrey Klimov.
+ * copyright 2016-2019 Andrey Klimov.
  * @license https://opensource.org/licenses/mit-license.php MIT License
  */
 
@@ -144,15 +144,18 @@ th a.asc, th a.desc {
     color: #5BC0DE;
 }
 
-th.action, td.action {
+th.action,
+td.action,
+.table th.fit,
+.table td.fit {
     width: 1%;
     white-space: nowrap;
 }
 
-.table td.fit,
-.table th.fit {
-    white-space: nowrap;
+.table td.fit-compact,
+.table th.fit-compact {
     width: 1%;
+    white-space: pre-wrap;
 }
 
 .table-filter {
@@ -311,6 +314,17 @@ ul.list-collapsible-compact, ol.list-collapsible-compact {
 .tooltip-inner {
     max-width: 400px;
     text-align: left;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+}
+
+/* Text */
+.break-long-words {
+    word-wrap: break-word;
+}
+
+.text-hyphenation {
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
     -ms-hyphens: auto;

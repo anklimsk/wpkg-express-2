@@ -5,7 +5,7 @@
  * Used for creation table header with filter form elements.
  *
  * CakeTheme: Set theme for application.
- * @copyright Copyright 2016-2018, Andrey Klimov.
+ * @copyright Copyright 2016-2019, Andrey Klimov.
  * @license https://opensource.org/licenses/mit-license.php MIT License
  * @package plugin.View.Helper
  */
@@ -588,11 +588,12 @@ class FilterHelper extends CakeThemeAppHelper {
 					$inputOptions = [$inputOptions];
 				}
 
-				$options = $inputOptions + $commonOptions;
 				$excludeOptions = [
+					'class' => null,
 					'class-header' => null,
 				];
-				$options = array_diff_key($options, $excludeOptions);
+				$inputOptions = array_diff_key($inputOptions, $excludeOptions);
+				$options = $inputOptions + $commonOptions;
 				if (isset($options['not-use-input']) && !empty($options['not-use-input'])) {
 					$tableHeader[] = '';
 					continue;
@@ -650,6 +651,7 @@ class FilterHelper extends CakeThemeAppHelper {
  *    option: `pagination-field` => `model.field`.
  *    For disable pagination and filter form input, use option: `disabled` => true.
  *    For setting class of header cell, use option `class-header` => `class-name`.
+ *    For setting class of pagination link, use option `class` => `class-name`.
  *    For exclude form input, use option: `not-use-input` => true.
  *    For escaping of title and attributes set escape to false to disable: `escape` => false.
  *

@@ -704,48 +704,6 @@
         "homepage": "https://github.com/anklimsk/cakephp-settings-app"
     },
     {
-        "name": "anklimsk/cakephp2-theme",
-        "version": "v1.1.2",
-        "version_normalized": "1.1.2.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/anklimsk/cakephp-theme.git",
-            "reference": "b0286c4c5ced16e425786bedae34f315dab1275b"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/anklimsk/cakephp-theme/zipball/b0286c4c5ced16e425786bedae34f315dab1275b",
-            "reference": "b0286c4c5ced16e425786bedae34f315dab1275b",
-            "shasum": ""
-        },
-        "require": {
-            "anklimsk/cakephp-basic-functions": "^1.0.0",
-            "anklimsk/cakephp-config-plugin": "^1.0.0",
-            "anklimsk/cakephp-extended-test": "^1.0.0",
-            "codaxis/cakephp-bootstrap3-helpers": "^1.2",
-            "composer/installers": "^1.5.0",
-            "markstory/asset_compress": "^0.25",
-            "php": ">=5.4"
-        },
-        "time": "2019-03-05 08:16:51",
-        "type": "cakephp-plugin",
-        "extra": {
-            "installer-name": "CakeTheme"
-        },
-        "installation-source": "dist",
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Andrey Klimov"
-            }
-        ],
-        "description": "Full UI theme for CakePHP 2.x",
-        "homepage": "https://github.com/anklimsk/cakephp-theme"
-    },
-    {
         "name": "anklimsk/cakephp-ldap-sync",
         "version": "v1.0.3",
         "version_normalized": "1.0.3.0",
@@ -828,5 +786,47 @@
         ],
         "description": " Search for information in the project database for CakePHP 2.x",
         "homepage": "https://github.com/anklimsk/cakephp-search-info"
+    },
+    {
+        "name": "anklimsk/cakephp2-theme",
+        "version": "v1.1.3",
+        "version_normalized": "1.1.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/anklimsk/cakephp-theme.git",
+            "reference": "b815a4aaabaaf03ef1df3d547200f73f332f38a7"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/anklimsk/cakephp-theme/zipball/b815a4aaabaaf03ef1df3d547200f73f332f38a7",
+            "reference": "b815a4aaabaaf03ef1df3d547200f73f332f38a7",
+            "shasum": ""
+        },
+        "require": {
+            "anklimsk/cakephp-basic-functions": "^1.0.0",
+            "anklimsk/cakephp-config-plugin": "^1.0.0",
+            "anklimsk/cakephp-extended-test": "^1.0.0",
+            "codaxis/cakephp-bootstrap3-helpers": "^1.2",
+            "composer/installers": "^1.5.0",
+            "markstory/asset_compress": "^0.25",
+            "php": ">=5.4"
+        },
+        "time": "2019-03-15 07:24:08",
+        "type": "cakephp-plugin",
+        "extra": {
+            "installer-name": "CakeTheme"
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Andrey Klimov"
+            }
+        ],
+        "description": "Full UI theme for CakePHP 2.x",
+        "homepage": "https://github.com/anklimsk/cakephp-theme"
     }
 ]
