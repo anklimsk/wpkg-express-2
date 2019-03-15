@@ -1,6 +1,21 @@
 # Changelog
 
 
+## v1.0.5 (2019-03-15)
+
+### New
+
+* Added feature to creates an XML configuration for WPKG using an editor with validating XML schema.
+
+### Changes
+
+* Improved display of tabular information.
+
+### Fix
+
+* Fixed display of long information about packages.
+
+
 ## v1.0.4 (2019-03-07)
 
 ### Fix
