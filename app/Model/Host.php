@@ -438,7 +438,7 @@ class Host extends AppModel {
 			}
 
 			if (isset($host[$this->alias]['notes']) && !empty($host[$this->alias]['notes'])) {
-				$hostAttribs[XML_SPECIFIC_TAG_NOTES] = preg_replace('/[\-]{2,}/', '-', $host[$this->alias]['notes']);
+				$hostAttribs[XML_SPECIFIC_TAG_NOTES] = $this->prepareXmlComment($host[$this->alias]['notes']);
 			}
 
 			if (isset($host[$this->alias]['template']) && $host[$this->alias]['template']) {

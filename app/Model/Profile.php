@@ -437,7 +437,7 @@ class Profile extends AppModel {
 			];
 
 			if (isset($profile[$this->alias]['notes']) && !empty($profile[$this->alias]['notes'])) {
-				$profileAttribs[XML_SPECIFIC_TAG_NOTES] = preg_replace('/[\-]{2,}/', '-', $profile[$this->alias]['notes']);
+				$profileAttribs[XML_SPECIFIC_TAG_NOTES] = $this->prepareXmlComment($profile[$this->alias]['notes']);
 			}
 
 			if (isset($profile[$this->alias]['template']) && $profile[$this->alias]['template']) {

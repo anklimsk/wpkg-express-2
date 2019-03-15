@@ -929,7 +929,7 @@ class Package extends AppModel {
 			}
 
 			if (isset($package[$this->alias]['notes']) && !empty($package[$this->alias]['notes'])) {
-				$packageAttribs[XML_SPECIFIC_TAG_NOTES] = preg_replace('/[\-]{2,}/', '-', $package[$this->alias]['notes']);
+				$packageAttribs[XML_SPECIFIC_TAG_NOTES] = $this->prepareXmlComment($package[$this->alias]['notes']);
 			}
 
 			if (isset($package[$this->alias]['template']) && $package[$this->alias]['template']) {

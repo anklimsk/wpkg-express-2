@@ -111,4 +111,19 @@ class GetXmlInfoBehavior extends ModelBehavior {
 
 		return $name;
 	}
+
+/**
+ * Return prepared comment string for XML
+ *
+ * @param Model $model Model using this behavior
+ * @param string $comment Comment text for processing
+ * @return string Return prepared comment
+ */
+	public function prepareXmlComment(Model $model, $comment = '') {
+		if (empty($comment)) {
+			return $comment;
+		}
+
+		return preg_replace('/[\-]{2,}/', '-', $comment);
+	}
 }
