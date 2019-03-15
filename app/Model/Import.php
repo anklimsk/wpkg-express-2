@@ -3604,6 +3604,27 @@ class Import extends AppModel {
 	}
 
 /**
+ * Return list of error lines from formatted error messages from libxml.
+ *
+ * @param array $errors Array of formatted error messages for processing.
+ * @return array Return list of error lines.
+ */
+	public function getListErrorLines($errors = []) {
+		$result = [];
+		if (empty($errors) || !is_array($errors)) {
+			return $result;
+		}
+
+		foreach ($errors as $type => $messages) {
+			$result = Hash::merge($result, Hash::extract($messages, '{n}.line'));
+		}
+		$result = array_values(array_unique($result));
+		sort($result);
+
+		return $result;
+	}
+
+/**
  * Import information from XML string or file
  *
  * @param string $xmlFile XML string or file to processing

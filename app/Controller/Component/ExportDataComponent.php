@@ -27,7 +27,6 @@
  */
 
 App::uses('BaseDataComponent', 'Controller/Component');
-App::uses('Hash', 'Utility');
 App::uses('RenderXmlData', 'Utility');
 
 /**
@@ -107,8 +106,7 @@ class ExportDataComponent extends BaseDataComponent {
 		$errorMsg = null;
 		if ($result !== true) {
 			$errorMsg = RenderXmlData::renderValidateMessages($result);
-			$selLine = Hash::merge($selLine, Hash::extract($result, __('Fatal errors') . '.{n}.line'));
-			$selLine = Hash::merge($selLine, Hash::extract($result, __('Errors') . '.{n}.line'));
+			$selLine = $modelImport->getListErrorLines($result);
 		}
 		$breadCrumbs = [];
 		if ($useBreadCrumbExt) {
