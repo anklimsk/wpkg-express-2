@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.View.Elements
  */
 
@@ -50,7 +50,7 @@ if (empty($package)) {
 		<div role="tabpanel" class="tab-pane active" id="basicInfo">
 			<div class="row">
 				<div class="col-sm-6 col-xs-12">
-					<dl class="dl-horizontal dl-wt-bottom-margin">
+					<dl class="dl-horizontal dl-wt-bottom-margin break-long-words">
 <?php
 	echo $this->Html->tag('dt', __('Enabled') . ':');
 	echo $this->Html->tag('dd', $this->ViewExtension->ajaxLink(
@@ -67,7 +67,7 @@ if (empty($package)) {
 					</dl>
 				</div>
 				<div class="col-sm-6 col-xs-12">
-					<dl class="dl-horizontal">
+					<dl class="dl-horizontal break-long-words">
 <?php
 	echo $this->Html->tag('dt', __('Revision') . ':');
 	echo $this->Html->tag('dd', h($package['Package']['revision']) .
