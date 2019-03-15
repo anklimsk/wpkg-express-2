@@ -21,14 +21,14 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.View.Hosts
  */
 
 	$this->assign('title', $pageHeader);
 	$this->ViewExtension->addBreadCrumbs($breadCrumbs);
 ?>
-	<div class="container">
+	<div class="container-fluid">
 <?php
 		echo $this->ViewExtension->headerPage($pageHeader, $headerMenuActions);
 		echo $this->element('tableHost', compact('hosts', 'groupActions', 'usePost', 'useTemplate'));
