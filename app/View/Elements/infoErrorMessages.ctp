@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is the view file of the application. Used to render
- *  XML information.
+ *  error messages information.
  *
  * This file is part of wpkgExpress II.
  *
@@ -21,42 +21,25 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.View.Elements
  */
-
-if (!isset($outXML)) {
-	$outXML = '';
-}
-
-if (!isset($selLine)) {
-	$selLine = [];
-}
 
 if (!isset($errorMsg)) {
 	$errorMsg = null;
 }
 
-if (!isset($fullName)) {
-	$fullName = null;
-}
-
-if (empty($outXML)) {
+if (empty($errorMsg)) {
 	return;
 }
-?>
-<dl class="dl-horizontal dl-popup-modal">
-<?php
-	if (!empty($fullName)):
-?>
-	<dt><?php echo __('Preview type') . ':'; ?></dt>
-	<dd><?php echo h($fullName); ?></dd>
-<?php endif; ?>
-	<dt><?php echo __('Data') . ':'; ?></dt>
-	<dd>
-<?php
-	echo $this->element('infoErrorMessages', compact('errorMsg'));
-	echo $this->GeshiExt->highlightText($outXML, 'XML', false, $selLine);
-?>
-	</dd>
-</dl>
+
+echo $this->Html->div(
+	'alert alert-danger alert-dismissible',
+	$this->Html->tag(
+		'button',
+		$this->Html->tag('span', '&times;', ['aria-hidden' => 'true']),
+		['type' => 'button', 'class' => 'close', 'data-dismiss' => 'alert', 'aria-label' => 'Close']
+	) .
+	$errorMsg,
+	['role' => 'alert']
+);
