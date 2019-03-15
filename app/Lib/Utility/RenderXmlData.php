@@ -22,7 +22,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.Lib.Utility
  */
 
@@ -86,6 +86,10 @@ class RenderXmlData {
 		$xpath = new DOMXPath($xmlObject);
 
 		$commentsInfo = [
+			XML_SPECIFIC_TAG_COMMENT => [
+				'prefix' => XML_EXPORT_COMMENT_COMMENTS_PREFIX,
+				'postfix' => XML_EXPORT_COMMENT_COMMENTS_POSTFIX,
+			],
 			XML_SPECIFIC_TAG_NOTES => [
 				'prefix' => XML_EXPORT_NOTES_COMMENTS_PREFIX,
 				'postfix' => XML_EXPORT_NOTES_COMMENTS_POSTFIX,

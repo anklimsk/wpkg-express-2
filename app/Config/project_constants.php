@@ -258,6 +258,15 @@ if (!defined('XML_SPECIFIC_TAG_DISABLED')) {
 }
 
 /**
+ * XML tag name for store comment of items
+ *
+ * Used for render text as commented out. Default value `comment`
+ */
+if (!defined('XML_SPECIFIC_TAG_COMMENT')) {
+	define('XML_SPECIFIC_TAG_COMMENT', 'comment');
+}
+
+/**
  * XML tag name for store notes of items
  *
  * Used for render notes of items as commented out. Default value `notes`
@@ -273,6 +282,24 @@ if (!defined('XML_SPECIFIC_TAG_NOTES')) {
  */
 if (!defined('XML_SPECIFIC_TAG_TEMPLATE')) {
 	define('XML_SPECIFIC_TAG_TEMPLATE', 'template');
+}
+
+/**
+ * Prefix for comment of items
+ *
+ * Used as the beginning of a comment. Default value ` `
+ */
+if (!defined('XML_EXPORT_COMMENT_COMMENTS_PREFIX')) {
+	define('XML_EXPORT_COMMENT_COMMENTS_PREFIX', ' ');
+}
+
+/**
+ * Postfix for comment of items
+ *
+ * Used as the ending of a comment. Default value ` `
+ */
+if (!defined('XML_EXPORT_COMMENT_COMMENTS_POSTFIX')) {
+	define('XML_EXPORT_COMMENT_COMMENTS_POSTFIX', ' ');
 }
 
 /**
