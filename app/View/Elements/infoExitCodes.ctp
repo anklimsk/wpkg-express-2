@@ -62,7 +62,7 @@ foreach ($exitCodes as $exitCode) {
 		);
 	}
 	$exitCodeDisplayName = $this->Html->tag('strong', $exitCodeName) . ' - ' .
-		$this->Html->tag('var', __('Reboot: %s', __d('exit_code_reboot', h($exitCode['ExitcodeRebootType']['name']))));
+		$this->Html->tag('var', mb_ucfirst(__d('exit_code_reboot', h($exitCode['ExitcodeRebootType']['name']))));
 
 	$actions = '';
 	if (!$showShort) {
@@ -89,7 +89,7 @@ foreach ($exitCodes as $exitCode) {
 			['class' => 'action hide-popup']
 		);
 	}
-	$list[] = $this->Html->tag('span', $exitCodeDisplayName) . $actions;
+	$list[] = $this->Html->tag('span', $exitCodeDisplayName, ['class' => 'text-nowrap']) . $actions;
 }
 $infoExitCodes = $this->ViewExtension->showEmpty($list, $this->Html->nestedList($list, ['class' => 'list-unstyled'], [], 'ul'));
 
