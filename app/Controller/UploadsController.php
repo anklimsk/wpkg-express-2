@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.Controller
  */
 
@@ -64,6 +64,7 @@ class UploadsController extends AppController {
  */
 	public $uses = [
 		'Import',
+		'CakeTheme.ExtendQueuedTask'
 	];
 
 /**
@@ -144,7 +145,6 @@ class UploadsController extends AppController {
 			return;
 		}
 
-		$this->loadModel('CakeTheme.ExtendQueuedTask');
 		$taskParam = compact('fileName');
 		if ($this->ExtendQueuedTask->createJob('ImportXml', $taskParam, null, 'import')) {
 			$this->Flash->success(nl2br(__("XML file uploaded successfully.\nInformation will be processed by queue.")));
