@@ -3474,7 +3474,7 @@ class Import extends AppModel {
 			return $xmlDataArray;
 		}
 
-		$this->createNamesCache('ExitCodeDirectory');
+		$this->createNamesCache('ExitCodeDirectory', 'code', false);
 		$dataToSave = $this->_prepareDirectory($xmlDataArray['data']);
 		$this->_modelExtendQueuedTask->updateTaskProgress($idTask, $step, $maxStep);
 		if (!$this->_saveDirectory($errorMessages, $dataToSave)) {
