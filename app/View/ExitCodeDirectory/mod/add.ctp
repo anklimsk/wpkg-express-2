@@ -1,7 +1,7 @@
 <?php
 /**
- * This file is the view file of the application. Used to viewing
- *  the full exit code directory.
+ * This file is the view file of the application. Used to adding
+ *  record of exit code directory in modal window.
  *
  * This file is part of wpkgExpress II.
  *
@@ -22,15 +22,16 @@
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
  * @copyright Copyright 2018-2019, Andrey Klimov.
- * @package app.View.ExitCodeDirectory
+ * @package app.View.ExitCodeDirectory.mod
  */
 
-	$this->assign('title', $pageHeader);
-	$this->ViewExtension->addBreadCrumbs($breadCrumbs);
+	echo $this->ViewExtension->headerPage($pageHeader);
 ?>
-<div class="container">
+	<div class="row">
+		<div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
 <?php
-	echo $this->ViewExtension->headerPage($pageHeader, $headerMenuActions);
-	echo $this->element('tableExitCodeDirectory', compact('exitCodeDirectory'));
+	$isAddAction = true;
+	echo $this->element('formExitCodeDirectoryBase', compact('isAddAction'));
 ?>
-</div>
+		</div>
+	</div>

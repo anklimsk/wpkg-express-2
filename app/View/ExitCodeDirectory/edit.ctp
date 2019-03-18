@@ -1,7 +1,7 @@
 <?php
 /**
- * This file is the view file of the application. Used to viewing
- *  the full exit code directory.
+ * This file is the view file of the application. Used to editing
+ *  record of exit code directory.
  *
  * This file is part of wpkgExpress II.
  *
@@ -27,10 +27,17 @@
 
 	$this->assign('title', $pageHeader);
 	$this->ViewExtension->addBreadCrumbs($breadCrumbs);
+
 ?>
-<div class="container">
+	<div class="container">
 <?php
-	echo $this->ViewExtension->headerPage($pageHeader, $headerMenuActions);
-	echo $this->element('tableExitCodeDirectory', compact('exitCodeDirectory'));
+		echo $this->ViewExtension->headerPage($pageHeader, $headerMenuActions);
 ?>
-</div>
+		<div class="row">
+			<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+<?php
+		echo $this->element('formExitCodeDirectoryBase');
+?>
+			</div>
+		</div>
+	</div>

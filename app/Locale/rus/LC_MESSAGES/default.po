@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wpkgExpress II\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2019-03-15 09:15+0300\n"
+"PO-Revision-Date: 2019-03-18 13:38+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -193,7 +193,7 @@ msgstr "Типы действия пакета не найдены"
 
 #: Controller/ActionTypesController.php:106
 #: Controller/DownloadsController.php:57
-#: Controller/ExitCodeDirectoryController.php:114
+#: Controller/ExitCodeDirectoryController.php:115
 #: Controller/PackagePrioritiesController.php:93
 #: Controller/WpiCategoriesController.php:103
 #: Controller/Component/ViewDataComponent.php:125
@@ -206,8 +206,9 @@ msgstr "Указатель типов действий пакета"
 
 #: Controller/ActionTypesController.php:135
 #: Controller/ActionsController.php:224 Controller/AttributesController.php:152
-#: Controller/ChecksController.php:188 Controller/ExitCodesController.php:163
-#: Controller/HostsController.php:262
+#: Controller/ChecksController.php:188
+#: Controller/ExitCodeDirectoryController.php:155
+#: Controller/ExitCodesController.php:163 Controller/HostsController.php:262
 #: Controller/PackagePrioritiesController.php:121
 #: Controller/PackagesController.php:257 Controller/ProfilesController.php:213
 #: Controller/VariablesController.php:210
@@ -234,8 +235,9 @@ msgstr "Недопустимый идентификатор для типа де
 
 #: Controller/ActionTypesController.php:183
 #: Controller/ActionsController.php:263 Controller/AttributesController.php:217
-#: Controller/ChecksController.php:252 Controller/ExitCodesController.php:200
-#: Controller/HostsController.php:311
+#: Controller/ChecksController.php:252
+#: Controller/ExitCodeDirectoryController.php:201
+#: Controller/ExitCodesController.php:200 Controller/HostsController.php:311
 #: Controller/PackagePrioritiesController.php:167
 #: Controller/PackagesController.php:319
 #: Controller/ProfilesController.php:267;552
@@ -610,14 +612,58 @@ msgstr "Не удалось удалить запись. Пожалуйста, �
 msgid "Downloading XML files"
 msgstr "Скачивание XML файлов"
 
-#: Controller/ExitCodeDirectoryController.php:111
+#: Controller/ExitCodeDirectoryController.php:112
 msgid "Exit code directory is empty"
 msgstr "Каталог кодов выхода пуст"
 
-#: Controller/ExitCodeDirectoryController.php:115
-#: Model/ExitCodeDirectory.php:225 View/Elements/formExitCodeBase.ctp:62
+#: Controller/ExitCodeDirectoryController.php:116
+#: Model/ExitCodeDirectory.php:251 View/Elements/formExitCodeBase.ctp:62
 msgid "Exit code directory"
 msgstr "Каталог кодов выхода"
+
+#: Controller/ExitCodeDirectoryController.php:120
+msgid "Add record"
+msgstr "Добавить запись"
+
+#: Controller/ExitCodeDirectoryController.php:123
+msgid "Add record of exit code directory"
+msgstr "Добавить запись каталога кодов выхода"
+
+#: Controller/ExitCodeDirectoryController.php:159;204
+msgid "Record of exit code directory has been saved."
+msgstr "Запись каталога кодов выхода сохранена."
+
+#: Controller/ExitCodeDirectoryController.php:163;208
+msgid "Record of exit code directory could not be saved. Please, try again."
+msgstr ""
+"Не удалось сохранить запись каталога кодов выхода. Пожалуйста, попробуйте "
+"еще раз."
+
+#: Controller/ExitCodeDirectoryController.php:168
+msgid "Adding record of exit code directory"
+msgstr "Добавление записи каталога кодов выхода"
+
+#: Controller/ExitCodeDirectoryController.php:197
+msgid "Invalid ID for record of exit code directory"
+msgstr "Недопустимый идентификатор для записи каталога кодов выхода"
+
+#: Controller/ExitCodeDirectoryController.php:214
+msgid "Editing record of exit code directory"
+msgstr "Редактирование записи каталога кодов выхода"
+
+#: Controller/ExitCodeDirectoryController.php:218
+#: View/Elements/infoDependency.ctp:123
+#: View/Elements/tableExitCodeDirectory.ctp:79
+msgid "Delete record"
+msgstr "Удалить запись"
+
+#: Controller/ExitCodeDirectoryController.php:221
+msgid "Delete record of exit code directory"
+msgstr "Удалить запись каталога кодов выхода"
+
+#: Controller/ExitCodeDirectoryController.php:222
+msgid "Are you sure you wish to delete this record of exit code directory?"
+msgstr "Вы уверены, что хотите удалить эту запись каталога кодов выхода?"
 
 #: Controller/ExitCodesController.php:100;195
 msgid "Invalid ID for exit code"
@@ -1667,6 +1713,7 @@ msgstr ""
 
 #: Model/ExitCode.php:265 View/Elements/formCheckBase.ctp:161
 #: View/Elements/formExitCodeBase.ctp:48
+#: View/Elements/formExitCodeDirectoryBase.ctp:44
 #: View/Elements/tableExitCodeDirectory.ctp:39
 msgid "Exit code"
 msgstr "Код выхода"
@@ -1683,15 +1730,16 @@ msgstr "Код выхода %s %s"
 msgid "exit codes %s%s"
 msgstr "коды выхода %s%s"
 
-#: Model/ExitCodeDirectory.php:214
+#: Model/ExitCodeDirectory.php:240
+#: View/Elements/formExitCodeDirectoryBase.ctp:35
 msgid "Record of exit code directory"
 msgstr "Запись каталога кодов выхода"
 
-#: Model/ExitCodeDirectory.php:246
+#: Model/ExitCodeDirectory.php:272
 msgid "Record %s of the exit code directory"
 msgstr "Запись %s каталога кодов выхода"
 
-#: Model/ExitCodeDirectory.php:248
+#: Model/ExitCodeDirectory.php:274
 msgid "record %s of the exit code directory"
 msgstr "запись %s каталога кодов выхода"
 
@@ -2774,6 +2822,7 @@ msgid ""
 msgstr "Содержимое этого поля зависит от типа и состояния проверки."
 
 #: View/Elements/formCheckBase.ctp:285 View/Elements/formExitCodeBase.ctp:72
+#: View/Elements/formExitCodeDirectoryBase.ctp:59
 #: View/Elements/formHostBase.ctp:64
 #: View/Elements/formPackageActionBase.ctp:157
 #: View/Elements/formPackageActionTypeBase.ctp:55
@@ -3248,6 +3297,37 @@ msgstr ""
 "- 'задержано': перезагрузка после завершения действия пакета и обновления "
 "wpkg.xml;\n"
 "- 'отложено': перезагрузить, как только все пакеты будут обработаны."
+
+#: View/Elements/formExitCodeDirectoryBase.ctp:44
+msgid "Value of exit code."
+msgstr "Значение кода выхода."
+
+#: View/Elements/formExitCodeDirectoryBase.ctp:48
+#: View/Elements/tableExitCodeDirectory.ctp:44
+msgid "Hexadecimal"
+msgstr "Шестнадцатеричное"
+
+#: View/Elements/formExitCodeDirectoryBase.ctp:48
+msgid "Hexadecimal value of exit code. Format: 0x00000000"
+msgstr "Шестнадцатеричное значение кода выхода. Формат: 0x00000000."
+
+#: View/Elements/formExitCodeDirectoryBase.ctp:51
+#: View/Elements/tableExitCodeDirectory.ctp:49
+msgid "Constant"
+msgstr "Константа"
+
+#: View/Elements/formExitCodeDirectoryBase.ctp:51
+msgid "Constant of exit code. Format: letters A-Z, numbers, and underscores."
+msgstr "Константа кода выхода. Формат: буквы A-Z, цифры и подчеркивания."
+
+#: View/Elements/formExitCodeDirectoryBase.ctp:54
+#: View/Elements/tableExitCodeDirectory.ctp:54
+msgid "Description"
+msgstr "Описание"
+
+#: View/Elements/formExitCodeDirectoryBase.ctp:54
+msgid "Description of exit code."
+msgstr "Описание кода выхода."
 
 #: View/Elements/formExtendSettingsLeft.ctp:49
 msgid "Internal authentication"
@@ -4139,10 +4219,6 @@ msgstr "Добавить проверки"
 msgid "Edit checks"
 msgstr "Изменить проверки"
 
-#: View/Elements/infoDependency.ctp:123
-msgid "Delete record"
-msgstr "Удалить запись"
-
 #: View/Elements/infoDependency.ctp:124
 msgid "Are you sure you wish to delete this record?"
 msgstr "Вы уверены, что хотите удалить эту запись?"
@@ -4156,6 +4232,7 @@ msgid "Delete exit code"
 msgstr "Удалить код выхода"
 
 #: View/Elements/infoExitCodes.ctp:85
+#: View/Elements/tableExitCodeDirectory.ctp:80
 msgid "Are you sure you wish to delete exit code '%s'?"
 msgstr "Вы действительно хотите удалить код выхода '%s'?"
 
@@ -4435,17 +4512,9 @@ msgstr "Вы действительно хотите восстановить п
 msgid "Are you sure you wish to delete package '%s' from archive?"
 msgstr "Вы уверены, что хотите удалить пакет '%s' из архива?"
 
-#: View/Elements/tableExitCodeDirectory.ctp:44
-msgid "Hexadecimal"
-msgstr "Шестнадцатеричное"
-
-#: View/Elements/tableExitCodeDirectory.ctp:49
-msgid "Constant"
-msgstr "Константа"
-
-#: View/Elements/tableExitCodeDirectory.ctp:54
-msgid "Description"
-msgstr "Описание"
+#: View/Elements/tableExitCodeDirectory.ctp:70
+msgid "Edit record"
+msgstr "Редактировать запись"
 
 #: View/Elements/tableGarbage.ctp:105
 msgid "Restore data from recycle bin"

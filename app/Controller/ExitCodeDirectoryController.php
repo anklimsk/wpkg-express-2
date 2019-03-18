@@ -55,7 +55,8 @@ class ExitCodeDirectoryController extends AppController {
  */
 	public $components = [
 		'Paginator',
-		'CakeTheme.Filter'
+		'CakeTheme.Filter',
+		'ChangeState' => ['TargetModel' => 'ExitCodeDirectory'],
 	];
 
 /**
@@ -113,9 +114,21 @@ class ExitCodeDirectoryController extends AppController {
 		$breadCrumbs = $this->ExitCodeDirectory->getBreadcrumbInfo();
 		$breadCrumbs[] = __('Index');
 		$pageHeader = __('Exit code directory');
+		$headerMenuActions = [
+			[
+				'fas fa-plus',
+				__('Add record'),
+				['controller' => 'exit_code_directory', 'action' => 'add'],
+				[
+					'title' => __('Add record of exit code directory'),
+					'data-toggle' => 'modal'
+				]
+			]
+		];
 		$this->ViewExtension->setRedirectUrl(true, 'directory');
 
-		$this->set(compact('exitCodeDirectory', 'breadCrumbs', 'pageHeader'));
+		$this->set(compact('exitCodeDirectory', 'breadCrumbs', 'pageHeader',
+			'headerMenuActions'));
 	}
 
 /**
@@ -126,6 +139,126 @@ class ExitCodeDirectoryController extends AppController {
  */
 	public function admin_index() {
 		$this->_index();
+	}
+
+/**
+ * Base of action `add`. Used to add record of exit code directory.
+ *
+ * POST Data:
+ *  - ExitCodeDirectory: array data of record of exit code directory
+ *
+ * @return void
+ */
+	protected function _add() {
+		$this->view = 'add';
+		$breadCrumbs = $this->ExitCodeDirectory->getBreadcrumbInfo();
+		$breadCrumbs[] = __('Adding');
+		if ($this->request->is('post')) {
+			$this->ExitCodeDirectory->create();
+			if ($this->ExitCodeDirectory->save($this->request->data)) {
+				$this->Flash->success(__('Record of exit code directory has been saved.'));
+
+				return $this->ViewExtension->redirectByUrl(null, 'directory');
+			} else {
+				$this->Flash->error(__('Record of exit code directory could not be saved. Please, try again.'));
+			}
+		} else {
+			$this->ViewExtension->setRedirectUrl(null, 'directory');
+		}
+		$pageHeader = __('Adding record of exit code directory');
+
+		$this->set(compact('breadCrumbs', 'pageHeader'));
+	}
+
+/**
+ * Action `add`. Used to add record of exit code directory.
+ *  User role - administrator.
+ *
+ * @return void
+ */
+	public function admin_add() {
+		$this->_add();
+	}
+
+/**
+ * Base of action `edit`. Used to edit information about record of exit code directory.
+ *
+ * POST Data:
+ *  - ExitCodeDirectory: array data of record of exit code directory
+ *
+ * @param int|string $id ID of record for editing
+ * @throws NotFoundException if record for parameter $id was not found
+ * @return void
+ */
+	protected function _edit($id = null) {
+		$this->view = 'edit';
+		$recordExitCode = $this->ExitCodeDirectory->get($id);
+		if (empty($recordExitCode)) {
+			return $this->ViewExtension->setExceptionMessage(new NotFoundException(__('Invalid ID for record of exit code directory')));
+		}
+
+		$breadCrumbs = $this->ExitCodeDirectory->getBreadcrumbInfo($id);
+		$breadCrumbs[] = __('Editing');
+		if ($this->request->is(['post', 'put'])) {
+			if ($this->ExitCodeDirectory->save($this->request->data)) {
+				$this->Flash->success(__('Record of exit code directory has been saved.'));
+
+				return $this->ViewExtension->redirectByUrl(null, 'directory');
+			} else {
+				$this->Flash->error(__('Record of exit code directory could not be saved. Please, try again.'));
+			}
+		} else {
+			$this->ViewExtension->setRedirectUrl(null, 'directory');
+			$this->request->data = $recordExitCode;
+		}
+		$pageHeader = __('Editing record of exit code directory');
+		$headerMenuActions = [
+			[
+				'far fa-trash-alt',
+				__('Delete record'),
+				['controller' => 'exit_code_directory', 'action' => 'delete', $recordExitCode['ExitCodeDirectory']['id']],
+				[
+					'title' => __('Delete record of exit code directory'), 'action-type' => 'confirm-post',
+					'data-confirm-msg' => __('Are you sure you wish to delete this record of exit code directory?'),
+				]
+			]
+		];
+
+		$this->set(compact('breadCrumbs', 'pageHeader', 'headerMenuActions'));
+	}
+
+/**
+ * Action `edit`. Used to edit information about record of exit code directory.
+ *  User role - administrator.
+ *
+ * @param int|string $id ID of record for editing
+ * @return void
+ */
+	public function admin_edit($id = null) {
+		$this->_edit($id);
+	}
+
+/**
+ * Base of action `delete`. Used to delete record of exit code directory.
+ *
+ * @param int|string $id ID of record for deleting
+ * @throws NotFoundException if record for parameter $id was not found
+ * @throws MethodNotAllowedException if request is not `POST` or `DELETE`
+ * @return void
+ */
+	protected function _delete($id = null) {
+		$this->ChangeState->delete($id);
+	}
+
+/**
+ * Action `delete`. Used to delete record of exit code directory.
+ *  User role - administrator.
+ *
+ * @param int|string $id ID of record for deleting
+ * @return void
+ */
+	public function admin_delete($id = null) {
+		$this->_delete($id);
 	}
 
 /**

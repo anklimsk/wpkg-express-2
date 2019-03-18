@@ -61,8 +61,27 @@ if (!isset($exitCodeDirectory)) {
 <?php
 foreach ($exitCodeDirectory as $exitCodeDirectoryRecord) {
 	$tableRow = [];
+	$exitCodeName = $this->Html->tag('samp', h($exitCodeDirectoryRecord['ExitCodeDirectory']['code']));
+	$actions = $this->ViewExtension->buttonLink(
+		'fas fa-pencil-alt',
+		'btn-warning',
+		['controller' => 'exit_code_directory', 'action' => 'edit', $exitCodeDirectoryRecord['ExitCodeDirectory']['id']],
+		[
+			'title' => __('Edit record'),
+			'action-type' => 'modal',
+		]
+	) .
+	$this->ViewExtension->buttonLink(
+		'fas fa-trash-alt',
+		'btn-danger',
+		['controller' => 'exit_code_directory', 'action' => 'delete', $exitCodeDirectoryRecord['ExitCodeDirectory']['id']],
+		[
+			'title' => __('Delete record'), 'action-type' => 'confirm-post',
+			'data-confirm-msg' => __('Are you sure you wish to delete exit code \'%s\'?', $exitCodeName),
+		]
+	);
 	$tableRow[] = [
-		$this->Html->tag('samp', h($exitCodeDirectoryRecord['ExitCodeDirectory']['code'])),
+		$exitCodeName,
 		['class' => 'text-center']
 	];
 	$tableRow[] = [
@@ -74,10 +93,7 @@ foreach ($exitCodeDirectory as $exitCodeDirectoryRecord) {
 		$exitCodeDirectoryRecord['ExitCodeDirectory']['description'],
 		$this->ViewExtension->truncateText(h($exitCodeDirectoryRecord['ExitCodeDirectory']['description']), 80)
 	);
-	$tableRow[] = [
-		$this->ViewExtension->showEmpty(),
-		['class' => 'text-center']
-	];
+	$tableRow[] = [$actions, ['class' => 'action text-right']];
 
 	echo $this->Html->tableCells([$tableRow]);
 }

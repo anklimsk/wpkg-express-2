@@ -62,7 +62,8 @@ class ExitCodeDirectory extends AppModel {
 		'GetList' => [
 			'cacheConfig' => CACHE_KEY_LISTS_INFO_EXIT_CODE_DIRECTORY,
 			'keyField' => 'code'
-		]
+		],
+		'TrimStringField'
 	];
 
 /**
@@ -145,6 +146,32 @@ class ExitCodeDirectory extends AppModel {
 		}
 
 		return true;
+	}
+
+/**
+ * Return record of exit code directory
+ *
+ * @param int|string $id The ID of the record to read.
+ * @return array|bool Return record of exit code directory,
+ *  or False on failure.
+ */
+	public function get($id = null) {
+		if (empty($id)) {
+			return false;
+		}
+
+		$conditions = [$this->alias . '.id' => $id];
+		$fields = [
+			$this->alias . '.id',
+			$this->alias . '.lcid',
+			$this->alias . '.code',
+			$this->alias . '.hexadecimal',
+			$this->alias . '.constant',
+			$this->alias . '.description',
+		];
+		$recursive = -1;
+
+		return $this->find('first', compact('conditions', 'fields', 'recursive'));
 	}
 
 /**
