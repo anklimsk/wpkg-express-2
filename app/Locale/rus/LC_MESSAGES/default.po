@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wpkgExpress II\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2019-03-18 13:38+0300\n"
+"PO-Revision-Date: 2019-03-21 12:12+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -2015,7 +2015,7 @@ msgstr ""
 "для следующих пакетов: %s"
 
 #: Model/Package.php:1222 View/Elements/formPackageBase.ctp:62
-#: View/Elements/formWpiBase.ctp:56 View/Elements/tableReport.ctp:61
+#: View/Elements/formWpiBase.ctp:56 View/Elements/tableReport.ctp:56
 msgid "Package"
 msgstr "Пакет"
 
@@ -4640,8 +4640,8 @@ msgid "Command, work directory"
 msgstr "Команда, рабочий каталог"
 
 #: View/Elements/tablePackageActions.ctp:252
-msgid "Exit codes, reboot"
-msgstr "Коды выхода, перезагрузка"
+msgid "Exit&nbsp;codes, reboot"
+msgstr "Коды&nbsp;выхода, перезагрузка"
 
 #: View/Elements/tablePackageActions.ctp:253
 msgid "Actions"
@@ -4676,16 +4676,16 @@ msgid "Are you sure you wish to delete profile '%s'?"
 msgstr "Вы действительно хотите удалить профиль '%s'?"
 
 #: View/Elements/tableReport.ctp:51
-msgid "Last update"
-msgstr "Последнее обновление"
-
-#: View/Elements/tableReport.ctp:56
 msgid "State"
 msgstr "Состояние"
 
-#: View/Elements/tableReport.ctp:64
+#: View/Elements/tableReport.ctp:59
 msgid "Revision of package"
 msgstr "Ревизия пакета"
+
+#: View/Elements/tableReport.ctp:64
+msgid "Last update"
+msgstr "Последнее обновление"
 
 #: View/Elements/tableReport.ctp:87
 msgid "Refresh report of host"

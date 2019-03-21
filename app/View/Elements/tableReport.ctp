@@ -47,11 +47,6 @@ if (!isset($listStates)) {
 			'class-header' => 'fit',
 			'style' => 'min-width: 100px'
 		],
-		'ReportHost.date' => [
-			'label' => __('Last update'),
-			'class-header' => 'fit',
-			'style' => 'min-width: 150px'
-		],
 		'Report.state_id' => [
 			'label' => __('State'),
 			'options' => $listStates,
@@ -64,6 +59,11 @@ if (!isset($listStates)) {
 			'label' => __('Revision of package'),
 			'class-header' => 'fit',
 			'style' => 'min-width: 100px'
+		],
+		'ReportHost.date' => [
+			'label' => __('Last update'),
+			'class-header' => 'fit',
+			'style' => 'min-width: 150px'
 		],
 	];
 	echo $this->Filter->createFilterForm($formInputs);
@@ -148,17 +148,22 @@ foreach ($reports as $report) {
 	}
 	$tableRow[] = [
 		__d('report_state', h($report['ReportState']['name'])),
-		['class' => 'text-center', 'colspan' => 3]
+		['class' => 'text-center', 'colspan' => 2]
 	];
-	$tableRow[] = $this->ViewExtension->popupModalLink(
-		$packageName,
-		['controller' => 'packages', 'action' => 'view', $report['Package']['id']],
+	$tableRow[] = [
+		$this->ViewExtension->popupModalLink(
+			$packageName,
+			['controller' => 'packages', 'action' => 'view', $report['Package']['id']],
+			[
+				'data-modal-size' => 'lg',
+				'data-popover-size' => 'lg'
+			]
+		),
 		[
-			'data-modal-size' => 'lg',
-			'data-popover-size' => 'lg'
+			'colspan' => 3
 		]
-	);
-	$tableRow[] = [$revision, ['class' => 'action text-nowrap', 'colspan' => 2]];
+	];
+	$tableRow[] = [$revision, ['class' => 'text-right text-nowrap']];
 
 	echo $this->Html->tableCells([$tableRow], $attrRow, $attrRow);
 }

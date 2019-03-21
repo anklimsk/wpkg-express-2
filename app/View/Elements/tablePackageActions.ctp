@@ -61,10 +61,12 @@ if (!isset($showBtnExpand)) {
 		$attributes = '';
 		$checks = '';
 		if (isset($packageAction['Attribute']) && !empty($packageAction['Attribute'])) {
-			$attributes = ' ' . $this->element('infoAttributes', ['attributes' => $packageAction['Attribute'], 'displayInline' => true]);
+			$attributes = ' ' . $this->element('infoAttributes', ['attributes' => $packageAction['Attribute'],
+				'displayInline' => true]);
 		}
 		if (isset($packageAction['Check']) && !empty($packageAction['Check'])) {
-			$checks = $this->element('infoChecks', ['checks' => $packageAction['Check'], 'nest' => true, 'expandAll' => false]);
+			$checks = $this->element('infoChecks', ['checks' => $packageAction['Check'], 'nest' => true,
+				'expandAll' => false, 'displayItalics' => true]);
 		}
 
 		if ($packageAction['command_type_id'] == ACTION_COMMAND_TYPE_INCLUDE) {
@@ -249,7 +251,7 @@ if (!isset($showBtnExpand)) {
 	$tableHeader = [
 		__('Command, work directory'),
 		[__('Timeout') => ['class' => 'fit-compact']],
-		[__('Exit codes, reboot') => ['class' => 'fit-compact']],
+		[__('Exit&nbsp;codes, reboot') => ['class' => 'fit-compact']],
 		[__('Actions') => ['class' => 'action hide-popup']],
 	];
 ?>
