@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.View.Elements
  */
 
@@ -78,7 +78,8 @@ if (!isset($showBtnExpand)) {
 			$attributes = ' ' . $this->element('infoAttributes', ['attributes' => $variable['Attribute'], 'displayInline' => true]);
 		}
 		if (isset($variable['Check']) && !empty($variable['Check'])) {
-			$checks = $this->element('infoChecks', ['checks' => $variable['Check'], 'nest' => true, 'expandAll' => false]);
+			$checks = $this->element('infoChecks', ['checks' => $variable['Check'], 'nest' => true,
+				'expandAll' => false, 'displayItalics' => true]);
 		}
 
 		$actions = $this->ViewExtension->button(

@@ -157,13 +157,15 @@ $list = [];
 		}
 		$dependencyInfo[] = $dependencyName;
 		if (isset($dependencyItem['Attribute']) && !empty($dependencyItem['Attribute'])) {
-			$attributes = $this->element('infoAttributes', ['attributes' => $dependencyItem['Attribute'], 'displayInline' => true]);
+			$attributes = $this->element('infoAttributes', ['attributes' => $dependencyItem['Attribute'],
+				'displayInline' => true]);
 			if (!empty($attributes)) {
 				$dependencyInfo[] = $attributes;
 			}
 		}
 		if (isset($dependencyItem['Check']) && !empty($dependencyItem['Check'])) {
-			$checks = $this->element('infoChecks', ['checks' => $dependencyItem['Check'], 'nest' => true, 'expandAll' => false]);
+			$checks = $this->element('infoChecks', ['checks' => $dependencyItem['Check'], 'nest' => true,
+				'expandAll' => false, 'displayItalics' => true]);
 		}
 		if ($useExtInfoElement) {
 			$extInfo = $this->element($extInfoElement, ['data' => $dependencyItem]);

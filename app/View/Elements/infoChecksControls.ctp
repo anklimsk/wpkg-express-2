@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.View.Elements
  */
 
@@ -39,6 +39,10 @@ if (!isset($expandAll)) {
 
 if (!isset($draggable)) {
 	$draggable = false;
+}
+
+if (!isset($displayItalics)) {
+	$displayItalics = false;
 }
 
 if (!isset($checkRefType)) {
@@ -95,7 +99,7 @@ if (!isset($showBtnExpand)) {
 		}
 		$infoChecksFull .= $this->Html->div('action pull-right hide-popup', $actions);
 	}
-	$infoChecksFull .= $this->Html->div('pull-left', $this->element('infoChecks', compact('checks', 'nest', 'expandAll', 'draggable', 'dropUrl')));
+	$infoChecksFull .= $this->Html->div('pull-left', $this->element('infoChecks', compact('checks', 'nest', 'expandAll', 'draggable', 'dropUrl', 'displayItalics')));
 
 	if ($showShort) {
 		echo $infoChecksFull;

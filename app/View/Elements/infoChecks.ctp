@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.View.Elements
  */
 
@@ -45,6 +45,10 @@ if (!isset($draggable)) {
 
 if (!isset($dropUrl)) {
 	$dropUrl = null;
+}
+
+if (!isset($displayItalics)) {
+	$displayItalics = false;
 }
 
 $expandClass = '';
@@ -83,5 +87,8 @@ if ($expandAll) {
 	$treeCheck = $this->ViewExtension->showEmpty($treeCheck);
 	if ($draggable) {
 		$treeCheck = $this->Html->div(null, $treeCheck, $treeWrapOptions);
+	}
+	if ($displayItalics) {
+		$treeCheck = $this->Html->tag('em', $treeCheck);
 	}
 	echo $treeCheck;
