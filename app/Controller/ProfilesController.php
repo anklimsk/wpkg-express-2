@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.Controller
  */
 
@@ -80,7 +80,8 @@ class ProfilesController extends AppController {
 		'Cache',
 		'GeshiExt',
 		'Tools.Tree',
-		'Indicator'
+		'Indicator',
+		'Time'
 	];
 
 /**

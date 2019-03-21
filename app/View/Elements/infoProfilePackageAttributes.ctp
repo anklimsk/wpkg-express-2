@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2019, Andrey Klimov.
  * @package app.View.Elements
  */
 
@@ -51,7 +51,7 @@ App::uses('Hash', 'Utility');
 	$result = '';
 	foreach ($displayData as $label => $value) {
 		$result .= (empty($result) ? '' : '; ') .
-			$this->Html->tag('strong', $label . ':') . ' ' . $this->Html->tag('var', $this->ViewExtension->timeAgo($value));
+			$this->Html->tag('strong', $label . ':') . ' ' . $this->Html->tag('var', $this->Time->niceShort($value));
 	}
 	if (empty($result)) {
 		return;
