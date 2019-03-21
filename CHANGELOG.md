@@ -1,6 +1,17 @@
 # Changelog
 
 
+## v1.0.6 (2019-03-18)
+
+### New
+
+* Added the ability to edit the exit code directory.
+
+### Fix
+
+* Fixed updating the exit code directory from XML.
+
+
 ## v1.0.5 (2019-03-15)
 
 ### New
