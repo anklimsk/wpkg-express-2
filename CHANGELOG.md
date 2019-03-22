@@ -1,6 +1,21 @@
 # Changelog
 
 
+## v1.0.7 (2019-03-22)
+
+### Changes
+
+* Changed the display of the start time for installation and removal package.
+
+* Added highlighting of embedded checks in italics.
+
+* Improved display of tabular information.
+
+### Fix
+
+* Fixed invalidation of OPCache files when clearing the View cache.
+
+
 ## v1.0.6 (2019-03-18)
 
 ### New
