@@ -367,6 +367,7 @@ class Log extends AppModel {
 
 		if (empty($aRemoteFiles)) {
 			$this->_modelExtendQueuedTask->updateTaskErrorMessage($idTask, __('No log files to parsing.'));
+			$this->_modelExtendQueuedTask->updateProgress($idTask, 1);
 
 			return true;
 		}
@@ -400,6 +401,7 @@ class Log extends AppModel {
 		list(, $localFiles) = $oLocalLogDir->read(true, false, true);
 		if (empty($localFiles)) {
 			$this->_modelExtendQueuedTask->updateTaskErrorMessage($idTask, __('No log files to parsing.'));
+			$this->_modelExtendQueuedTask->updateProgress($idTask, 1);
 
 			return true;
 		}
