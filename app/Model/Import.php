@@ -3307,6 +3307,10 @@ class Import extends AppModel {
 			return $dataArray;
 		}
 
+		$this->_modelExitCodeDirectory->Behaviors->load('GetList', [
+			'cacheConfig' => CACHE_KEY_LISTS_INFO_EXIT_CODE_DIRECTORY,
+			'keyField' => 'code'
+		]);
 		$this->createNamesCache('Package', 'id_text', false, 'id_text');
 		$this->createNamesCache('Package', 'name', false, 'name');
 		$this->createNamesCache('Profile', null, false);
