@@ -132,7 +132,9 @@ class GetListBehavior extends ModelBehavior {
 
 		$currUIlang = (string)Configure::read('Config.language');
 		$modelName = $model->name;
-		$dataStr = serialize(compact('modelName', 'conditions', 'domain', 'order', 'excludeDisabled', 'limit', 'currUIlang'));
+		$keyField = $this->settings[$model->alias]['keyField'];
+		$dataStr = serialize(compact('modelName', 'conditions', 'domain', 'order', 'excludeDisabled',
+			'limit', 'currUIlang', 'keyField'));
 		$cachePath = 'ListInfo.' . md5($dataStr);
 		$cached = Cache::read($cachePath, $this->settings[$model->alias]['cacheConfig']);
 		if (!empty($cached)) {
@@ -144,7 +146,7 @@ class GetListBehavior extends ModelBehavior {
 			$conditions = Hash::merge($defaultConditions, $conditions);
 		}
 		$fields = [
-			$model->alias . '.' . $this->settings[$model->alias]['keyField'],
+			$model->alias . '.' . $keyField,
 			$model->alias . '.' . $nameField,
 		];
 		if (empty($order)) {
@@ -186,14 +188,14 @@ class GetListBehavior extends ModelBehavior {
 			$nameField = $model->displayField;
 		}
 
-		$dataStr = serialize(compact('nameField', 'reverseList', 'limit'));
+		$listKeyField = $this->settings[$model->alias]['keyField'];
+		$dataStr = serialize(compact('nameField', 'reverseList', 'limit', 'listKeyField'));
 		$cachePath = 'ListInfo.' . md5($dataStr);
 		$cached = Cache::read($cachePath, $this->settings[$model->alias]['cacheConfig']);
 		if (!empty($cached)) {
 			return $cached;
 		}
 
-		$listKeyField = $this->settings[$model->alias]['keyField'];
 		$listNameField = $nameField;
 		if ($reverseList) {
 			$listNameField = $listKeyField;
