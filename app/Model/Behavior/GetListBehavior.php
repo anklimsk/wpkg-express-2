@@ -41,6 +41,7 @@ class GetListBehavior extends ModelBehavior {
  */
 	protected $_defaults = [
 		'cacheConfig' => null,
+		'cacheConstantConfig' => CACHE_KEY_LISTS_INFO_CONSTANT,
 		'keyField' => 'id'
 	];
 
@@ -56,6 +57,10 @@ class GetListBehavior extends ModelBehavior {
 	public function setup(Model $model, $config = array()) {
 		$this->_defaults['keyField'] = $model->primaryKey;
 		$this->settings[$model->alias] = $config + $this->_defaults;
+		if (empty($this->settings[$model->alias]['cacheConstantConfig'])) {
+			$this->settings[$model->alias]['cacheConstantConfig'] = 'default';
+		}
+
 		$cacheConfig = $this->settings[$model->alias]['cacheConfig'];
 		if (empty($cacheConfig)) {
 			throw new InternalErrorException(__('Invalid name of the cache configuration to use'));
@@ -231,7 +236,8 @@ class GetListBehavior extends ModelBehavior {
 		$currUIlang = (string)Configure::read('Config.language');
 		$dataStr = serialize(compact('prefix', 'domain', 'currUIlang'));
 		$cachePath = 'ListInfo.Constant.' . md5($dataStr);
-		$cached = Cache::read($cachePath, CACHE_KEY_LISTS_INFO_CONSTANT);
+		$cacheConstantConfig = $this->settings[$model->alias]['cacheConstantConfig'];
+		$cached = Cache::read($cachePath, $cacheConstantConfig);
 		if (!empty($cached)) {
 			return $cached;
 		}
@@ -240,7 +246,7 @@ class GetListBehavior extends ModelBehavior {
 		if (!empty($domain)) {
 			translArray($result, $domain);
 		}
-		Cache::write($cachePath, $result, CACHE_KEY_LISTS_INFO_CONSTANT);
+		Cache::write($cachePath, $result, $cacheConstantConfig);
 
 		return $result;
 	}
