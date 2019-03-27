@@ -330,6 +330,18 @@ class Package extends AppModel {
 				'PackagesChain.dependency_id'
 			]
 		],
+		'Report' => [
+			'className' => 'Report',
+			'foreignKey' => 'package_id',
+			'dependent' => true,
+			'fields' => [
+				'Report.id',
+				'Report.state_id',
+				'Report.host_id',
+				'Report.package_id',
+				'Report.revision'
+			]
+		],
 		'Variable' => [
 			'className' => 'Variable',
 			'foreignKey' => 'ref_id',
@@ -1477,8 +1489,7 @@ class Package extends AppModel {
 			return $result;
 		}
 
-		$modelReport = ClassRegistry::init('Report');
-		$versionInfo = $modelReport->getRevisionInfo($id);
+		$versionInfo = $this->Report->getRevisionInfo($id);
 		if (empty($versionInfo)) {
 			return $result;
 		}
