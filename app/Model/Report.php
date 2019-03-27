@@ -449,6 +449,7 @@ class Report extends AppModel {
 		$cacheMD5hash = $this->ReportHost->getListMD5hash();
 		$maxStep += count($localFiles);
 		foreach ($localFiles as $i => $localFilePath) {
+			$this->resetAssociations();
 			if (!$modelImport->$importMethodName($localFilePath, $idTask, $cacheMD5hash)) {
 				$result = false;
 			}
