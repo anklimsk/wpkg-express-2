@@ -679,15 +679,43 @@ class Report extends AppModel {
 		}
 
 		$conditions = [
-			$this->alias . '.package_id' => $packageId
+			$this->alias . '.package_id' => $packageId,
+			'OR' => [
+				[$this->alias . '.state_id' => REPORT_STATE_INSTALLED],
+				[$this->alias . '.state_id' => REPORT_STATE_MANUALLY_INSTALLED]
+			]
 		];
 		$fields = [
 			$this->alias . '.revision',
 			'count(*) AS number',
 		];
-		$group = $this->alias . '.revision';
+		$group = $this->alias . '.revision WITH ROLLUP';
 		$recursive = -1;
 
 		return $this->find('all', compact('conditions', 'fields', 'group', 'recursive'));
+	}
+
+/**
+ * Returns the number of versions for a package.
+ *
+ * @param int|string $packageId The ID of the package to retrieve data.
+ * @return int|bool Return the number of versions for a package,
+ *  or False on failure.
+ */
+	public function getRevisionNumber($packageId = null) {
+		if (empty($packageId)) {
+			return false;
+		}
+
+		$conditions = [
+			$this->alias . '.package_id' => $packageId,
+			'OR' => [
+				[$this->alias . '.state_id' => REPORT_STATE_INSTALLED],
+				[$this->alias . '.state_id' => REPORT_STATE_MANUALLY_INSTALLED]
+			]
+		];
+		$recursive = -1;
+
+		return $this->find('count', compact('conditions', 'recursive'));
 	}
 }

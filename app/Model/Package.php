@@ -28,6 +28,7 @@
 App::uses('AppModel', 'Model');
 App::uses('ClassRegistry', 'Utility');
 App::uses('Hash', 'Utility');
+App::uses('CakeNumber', 'Utility');
 
 /**
  * The model is used to manage packages.
@@ -1494,15 +1495,28 @@ class Package extends AppModel {
 			return $result;
 		}
 		$labels = [];
-		$packageName = $this->getName($id);
 		$dataset = [
-			'label' => __("Versions of package '%s'", $packageName),
 			'data' => []
 		];
 
+		$numbersSum = 0;
+		$versionInfoLastItem = array_pop($versionInfo);
+		if ($versionInfoLastItem[$this->Report->alias]['revision'] === null) {
+			$numbersSum = (int)$versionInfoLastItem[0]['number'];
+		}
 		foreach ($versionInfo as $versionInfoItem) {
-			$labels[] = $versionInfoItem[$modelReport->alias]['revision'];
-			$dataset['data'][] = (int)$versionInfoItem[0]['number'];
+			$number = (int)$versionInfoItem[0]['number'];
+			$perc = null;
+			if ($numbersSum > 0) {
+				$perc = round($number * 100 / $numbersSum, 1);
+			}
+			$revision = $versionInfoItem[$this->Report->alias]['revision'];
+			$label = $revision;
+			if (!empty($perc)) {
+				$label .= ' (' . $perc . '%)';
+			}
+			$labels[] = $label;
+			$dataset['data'][] = $number;
 			$dataset['backgroundColor'][] = $this->getRandomColor();
 		}
 		$datasets = [$dataset];
@@ -1525,6 +1539,17 @@ class Package extends AppModel {
 			return $result;
 		}
 		$result = __("Chart of the installed versions of the package '%s'", $packageName);
+
+		$versionNumber = $this->Report->getRevisionNumber($refId);
+		if ($versionNumber === 0) {
+			return $result;
+		}
+
+		$versionNumberFormat = CakeNumber::format(
+			$versionNumber,
+			['thousands' => ' ', 'before' => '', 'places' => 0]
+		);
+		$result .= ' (' . $versionNumberFormat . ')';
 
 		return $result;
 	}
