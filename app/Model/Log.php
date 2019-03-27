@@ -489,7 +489,7 @@ class Log extends AppModel {
 			$logRecord['Log']['message'] = '<i>' . __(
 				'...And %s more %s',
 				CakeNumber::format($moreRecords, ['thousands' => ' ', 'before' => '', 'places' => 0]),
-				__n('record', 'records', $moreLogs) . '</i>'
+				__n('record', 'records', $moreRecords) . '</i>'
 			);
 			$logType = [
 				'LogType' => [
