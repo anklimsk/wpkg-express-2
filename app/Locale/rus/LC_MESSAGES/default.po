@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wpkgExpress II\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2019-03-21 12:12+0300\n"
+"PO-Revision-Date: 2019-03-28 16:48+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -2087,11 +2087,11 @@ msgstr "Действие пакета"
 
 #: Model/PackageAction.php:639
 msgid "Action(s) %sof the %s"
-msgstr "Действиe(я) %s %s"
+msgstr "Действие(я) %s %s"
 
 #: Model/PackageAction.php:641
 msgid "action(s) %s%s"
-msgstr "действиe(я) %s%s"
+msgstr "действие(я) %s%s"
 
 #: Model/PackageActionType.php:264
 msgid ""
@@ -2356,7 +2356,7 @@ msgstr "Недопустимый префикс константы"
 
 #: Model/Behavior/ParseDataBehavior.php:207;215
 msgid "Invalid name of model for cache"
-msgstr "Недопустимое имя модели для кеша"
+msgstr "Недопустимое имя модели для кэша"
 
 #: Model/Behavior/RestoreBehavior.php:50
 msgid "PHP Extension \"%s\" is not loaded"
@@ -2525,7 +2525,7 @@ msgid ""
 "This contains the language identifier of the operating system INSTALL (e.g. "
 "407,c07,1407)."
 msgstr ""
-"Содержит идентификатор языка операционной системы с которым она УСТАНОВЛЕНА "
+"Содержит идентификатор языка операционной системы, с которым она УСТАНОВЛЕНА "
 "(например, 407, c07, 1407)."
 
 #: View/Elements/formAttributeBase.ctp:68;79;90;120
@@ -2918,7 +2918,7 @@ msgid ""
 "command which runs for longer than the defined amount of seconds will be be "
 "regarded as failed and WPKG will continue execution."
 msgstr ""
-"Время ожидания по умолчанию, используемый при выполнении внешних команд. "
+"Время ожидания по умолчанию, используемое при выполнении внешних команд. "
 "Каждая команда, которая работает дольше, чем определенное количество секунд, "
 "будет считаться неудачной, и WPKG продолжит выполнение."
 
@@ -3467,7 +3467,7 @@ msgstr "Название сервера."
 
 #: View/Elements/formExtendSettingsRight.ctp:64
 msgid "Share name containing logs"
-msgstr "Имя общего ресурса, содержащее логи"
+msgstr "Имя общего ресурса, содержащее журналы"
 
 #: View/Elements/formExtendSettingsRight.ctp:64
 msgid "The name of the SMB share containing the log files, e.g.: wpkg/log."
@@ -4466,7 +4466,7 @@ msgstr "Удалить тип действия"
 
 #: View/Elements/listActionTypes.ctp:56
 msgid "Are you sure you wish to delete action type '%s'?"
-msgstr "Вы Вы действительно хотите удалить тип действия '%s'?"
+msgstr "Вы действительно хотите удалить тип действия '%s'?"
 
 #: View/Elements/listActionTypes.ctp:76
 msgid "Add action type"
@@ -4584,7 +4584,7 @@ msgstr "Вы действительно хотите удалить эту за�
 msgid "log"
 msgid_plural "logs"
 msgstr[0] "журнал"
-msgstr[1] "хурнала"
+msgstr[1] "журнала"
 msgstr[2] "журналов"
 
 #: View/Elements/tablePackage.ctp:165
