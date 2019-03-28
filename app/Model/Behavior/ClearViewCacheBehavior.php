@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018-2019, Andrey Klimov.
+ * @copyright Copyright 2018, Andrey Klimov.
  * @package app.Model.Behavior
  */
 
@@ -90,95 +90,6 @@ class ClearViewCacheBehavior extends ModelBehavior {
 	}
 
 /**
- * Used to delete and invalidates a cached script files in the cache directories
- *
- * @param string|array $params As String name to be searched for processing, if name is a directory all files in
- *   directory will be processed. If array, names to be searched for processing. If clearCache() without params,
- *   all files in app/tmp/cache/views will be processed
- * @param string $type Directory in tmp/cache defaults to view directory
- * @param string $ext The file extension you are processing
- * @return true if files found and deleted false otherwise
- */
-	protected function _clearOPcache($params = null, $type = 'views', $ext = '.php') {
-		$clearOPcache = false;
-		if (!empty($ext) && (mb_stripos($ext, '.php') !== false) &&
-			extension_loaded('Zend OPcache')) {
-			$clearOPcache = true;
-		}
-
-		if (is_string($params) || $params === null) {
-			$params = preg_replace('/\/\//', '/', $params);
-			$cache = CACHE . $type . DS . $params;
-
-			$file = $cache . $ext;
-			if (is_file($file)) {
-				if ($clearOPcache && opcache_is_script_cached($file)) {
-					opcache_invalidate($file, true);
-				}
-
-				//@codingStandardsIgnoreStart
-				@unlink($cache . $ext);
-				//@codingStandardsIgnoreEnd
-
-				return true;
-			} elseif (is_dir($cache)) {
-				$files = glob($cache . '*');
-
-				if ($files === false) {
-					return false;
-				}
-
-				foreach ($files as $file) {
-					if (is_file($file) && strrpos($file, DS . 'empty') !== strlen($file) - 6) {
-						if ($clearOPcache && opcache_is_script_cached($file)) {
-							opcache_invalidate($file, true);
-						}
-
-						//@codingStandardsIgnoreStart
-						@unlink($file);
-						//@codingStandardsIgnoreEnd
-					}
-				}
-				return true;
-			}
-			$cache = array(
-				CACHE . $type . DS . '*' . $params . $ext,
-				CACHE . $type . DS . '*' . $params . '_*' . $ext
-			);
-			$files = array();
-			while ($search = array_shift($cache)) {
-				$results = glob($search);
-				if ($results !== false) {
-					$files = array_merge($files, $results);
-				}
-			}
-			if (empty($files)) {
-				return false;
-			}
-			foreach ($files as $file) {
-				if (is_file($file) && strrpos($file, DS . 'empty') !== strlen($file) - 6) {
-					if ($clearOPcache && opcache_is_script_cached($file)) {
-						opcache_invalidate($file, true);
-					}
-
-					//@codingStandardsIgnoreStart
-					@unlink($file);
-					//@codingStandardsIgnoreEnd
-				}
-			}
-			return true;
-
-		} elseif (is_array($params)) {
-			foreach ($params as $file) {
-				$this->_clearOPcache($file, $type, $ext);
-			}
-			return true;
-		}
-
-		return false;
-	}
-
-/**
  * Clear the View cache
  *
  * @param string|array $params As String name to be searched for deletion, if name is a directory all files in
@@ -193,7 +104,7 @@ class ClearViewCacheBehavior extends ModelBehavior {
 		$type = 'views';
 		$ext = '.php';
 
-		return $this->_clearOPcache($params, $type, $ext);
+		return clearCache($params, $type, $ext);
 	}
 
 /**
