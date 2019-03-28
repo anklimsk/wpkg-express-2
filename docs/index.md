@@ -54,13 +54,21 @@ by Brian White &copy;2009.
   `composer create-project anklimsk/wpkg-express-2 /path/to/wpkg`.
 2. Copy applicaton files from `/path/to/wpkg`
   to VirtualHost document root directory, e.g.: `/var/www/wpkg`.
-3. Navigate to the directory `app` application (`/var/www/wpkg/app`),
+3. If you are using OPcache you should set the [opcache.blacklist_filename](https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.blacklist-filename)
+  configuration value with a file path to your blacklist (View cache):
+  - For example, create a new file:
+    `/etc/php5/apache2/opcache-blacklist.txt`;
+  - Specify the path for excluding files, e.g.: `/var/www/wpkg/app/tmp/cache/views/wpkg_*.php`;
+  - Add the blacklist file path to your `php.ini` file:
+    `opcache.blacklist_filename=/etc/php5/apache2/opcache-blacklist.txt`;
+  - Reload apache configuration: `sudo service apache2 reload`.
+4. Navigate to the directory `app` application (`/var/www/wpkg/app`),
   and run the following command: `sudo ./Console/cake CakeInstaller`
   to start interactive shell of installer.
-4. After the installation process is complete, in your browser go to the link
+5. After the installation process is complete, in your browser go to the link
   `http://wpkg.fabrikam.com/settings` to change settings of application,
   where `http://wpkg.fabrikam.com` - base URL of installited WPKG Express 2.
-5. Fill in the fields in the `Authentication` group settings and click the `Save` button.
+6. Fill in the fields in the `Authentication` group settings and click the `Save` button.
 
 ## Using
 
