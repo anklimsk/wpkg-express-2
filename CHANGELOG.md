@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v1.0.8 (2019-03-29)
+
+### Changes
+
+* Added percentage of packages to version chart of installed packages.
+
+### Fix
+
+* Fixed message `...And n more records` in the error report sent by email.
+
+* Fixed using exit code directory on parsing log files.
+
+
 ## v1.0.7 (2019-03-22)
 
 ### Changes
