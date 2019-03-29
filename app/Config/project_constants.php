@@ -61,7 +61,7 @@ if (!defined('PROJECT_AUTHOR')) {
  *  Default value ``
  */
 if (!defined('PROJECT_VERSION')) {
-	define('PROJECT_VERSION', '1.0.7');
+	define('PROJECT_VERSION', '1.0.8');
 }
 
 /**
