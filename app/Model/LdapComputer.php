@@ -124,7 +124,9 @@ class LdapComputer extends AppModel {
 		$dataStr = serialize($limit);
 		$cachePath = 'ListInfo.LdapComputer.' . md5($dataStr);
 		$name = trim($name);
+		$duration = '+5 minutes';
 		if (empty($name)) {
+			Cache::set('duration', $duration, CACHE_KEY_LISTS_INFO_LDAP_COMPUTER);
 			$cached = Cache::read($cachePath, CACHE_KEY_LISTS_INFO_LDAP_COMPUTER);
 			if (!empty($cached)) {
 				return $cached;
@@ -148,6 +150,7 @@ class LdapComputer extends AppModel {
 			'{n}.' . $this->alias . '.' . CAKE_LDAP_LDAP_ATTRIBUTE_NAME
 		);
 		if (empty($name)) {
+			Cache::set('duration', $duration, CACHE_KEY_LISTS_INFO_LDAP_COMPUTER);
 			Cache::write($cachePath, $result, CACHE_KEY_LISTS_INFO_LDAP_COMPUTER);
 		}
 
