@@ -148,14 +148,14 @@ class AppController extends Controller {
 		$authGroupsList = $this->Setting->getAuthGroupsList();
 		$authPrefixes = $this->Setting->getAuthPrefixesList();
 		foreach ($authGroupsList as $userRole => $fieldName) {
-			$userGroup = Configure::read(PROJECT_CONFIG_NAME . '.' . $fieldName);
+			$userGroup = $this->Setting->getConfig($fieldName);
 			if (!empty($userGroup)) {
 				$authGroups[$userRole] = $userGroup;
 			}
 		}
 
 		$isExternalAuth = false;
-		if ((bool)Configure::read(PROJECT_CONFIG_NAME . '.ExternalAuth') == true) {
+		if ($this->Setting->getConfig('ExternalAuth')) {
 			$isExternalAuth = $this->UserInfo->isExternalAuth();
 		}
 
