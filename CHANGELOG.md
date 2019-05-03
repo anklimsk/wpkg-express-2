@@ -1,6 +1,13 @@
 # Changelog
 
 
+## v1.0.9 (2019-05-03)
+
+### Fix
+
+* Fixed the `duration` cache settings for methods to retrieving list information of computers.
+
+
 ## v1.0.8 (2019-03-29)
 
 ### Changes
