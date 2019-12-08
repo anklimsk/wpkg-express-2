@@ -137,12 +137,14 @@ class ExportDataComponent extends BaseDataComponent {
  * Action `download`. Used to download XML data.
  *
  * @param int|string $id ID of record or type name for downloading data
+ * @param bool $checkIsExists If True, check ID of record for
+ *  downloading data is exists
  * @throws InternalErrorException if Restore behavior is not loaded on
  *  target model and method 'getDownloadName' is not found
  * @throws BadRequestException if request is not XML
  * @return CakeResponse
  */
-	public function download($id = null) {
+	public function download($id = null, $checkIsExists = true) {
 		if (!$this->_modelTarget->Behaviors->loaded('Restore') &&
 			!method_exists($this->_modelTarget, 'getDownloadName')) {
 			throw new InternalErrorException(__("Method '%s' is not found in target model", 'getDownloadName'));
@@ -150,7 +152,7 @@ class ExportDataComponent extends BaseDataComponent {
 		if (!$this->_controller->RequestHandler->isXml()) {
 			throw new BadRequestException(__('Invalid request'));
 		}
-		if (!empty($id) && ctype_digit((string)$id) &&
+		if ($checkIsExists && !empty($id) && ctype_digit((string)$id) &&
 			!$this->_modelTarget->exists($id)) {
 			$targetNameI18n = $this->_getTargetName(true);
 			if (method_exists($this->_modelTarget, 'getTargetName')) {

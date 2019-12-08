@@ -567,7 +567,7 @@ class WpiController extends AppController {
 		switch ($type) {
 			case 'config':
 				if ($this->RequestHandler->isXml()) {
-					return $this->ExportData->download(WPI_XML_TYPE_WPKG);
+					return $this->ExportData->download(WPI_XML_TYPE_WPKG, false);
 				} elseif ($this->RequestHandler->prefers('js')) {
 					$this->view = 'download';
 					$this->layout = 'wpi';
@@ -584,7 +584,7 @@ class WpiController extends AppController {
 			case 'profiles':
 			case 'hosts':
 				if ($this->RequestHandler->isXml()) {
-					return $this->ExportData->download($type);
+					return $this->ExportData->download($type, false);
 				} else {
 					throw new BadRequestException();
 				}
