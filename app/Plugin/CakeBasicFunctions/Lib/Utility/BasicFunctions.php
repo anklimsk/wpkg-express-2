@@ -130,7 +130,13 @@ if (!function_exists('translArray')) {
 			return false;
 		}
 
-		return array_walk($data, create_function('&$item,$key,$domain_transl', '$item = __d($domain_transl, $item);'), (string)$domain);
+		return array_walk(
+			$data,
+			function (&$item, $key, $domainTransl) {
+				$item = __d($domainTransl, $item);
+			},
+			(string)$domain
+		);
 	}
 
 }

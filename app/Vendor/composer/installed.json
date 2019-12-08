@@ -1,17 +1,17 @@
 [
     {
         "name": "anklimsk/cakephp-basic-functions",
-        "version": "v1.0.1",
-        "version_normalized": "1.0.1.0",
+        "version": "v1.0.2",
+        "version_normalized": "1.0.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/anklimsk/cakephp-basic-functions.git",
-            "reference": "7554e8b0b420fd3155593af7bf76b7ccbdc8701e"
+            "reference": "fb223e8bc7216e274ff4efb5ecff63fa50c6da18"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/anklimsk/cakephp-basic-functions/zipball/7554e8b0b420fd3155593af7bf76b7ccbdc8701e",
-            "reference": "7554e8b0b420fd3155593af7bf76b7ccbdc8701e",
+            "url": "https://api.github.com/repos/anklimsk/cakephp-basic-functions/zipball/fb223e8bc7216e274ff4efb5ecff63fa50c6da18",
+            "reference": "fb223e8bc7216e274ff4efb5ecff63fa50c6da18",
             "shasum": ""
         },
         "require": {
@@ -19,7 +19,7 @@
             "composer/installers": "^1.5.0",
             "php": ">=5.4"
         },
-        "time": "2018-11-19T09:07:01+00:00",
+        "time": "2019-11-30T21:32:01+00:00",
         "type": "cakephp-plugin",
         "extra": {
             "installer-name": "CakeBasicFunctions",
