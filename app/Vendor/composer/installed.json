@@ -289,17 +289,17 @@
     },
     {
         "name": "anklimsk/cakephp-settings-app",
-        "version": "v1.0.6",
-        "version_normalized": "1.0.6.0",
+        "version": "v1.0.7",
+        "version_normalized": "1.0.7.0",
         "source": {
             "type": "git",
             "url": "https://github.com/anklimsk/cakephp-settings-app.git",
-            "reference": "c333bf6e649c173ae0a4f944db918140837fc406"
+            "reference": "9be39ac2755345b17a0f3f069e96c23a69700e07"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/anklimsk/cakephp-settings-app/zipball/c333bf6e649c173ae0a4f944db918140837fc406",
-            "reference": "c333bf6e649c173ae0a4f944db918140837fc406",
+            "url": "https://api.github.com/repos/anklimsk/cakephp-settings-app/zipball/9be39ac2755345b17a0f3f069e96c23a69700e07",
+            "reference": "9be39ac2755345b17a0f3f069e96c23a69700e07",
             "shasum": ""
         },
         "require": {
@@ -309,7 +309,7 @@
             "composer/installers": "^1.5.0",
             "php": ">=5.4"
         },
-        "time": "2019-02-07T10:51:12+00:00",
+        "time": "2019-11-30T18:25:40+00:00",
         "type": "cakephp-plugin",
         "extra": {
             "installer-name": "CakeSettingsApp"

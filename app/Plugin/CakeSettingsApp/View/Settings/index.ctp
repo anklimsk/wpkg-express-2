@@ -4,7 +4,7 @@
  *  interface of settings application.
  *
  * CakeSettingsApp: Manage settings of application.
- * @copyright Copyright 2016-2018, Andrey Klimov.
+ * @copyright Copyright 2016-2019, Andrey Klimov.
  * @license https://opensource.org/licenses/mit-license.php MIT License
  * @package plugin.View.Settings
  */
@@ -19,8 +19,6 @@
 <?php
 	echo $this->ViewExtension->headerPage($pageHeader);
 	echo $this->element('CakeSettingsApp.formSettings', compact(
-		'errors',
-		'countryCode',
 		'groupList',
 		'configUIlangs',
 		'configSMTP',
@@ -28,8 +26,6 @@
 		'configADsearch',
 		'configExtAuth',
 		'authGroups',
-		'UIlang',
-		'UIlangs',
 		'varsExt'
 	));
 ?>

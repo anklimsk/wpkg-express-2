@@ -624,7 +624,7 @@ class SettingBase extends CakeSettingsAppAppModel {
 					break;
 				default:
 					if (mb_strpos($configName, '_confirm') !== false) {
-						continue;
+						continue 2;
 					}
 					if (in_array($configName, $listSerializedFields)) {
 						$configValue = serialize($configValue);
