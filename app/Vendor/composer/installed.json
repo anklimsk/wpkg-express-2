@@ -123,17 +123,17 @@
     },
     {
         "name": "anklimsk/cakephp-extended-test",
-        "version": "v1.0.2",
-        "version_normalized": "1.0.2.0",
+        "version": "v1.0.3",
+        "version_normalized": "1.0.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/anklimsk/cakephp-extended-test.git",
-            "reference": "21691a3be8a198419feb92fb6ed3b35a14dc24b1"
+            "reference": "a1e22a9f486c2d2724c7fd8212589b3ee3b842c1"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/anklimsk/cakephp-extended-test/zipball/21691a3be8a198419feb92fb6ed3b35a14dc24b1",
-            "reference": "21691a3be8a198419feb92fb6ed3b35a14dc24b1",
+            "url": "https://api.github.com/repos/anklimsk/cakephp-extended-test/zipball/a1e22a9f486c2d2724c7fd8212589b3ee3b842c1",
+            "reference": "a1e22a9f486c2d2724c7fd8212589b3ee3b842c1",
             "shasum": ""
         },
         "require": {
@@ -141,7 +141,7 @@
             "composer/installers": "^1.5.0",
             "php": ">=5.4"
         },
-        "time": "2018-11-19T09:25:26+00:00",
+        "time": "2019-11-30T19:40:35+00:00",
         "type": "cakephp-plugin",
         "extra": {
             "installer-name": "CakeExtendTest",

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace PHPHtmlParser\Dom;
 
 use PHPHtmlParser\Exceptions\UnknownChildTypeException;
@@ -14,6 +14,8 @@ class HtmlNode extends InnerNode
 
     /**
      * Remembers what the innerHtml was if it was scanned previously.
+     *
+     * @var string
      */
     protected $innerHtml = null;
 
@@ -42,7 +44,7 @@ class HtmlNode extends InnerNode
     /**
      * Sets up the tag of this node.
      *
-     * @param $tag
+     * @param string|Tag $tag
      */
     public function __construct($tag)
     {
@@ -54,12 +56,22 @@ class HtmlNode extends InnerNode
     }
 
     /**
+     * @param bool $htmlSpecialCharsDecode
+     * @return void
+     */
+    public function setHtmlSpecialCharsDecode($htmlSpecialCharsDecode = false): void
+    {
+        parent::setHtmlSpecialCharsDecode($htmlSpecialCharsDecode);
+        $this->tag->setHtmlSpecialCharsDecode($htmlSpecialCharsDecode);
+    }
+
+    /**
      * Gets the inner html of this node.
-     *
      * @return string
+     * @throws ChildNotFoundException
      * @throws UnknownChildTypeException
      */
-    public function innerHtml()
+    public function innerHtml(): string
     {
         if ( ! $this->hasChildren()) {
             // no children
@@ -101,10 +113,11 @@ class HtmlNode extends InnerNode
     /**
      * Gets the html of this node, including it's own
      * tag.
-     *
      * @return string
+     * @throws ChildNotFoundException
+     * @throws UnknownChildTypeException
      */
-    public function outerHtml()
+    public function outerHtml(): string
     {
         // special handling for root
         if ($this->tag->name() == 'root') {
@@ -141,7 +154,7 @@ class HtmlNode extends InnerNode
      * @param bool $lookInChildren
      * @return string
      */
-    public function text($lookInChildren = false)
+    public function text(bool $lookInChildren = false): string
     {
         if ($lookInChildren) {
             if ( ! is_null($this->textWithChildren)) {
@@ -181,11 +194,16 @@ class HtmlNode extends InnerNode
      * Call this when something in the node tree has changed. Like a child has been added
      * or a parent has been changed.
      */
-    protected function clear()
+    protected function clear(): void
     {
         $this->innerHtml = null;
         $this->outerHtml = null;
         $this->text      = null;
+        $this->textWithChildren = null;
+
+        if (is_null($this->parent) === false) {
+            $this->parent->clear();
+        }
     }
 
     /**
@@ -193,7 +211,7 @@ class HtmlNode extends InnerNode
      *
      * @return array
      */
-    protected function getIteratorArray()
+    protected function getIteratorArray(): array
     {
         return $this->getChildren();
     }
