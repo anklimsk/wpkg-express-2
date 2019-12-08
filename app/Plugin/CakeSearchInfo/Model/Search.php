@@ -5,7 +5,7 @@
  * Methods for search information in project database.
  *
  * CakeSearchInfo: Search information in project database
- * @copyright Copyright 2016-2018, Andrey Klimov.
+ * @copyright Copyright 2016-2019, Andrey Klimov.
  * @license https://opensource.org/licenses/mit-license.php MIT License
  * @package plugin.Model
  */
@@ -852,9 +852,10 @@ class Search extends CakeSearchInfoAppModel {
 		foreach ($queryConfig['modelConfig'] as $modelName => $config) {
 			$resultItem = $this->_getAutocompleteData($modelName, $config, $query, $queryConfig['anyPart'], $limit);
 			if (empty($resultItem)) {
-				if (mb_strtolower($lang) !== 'rus') {
+				if (version_compare(PHP_VERSION, '7.3.0', '>=') || (mb_strtolower($lang) !== 'rus')) {
 					continue;
 				}
+
 				$queryCorrect = $textConv->parse($query, Text_LangCorrect::SIMILAR_CHARS | Text_LangCorrect::KEYBOARD_LAYOUT);
 				if ($query === $queryCorrect) {
 					continue;

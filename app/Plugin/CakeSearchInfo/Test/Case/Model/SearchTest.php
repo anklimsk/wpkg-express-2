@@ -1246,6 +1246,8 @@ class SearchTest extends AppCakeTestCase {
  * @return void
  */
 	public function testGetAutocompleteRusCorrect1() {
+		$this->skipIf(version_compare(PHP_VERSION, '7.3.0', '>='), 'Skipped for PHP 7.3 or higher');
+
 		Configure::write('Config.language', 'rus');
 		Configure::write('CakeSearchInfo.TargetDeep', 1);
 		$truncateOpt = [

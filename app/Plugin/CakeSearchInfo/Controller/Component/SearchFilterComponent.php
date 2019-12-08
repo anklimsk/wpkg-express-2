@@ -4,7 +4,7 @@
  * Setting search form input and parse URL GET parameters
  *
  * CakeSearchInfo: Search information in project database
- * @copyright Copyright 2016-2018, Andrey Klimov.
+ * @copyright Copyright 2016-2019, Andrey Klimov.
  * @license https://opensource.org/licenses/mit-license.php MIT License
  * @package plugin.Controller.Component
  */
@@ -247,7 +247,8 @@ class SearchFilterComponent extends Component {
 				$this->_controller->request->data('Search.query', $query);
 				$conditions = compact('query', 'target');
 				$result = $this->_controller->Paginator->paginate('Search', $conditions, $whitelist);
-				if (empty($result) && (mb_strtolower($lang) === 'rus')) {
+				if (empty($result) && (mb_strtolower($lang) === 'rus')
+					&& version_compare(PHP_VERSION, '7.3.0', '<')) {
 					$textConv = new Text_LangCorrect();
 					$queryCorrect = $textConv->parse($query, Text_LangCorrect::SIMILAR_CHARS | Text_LangCorrect::KEYBOARD_LAYOUT);
 					if (($query === $queryCorrect) || $correct) {

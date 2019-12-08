@@ -386,6 +386,8 @@ class SearchControllerTest extends AppControllerTestCase {
  * @return void
  */
 	public function testSearchGetValidRequestRusCorrectFalse() {
+		$this->skipIf(version_compare(PHP_VERSION, '7.3.0', '>='), 'Skipped for PHP 7.3 or higher');
+
 		Configure::write('Config.language', 'rus');
 		$this->_generateMockedController();
 		$opt = [
@@ -731,6 +733,8 @@ class SearchControllerTest extends AppControllerTestCase {
  * @return void
  */
 	public function testAutocompleteValidRequestTextCorrect() {
+		$this->skipIf(version_compare(PHP_VERSION, '7.3.0', '>='), 'Skipped for PHP 7.3 or higher');
+
 		Configure::write('Config.language', 'rus');
 		$this->_generateMockedController();
 		$opt = [
