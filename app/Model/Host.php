@@ -659,7 +659,7 @@ class Host extends AppModel {
 			return false;
 		}
 		$conditions = [$this->HostsProfile->alias . '.host_id' => $id];
-		if (!$this->HostsProfile->deleteAll($conditions, true, false)) {
+		if (!$this->HostsProfile->deleteAllJoinless($conditions, true, false)) {
 			return false;
 		}
 

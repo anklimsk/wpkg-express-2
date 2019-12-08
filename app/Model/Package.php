@@ -1322,7 +1322,7 @@ class Package extends AppModel {
 			$conditions = [
 				$this->$dependModelName->alias . '.package_id' => $id
 			];
-			if (!$this->$dependModelName->deleteAll($conditions, true, false)) {
+			if (!$this->$dependModelName->deleteAllJoinless($conditions, true, false)) {
 				return false;
 			}
 		}
@@ -1335,7 +1335,7 @@ class Package extends AppModel {
 				return false;
 			}
 			$conditions = [$this->PackageAction->alias . '.package_id' => $id];
-			if (!$this->PackageAction->deleteAll($conditions, true, false)) {
+			if (!$this->PackageAction->deleteAllJoinless($conditions, true, false)) {
 				return false;
 			}
 		}

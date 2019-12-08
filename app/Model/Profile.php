@@ -839,11 +839,11 @@ class Profile extends AppModel {
 			return false;
 		}
 		$conditions = [$this->PackagesProfile->alias . '.profile_id' => $id];
-		if (!$this->PackagesProfile->deleteAll($conditions, true, false)) {
+		if (!$this->PackagesProfile->deleteAllJoinless($conditions, true, false)) {
 			return false;
 		}
 		$conditions = [$this->ProfilesProfile->alias . '.profile_id' => $id];
-		if (!$this->ProfilesProfile->deleteAll($conditions, true, false)) {
+		if (!$this->ProfilesProfile->deleteAllJoinless($conditions, true, false)) {
 			return false;
 		}
 
