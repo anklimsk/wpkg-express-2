@@ -84,7 +84,7 @@ class AttributesController extends AppController {
  */
 	protected function _view($id = null) {
 		$this->view = 'view';
-		$attributes = $this->Attribute->get($id, true);
+		$attributes = $this->Attribute->get($id, [], true);
 		if (empty($attributes)) {
 			return $this->ViewExtension->setExceptionMessage(new NotFoundException(__('Invalid ID for attributes')));
 		}
@@ -204,7 +204,7 @@ class AttributesController extends AppController {
  */
 	protected function _edit($id = null) {
 		$this->view = 'edit';
-		$attribute = $this->Attribute->get($id, false);
+		$attribute = $this->Attribute->get($id, [], false);
 		if (empty($attribute)) {
 			return $this->ViewExtension->setExceptionMessage(new NotFoundException(__('Invalid ID for attributes')));
 		}

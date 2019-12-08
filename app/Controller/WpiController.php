@@ -210,7 +210,7 @@ class WpiController extends AppController {
  */
 	protected function _view($id = null) {
 		$this->view = 'view';
-		$wpiPackage = $this->Wpi->get($id, true);
+		$wpiPackage = $this->Wpi->get($id, [], true);
 		if (empty($wpiPackage)) {
 			return $this->ViewExtension->setExceptionMessage(new NotFoundException(__('Invalid ID for WPI package')));
 		}
@@ -412,7 +412,7 @@ class WpiController extends AppController {
  */
 	protected function _edit($id = null) {
 		$this->view = 'edit';
-		$wpi = $this->Wpi->get($id, false);
+		$wpi = $this->Wpi->get($id, [], false);
 		if (empty($wpi)) {
 			return $this->ViewExtension->setExceptionMessage(new NotFoundException(__('Invalid ID for WPI package')));
 		}

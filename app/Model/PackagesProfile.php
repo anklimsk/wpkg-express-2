@@ -178,31 +178,6 @@ class PackagesProfile extends AppModel {
 	];
 
 /**
- * Return information of package in profile
- *
- * @param int|string $id The ID of the record to read.
- * @return array|bool Return information of package in profile,
- *  or False on failure.
- */
-	public function get($id = null) {
-		if (empty($id)) {
-			return false;
-		}
-
-		$conditions = [$this->alias . '.id' => $id];
-		$fields = [
-			$this->alias . '.id',
-			$this->alias . '.profile_id',
-			$this->alias . '.package_id',
-			$this->alias . '.installdate',
-			$this->alias . '.uninstalldate',
-		];
-		$recursive = -1;
-
-		return $this->find('first', compact('conditions', 'fields', 'recursive'));
-	}
-
-/**
  * Return array for render profile package XML elements
  *
  * @param array $data Information of package dependencies

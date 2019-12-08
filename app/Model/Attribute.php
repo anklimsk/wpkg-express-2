@@ -817,12 +817,13 @@ class Attribute extends AppModel {
  * Return information of attributes
  *
  * @param int|string $id The ID of the record to read.
+ * @param array $options Options for find() (not used in this method).
  * @param bool $full Flag of inclusion in the result
  *  full information.
  * @return array|bool Return information of attributes,
  *  or False on failure.
  */
-	public function get($id = null, $full = false) {
+	public function get($id = null, array $options = [], $full = false) {
 		if (empty($id)) {
 			return false;
 		}

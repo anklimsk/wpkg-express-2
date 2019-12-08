@@ -192,7 +192,7 @@ class ViewDataComponent extends BaseDataComponent {
 		}
 
 		$bindLimit = 5;
-		$data = $this->_modelTarget->get($id, true);
+		$data = $this->_modelTarget->get($id, [], true);
 		$pageHeader = __('Information of %s', $targetNameI18n);
 		$headerMenuActions = [
 			[

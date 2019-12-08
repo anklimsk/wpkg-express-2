@@ -24,14 +24,14 @@
  * @package app.Model
  */
 
-App::uses('Model', 'Model');
+App::uses('ShimModel', 'Shim.Model');
 
 /**
  * Application level Model
  *
  * @package app.Model
  */
-class AppModel extends Model {
+class AppModel extends ShimModel {
 
 /**
  * Name of the validation string domain to use when translating validation errors.
@@ -105,4 +105,24 @@ class AppModel extends Model {
 
 		return parent::save($this->data, $validate, $fieldList);
 	}
+
+/**
+ * Shortcut method to find a specific entry via primary key.
+ *
+ * @param int|string|array $id ID of record or array data
+ *  for retrieving information
+ * @param array $options Options for find().
+ * @return mixed
+ * @throws RecordNotFoundException If record not found.
+ */
+		public function get($id, array $options = []) {
+				if (empty($options)) {
+					$options = [
+						'recursive' => -1,
+						'noException' => true
+					];
+				}
+
+		return parent::get($id, $options);
+		}
 }

@@ -270,12 +270,13 @@ class Host extends AppModel {
  * Return information of host
  *
  * @param int|string $id The ID of the record to read.
+ * @param array $options Options for find() (not used in this method).
  * @param bool $full Flag of inclusion in the result
  *  full information.
  * @return array|bool Return information of host,
  *  or False on failure.
  */
-	public function get($id = null, $full = true) {
+	public function get($id = null, array $options = [], $full = true) {
 		if (empty($id)) {
 			return false;
 		}

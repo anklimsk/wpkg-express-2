@@ -286,7 +286,7 @@ class PackagesController extends AppController {
  */
 	protected function _edit($id = null) {
 		$this->view = 'edit';
-		$package = $this->Package->get($id, false);
+		$package = $this->Package->get($id, [], false);
 		if (empty($package)) {
 			return $this->ViewExtension->setExceptionMessage(new NotFoundException(__('Invalid ID for package')));
 		}

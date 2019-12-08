@@ -189,30 +189,6 @@ class PackageActionType extends AppModel {
 	}
 
 /**
- * Return information of package action type
- *
- * @param int|string $id The ID of the record to read.
- * @return array|bool Return information of package action type,
- *  or False on failure.
- */
-	public function get($id = null) {
-		if (empty($id)) {
-			return false;
-		}
-
-		$conditions = [$this->alias . '.id' => $id];
-		$fields = [
-			$this->alias . '.id',
-			$this->alias . '.builtin',
-			$this->alias . '.name',
-			$this->alias . '.command',
-		];
-		$recursive = -1;
-
-		return $this->find('first', compact('conditions', 'fields', 'recursive'));
-	}
-
-/**
  * Return default values of package action type
  *
  * @param bool $includeModelAlias Flag of including the model alias in the result

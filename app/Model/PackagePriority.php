@@ -175,29 +175,6 @@ class PackagePriority extends AppModel {
 	}
 
 /**
- * Return information of package priority
- *
- * @param int|string $id The ID of the record to read.
- * @return array|bool Return information of package priority,
- *  or False on failure.
- */
-	public function get($id = null) {
-		if (empty($id)) {
-			return false;
-		}
-
-		$conditions = [$this->alias . '.id' => $id];
-		$fields = [
-			$this->alias . '.id',
-			$this->alias . '.name',
-			$this->alias . '.value',
-		];
-		$recursive = -1;
-
-		return $this->find('first', compact('conditions', 'fields', 'recursive'));
-	}
-
-/**
  * Return list of package priorities
  *
  * @return array Return list of package priorities

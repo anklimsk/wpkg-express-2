@@ -386,38 +386,6 @@ class PackageAction extends AppModel {
 	}
 
 /**
- * Return information of package action
- *
- * @param int|string $id The ID of the record to read.
- * @return array|bool Return information of package action,
- *  or False on failure.
- */
-	public function get($id = null) {
-		if (empty($id)) {
-			return false;
-		}
-
-		$fields = [
-			$this->alias . '.id',
-			$this->alias . '.package_id',
-			$this->alias . '.action_type_id',
-			$this->alias . '.command_type_id',
-			$this->alias . '.include_action_id',
-			$this->alias . '.parent_id',
-			$this->alias . '.lft',
-			$this->alias . '.rght',
-			$this->alias . '.command',
-			$this->alias . '.timeout',
-			$this->alias . '.workdir',
-			$this->alias . '.expand_url',
-		];
-		$conditions = [$this->alias . '.id' => $id];
-		$recursive = -1;
-
-		return $this->find('first', compact('conditions', 'fields', 'recursive'));
-	}
-
-/**
  * Return default values of package action
  *
  * @param int|string $refId ID of package record

@@ -82,10 +82,11 @@ class DependencyInfoBehavior extends ModelBehavior {
  *
  * @param Model $model Model using this behavior
  * @param int|string $id The ID of the record to read.
+ * @param array $options Options for find() (not used in this method).
  * @return array|bool Return information of dependency,
  *  or False on failure.
  */
-	public function get(Model $model, $id = null) {
+	public function get(Model $model, $id = null, array $options = []) {
 		if (empty($id)) {
 			return false;
 		}

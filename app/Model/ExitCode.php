@@ -146,31 +146,6 @@ class ExitCode extends AppModel {
 	}
 
 /**
- * Return information of exit code
- *
- * @param int|string $id The ID of the record to read.
- * @return array|bool Return information of exit code,
- *  or False on failure.
- */
-	public function get($id = null) {
-		if (empty($id)) {
-			return false;
-		}
-
-		$fields = [
-			$this->alias . '.id',
-			$this->alias . '.id',
-			$this->alias . '.package_action_id',
-			$this->alias . '.reboot_id',
-			$this->alias . '.code'
-		];
-		$conditions = [$this->alias . '.id' => $id];
-		$recursive = -1;
-
-		return $this->find('first', compact('conditions', 'fields', 'recursive'));
-	}
-
-/**
  * Return default values of exit code
  *
  * @param int|string $refId The ID of the package action.

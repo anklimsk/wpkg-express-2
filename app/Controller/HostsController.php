@@ -288,7 +288,7 @@ class HostsController extends AppController {
  */
 	protected function _edit($id = null) {
 		$this->view = 'edit';
-		$host = $this->Host->get($id, false);
+		$host = $this->Host->get($id, [], false);
 		if (empty($host)) {
 			return $this->ViewExtension->setExceptionMessage(new NotFoundException(__('Invalid ID for host')));
 		}
