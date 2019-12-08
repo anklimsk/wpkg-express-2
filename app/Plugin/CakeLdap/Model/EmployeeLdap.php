@@ -4,7 +4,7 @@
  *  management employees from LDAP.
  *
  * CakeLdap: Authentication of users by member group of Active Directory.
- * @copyright Copyright 2017-2018, Andrey Klimov.
+ * @copyright Copyright 2017-2019, Andrey Klimov.
  * @license https://opensource.org/licenses/mit-license.php MIT License
  * @package plugin.Model
  */
@@ -169,7 +169,7 @@ class EmployeeLdap extends CakeLdapAppModel {
 					case CAKE_LDAP_LDAP_ATTRIBUTE_OTHER_TELEPHONE_NUMBER:
 					case CAKE_LDAP_LDAP_ATTRIBUTE_OTHER_MOBILE_TELEPHONE_NUMBER:
 						if (empty($value) || is_array($value)) {
-							continue;
+							continue 2;
 						}
 						$value = [$value];
 						break;
