@@ -1,6 +1,29 @@
 # Changelog
 
 
+## v1.0.10-rc.1 (2019-12-08)
+
+### New
+
+* Added support for PostgreSQL.
+
+* Added support for negative exit codes.
+
+### Changes
+
+* Added support for PHP 7.3.
+
+### Fix
+
+* Fixed support for exit codes `*` and `any`
+
+* Fixed download WPI configuration files.
+
+* Added admin contacts to login page.
+
+* Fixed import of check type `Host` with the condition `Host name`
+
+
 ## v1.0.9 (2019-05-03)
 
 ### Fix
