@@ -164,7 +164,7 @@ Examples:
 	case CHECK_TYPE_HOST:
 		$showPath = false;
 		switch ($checkCondition) {
-			case CHECK_CONDITION_HOST_NAME:
+			case CHECK_CONDITION_HOST_HOSTNAME:
 				$valueLabel = __('Host name');
 				$valueTooltip = __('This contains the name of the system, which is also contained in the Windows environment variable %COMPUTERNAME%.');
 				break;

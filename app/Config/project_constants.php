@@ -1026,8 +1026,8 @@ if (!defined('CHECK_CONDITION_UNINSTALL_VERSION_GREATER_THAN_OR_EQUAL_TO')) {
  *
  * Used for determine the type of check condition. Default value `35`
  */
-if (!defined('CHECK_CONDITION_HOST_NAME')) {
-	define('CHECK_CONDITION_HOST_NAME', 35);
+if (!defined('CHECK_CONDITION_HOST_HOSTNAME')) {
+	define('CHECK_CONDITION_HOST_HOSTNAME', 35);
 }
 
 /**

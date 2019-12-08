@@ -218,7 +218,7 @@ class RenderCheckData {
 				break;
 			case CHECK_TYPE_HOST:
 				switch ($data['condition']) {
-					case CHECK_CONDITION_HOST_NAME:
+					case CHECK_CONDITION_HOST_HOSTNAME:
 						$conditionName = __("Host name is '%s'", h($data['value']));
 						break;
 					case CHECK_CONDITION_HOST_OS:

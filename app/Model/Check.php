@@ -685,7 +685,7 @@ class Check extends AppModel {
 			]
 		],
 		CHECK_TYPE_HOST => [
-			CHECK_CONDITION_HOST_NAME => [
+			CHECK_CONDITION_HOST_HOSTNAME => [
 				'value' => [
 					'empty' => [
 						'rule' => 'notBlank',
@@ -1271,7 +1271,7 @@ class Check extends AppModel {
 				case CHECK_TYPE_HOST:
 					$type = 'host';
 					switch ($check['condition']) {
-						case CHECK_CONDITION_HOST_NAME:
+						case CHECK_CONDITION_HOST_HOSTNAME:
 							$condition = 'hostname';
 							break;
 						case CHECK_CONDITION_HOST_OS:
