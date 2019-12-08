@@ -1,24 +1,23 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "hash": "41a98e97db7b204bf91a5694063a01c4",
     "content-hash": "fced7bb139032356abe031eb8ffd36cc",
     "packages": [
         {
             "name": "anklimsk/cakephp-basic-functions",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/anklimsk/cakephp-basic-functions.git",
-                "reference": "7554e8b0b420fd3155593af7bf76b7ccbdc8701e"
+                "reference": "fb223e8bc7216e274ff4efb5ecff63fa50c6da18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/anklimsk/cakephp-basic-functions/zipball/7554e8b0b420fd3155593af7bf76b7ccbdc8701e",
-                "reference": "7554e8b0b420fd3155593af7bf76b7ccbdc8701e",
+                "url": "https://api.github.com/repos/anklimsk/cakephp-basic-functions/zipball/fb223e8bc7216e274ff4efb5ecff63fa50c6da18",
+                "reference": "fb223e8bc7216e274ff4efb5ecff63fa50c6da18",
                 "shasum": ""
             },
             "require": {
@@ -44,7 +43,7 @@
             ],
             "description": "Global basic utilities for the CakePHP 2.x application",
             "homepage": "https://github.com/anklimsk/cakephp-basic-functions",
-            "time": "2018-11-19 09:07:01"
+            "time": "2019-11-30T21:32:01+00:00"
         },
         {
             "name": "anklimsk/cakephp-config-plugin",
@@ -83,7 +82,7 @@
             ],
             "description": "Initialize and get the plugin configuration for the CakePHP 2.x",
             "homepage": "https://github.com/anklimsk/cakephp-config-plugin",
-            "time": "2018-11-19 09:16:13"
+            "time": "2018-11-19T09:16:13+00:00"
         },
         {
             "name": "anklimsk/cakephp-console-installer",
@@ -121,20 +120,20 @@
             ],
             "description": "Console installer for CakePHP 2.x",
             "homepage": "https://github.com/anklimsk/cakephp-console-installer",
-            "time": "2018-11-26 13:07:04"
+            "time": "2018-11-26T13:07:04+00:00"
         },
         {
             "name": "anklimsk/cakephp-extended-test",
-            "version": "v1.0.2",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/anklimsk/cakephp-extended-test.git",
-                "reference": "21691a3be8a198419feb92fb6ed3b35a14dc24b1"
+                "reference": "a1e22a9f486c2d2724c7fd8212589b3ee3b842c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/anklimsk/cakephp-extended-test/zipball/21691a3be8a198419feb92fb6ed3b35a14dc24b1",
-                "reference": "21691a3be8a198419feb92fb6ed3b35a14dc24b1",
+                "url": "https://api.github.com/repos/anklimsk/cakephp-extended-test/zipball/a1e22a9f486c2d2724c7fd8212589b3ee3b842c1",
+                "reference": "a1e22a9f486c2d2724c7fd8212589b3ee3b842c1",
                 "shasum": ""
             },
             "require": {
@@ -160,20 +159,20 @@
             ],
             "description": "Extended test tools for CakePHP 2.x",
             "homepage": "https://github.com/anklimsk/cakephp-extended-test",
-            "time": "2018-11-19 09:25:26"
+            "time": "2019-11-30T19:40:35+00:00"
         },
         {
             "name": "anklimsk/cakephp-ldap-sync",
-            "version": "v1.0.3",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/anklimsk/cakephp-ldap-sync.git",
-                "reference": "f5a9933dd1eee609e935297d95fcf1e4f8a8fec1"
+                "reference": "aeeff85c9dd32a64aebc6cd4bf6d11d5ed04c8cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/anklimsk/cakephp-ldap-sync/zipball/f5a9933dd1eee609e935297d95fcf1e4f8a8fec1",
-                "reference": "f5a9933dd1eee609e935297d95fcf1e4f8a8fec1",
+                "url": "https://api.github.com/repos/anklimsk/cakephp-ldap-sync/zipball/aeeff85c9dd32a64aebc6cd4bf6d11d5ed04c8cf",
+                "reference": "aeeff85c9dd32a64aebc6cd4bf6d11d5ed04c8cf",
                 "shasum": ""
             },
             "require": {
@@ -202,7 +201,7 @@
             ],
             "description": "Synchronizing information and authenticating users by LDAP for CakePHP 2.x",
             "homepage": "https://github.com/anklimsk/cakephp-ldap-sync",
-            "time": "2019-03-05 11:11:24"
+            "time": "2019-12-01T16:15:32+00:00"
         },
         {
             "name": "anklimsk/cakephp-notify",
@@ -241,20 +240,20 @@
             ],
             "description": "Sending E-mail using task queues and sending a notification to the user using WEB Notifications API from CakePHP 2.x",
             "homepage": "https://github.com/anklimsk/cakephp-notify",
-            "time": "2018-11-19 10:40:06"
+            "time": "2018-11-19T10:40:06+00:00"
         },
         {
             "name": "anklimsk/cakephp-search-info",
-            "version": "v1.0.2",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/anklimsk/cakephp-search-info.git",
-                "reference": "809774a676005f82e41f7a798b2a34c3321de6e4"
+                "reference": "2cedde1c0fda7e22b1e8c523c4086ebd9fd29411"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/anklimsk/cakephp-search-info/zipball/809774a676005f82e41f7a798b2a34c3321de6e4",
-                "reference": "809774a676005f82e41f7a798b2a34c3321de6e4",
+                "url": "https://api.github.com/repos/anklimsk/cakephp-search-info/zipball/2cedde1c0fda7e22b1e8c523c4086ebd9fd29411",
+                "reference": "2cedde1c0fda7e22b1e8c523c4086ebd9fd29411",
                 "shasum": ""
             },
             "require": {
@@ -279,20 +278,20 @@
             ],
             "description": " Search for information in the project database for CakePHP 2.x",
             "homepage": "https://github.com/anklimsk/cakephp-search-info",
-            "time": "2019-03-05 12:17:27"
+            "time": "2019-12-01T10:20:37+00:00"
         },
         {
             "name": "anklimsk/cakephp-settings-app",
-            "version": "v1.0.6",
+            "version": "v1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/anklimsk/cakephp-settings-app.git",
-                "reference": "c333bf6e649c173ae0a4f944db918140837fc406"
+                "reference": "9be39ac2755345b17a0f3f069e96c23a69700e07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/anklimsk/cakephp-settings-app/zipball/c333bf6e649c173ae0a4f944db918140837fc406",
-                "reference": "c333bf6e649c173ae0a4f944db918140837fc406",
+                "url": "https://api.github.com/repos/anklimsk/cakephp-settings-app/zipball/9be39ac2755345b17a0f3f069e96c23a69700e07",
+                "reference": "9be39ac2755345b17a0f3f069e96c23a69700e07",
                 "shasum": ""
             },
             "require": {
@@ -317,20 +316,20 @@
             ],
             "description": " UI for CakePHP 2.x application settings",
             "homepage": "https://github.com/anklimsk/cakephp-settings-app",
-            "time": "2019-02-07 10:51:12"
+            "time": "2019-11-30T18:25:40+00:00"
         },
         {
             "name": "anklimsk/cakephp2-theme",
-            "version": "v1.1.3",
+            "version": "v1.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/anklimsk/cakephp-theme.git",
-                "reference": "b815a4aaabaaf03ef1df3d547200f73f332f38a7"
+                "reference": "7c69473a2be7aa83887b82202df796177113f4f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/anklimsk/cakephp-theme/zipball/b815a4aaabaaf03ef1df3d547200f73f332f38a7",
-                "reference": "b815a4aaabaaf03ef1df3d547200f73f332f38a7",
+                "url": "https://api.github.com/repos/anklimsk/cakephp-theme/zipball/7c69473a2be7aa83887b82202df796177113f4f1",
+                "reference": "7c69473a2be7aa83887b82202df796177113f4f1",
                 "shasum": ""
             },
             "require": {
@@ -357,7 +356,7 @@
             ],
             "description": "Full UI theme for CakePHP 2.x",
             "homepage": "https://github.com/anklimsk/cakephp-theme",
-            "time": "2019-03-15 07:24:08"
+            "time": "2019-12-01T16:42:29+00:00"
         },
         {
             "name": "cakephp/datasources",
@@ -409,7 +408,7 @@
                 "sqlserver",
                 "sybase"
             ],
-            "time": "2017-11-13 12:04:37"
+            "time": "2017-11-13T12:04:37+00:00"
         },
         {
             "name": "codaxis/cakephp-bootstrap3-helpers",
@@ -449,20 +448,20 @@
                 "cakephp",
                 "helper"
             ],
-            "time": "2015-12-29 19:50:28"
+            "time": "2015-12-29T19:50:28+00:00"
         },
         {
             "name": "composer/installers",
-            "version": "v1.6.0",
+            "version": "v1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "cfcca6b1b60bc4974324efb5783c13dca6932b5b"
+                "reference": "141b272484481432cda342727a427dc1e206bfa0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/cfcca6b1b60bc4974324efb5783c13dca6932b5b",
-                "reference": "cfcca6b1b60bc4974324efb5783c13dca6932b5b",
+                "url": "https://api.github.com/repos/composer/installers/zipball/141b272484481432cda342727a427dc1e206bfa0",
+                "reference": "141b272484481432cda342727a427dc1e206bfa0",
                 "shasum": ""
             },
             "require": {
@@ -518,6 +517,7 @@
                 "RadPHP",
                 "SMF",
                 "Thelia",
+                "Whmcs",
                 "WolfCMS",
                 "agl",
                 "aimeos",
@@ -540,6 +540,7 @@
                 "installer",
                 "itop",
                 "joomla",
+                "known",
                 "kohana",
                 "laravel",
                 "lavalite",
@@ -569,7 +570,7 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2018-08-27 06:10:37"
+            "time": "2019-08-12T15:00:31+00:00"
         },
         {
             "name": "dereuromark/cakephp-queue",
@@ -614,7 +615,7 @@
                 "deferred tasks",
                 "queue"
             ],
-            "time": "2016-01-10 02:59:02"
+            "time": "2016-01-10T02:59:02+00:00"
         },
         {
             "name": "dereuromark/cakephp-shim",
@@ -666,7 +667,7 @@
                 "plugin",
                 "shim"
             ],
-            "time": "2018-04-13 22:04:53"
+            "time": "2018-04-13T22:04:53+00:00"
         },
         {
             "name": "dereuromark/cakephp-tools",
@@ -718,7 +719,7 @@
                 "tools",
                 "utils"
             ],
-            "time": "2018-09-08 15:47:19"
+            "time": "2018-09-08T15:47:19+00:00"
         },
         {
             "name": "markstory/asset_compress",
@@ -761,7 +762,7 @@
                 "minifier",
                 "sass"
             ],
-            "time": "2017-12-03 02:22:00"
+            "time": "2017-12-03T02:22:00+00:00"
         },
         {
             "name": "markstory/geshi",
@@ -801,7 +802,7 @@
                 "helper",
                 "highlighting"
             ],
-            "time": "2014-02-05 02:30:23"
+            "time": "2014-02-05T02:30:23+00:00"
         }
     ],
     "packages-dev": [],

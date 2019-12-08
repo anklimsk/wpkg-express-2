@@ -685,7 +685,7 @@ class Check extends AppModel {
 			]
 		],
 		CHECK_TYPE_HOST => [
-			CHECK_CONDITION_HOST_NAME => [
+			CHECK_CONDITION_HOST_HOSTNAME => [
 				'value' => [
 					'empty' => [
 						'rule' => 'notBlank',
@@ -992,30 +992,6 @@ class Check extends AppModel {
 	}
 
 /**
- * Return information of check
- *
- * @param int|string $id The ID of the record to read.
- * @return array|bool Return information of check,
- *  or False on failure.
- */
-	public function get($id) {
-		$conditions = [$this->alias . '.id' => $id];
-		$fields = [
-			$this->alias . '.id',
-			$this->alias . '.ref_id',
-			$this->alias . '.ref_type',
-			$this->alias . '.parent_id',
-			$this->alias . '.type',
-			$this->alias . '.condition',
-			$this->alias . '.path',
-			$this->alias . '.value'
-		];
-		$recursive = -1;
-
-		return $this->find('first', compact('conditions', 'fields', 'recursive'));
-	}
-
-/**
  * Return default values of check
  *
  * @param int|string $refType ID of type
@@ -1271,7 +1247,7 @@ class Check extends AppModel {
 				case CHECK_TYPE_HOST:
 					$type = 'host';
 					switch ($check['condition']) {
-						case CHECK_CONDITION_HOST_NAME:
+						case CHECK_CONDITION_HOST_HOSTNAME:
 							$condition = 'hostname';
 							break;
 						case CHECK_CONDITION_HOST_OS:

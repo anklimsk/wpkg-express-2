@@ -62,7 +62,7 @@ class Disable extends AppModel {
 	public function __construct($id = false, $table = null, $ds = null) {
 		parent::__construct($id, $table, $ds);
 
-		$this->_modelExtendQueuedTask = ClassRegistry::init('CakeTheme.ExtendQueuedTask');
+		$this->_modelExtendQueuedTask = ClassRegistry::init('ExtendQueuedTask');
 	}
 
 /**

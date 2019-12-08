@@ -216,7 +216,7 @@ class LogsController extends AppController {
  * @return void
  */
 	protected function _parse($hostName = null) {
-		$this->loadModel('CakeTheme.ExtendQueuedTask');
+		$this->loadModel('ExtendQueuedTask');
 		$this->ViewExtension->setRedirectUrl(null, 'log');
 		$taskParam = compact('hostName');
 		if ((bool)$this->ExtendQueuedTask->createJob('ParseLogs', $taskParam, null, 'parse')) {

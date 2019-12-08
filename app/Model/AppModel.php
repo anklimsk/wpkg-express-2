@@ -24,14 +24,14 @@
  * @package app.Model
  */
 
-App::uses('Model', 'Model');
+App::uses('ShimModel', 'Shim.Model');
 
 /**
  * Application level Model
  *
  * @package app.Model
  */
-class AppModel extends Model {
+class AppModel extends ShimModel {
 
 /**
  * Name of the validation string domain to use when translating validation errors.
@@ -104,5 +104,73 @@ class AppModel extends Model {
 		}
 
 		return parent::save($this->data, $validate, $fieldList);
+	}
+
+/**
+ * Shortcut method to find a specific entry via primary key.
+ *
+ * @param int|string|array $id ID of record or array data
+ *  for retrieving information
+ * @param array $options Options for find().
+ * @return mixed
+ * @throws RecordNotFoundException If record not found.
+ */
+		public function get($id, array $options = []) {
+				if (empty($options)) {
+					$options = [
+						'recursive' => -1,
+						'noException' => true
+					];
+				}
+
+		return parent::get($id, $options);
+		}
+
+/**
+ * Gets the DataSource connection name to which this model is bound.
+ *
+ * @return string|bool Return DataSource connection name, or False on failure
+ */
+		protected function _getDataSourceName() {
+			$ds = $this->getDataSource();
+
+			if (!isset($ds->config['datasource'])) {
+				return false;
+			}
+
+			return $ds->config['datasource'];
+		}
+
+/**
+ * Check model is bound with the 'Mysql' DataSource.
+ *
+ * @return bool Success
+ */
+		public function isDataSourceMysql() {
+			return $this->_getDataSourceName() === 'Database/Mysql';
+		}
+
+/**
+ * Check model is bound with the 'Postgres' DataSource.
+ *
+ * @return bool Success
+ */
+		public function isDataSourcePostgres() {
+			return $this->_getDataSourceName() === 'Database/Postgres';
+		}
+
+/**
+ * Returns an integer data type by DataSource.
+ *
+ * @return string Data type
+ */
+	public function getTypeIntegerByDS() {
+		$result = 'SIGNED';
+
+		if ($this->isDataSourcePostgres()) {
+			$result = 'INTEGER';
+		}
+
+		return $result;
 	}
 }

@@ -31,7 +31,7 @@
 	<div class="container">
 <?php
 		echo $this->ViewExtension->headerPage($pageHeader, $headerMenuActions);
-		echo $this->element('infoPreviewXml', compact('id', 'fullName', 'downloadUrl',
+		echo $this->element('infoPreviewXml', compact('fullName',
 			'selLine', 'errorMsg', 'outXML'));
 ?>
 	</div>

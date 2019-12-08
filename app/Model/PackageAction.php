@@ -225,7 +225,7 @@ class PackageAction extends AppModel {
 			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
-			'order' => 'CAST(ExitCode.code AS UNSIGNED)'
+			'order' => 'ExitCode.code'
 		],
 		'Check' => [
 			'className' => 'Check',
@@ -244,6 +244,23 @@ class PackageAction extends AppModel {
 			'order' => ['Check.lft' => 'asc']
 		],
 	];
+
+/**
+ * Constructor. Binds the model's database table to the object.
+ *
+ * @param bool|int|string|array $id Set this ID for this model on startup,
+ * can also be an array of options, see above.
+ * @param string|false $table Name of database table to use.
+ * @param string $ds DataSource connection name.
+ */
+		public function __construct($id = false, $table = null, $ds = null) {
+			parent::__construct($id, $table, $ds);
+
+			$intDataType = $this->getTypeIntegerByDS();
+			$this->hasMany['ExitCode']['order'] = ['(CASE WHEN ' . $this->ExitCode->alias .
+				'.code = \'*\' THEN 0 WHEN ' . $this->ExitCode->alias . '.code = \'any\' THEN 0 ELSE CAST(' .
+				$this->ExitCode->alias . '.code AS ' . $intDataType . ') END)' => 'asc'];
+		}
 
 /**
  * Returns a list of all events that will fire in the model during it's lifecycle.
@@ -373,6 +390,7 @@ class PackageAction extends AppModel {
 			'Check.Attribute' => ['fields' => '*'],
 			'ExitCode',
 			'ExitCode.ExitcodeRebootType',
+			'ExitCode.ExitCodeDirectory',
 			'IncludeAction',
 			'PackageActionType',
 			'Attribute' => ['fields' => '*'],
@@ -383,38 +401,6 @@ class PackageAction extends AppModel {
 		];
 
 		return $this->find('all', compact('conditions', 'fields', 'contain', 'order'));
-	}
-
-/**
- * Return information of package action
- *
- * @param int|string $id The ID of the record to read.
- * @return array|bool Return information of package action,
- *  or False on failure.
- */
-	public function get($id = null) {
-		if (empty($id)) {
-			return false;
-		}
-
-		$fields = [
-			$this->alias . '.id',
-			$this->alias . '.package_id',
-			$this->alias . '.action_type_id',
-			$this->alias . '.command_type_id',
-			$this->alias . '.include_action_id',
-			$this->alias . '.parent_id',
-			$this->alias . '.lft',
-			$this->alias . '.rght',
-			$this->alias . '.command',
-			$this->alias . '.timeout',
-			$this->alias . '.workdir',
-			$this->alias . '.expand_url',
-		];
-		$conditions = [$this->alias . '.id' => $id];
-		$recursive = -1;
-
-		return $this->find('first', compact('conditions', 'fields', 'recursive'));
 	}
 
 /**

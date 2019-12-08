@@ -266,12 +266,13 @@ class Profile extends AppModel {
  * Return information of profile
  *
  * @param int|string $id The ID of the record to read.
+ * @param array $options Options for find() (not used in this method).
  * @param bool $full Flag of inclusion in the result
  *  full information.
  * @return array|bool Return information of profile,
  *  or False on failure.
  */
-	public function get($id = null, $full = true) {
+	public function get($id = null, array $options = [], $full = true) {
 		if (empty($id)) {
 			return false;
 		}
@@ -661,7 +662,7 @@ class Profile extends AppModel {
 			'Package',
 		];
 
-		return $this->find('first', compact('conditions', 'fields', 'contain', 'order'));
+		return $this->find('first', compact('conditions', 'fields', 'contain'));
 	}
 
 /**
@@ -838,11 +839,11 @@ class Profile extends AppModel {
 			return false;
 		}
 		$conditions = [$this->PackagesProfile->alias . '.profile_id' => $id];
-		if (!$this->PackagesProfile->deleteAll($conditions, true, false)) {
+		if (!$this->PackagesProfile->deleteAllJoinless($conditions, true, false)) {
 			return false;
 		}
 		$conditions = [$this->ProfilesProfile->alias . '.profile_id' => $id];
-		if (!$this->ProfilesProfile->deleteAll($conditions, true, false)) {
+		if (!$this->ProfilesProfile->deleteAllJoinless($conditions, true, false)) {
 			return false;
 		}
 

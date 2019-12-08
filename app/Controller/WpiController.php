@@ -210,7 +210,7 @@ class WpiController extends AppController {
  */
 	protected function _view($id = null) {
 		$this->view = 'view';
-		$wpiPackage = $this->Wpi->get($id, true);
+		$wpiPackage = $this->Wpi->get($id, [], true);
 		if (empty($wpiPackage)) {
 			return $this->ViewExtension->setExceptionMessage(new NotFoundException(__('Invalid ID for WPI package')));
 		}
@@ -412,7 +412,7 @@ class WpiController extends AppController {
  */
 	protected function _edit($id = null) {
 		$this->view = 'edit';
-		$wpi = $this->Wpi->get($id, false);
+		$wpi = $this->Wpi->get($id, [], false);
 		if (empty($wpi)) {
 			return $this->ViewExtension->setExceptionMessage(new NotFoundException(__('Invalid ID for WPI package')));
 		}
@@ -567,7 +567,7 @@ class WpiController extends AppController {
 		switch ($type) {
 			case 'config':
 				if ($this->RequestHandler->isXml()) {
-					return $this->ExportData->download(WPI_XML_TYPE_WPKG);
+					return $this->ExportData->download(WPI_XML_TYPE_WPKG, false);
 				} elseif ($this->RequestHandler->prefers('js')) {
 					$this->view = 'download';
 					$this->layout = 'wpi';
@@ -584,7 +584,7 @@ class WpiController extends AppController {
 			case 'profiles':
 			case 'hosts':
 				if ($this->RequestHandler->isXml()) {
-					return $this->ExportData->download($type);
+					return $this->ExportData->download($type, false);
 				} else {
 					throw new BadRequestException();
 				}

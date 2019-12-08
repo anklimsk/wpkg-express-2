@@ -240,7 +240,7 @@ class ProfilesController extends AppController {
  */
 	protected function _edit($id = null) {
 		$this->view = 'edit';
-		$profile = $this->Profile->get($id, false);
+		$profile = $this->Profile->get($id, [], false);
 		if (empty($profile)) {
 			return $this->ViewExtension->setExceptionMessage(new NotFoundException(__('Invalid ID for profile')));
 		}

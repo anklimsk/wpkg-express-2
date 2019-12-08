@@ -141,7 +141,7 @@ class ReportsController extends AppController {
  * @return void
  */
 	protected function _parse($hostName = null) {
-		$this->loadModel('CakeTheme.ExtendQueuedTask');
+		$this->loadModel('ExtendQueuedTask');
 		$this->ViewExtension->setRedirectUrl(null, 'report');
 		$taskParam = compact('hostName');
 		if ((bool)$this->ExtendQueuedTask->createJob('ParseDatabases', $taskParam, null, 'parse')) {

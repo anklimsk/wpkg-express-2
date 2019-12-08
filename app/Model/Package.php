@@ -680,12 +680,13 @@ class Package extends AppModel {
  * Return information of package
  *
  * @param int|string $id The ID of the record to read.
+ * @param array $options Options for find() (not used in this method).
  * @param bool $full Flag of inclusion in the result
  *  full information.
  * @return array|bool Return information of package,
  *  or False on failure.
  */
-	public function get($id = null, $full = true) {
+	public function get($id = null, array $options = [], $full = true) {
 		if (empty($id)) {
 			return false;
 		}
@@ -1321,7 +1322,7 @@ class Package extends AppModel {
 			$conditions = [
 				$this->$dependModelName->alias . '.package_id' => $id
 			];
-			if (!$this->$dependModelName->deleteAll($conditions, true, false)) {
+			if (!$this->$dependModelName->deleteAllJoinless($conditions, true, false)) {
 				return false;
 			}
 		}
@@ -1334,7 +1335,7 @@ class Package extends AppModel {
 				return false;
 			}
 			$conditions = [$this->PackageAction->alias . '.package_id' => $id];
-			if (!$this->PackageAction->deleteAll($conditions, true, false)) {
+			if (!$this->PackageAction->deleteAllJoinless($conditions, true, false)) {
 				return false;
 			}
 		}

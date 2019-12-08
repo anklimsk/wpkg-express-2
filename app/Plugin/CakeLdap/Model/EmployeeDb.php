@@ -4,7 +4,7 @@
  *  management employees from DB.
  *
  * CakeLdap: Authentication of users by member group of Active Directory.
- * @copyright Copyright 2017-2018, Andrey Klimov.
+ * @copyright Copyright 2017-2019, Andrey Klimov.
  * @license https://opensource.org/licenses/mit-license.php MIT License
  * @package plugin.Model
  */
@@ -782,7 +782,7 @@ class EmployeeDb extends CakeLdapAppModel {
 		$callbacks = false;
 		$this->recursive = -1;
 
-		return (bool)$this->find('count', compact('count', 'conditions', 'callbacks'));
+		return (bool)$this->find('count', compact('conditions', 'callbacks'));
 	}
 
 /**

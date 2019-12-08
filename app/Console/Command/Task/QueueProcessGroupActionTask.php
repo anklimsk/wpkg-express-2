@@ -43,7 +43,7 @@ class QueueProcessGroupActionTask extends AppShell {
  */
 	public $uses = [
 		'Queue.QueuedTask',
-		'CakeTheme.ExtendQueuedTask',
+		'ExtendQueuedTask',
 	];
 
 /**

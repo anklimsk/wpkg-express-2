@@ -169,7 +169,7 @@ class WpiCategoriesController extends AppController {
  */
 	protected function _edit($id = null) {
 		$this->view = 'edit';
-		$wpiCategory = $this->WpiCategory->get($id, false);
+		$wpiCategory = $this->WpiCategory->get($id);
 		if (empty($wpiCategory)) {
 			return $this->ViewExtension->setExceptionMessage(new NotFoundException(__('Invalid ID for WPI category')));
 		}

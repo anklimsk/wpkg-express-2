@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace PHPHtmlParser\Dom;
 
 use ArrayAccess;
@@ -28,10 +28,10 @@ class Collection implements IteratorAggregate, ArrayAccess, Countable
      *
      * @param string $method
      * @param array $arguments
-     * @return mixed;
+     * @return mixed
      * @throws EmptyCollectionException
      */
-    public function __call($method, $arguments)
+    public function __call(string $method, array $arguments)
     {
         $node = reset($this->collection);
         if ($node instanceof AbstractNode) {
@@ -64,15 +64,14 @@ class Collection implements IteratorAggregate, ArrayAccess, Countable
      * the collection.
      *
      * @return string
-     * @throws EmptyCollectionException
      */
-    public function __toString()
+    public function __toString(): string
     {
         $node = reset($this->collection);
         if ($node instanceof AbstractNode) {
             return (string)$node;
         } else {
-            throw new EmptyCollectionException('The collection does not contain any Nodes.');
+            return '';
         }
     }
 
@@ -81,7 +80,7 @@ class Collection implements IteratorAggregate, ArrayAccess, Countable
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->collection);
     }
@@ -91,7 +90,7 @@ class Collection implements IteratorAggregate, ArrayAccess, Countable
      *
      * @return ArrayIterator
      */
-    public function getIterator()
+    public function getIterator(): ArrayIterator
     {
         return new ArrayIterator($this->collection);
     }
@@ -102,7 +101,7 @@ class Collection implements IteratorAggregate, ArrayAccess, Countable
      * @param mixed $offset
      * @param mixed $value
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->collection[] = $value;
@@ -117,7 +116,7 @@ class Collection implements IteratorAggregate, ArrayAccess, Countable
      * @param mixed $offset
      * @return bool
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->collection[$offset]);
     }
@@ -127,7 +126,7 @@ class Collection implements IteratorAggregate, ArrayAccess, Countable
      *
      * @param mixed $offset
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->collection[$offset]);
     }
@@ -148,7 +147,7 @@ class Collection implements IteratorAggregate, ArrayAccess, Countable
      *
      * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
         return $this->collection;
     }
@@ -157,9 +156,9 @@ class Collection implements IteratorAggregate, ArrayAccess, Countable
      * Similar to jQuery "each" method. Calls the callback with each
      * Node in this collection.
      *
-     * @param callback $callback
+     * @param callable $callback
      */
-    public function each($callback)
+    public function each(callable $callback)
     {
         foreach ($this->collection as $key => $value) {
             $callback($value, $key);

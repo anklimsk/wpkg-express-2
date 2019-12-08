@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace PHPHtmlParser;
 
 use PHPHtmlParser\Exceptions\CurlException;
@@ -18,7 +18,7 @@ class Curl implements CurlInterface
      * @return string
      * @throws CurlException
      */
-    public function get($url)
+    public function get(string $url): string
     {
         $ch = curl_init($url);
 
@@ -28,6 +28,9 @@ class Curl implements CurlInterface
 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36');
+        curl_setopt($ch, CURLOPT_URL, $url);
 
         $content = curl_exec($ch);
         if ($content === false) {

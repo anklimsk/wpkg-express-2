@@ -1,8 +1,7 @@
 language: php
 
 php:
-  - 5.6
-  - 7.1
+  - 7.3
 
 cache:
   directories:
@@ -14,34 +13,35 @@ env:
     - REQUIRE="anklimsk/cakephp-console-installer dereuromark/cakephp-queue:^2.3.0"
     - DB=mysql
     - CAKE_REF=2.x
+    - PHPUNIT=5.7.19
+
+services:
+  - mysql
 
 matrix:
   include:
-    - php: 7.1
+    - php: 7.3
       env:
         - CODECOVERAGE=1
-    - php: 7.1
+    - php: 7.3
       env:
         - PHPCS=1
         - PHPCS_IGNORE=CakeInstaller,CakeBasicFunctions,CakeExtendTest,CakeConfigPlugin,CakeTheme,AssetCompress,Bs3Helpers,Queue,Shim,Tools
-    - php: 7.1
+    - php: 7.3
       env:
         - FOC_VALIDATE=1
 
 before_script:
-  - git clone -b master https://github.com/FriendsOfCake/travis.git --depth 1 ../travis
+  - git clone -b master https://github.com/anklimsk/travis.git --depth 1 ../travis
   - travis_wait ../travis/before_script.sh
   - if [ -f "../cakephp/app/Console/cake" ]; then ../cakephp/app/Console/cake CakeInstaller setsecurkey --yes --app $(cd ../cakephp/app; pwd); fi
-  - if [ -f "../cakephp/app/Config/database.php" ]; then sed -i -r "/$test = array\(/a 'encoding' => 'utf8'," ../cakephp/app/Config/database.php; fi
   - if [ -f "../cakephp/app/Plugin/CakeTheme/Config/asset_compress.local.ini" ]; then cp "../cakephp/app/Plugin/CakeTheme/Config/asset_compress.local.ini" "../cakephp/app/Config/asset_compress.ini"; fi
 
 script:
   - ../travis/script.sh
 
 after_success:
-  - if [ -f "../cakephp/app/clover.xml" ]; then cp ../cakephp/app/clover.xml ../cakephp/app/Plugin/$PLUGIN_NAME; fi
-  - if [ -d "../cakephp/app/Plugin/$PLUGIN_NAME" ]; then cd ../cakephp/app/Plugin/$PLUGIN_NAME; fi
-  - if [ "$CODECOVERAGE" == '1' ]; then wget -O codecov.sh https://codecov.io/bash; bash codecov.sh; fi
+  - ../travis/after_success.sh
 
 notifications:
   email: false

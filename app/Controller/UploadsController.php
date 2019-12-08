@@ -64,7 +64,7 @@ class UploadsController extends AppController {
  */
 	public $uses = [
 		'Import',
-		'CakeTheme.ExtendQueuedTask'
+		'ExtendQueuedTask'
 	];
 
 /**

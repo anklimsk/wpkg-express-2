@@ -1,7 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 namespace PHPHtmlParser\Dom;
 
-use PHPHtmlParser\Dom;
 use stringEncode\Encode;
 
 /**
@@ -34,6 +33,13 @@ class Tag
     protected $selfClosing = false;
 
     /**
+     * If self-closing, will this use a trailing slash. />
+     *
+     * @var bool
+     */
+    protected $trailingSlash = true;
+
+    /**
      * Tag noise
      */
     protected $noise = '';
@@ -46,11 +52,16 @@ class Tag
     protected $encode = null;
 
     /**
+     * @var bool
+     */
+    private $HtmlSpecialCharsDecode = false;
+
+    /**
      * Sets up the tag with a name.
      *
      * @param $name
      */
-    public function __construct($name)
+    public function __construct(string $name)
     {
         $this->name = $name;
     }
@@ -82,7 +93,7 @@ class Tag
      *
      * @return string
      */
-    public function name()
+    public function name(): string
     {
         return $this->name;
     }
@@ -90,11 +101,26 @@ class Tag
     /**
      * Sets the tag to be self closing.
      *
-     * @return $this
+     * @return Tag
+     * @chainable
      */
-    public function selfClosing()
+    public function selfClosing(): Tag
     {
         $this->selfClosing = true;
+
+        return $this;
+    }
+
+
+    /**
+     * Sets the tag to not use a trailing slash.
+     *
+     * @return Tag
+     * @chainable
+     */
+    public function noTrailingSlash(): Tag
+    {
+        $this->trailingSlash = false;
 
         return $this;
     }
@@ -104,7 +130,7 @@ class Tag
      *
      * @return bool
      */
-    public function isSelfClosing()
+    public function isSelfClosing(): bool
     {
         return $this->selfClosing;
     }
@@ -113,19 +139,30 @@ class Tag
      * Sets the encoding type to be used.
      *
      * @param Encode $encode
+     * @return void
      */
-    public function setEncoding(Encode $encode)
+    public function setEncoding(Encode $encode): void
     {
         $this->encode = $encode;
     }
 
     /**
+     * @param bool $htmlSpecialCharsDecode
+     * @return void
+     */
+    public function setHtmlSpecialCharsDecode($htmlSpecialCharsDecode = false): void
+    {
+        $this->HtmlSpecialCharsDecode = $htmlSpecialCharsDecode;
+    }
+
+    /**
      * Sets the noise for this tag (if any)
      *
-     * @param $noise
-     * @return $this
+     * @param string $noise
+     * @return Tag
+     * @chainable
      */
-    public function noise($noise)
+    public function noise(string $noise): Tag
     {
         $this->noise = $noise;
 
@@ -137,9 +174,10 @@ class Tag
      *
      * @param string $key
      * @param string|array $value
-     * @return $this
+     * @return Tag
+     * @chainable
      */
-    public function setAttribute($key, $value)
+    public function setAttribute(string $key, $value): Tag
     {
         $key = strtolower($key);
         if ( ! is_array($value)) {
@@ -148,15 +186,62 @@ class Tag
                 'doubleQuote' => true,
             ];
         }
+        if ($this->HtmlSpecialCharsDecode) {
+            $value['value'] = htmlspecialchars_decode($value['value']);
+        }
         $this->attr[$key] = $value;
 
         return $this;
     }
 
     /**
+     * Set inline style attribute value.
+     *
+     * @param mixed $attr_key
+     * @param mixed $attr_value
+     */
+    public function setStyleAttributeValue($attr_key, $attr_value): void
+    {
+        $style_array = $this->getStyleAttributeArray();
+        $style_array[$attr_key] = $attr_value;
+
+        $style_string = '';
+        foreach ($style_array as $key => $value) {
+            $style_string .= $key . ':' . $value . ';';
+        }
+
+        $this->setAttribute('style', $style_string);
+    }
+
+    /**
+     * Get style attribute in array
+     *
+     * @return array
+     */
+    public function getStyleAttributeArray(): array
+    {
+        $value = $this->getAttribute('style')['value'];
+
+        if ($value === null) {
+            return [];
+        }
+
+        $value = explode(';', substr(trim($value), 0, -1));
+        $result = [];
+        foreach ($value as $attr) {
+            $attr = explode(':', $attr);
+            $result[$attr[0]] = $attr[1];
+        }
+
+        return $result;
+    }
+
+
+
+    /**
      * Removes an attribute from this tag.
      *
-     * @param $key
+     * @param mixed $key
      * @return void
      */
     public function removeAttribute($key)
@@ -211,8 +296,9 @@ class Tag
      * @param string $key
      * @return mixed
      */
-    public function getAttribute($key)
+    public function getAttribute(string $key)
     {
+        $key = strtolower($key);
         if ( ! isset($this->attr[$key])) {
             return null;
         }
@@ -223,6 +309,17 @@ class Tag
         }
 
         return $this->attr[$key];
+    }
+
+    /**
+     * Returns TRUE if node has attribute
+     *
+     * @param string $key
+     * @return bool
+     */
+    public function hasAttribute(string $key)
+    {
+        return isset($this->attr[$key]);
     }
 
     /**
@@ -247,7 +344,7 @@ class Tag
             }
         }
 
-        if ($this->selfClosing) {
+        if ($this->selfClosing && $this->trailingSlash) {
             return $return.' />';
         } else {
             return $return.'>';

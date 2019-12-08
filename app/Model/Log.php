@@ -121,7 +121,7 @@ class Log extends AppModel {
 	public function __construct($id = false, $table = null, $ds = null) {
 		parent::__construct($id, $table, $ds);
 
-		$this->_modelExtendQueuedTask = ClassRegistry::init('CakeTheme.ExtendQueuedTask');
+		$this->_modelExtendQueuedTask = ClassRegistry::init('ExtendQueuedTask');
 	}
 
 /**
@@ -657,7 +657,7 @@ class Log extends AppModel {
 			'LogType.id',
 			'LogType.name',
 		];
-		$group = 'LogType.name';
+		$group = ['LogType.id', 'LogType.name'];
 		$order = ['LogType.id' => 'asc'];
 		$contain = ['LogType'];
 		$data = $this->find('all', compact('fields', 'group', 'order', 'contain'));

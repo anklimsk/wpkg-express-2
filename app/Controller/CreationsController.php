@@ -55,7 +55,7 @@ class CreationsController extends AppController {
  */
 	public $uses = [
 		'Import',
-		'CakeTheme.ExtendQueuedTask'
+		'ExtendQueuedTask'
 	];
 
 /**

@@ -73,15 +73,14 @@ class ExitCode extends AppModel {
 			],
 		],
 		'code' => [
-			'isvalidcode' => [
-				'rule' => ['custom', '/^(?:any|\d+|\*)$/'],
+			'isValidCode' => [
+				'rule' => ['custom', '/^(?:any|\-?\d+|\*)$/'],
 				'required' => true,
 				'message' => "Attribute the exit code must be an integer or a string of 'any' or the symbol *.",
 				'last' => true
 			],
-			'uniqueCode' => [
-				'rule' => ['isUnique', ['package_action_id', 'code'], false],
-				'on' => 'create',
+			'isUniqueCode' => [
+				'rule' => 'isUniqueCode',
 				'required' => true,
 				'message' => "The exit code's code already exists for this package action.",
 				'last' => true
@@ -122,10 +121,79 @@ class ExitCode extends AppModel {
 			'foreignKey' => '',
 			'conditions' => '',
 			'order' => '',
-			'dependent' => false,
-			'finderQuery' => 'SELECT ExitCodeDirectory.description FROM exit_code_directory AS ExitCodeDirectory JOIN exit_codes AS ExitCode ON (ExitCode.id = {$__cakeID__$}) AND (ExitCodeDirectory.code = ExitCode.code) AND (ExitCode.code NOT IN ("any", "*"));'
+			'dependent' => false
 		]
 	];
+
+/**
+ * Constructor. Binds the model's database table to the object.
+ *
+ * @param bool|int|string|array $id Set this ID for this model on startup,
+ * can also be an array of options, see above.
+ * @param string|false $table Name of database table to use.
+ * @param string $ds DataSource connection name.
+ */
+	public function __construct($id = false, $table = null, $ds = null) {
+		parent::__construct($id, $table, $ds);
+
+		$db = $this->getDataSource();
+		$modelExitCodeDirectory = $this->ExitCodeDirectory;
+		$intDataType = $this->getTypeIntegerByDS();
+		$alias = $modelExitCodeDirectory->alias;
+		$table = $db->fullTableName($modelExitCodeDirectory);
+		$conditions = '';
+		$fields = [
+			$alias . '.description'
+		];
+		$fields = $db->fields($modelExitCodeDirectory, $alias, $fields, true);
+		$joins = [
+			[
+				'table' => $db->fullTableName($this),
+				'alias' => $this->alias,
+				'type' => 'INNER',
+				'conditions' => [
+					'AND' => [
+						$this->alias . '.' . $this->primaryKey . ' = {$__cakeID__$}',
+						$this->alias . '.code NOT IN (\'any\', \'*\')',
+						$alias . '.code = CAST(' . $this->alias . '.code AS ' . $intDataType . ')'
+					]
+				]
+			]
+		];
+		$queryData = compact('fields', 'table', 'alias', 'conditions', 'joins');
+		$query = $db->buildStatement($queryData, $modelExitCodeDirectory);
+		$this->hasMany['ExitCodeDirectory']['finderQuery'] = $query;
+	}
+
+/**
+ * Returns False if field passed match any of their matching values.
+ *
+ * @param array $data Field/value pairs to search
+ * @return bool False if any records matching a field are found
+ */
+	public function isUniqueCode($data = null) {
+		if (empty($data) || !isset($this->data[$this->alias]['package_action_id'])) {
+			return false;
+		}
+
+		$value = strtolower(trim((string)array_shift($data)));
+				$conditions = [
+			$this->alias . '.package_action_id' => $this->data[$this->alias]['package_action_id']
+		];
+
+		$anyValues = ['*', 'any'];
+		if (in_array($value, $anyValues)) {
+			$value = $anyValues;
+		}
+		$conditions[$this->alias . '.code'] = $value;
+
+		if (!empty($this->id)) {
+			$conditions[$this->alias . '.' . $this->primaryKey . ' !='] = $this->id;
+		}
+		$recursive = -1;
+
+		return !$this->find('count', compact('conditions', 'recursive'));
+	}
 
 /**
  * Called before each save operation, after validation. Return a non-true result
@@ -143,31 +211,6 @@ class ExitCode extends AppModel {
 		$this->data[$this->alias]['code'] = mb_strtolower($this->data[$this->alias]['code']);
 
 		return true;
-	}
-
-/**
- * Return information of exit code
- *
- * @param int|string $id The ID of the record to read.
- * @return array|bool Return information of exit code,
- *  or False on failure.
- */
-	public function get($id = null) {
-		if (empty($id)) {
-			return false;
-		}
-
-		$fields = [
-			$this->alias . '.id',
-			$this->alias . '.id',
-			$this->alias . '.package_action_id',
-			$this->alias . '.reboot_id',
-			$this->alias . '.code'
-		];
-		$conditions = [$this->alias . '.id' => $id];
-		$recursive = -1;
-
-		return $this->find('first', compact('conditions', 'fields', 'recursive'));
 	}
 
 /**
@@ -213,9 +256,12 @@ class ExitCode extends AppModel {
 			'ExitcodeRebootType',
 			'ExitCodeDirectory'
 		];
-		$order = [
-			'CAST(' . $this->alias . '.code AS UNSIGNED)',
-		];
+		$intDataType = $this->getTypeIntegerByDS();
+			$order = [
+				'(CASE WHEN ' . $this->alias . '.code = \'*\' THEN 0 WHEN ' .
+					$this->alias . '.code = \'any\' THEN 0 ELSE CAST(' .
+					$this->alias . '.code AS ' . $intDataType . ') END)' => 'asc'
+			];
 
 		return $this->find('all', compact('conditions', 'fields', 'contain', 'order'));
 	}

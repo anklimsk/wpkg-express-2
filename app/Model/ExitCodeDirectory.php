@@ -148,32 +148,6 @@ class ExitCodeDirectory extends AppModel {
 	}
 
 /**
- * Return record of exit code directory
- *
- * @param int|string $id The ID of the record to read.
- * @return array|bool Return record of exit code directory,
- *  or False on failure.
- */
-	public function get($id = null) {
-		if (empty($id)) {
-			return false;
-		}
-
-		$conditions = [$this->alias . '.id' => $id];
-		$fields = [
-			$this->alias . '.id',
-			$this->alias . '.lcid',
-			$this->alias . '.code',
-			$this->alias . '.hexadecimal',
-			$this->alias . '.constant',
-			$this->alias . '.description',
-		];
-		$recursive = -1;
-
-		return $this->find('first', compact('conditions', 'fields', 'recursive'));
-	}
-
-/**
  * Return description of exit code
  *
  * @param int|string $code The exit code for retrieve description.
@@ -182,7 +156,8 @@ class ExitCodeDirectory extends AppModel {
  */
 	public function getDescription($code = null) {
 		$code = (string)$code;
-		if ((empty($code) && ($code !== '0')) || !ctype_digit($code)) {
+		if ((empty($code) && ($code !== '0')) ||
+			in_array($code, ['*', 'any'])) {
 			return false;
 		}
 

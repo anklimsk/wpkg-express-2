@@ -4,8 +4,22 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInite35f0d08909faf8e5ff19a356774e1da
+class ComposerStaticInitc8082cc5475e197ef2a8f71e105281e6
 {
+    public static $prefixLengthsPsr4 = array (
+        'P' => 
+        array (
+            'PHPHtmlParser\\' => 14,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'PHPHtmlParser\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/paquettg/php-html-parser/src/PHPHtmlParser',
+        ),
+    );
+
     public static $prefixesPsr0 = array (
         's' => 
         array (
@@ -14,19 +28,14 @@ class ComposerStaticInite35f0d08909faf8e5ff19a356774e1da
                 0 => __DIR__ . '/..' . '/paquettg/string-encode/src',
             ),
         ),
-        'P' => 
-        array (
-            'PHPHtmlParser' => 
-            array (
-                0 => __DIR__ . '/..' . '/paquettg/php-html-parser/src',
-            ),
-        ),
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixesPsr0 = ComposerStaticInite35f0d08909faf8e5ff19a356774e1da::$prefixesPsr0;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitc8082cc5475e197ef2a8f71e105281e6::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitc8082cc5475e197ef2a8f71e105281e6::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitc8082cc5475e197ef2a8f71e105281e6::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

@@ -316,34 +316,6 @@ class Variable extends AppModel {
 	}
 
 /**
- * Return information of variable
- *
- * @param int|string $id The ID of the record to read.
- * @return array|bool Return information of variable,
- *  or False on failure.
- */
-	public function get($id = null) {
-		if (empty($id)) {
-			return false;
-		}
-
-		$conditions = ['Variable.id' => $id];
-		$fields = [
-			$this->alias . '.id',
-			$this->alias . '.ref_id',
-			$this->alias . '.ref_type',
-			$this->alias . '.parent_id',
-			$this->alias . '.lft',
-			$this->alias . '.rght',
-			$this->alias . '.name',
-			$this->alias . '.value',
-		];
-		$recursive = -1;
-
-		return $this->find('first', compact('conditions', 'fields', 'recursive'));
-	}
-
-/**
  * Return default values of variable
  *
  * @param int|string $refType ID of type

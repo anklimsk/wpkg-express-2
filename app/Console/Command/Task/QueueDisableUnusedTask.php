@@ -42,7 +42,7 @@ class QueueDisableUnusedTask extends AppShell {
  */
 	public $uses = [
 		'Queue.QueuedTask',
-		'CakeTheme.ExtendQueuedTask',
+		'ExtendQueuedTask',
 		'Disable',
 	];
 

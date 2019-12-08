@@ -137,7 +137,7 @@ class Report extends AppModel {
 	public function __construct($id = false, $table = null, $ds = null) {
 		parent::__construct($id, $table, $ds);
 
-		$this->_modelExtendQueuedTask = ClassRegistry::init('CakeTheme.ExtendQueuedTask');
+		$this->_modelExtendQueuedTask = ClassRegistry::init('ExtendQueuedTask');
 	}
 
 /**
@@ -611,7 +611,7 @@ class Report extends AppModel {
 			'ReportState.id',
 			'ReportState.name',
 		];
-		$group = 'ReportState.name';
+		$group = ['ReportState.id', 'ReportState.name'];
 		$order = ['ReportState.id' => 'asc'];
 		$contain = ['ReportState'];
 		$data = $this->find('all', compact('fields', 'group', 'order', 'contain'));

@@ -173,12 +173,13 @@ class Wpi extends AppModel {
  * Return information of WPI package
  *
  * @param int|string $id The ID of the record to read.
+ * @param array $options Options for find() (not used in this method).
  * @param bool $full Flag of inclusion in the result
  *  full information.
  * @return array|bool Return information of WPI package,
  *  or False on failure.
  */
-	public function get($id = null, $full = true) {
+	public function get($id = null, array $options = [], $full = true) {
 		if (empty($id)) {
 			return false;
 		}
@@ -387,7 +388,7 @@ class Wpi extends AppModel {
 					case 'hosts_path':
 						$pathType = mb_strstr($param['@name'], '_path', true);
 						if ($pathType === false) {
-							continue;
+							continue 2;
 						}
 
 						$param['@value'] = mb_ereg_replace($pathType . '\.xml$', 'wpi/' . $pathType . '.xml', $param['@value']);

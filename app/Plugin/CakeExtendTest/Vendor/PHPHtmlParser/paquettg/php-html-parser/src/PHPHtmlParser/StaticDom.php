@@ -1,7 +1,11 @@
-<?php
+<?php declare(strict_types=1);
 namespace PHPHtmlParser;
 
+use PHPHtmlParser\Exceptions\ChildNotFoundException;
+use PHPHtmlParser\Exceptions\CircularException;
+use PHPHtmlParser\Exceptions\CurlException;
 use PHPHtmlParser\Exceptions\NotLoadedException;
+use PHPHtmlParser\Exceptions\StrictException;
 
 /**
  * Class StaticDom
@@ -22,7 +26,7 @@ final class StaticDom
      * @throws NotLoadedException
      * @return mixed
      */
-    public static function __callStatic($method, $arguments)
+    public static function __callStatic(string $method, array $arguments)
     {
         if (self::$dom instanceof Dom) {
             return call_user_func_array([self::$dom, $method], $arguments);
@@ -39,7 +43,7 @@ final class StaticDom
      * @param Dom $dom
      * @return bool
      */
-    public static function mount($className = 'Dom', Dom $dom = null)
+    public static function mount(string $className = 'Dom', Dom $dom = null): bool
     {
         if (class_exists($className)) {
             return false;
@@ -55,11 +59,14 @@ final class StaticDom
     /**
      * Creates a new dom object and calls load() on the
      * new object.
-     *
      * @param string $str
-     * @return $this
+     * @return Dom
+     * @throws ChildNotFoundException
+     * @throws CircularException
+     * @throws CurlException
+     * @throws StrictException
      */
-    public static function load($str)
+    public static function load(string $str): Dom
     {
         $dom       = new Dom;
         self::$dom = $dom;
@@ -70,11 +77,13 @@ final class StaticDom
     /**
      * Creates a new dom object and calls loadFromFile() on the
      * new object.
-     *
      * @param string $file
-     * @return $this
+     * @return Dom
+     * @throws ChildNotFoundException
+     * @throws CircularException
+     * @throws StrictException
      */
-    public static function loadFromFile($file)
+    public static function loadFromFile(string $file): Dom
     {
         $dom       = new Dom;
         self::$dom = $dom;
@@ -85,13 +94,16 @@ final class StaticDom
     /**
      * Creates a new dom object and calls loadFromUrl() on the
      * new object.
-     *
-     * @param string $url
-     * @param array $options
-     * @param CurlInterface $curl
-     * @return $this
+     * @param string                            $url
+     * @param array                             $options
+     * @param CurlInterface|null $curl
+     * @return Dom
+     * @throws ChildNotFoundException
+     * @throws CircularException
+     * @throws CurlException
+     * @throws StrictException
      */
-    public static function loadFromUrl($url, $options = [], CurlInterface $curl = null)
+    public static function loadFromUrl(string $url, array $options = [], CurlInterface $curl = null): Dom
     {
         $dom       = new Dom;
         self::$dom = $dom;
@@ -106,7 +118,7 @@ final class StaticDom
     /**
      * Sets the $dom variable to null.
      */
-    public static function unload()
+    public static function unload(): void
     {
         self::$dom = null;
     }

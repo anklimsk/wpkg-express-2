@@ -185,31 +185,20 @@ class PackageActionType extends AppModel {
 			];
 		}
 
-		return (bool)$this->saveAll($dataToSave, ['callbacks' => false]);
-	}
+				if (!$this->saveAll($dataToSave, ['callbacks' => false])) {
+					return false;
+				}
 
-/**
- * Return information of package action type
- *
- * @param int|string $id The ID of the record to read.
- * @return array|bool Return information of package action type,
- *  or False on failure.
- */
-	public function get($id = null) {
-		if (empty($id)) {
-			return false;
-		}
+				if ($this->isDataSourcePostgres()) {
+					$sql = 'SELECT setval(pg_get_serial_sequence(\'' . $this->table . '\', \'' . $this->primaryKey . '\'), ' .
+						'COALESCE((SELECT MAX(' . $this->primaryKey . ')+1 FROM ' . $this->table . '), 1), false)';
 
-		$conditions = [$this->alias . '.id' => $id];
-		$fields = [
-			$this->alias . '.id',
-			$this->alias . '.builtin',
-			$this->alias . '.name',
-			$this->alias . '.command',
-		];
-		$recursive = -1;
+					if (!$this->query($sql)) {
+						return false;
+					}
+				}
 
-		return $this->find('first', compact('conditions', 'fields', 'recursive'));
+				return true;
 	}
 
 /**

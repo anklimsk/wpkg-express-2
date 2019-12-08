@@ -30,7 +30,7 @@
 	<div class="row">
 		<div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
 <?php
-	echo $this->element('infoResultVerify', compact('treeState', 'controllerName', 'fullName', 'refType', 'refId'));
+	echo $this->element('infoResultVerify', compact('treeState', 'fullName'));
 ?>
 		</div>
 	</div>

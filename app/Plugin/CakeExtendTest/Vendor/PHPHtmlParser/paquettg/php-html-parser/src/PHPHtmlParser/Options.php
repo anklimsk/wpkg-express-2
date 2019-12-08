@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace PHPHtmlParser;
 
 /**
@@ -7,7 +7,15 @@ namespace PHPHtmlParser;
  * @package PHPHtmlParser
  * @property bool whitespaceTextNode
  * @property bool strict
- * @property bool enforceEncoding
+ * @property string|null enforceEncoding
+ * @property bool cleanupInput
+ * @property bool removeScripts
+ * @property bool removeStyles
+ * @property bool preserveLineBreaks
+ * @property bool removeDoubleSpace
+ * @property bool removeSmartyScripts
+ * @property bool depthFirstSearch
+ * @property bool htmlSpecialCharsDecode
  */
 class Options
 {
@@ -18,13 +26,17 @@ class Options
      * @param array
      */
     protected $defaults = [
-        'whitespaceTextNode' => true,
-        'strict'             => false,
-        'enforceEncoding'    => null,
-        'cleanupInput'       => true,
-        'removeScripts'      => true,
-        'removeStyles'       => true,
-        'preserveLineBreaks' => false,
+        'whitespaceTextNode'     => true,
+        'strict'                 => false,
+        'enforceEncoding'        => null,
+        'cleanupInput'           => true,
+        'removeScripts'          => true,
+        'removeStyles'           => true,
+        'preserveLineBreaks'     => false,
+        'removeDoubleSpace'      => true,
+        'removeSmartyScripts'    => true,
+        'depthFirstSearch'       => false,
+        'htmlSpecialCharsDecode' => false,
     ];
 
     /**
@@ -58,9 +70,10 @@ class Options
      * Sets a new options param to override the current option array.
      *
      * @param array $options
-     * @return $this
+     * @return Options
+     * @chainable
      */
-    public function setOptions(array $options)
+    public function setOptions(array $options): Options
     {
         foreach ($options as $key => $option) {
             $this->options[$key] = $option;
@@ -76,7 +89,7 @@ class Options
      * @param string
      * @return mixed
      */
-    public function get($key)
+    public function get(string $key)
     {
         if (isset($this->options[$key])) {
             return $this->options[$key];

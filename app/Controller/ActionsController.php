@@ -253,7 +253,7 @@ class ActionsController extends AppController {
  */
 	protected function _edit($id = null) {
 		$this->view = 'edit';
-		$packageAction = $this->PackageAction->get($id, false);
+		$packageAction = $this->PackageAction->get($id);
 		if (empty($packageAction)) {
 			return $this->ViewExtension->setExceptionMessage(new NotFoundException(__('Invalid ID for package action')));
 		}

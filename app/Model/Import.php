@@ -186,7 +186,7 @@ class Import extends AppModel {
 		$this->_modelVariable = ClassRegistry::init('Variable');
 		$this->_modelAttribute = ClassRegistry::init('Attribute');
 		$this->_modelCheck = ClassRegistry::init('Check');
-		$this->_modelExtendQueuedTask = ClassRegistry::init('CakeTheme.ExtendQueuedTask');
+		$this->_modelExtendQueuedTask = ClassRegistry::init('ExtendQueuedTask');
 
 		$modelConfig = ClassRegistry::init('Config');
 		$this->_caseSensitivity = $modelConfig->getConfig('caseSensitivity');

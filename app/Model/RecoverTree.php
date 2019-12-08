@@ -53,7 +53,7 @@ class RecoverTree extends AppModel {
  * @return bool Success
  */
 	public function recover($targetModelName = null, $refType = null, $refId = null, $idTask = null) {
-		$modelExtendQueuedTask = ClassRegistry::init('CakeTheme.ExtendQueuedTask');
+		$modelExtendQueuedTask = ClassRegistry::init('ExtendQueuedTask');
 		if (empty($targetModelName)) {
 			$modelExtendQueuedTask->updateTaskErrorMessage($idTask, __('Invalid arguments'));
 			return false;

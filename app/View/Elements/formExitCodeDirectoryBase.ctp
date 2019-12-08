@@ -42,9 +42,8 @@ if (!isset($isAddAction)) {
 	}
 	echo $this->Form->hiddenFields($hiddenFields);
 	echo $this->Form->input('ExitCodeDirectory.code', ['label' => __('Exit code') . ':', 'title' => __('Value of exit code.'),
-		'type' => 'spin', 'data-toggle' => 'tooltip', 'autocomplete' => 'off',
-		'data-spin-min' => '0', 'data-spin-max' => '2147483647',
-		'data-spin-maxboostedstep' => '100', 'autofocus' => true]);
+		'type' => 'text', 'autocomplete' => 'off',
+		'data-inputmask-regex' => '^\-?\d+$', 'autofocus' => true]);
 	echo $this->Form->input('ExitCodeDirectory.hexadecimal', ['label' => __('Hexadecimal') . ':', 'title' => __('Hexadecimal value of exit code. Format: 0x00000000'),
 		'type' => 'text', 'data-toggle' => 'tooltip', 'autocomplete' => 'off',
 		'data-inputmask-mask' => '0x#{8}']);
