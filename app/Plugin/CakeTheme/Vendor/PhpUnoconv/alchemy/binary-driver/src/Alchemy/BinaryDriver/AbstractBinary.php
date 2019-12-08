@@ -146,8 +146,8 @@ abstract class AbstractBinary extends EventEmitter implements BinaryInterface
         $binary = null;
         $binaries = is_array($binaries) ? $binaries : array($binaries);
 
-        foreach ($binaries as $candidate) {			
-            if (file_exists($candidate)/* && is_executable($candidate)*/) {
+        foreach ($binaries as $candidate) {
+            if (file_exists($candidate) && is_executable($candidate)) {
                 $binary = $candidate;
                 break;
             }

@@ -103,9 +103,9 @@ class ProcessBuilderFactory implements ProcessBuilderFactoryInterface
      */
     public function useBinary($binary)
     {
-        /*if (!is_executable($binary)) {
+        if (!is_executable($binary)) {
             throw new InvalidArgumentException(sprintf('`%s` is not an executable binary', $binary));
-        }*/
+        }
 
         $this->binary = $binary;
 
