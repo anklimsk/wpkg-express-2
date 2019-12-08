@@ -388,7 +388,7 @@ class Wpi extends AppModel {
 					case 'hosts_path':
 						$pathType = mb_strstr($param['@name'], '_path', true);
 						if ($pathType === false) {
-							continue;
+							continue 2;
 						}
 
 						$param['@value'] = mb_ereg_replace($pathType . '\.xml$', 'wpi/' . $pathType . '.xml', $param['@value']);

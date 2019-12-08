@@ -142,7 +142,7 @@ class GroupActionBehavior extends ModelBehavior {
 					$resultOperation = $model->delete($id, true);
 					break;
 				default:
-					continue;
+					continue 2;
 			}
 			if ($resultOperation) {
 				$result[$operationName][] = $name;
