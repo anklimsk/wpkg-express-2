@@ -156,7 +156,8 @@ class ExitCodeDirectory extends AppModel {
  */
 	public function getDescription($code = null) {
 		$code = (string)$code;
-		if ((empty($code) && ($code !== '0')) || !ctype_digit($code)) {
+		if ((empty($code) && ($code !== '0')) ||
+			in_array($code, ['*', 'any'])) {
 			return false;
 		}
 

@@ -79,9 +79,8 @@ class ExitCode extends AppModel {
 				'message' => "Attribute the exit code must be an integer or a string of 'any' or the symbol *.",
 				'last' => true
 			],
-			'uniqueCode' => [
-				'rule' => ['isUnique', ['package_action_id', 'code'], false],
-				'on' => 'create',
+			'isUniqueCode' => [
+				'rule' => 'isUniqueCode',
 				'required' => true,
 				'message' => "The exit code's code already exists for this package action.",
 				'last' => true
@@ -126,6 +125,36 @@ class ExitCode extends AppModel {
 			'finderQuery' => 'SELECT ExitCodeDirectory.description FROM exit_code_directory AS ExitCodeDirectory JOIN exit_codes AS ExitCode ON (ExitCode.id = {$__cakeID__$}) AND (ExitCodeDirectory.code = ExitCode.code) AND (ExitCode.code NOT IN ("any", "*"));'
 		]
 	];
+
+/**
+ * Returns False if field passed match any of their matching values.
+ *
+ * @param array $data Field/value pairs to search
+ * @return bool False if any records matching a field are found
+ */
+	public function isUniqueCode($data = null) {
+		if (empty($data) || !isset($this->data[$this->alias]['package_action_id'])) {
+			return false;
+		}
+
+		$value = strtolower(trim((string)array_shift($data)));
+				$conditions = [
+			$this->alias . '.package_action_id' => $this->data[$this->alias]['package_action_id']
+		];
+
+		$anyValues = ['*', 'any'];
+		if (in_array($value, $anyValues)) {
+			$value = $anyValues;
+		}
+		$conditions[$this->alias . '.code'] = $value;
+
+		if (!empty($this->id)) {
+			$conditions[$this->alias . '.' . $this->primaryKey . ' !='] = $this->id;
+		}
+		$recursive = -1;
+
+		return !$this->find('count', compact('conditions', 'recursive'));
+	}
 
 /**
  * Called before each save operation, after validation. Return a non-true result
