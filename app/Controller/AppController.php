@@ -218,6 +218,8 @@ class AppController extends Controller {
 		$projectName = __d('project', PROJECT_NAME);
 		$projectVersion = PROJECT_VERSION;
 		$projectAuthor = PROJECT_AUTHOR;
+		$emailContact = $this->Setting->getConfig('EmailContact');
+		$emailSubject = $this->Setting->getConfig('EmailSubject');
 
 		$this->set(compact(
 			'isExternalAuth',
@@ -225,7 +227,9 @@ class AppController extends Controller {
 			'useNavbarContainerFluid',
 			'projectName',
 			'projectVersion',
-			'projectAuthor'
+			'projectAuthor',
+			'emailContact',
+			'emailSubject'
 		));
 
 		parent::beforeFilter();
