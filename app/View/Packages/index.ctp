@@ -32,6 +32,6 @@
 <?php
 		echo $this->ViewExtension->headerPage($pageHeader, $headerMenuActions);
 		echo $this->element('tablePackage', compact('packages', 'groupActions', 'usePost',
-			'useTemplate', 'listReboot', 'listExecute', 'listNotify'));
+			'listReboot', 'listExecute', 'listNotify'));
 ?>
 	</div>

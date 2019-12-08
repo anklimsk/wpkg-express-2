@@ -31,6 +31,6 @@
 	<div class="container-fluid">
 <?php
 		echo $this->ViewExtension->headerPage($pageHeader, $headerMenuActions);
-		echo $this->element('tableProfile', compact('profiles', 'groupActions', 'usePost', 'useTemplate'));
+		echo $this->element('tableProfile', compact('profiles', 'groupActions', 'usePost'));
 ?>
 	</div>

@@ -33,6 +33,6 @@
 		$expandAll = true;
 		$draggable = true;
 		echo $this->ViewExtension->headerPage($pageHeader, $headerMenuActions);
-		echo $this->element('infoChecksControls', compact('checks', 'refType', 'refId', 'fullName', 'expandAll', 'draggable'));
+		echo $this->element('infoChecksControls', compact('checks', 'fullName', 'expandAll', 'draggable'));
 ?>
 	</div>

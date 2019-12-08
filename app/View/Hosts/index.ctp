@@ -31,6 +31,6 @@
 	<div class="container-fluid">
 <?php
 		echo $this->ViewExtension->headerPage($pageHeader, $headerMenuActions);
-		echo $this->element('tableHost', compact('hosts', 'groupActions', 'usePost', 'useTemplate'));
+		echo $this->element('tableHost', compact('hosts', 'groupActions', 'usePost'));
 ?>
 	</div>

@@ -662,7 +662,7 @@ class Profile extends AppModel {
 			'Package',
 		];
 
-		return $this->find('first', compact('conditions', 'fields', 'contain', 'order'));
+		return $this->find('first', compact('conditions', 'fields', 'contain'));
 	}
 
 /**
