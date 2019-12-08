@@ -62,7 +62,7 @@ class GroupActionBehavior extends ModelBehavior {
 			}
 		}
 
-		$this->_modelExtendQueuedTask = ClassRegistry::init('CakeTheme.ExtendQueuedTask');
+		$this->_modelExtendQueuedTask = ClassRegistry::init('ExtendQueuedTask');
 	}
 
 /**

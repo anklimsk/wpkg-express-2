@@ -185,7 +185,20 @@ class PackageActionType extends AppModel {
 			];
 		}
 
-		return (bool)$this->saveAll($dataToSave, ['callbacks' => false]);
+				if (!$this->saveAll($dataToSave, ['callbacks' => false])) {
+					return false;
+				}
+
+				if ($this->isDataSourcePostgres()) {
+					$sql = 'SELECT setval(pg_get_serial_sequence(\'' . $this->table . '\', \'' . $this->primaryKey . '\'), ' .
+						'COALESCE((SELECT MAX(' . $this->primaryKey . ')+1 FROM ' . $this->table . '), 1), false)';
+
+					if (!$this->query($sql)) {
+						return false;
+					}
+				}
+
+				return true;
 	}
 
 /**

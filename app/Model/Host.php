@@ -871,7 +871,7 @@ class Host extends AppModel {
 		$maxStep = 1;
 		$result = true;
 		set_time_limit(GENERATE_XML_TIME_LIMIT);
-		$modelExtendQueuedTask = ClassRegistry::init('CakeTheme.ExtendQueuedTask');
+		$modelExtendQueuedTask = ClassRegistry::init('ExtendQueuedTask');
 		$modelExtendQueuedTask->updateProgress($idTask, 0);
 
 		if (empty($computers)) {

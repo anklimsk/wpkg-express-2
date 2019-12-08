@@ -27,4 +27,24 @@ App::uses('Shell', 'Console');
  */
 class AppShell extends Shell {
 
+/**
+ * Initializes the Shell
+ * acts as constructor for subclasses
+ * allows configuration of tasks prior to shell execution
+ *
+ * @return void
+ * @link https://book.cakephp.org/2.0/en/console-and-shells.html#Shell::initialize
+ */
+	public function initialize() {
+		if (($this->name === 'Queue') && ($this->plugin === 'Queue')) {
+			$this->uses = array_map(
+				function ($v) {
+					return $v === 'Queue.QueuedTask' ? 'QueuedTask' : $v;
+				},
+				$this->uses
+			);
+		}
+
+		parent::initialize();
+	}
 }

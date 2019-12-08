@@ -42,7 +42,7 @@ class QueueGenerateXmlTask extends AppShell {
  */
 	public $uses = [
 		'Queue.QueuedTask',
-		'CakeTheme.ExtendQueuedTask',
+		'ExtendQueuedTask',
 		'Host',
 	];
 

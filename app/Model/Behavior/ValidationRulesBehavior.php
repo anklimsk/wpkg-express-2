@@ -95,10 +95,10 @@ class ValidationRulesBehavior extends ModelBehavior {
 		}
 
 		foreach ($habtmModels as $habtmModel) {
-			unset($model->data[$model->name][$habtmModel]);
-			if (isset($model->validationErrors[$habtmModel])) {
-				$model->$habtmModel->validationErrors[$habtmModel] = $model->validationErrors[$habtmModel];
-			}
+					unset($model->data[$model->name][$habtmModel]);
+					if (isset($model->validationErrors[$habtmModel])) {
+						$model->$habtmModel->validationErrors[$habtmModel] = $model->validationErrors[$habtmModel];
+					}
 		}
 
 		return true;
@@ -121,14 +121,18 @@ class ValidationRulesBehavior extends ModelBehavior {
 		$field = array_shift($fields);
 		$modelConfig = ClassRegistry::init('Config');
 		$caseSensitivity = $modelConfig->getConfig('caseSensitivity');
+				$conditions = [$model->alias . '.' . $field . ' = \'' . $data[$field] . '\''];
 
-		$binary = '';
-		if ($caseSensitivity) {
-			$binary = 'BINARY ';
-		}
-		$conditions = [
-			$binary . $model->alias . '.' . $field . ' = \'' . $data[$field] . '\''
-		];
+				if ($model->isDataSourceMysql()) {
+					if ($caseSensitivity) {
+						$conditions[0] = 'BINARY ' . $model->alias . '.' . $field . ' = \'' . $data[$field] . '\'';
+					}
+				} else {
+					if (!$caseSensitivity) {
+						$conditions[0] = 'LOWER(' . $model->alias . '.' . $field . ') = LOWER(\'' . $data[$field] . '\')';
+					}
+				}
+
 		if (!empty($model->id)) {
 			$conditions[$model->alias . '.' . $model->primaryKey . ' !='] = $model->id;
 		}

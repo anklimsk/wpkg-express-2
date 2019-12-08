@@ -109,7 +109,7 @@ class VerifyDataComponent extends BaseDataComponent {
  * @return CakeResponse|null
  */
 	public function actionRecover($refType = null, $refId = null) {
-		$modelExtendQueuedTask = ClassRegistry::init('CakeTheme.ExtendQueuedTask');
+		$modelExtendQueuedTask = ClassRegistry::init('ExtendQueuedTask');
 		$targetName = $this->_getTargetName();
 		$targetModelName = $this->_getTargetName(false);
 		$this->_controller->ViewExtension->setRedirectUrl(null, $targetName);

@@ -125,4 +125,52 @@ class AppModel extends ShimModel {
 
 		return parent::get($id, $options);
 		}
+
+/**
+ * Gets the DataSource connection name to which this model is bound.
+ *
+ * @return string|bool Return DataSource connection name, or False on failure
+ */
+		protected function _getDataSourceName() {
+			$ds = $this->getDataSource();
+
+			if (!isset($ds->config['datasource'])) {
+				return false;
+			}
+
+			return $ds->config['datasource'];
+		}
+
+/**
+ * Check model is bound with the 'Mysql' DataSource.
+ *
+ * @return bool Success
+ */
+		public function isDataSourceMysql() {
+			return $this->_getDataSourceName() === 'Database/Mysql';
+		}
+
+/**
+ * Check model is bound with the 'Postgres' DataSource.
+ *
+ * @return bool Success
+ */
+		public function isDataSourcePostgres() {
+			return $this->_getDataSourceName() === 'Database/Postgres';
+		}
+
+/**
+ * Returns an integer data type by DataSource.
+ *
+ * @return string Data type
+ */
+	public function getTypeIntegerByDS() {
+		$result = 'SIGNED';
+
+		if ($this->isDataSourcePostgres()) {
+			$result = 'INTEGER';
+		}
+
+		return $result;
+	}
 }

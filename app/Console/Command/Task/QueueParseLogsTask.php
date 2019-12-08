@@ -42,7 +42,7 @@ class QueueParseLogsTask extends AppShell {
  */
 	public $uses = [
 		'Queue.QueuedTask',
-		'CakeTheme.ExtendQueuedTask',
+		'ExtendQueuedTask',
 		'Log',
 	];
 

@@ -42,7 +42,7 @@ class QueueImportXmlTask extends AppShell {
  */
 	public $uses = [
 		'Queue.QueuedTask',
-		'CakeTheme.ExtendQueuedTask',
+		'ExtendQueuedTask',
 		'Import',
 		'Garbage'
 	];

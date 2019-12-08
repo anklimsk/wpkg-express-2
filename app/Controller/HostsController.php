@@ -481,7 +481,7 @@ class HostsController extends AppController {
 		}
 
 		if ($this->request->is('post')) {
-			$this->loadModel('CakeTheme.ExtendQueuedTask');
+			$this->loadModel('ExtendQueuedTask');
 			$computers = $this->request->data('Host.computers');
 			$hostTemplateId = $this->request->data('Host.host_template_id');
 			$profileTemplateId = $this->request->data('Host.profile_template_id');
@@ -532,7 +532,7 @@ class HostsController extends AppController {
  * @return void
  */
 	protected function _unused() {
-		$this->loadModel('CakeTheme.ExtendQueuedTask');
+		$this->loadModel('ExtendQueuedTask');
 		$this->ViewExtension->setRedirectUrl(null, 'host');
 		if ((bool)$this->ExtendQueuedTask->createJob('DisableUnused', null, null, 'process')) {
 			$this->Flash->success(__('Disabling unused hosts and profiles put in queue...'));

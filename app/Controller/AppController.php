@@ -92,6 +92,28 @@ class AppController extends Controller {
 	];
 
 /**
+ * Constructor.
+ *
+ * @param CakeRequest $request Request object for this controller. Can be null for testing,
+ *  but expect that features that use the request parameters will not work.
+ * @param CakeResponse $response Response object for this controller.
+ */
+	public function __construct($request = null, $response = null) {
+		$plugin = $request->param('plugin');
+		$controller = $request->param('controller');
+		if (($controller === 'events') && ($plugin === 'cake_theme')) {
+			$this->uses = array_map(
+				function ($v) {
+					return $v === 'CakeTheme.ExtendQueuedTask' ? 'ExtendQueuedTask' : $v;
+				},
+				$this->uses
+			);
+		}
+
+		parent::__construct($request, $response);
+	}
+
+/**
  * Check if the provided user is authorized.
  *  Uses to check whether or not a user is authorized.
  *

@@ -255,7 +255,7 @@ class Config extends AppModel {
 		}
 
 		$xmlFile = $wwwRoot . 'files' . DS . 'XML' . DS . 'CONFIG_TEMPLATE.xml';
-		$modelExtendQueuedTask = ClassRegistry::init('CakeTheme.ExtendQueuedTask');
+		$modelExtendQueuedTask = ClassRegistry::init('ExtendQueuedTask');
 		$taskParam = ['fileName' => $xmlFile];
 		return (bool)$modelExtendQueuedTask->createJob('ImportXml', $taskParam, null, 'import');
 	}
