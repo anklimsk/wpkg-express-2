@@ -168,7 +168,7 @@ class AppSchema extends CakeSchema {
 	public $exit_code_directory = [
 		'id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'unsigned' => false, 'key' => 'primary'],
 		'lcid' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 20, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
-		'code' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 8, 'unsigned' => false, 'key' => 'unique'],
+		'code' => ['type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false, 'key' => 'unique'],
 		'hexadecimal' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 10, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
 		'constant' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 80, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
 		'description' => ['type' => 'text', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
@@ -202,7 +202,7 @@ class AppSchema extends CakeSchema {
 		'id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'unsigned' => false, 'key' => 'primary'],
 		'package_action_id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'unsigned' => false],
 		'reboot_id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 4, 'unsigned' => false],
-		'code' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 8, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
+		'code' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 11, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
 		'indexes' => [
 			'PRIMARY' => ['column' => 'id', 'unique' => 1]
 		],

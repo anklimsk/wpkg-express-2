@@ -688,7 +688,7 @@
 			<xsd:simpleType>
 				<xsd:restriction base="xsd:string">
 					<xsd:pattern value="any"></xsd:pattern>
-					<xsd:pattern value="\d+"></xsd:pattern>
+					<xsd:pattern value="\-?\d+"></xsd:pattern>
 					<xsd:pattern value="\*"></xsd:pattern>
 				</xsd:restriction>
 			</xsd:simpleType>

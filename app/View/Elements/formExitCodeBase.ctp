@@ -47,7 +47,7 @@ if (!isset($isAddAction)) {
 	echo $this->Form->staticControl(__('Exit code type') . ':', h($fullName));
 	echo $this->Form->input('ExitCode.code', ['label' => __('Exit code') . ':', 'title' => __("This is the expected exit code produced by the associated command/package action. If you don't care about exit code use 'any' or '*'. Supports autocomplete."),
 		'type' => 'text', 'autocomplete' => 'off',
-		'data-inputmask-regex' => '^(?:any|\d+|\*)$', 'autofocus' => true,
+		'data-inputmask-regex' => '^(?:any|\-?\d+|\*)$', 'autofocus' => true,
 		'data-toggle' => 'autocomplete', 'data-autocomplete-url' => '/cake_theme/filter/autocomplete.json',
 		'data-description-url' => $this->Html->url(['controller' => 'exit_code_directory', 'action' => 'description', 'ext' => 'json']),
 		'data-autocomplete-type' => 'ExitCode.code',

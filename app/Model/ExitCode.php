@@ -73,8 +73,8 @@ class ExitCode extends AppModel {
 			],
 		],
 		'code' => [
-			'isvalidcode' => [
-				'rule' => ['custom', '/^(?:any|\d+|\*)$/'],
+			'isValidCode' => [
+				'rule' => ['custom', '/^(?:any|\-?\d+|\*)$/'],
 				'required' => true,
 				'message' => "Attribute the exit code must be an integer or a string of 'any' or the symbol *.",
 				'last' => true
