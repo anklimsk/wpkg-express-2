@@ -1,7 +1,7 @@
 language: php
 
 php:
-  - 7.1
+  - 7.4
 
 cache:
   directories:
@@ -15,19 +15,22 @@ env:
     - TESTARG="app AllApp --stderr"
     - COVERAGEARG="$TESTARG --coverage-clover clover.xml"
     - PHPCSARG=" --ignore='Config,Plugin,Test,Vendor'"
-    - PHPUNIT=3.7.38
+    - PHPUNIT=5.7.19
     - DEFAULT=1
+
+services:
+  - mysql
 
 matrix:
   include:
-    - php: 7.1
+    - php: 7.4
       env:
         - PHPCS=1
         - DEFAULT=0
 
 before_script:
   - composer require "phpunit/phpunit=$PHPUNIT"
-  - ln -s $CAKEROOT/vendors/phpunit/phpunit/PHPUnit $CAKEAPP/Vendor/PHPUnit
+  - echo "require_once ROOT . '/vendors/autoload.php';" >> ./app/Config/bootstrap.php
   - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE cakephp_test CHARACTER SET utf8 COLLATE utf8_general_ci;'; fi"
   - chmod -R 777 ./app/tmp
   - sh -c "if [ '$PHPCS' = '1' ]; then composer require 'cakephp/cakephp-codesniffer:1.*'; fi"
