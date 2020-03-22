@@ -3,3 +3,4 @@ description: A web-based frontend to WPKG. Based on wpkgExpress by Brian White. 
 logo: /img/logo.png
 theme: jekyll-theme-minimal
 show_downloads: true
+baseurl: /wpkg-express-2

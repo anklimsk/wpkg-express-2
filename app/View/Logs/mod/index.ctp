@@ -30,5 +30,5 @@
 		echo $this->Html->tag('h3', __('State of logs'), ['class' => 'text-center']);
 		echo $this->ViewExtension->barState($stateData);
 	}
-	echo $this->element('tableLog', compact('logs', 'groupActions', 'usePost', 'listTypes',
+	echo $this->element('tableLog', compact('logs', 'groupActions', 'usePost',
 		'shortInfo', 'shortBtnPagination'));

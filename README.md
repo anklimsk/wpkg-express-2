@@ -3,7 +3,7 @@
 [![Latest Stable Version](https://poser.pugx.org/anklimsk/wpkg-express-2/v/stable)](https://packagist.org/packages/anklimsk/wpkg-express-2)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-A web-based frontend to [WPKG](https://wpkg.org)
+A web-based frontend to [WPKG](https://wpkg.org) ([presentation](https://anklimsk.github.io/wpkg-express-2/presentation/))
 
 WPKG Express 2 based on [wpkgExpress](https://code.google.com/archive/p/wpkgexpress)
 by Brian White &copy;2009.
