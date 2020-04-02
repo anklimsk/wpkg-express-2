@@ -1,6 +1,11 @@
 # Changelog
 
-## v1.0.10 (2020-03-15)
+
+## v1.0.11 (2020-04-02)
+
+### Fix
+
+* Updated `CakeInstaller` plugin.
 
 
 ## v1.0.10-rc.1 (2019-12-08)
