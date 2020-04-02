@@ -3,7 +3,7 @@
  * This file is the console shell file of the plugin.
  *
  * CakeInstaller: Installer of CakePHP web application.
- * @copyright Copyright 2016-2018, Andrey Klimov.
+ * @copyright Copyright 2016-2020, Andrey Klimov.
  * @license https://opensource.org/licenses/mit-license.php MIT License
  * @package plugin.Console.Command
  */
@@ -639,20 +639,13 @@ class CakeInstallerShell extends AppShell {
 			}
 		}
 
-		$this->out(__d('cake_installer', 'Create schema of application'));
-		$this->hr();
 		$yesArg = '';
 		if (!empty($this->param('yes'))) {
 			$yesArg = ' --yes';
 		}
-		$defaultSchemaArgs = 'schema create --quiet' . $yesArg;
-		$this->dispatchShell($defaultSchemaArgs);
-		$this->hr();
-		$this->nl(1);
+
 		$schemaList = $this->ConfigInstaller->getListSchemaCreation();
-		if (empty($schemaList)) {
-			return true;
-		}
+		$schemaList[] = 'application';
 
 		$this->out(__d('cake_installer', 'Create additional schemes'));
 		foreach ($schemaList as $schemaName) {
@@ -661,10 +654,18 @@ class CakeInstallerShell extends AppShell {
 			}
 
 			$this->hr();
-			$this->out(__d('cake_installer', 'Create additional scheme: \'%s\'', $schemaName));
+			if ($schemaName === 'application') {
+				$message = __d('cake_installer', 'Create schema of application');
+				$schemaArg = '';
+			} else {
+				$message = __d('cake_installer', 'Create additional scheme: \'%s\'', $schemaName);
+				$schemaArg = ' ' . $schemaName;
+			}
+			$this->out($message);
 			$this->hr();
 			$this->nl(1);
-			$additionalSchemaArgs = 'schema create ' . $schemaName . ' --quiet' . $yesArg;
+
+			$additionalSchemaArgs = 'schema create' . $schemaArg . ' --quiet' . $yesArg;
 			$this->dispatchShell($additionalSchemaArgs);
 		}
 		$this->hr();
