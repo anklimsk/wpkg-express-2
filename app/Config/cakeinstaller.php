@@ -136,8 +136,8 @@ $config['CakeInstaller'] = [
 			],
 			'login' => [
 				'defaultValue' => '',
-				'label' => __d('cake_installer_label', 'User principal name (user@fabrikam.com)'),
-				'validationPattern' => '/\w{2,}\@\w{2,}\.\w{2,}/',
+				'label' => __d('cake_installer_label', 'User login name'),
+				'validationPattern' => '/^([a-z][a-z0-9-]*)=(?![ #])(((?![\\="+,;<>]).)|(\\[ \\#="+,;<>])|(\\[a-f0-9][a-f0-9]))*(,([a-z][a-z0-9-]*)=(?![ #])(((?![\\="+,;<>]).)|(\\[ \\#="+,;<>])|(\\[a-f0-9][a-f0-9]))*)*$/i',
 			],
 			'password' => [
 				'alowEmpty' => false,

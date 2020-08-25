@@ -44,17 +44,19 @@ by Brian White &copy;2009.
 ## Requirements
 
 - Apache module `mod_rewrite`;
-- PHP 5.4.0 or greater;
+- PHP 5.4.0 or greater (up to 7.4) (with extensions: `pdo ldap bz2 xml openssl`);
 - [GraphViz](https://www.graphviz.org);
-- smbclient.
+- smbclient
+- java
+- [composer](https://getcomposer.org/download/)
+- A ldap server (Windows Server, samba, openLDAP, ...) for authentication
+- A database server (MySQL/Postgres/Sqlite/SQLserver)
 
 ## Installation
 
 1. Install WPKG Express 2 using composer:
-  `composer create-project anklimsk/wpkg-express-2 /path/to/wpkg`.
-2. Copy applicaton files from `/path/to/wpkg`
-  to VirtualHost document root directory, e.g.: `/var/www/wpkg`.
-3. If you are using OPcache you should set the [opcache.blacklist_filename](https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.blacklist-filename)
+  `composer create-project anklimsk/wpkg-express-2 /var/www/html/wpkg`.
+2. If you are using OPcache you should set the [opcache.blacklist_filename](https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.blacklist-filename)
   configuration value with a file path to your blacklist (View cache):
   - For example, create a new file:
     `/etc/php5/apache2/opcache-blacklist.txt`;
@@ -62,12 +64,21 @@ by Brian White &copy;2009.
   - Add the blacklist file path to your `php.ini` file:
     `opcache.blacklist_filename=/etc/php5/apache2/opcache-blacklist.txt`;
   - Reload apache configuration: `sudo service apache2 reload`.
-4. Navigate to the directory `app` application (`/var/www/wpkg/app`),
+3. wpkg Express 2 uses rewrite with a .htaccess to handle the requests. In apache2 the .htaccess is disabled by default, enable it with:
+```
+        <Directory /var/www/html>
+                Options Indexes FollowSymLinks
+                AllowOverride All
+                Require all granted
+        </Directory>
+```
+4. Navigate to the directory `app` application (`/var/www/html/wpkg/app`),
   and run the following command: `sudo ./Console/cake CakeInstaller`
   to start interactive shell of installer.
+  If you have no clue about ldap and want to use a samba server or windows server of authentication, use `cn=username,cn=Users,dc=domain,dc=de'` as login name and `cn=Users,dc=domain,dc=de` as basedn. See #16 for more information.
 5. After the installation process is complete, in your browser go to the link
-  `http://wpkg.fabrikam.com/settings` to change settings of application,
-  where `http://wpkg.fabrikam.com` - base URL of installited WPKG Express 2.
+  `http://wpkg.fabrikam.com/wpkg/settings` to change settings of application,
+  where `http://wpkg.fabrikam.com/wpkg` - base URL of installited WPKG Express 2.
 6. Fill in the fields in the `Authentication` group settings and click the `Save` button.
 
 ## Using
