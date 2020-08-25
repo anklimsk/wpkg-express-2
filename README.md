@@ -85,6 +85,13 @@ by Brian White &copy;2009.
 
 [Using this frontend to WPKG](docs/using.md)
 
+## Screenshots
+![wpkg configuration](docs/img/admin-configs.png?raw=true "wpkg configuration")
+
+![packages view](docs/img/packages-view.png?raw=true "packages view")
+
+
+
 ## Links
 
 - [List of silent install, upgrade and uninstall configurations for many programs](https://wpkg.org/Category:Silent_Installers);
