@@ -160,7 +160,7 @@ class LdapComputer extends AppModel {
 		if (!$this->isDataSourceTypeActiveDirectory()) {
 			array_walk(
 				$result,
-				function(&$value, $key) {
+				function (&$value, $key) {
 					if (is_array($value)) {
 						$value = array_shift($value);
 					}

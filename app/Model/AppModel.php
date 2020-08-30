@@ -129,6 +129,8 @@ class AppModel extends ShimModel {
 /**
  * Gets the DataSource connection data to which this model is bound.
  *
+ * @param string $key The name of the parameter to retrieve the configurations
+ *  of the DataSource.
  * @return string|null Return DataSource connection data, or False on failure
  */
 		protected function _getDataSourceData($key = null) {
