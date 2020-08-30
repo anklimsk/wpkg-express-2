@@ -293,12 +293,18 @@ class Setting extends SettingBase {
 
 		$hashType = 'sha256';
 		$passFieldsHash = $this->_getListPassFieldsHash();
+		$currentConfig = (array)$this->getConfig();
 		foreach ($passFieldsHash as $passField) {
 			if (!empty($this->data[$this->alias][$passField])) {
-				$passwordHasher = new SimplePasswordHasher(compact('hashType'));
-				$this->data[$this->alias][$passField] = $passwordHasher->hash(
-					$this->data[$this->alias][$passField]
-				);
+				$prevPass = (string)Hash::get($currentConfig, $this->alias . '.' . $passField);
+				if ($this->data[$this->alias][$passField] === $prevPass) {
+					$this->data[$this->alias][$passField] = $prevPass;
+				} else {
+					$passwordHasher = new SimplePasswordHasher(compact('hashType'));
+					$this->data[$this->alias][$passField] = $passwordHasher->hash(
+						$this->data[$this->alias][$passField]
+					);
+				}
 			}
 		}
 		$passFieldsEnc = $this->_getListPassFieldsEncrypt();
