@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wpkgExpress II\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2019-03-28 16:48+0300\n"
+"PO-Revision-Date: 2020-08-30 19:35+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -14,7 +14,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 1.8.7.1\n"
+
+#: Config/cakeinstaller.php:139
+msgid ""
+"LDAP Bind RDN: RDN (cn=user,ou=users,dc=fabrikam,dc=com) for OpenLDAP or "
+"User principal name (user@fabrikam.com) for ActiveDirectory"
+msgstr ""
+"RDN Связывающий LDAP: RDN (cn=user,ou=users,dc=fabrikam,dc=com) для OpenLDAP "
+"или User principal name (user@fabrikam.com) для ActiveDirectory"
 
 #: Config/cakesearchinfo.php:20 View/Elements/formPackageBase.ctp:71
 #: View/Elements/formPackageExistsProfilesEdit.ctp:52
@@ -23,7 +31,7 @@ msgstr ""
 msgid "Package ID"
 msgstr "Идентификатор пакета"
 
-#: Config/cakesearchinfo.php:21 Model/Package.php:1212
+#: Config/cakesearchinfo.php:21 Model/Package.php:1226
 #: View/Elements/formHostBase.ctp:53 View/Elements/formPackageBase.ctp:79
 #: View/Elements/formPackageExistsProfilesEdit.ctp:53
 #: View/Elements/infoPackage.ctp:64 View/Elements/tableArchive.ctp:67
@@ -41,7 +49,7 @@ msgstr "Наименование"
 msgid "Notes"
 msgstr "Примечания"
 
-#: Config/cakesearchinfo.php:25 Model/Package.php:1233
+#: Config/cakesearchinfo.php:25 Model/Package.php:1247
 #: View/Elements/barNav.ctp:76 View/Home/index.ctp:73
 msgid "Packages"
 msgstr "Пакеты"
@@ -54,7 +62,7 @@ msgstr "Пакеты"
 msgid "Profile ID"
 msgstr "Идентификатор профиля"
 
-#: Config/cakesearchinfo.php:33 Model/Profile.php:779
+#: Config/cakesearchinfo.php:33 Model/Profile.php:780
 #: View/Elements/barNav.ctp:104
 #: View/Elements/formPackageExistsProfilesEdit.ctp:35
 #: View/Elements/formProfileExistsHostsEdit.ctp:35 View/Home/index.ctp:78
@@ -66,7 +74,7 @@ msgstr "Профили"
 msgid "Host ID"
 msgstr "Идентификатор хоста"
 
-#: Config/cakesearchinfo.php:41 Model/Host.php:592 View/Elements/barNav.ctp:160
+#: Config/cakesearchinfo.php:41 Model/Host.php:593 View/Elements/barNav.ctp:160
 #: View/Home/index.ctp:85
 msgid "Hosts"
 msgstr "Хосты"
@@ -210,7 +218,7 @@ msgstr "Указатель типов действий пакета"
 #: Controller/ExitCodeDirectoryController.php:155
 #: Controller/ExitCodesController.php:163 Controller/HostsController.php:262
 #: Controller/PackagePrioritiesController.php:121
-#: Controller/PackagesController.php:257 Controller/ProfilesController.php:213
+#: Controller/PackagesController.php:257 Controller/ProfilesController.php:214
 #: Controller/VariablesController.php:210
 #: Controller/WpiCategoriesController.php:131 Controller/WpiController.php:374
 msgid "Adding"
@@ -240,7 +248,7 @@ msgstr "Недопустимый идентификатор для типа де
 #: Controller/ExitCodesController.php:200 Controller/HostsController.php:311
 #: Controller/PackagePrioritiesController.php:167
 #: Controller/PackagesController.php:319
-#: Controller/ProfilesController.php:267;552
+#: Controller/ProfilesController.php:268;553
 #: Controller/VariablesController.php:249
 #: Controller/WpiCategoriesController.php:178 Controller/WpiController.php:426
 msgid "Editing"
@@ -276,12 +284,12 @@ msgid "Information of package actions"
 msgstr "Информация о действиях пакета"
 
 #: Controller/ActionsController.php:143;146
-#: View/Elements/tablePackageActions.ctp:210
+#: View/Elements/tablePackageActions.ctp:212
 msgid "Add action"
 msgstr "Добавить действие"
 
 #: Controller/ActionsController.php:152
-#: View/Elements/tablePackageActions.ctp:229
+#: View/Elements/tablePackageActions.ctp:231
 msgid "Verify state of list actions"
 msgstr "Проверить состояния списка действий"
 
@@ -290,7 +298,7 @@ msgid "Verify state of list package actions"
 msgstr "Проверка состояния списка действий пакета"
 
 #: Controller/ActionsController.php:162
-#: View/Elements/tablePackageActions.ctp:219
+#: View/Elements/tablePackageActions.ctp:221
 msgid "Edit action types"
 msgstr "Изменить типы действий"
 
@@ -429,8 +437,8 @@ msgid "Information of attributes"
 msgstr "Информация об атрибутах"
 
 #: Controller/AttributesController.php:102 View/Elements/infoDependency.ctp:96
-#: View/Elements/infoHost.ctp:97 View/Elements/infoVariables.ctp:105
-#: View/Elements/tablePackageActions.ctp:122
+#: View/Elements/infoHost.ctp:97 View/Elements/infoVariables.ctp:106
+#: View/Elements/tablePackageActions.ctp:124
 #: View/Elements/treeItemCheckDraggable.ctp:56
 msgid "Edit attributes"
 msgstr "Редактировать атрибуты"
@@ -484,7 +492,7 @@ msgid "Add check"
 msgstr "Добавить проверку"
 
 #: Controller/ChecksController.php:145;148
-#: View/Elements/infoChecksControls.ctp:79
+#: View/Elements/infoChecksControls.ctp:83
 msgid "Verify state of tree checks"
 msgstr "Проверка состояния дерева проверок"
 
@@ -617,7 +625,7 @@ msgid "Exit code directory is empty"
 msgstr "Каталог кодов выхода пуст"
 
 #: Controller/ExitCodeDirectoryController.php:116
-#: Model/ExitCodeDirectory.php:251 View/Elements/formExitCodeBase.ctp:62
+#: Model/ExitCodeDirectory.php:226 View/Elements/formExitCodeBase.ctp:62
 msgid "Exit code directory"
 msgstr "Каталог кодов выхода"
 
@@ -791,7 +799,7 @@ msgstr "Проверка состояния списка хостов"
 
 #: Controller/HostsController.php:163
 #: Controller/VariablesController.php:145;148
-#: View/Elements/infoVariables.ctp:162
+#: View/Elements/infoVariables.ctp:163
 msgid "Verify state of list variables"
 msgstr "Проверка состояния списка переменных"
 
@@ -845,7 +853,7 @@ msgstr "Отключение неиспользуемых хостов и про
 
 #: Controller/HostsController.php:572 Controller/UploadsController.php:124
 #: Controller/WpiController.php:316
-#: Controller/Component/ExportDataComponent.php:151;194
+#: Controller/Component/ExportDataComponent.php:153;196
 #: Controller/Component/ViewDataComponent.php:66
 msgid "Invalid request"
 msgstr "Недопустимый запрос"
@@ -973,7 +981,7 @@ msgstr "Добавление пакета"
 msgid "Editing package"
 msgstr "Редактирование пакета"
 
-#: Controller/PackagesController.php:499 Controller/ProfilesController.php:446
+#: Controller/PackagesController.php:499 Controller/ProfilesController.php:447
 #: Controller/WpiController.php:364
 msgid "There are no packages to add/remove"
 msgstr "Нет пакетов для добавления/удаления"
@@ -986,69 +994,69 @@ msgstr "Находиться в профилях"
 msgid "Modifying list of profiles"
 msgstr "Изменение списка профилей"
 
-#: Controller/ProfilesController.php:116
+#: Controller/ProfilesController.php:117
 msgid "Index of profiles"
 msgstr "Указатель профилей"
 
-#: Controller/ProfilesController.php:149
+#: Controller/ProfilesController.php:150
 msgid "Information of profile"
 msgstr "Информация о профиле"
 
-#: Controller/ProfilesController.php:201;250;451;504
+#: Controller/ProfilesController.php:202;251;452;505
 msgid "Profile has been saved."
 msgstr "Профиль сохранён."
 
-#: Controller/ProfilesController.php:205;258;455;508
+#: Controller/ProfilesController.php:206;259;456;509
 msgid "Profile could not be saved. Please, try again."
 msgstr "Не удалось сохранить профиль. Пожалуйста, попробуйте ещё раз."
 
-#: Controller/ProfilesController.php:214
+#: Controller/ProfilesController.php:215
 msgid "Adding profile"
 msgstr "Добавление профиля"
 
-#: Controller/ProfilesController.php:244;441;494
+#: Controller/ProfilesController.php:245;442;495
 msgid "Invalid ID for profile"
 msgstr "Недопустимый идентификатор для профиля"
 
-#: Controller/ProfilesController.php:268
+#: Controller/ProfilesController.php:269
 msgid "Editing profile"
 msgstr "Редактирование профиля"
 
-#: Controller/ProfilesController.php:462
+#: Controller/ProfilesController.php:463
 msgid "Associating packages"
 msgstr "Связывание пакетов"
 
-#: Controller/ProfilesController.php:463
+#: Controller/ProfilesController.php:464
 msgid "Modifying associated packages for profile"
 msgstr "Изменение связанных пакетов для профиля"
 
-#: Controller/ProfilesController.php:499
+#: Controller/ProfilesController.php:500
 msgid "There are no hosts to add/remove"
 msgstr "Нет хостов для добавления/удаления"
 
-#: Controller/ProfilesController.php:515 View/Elements/infoProfile.ctp:70
+#: Controller/ProfilesController.php:516 View/Elements/infoProfile.ctp:70
 msgid "Exists in hosts"
 msgstr "Находиться в хостах"
 
-#: Controller/ProfilesController.php:516
+#: Controller/ProfilesController.php:517
 msgid "Modifying list of hosts"
 msgstr "Изменение списка хостов"
 
-#: Controller/ProfilesController.php:547
+#: Controller/ProfilesController.php:548
 msgid "Invalid ID for package in profile"
 msgstr "Недопустимый идентификатор для пакета в профиле"
 
-#: Controller/ProfilesController.php:555
+#: Controller/ProfilesController.php:556
 msgid "Installation date of package has been saved."
 msgstr "Дата установки пакета сохранена."
 
-#: Controller/ProfilesController.php:559
+#: Controller/ProfilesController.php:560
 msgid "Installation date of package could not be saved. Please, try again."
 msgstr ""
 "Дата установки пакета не может быть сохранена. Пожалуйста, попробуйте ещё "
 "раз."
 
-#: Controller/ProfilesController.php:565
+#: Controller/ProfilesController.php:566
 msgid "Editing installation date of package"
 msgstr "Редактирование даты установки пакета"
 
@@ -1097,7 +1105,7 @@ msgstr ""
 msgid "File selection"
 msgstr "Выбор файла"
 
-#: Controller/UploadsController.php:99 Model/Import.php:3696
+#: Controller/UploadsController.php:99 Model/Import.php:3700
 msgid "Uploading XML files"
 msgstr "Загрузка XML файлов"
 
@@ -1118,7 +1126,7 @@ msgid "Information of variables"
 msgstr "Информация о переменных"
 
 #: Controller/VariablesController.php:137;140
-#: View/Elements/infoExitCodes.ctp:118 View/Elements/infoVariables.ctp:152
+#: View/Elements/infoExitCodes.ctp:118 View/Elements/infoVariables.ctp:153
 msgid "Add variable"
 msgstr "Добавить переменную"
 
@@ -1301,7 +1309,7 @@ msgid "Target model is not found"
 msgstr "Целевая модель не найдена"
 
 #: Controller/Component/ChangeStateComponent.php:55;103
-#: Controller/Component/ExportDataComponent.php:71;159;201
+#: Controller/Component/ExportDataComponent.php:71;161;203
 #: Controller/Component/TemplateDataComponent.php:69;151
 #: Controller/Component/ViewDataComponent.php:186
 msgid "Invalid ID for %s"
@@ -1350,7 +1358,7 @@ msgctxt "change state"
 msgid "don't used as template"
 msgstr "не используется в качестве шаблона"
 
-#: Controller/Component/ExportDataComponent.php:55;148
+#: Controller/Component/ExportDataComponent.php:55;150
 #: Controller/Component/ViewDataComponent.php:171
 msgid "Method '%s' is not found in target model"
 msgstr "Метод '%s' не найден в целевой модели"
@@ -1517,7 +1525,7 @@ msgstr "Вы действительно хотите скопировать эт
 msgid "Create %s from this template"
 msgstr "Создать %s из этого шаблона"
 
-#: Lib/Utility/RenderCheckData.php:55 Model/Check.php:1082
+#: Lib/Utility/RenderCheckData.php:55 Model/Check.php:1058
 msgid "Logical %s"
 msgstr "Логическое %s"
 
@@ -1529,7 +1537,7 @@ msgstr "существует"
 msgid "equals '%s'"
 msgstr "равно '%s'"
 
-#: Lib/Utility/RenderCheckData.php:67;150;181;215 Model/Wpi.php:417
+#: Lib/Utility/RenderCheckData.php:67;150;181;215 Model/Wpi.php:418
 #: Model/Behavior/GetXmlInfoBehavior.php:92;104
 #: Model/Behavior/RestoreBehavior.php:260
 msgid "unknown"
@@ -1653,24 +1661,24 @@ msgstr "Диаграмма %s"
 msgid "chart %s"
 msgstr "диаграмма %s"
 
-#: Model/Check.php:1085
+#: Model/Check.php:1061
 msgid "Root node"
 msgstr "Корневой узел"
 
-#: Model/Check.php:1446 View/Elements/formCheckBase.ctp:236
-#: View/Elements/infoChecksControls.ctp:116
+#: Model/Check.php:1422 View/Elements/formCheckBase.ctp:236
+#: View/Elements/infoChecksControls.ctp:120
 msgid "Check"
 msgstr "Проверка"
 
-#: Model/Check.php:1457 Model/Import.php:2357 View/Elements/infoPackage.ctp:140
+#: Model/Check.php:1433 Model/Import.php:2357 View/Elements/infoPackage.ctp:140
 msgid "Checks"
 msgstr "Проверки"
 
-#: Model/Check.php:1512
+#: Model/Check.php:1488
 msgid "Check %sof the %s"
 msgstr "Проверка %s %s"
 
-#: Model/Check.php:1514
+#: Model/Check.php:1490
 msgid "check %s%s"
 msgstr "проверки %s%s"
 
@@ -1698,7 +1706,7 @@ msgstr "Список компьютеров для обработки пуст"
 msgid "The list of hosts for processing is empty"
 msgstr "Список хостов для обработки пуст"
 
-#: Model/Disable.php:179 Model/Log.php:523
+#: Model/Disable.php:179 Model/Log.php:525
 msgid "Administrator of WPKG"
 msgstr "Администратор WPKG"
 
@@ -1706,40 +1714,40 @@ msgstr "Администратор WPKG"
 msgid "Unused hosts and profiles is disabled"
 msgstr "Неиспользуемые хосты и профили отключены"
 
-#: Model/Disable.php:202 Model/Log.php:565
+#: Model/Disable.php:202 Model/Log.php:567
 msgid "Error on putting sending e-mail for \"%s\" in queue..."
 msgstr ""
 "Ошибка при помещении отправки электронной почты для \"%s\" в очередь..."
 
-#: Model/ExitCode.php:265 View/Elements/formCheckBase.ctp:161
+#: Model/ExitCode.php:311 View/Elements/formCheckBase.ctp:161
 #: View/Elements/formExitCodeBase.ctp:48
 #: View/Elements/formExitCodeDirectoryBase.ctp:44
 #: View/Elements/tableExitCodeDirectory.ctp:39
 msgid "Exit code"
 msgstr "Код выхода"
 
-#: Model/ExitCode.php:276 View/Elements/infoExitCodes.ctp:109
+#: Model/ExitCode.php:322 View/Elements/infoExitCodes.ctp:109
 msgid "Exit codes"
 msgstr "Коды выхода"
 
-#: Model/ExitCode.php:300
+#: Model/ExitCode.php:346
 msgid "Exit codes %sof the %s"
 msgstr "Код выхода %s %s"
 
-#: Model/ExitCode.php:302
+#: Model/ExitCode.php:348
 msgid "exit codes %s%s"
 msgstr "коды выхода %s%s"
 
-#: Model/ExitCodeDirectory.php:240
+#: Model/ExitCodeDirectory.php:215
 #: View/Elements/formExitCodeDirectoryBase.ctp:35
 msgid "Record of exit code directory"
 msgstr "Запись каталога кодов выхода"
 
-#: Model/ExitCodeDirectory.php:272
+#: Model/ExitCodeDirectory.php:247
 msgid "Record %s of the exit code directory"
 msgstr "Запись %s каталога кодов выхода"
 
-#: Model/ExitCodeDirectory.php:274
+#: Model/ExitCodeDirectory.php:249
 msgid "record %s of the exit code directory"
 msgstr "запись %s каталога кодов выхода"
 
@@ -1781,48 +1789,48 @@ msgctxt "graph"
 msgid "full"
 msgstr "полный"
 
-#: Model/Host.php:445 Model/Package.php:936 Model/Profile.php:444
+#: Model/Host.php:446 Model/Package.php:950 Model/Profile.php:445
 #: View/Elements/infoHost.ctp:63 View/Elements/infoPackage.ctp:97
 #: View/Elements/infoProfile.ctp:54 View/Elements/tableHost.ctp:219
 #: View/Elements/tablePackage.ctp:240 View/Elements/tableProfile.ctp:190
 msgid "Use as template"
 msgstr "Использовать в качестве шаблона"
 
-#: Model/Host.php:581 View/Elements/formHostBase.ctp:39
+#: Model/Host.php:582 View/Elements/formHostBase.ctp:39
 #: View/Elements/formHostGenerate.ctp:40 View/Elements/tableLog.ctp:109
 msgid "Host"
 msgstr "Хост"
 
-#: Model/Host.php:615
+#: Model/Host.php:616
 msgid "Host '%s'"
 msgstr "Хост '%s'"
 
-#: Model/Host.php:617
+#: Model/Host.php:618
 msgid "host '%s'"
 msgstr "хоста '%s'"
 
-#: Model/Host.php:629
+#: Model/Host.php:630
 msgid "full data of hosts"
 msgstr "полные данные хостов"
 
-#: Model/Host.php:786 View/Elements/formHostBase.ctp:55
+#: Model/Host.php:787 View/Elements/formHostBase.ctp:55
 #: View/Elements/infoHost.ctp:68 View/Elements/tableHost.ctp:76
 msgid "Main profile"
 msgstr "Основной профиль"
 
-#: Model/Host.php:787
+#: Model/Host.php:788
 msgid "Assoc. profile"
 msgstr "Связ. профиль"
 
-#: Model/Host.php:877
+#: Model/Host.php:878
 msgid "The list of computers for generating XML is empty"
 msgstr "Список компьютеров для генерации XML пуст"
 
-#: Model/Host.php:881
+#: Model/Host.php:882
 msgid "Invalid host template ID"
 msgstr "Неверный идентификатор шаблона хоста"
 
-#: Model/HostsProfile.php:170 Model/PackagesProfile.php:231
+#: Model/HostsProfile.php:170 Model/PackagesProfile.php:206
 msgid "associated %s of the %s"
 msgstr "связанного %s %s"
 
@@ -1838,15 +1846,15 @@ msgstr ""
 "Пакет, профиль, хост, конфигурация WPKG, клиентская база данных или каталог "
 "кодов выхода."
 
-#: Model/Import.php:750;763;808;2236;2265;2309;2318;2357;2373;2435;2467;2596;2646;2677;2804;2835;2956;3032;3099;3105;3251;3276;3359;3422;3428;3530;3550
-#: Model/Log.php:377;391;428;565 Model/Report.php:431;463
+#: Model/Import.php:750;763;808;2236;2265;2309;2318;2357;2373;2435;2467;2596;2646;2677;2804;2835;2956;3032;3099;3105;3251;3276;3363;3426;3432;3534;3554
+#: Model/Log.php:378;392;430;567 Model/Report.php:431;464
 #: Model/Behavior/GroupActionBehavior.php:157
 msgid "Errors"
 msgstr "Ошибки"
 
 #: Model/Import.php:750 Model/Variable.php:228 View/Elements/infoHost.ctp:86
 #: View/Elements/infoPackage.ctp:139 View/Elements/infoProfile.ctp:69
-#: View/Elements/infoVariables.ctp:200
+#: View/Elements/infoVariables.ctp:201
 msgid "Variables"
 msgstr "Переменные"
 
@@ -1858,7 +1866,7 @@ msgstr "Ошибка при настройке области"
 msgid "Invalid file path"
 msgstr "Недопустимый путь к файлу"
 
-#: Model/Import.php:983;3650
+#: Model/Import.php:983;3654
 msgid "Invalid file type. Can be one of: %s"
 msgstr "Недопустимый тип файла. Может быть одним из следующих: %s"
 
@@ -1882,7 +1890,7 @@ msgstr "Входной текстовый файл пуст"
 msgid "Invalid name of dependency model"
 msgstr "Недопустимое имя зависимой модели"
 
-#: Model/Import.php:2309 Model/PackageAction.php:577
+#: Model/Import.php:2309 Model/PackageAction.php:563
 #: View/Elements/infoPackage.ctp:135
 msgid "Package actions"
 msgstr "Действия пакета"
@@ -1907,35 +1915,35 @@ msgstr "Ошибка при сохранении конфигурации WPKG"
 msgid "Error on saving WPKG configuration language"
 msgstr "Ошибка при сохранении языка конфигурации WPKG"
 
-#: Model/Import.php:3422
+#: Model/Import.php:3426
 msgid "Error on saving log record"
 msgstr "Ошибка сохранения записи журнала"
 
-#: Model/Import.php:3428
+#: Model/Import.php:3432
 msgid "Error on saving log records"
 msgstr "Ошибка сохранения записей журнала"
 
-#: Model/Import.php:3530
+#: Model/Import.php:3534
 msgid "Error on saving exit code directory"
 msgstr "Ошибка при сохранении каталога кодов выхода"
 
-#: Model/Import.php:3544
+#: Model/Import.php:3548
 msgid "Other messages"
 msgstr "Другие сообщения"
 
-#: Model/Import.php:3547
+#: Model/Import.php:3551
 msgid "Warnings"
 msgstr "Предупреждения"
 
-#: Model/Import.php:3553
+#: Model/Import.php:3557
 msgid "Fatal errors"
 msgstr "Неустранимые ошибки"
 
-#: Model/Import.php:3597
+#: Model/Import.php:3601
 msgid "Invalid path to XSD schema file"
 msgstr "Недопустимый путь к файлу схемы XSD"
 
-#: Model/Import.php:3685
+#: Model/Import.php:3689
 msgid "Insert package here"
 msgstr "Вставьте пакет здесь"
 
@@ -1959,35 +1967,35 @@ msgstr "Ошибка при обработке файлов журнала."
 msgid "Error on connection to SMB share: %s."
 msgstr "Ошибка при подключении к SMB-ресурсу: %s."
 
-#: Model/Log.php:369;402
+#: Model/Log.php:369;403
 msgid "No log files to parsing."
 msgstr "Нет файлов журналов для разбора."
 
-#: Model/Log.php:377
+#: Model/Log.php:378
 msgid "Error on retrieving log file name"
 msgstr "Ошибка при получении имени файла журнала"
 
-#: Model/Log.php:391 Model/Report.php:431
+#: Model/Log.php:392 Model/Report.php:431
 msgid "Error on copying files"
 msgstr "Ошибка при копировании файлов"
 
-#: Model/Log.php:428 Model/Report.php:463
+#: Model/Log.php:430 Model/Report.php:464
 msgid "Error on removing unused hosts"
 msgstr "Ошибка при удалении неиспользуемых хостов"
 
-#: Model/Log.php:487 View/Elements/tableLog.ctp:219
+#: Model/Log.php:489 View/Elements/tableLog.ctp:219
 msgid "...And %s more %s"
 msgstr "...И еще %s %s"
 
-#: Model/Log.php:538
+#: Model/Log.php:540
 msgid "Found new errors of WPKG"
 msgstr "Найдены новые ошибки WPKG"
 
-#: Model/Log.php:565
+#: Model/Log.php:567
 msgid "Error on sending e-mail"
 msgstr "Ошибка при отправке электронной почты"
 
-#: Model/Log.php:490
+#: Model/Log.php:492
 msgid "record"
 msgid_plural "records"
 msgstr[0] "запись"
@@ -2006,7 +2014,7 @@ msgstr "Журналы хоста %s"
 msgid "logs of host %s"
 msgstr "журналы хоста %s"
 
-#: Model/Package.php:1061
+#: Model/Package.php:1075
 msgid ""
 "The package '%s' cannot be deleted or disabled because it is exists in %s "
 "for the following packages: %s"
@@ -2014,122 +2022,118 @@ msgstr ""
 "Пакет '%s' не может быть удалён или отключен, поскольку он существует в %s "
 "для следующих пакетов: %s"
 
-#: Model/Package.php:1222 View/Elements/formPackageBase.ctp:62
+#: Model/Package.php:1236 View/Elements/formPackageBase.ctp:62
 #: View/Elements/formWpiBase.ctp:56 View/Elements/tableReport.ctp:56
 msgid "Package"
 msgstr "Пакет"
 
-#: Model/Package.php:1257
+#: Model/Package.php:1271
 msgid "Package '%s'"
 msgstr "Пакет '%s'"
 
-#: Model/Package.php:1259
+#: Model/Package.php:1273
 msgid "package '%s'"
 msgstr "пакета '%s'"
 
-#: Model/Package.php:1271
+#: Model/Package.php:1285
 msgid "full data of packages"
 msgstr "полные данные пакетов"
 
-#: Model/Package.php:1439
+#: Model/Package.php:1453
 msgid "Present in"
 msgstr "Присутствует в"
 
-#: Model/Package.php:1488
-msgid "Versions of package '%s'"
-msgstr "Версии пакета '%s'"
-
-#: Model/Package.php:1516
+#: Model/Package.php:1542
 msgid "Chart of the installed versions of the package '%s'"
 msgstr "Диаграмма установленных версий пакета '%s'"
 
-#: Model/Package.php:1029
+#: Model/Package.php:1043
 msgctxt "check disable"
 msgid "dependencies"
 msgstr "зависимостях"
 
-#: Model/Package.php:1030
+#: Model/Package.php:1044
 msgctxt "check disable"
 msgid "inclusions"
 msgstr "включениях"
 
-#: Model/Package.php:1031
+#: Model/Package.php:1045
 msgctxt "check disable"
 msgid "chains"
 msgstr "цепочках"
 
-#: Model/Package.php:1460 Model/Profile.php:954
+#: Model/Package.php:1474 Model/Profile.php:955
 msgctxt "dependency"
 msgid "Depends on"
 msgstr "Зависит от"
 
-#: Model/Package.php:1461
+#: Model/Package.php:1475
 msgctxt "dependency"
 msgid "Includes on"
 msgstr "Включает"
 
-#: Model/Package.php:1462
+#: Model/Package.php:1476
 msgctxt "dependency"
 msgid "Chain on"
 msgstr "Цепочки"
 
-#: Model/PackageAction.php:453 View/Elements/formPackageActionBase.ctp:71;107
+#: Model/PackageAction.php:439 View/Elements/formPackageActionBase.ctp:71;107
 msgid "Command"
 msgstr "Команда"
 
-#: Model/PackageAction.php:454
+#: Model/PackageAction.php:440
 msgid "Include"
 msgstr "Включает"
 
-#: Model/PackageAction.php:566 View/Elements/formPackageActionBase.ctp:120
+#: Model/PackageAction.php:552 View/Elements/formPackageActionBase.ctp:120
 msgid "Package action"
 msgstr "Действие пакета"
 
-#: Model/PackageAction.php:639
+#: Model/PackageAction.php:625
 msgid "Action(s) %sof the %s"
 msgstr "Действие(я) %s %s"
 
-#: Model/PackageAction.php:641
+#: Model/PackageAction.php:627
 msgid "action(s) %s%s"
 msgstr "действие(я) %s%s"
 
-#: Model/PackageActionType.php:264
+#: Model/PackageActionType.php:253
 msgid ""
 "The action type of the package cannot be removed because it is used in %d %s."
 msgstr ""
 "Тип действия пакета не может быть удалён, поскольку он используется в %d %s."
 
-#: Model/PackageActionType.php:298
+#: Model/PackageActionType.php:287
 #: View/Elements/formPackageActionTypeBase.ctp:49
 #: View/Elements/infoResultVerifyAction.ctp:49
 msgid "Action type"
 msgstr "Тип действия"
 
-#: Model/PackageActionType.php:309 View/Elements/listActionTypes.ctp:68
+#: Model/PackageActionType.php:298 View/Elements/listActionTypes.ctp:68
 msgid "Action types"
 msgstr "Типы действий"
 
-#: Model/PackageActionType.php:330
+#: Model/PackageActionType.php:319
 msgid "Package action type %s"
 msgstr "Тип действия пакета %s"
 
-#: Model/PackageActionType.php:332
+#: Model/PackageActionType.php:321
 msgid "package action type %s"
 msgstr "тип действия пакета %s"
 
-#: Model/PackagePriority.php:242 View/Elements/formPackagePriorityBase.ctp:35
+#: Model/PackagePriority.php:219 View/Elements/formPackagePriorityBase.ctp:35
 msgid "Package priority"
 msgstr "Приоритет пакета"
 
-#: Model/PackagePriority.php:253 View/Elements/listPackagePriorities.ctp:63
+#: Model/PackagePriority.php:230 View/Elements/listPackagePriorities.ctp:63
 msgid "Package priorities"
 msgstr "Приоритеты пакета"
 
-#: Model/PackagePriority.php:274
+#: Model/PackagePriority.php:251
 msgid "Package priority %s"
 msgstr "Приоритет пакета%s"
 
-#: Model/PackagePriority.php:276
+#: Model/PackagePriority.php:253
 msgid "package priority %s"
 msgstr "приоритет пакета %s"
 
@@ -2157,7 +2161,7 @@ msgstr "зависимости %s от %s"
 msgid "Dependency of package"
 msgstr "Зависимость пакета"
 
-#: Model/PackagesProfile.php:248
+#: Model/PackagesProfile.php:223
 msgctxt "attribute"
 msgid "Associated packages"
 msgstr "Связанные пакеты"
@@ -2167,7 +2171,7 @@ msgstr "Связанные пакеты"
 msgid "Associated packages"
 msgstr "Связанные пакеты"
 
-#: Model/Profile.php:583
+#: Model/Profile.php:584
 msgid ""
 "The profile '%s' cannot be deleted or disabled because it is the main "
 "profile for the following hosts: %s"
@@ -2175,35 +2179,35 @@ msgstr ""
 "Профиль '%s' не может быть удалён или отключен, поскольку он является "
 "основным профилем для следующих хостов: %s"
 
-#: Model/Profile.php:768 View/Elements/formProfileBase.ctp:39
+#: Model/Profile.php:769 View/Elements/formProfileBase.ctp:39
 msgid "Profile"
 msgstr "Профиль"
 
-#: Model/Profile.php:803
+#: Model/Profile.php:804
 msgid "Profile '%s'"
 msgstr "Профиль '%s'"
 
-#: Model/Profile.php:805
+#: Model/Profile.php:806
 msgid "profile '%s'"
 msgstr "профиля '%s'"
 
-#: Model/Profile.php:817
+#: Model/Profile.php:818
 msgid "full data of profiles"
 msgstr "полные данные профилей"
 
-#: Model/Profile.php:987
+#: Model/Profile.php:988
 msgid "Through main profile"
 msgstr "Через основной профиль"
 
-#: Model/Profile.php:988
+#: Model/Profile.php:989
 msgid "Through dependent profile"
 msgstr "Через зависимый профиль"
 
-#: Model/Profile.php:989
+#: Model/Profile.php:990
 msgid "Through prof. assoc. host"
 msgstr "Через проф. связ. с хостом"
 
-#: Model/Profile.php:1041
+#: Model/Profile.php:1042
 msgid "Contains"
 msgstr "Содержит"
 
@@ -2259,33 +2263,33 @@ msgstr "переменной %s%s"
 msgid "global environment"
 msgstr "глобального окружения"
 
-#: Model/Wpi.php:553 View/Elements/formWpiBase.ctp:47
+#: Model/Wpi.php:554 View/Elements/formWpiBase.ctp:47
 #: View/Elements/infoWpiPackage.ctp:38
 msgid "WPI package"
 msgstr "Пакет WPI"
 
-#: Model/Wpi.php:564
+#: Model/Wpi.php:565
 msgid "WPI packages"
 msgstr "Пакеты WPI"
 
-#: Model/Wpi.php:611
+#: Model/Wpi.php:612
 msgid "WPI package %s"
 msgstr "Пакет WPI %s"
 
-#: Model/WpiCategory.php:254
+#: Model/WpiCategory.php:232
 msgid "The category of WPI cannot be removed because it is used in %d %s."
 msgstr ""
 "Категория WPI не может быть удалена, поскольку она используется в %d %s."
 
-#: Model/WpiCategory.php:269 View/Elements/formWpiCategoryBase.ctp:35;44
+#: Model/WpiCategory.php:247 View/Elements/formWpiCategoryBase.ctp:35;44
 msgid "WPI category"
 msgstr "Категория WPI"
 
-#: Model/WpiCategory.php:280 View/Elements/listWpiCategory.ctp:66
+#: Model/WpiCategory.php:258 View/Elements/listWpiCategory.ctp:66
 msgid "WPI categories"
 msgstr "Категории WPI"
 
-#: Model/WpiCategory.php:300
+#: Model/WpiCategory.php:278
 msgid "WPI category %s"
 msgstr "Категория WPI %s"
 
@@ -2313,20 +2317,20 @@ msgstr "Недопустимое имя основной модели для м�
 msgid "Invalid name of dependency model for model '%s'"
 msgstr "Недопустимое имя модели зависимости для модели '%s'"
 
-#: Model/Behavior/DependencyInfoBehavior.php:118
+#: Model/Behavior/DependencyInfoBehavior.php:119
 msgid "Invalid dependency ID attribute for model '%s'"
 msgstr "Недопустимый атрибут идентификатора зависимости для модели '%s'"
 
-#: Model/Behavior/DependencyInfoBehavior.php:121
+#: Model/Behavior/DependencyInfoBehavior.php:122
 msgid "Invalid dependency element name for model '%s'"
 msgstr "Недопустимое имя элемента зависимости для модели '%s'"
 
-#: Model/Behavior/GetListBehavior.php:61
+#: Model/Behavior/GetListBehavior.php:66
 #: Model/Behavior/GetNumberBehavior.php:59
 msgid "Invalid name of the cache configuration to use"
 msgstr "Недопустимое имя используемой конфигурации кэша"
 
-#: Model/Behavior/GetListBehavior.php:66
+#: Model/Behavior/GetListBehavior.php:71
 msgid "Invalid key field name"
 msgstr "Недопустимое имя ключевого поля"
 
@@ -2781,7 +2785,7 @@ msgid ""
 msgstr ""
 "Содержит условие для проверки переменных среды, например: 'PKG_VER=^$'."
 
-#: View/Elements/formCheckBase.ctp:247 View/Elements/infoChecksControls.ctp:111
+#: View/Elements/formCheckBase.ctp:247 View/Elements/infoChecksControls.ctp:115
 msgid "Check type"
 msgstr "Тип проверки"
 
@@ -2822,7 +2826,7 @@ msgid ""
 msgstr "Содержимое этого поля зависит от типа и состояния проверки."
 
 #: View/Elements/formCheckBase.ctp:285 View/Elements/formExitCodeBase.ctp:72
-#: View/Elements/formExitCodeDirectoryBase.ctp:59
+#: View/Elements/formExitCodeDirectoryBase.ctp:58
 #: View/Elements/formHostBase.ctp:64
 #: View/Elements/formPackageActionBase.ctp:157
 #: View/Elements/formPackageActionTypeBase.ctp:55
@@ -3302,30 +3306,30 @@ msgstr ""
 msgid "Value of exit code."
 msgstr "Значение кода выхода."
 
-#: View/Elements/formExitCodeDirectoryBase.ctp:48
+#: View/Elements/formExitCodeDirectoryBase.ctp:47
 #: View/Elements/tableExitCodeDirectory.ctp:44
 msgid "Hexadecimal"
 msgstr "Шестнадцатеричное"
 
-#: View/Elements/formExitCodeDirectoryBase.ctp:48
+#: View/Elements/formExitCodeDirectoryBase.ctp:47
 msgid "Hexadecimal value of exit code. Format: 0x00000000"
 msgstr "Шестнадцатеричное значение кода выхода. Формат: 0x00000000."
 
-#: View/Elements/formExitCodeDirectoryBase.ctp:51
+#: View/Elements/formExitCodeDirectoryBase.ctp:50
 #: View/Elements/tableExitCodeDirectory.ctp:49
 msgid "Constant"
 msgstr "Константа"
 
-#: View/Elements/formExitCodeDirectoryBase.ctp:51
+#: View/Elements/formExitCodeDirectoryBase.ctp:50
 msgid "Constant of exit code. Format: letters A-Z, numbers, and underscores."
 msgstr "Константа кода выхода. Формат: буквы A-Z, цифры и подчеркивания."
 
-#: View/Elements/formExitCodeDirectoryBase.ctp:54
+#: View/Elements/formExitCodeDirectoryBase.ctp:53
 #: View/Elements/tableExitCodeDirectory.ctp:54
 msgid "Description"
 msgstr "Описание"
 
-#: View/Elements/formExitCodeDirectoryBase.ctp:54
+#: View/Elements/formExitCodeDirectoryBase.ctp:53
 msgid "Description of exit code."
 msgstr "Описание кода выхода."
 
@@ -3594,7 +3598,7 @@ msgid "URL for download."
 msgstr "URL для загрузки."
 
 #: View/Elements/formPackageActionBase.ctp:55;112
-#: View/Elements/tablePackageActions.ctp:251
+#: View/Elements/tablePackageActions.ctp:253
 msgid "Timeout"
 msgstr "Время ожидания"
 
@@ -3611,7 +3615,7 @@ msgid "Path to file for saving."
 msgstr "Путь к файлу для сохранения."
 
 #: View/Elements/formPackageActionBase.ctp:58
-#: View/Elements/tablePackageActions.ctp:86
+#: View/Elements/tablePackageActions.ctp:88
 msgid "Expand URL"
 msgstr "Развернуть URL"
 
@@ -3662,7 +3666,7 @@ msgid "The kind of action to be executed."
 msgstr "Вид действия, которое нужно выполнить."
 
 #: View/Elements/formPackageActionBase.ctp:141 View/Elements/formWpiBase.ctp:41
-#: View/Elements/tablePackageActions.ctp:71
+#: View/Elements/tablePackageActions.ctp:73
 msgid "Unknown"
 msgstr "Неизвестный"
 
@@ -3746,8 +3750,8 @@ msgid "List of priorities."
 msgstr "Список приоритетов."
 
 #: View/Elements/formPackageBase.ctp:103
-#: View/Elements/infoChecksControls.ctp:90 View/Elements/infoVariables.ctp:173
-#: View/Elements/tablePackageActions.ctp:240
+#: View/Elements/infoChecksControls.ctp:94 View/Elements/infoVariables.ctp:174
+#: View/Elements/tablePackageActions.ctp:242
 msgid "Open in new window"
 msgstr "Открыть в новом окне"
 
@@ -4143,7 +4147,7 @@ msgstr "Максимальный размер файла XML"
 msgid "Upload XML file"
 msgstr "Загрузить файл XML"
 
-#: View/Elements/formVariableBase.ctp:54 View/Elements/infoVariables.ctp:195
+#: View/Elements/formVariableBase.ctp:54 View/Elements/infoVariables.ctp:196
 msgid "Variable type"
 msgstr "Тип переменной"
 
@@ -4210,12 +4214,12 @@ msgstr "Пожалуйста, подождите. Выполняется соз�
 msgid "Error on creating chart"
 msgstr "Ошибка при создании диаграммы"
 
-#: View/Elements/infoChecksControls.ctp:68
+#: View/Elements/infoChecksControls.ctp:72
 msgid "Add checks"
 msgstr "Добавить проверки"
 
-#: View/Elements/infoDependency.ctp:107 View/Elements/infoVariables.ctp:115
-#: View/Elements/tablePackageActions.ctp:131
+#: View/Elements/infoDependency.ctp:107 View/Elements/infoVariables.ctp:116
+#: View/Elements/tablePackageActions.ctp:133
 msgid "Edit checks"
 msgstr "Изменить проверки"
 
@@ -4422,21 +4426,21 @@ msgstr "Восстановление состояния списка дейст�
 msgid "Statistics"
 msgstr "Статистика"
 
-#: View/Elements/infoVariables.ctp:87 View/Elements/tableHost.ctp:114
-#: View/Elements/tablePackageActions.ctp:104
+#: View/Elements/infoVariables.ctp:88 View/Elements/tableHost.ctp:114
+#: View/Elements/tablePackageActions.ctp:106
 #: View/Elements/treeItemCheckDraggable.ctp:38
 msgid "Show or hide move buttons"
 msgstr "Показать или скрыть кнопки перемещения"
 
-#: View/Elements/infoVariables.ctp:126
+#: View/Elements/infoVariables.ctp:127
 msgid "Edit variable"
 msgstr "Изменить переменную"
 
-#: View/Elements/infoVariables.ctp:135
+#: View/Elements/infoVariables.ctp:136
 msgid "Delete variable"
 msgstr "Удалить переменную"
 
-#: View/Elements/infoVariables.ctp:136
+#: View/Elements/infoVariables.ctp:137
 msgid "Are you sure you wish to delete variable '%s'?"
 msgstr "Вы действительно хотите удалить переменную '%s'?"
 
@@ -4615,35 +4619,35 @@ msgstr "Редактировать пакет"
 msgid "Are you sure you wish to delete package '%s'?"
 msgstr "Вы действительно хотите удалить пакет '%s'?"
 
-#: View/Elements/tablePackageActions.ctp:75
+#: View/Elements/tablePackageActions.ctp:77
 msgid "Includes the action: %s"
 msgstr "Включает действие: %s"
 
-#: View/Elements/tablePackageActions.ctp:141
+#: View/Elements/tablePackageActions.ctp:143
 msgid "Edit exit codes"
 msgstr "Изменить коды выхода"
 
-#: View/Elements/tablePackageActions.ctp:150
+#: View/Elements/tablePackageActions.ctp:152
 msgid "Edit package action"
 msgstr "Изменить действие пакета"
 
-#: View/Elements/tablePackageActions.ctp:159
+#: View/Elements/tablePackageActions.ctp:161
 msgid "Delete package action"
 msgstr "Удалить действие пакета"
 
-#: View/Elements/tablePackageActions.ctp:160
+#: View/Elements/tablePackageActions.ctp:162
 msgid "Are you sure you wish to delete package action '%s'?"
 msgstr "Вы уверены, что хотите удалить действие пакета '%s'?"
 
-#: View/Elements/tablePackageActions.ctp:250
+#: View/Elements/tablePackageActions.ctp:252
 msgid "Command, work directory"
 msgstr "Команда, рабочий каталог"
 
-#: View/Elements/tablePackageActions.ctp:252
+#: View/Elements/tablePackageActions.ctp:254
 msgid "Exit&nbsp;codes, reboot"
 msgstr "Коды&nbsp;выхода, перезагрузка"
 
-#: View/Elements/tablePackageActions.ctp:253
+#: View/Elements/tablePackageActions.ctp:255
 msgid "Actions"
 msgstr "Действия"
 
@@ -4788,6 +4792,9 @@ msgstr "Экспорт XML файлов"
 #: View/Reports/index.ctp:35
 msgid "State of packages"
 msgstr "Состояние пакетов"
+
+#~ msgid "Versions of package '%s'"
+#~ msgstr "Версии пакета '%s'"
 
 #~ msgid "Reboot: %s"
 #~ msgstr "Перезагрузка: %s"

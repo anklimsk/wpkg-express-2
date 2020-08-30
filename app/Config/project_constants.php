@@ -2497,6 +2497,17 @@ if (!defined('XML_CREATE_LIST_XML_CONFIG_URL')) {
 }
 
 /**
+ * LDAP attribute `uid`
+ *
+ * The 'uid' attribute type contains computer system login names associated with the object
+ * <a href="https://tools.ietf.org/html/rfc4519#section-2.39">RFC4519</a>
+ * @link https://tools.ietf.org/html/rfc4519#section-2.39
+ */
+if (!defined('LDAP_ATTRIBUTE_UID')) {
+	define('LDAP_ATTRIBUTE_UID', 'uid');
+}
+
+/**
  * Cache configuration for store statistics information of model `Host`
  *
  * Used for access to cached data of for store statistics information.

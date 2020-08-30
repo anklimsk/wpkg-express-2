@@ -134,21 +134,41 @@ class LdapComputer extends AppModel {
 		}
 
 		$result = [];
-		$conditions = '(&(!(useraccountcontrol:1.2.840.113556.1.4.803:=2))(objectClass=computer)(name=' . $name . '*))';
-		$order = [CAKE_LDAP_LDAP_ATTRIBUTE_NAME];
-		$fields = [
-			CAKE_LDAP_LDAP_ATTRIBUTE_NAME,
-			CAKE_LDAP_LDAP_ATTRIBUTE_DISTINGUISHED_NAME
-		];
+		if ($this->isDataSourceTypeActiveDirectory()) {
+			$conditions = '(&(!(useraccountcontrol:1.2.840.113556.1.4.803:=2))(objectClass=computer)(' . CAKE_LDAP_LDAP_ATTRIBUTE_NAME . '=' . $name . '*))';
+			$fields = [
+				CAKE_LDAP_LDAP_DISTINGUISHED_NAME,
+				CAKE_LDAP_LDAP_ATTRIBUTE_NAME
+			];
+		} else {
+			$conditions = '(&(objectClass=posixAccount)(' . LDAP_ATTRIBUTE_UID . '=' . $name . '*$))';
+			$fields = [
+				CAKE_LDAP_LDAP_DISTINGUISHED_NAME,
+				LDAP_ATTRIBUTE_UID
+			];
+		}
+		$order = [$fields[1]];
 		$data = $this->find('all', compact('conditions', 'fields', 'order', 'limit'));
 		if (empty($data)) {
 			return $result;
 		}
 		$result = Hash::combine(
 			$data,
-			'{n}.' . $this->alias . '.' . CAKE_LDAP_LDAP_ATTRIBUTE_DISTINGUISHED_NAME,
-			'{n}.' . $this->alias . '.' . CAKE_LDAP_LDAP_ATTRIBUTE_NAME
+			'{n}.' . $this->alias . '.' . $fields[0],
+			'{n}.' . $this->alias . '.' . $fields[1]
 		);
+		if (!$this->isDataSourceTypeActiveDirectory()) {
+			array_walk(
+				$result,
+				function(&$value, $key) {
+					if (is_array($value)) {
+						$value = array_shift($value);
+					}
+
+					$value = rtrim($value, '$');
+				}
+			);
+		}
 		if (empty($name)) {
 			Cache::set('duration', $duration, CACHE_KEY_LISTS_INFO_LDAP_COMPUTER);
 			Cache::write($cachePath, $result, CACHE_KEY_LISTS_INFO_LDAP_COMPUTER);
