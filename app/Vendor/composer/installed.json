@@ -83,17 +83,17 @@
     },
     {
         "name": "anklimsk/cakephp-console-installer",
-        "version": "v1.0.5",
-        "version_normalized": "1.0.5.0",
+        "version": "v1.0.6",
+        "version_normalized": "1.0.6.0",
         "source": {
             "type": "git",
             "url": "https://github.com/anklimsk/cakephp-console-installer.git",
-            "reference": "76136550e856ff4f8fd3634b77633f86510f63e9"
+            "reference": "63d90f33ea2a3d959a51981e163a8e94c37f1eb0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/anklimsk/cakephp-console-installer/zipball/76136550e856ff4f8fd3634b77633f86510f63e9",
-            "reference": "76136550e856ff4f8fd3634b77633f86510f63e9",
+            "url": "https://api.github.com/repos/anklimsk/cakephp-console-installer/zipball/63d90f33ea2a3d959a51981e163a8e94c37f1eb0",
+            "reference": "63d90f33ea2a3d959a51981e163a8e94c37f1eb0",
             "shasum": ""
         },
         "require": {
@@ -103,7 +103,7 @@
             "composer/installers": "^1.5.0",
             "php": ">=5.4"
         },
-        "time": "2018-11-26T13:07:04+00:00",
+        "time": "2020-04-02T15:33:41+00:00",
         "type": "cakephp-plugin",
         "extra": {
             "installer-name": "CakeInstaller"
