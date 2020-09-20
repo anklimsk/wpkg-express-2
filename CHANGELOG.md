@@ -1,6 +1,17 @@
 # Changelog
 
 
+## v1.0.12 (2020-09-20)
+
+### New
+
+* Added support for alternative directory services.
+
+### Fix
+
+* Fixed internal authentication issue after saving settings.
+
+
 ## v1.0.11 (2020-04-02)
 
 ### Fix
