@@ -3,12 +3,18 @@
 [![Latest Stable Version](https://poser.pugx.org/anklimsk/wpkg-express-2/v/stable)](https://packagist.org/packages/anklimsk/wpkg-express-2)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-A web-based frontend to [WPKG](https://wpkg.org) ([presentation](https://anklimsk.github.io/wpkg-express-2/presentation/))
+A web-based frontend to [WPKG](https://wpkg.org)
 
 WPKG Express 2 based on [wpkgExpress](https://code.google.com/archive/p/wpkgexpress)
 by Brian White &copy;2009.
 
 [WPKG](https://wpkg.org/WPKG_overview) is an automated software deployment, upgrade and removal program for Windows.
+
+## WPKG Express 2 UI
+
+![WPKG Express 2 UI](https://anklimsk.github.io/wpkg-express-2/img/slideshow.gif)
+
+See the project [presentation](https://anklimsk.github.io/wpkg-express-2/presentation/).
 
 ## This frontend to WPKG provides next features:
 
@@ -44,31 +50,61 @@ by Brian White &copy;2009.
 ## Requirements
 
 - Apache module `mod_rewrite`;
-- PHP 5.4.0 or greater;
-- [GraphViz](https://www.graphviz.org);
-- smbclient.
+- PHP 5.4 or greater (up to 7.4);
+- PHP Extensions: `pdo`, `ldap`, `bz2`, `xml` amd `openssl`;
+- Ldap server (`Active Directory`,`Samba` or `OpenLDAP`) to authenticate
+  (only `Active Directory`) and get a list of computers to create `Profiles` and `Hosts` from template;
+- Database server (`MySQL`, `Postgres`).
+
+### Not necessary
+
+- [Composer](https://getcomposer.org/download/) to install the application;
+- [GraphViz](https://www.graphviz.org) to create dependency graph of `Packages`, `Profiles`
+  and `Hosts`;
+- [smbclient](https://www.samba.org/samba/docs/current/man-html/smbclient.1.html) to access
+  log files and databases of client computers.
 
 ## Installation
 
 1. Install WPKG Express 2 using composer:
-  `composer create-project anklimsk/wpkg-express-2 /path/to/wpkg`.
-2. Copy applicaton files from `/path/to/wpkg`
-  to VirtualHost document root directory, e.g.: `/var/www/wpkg`.
-3. If you are using OPcache you should set the [opcache.blacklist_filename](https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.blacklist-filename)
+  `composer create-project anklimsk/wpkg-express-2 /var/www/wpkg`,
+  where `/var/www/wpkg` is Document Root directory.
+  Or just download the [latest release](https://github.com/anklimsk/wpkg-express-2/releases/latest)
+  from [Releases](https://github.com/anklimsk/wpkg-express-2/releases) and extract
+  the archive to the Document Root directory.
+2. Set the [DocumentRoot directive](https://httpd.apache.org/docs/trunk/mod/core.html#documentroot)
+  for the domain to [`DocumentRoot /var/www/wpkg/app/webroot`](https://book.cakephp.org/2/en/installation.html#production).
+3. Make sure that an `.htaccess` [override is allowed](https://book.cakephp.org/2/en/installation/url-rewriting.html#apache-and-mod-rewrite-and-htaccess)
+  and that `AllowOverride` is set to `All` for the correct DocumentRoot. For users having apache
+  2.4 and above, you need to modify the configuration file for your `httpd.conf`
+  or virtual host configuration to look like the following:
+  ```apacheconf
+  <Directory /var/www/wpkg>
+       Options FollowSymLinks
+       AllowOverride All
+       Require all granted
+  </Directory>
+  ```
+4. If you are using OPcache you should set the [opcache.blacklist_filename](https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.blacklist-filename)
   configuration value with a file path to your blacklist (View cache):
   - For example, create a new file:
-    `/etc/php5/apache2/opcache-blacklist.txt`;
+    `/etc/php/7.4/apache2/opcache-blacklist.txt`;
   - Specify the path for excluding files, e.g.: `/var/www/wpkg/app/tmp/cache/views/wpkg_*.php`;
   - Add the blacklist file path to your `php.ini` file:
-    `opcache.blacklist_filename=/etc/php5/apache2/opcache-blacklist.txt`;
+    `opcache.blacklist_filename=/etc/php/7.4/apache2/opcache-blacklist.txt`;
   - Reload apache configuration: `sudo service apache2 reload`.
-4. Navigate to the directory `app` application (`/var/www/wpkg/app`),
+5. Navigate to the directory `app` application (`/var/www/wpkg/app`),
   and run the following command: `sudo ./Console/cake CakeInstaller`
   to start interactive shell of installer.
-5. After the installation process is complete, in your browser go to the link
-  `http://wpkg.fabrikam.com/settings` to change settings of application,
-  where `http://wpkg.fabrikam.com` - base URL of installited WPKG Express 2.
-6. Fill in the fields in the `Authentication` group settings and click the `Save` button.
+6. After the installation process is complete, in your browser go to the link
+  `https://wpkg.fabrikam.com/settings` to change settings of application,
+  where `https://wpkg.fabrikam.com` - base URL of installited WPKG Express 2.
+7. Fill in the fields in the `Authentication` group settings (if required)
+  and click the `Save` button.
+
+## Update
+
+[Update frontend to WPKG](docs/update.md)
 
 ## Using
 
