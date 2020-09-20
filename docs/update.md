@@ -4,11 +4,18 @@
 - `app/Config/config.php`;
 - `app/Config/core.php`;
 - `app/Config/database.php`.
-2. Download XML configuration file for WPKG.
-3. Install new WPKG Express 2 using composer:
-  `composer create-project anklimsk/wpkg-express-2 /path/to/wpkg --stability beta`.
-4. Restore from backup files to path `/path/to/wpkg/app/Config`.
-5. Navigate to the directory `app` application (/path/to/wpkg/app),
+2. Download XML configuration file for WPKG (`config.xml`): in your browser go to the link
+  `https://wpkg.fabrikam.com/admin/configs`,
+  where `https://wpkg.fabrikam.com` - base URL of installited WPKG Express 2.
+3. Delete the contents of the Document Root Directory (e.g. `/var/www/wpkg`).
+4. Install the latest WPKG Express 2 using composer:
+  `composer create-project anklimsk/wpkg-express-2 /var/www/wpkg`,
+  where `/var/www/wpkg` is Document Root directory.
+  Or just download the [latest release](https://github.com/anklimsk/wpkg-express-2/releases/latest)
+  from [Releases](https://github.com/anklimsk/wpkg-express-2/releases) and extract
+  the archive to the Document Root directory.
+5. Restore from backup files to path `/var/www/wpkg/app/Config`.
+6. Navigate to the directory `app` application (`/var/www/wpkg/app`),
   and run the following command: `sudo ./Console/cake CakeInstaller install`
   for re-install frontend to WPKG.
-6. Upload saved XML configuration file for WPKG.
+7. Upload saved XML configuration file for WPKG.

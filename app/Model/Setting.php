@@ -223,6 +223,33 @@ class Setting extends SettingBase {
 	}
 
 /**
+ * Create validation rules by table fields
+ *
+ * @return bool Return success.
+ */
+	public function createValidationRules() {
+		parent::createValidationRules();
+
+		if ($this->isDataSourceTypeActiveDirectory()) {
+			return true;
+		}
+
+		$validator = $this->validator();
+		$authGroups = $this->_modelConfigSettingsApp->getAuthGroups();
+
+		foreach ($authGroups as $userRole => $authInfo) {
+			$fieldName = $authInfo['field'];
+
+			foreach ($validator[$fieldName] as $ruleName => $ruleInfo) {
+				$validator[$fieldName][$ruleName]->required = false;
+				$validator[$fieldName][$ruleName]->allowEmpty = true;
+			}
+		}
+
+		return true;
+	}
+
+/**
  * Called after each find operation. Can be used to modify any results returned by find().
  * Return value should be the (modified) results.
  *
@@ -293,12 +320,18 @@ class Setting extends SettingBase {
 
 		$hashType = 'sha256';
 		$passFieldsHash = $this->_getListPassFieldsHash();
+		$currentConfig = (array)$this->getConfig();
 		foreach ($passFieldsHash as $passField) {
 			if (!empty($this->data[$this->alias][$passField])) {
-				$passwordHasher = new SimplePasswordHasher(compact('hashType'));
-				$this->data[$this->alias][$passField] = $passwordHasher->hash(
-					$this->data[$this->alias][$passField]
-				);
+				$prevPass = (string)Hash::get($currentConfig, $this->alias . '.' . $passField);
+				if ($this->data[$this->alias][$passField] === $prevPass) {
+					$this->data[$this->alias][$passField] = $prevPass;
+				} else {
+					$passwordHasher = new SimplePasswordHasher(compact('hashType'));
+					$this->data[$this->alias][$passField] = $passwordHasher->hash(
+						$this->data[$this->alias][$passField]
+					);
+				}
 			}
 		}
 		$passFieldsEnc = $this->_getListPassFieldsEncrypt();

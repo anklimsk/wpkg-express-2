@@ -136,8 +136,8 @@ $config['CakeInstaller'] = [
 			],
 			'login' => [
 				'defaultValue' => '',
-				'label' => __d('cake_installer_label', 'User principal name (user@fabrikam.com)'),
-				'validationPattern' => '/\w{2,}\@\w{2,}\.\w{2,}/',
+				'label' => __("LDAP Bind RDN: RDN (cn=user,ou=users,dc=fabrikam,dc=com) for OpenLDAP or User principal name (user@fabrikam.com) for ActiveDirectory"),
+				'validationPattern' => '/(^([a-z][a-z0-9-]*)=(?![ #])(((?![\\="+,;<>]).)|(\\[ \\#="+,;<>])|(\\[a-f0-9][a-f0-9]))*(,([a-z][a-z0-9-]*)=(?![ #])(((?![\\="+,;<>]).)|(\\[ \\#="+,;<>])|(\\[a-f0-9][a-f0-9]))*)*$)|(\w{2,}\@\w{2,}\.\w{2,})/i',
 			],
 			'password' => [
 				'alowEmpty' => false,

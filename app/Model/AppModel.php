@@ -116,14 +116,31 @@ class AppModel extends ShimModel {
  * @throws RecordNotFoundException If record not found.
  */
 		public function get($id, array $options = []) {
-				if (empty($options)) {
-					$options = [
-						'recursive' => -1,
-						'noException' => true
-					];
-				}
+			if (empty($options)) {
+				$options = [
+					'recursive' => -1,
+					'noException' => true
+				];
+			}
 
-		return parent::get($id, $options);
+			return parent::get($id, $options);
+		}
+
+/**
+ * Gets the DataSource connection data to which this model is bound.
+ *
+ * @param string $key The name of the parameter to retrieve the configurations
+ *  of the DataSource.
+ * @return string|null Return DataSource connection data, or False on failure
+ */
+		protected function _getDataSourceData($key = null) {
+			$ds = $this->getDataSource();
+
+			if (empty($key) || !isset($ds->config[$key])) {
+				return null;
+			}
+
+			return $ds->config[$key];
 		}
 
 /**
@@ -132,13 +149,16 @@ class AppModel extends ShimModel {
  * @return string|bool Return DataSource connection name, or False on failure
  */
 		protected function _getDataSourceName() {
-			$ds = $this->getDataSource();
+			return $this->_getDataSourceData('datasource');
+		}
 
-			if (!isset($ds->config['datasource'])) {
-				return false;
-			}
-
-			return $ds->config['datasource'];
+/**
+ * Gets the DataSource connection type to which this model is bound.
+ *
+ * @return string|bool Return DataSource connection type, or False on failure
+ */
+		protected function _getDataSourceType() {
+			return $this->_getDataSourceData('type');
 		}
 
 /**
@@ -157,6 +177,16 @@ class AppModel extends ShimModel {
  */
 		public function isDataSourcePostgres() {
 			return $this->_getDataSourceName() === 'Database/Postgres';
+		}
+
+/**
+ * Check model is bound with the 'Ldap' DataSource and the data source type is 'ActiveDirectory'.
+ *
+ * @return bool Success
+ */
+		public function isDataSourceTypeActiveDirectory() {
+			return $this->_getDataSourceName() === 'CakeLdap.LdapExtSource'
+				&& $this->_getDataSourceType() === 'ActiveDirectory';
 		}
 
 /**
