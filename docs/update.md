@@ -12,7 +12,7 @@
   `composer create-project anklimsk/wpkg-express-2 /var/www/wpkg`,
   where `/var/www/wpkg` is Document Root directory.
   Or just download the [latest release](https://github.com/anklimsk/wpkg-express-2/releases/latest)
-  from [Releases](https://github.com/anklimsk/wpkg-express-2/releases) and extract
+  from [releases](https://github.com/anklimsk/wpkg-express-2/releases) and extract
   the archive to the Document Root directory.
 5. Restore from backup files to path `/var/www/wpkg/app/Config`.
 6. Navigate to the directory `app` application (`/var/www/wpkg/app`),

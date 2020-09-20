@@ -51,7 +51,7 @@ See the project [presentation](https://anklimsk.github.io/wpkg-express-2/present
 
 - Apache module `mod_rewrite`;
 - PHP 5.4 or greater (up to 7.4);
-- PHP Extensions: `pdo`, `ldap`, `bz2`, `xml` amd `openssl`;
+- PHP Extensions: `pdo`, `ldap`, `bz2`, `xml` and `openssl`;
 - Ldap server (`Active Directory`,`Samba` or `OpenLDAP`) to authenticate
   (only `Active Directory`) and get a list of computers to create `Profiles` and `Hosts` from template;
 - Database server (`MySQL`, `Postgres`).
@@ -70,10 +70,10 @@ See the project [presentation](https://anklimsk.github.io/wpkg-express-2/present
   `composer create-project anklimsk/wpkg-express-2 /var/www/wpkg`,
   where `/var/www/wpkg` is Document Root directory.
   Or just download the [latest release](https://github.com/anklimsk/wpkg-express-2/releases/latest)
-  from [Releases](https://github.com/anklimsk/wpkg-express-2/releases) and extract
+  from [releases](https://github.com/anklimsk/wpkg-express-2/releases) and extract
   the archive to the Document Root directory.
-2. Set the [DocumentRoot directive](https://httpd.apache.org/docs/trunk/mod/core.html#documentroot)
-  for the domain to [`DocumentRoot /var/www/wpkg/app/webroot`](https://book.cakephp.org/2/en/installation.html#production).
+2. Set the [DocumentRoot](https://httpd.apache.org/docs/trunk/mod/core.html#documentroot)
+  directive for the domain to [`/var/www/wpkg/app/webroot`](https://book.cakephp.org/2/en/installation.html#production).
 3. Make sure that an `.htaccess` [override is allowed](https://book.cakephp.org/2/en/installation/url-rewriting.html#apache-and-mod-rewrite-and-htaccess)
   and that `AllowOverride` is set to `All` for the correct DocumentRoot. For users having apache
   2.4 and above, you need to modify the configuration file for your `httpd.conf`
