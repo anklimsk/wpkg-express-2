@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2020, Andrey Klimov.
  * @package app.Model
  */
 
@@ -45,7 +45,12 @@ class Attribute extends AppModel {
  */
 	public $actsAs = [
 		'TrimStringField',
-		'BreadCrumbExt',
+		'BreadCrumbExt' => [
+			'refTypeField' => 'ref_type',
+			'refNodeField' => 'ref_node',
+			'refIdField' => 'ref_id'
+		],
+		'UpdateModifiedDate',
 		'ClearViewCache',
 		'GetList' => ['cacheConfig' => CACHE_KEY_LISTS_INFO_ATTRIBUTE],
 		'ValidationRules'
@@ -571,52 +576,6 @@ class Attribute extends AppModel {
 	}
 
 /**
- * Return ID of the associated record by the record ID
- *
- * @param int|string $id ID of record
- *  for retrieving associated record ID
- * @return string|bool Return associated record ID,
- *  or False on failure.
- */
-	public function getRefId($id = null) {
-		if (empty($id)) {
-			return false;
-		}
-
-		$this->id = $id;
-		return $this->field('ref_id');
-	}
-
-/**
- * Return associated information by the record ID
- *
- * @param int|string $id ID of record
- *  for retrieving associated information
- * @return string|bool Return type ID of associated record,
- *  or False on failure.
- */
-	public function getRefInfo($id = null) {
-		if (empty($id)) {
-			return false;
-		}
-
-		$conditions = [$this->alias . '.id' => $id];
-		$fields = [
-			$this->alias . '.ref_type',
-			$this->alias . '.ref_node',
-			$this->alias . '.ref_id',
-		];
-		$recursive = -1;
-		$data = $this->find('first', compact('fields', 'conditions', 'recursive'));
-		if (empty($data)) {
-			return false;
-		}
-		$result = $data[$this->alias];
-
-		return $result;
-	}
-
-/**
  * Return name of data.
  *
  * @return string Return name of data
@@ -685,9 +644,8 @@ class Attribute extends AppModel {
 				$name = $typeName;
 			}
 		}
-		$refNodeId = $modelNode->getRefId($refId);
-		$refTypeBind = $modelNode->getRefType($refId);
-		$nodeName = $modelNode->getFullName($refId, $refTypeBind, null, $refNodeId, false);
+		$refInfo = $modelNode->getRefInfo($refId);
+		$nodeName = $modelNode->getFullName($refId, $refInfo['refType'], null, $refInfo['refId'], false);
 		if (!empty($nodeName)) {
 			if (!empty($name)) {
 				$name .= ' ';
@@ -722,11 +680,9 @@ class Attribute extends AppModel {
 		if (!empty($modelType)) {
 			$result = $modelType->getBreadcrumbInfo();
 		}
-		$refNodeId = $modelNode->getRefId($refId);
-		$refTypeBind = $modelNode->getRefType($refId);
-		$nodeInfo = $modelNode->getBreadcrumbInfo($refId, $refTypeBind, null, $refNodeId, false);
+		$refInfo = $modelNode->getRefInfo($refId);
+		$nodeInfo = $modelNode->getBreadcrumbInfo($refId, $refInfo['refType'], null, $refInfo['refId'], false);
 		$result = array_merge($result, $nodeInfo);
-		$id = $this->getIdFor($refType, $refNode, $refId);
 		$result[] = $this->createBreadcrumb(null, false);
 
 		return $result;
@@ -896,9 +852,7 @@ class Attribute extends AppModel {
 			return false;
 		}
 
-		$refType = $refInfo['ref_type'];
-		$refNode = $refInfo['ref_node'];
-		$refId = $refInfo['ref_id'];
+		extract($refInfo, EXTR_OVERWRITE);
 		$modelNode = $this->getRefNodeModel($refType, $refNode);
 		if (empty($modelNode)) {
 			return false;

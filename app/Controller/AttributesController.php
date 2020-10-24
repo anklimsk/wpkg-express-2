@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2020, Andrey Klimov.
  * @package app.Controller
  */
 
@@ -155,7 +155,7 @@ class AttributesController extends AppController {
 		}
 		if ($this->request->is('post')) {
 			$this->Attribute->create();
-			if ($this->Attribute->save($this->request->data)) {
+			if ($this->Attribute->saveAndUpdateDate($this->request->data, $breadCrumbs)) {
 				$this->Flash->success(__('Attributes has been saved.'));
 
 				return $this->ViewExtension->redirectByUrl(null, $refTypeName);
@@ -217,7 +217,7 @@ class AttributesController extends AppController {
 		$breadCrumbs[] = __('Editing');
 		$fullName = $this->Attribute->getFullName($id, $refType, $refNode, $refId);
 		if ($this->request->is(['post', 'put'])) {
-			if ($this->Attribute->save($this->request->data)) {
+			if ($this->Attribute->saveAndUpdateDate($this->request->data, $breadCrumbs)) {
 				$this->Flash->success(__('Attributes has been saved.'));
 
 				return $this->ViewExtension->redirectByUrl(null, $refTypeName);

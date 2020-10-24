@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2020, Andrey Klimov.
  * @package app.Model
  */
 
@@ -53,9 +53,13 @@ class Check extends AppModel {
 	public $actsAs = [
 		'Tree',
 		'ScopeTree',
-		'MoveExt',
 		'TrimStringField',
-		'BreadCrumbExt',
+		'BreadCrumbExt' => [
+			'refTypeField' => 'ref_type',
+			'refIdField' => 'ref_id'
+		],
+		'UpdateModifiedDate',
+		'MoveExt',
 		'ClearViewCache',
 		'GetList' => ['cacheConfig' => CACHE_KEY_LISTS_INFO_CHECK],
 		'ValidationRules'
@@ -1347,34 +1351,6 @@ class Check extends AppModel {
 	}
 
 /**
- * Return associated information by the record ID
- *
- * @param int|string $id ID of record
- *  for retrieving associated information
- * @return string|bool Return type ID of associated record,
- *  or False on failure.
- */
-	public function getRefInfo($id = null) {
-		if (empty($id)) {
-			return false;
-		}
-
-		$conditions = [$this->alias . '.id' => $id];
-		$fields = [
-			$this->alias . '.ref_id',
-			$this->alias . '.ref_type',
-		];
-		$recursive = -1;
-		$data = $this->find('first', compact('fields', 'conditions', 'recursive'));
-		if (empty($data)) {
-			return false;
-		}
-		$result = $data[$this->alias];
-
-		return $result;
-	}
-
-/**
  * Return type name by type ID
  *
  * @param int|string $refType ID of type
@@ -1511,9 +1487,8 @@ class Check extends AppModel {
 		if (empty($modelType)) {
 			return $result;
 		}
-		$refTypeId = $modelType->getRefId($refId);
-		$refTypeBind = $modelType->getRefType($refId);
-		$typeName = $modelType->getFullName($refId, $refTypeBind, null, $refTypeId, false);
+		$refInfo = $modelType->getRefInfo($refId);
+		$typeName = $modelType->getFullName($refId, $refInfo['refType'], null, $refInfo['refId'], false);
 		$result = $this->getNameExt($id, $typeName, $primary);
 
 		return $result;
@@ -1537,9 +1512,8 @@ class Check extends AppModel {
 		if (empty($modelType)) {
 			return $result;
 		}
-		$refTypeId = $modelType->getRefId($refId);
-		$refTypeBind = $modelType->getRefType($refId);
-		$result = $modelType->getBreadcrumbInfo($refId, $refTypeBind, null, $refTypeId);
+		$refInfo = $modelType->getRefInfo($refId);
+		$result = $modelType->getBreadcrumbInfo($refId, $refInfo['refType'], null, $refInfo['refId']);
 		$link = false;
 		if (!empty($refType) && !empty($refId)) {
 			$link = ['action' => 'view', $refType, $refId];
@@ -1563,8 +1537,8 @@ class Check extends AppModel {
 		if (empty($refInfo)) {
 			return false;
 		}
-		$refId = $refInfo['ref_id'];
-		$refType = $refInfo['ref_type'];
+
+		extract($refInfo, EXTR_OVERWRITE);
 		$modelType = $this->getRefTypeModel($refType);
 		if (empty($modelType)) {
 			return false;

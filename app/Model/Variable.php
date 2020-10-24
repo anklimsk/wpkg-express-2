@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2020, Andrey Klimov.
  * @package app.Model
  */
 
@@ -51,9 +51,13 @@ class Variable extends AppModel {
 	public $actsAs = [
 		'Tree',
 		'ScopeTree',
+		'BreadCrumbExt' => [
+			'refTypeField' => 'ref_type',
+			'refIdField' => 'ref_id'
+		],
+		'UpdateModifiedDate',
 		'MoveExt',
 		'TrimStringField',
-		'BreadCrumbExt',
 		'ClearViewCache',
 		'ValidationRules'
 	];
@@ -623,8 +627,9 @@ class Variable extends AppModel {
 						$refId = $modelType->getRefId($refId);
 						break;
 					case CHECK_PARENT_TYPE_VARIABLE:
-						$refType = $modelType->getRefType($refId);
-						$refId = $modelType->getRefId($refId);
+						$refInfo = $modelType->getRefInfo($refId);
+						$refType = $refInfo['refType'];
+						$refId = $refInfo['refId'];
 						break;
 					default:
 						return $result;

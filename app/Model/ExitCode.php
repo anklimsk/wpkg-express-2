@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018-2019, Andrey Klimov.
+ * @copyright Copyright 2018-2020, Andrey Klimov.
  * @package app.Model
  */
 
@@ -50,7 +50,10 @@ class ExitCode extends AppModel {
  */
 	public $actsAs = [
 		'TrimStringField',
-		'BreadCrumbExt',
+		'BreadCrumbExt' => [
+			'refIdField' => 'package_action_id'
+		],
+		'UpdateModifiedDate',
 		'ClearViewCache',
 		'ValidationRules'
 	];
@@ -283,23 +286,6 @@ class ExitCode extends AppModel {
  */
 	public function getRefTypeModel() {
 		return ClassRegistry::init('PackageAction', true);
-	}
-
-/**
- * Return ID of the package action by the record ID
- *
- * @param int|string $id ID of record
- *  for retrieving package action ID
- * @return string|bool Return package action ID,
- *  or False on failure.
- */
-	public function getRefId($id = null) {
-		if (empty($id)) {
-			return false;
-		}
-
-		$this->id = $id;
-		return $this->field('package_action_id');
 	}
 
 /**

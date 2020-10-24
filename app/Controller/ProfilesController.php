@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018-2019, Andrey Klimov.
+ * @copyright Copyright 2018-2020, Andrey Klimov.
  * @package app.Controller
  */
 
@@ -552,7 +552,7 @@ class ProfilesController extends AppController {
 		$breadCrumbs = $this->Profile->PackagesProfile->getBreadcrumbInfo($id);
 		$breadCrumbs[] = __('Editing');
 		if ($this->request->is(['post', 'put'])) {
-			if ($this->Profile->PackagesProfile->save($this->request->data)) {
+			if ($this->Profile->PackagesProfile->saveAndUpdateDate($this->request->data, $breadCrumbs)) {
 				$this->Flash->success(__('Installation date of package has been saved.'));
 
 				return $this->ViewExtension->redirectByUrl(null, 'profile');
