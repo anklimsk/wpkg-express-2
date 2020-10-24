@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2020, Andrey Klimov.
  * @package app.Controller
  */
 
@@ -54,6 +54,7 @@ class WpiCategoriesController extends AppController {
  */
 	public $components = [
 		'Paginator',
+		'BookmarkTable' => ['TargetModel' => 'WpiCategory'],
 		'ChangeState' => ['TargetModel' => 'WpiCategory'],
 	];
 
@@ -94,8 +95,15 @@ class WpiCategoriesController extends AppController {
  */
 	protected function _index() {
 		$this->view = 'index';
+		$this->BookmarkTable->restoreBookmark();
 		$this->Paginator->settings = $this->paginate;
-		$WPIcategories = $this->Paginator->paginate('WpiCategory');
+		try {
+			$WPIcategories = $this->Paginator->paginate('WpiCategory');
+		} catch (Exception $e) {
+			$this->BookmarkTable->clearBookmark();
+			return $this->ViewExtension->setExceptionMessage($e);
+		}
+		$this->BookmarkTable->storeBookmark();
 		if (empty($WPIcategories)) {
 			$this->Flash->information(__('WPI categories not found'));
 		}
