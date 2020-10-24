@@ -182,6 +182,10 @@ class ViewDataComponent extends BaseDataComponent {
 		if (!method_exists($this->_modelTarget, 'get')) {
 			throw new InternalErrorException(__("Method '%s' is not found in target model", 'get'));
 		}
+		$resultValidate = $this->_validateId($id);
+		if ($resultValidate !== true) {
+			return $resultValidate;
+		}
 
 		$this->_controller->view = 'view';
 		$targetName = $this->_getTargetName();
@@ -194,9 +198,7 @@ class ViewDataComponent extends BaseDataComponent {
 		if ($this->_modelTarget->Behaviors->loaded('BreadCrumbExt') || method_exists($this->_modelTarget, 'getControllerName')) {
 			$controllerName = $this->_modelTarget->getControllerName();
 		}
-		if (!$this->_modelTarget->exists($id)) {
-			return $this->_controller->ViewExtension->setExceptionMessage(new NotFoundException(__('Invalid ID for %s', $targetNameI18n)));
-		}
+
 		$breadCrumbs = [];
 		if ($this->_modelTarget->Behaviors->loaded('BreadCrumbExt')) {
 			$breadCrumbs = $this->_modelTarget->getBreadcrumbInfo($id);

@@ -41,19 +41,17 @@ class ChangeStateComponent extends BaseDataComponent {
  * Action `delete`. Used to remove data.
  *
  * @param int|string $id ID of record for remove
- * @throws BadRequestException if request is not POST or DELETE
  * @return CakeResponse|null
+ * @throws BadRequestException if request is not POST or DELETE
  */
 	public function delete($id = null) {
+		$resultValidate = $this->_validateId($id);
+		if ($resultValidate !== true) {
+			return $resultValidate;
+		}
+
 		$targetName = $this->_getTargetName();
 		$targetNameI18n = $this->_getTargetName(true);
-		if (method_exists($this->_modelTarget, 'getTargetName')) {
-			$targetNameI18n = mb_strtolower($this->_modelTarget->getTargetName());
-		}
-		$this->_modelTarget->id = $id;
-		if (!$this->_modelTarget->exists()) {
-			return $this->_controller->ViewExtension->setExceptionMessage(new NotFoundException(__('Invalid ID for %s', $targetNameI18n)));
-		}
 
 		$this->_controller->request->allowMethod('post', 'delete');
 		$this->_controller->ViewExtension->setRedirectUrl(null, $targetName);
@@ -89,6 +87,10 @@ class ChangeStateComponent extends BaseDataComponent {
 		if (!$this->_modelTarget->Behaviors->loaded('ChangeState')) {
 			throw new InternalErrorException(__("Behavior '%s' is not loaded in target model", 'ChangeState'));
 		}
+		$resultValidate = $this->_validateId($id);
+		if ($resultValidate !== true) {
+			return $resultValidate;
+		}
 
 		if (empty($stateName)) {
 			$stateName = $field;
@@ -96,12 +98,6 @@ class ChangeStateComponent extends BaseDataComponent {
 
 		$targetName = $this->_getTargetName();
 		$targetNameI18n = $this->_getTargetName(true);
-		if (method_exists($this->_modelTarget, 'getTargetName')) {
-			$targetNameI18n = mb_strtolower($this->_modelTarget->getTargetName());
-		}
-		if (!$this->_modelTarget->exists($id)) {
-			return $this->_controller->ViewExtension->setExceptionMessage(new NotFoundException(__('Invalid ID for %s', $targetNameI18n)));
-		}
 
 		$this->_controller->ViewExtension->setRedirectUrl(null, $targetName);
 		if ($this->_modelTarget->setState($id, $field, $state)) {

@@ -60,14 +60,13 @@ class TemplateDataComponent extends BaseDataComponent {
  * @return void
  */
 	public function actionCreate($id = null) {
+		$resultValidate = $this->_validateId($id);
+		if ($resultValidate !== true) {
+			return $resultValidate;
+		}
+
 		$targetName = $this->_getTargetName();
 		$targetNameI18n = $this->_getTargetName(true);
-		if (method_exists($this->_modelTarget, 'getTargetName')) {
-			$targetNameI18n = mb_strtolower($this->_modelTarget->getTargetName());
-		}
-		if (!empty($id) && !$this->_modelTarget->exists($id)) {
-			return $this->_controller->ViewExtension->setExceptionMessage(new NotFoundException(__('Invalid ID for %s', $targetNameI18n)));
-		}
 
 		$listTemplates = $this->_modelTarget->getListTemplates();
 		if (empty($listTemplates)) {
@@ -142,14 +141,13 @@ class TemplateDataComponent extends BaseDataComponent {
  * @return CakeResponse|null
  */
 	public function actionCopy($id = null) {
+		$resultValidate = $this->_validateId($id);
+		if ($resultValidate !== true) {
+			return $resultValidate;
+		}
+
 		$targetName = $this->_getTargetName();
 		$targetNameI18n = $this->_getTargetName(true);
-		if (method_exists($this->_modelTarget, 'getTargetName')) {
-			$targetNameI18n = mb_strtolower($this->_modelTarget->getTargetName());
-		}
-		if (!empty($id) && !$this->_modelTarget->exists($id)) {
-			return $this->_controller->ViewExtension->setExceptionMessage(new NotFoundException(__('Invalid ID for %s', $targetNameI18n)));
-		}
 
 		$this->_controller->request->allowMethod('post');
 		$this->_controller->ViewExtension->setRedirectUrl(null, $targetName);
