@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wpkgExpress II\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2019-02-27 14:23+0300\n"
+"PO-Revision-Date: 2020-10-24 15:45+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
 #: Model/Archive.php:validation for field revision
 msgid "Incorrect package revision"
@@ -43,6 +43,19 @@ msgstr "Недопустимое имя архива."
 #: Model/Archive.php:validation for field data Model/Garbage.php:validation
 msgid "Archive data is invalid."
 msgstr "Недопустимые архивные данные."
+
+#: Model/Bookmark.php:validation for field hash Model/ReportHost.php:validation
+#: Model/SampleData.php:validation
+msgid "Hash is invalid."
+msgstr "Недопустимый хэш."
+
+#: Model/Bookmark.php:validation for field hash Model/SampleData.php:validation
+msgid "Hash is already exists."
+msgstr "Хеш уже существует."
+
+#: Model/Bookmark.php:validation for field data
+msgid "Incorrect data"
+msgstr "Неверные данные"
 
 #: Model/Config.php:validation for field key
 msgid "The configuration key is invalid."
@@ -309,10 +322,6 @@ msgstr "Этот пакет для этого хоста уже существу
 msgid "Report date is invalid."
 msgstr "Недопустимая дата отчёта."
 
-#: Model/ReportHost.php:validation for field hash
-msgid "Hash is invalid."
-msgstr "Недопустимый хэш."
-
 #: Model/ReportState.php:validation for field name
 msgid "The report state is invalid."
 msgstr "Состояние отчёта недействительно."
@@ -320,6 +329,14 @@ msgstr "Состояние отчёта недействительно."
 #: Model/ReportState.php:validation for field name
 msgid "The report state already exists."
 msgstr "Состояние отчёта уже существует."
+
+#: Model/SampleData.php:validation for field name
+msgid "The data file name is invalid."
+msgstr "Недопустимое имя файла данных."
+
+#: Model/SampleData.php:validation for field name
+msgid "The data file name already exists."
+msgstr "Имя файла данных уже существует."
 
 #: Model/Variable.php:validation for field ref_type
 msgid "Invalid variable type."
@@ -356,51 +373,6 @@ msgstr "Недопустимая категория WPI."
 #: Model/WpiCategory.php:validation for field name
 msgid "The WPI category already exists."
 msgstr "Категория WPI уже существует."
-
-#: Plugin/Queue/Model/CronTask.php:validation for field jobtype;validation
-#: name;validation title;validation failed;validation status
-#: Plugin/Tools/Model/CodeKey.php:validation type;validation key
-#: Plugin/Tools/Model/ContactForm.php:validation subject;validation message
-#: Plugin/Tools/Model/KeyValue.php:validation foreign_id;validation
-#: Plugin/Tools/Model/Qlogin.php:validation url;validation user_id
-#: Plugin/Tools/Model/Qurl.php:validation key;validation used
-#: Plugin/Tools/Model/Token.php:validation
-msgid "valErrMandatoryField"
-msgstr ""
-
-#: Plugin/Queue/Model/CronTask.php:validation for field name;validation title
-msgid "valErrRecordNameExists"
-msgstr ""
-
-#: Plugin/Queue/Model/CronTask.php:validation for field interval
-msgid "valErrInvalidRange"
-msgstr ""
-
-#: Plugin/Tools/Model/CodeKey.php:validation for field key
-#: Plugin/Tools/Model/Token.php:validation
-msgid "valErrTokenExists"
-msgstr ""
-
-#: Plugin/Tools/Model/CodeKey.php:validation for field content
-#: Plugin/Tools/Model/Token.php:validation
-msgid "valErrMaxCharacters %s"
-msgstr ""
-
-#: Plugin/Tools/Model/ContactForm.php:validation for field email
-msgid "valErrInvalidEmail"
-msgstr ""
-
-#: Plugin/Tools/Model/Qlogin.php:validation for field url
-msgid "valErrInvalidQloginUrl"
-msgstr ""
-
-#: Plugin/Tools/Model/Qurl.php:validation for field key
-msgid "valErrQurlKeyExists"
-msgstr ""
-
-#: Plugin/Tools/Model/Qurl.php:validation for field url
-msgid "valErrInvalidQurlUrl"
-msgstr ""
 
 #~ msgid "The package's notify attribute must be true or false."
 #~ msgstr "Атрибут уведомления пакета должен быть истинным или ложным."
