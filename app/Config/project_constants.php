@@ -20,7 +20,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018-2019, Andrey Klimov.
+ * @copyright Copyright 2018-2020, Andrey Klimov.
  * @package app.Config
  */
 
@@ -2204,6 +2204,78 @@ if (!defined('SHELL_CRON_TASK_PARSE_DATABASES')) {
  */
 if (!defined('SHELL_CRON_TASK_DISABLE_UNUSED')) {
 	define('SHELL_CRON_TASK_DISABLE_UNUSED', 'disable_unused');
+}
+
+/**
+ * Name of the valid type of XML for import
+ *
+ * Used to indicate the type of Package. Default value `package`
+ */
+if (!defined('IMPORT_VALID_XML_TYPE_PACKAGE')) {
+	define('IMPORT_VALID_XML_TYPE_PACKAGE', 'package');
+}
+
+/**
+ * Name of the valid type of XML for import
+ *
+ * Used to indicate the type of Profile. Default value `profile`
+ */
+if (!defined('IMPORT_VALID_XML_TYPE_PROFILE')) {
+	define('IMPORT_VALID_XML_TYPE_PROFILE', 'profile');
+}
+
+/**
+ * Name of the valid type of XML for import
+ *
+ * Used to indicate the type of Host. Default value `host`
+ */
+if (!defined('IMPORT_VALID_XML_TYPE_HOST')) {
+	define('IMPORT_VALID_XML_TYPE_HOST', 'host');
+}
+
+/**
+ * Name of the valid type of XML for import
+ *
+ * Used to indicate the type of Settings WPKG. Default value `config`
+ */
+if (!defined('IMPORT_VALID_XML_TYPE_WPKG_CONFIGURATION')) {
+	define('IMPORT_VALID_XML_TYPE_WPKG_CONFIGURATION', 'config');
+}
+
+/**
+ * Name of the valid type of XML for import
+ *
+ * Used to indicate the type of Client Database. Default value `setting`
+ */
+if (!defined('IMPORT_VALID_XML_TYPE_CLIENT_DATABASE')) {
+	define('IMPORT_VALID_XML_TYPE_CLIENT_DATABASE', 'database');
+}
+
+/**
+ * Name of the valid type of XML for import
+ *
+ * Used to indicate the type of Exit code directory. Default value `directory`
+ */
+if (!defined('IMPORT_VALID_XML_TYPE_EXIT_CODE_DIRECTORY')) {
+	define('IMPORT_VALID_XML_TYPE_EXIT_CODE_DIRECTORY', 'directory');
+}
+
+/**
+ * Name of the valid type of TEXT for import
+ *
+ * Used to indicate the type of Report. Default value `report`
+ */
+if (!defined('IMPORT_VALID_TEXT_TYPE_REPORT')) {
+	define('IMPORT_VALID_TEXT_TYPE_REPORT', 'report');
+}
+
+/**
+ * Name of the valid type of TEXT for import
+ *
+ * Used to indicate the type of Log. Default value `log`
+ */
+if (!defined('IMPORT_VALID_TEXT_TYPE_LOG')) {
+	define('IMPORT_VALID_TEXT_TYPE_LOG', 'log');
 }
 
 /**
