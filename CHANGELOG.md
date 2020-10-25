@@ -1,6 +1,25 @@
 # Changelog
 
 
+## v1.1.0-rc.1 (2020-10-25)
+
+### New
+
+* Added autocompletion when editing XML based on XSD schema.
+
+* Added the ability to edit XML packages, profiles and hosts.
+
+* Added saving the state of tables in bookmarks.
+
+### Changes
+
+* Improved updating of parent information change time when changing child information.
+
+### Fix
+
+* Fixed updating the modal window when deleting a dependency list item.
+
+
 ## v1.0.12 (2020-09-20)
 
 ### New
