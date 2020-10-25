@@ -233,8 +233,16 @@ class ViewDataComponent extends BaseDataComponent {
 					__('Preview XML'),
 					['controller' => $controllerName, 'action' => 'preview', $data[$this->_modelTarget->alias]['id']],
 					['title' => __('Preview XML file'), 'data-toggle' => 'modal', 'data-modal-size' => 'lg']
-				]
+				],
 			];
+			if ($this->_controller->Components->loaded('ImportData')) {
+				$headerMenuActionsExt[] = [
+					'fas fa-pencil-alt',
+					__('Edit XML'),
+					['controller' => $controllerName, 'action' => 'import', $data[$this->_modelTarget->alias]['id']],
+					['title' => __('Editing XML file'), 'data-toggle' => 'modal', 'data-modal-size' => 'lg']
+				];
+			}
 			if (method_exists($this->_modelTarget, 'getDownloadName')) {
 				$headerMenuActionsExt[] = [
 					'fas fa-file-download',

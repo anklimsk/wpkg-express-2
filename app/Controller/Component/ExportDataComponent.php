@@ -114,13 +114,21 @@ class ExportDataComponent extends BaseDataComponent {
 			$breadCrumbs[] = __('Previewing');
 		}
 		$pageHeader = __('Preview XML');
-		$headerMenuActions = [
-			[
-				'fas fa-file-download',
-				__('Download XML file'),
-				$downloadUrl,
-				['title' => __('Download XML file'), 'skip-modal' => true]
-			],
+		$headerMenuActions = [];
+		if ($this->_controller->Components->loaded('ImportData')) {
+			$headerMenuActions[] = [
+				'fas fa-pencil-alt',
+				__('Edit XML file'),
+				['controller' => $controllerName, 'action' => 'import', $id],
+				['title' => __('Editing XML information of this %s', $targetNameI18n),
+					'data-toggle' => 'modal', 'data-modal-size' => 'lg']
+			];
+		}
+		$headerMenuActions[] = [
+			'fas fa-file-download',
+			__('Download XML file'),
+			$downloadUrl,
+			['title' => __('Download XML file'), 'skip-modal' => true]
 		];
 
 		if (empty($errorMsg)) {

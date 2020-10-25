@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2020, Andrey Klimov.
  * @package app.Controller
  */
 
@@ -63,8 +63,9 @@ class PackagesController extends AppController {
 		'CakeTheme.Filter',
 		'ViewData' => ['TargetModel' => 'Package'],
 		'ExportData' => ['TargetModel' => 'Package'],
+		'ImportData' => ['TargetModel' => 'Package'],
 		'ChangeState' => ['TargetModel' => 'Package'],
-		'TemplateData' => ['TargetModel' => 'Package'],
+		'TemplateData' => ['TargetModel' => 'Package']
 	];
 
 /**
@@ -474,6 +475,28 @@ class PackagesController extends AppController {
  */
 	public function admin_create($id = null) {
 		$this->_create($id);
+	}
+
+/**
+ * Base of action `import`. Used to import XML information of package.
+ *
+ * @param int|string $id ID of record for import.
+ * @return void
+ */
+	protected function _import($id = null) {
+		$this->view = 'import';
+		$this->ImportData->import($id);
+	}
+
+/**
+ * Base of action `import`. Used to import XML information of package.
+ * User role - administrator.
+ *
+ * @param int|string $id ID of record for import.
+ * @return void
+ */
+	public function admin_import($id = null) {
+		$this->_import($id);
 	}
 
 /**

@@ -1,7 +1,7 @@
 <?php
 /**
- * This file is the view file of the application. Used to previewing
- *  XML information of host.
+ * This file is the view file of the application. Used to output
+ *  an XML template.
  *
  * This file is part of wpkgExpress II.
  *
@@ -21,20 +21,8 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018-2020, Andrey Klimov.
- * @package app.View.Hosts
+ * @copyright Copyright 2020, Andrey Klimov.
+ * @package app.View.Creations
  */
 
-	echo $this->AssetCompress->css('codemirror', ['block' => 'css']);
-	echo $this->AssetCompress->script('codemirror', ['block' => 'script']);
-
-	$this->assign('title', $pageHeader);
-	$this->ViewExtension->addBreadCrumbs($breadCrumbs);
-?>
-	<div class="container">
-<?php
-		echo $this->ViewExtension->headerPage($pageHeader, $headerMenuActions);
-		echo $this->element('infoPreviewXml', compact('fullName',
-			'selLine', 'errorMsg', 'outXML'));
-?>
-	</div>
+	echo $data;

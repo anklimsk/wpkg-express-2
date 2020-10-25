@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018-2019, Andrey Klimov.
+ * @copyright Copyright 2018-2020, Andrey Klimov.
  * @package app.Controller
  */
 
@@ -66,6 +66,7 @@ class CreationsController extends AppController {
 	protected function _index() {
 		$this->view = 'index';
 		$selLine = [];
+		$warningMsg = null;
 		$errorMsg = null;
 		$maxFileSize = $this->Import->getLimitFileSize();
 		if ($this->request->is('post')) {
@@ -94,13 +95,14 @@ class CreationsController extends AppController {
 		} else {
 			$this->request->data('Create.xml', $this->Import->getDefaultXML());
 		}
-		$validxmltypes = $this->Import->getNameValidXmlTypes();
+
+		$listValidXmlTypes = $this->Import->getListValidXmlTypes(true);
 		$listXmlConfigUrl = XML_CREATE_LIST_XML_CONFIG_URL;
 		$breadCrumbs = $this->Import->getBreadcrumbInfo();
 		$breadCrumbs[] = __('Inputting XML text');
 		$pageHeader = __('Creating XML');
 
-		$this->set(compact('selLine', 'errorMsg', 'maxFileSize', 'validxmltypes',
+		$this->set(compact('selLine', 'warningMsg', 'errorMsg', 'maxFileSize', 'listValidXmlTypes',
 			'listXmlConfigUrl', 'breadCrumbs', 'pageHeader'));
 	}
 

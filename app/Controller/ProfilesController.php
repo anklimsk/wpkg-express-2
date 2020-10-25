@@ -65,6 +65,7 @@ class ProfilesController extends AppController {
 		'CakeTheme.Filter',
 		'ViewData' => ['TargetModel' => 'Profile'],
 		'ExportData' => ['TargetModel' => 'Profile'],
+		'ImportData' => ['TargetModel' => 'Profile'],
 		'ChangeState' => ['TargetModel' => 'Profile'],
 		'TemplateData' => ['TargetModel' => 'Profile'],
 	];
@@ -421,6 +422,28 @@ class ProfilesController extends AppController {
  */
 	public function admin_create($id = null) {
 		$this->_create($id);
+	}
+
+/**
+ * Base of action `import`. Used to import XML information of profile.
+ *
+ * @param int|string $id ID of record for import.
+ * @return void
+ */
+	protected function _import($id = null) {
+		$this->view = 'import';
+		$this->ImportData->import($id);
+	}
+
+/**
+ * Base of action `import`. Used to import XML information of profile.
+ * User role - administrator.
+ *
+ * @param int|string $id ID of record for import.
+ * @return void
+ */
+	public function admin_import($id = null) {
+		$this->_import($id);
 	}
 
 /**

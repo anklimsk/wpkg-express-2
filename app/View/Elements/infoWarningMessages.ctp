@@ -1,7 +1,7 @@
 <?php
 /**
- * This file is the view file of the application. Used to previewing
- *  XML information of host.
+ * This file is the view file of the application. Used to render
+ *  warning messages information.
  *
  * This file is part of wpkgExpress II.
  *
@@ -22,19 +22,24 @@
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
  * @copyright Copyright 2018-2020, Andrey Klimov.
- * @package app.View.Hosts
+ * @package app.View.Elements
  */
 
-	echo $this->AssetCompress->css('codemirror', ['block' => 'css']);
-	echo $this->AssetCompress->script('codemirror', ['block' => 'script']);
+if (!isset($warningMsg)) {
+	$warningMsg = null;
+}
 
-	$this->assign('title', $pageHeader);
-	$this->ViewExtension->addBreadCrumbs($breadCrumbs);
-?>
-	<div class="container">
-<?php
-		echo $this->ViewExtension->headerPage($pageHeader, $headerMenuActions);
-		echo $this->element('infoPreviewXml', compact('fullName',
-			'selLine', 'errorMsg', 'outXML'));
-?>
-	</div>
+if (empty($warningMsg)) {
+	return;
+}
+
+echo $this->Html->div(
+	'alert alert-warning alert-dismissible',
+	$this->Html->tag(
+		'button',
+		$this->Html->tag('span', '&times;', ['aria-hidden' => 'true']),
+		['type' => 'button', 'class' => 'close', 'data-dismiss' => 'alert', 'aria-label' => 'Close']
+	) .
+	$warningMsg,
+	['role' => 'alert']
+);

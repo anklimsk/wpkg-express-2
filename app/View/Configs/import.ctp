@@ -1,7 +1,7 @@
 <?php
 /**
- * This file is the view file of the application. Used to previewing
- *  XML information of host.
+ * This file is the view file of the application. Used to editing XML
+ *  information of configuration WPKG script.
  *
  * This file is part of wpkgExpress II.
  *
@@ -22,7 +22,7 @@
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
  * @copyright Copyright 2018-2020, Andrey Klimov.
- * @package app.View.Hosts
+ * @package app.View.Configs
  */
 
 	echo $this->AssetCompress->css('codemirror', ['block' => 'css']);
@@ -33,8 +33,7 @@
 ?>
 	<div class="container">
 <?php
-		echo $this->ViewExtension->headerPage($pageHeader, $headerMenuActions);
-		echo $this->element('infoPreviewXml', compact('fullName',
-			'selLine', 'errorMsg', 'outXML'));
+		echo $this->ViewExtension->headerPage($pageHeader);
+		echo $this->element('formCreateXml', compact('selLine', 'errorMsg', 'warningMsg', 'fullName'));
 ?>
 	</div>

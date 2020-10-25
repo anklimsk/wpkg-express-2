@@ -1,7 +1,7 @@
 <?php
 /**
- * This file is the view file of the application. Used to previewing
- *  XML information of host.
+ * This file is the view file of the application. Used to editing XML
+ *  information of host.
  *
  * This file is part of wpkgExpress II.
  *
@@ -33,8 +33,7 @@
 ?>
 	<div class="container">
 <?php
-		echo $this->ViewExtension->headerPage($pageHeader, $headerMenuActions);
-		echo $this->element('infoPreviewXml', compact('fullName',
-			'selLine', 'errorMsg', 'outXML'));
+		echo $this->ViewExtension->headerPage($pageHeader);
+		echo $this->element('formCreateXml', compact('selLine', 'errorMsg', 'warningMsg', 'fullName'));
 ?>
 	</div>
