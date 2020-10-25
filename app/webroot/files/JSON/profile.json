@@ -1,0 +1,156 @@
+{
+  "!top": [
+    "profiles:profiles"
+  ],
+  "profiles:profiles": {
+    "children": [
+      "profile"
+    ]
+  },
+  "profile": {
+    "attrs": {
+      "id": null
+    },
+    "children": [
+      "depends",
+      "variable",
+      "package"
+    ]
+  },
+  "depends": {
+    "attrs": {
+      "profile-id": null,
+      "hostname": null,
+      "os": null,
+      "ipaddresses": null,
+      "domainname": null,
+      "groups": null,
+      "architecture": [
+        "x86",
+        "x64",
+        "ia64"
+      ],
+      "environment": null,
+      "lcid": null,
+      "lcidOS": null
+    },
+    "children": [
+      "condition"
+    ]
+  },
+  "condition": {
+    "children": [
+      "check"
+    ]
+  },
+  "check": {
+    "attrs": {
+      "type": null,
+      "condition": null,
+      "path": null,
+      "value": null,
+      "hostname": null,
+      "os": null,
+      "ipaddresses": null,
+      "domainname": null,
+      "groups": null,
+      "architecture": [
+        "x86",
+        "x64",
+        "ia64"
+      ],
+      "environment": null,
+      "lcid": null,
+      "lcidOS": null
+    },
+    "children": [
+      "check",
+      "condition"
+    ]
+  },
+  "check": {
+    "attrs": {
+      "type": null,
+      "condition": null,
+      "path": null,
+      "value": null,
+      "hostname": null,
+      "os": null,
+      "ipaddresses": null,
+      "domainname": null,
+      "groups": null,
+      "architecture": [
+        "x86",
+        "x64",
+        "ia64"
+      ],
+      "environment": null,
+      "lcid": null,
+      "lcidOS": null
+    },
+    "children": [
+      "check",
+      "condition"
+    ]
+  },
+  "condition": {
+    "children": [
+      "check"
+    ]
+  },
+  "variable": {
+    "attrs": {
+      "name": null,
+      "value": null,
+      "hostname": null,
+      "os": null,
+      "ipaddresses": null,
+      "domainname": null,
+      "groups": null,
+      "architecture": [
+        "x86",
+        "x64",
+        "ia64"
+      ],
+      "environment": null,
+      "lcid": null,
+      "lcidOS": null
+    },
+    "children": [
+      "condition"
+    ]
+  },
+  "condition": {
+    "children": [
+      "check"
+    ]
+  },
+  "package": {
+    "attrs": {
+      "installdate": null,
+      "uninstalldate": null,
+      "package-id": null,
+      "hostname": null,
+      "os": null,
+      "ipaddresses": null,
+      "domainname": null,
+      "groups": null,
+      "architecture": [
+        "x86",
+        "x64",
+        "ia64"
+      ],
+      "environment": null,
+      "lcid": null,
+      "lcidOS": null
+    },
+    "children": [
+      "condition"
+    ]
+  },
+  "condition": {
+    "children": [
+      "check"
+    ]
+  }
+}

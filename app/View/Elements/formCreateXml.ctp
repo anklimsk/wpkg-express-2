@@ -77,7 +77,15 @@
 <?php endif;
 	echo $this->element('infoWarningMessages', compact('warningMsg'));
 	echo $this->element('infoErrorMessages', compact('errorMsg'));
-	echo $this->Form->input('Create.xml', ['label' => [__('XML'), __('Press Ctrl-J to jump to the tag that matches the one under the cursor.'), ':'],
+	if (!empty($listValidXmlTypes)) {
+		echo $this->Form->input('Create.type', ['label' => [__('Type'), __('XML type.'), ':'],
+		'type' => 'select', 'data-toggle' => 'tooltip', 'options' => $listValidXmlTypes, 'autocomplete' => 'off']);
+	} else {
+		echo $this->Form->hidden('Create.type');
+	}
+	$formLabel = [__('XML'), __("Press Ctrl-Space, or type a '<' character to activate autocompletion.\n" .
+		"Press Ctrl-J to jump to the tag that matches the one under the cursor."), ':'];
+	echo $this->Form->input('Create.xml', ['label' => $formLabel,
 		'type' => 'textarea', 'escape' => true,
 		'rows' => '20', 'autocomplete' => 'off',
 		'data-sel-lines' => json_encode($selLine)

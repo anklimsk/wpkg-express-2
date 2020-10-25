@@ -3699,13 +3699,72 @@ class Import extends AppModel {
 	}
 
 /**
+ * Sorts an array of XML data by tag name
+ * 
+ * @param array &$xmlDataArray Array of XML data to sort
+ * @param string $key Tag name to sort
+ * @return void
+ */
+	protected function _sortXmlData(array &$xmlDataArray = [], $key = 'comment') {
+		uksort(
+			$xmlDataArray,
+			function ($a, $b) use ($key) {
+				return ($a === $key ? -1 : ($b === $key ? 1 : 0 ));
+			}
+		);
+	}
+
+/**
  * Return string with default XML of package
  *
+ * @param string $xmlType Type for processing
  * @return string Return XML string.
  */
-	public function getDefaultXML() {
-		$xmlDataArray = $this->_modelPackage->getXMLdata(null, true, true, false);
-		$xmlDataArray['packages:packages']['comment'] = __('Insert package here');
+	public function getDefaultXML($xmlType = null) {
+		$xmlType = mb_strtolower($xmlType);
+		switch ($xmlType) {
+			case IMPORT_VALID_XML_TYPE_PACKAGE:
+				$xmlDataArray = $this->_modelPackage->getXMLdata(null, true, true, false);
+				$xmlDataArray['packages:packages']['comment'] = __(
+					'Insert %s here. Press Ctrl-Space, or type a \'<\' character to activate autocompletion.',
+					$this->_modelPackage->getTargetName()
+					);
+				break;
+			case IMPORT_VALID_XML_TYPE_PROFILE:
+				$xmlDataArray = $this->_modelProfile->getXMLdata(null, true, true, false);
+				unset($xmlDataArray['profiles:profiles']['profile']);
+				$xmlDataArray['profiles:profiles']['comment'] = __(
+					'Insert %s here. Press Ctrl-Space, or type a \'<\' character to activate autocompletion.',
+					$this->_modelProfile->getTargetName()
+					);
+				break;
+			case IMPORT_VALID_XML_TYPE_HOST:
+				$xmlDataArray = $this->_modelHost->getXMLdata(null, true, true, false);
+				unset($xmlDataArray['hosts:wpkg']['host']);
+				$xmlDataArray['hosts:wpkg']['comment'] = __(
+					'Insert %s here. Press Ctrl-Space, or type a \'<\' character to activate autocompletion.',
+					$this->_modelHost->getTargetName()
+					);
+				break;
+			case IMPORT_VALID_XML_TYPE_WPKG_CONFIGURATION:
+				$xmlDataArray = $this->_modelConfig->getXMLdata(null, true, true, false);
+				$xmlDataArray['config']['comment'] = __(
+					'Insert %s here. Press Ctrl-Space, or type a \'<\' character to activate autocompletion.',
+					$this->_modelConfig->getTargetName()
+					);
+				$this->_sortXmlData($xmlDataArray['config']);
+				break;
+			case IMPORT_VALID_XML_TYPE_EXIT_CODE_DIRECTORY:
+				$xmlDataArray = $this->_modelExitCodeDirectory->getXMLdata(null, true, true, false);
+				$xmlDataArray['directory']['comment'] = __(
+					'Insert %s here. Press Ctrl-Space, or type a \'<\' character to activate autocompletion.',
+					$this->_modelExitCodeDirectory->getTargetName()
+					);
+				$this->_sortXmlData($xmlDataArray['directory']);
+				break;
+			default:
+				return '';
+		}
 
 		return RenderXmlData::renderXml($xmlDataArray, true);
 	}

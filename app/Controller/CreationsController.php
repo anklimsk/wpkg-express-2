@@ -59,6 +59,23 @@ class CreationsController extends AppController {
 	];
 
 /**
+ * Called before the controller action.
+ *
+ * Actions:
+ *  - Configure components.
+ *
+ * @return void
+ * @link http://book.cakephp.org/2.0/en/controllers.html#request-life-cycle-callbacks
+ */
+	public function beforeFilter() {
+		$this->Security->unlockedActions = [
+			'admin_template'
+		];
+
+		parent::beforeFilter();
+	}
+
+/**
  * Base of action `index`. Used to create XML.
  *
  * @return void
@@ -93,7 +110,9 @@ class CreationsController extends AppController {
 				$this->Flash->error(__('XML size exceeded. Maximum size %s.', CakeNumber::toReadableSize($maxFileSize)));
 			}
 		} else {
-			$this->request->data('Create.xml', $this->Import->getDefaultXML());
+			$warningMsg = __('When updating a Package revision, the previous configuration is not archived!');
+			$this->request->data('Create.type', IMPORT_VALID_XML_TYPE_PACKAGE);
+			$this->request->data('Create.xml', $this->Import->getDefaultXML(IMPORT_VALID_XML_TYPE_PACKAGE));
 		}
 
 		$listValidXmlTypes = $this->Import->getListValidXmlTypes(true);
@@ -116,4 +135,35 @@ class CreationsController extends AppController {
 		$this->_index();
 	}
 
+/**
+ * Base of action `template`. Used to get an XML template.
+ *
+ * POST Data:
+ *  - `data.type`: ID type XML template.
+ *
+ * @throws BadRequestException if request is not `AJAX`, or not `POST`
+ * @return void
+ */
+	protected function _template() {
+		$this->view = 'template';
+		Configure::write('debug', 0);
+		if (!$this->request->is('ajax') || !$this->request->is('post')) {
+			throw new BadRequestException();
+		}
+
+		$xmlType = $this->request->data('type');
+		$data = $this->Import->getDefaultXML($xmlType);
+
+		$this->set(compact('data'));
+	}
+
+/**
+ * Action `template`. Used to generate a graph.
+ *  User role - administrator.
+ *
+ * @return void
+ */
+	public function admin_template() {
+		$this->_template();
+	}
 }
