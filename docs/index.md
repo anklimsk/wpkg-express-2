@@ -37,7 +37,8 @@ See the project [presentation](https://anklimsk.github.io/wpkg-express-2/present
 - Creates copy of a package, profile and host;
 - Preview XML configuration files for WPKG with validating XML schema;
 - Download and upload XML configuration files for WPKG with validating XML schema;
-- Creates an XML configuration for WPKG using an editor with validating XML schema;
+- Creates and edit XML configuration for WPKG using an editor with validating XML schema and
+  autocompletion based on XML schema;
 - Build a relationship graph for package, profile, and host;
 - Build a relationship graph for host by name;
 - Maintaining archive version of the package with the ability to switch to version;
@@ -50,11 +51,12 @@ See the project [presentation](https://anklimsk.github.io/wpkg-express-2/present
 ## Requirements
 
 - Apache module `mod_rewrite`;
-- PHP 5.4 or greater (up to 7.4);
+- PHP `5.4` or greater (up to `7.4`);
 - PHP Extensions: `pdo`, `ldap`, `bz2`, `xml` and `openssl`;
-- Ldap server (`Active Directory`,`Samba` or `OpenLDAP`) to authenticate
-  (only `Active Directory`) and get a list of computers to create `Profiles` and `Hosts` from template;
-- Database server (`MySQL`, `Postgres`).
+- Ldap server (`Active Directory`, `Samba` or `OpenLDAP`) to authenticate
+  (only `Active Directory`) and get a list of computers to create `Profiles` and `Hosts`
+  based on a template;
+- Database server (`MySQL` or `Postgres`).
 
 ### Not necessary
 
@@ -62,7 +64,8 @@ See the project [presentation](https://anklimsk.github.io/wpkg-express-2/present
 - [GraphViz](https://www.graphviz.org) to create dependency graph of `Packages`, `Profiles`
   and `Hosts`;
 - [smbclient](https://www.samba.org/samba/docs/current/man-html/smbclient.1.html) to access
-  log files and databases of client computers.
+  log files and databases of client computers for parsing content;
+- SMTP Server to send mail notifications to the administrator.
 
 ## Installation
 
@@ -78,7 +81,9 @@ See the project [presentation](https://anklimsk.github.io/wpkg-express-2/present
   and that `AllowOverride` is set to `All` for the correct DocumentRoot. For users having apache
   2.4 and above, you need to modify the configuration file for your `httpd.conf`
   or virtual host configuration to look like the following:
-  ```apacheconf
+  ```text
+  DocumentRoot /var/www/wpkg/app/webroot
+  
   <Directory /var/www/wpkg>
        Options FollowSymLinks
        AllowOverride All
@@ -104,11 +109,11 @@ See the project [presentation](https://anklimsk.github.io/wpkg-express-2/present
 
 ## Update
 
-[Update frontend to WPKG](docs/update.md)
+[Update frontend to WPKG](update.md)
 
 ## Using
 
-[Using this frontend to WPKG](docs/using.md)
+[Using this frontend to WPKG](using.md)
 
 ## Links
 

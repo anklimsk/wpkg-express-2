@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2020, Andrey Klimov.
  * @package app.Model.Behavior
  */
 
@@ -74,7 +74,25 @@ class MoveExtBehavior extends MoveBehavior {
 			return false;
 		}
 
-		return parent::moveItem($model, $direct, $id, $delta);
+		$breadCrumbs = [];
+		if ($model->Behaviors->loaded('UpdateModifiedDate')) {
+			$breadCrumbs = $model->getBreadcrumbInfoById($id);
+		}
+
+		$dataSource = $model->getDataSource();
+		$dataSource->begin();
+		$result = parent::moveItem($model, $direct, $id, $delta);
+		if (!$result) {
+			$dataSource->rollback();
+			return $result;
+		}
+
+		if (!empty($breadCrumbs)) {
+			$model->updateDateByBreadCrumbs($breadCrumbs);
+		}
+		$dataSource->commit();
+
+		return $result;
 	}
 
 /**
@@ -95,6 +113,24 @@ class MoveExtBehavior extends MoveBehavior {
 			return false;
 		}
 
-		return parent::moveDrop($model, $id, $newParentId, $oldParentId, $dropData);
+		$breadCrumbs = [];
+		if ($model->Behaviors->loaded('UpdateModifiedDate')) {
+			$breadCrumbs = $model->getBreadcrumbInfoById($id);
+		}
+
+		$dataSource = $model->getDataSource();
+		$dataSource->begin();
+		$result = parent::moveDrop($model, $id, $newParentId, $oldParentId, $dropData);
+		if (!$result) {
+			$dataSource->rollback();
+			return $result;
+		}
+
+		if (!empty($breadCrumbs)) {
+			$model->updateDateByBreadCrumbs($breadCrumbs);
+		}
+		$dataSource->commit();
+
+		return $result;
 	}
 }

@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018-2019, Andrey Klimov.
+ * @copyright Copyright 2018-2020, Andrey Klimov.
  * @package app.View.Creations
  */
 
@@ -34,7 +34,7 @@
 	<div class="container">
 <?php
 		echo $this->ViewExtension->headerPage($pageHeader);
-		echo $this->element('formCreateXml', compact('selLine', 'maxFileSize',
-			'validxmltypes', 'listXmlConfigUrl'));
+		echo $this->element('formCreateXml', compact('selLine', 'warningMsg', 'errorMsg',
+			'maxFileSize', 'listValidXmlTypes', 'listXmlConfigUrl'));
 ?>
 	</div>

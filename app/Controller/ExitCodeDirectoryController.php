@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018-2019, Andrey Klimov.
+ * @copyright Copyright 2018-2020, Andrey Klimov.
  * @package app.Controller
  */
 
@@ -56,6 +56,7 @@ class ExitCodeDirectoryController extends AppController {
 	public $components = [
 		'Paginator',
 		'CakeTheme.Filter',
+		'BookmarkTable' => ['TargetModel' => 'ExitCodeDirectory'],
 		'ChangeState' => ['TargetModel' => 'ExitCodeDirectory'],
 	];
 
@@ -105,9 +106,16 @@ class ExitCodeDirectoryController extends AppController {
  */
 	protected function _index() {
 		$this->view = 'index';
+		$this->BookmarkTable->restoreBookmark();
 		$conditions = $this->Filter->getFilterConditions();
 		$this->Paginator->settings = $this->paginate;
-		$exitCodeDirectory = $this->Paginator->paginate('ExitCodeDirectory', $conditions);
+		try {
+			$exitCodeDirectory = $this->Paginator->paginate('ExitCodeDirectory', $conditions);
+		} catch (Exception $e) {
+			$this->BookmarkTable->clearBookmark();
+			return $this->ViewExtension->setExceptionMessage($e);
+		}
+		$this->BookmarkTable->storeBookmark();
 		if (empty($exitCodeDirectory)) {
 			$this->Flash->information(__('Exit code directory is empty'));
 		}

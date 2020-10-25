@@ -110,13 +110,11 @@ if (!isset($showBtnExpand)) {
 ?>
 <dl class="dl-horizontal dl-popup-modal">
 <?php
-	if (!empty($fullName)):
-?>
+	if (!empty($fullName)): ?>
 	<dt><?php echo __('Check type') . ':'; ?></dt>
 	<dd><?php echo h($fullName); ?></dd>
-<?php
-	endif;
-?>
+	<?php
+	endif; ?>
 	<dt><?php echo __('Check') . ':'; ?></dt>
 	<dd>
 <?php

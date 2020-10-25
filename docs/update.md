@@ -18,4 +18,6 @@
 6. Navigate to the directory `app` application (`/var/www/wpkg/app`),
   and run the following command: `sudo ./Console/cake CakeInstaller install`
   for re-install frontend to WPKG.
-7. Upload saved XML configuration file for WPKG.
+7. Answer `Yes` to the request to re-create the application database schema.
+8. Answer `No` to the request to delete database tables.
+9. Upload saved XML configuration file for WPKG.

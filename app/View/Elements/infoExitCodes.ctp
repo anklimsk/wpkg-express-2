@@ -95,36 +95,30 @@ $infoExitCodes = $this->ViewExtension->showEmpty($list, $this->Html->nestedList(
 
 if ($showShort):
 	echo $infoExitCodes;
-else:
-?>
-<dl class="dl-horizontal dl-popup-modal">
-<?php
-	if (!empty($fullName)):
-?>
-	<dt><?php echo __('Exit code type') . ':'; ?></dt>
-	<dd><?php echo h($fullName); ?></dd>
-<?php
-	endif;
-?>
-	<dt><?php echo __('Exit codes') . ':'; ?></dt>
-	<dd>
-<?php
-	if (!empty($packageActionId)) {
-		$actions = $this->ViewExtension->buttonLink(
-			'fas fa-plus',
-			'btn-success',
-			['controller' => 'exitcodes', 'action' => 'add', $packageActionId],
-			[
-				'title' => __('Add variable'),
-				'action-type' => 'modal',
-			]
-		);
-		echo $this->Html->div('action pull-right hide-popup', $actions);
-	}
-	echo $this->Html->div('pull-left', $infoExitCodes);
-?>
-	</dd>
-</dl>
-<?php
+else: ?>
+	<dl class="dl-horizontal dl-popup-modal">
+	<?php if (!empty($fullName)): ?>
+		<dt><?php echo __('Exit code type') . ':'; ?></dt>
+		<dd><?php echo h($fullName); ?></dd>
+	<?php endif; ?>
+		<dt><?php echo __('Exit codes') . ':'; ?></dt>
+		<dd>
+	<?php
+		if (!empty($packageActionId)) {
+			$actions = $this->ViewExtension->buttonLink(
+				'fas fa-plus',
+				'btn-success',
+				['controller' => 'exitcodes', 'action' => 'add', $packageActionId],
+				[
+					'title' => __('Add variable'),
+					'action-type' => 'modal',
+				]
+			);
+			echo $this->Html->div('action pull-right hide-popup', $actions);
+		}
+		echo $this->Html->div('pull-left', $infoExitCodes); ?>
+		</dd>
+	</dl>
+	<?php
 	echo $this->Html->div('confirm-form-block', $this->fetch('confirm-form'));
 endif;

@@ -69,7 +69,9 @@ if (!isset($showBtnExpand)) {
 
 		$variableName = $this->Html->tag('strong', h($variable['name'])) . ' = ' . $this->Html->tag('var', h($variable['value']));
 		$varRefTypeName = constValToLcSingle('VARIABLE_TYPE_', $variable['ref_type']);
+		// @codingStandardsIgnoreStart
 		$attrRefType = @constant('ATTRIBUTE_TYPE_' . strtoupper((string)$varRefTypeName));
+		// @codingStandardsIgnoreEnd
 		$idMoveControls = uniqid('move_controls_');
 
 		$attributes = '';
@@ -190,14 +192,10 @@ if (!isset($showBtnExpand)) {
 	}
 ?>
 <dl class="dl-horizontal dl-popup-modal">
-<?php
-	if (!empty($fullName)):
-?>
+<?php if (!empty($fullName)): ?>
 	<dt><?php echo __('Variable type') . ':'; ?></dt>
 	<dd><?php echo h($fullName); ?></dd>
-<?php
-	endif;
-?>
+<?php endif; ?>
 	<dt><?php echo __('Variables') . ':'; ?></dt>
 	<dd>
 <?php

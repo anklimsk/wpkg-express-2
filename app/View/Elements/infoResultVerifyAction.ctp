@@ -42,13 +42,12 @@ if (!isset($refId)) {
 		<dd><?php echo h($fullName); ?></dd>
 	</dl>
 <?php
-	foreach ($actionsState as $actionState):
-?>
+	foreach ($actionsState as $actionState): ?>
 	<hr />
 	<dl class="dl-horizontal dl-popup-modal">
 		<dt><?php echo __('Action type') . ':'; ?></dt>
 		<dd>
-<?php
+	<?php
 		if ($actionState['actionState'] !== true) {
 			$actions = $this->ViewExtension->buttonLink(
 				'fas fa-redo-alt',
@@ -62,14 +61,12 @@ if (!isset($refId)) {
 			echo $this->Html->div('action pull-right hide-popup', $actions);
 		}
 		echo $this->Html->div('pull-left', mb_ucfirst(__d('package_action_type', h($actionState['actionName']))));
-?>
+	?>
 		</dd>
 		<dt><?php echo __('Result of verifying') . ':'; ?></dt>
 		<dd>
-<?php
-	echo $this->element('CakeTheme.tableTreeState', ['treeState' => $actionState['actionState']]);
-?>
+	<?php echo $this->element('CakeTheme.tableTreeState', ['treeState' => $actionState['actionState']]); ?>
 		</dd>
 	</dl>
-<?php
+	<?php
 	endforeach;

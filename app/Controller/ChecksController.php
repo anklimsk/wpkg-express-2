@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2020, Andrey Klimov.
  * @package app.Controller
  */
 
@@ -188,7 +188,7 @@ class ChecksController extends AppController {
 		$breadCrumbs[] = __('Adding');
 		if ($this->request->is('post')) {
 			$this->Check->create();
-			if ($this->Check->save($this->request->data)) {
+			if ($this->Check->saveAndUpdateDate($this->request->data, $breadCrumbs)) {
 				$this->Flash->success(__('Check has been saved.'));
 
 				return $this->ViewExtension->redirectByUrl(null, $refTypeName);
@@ -252,7 +252,7 @@ class ChecksController extends AppController {
 		$breadCrumbs[] = __('Editing');
 		$fullName = $this->Check->getFullName($id, $refType, null, $refId);
 		if ($this->request->is(['post', 'put'])) {
-			if ($this->Check->save($this->request->data)) {
+			if ($this->Check->saveAndUpdateDate($this->request->data, $breadCrumbs)) {
 				$this->Flash->success(__('Check has been saved.'));
 
 				return $this->ViewExtension->redirectByUrl(null, $refTypeName);

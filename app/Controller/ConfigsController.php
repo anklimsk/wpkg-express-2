@@ -55,6 +55,7 @@ class ConfigsController extends AppController {
  */
 	public $components = [
 		'ExportData' => ['TargetModel' => 'Config'],
+		'ImportData' => ['TargetModel' => 'Config'],
 	];
 
 /**
@@ -235,5 +236,25 @@ class ConfigsController extends AppController {
  */
 	public function admin_default() {
 		$this->_default();
+	}
+
+/**
+ * Base of action `import`. Used to import XML information of package.
+ *
+ * @return void
+ */
+	protected function _import() {
+		$this->view = 'import';
+		$this->ImportData->import();
+	}
+
+/**
+ * Base of action `import`. Used to import XML information of package.
+ * User role - administrator.
+ *
+ * @return void
+ */
+	public function admin_import() {
+		$this->_import();
 	}
 }

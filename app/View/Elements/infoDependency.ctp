@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018-2019, Andrey Klimov.
+ * @copyright Copyright 2018-2020, Andrey Klimov.
  * @package app.View.Elements
  */
 
@@ -121,7 +121,8 @@ $list = [];
 				['controller' => 'dependencies', 'action' => 'delete', $dependencyType, $dependencyItem['id']],
 				[
 					'title' => __('Delete record'), 'action-type' => 'confirm-post',
-					'data-confirm-msg' => __('Are you sure you wish to delete this record?')
+					'data-confirm-msg' => __('Are you sure you wish to delete this record?'),
+					'data-update-modal-content' => true
 				]
 			);
 		}
@@ -138,7 +139,7 @@ $list = [];
 				$dependencyName .= ' (' . h($dependencyItemData['id_text']) . ')';
 			}
 		} elseif (isset($dependencyItemData['id_text'])) {
-			 $dependencyName = h($dependencyItemData['id_text']);
+			$dependencyName = h($dependencyItemData['id_text']);
 		} elseif (isset($dependencyItemData['id'])) {
 			$dependencyName = $dependencyItemData['id'];
 		}

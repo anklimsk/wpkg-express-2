@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2020, Andrey Klimov.
  * @package app.Controller
  */
 
@@ -54,6 +54,7 @@ class PackagePrioritiesController extends AppController {
  */
 	public $components = [
 		'Paginator',
+		'BookmarkTable' => ['TargetModel' => 'PackagePriority'],
 		'ChangeState' => ['TargetModel' => 'PackagePriority'],
 	];
 
@@ -84,8 +85,15 @@ class PackagePrioritiesController extends AppController {
  */
 	protected function _index() {
 		$this->view = 'index';
+		$this->BookmarkTable->restoreBookmark();
 		$this->Paginator->settings = $this->paginate;
-		$packagePriorities = $this->Paginator->paginate('PackagePriority');
+		try {
+			$packagePriorities = $this->Paginator->paginate('PackagePriority');
+		} catch (Exception $e) {
+			$this->BookmarkTable->clearBookmark();
+			return $this->ViewExtension->setExceptionMessage($e);
+		}
+		$this->BookmarkTable->storeBookmark();
 		if (empty($packagePriorities)) {
 			$this->Flash->information(__('Package priorities not found'));
 		}

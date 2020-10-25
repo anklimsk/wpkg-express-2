@@ -291,7 +291,8 @@ class AppController extends Controller {
 			'checks' . DS . 'add',
 			'exit_codes' . DS . 'add',
 			'graph' . DS . 'view',
-			'packages' . DS . 'add'
+			'packages' . DS . 'add',
+			'creations' . DS . 'index'
 		]);
 		$specificCSS = array_merge($specificCSS, [
 			'graph' . DS . 'view'

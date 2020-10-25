@@ -1,6 +1,6 @@
 <?php
 /**
-* This file is the view file of the application. Used for render
+ * This file is the view file of the application. Used for render
  *  information of disabled unused hosts and profiles in e-mail
  *
  * This file is part of wpkgExpress II.

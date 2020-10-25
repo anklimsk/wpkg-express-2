@@ -59,7 +59,8 @@ foreach ($jsDataArray['Programs'] as $program):
 	if (!$program['enabled']) {
 		echo "/*\n";
 	}
-?>
+	// @codingStandardsIgnoreStart
+	?>
 prog[pn]=[<?php echo $this->WpiJs->toString($program['prog']); ?>];
 uid[pn]=[<?php echo $this->WpiJs->toString($program['uid']); ?>];
 ordr[pn]=[<?php echo $this->WpiJs->toInt($program['ordr']); ?>];
@@ -74,6 +75,7 @@ deps[pn]=[''];
 desc[pn]=[<?php echo $this->WpiJs->toString($program['desc']); ?>];
 pn++;
 <?php
+	// @codingStandardsIgnoreEnd
 	if (!$program['enabled']) {
 		echo "*/\n";
 	}

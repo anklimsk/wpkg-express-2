@@ -1,0 +1,541 @@
+{
+  "!top": [
+    "wpkg",
+    "packages"
+  ],
+  "wpkg": {
+    "attrs": {
+      "hostname": null,
+      "architecture": null,
+      "os": null,
+      "ipaddresses": null,
+      "domainname": null,
+      "groups": null,
+      "lcid": null,
+      "lcidOS": null
+    },
+    "children": [
+      "checkResults",
+      "package"
+    ]
+  },
+  "checkResults": {
+    "children": [
+      "check"
+    ]
+  },
+  "check": {
+    "attrs": {
+      "result": null,
+      "type": null,
+      "condition": null,
+      "path": null,
+      "value": null,
+      "hostname": null,
+      "os": null,
+      "ipaddresses": null,
+      "domainname": null,
+      "groups": null,
+      "architecture": [
+        "x86",
+        "x64",
+        "ia64"
+      ],
+      "environment": null,
+      "lcid": null,
+      "lcidOS": null
+    },
+    "children": [
+      "check",
+      "condition"
+    ]
+  },
+  "check": {
+    "attrs": {
+      "type": null,
+      "condition": null,
+      "path": null,
+      "value": null,
+      "hostname": null,
+      "os": null,
+      "ipaddresses": null,
+      "domainname": null,
+      "groups": null,
+      "architecture": [
+        "x86",
+        "x64",
+        "ia64"
+      ],
+      "environment": null,
+      "lcid": null,
+      "lcidOS": null
+    },
+    "children": [
+      "check",
+      "condition"
+    ]
+  },
+  "condition": {
+    "children": [
+      "check"
+    ]
+  },
+  "check": {
+    "attrs": {
+      "type": null,
+      "condition": null,
+      "path": null,
+      "value": null,
+      "hostname": null,
+      "os": null,
+      "ipaddresses": null,
+      "domainname": null,
+      "groups": null,
+      "architecture": [
+        "x86",
+        "x64",
+        "ia64"
+      ],
+      "environment": null,
+      "lcid": null,
+      "lcidOS": null
+    },
+    "children": [
+      "check",
+      "condition"
+    ]
+  },
+  "package": {
+    "attrs": {
+      "manualInstall": null,
+      "id": null,
+      "name": null,
+      "revision": null,
+      "priority": null,
+      "reboot": [
+        "true",
+        "false",
+        "postponed"
+      ],
+      "execute": [
+        "default",
+        "once",
+        "always",
+        "changed"
+      ],
+      "notify": null,
+      "precheck-install": [
+        "always",
+        "never"
+      ],
+      "precheck-remove": [
+        "always",
+        "never"
+      ],
+      "precheck-upgrade": [
+        "always",
+        "never"
+      ],
+      "precheck-downgrade": [
+        "always",
+        "never"
+      ]
+    },
+    "children": [
+      "variable",
+      "check",
+      "commands",
+      "install",
+      "upgrade",
+      "downgrade",
+      "remove",
+      "download",
+      "depends",
+      "include",
+      "chain"
+    ]
+  },
+  "variable": {
+    "attrs": {
+      "name": null,
+      "value": null,
+      "hostname": null,
+      "os": null,
+      "ipaddresses": null,
+      "domainname": null,
+      "groups": null,
+      "architecture": [
+        "x86",
+        "x64",
+        "ia64"
+      ],
+      "environment": null,
+      "lcid": null,
+      "lcidOS": null
+    },
+    "children": [
+      "condition"
+    ]
+  },
+  "condition": {
+    "children": [
+      "check"
+    ]
+  },
+  "check": {
+    "attrs": {
+      "type": null,
+      "condition": null,
+      "path": null,
+      "value": null,
+      "hostname": null,
+      "os": null,
+      "ipaddresses": null,
+      "domainname": null,
+      "groups": null,
+      "architecture": [
+        "x86",
+        "x64",
+        "ia64"
+      ],
+      "environment": null,
+      "lcid": null,
+      "lcidOS": null
+    },
+    "children": [
+      "check",
+      "condition"
+    ]
+  },
+  "commands": {
+    "children": [
+      "command"
+    ]
+  },
+  "command": {
+    "attrs": {
+      "type": null,
+      "include": null,
+      "cmd": null,
+      "timeout": null,
+      "workdir": null,
+      "hostname": null,
+      "os": null,
+      "ipaddresses": null,
+      "domainname": null,
+      "groups": null,
+      "architecture": [
+        "x86",
+        "x64",
+        "ia64"
+      ],
+      "environment": null,
+      "lcid": null,
+      "lcidOS": null
+    },
+    "children": [
+      "condition",
+      "exit",
+      "download"
+    ]
+  },
+  "condition": {
+    "children": [
+      "check"
+    ]
+  },
+  "exit": {
+    "attrs": {
+      "code": null,
+      "reboot": [
+        "true",
+        "false",
+        "delayed",
+        "postponed"
+      ]
+    }
+  },
+  "download": {
+    "attrs": {
+      "url": null,
+      "expandURL": null,
+      "target": null,
+      "timeout": null,
+      "hostname": null,
+      "os": null,
+      "ipaddresses": null,
+      "domainname": null,
+      "groups": null,
+      "architecture": [
+        "x86",
+        "x64",
+        "ia64"
+      ],
+      "environment": null,
+      "lcid": null,
+      "lcidOS": null
+    },
+    "children": [
+      "condition"
+    ]
+  },
+  "condition": {
+    "children": [
+      "check"
+    ]
+  },
+  "install": {
+    "attrs": {
+      "type": null,
+      "include": null,
+      "cmd": null,
+      "timeout": null,
+      "workdir": null,
+      "hostname": null,
+      "os": null,
+      "ipaddresses": null,
+      "domainname": null,
+      "groups": null,
+      "architecture": [
+        "x86",
+        "x64",
+        "ia64"
+      ],
+      "environment": null,
+      "lcid": null,
+      "lcidOS": null
+    },
+    "children": [
+      "condition",
+      "exit",
+      "download"
+    ]
+  },
+  "upgrade": {
+    "attrs": {
+      "type": null,
+      "include": null,
+      "cmd": null,
+      "timeout": null,
+      "workdir": null,
+      "hostname": null,
+      "os": null,
+      "ipaddresses": null,
+      "domainname": null,
+      "groups": null,
+      "architecture": [
+        "x86",
+        "x64",
+        "ia64"
+      ],
+      "environment": null,
+      "lcid": null,
+      "lcidOS": null
+    },
+    "children": [
+      "condition",
+      "exit",
+      "download"
+    ]
+  },
+  "downgrade": {
+    "attrs": {
+      "type": null,
+      "include": null,
+      "cmd": null,
+      "timeout": null,
+      "workdir": null,
+      "hostname": null,
+      "os": null,
+      "ipaddresses": null,
+      "domainname": null,
+      "groups": null,
+      "architecture": [
+        "x86",
+        "x64",
+        "ia64"
+      ],
+      "environment": null,
+      "lcid": null,
+      "lcidOS": null
+    },
+    "children": [
+      "condition",
+      "exit",
+      "download"
+    ]
+  },
+  "remove": {
+    "attrs": {
+      "type": null,
+      "include": null,
+      "cmd": null,
+      "timeout": null,
+      "workdir": null,
+      "hostname": null,
+      "os": null,
+      "ipaddresses": null,
+      "domainname": null,
+      "groups": null,
+      "architecture": [
+        "x86",
+        "x64",
+        "ia64"
+      ],
+      "environment": null,
+      "lcid": null,
+      "lcidOS": null
+    },
+    "children": [
+      "condition",
+      "exit",
+      "download"
+    ]
+  },
+  "download": {
+    "attrs": {
+      "url": null,
+      "expandURL": null,
+      "target": null,
+      "timeout": null,
+      "hostname": null,
+      "os": null,
+      "ipaddresses": null,
+      "domainname": null,
+      "groups": null,
+      "architecture": [
+        "x86",
+        "x64",
+        "ia64"
+      ],
+      "environment": null,
+      "lcid": null,
+      "lcidOS": null
+    },
+    "children": [
+      "condition"
+    ]
+  },
+  "depends": {
+    "attrs": {
+      "package-id": null,
+      "hostname": null,
+      "os": null,
+      "ipaddresses": null,
+      "domainname": null,
+      "groups": null,
+      "architecture": [
+        "x86",
+        "x64",
+        "ia64"
+      ],
+      "environment": null,
+      "lcid": null,
+      "lcidOS": null
+    },
+    "children": [
+      "condition"
+    ]
+  },
+  "condition": {
+    "children": [
+      "check"
+    ]
+  },
+  "include": {
+    "attrs": {
+      "package-id": null,
+      "hostname": null,
+      "os": null,
+      "ipaddresses": null,
+      "domainname": null,
+      "groups": null,
+      "architecture": [
+        "x86",
+        "x64",
+        "ia64"
+      ],
+      "environment": null,
+      "lcid": null,
+      "lcidOS": null
+    },
+    "children": [
+      "condition"
+    ]
+  },
+  "chain": {
+    "attrs": {
+      "package-id": null,
+      "hostname": null,
+      "os": null,
+      "ipaddresses": null,
+      "domainname": null,
+      "groups": null,
+      "architecture": [
+        "x86",
+        "x64",
+        "ia64"
+      ],
+      "environment": null,
+      "lcid": null,
+      "lcidOS": null
+    },
+    "children": [
+      "condition"
+    ]
+  },
+  "packages": {
+    "children": [
+      "package"
+    ]
+  },
+  "package": {
+    "attrs": {
+      "id": null,
+      "name": null,
+      "revision": null,
+      "priority": null,
+      "reboot": [
+        "true",
+        "false",
+        "postponed"
+      ],
+      "execute": [
+        "default",
+        "once",
+        "always",
+        "changed"
+      ],
+      "notify": null,
+      "precheck-install": [
+        "always",
+        "never"
+      ],
+      "precheck-remove": [
+        "always",
+        "never"
+      ],
+      "precheck-upgrade": [
+        "always",
+        "never"
+      ],
+      "precheck-downgrade": [
+        "always",
+        "never"
+      ]
+    },
+    "children": [
+      "variable",
+      "check",
+      "commands",
+      "install",
+      "upgrade",
+      "downgrade",
+      "remove",
+      "download",
+      "depends",
+      "include",
+      "chain"
+    ]
+  }
+}

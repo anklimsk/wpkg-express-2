@@ -116,11 +116,9 @@ if (!isset($listNotify)) {
 	echo $this->Filter->createFilterForm($formInputs);
 ?>
 		</thead>
-<?php if (!empty($packages) && $usePost) : ?>
+<?php if (!empty($packages) && $usePost): ?>
 		<tfoot>
-<?php
-	echo $this->Filter->createGroupActionControls($formInputs, $groupActions, true);
-?>
+	<?php echo $this->Filter->createGroupActionControls($formInputs, $groupActions, true); ?>
 		</tfoot>
 <?php endif; ?>
 		<tbody>

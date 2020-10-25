@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018-2019, Andrey Klimov.
+ * @copyright Copyright 2018-2020, Andrey Klimov.
  * @package app.Model
  */
 
@@ -107,7 +107,11 @@ class Dependency extends AppModel {
 		}
 
 		$result = false;
-		$resultDelete = $modelType->delete();
+		if ($modelType->Behaviors->loaded('UpdateModifiedDate')) {
+			$resultDelete = $modelType->deleteAndUpdateDate();
+		} else {
+			$resultDelete = $modelType->delete();
+		}
 		if ($resultDelete) {
 			$result = true;
 		} elseif ($modelType->Behaviors->loaded('CanDisable')) {

@@ -29,7 +29,9 @@
 	$idMoveControls = uniqid('move_controls_');
 
 	$checkRefTypeName = constValToLcSingle('CHECK_PARENT_TYPE_', $data['Check']['ref_type']);
+	// @codingStandardsIgnoreStart
 	$attrRefType = @constant('ATTRIBUTE_TYPE_' . strtoupper((string)$checkRefTypeName));
+	// @codingStandardsIgnoreEnd
 	$url = ['controller' => 'checks', 'action' => 'move', $data['Check']['id']];
 	$checkName = $this->Check->getLabelCondition($data['Check']);
 	$actions = $this->ViewExtension->button(

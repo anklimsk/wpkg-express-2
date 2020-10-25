@@ -113,7 +113,7 @@ foreach ($reports as $report) {
 			]];
 		echo $this->Html->tableCells($tableSubHeaderRow, $tableSubHeaderAttrRow, $tableSubHeaderAttrRow);
 	}
-	
+
 	$tableRow = [];
 	$attrRow = [];
 	$packageState = $report['Package']['enabled'];

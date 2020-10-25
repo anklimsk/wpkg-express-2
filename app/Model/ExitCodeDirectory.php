@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018-2019, Andrey Klimov.
+ * @copyright Copyright 2018-2020, Andrey Klimov.
  * @package app.Model
  */
 
@@ -184,6 +184,36 @@ class ExitCodeDirectory extends AppModel {
 		}
 
 		return $defaultValues;
+	}
+
+/**
+ * Return data array for render XML
+ *
+ * @param int|string $id The ID of the record to retrieve data.
+ * @param bool $exportdisable The flag of disable data export to XML.
+ * @param bool $exportnotes Flag of inclusion in the result
+ *  notes of host.
+ * @param bool $exportdisabled Flag of inclusion in the result
+ *  disabled hosts.
+ * @return array Return data array for render XML
+ * @see RenderXmlData::renderXml()
+ */
+	public function getXMLdata($id = null, $exportdisable = false, $exportnotes = false, $exportdisabled = false) {
+		$baseUrl = Configure::read('App.fullBaseUrl');
+		$result = [
+			'directory' => [
+				'xmlns:directory' => 'http://www.wpkg.org/directory',
+				'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
+				'@xsi:schemaLocation' => 'http://www.wpkg.org/directory ' . $baseUrl . '/xsd/directory.xsd',
+				'record' => [
+					'@code' => 0,
+					'hexadecimal' => '0x00000000',
+					'constant' => 'ERROR_SUCCESS',
+					'description' => 'The operation completed successfully.'
+				]
+			]];
+
+		return $result;
 	}
 
 /**

@@ -37,9 +37,7 @@ if (!isset($fullName)) {
 <?php if (!empty($fullName)): ?>
 		<dt><?php echo __('Type') . ':'; ?></dt>
 		<dd><?php echo h($fullName); ?></dd>
-<?php
-	endif;
-?>
+<?php endif; ?>
 		<dt><?php echo __('Result of verifying') . ':'; ?></dt>
 		<dd>
 <?php

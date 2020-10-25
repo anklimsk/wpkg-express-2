@@ -21,11 +21,12 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018-2019, Andrey Klimov.
+ * @copyright Copyright 2018-2020, Andrey Klimov.
  * @package app.Model
  */
 
 App::uses('AppModel', 'Model');
+App::uses('CakeText', 'Utility');
 App::uses('ClassRegistry', 'Utility');
 App::uses('File', 'Utility');
 App::uses('Hash', 'Utility');
@@ -221,12 +222,30 @@ class Import extends AppModel {
 	}
 
 /**
+ * Return a list of valid XML types.
+ * 
+ * @param bool $useForEditor If True, return list for editor.
+ * @return array Return a list of valid XML types.
+ */
+	public function getListValidXmlTypes($useForEditor = false) {
+		$result = constsToWords('IMPORT_VALID_XML_TYPE_');
+		translArray($result, 'xml_type');
+
+		if ($useForEditor) {
+			unset($result[IMPORT_VALID_XML_TYPE_CLIENT_DATABASE]);
+		}
+
+		return $result;
+	}
+
+/**
  * Return the name valid types of XML files for upload.
  *
  * @return string Return the name valid the types of XML files for upload.
  */
 	public function getNameValidXmlTypes() {
-		$result = __('Package, profile, host, WPKG configuration, client database or exit code directory.');
+		$xmlTypesName = $this->getListValidXmlTypes();
+		$result = CakeText::toList(array_values($xmlTypesName), __('or'));
 
 		return $result;
 	}
@@ -466,11 +485,11 @@ class Import extends AppModel {
 
 		$xmlType = mb_strtolower($xmlType);
 		switch ($xmlType) {
-			case 'package':
-			case 'profile':
+			case IMPORT_VALID_XML_TYPE_PACKAGE:
+			case IMPORT_VALID_XML_TYPE_PROFILE:
 				$idAttrName = 'id';
 				break;
-			case 'host':
+			case IMPORT_VALID_XML_TYPE_HOST:
 				$idAttrName = 'name';
 				break;
 			default:
@@ -497,13 +516,13 @@ class Import extends AppModel {
 
 		$xmlType = mb_strtolower($xmlType);
 		switch ($xmlType) {
-			case 'package':
+			case IMPORT_VALID_XML_TYPE_PACKAGE:
 				$xpathComment = '/packages:packages/package';
 				break;
-			case 'profile':
+			case IMPORT_VALID_XML_TYPE_PROFILE:
 				$xpathComment = '/profiles:profiles/profile';
 				break;
-			case 'host':
+			case IMPORT_VALID_XML_TYPE_HOST:
 				$xpathComment = '/hosts:wpkg/host';
 				break;
 			default:
@@ -556,26 +575,26 @@ class Import extends AppModel {
 		$path = null;
 		$type = mb_strtolower($type);
 		switch ($type) {
-			case 'package':
+			case IMPORT_VALID_XML_TYPE_PACKAGE:
 				$path = 'packages.package';
 				break;
-			case 'profile':
+			case IMPORT_VALID_XML_TYPE_PROFILE:
 				$path = 'profiles.profile';
 				break;
-			case 'host':
+			case IMPORT_VALID_XML_TYPE_HOST:
 				$path = 'wpkg.host';
 				break;
-			case 'database':
+			case IMPORT_VALID_XML_TYPE_CLIENT_DATABASE:
 				$path = 'wpkg.package';
 				break;
-			case 'config':
+			case IMPORT_VALID_XML_TYPE_WPKG_CONFIGURATION:
 				$path = 'config';
 				break;
-			case 'directory':
+			case IMPORT_VALID_XML_TYPE_EXIT_CODE_DIRECTORY:
 				$path = 'directory.record';
 				break;
-			case 'report':
-			case 'log':
+			case IMPORT_VALID_TEXT_TYPE_REPORT:
+			case IMPORT_VALID_TEXT_TYPE_LOG:
 				break;
 			default:
 				return false;
@@ -588,7 +607,7 @@ class Import extends AppModel {
 		}
 
 		switch ($type) {
-			case 'log':
+			case IMPORT_VALID_TEXT_TYPE_LOG:
 				foreach ($data as $dataItem) {
 					if (!preg_match(LOG_PARSE_PCRE_CONTENT, $dataItem, $logInfo)) {
 						continue;
@@ -601,7 +620,7 @@ class Import extends AppModel {
 					$result[] = array_slice($logInfo, 1);
 				}
 				break;
-			case 'report':
+			case IMPORT_VALID_TEXT_TYPE_REPORT:
 				$packages = [];
 				$lengthData = count($data);
 				$i = 0;
@@ -677,10 +696,10 @@ class Import extends AppModel {
 		$pathAttributes = '';
 		$type = mb_strtolower($type);
 		switch ($type) {
-			case 'database':
+			case IMPORT_VALID_XML_TYPE_CLIENT_DATABASE:
 				$pathAttributes = 'wpkg';
 				break;
-			case 'report':
+			case IMPORT_VALID_TEXT_TYPE_REPORT:
 				$dataAttributes = [];
 				$attrPos = array_search('Host information attributes from local host:', $data);
 				if (($attrPos !== false) && (isset($data[++$attrPos]))) {
@@ -696,7 +715,7 @@ class Import extends AppModel {
 					$data[$pathAttributes] = $dataAttributes;
 				}
 				break;
-			case 'log':
+			case IMPORT_VALID_TEXT_TYPE_LOG:
 				$fileName = basename($file, '.log');
 				if (empty($fileName) ||
 					!preg_match(LOG_PARSE_PCRE_FILE_NAME, $fileName, $fileNameInfo) ||
@@ -1060,10 +1079,10 @@ class Import extends AppModel {
 
 		$inputCharset = null;
 		switch ($textType) {
-			case 'log':
+			case IMPORT_VALID_TEXT_TYPE_LOG:
 				$inputCharset = 'CP1251';
 				break;
-			case 'report':
+			case IMPORT_VALID_TEXT_TYPE_REPORT:
 				$inputCharset = 'CP866';
 				break;
 			default:
@@ -1114,7 +1133,7 @@ class Import extends AppModel {
 		$result = true;
 		set_time_limit(IMPORT_TIME_LIMIT);
 		$this->_modelExtendQueuedTask->updateProgress($idTask, 0);
-		$xmlDataArray = $this->_extarctDataFromXml($xmlFile, 'package', $idTask);
+		$xmlDataArray = $this->_extarctDataFromXml($xmlFile, IMPORT_VALID_XML_TYPE_PACKAGE, $idTask);
 		if (is_bool($xmlDataArray)) {
 			return $xmlDataArray;
 		}
@@ -1830,7 +1849,7 @@ class Import extends AppModel {
 		}
 		$stateId = null;
 		switch ($type) {
-			case 'database':
+			case IMPORT_VALID_XML_TYPE_CLIENT_DATABASE:
 				$packageManualInstall = (string)Hash::get($data, '@manualInstall');
 				if (mb_stripos($packageManualInstall, 'true') === 0) {
 					$stateId = REPORT_STATE_MANUALLY_INSTALLED;
@@ -1849,7 +1868,7 @@ class Import extends AppModel {
 					}
 				}
 				break;
-			case 'report':
+			case IMPORT_VALID_TEXT_TYPE_REPORT:
 				$action = (string)Hash::get($data, '@action');
 				$status = (string)Hash::get($data, '@status');
 				switch ($action) {
@@ -1996,7 +2015,7 @@ class Import extends AppModel {
 			return $result;
 		}
 
-		$name = Hash::get($textInfo, 'host');
+		$name = Hash::get($textInfo, IMPORT_VALID_XML_TYPE_HOST);
 		$id = $this->getIdFromNamesCache('LogHost', $name);
 		if (empty($name)) {
 			return $result;
@@ -2530,7 +2549,7 @@ class Import extends AppModel {
 		$result = true;
 		set_time_limit(IMPORT_TIME_LIMIT);
 		$this->_modelExtendQueuedTask->updateProgress($idTask, 0);
-		$xmlDataArray = $this->_extarctDataFromXml($xmlFile, 'profile', $idTask);
+		$xmlDataArray = $this->_extarctDataFromXml($xmlFile, IMPORT_VALID_XML_TYPE_PROFILE, $idTask);
 		if (is_bool($xmlDataArray)) {
 			return $xmlDataArray;
 		}
@@ -2733,7 +2752,7 @@ class Import extends AppModel {
 		$result = true;
 		set_time_limit(IMPORT_TIME_LIMIT);
 		$this->_modelExtendQueuedTask->updateProgress($idTask, 0);
-		$xmlDataArray = $this->_extarctDataFromXml($xmlFile, 'host', $idTask);
+		$xmlDataArray = $this->_extarctDataFromXml($xmlFile, IMPORT_VALID_XML_TYPE_HOST, $idTask);
 		if (is_bool($xmlDataArray)) {
 			return $xmlDataArray;
 		}
@@ -2899,10 +2918,10 @@ class Import extends AppModel {
 		$methodNameExtractData = null;
 		$type = mb_strtolower($type);
 		switch ($type) {
-			case 'database':
+			case IMPORT_VALID_XML_TYPE_CLIENT_DATABASE:
 				$methodNameExtractData = '_extarctDataFromXml';
 				break;
-			case 'report':
+			case IMPORT_VALID_TEXT_TYPE_REPORT:
 				$methodNameExtractData = '_extarctDataFromText';
 				break;
 			default:
@@ -2978,7 +2997,7 @@ class Import extends AppModel {
  * @return bool Success
  */
 	public function importXmlDatabases($xmlFile = '', $idTask = null, $cacheMD5hash = []) {
-		return $this->_importReport($xmlFile, $idTask, $cacheMD5hash, 'database');
+		return $this->_importReport($xmlFile, $idTask, $cacheMD5hash, IMPORT_VALID_XML_TYPE_CLIENT_DATABASE);
 	}
 
 /**
@@ -3141,7 +3160,7 @@ class Import extends AppModel {
  * @return bool Success
  */
 	public function importTextReports($reportFile = '', $idTask = null, $cacheMD5hash = []) {
-		return $this->_importReport($reportFile, $idTask, $cacheMD5hash, 'report');
+		return $this->_importReport($reportFile, $idTask, $cacheMD5hash, IMPORT_VALID_TEXT_TYPE_REPORT);
 	}
 
 /**
@@ -3159,7 +3178,7 @@ class Import extends AppModel {
 		$result = true;
 		set_time_limit(IMPORT_TIME_LIMIT);
 		$this->_modelExtendQueuedTask->updateProgress($idTask, 0);
-		$xmlDataArray = $this->_extarctDataFromXml($xmlFile, 'config', $idTask);
+		$xmlDataArray = $this->_extarctDataFromXml($xmlFile, IMPORT_VALID_XML_TYPE_WPKG_CONFIGURATION, $idTask);
 		if (is_bool($xmlDataArray)) {
 			return $xmlDataArray;
 		}
@@ -3302,7 +3321,7 @@ class Import extends AppModel {
 		if ($updateProgress) {
 			$this->_modelExtendQueuedTask->updateProgress($idTask, 0);
 		}
-		$dataArray = $this->_extarctDataFromText($logFile, 'log', $idTask);
+		$dataArray = $this->_extarctDataFromText($logFile, IMPORT_VALID_TEXT_TYPE_LOG, $idTask);
 		if (is_bool($dataArray)) {
 			return $dataArray;
 		}
@@ -3473,7 +3492,7 @@ class Import extends AppModel {
 		$result = true;
 		set_time_limit(IMPORT_TIME_LIMIT);
 		$this->_modelExtendQueuedTask->updateProgress($idTask, 0);
-		$xmlDataArray = $this->_extarctDataFromXml($xmlFile, 'directory', $idTask);
+		$xmlDataArray = $this->_extarctDataFromXml($xmlFile, IMPORT_VALID_XML_TYPE_EXIT_CODE_DIRECTORY, $idTask);
 		if (is_bool($xmlDataArray)) {
 			return $xmlDataArray;
 		}
@@ -3680,13 +3699,72 @@ class Import extends AppModel {
 	}
 
 /**
+ * Sorts an array of XML data by tag name
+ * 
+ * @param array &$xmlDataArray Array of XML data to sort
+ * @param string $key Tag name to sort
+ * @return void
+ */
+	protected function _sortXmlData(array &$xmlDataArray = [], $key = 'comment') {
+		uksort(
+			$xmlDataArray,
+			function ($a, $b) use ($key) {
+				return ($a === $key ? -1 : ($b === $key ? 1 : 0 ));
+			}
+		);
+	}
+
+/**
  * Return string with default XML of package
  *
+ * @param string $xmlType Type for processing
  * @return string Return XML string.
  */
-	public function getDefaultXML() {
-		$xmlDataArray = $this->_modelPackage->getXMLdata(null, true, true, false);
-		$xmlDataArray['packages:packages']['comment'] = __('Insert package here');
+	public function getDefaultXML($xmlType = null) {
+		$xmlType = mb_strtolower($xmlType);
+		switch ($xmlType) {
+			case IMPORT_VALID_XML_TYPE_PACKAGE:
+				$xmlDataArray = $this->_modelPackage->getXMLdata(null, true, true, false);
+				$xmlDataArray['packages:packages']['comment'] = __(
+					'Insert %s here. Press Ctrl-Space, or type a \'<\' character to activate autocompletion.',
+					$this->_modelPackage->getTargetName()
+					);
+				break;
+			case IMPORT_VALID_XML_TYPE_PROFILE:
+				$xmlDataArray = $this->_modelProfile->getXMLdata(null, true, true, false);
+				unset($xmlDataArray['profiles:profiles']['profile']);
+				$xmlDataArray['profiles:profiles']['comment'] = __(
+					'Insert %s here. Press Ctrl-Space, or type a \'<\' character to activate autocompletion.',
+					$this->_modelProfile->getTargetName()
+					);
+				break;
+			case IMPORT_VALID_XML_TYPE_HOST:
+				$xmlDataArray = $this->_modelHost->getXMLdata(null, true, true, false);
+				unset($xmlDataArray['hosts:wpkg']['host']);
+				$xmlDataArray['hosts:wpkg']['comment'] = __(
+					'Insert %s here. Press Ctrl-Space, or type a \'<\' character to activate autocompletion.',
+					$this->_modelHost->getTargetName()
+					);
+				break;
+			case IMPORT_VALID_XML_TYPE_WPKG_CONFIGURATION:
+				$xmlDataArray = $this->_modelConfig->getXMLdata(null, true, true, false);
+				$xmlDataArray['config']['comment'] = __(
+					'Insert %s here. Press Ctrl-Space, or type a \'<\' character to activate autocompletion.',
+					$this->_modelConfig->getTargetName()
+					);
+				$this->_sortXmlData($xmlDataArray['config']);
+				break;
+			case IMPORT_VALID_XML_TYPE_EXIT_CODE_DIRECTORY:
+				$xmlDataArray = $this->_modelExitCodeDirectory->getXMLdata(null, true, true, false);
+				$xmlDataArray['directory']['comment'] = __(
+					'Insert %s here. Press Ctrl-Space, or type a \'<\' character to activate autocompletion.',
+					$this->_modelExitCodeDirectory->getTargetName()
+					);
+				$this->_sortXmlData($xmlDataArray['directory']);
+				break;
+			default:
+				return '';
+		}
 
 		return RenderXmlData::renderXml($xmlDataArray, true);
 	}

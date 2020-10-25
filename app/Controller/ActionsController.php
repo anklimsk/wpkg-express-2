@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2020, Andrey Klimov.
  * @package app.Controller
  */
 
@@ -199,9 +199,11 @@ class ActionsController extends AppController {
 		if (empty($fullName)) {
 			return $this->ViewExtension->setExceptionMessage(new NotFoundException(__('Invalid referrer ID or type for package action')));
 		}
+		$breadCrumbs = $this->PackageAction->getBreadcrumbInfo(null, null, null, $refId);
+		$breadCrumbs[] = __('Adding');
 		if ($this->request->is('post')) {
 			$this->PackageAction->create();
-			if ($this->PackageAction->save($this->request->data)) {
+			if ($this->PackageAction->saveAndUpdateDate($this->request->data, $breadCrumbs)) {
 				$this->Flash->success(__('Package action has been saved.'));
 
 				return $this->ViewExtension->redirectByUrl(null, 'package');
@@ -220,8 +222,6 @@ class ActionsController extends AppController {
 			$this->request->data('PackageAction.action_type_id'),
 			$this->request->data('PackageAction.command_type_id')
 		);
-		$breadCrumbs = $this->PackageAction->getBreadcrumbInfo(null, null, null, $refId);
-		$breadCrumbs[] = __('Adding');
 		$pageHeader = __('Adding package action');
 		$listActionType = $this->PackageAction->PackageActionType->getListActionTypes();
 		$listCommandType = $this->PackageAction->getListCommandTypes();
@@ -263,7 +263,7 @@ class ActionsController extends AppController {
 		$breadCrumbs[] = __('Editing');
 		$fullName = $this->PackageAction->getFullName($id, null, null, $refId);
 		if ($this->request->is(['post', 'put'])) {
-			if ($this->PackageAction->save($this->request->data)) {
+			if ($this->PackageAction->saveAndUpdateDate($this->request->data, $breadCrumbs)) {
 				$this->Flash->success(__('Package action has been saved.'));
 
 				return $this->ViewExtension->redirectByUrl(null, 'package');

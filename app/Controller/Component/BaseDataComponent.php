@@ -139,4 +139,22 @@ class BaseDataComponent extends Component {
 		return $targetNamePlural;
 	}
 
+/**
+ * Validation the ID argument for the exist of a record.
+ *
+ * @param int|string $id ID of record for validation
+ * @return CakeResponse|null|bool Return True on Success, CakeResponse or Null on failure
+ */
+	protected function _validateId($id = null) {
+		if (!empty($id) && !$this->_modelTarget->exists($id)) {
+			$targetNameI18n = $this->_getTargetName(true);
+			if (method_exists($this->_modelTarget, 'getTargetName')) {
+				$targetNameI18n = mb_strtolower($this->_modelTarget->getTargetName());
+			}
+			return $this->_controller->ViewExtension->setExceptionMessage(new NotFoundException(__('Invalid ID for %s', $targetNameI18n)));
+		}
+
+		return true;
+	}
+
 }

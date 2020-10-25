@@ -105,6 +105,21 @@ class AppSchema extends CakeSchema {
 	];
 
 /**
+ * Schema of table `bookmarks`.
+ *
+ * @var array
+ */
+	public $bookmarks = [
+		'id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'unsigned' => false, 'key' => 'primary'],
+		'hash' => ['type' => 'string', 'null' => false, 'default' => null, 'length' => 32, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
+		'data' => ['type' => 'text', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
+		'indexes' => [
+			'PRIMARY' => ['column' => 'id', 'unique' => 1]
+		],
+		'tableParameters' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB']
+	];
+
+/**
  * Schema of table `checks`.
  *
  * @var array
@@ -604,6 +619,23 @@ class AppSchema extends CakeSchema {
 		'host_id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'unsigned' => false],
 		'package_id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'unsigned' => false],
 		'revision' => ['type' => 'string', 'null' => false, 'default' => null, 'length' => 100, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
+		'indexes' => [
+			'PRIMARY' => ['column' => 'id', 'unique' => 1]
+		],
+		'tableParameters' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB']
+	];
+
+/**
+ * Schema of table `sample_data`.
+ *
+ * @var array
+ */
+	public $sample_data = [
+		'id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'unsigned' => false, 'key' => 'primary'],
+		'name' => ['type' => 'string', 'null' => false, 'default' => null, 'length' => 50, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
+		'hash' => ['type' => 'string', 'null' => false, 'default' => null, 'length' => 32, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
+		'created' => ['type' => 'datetime', 'null' => true, 'default' => null],
+		'modified' => ['type' => 'datetime', 'null' => true, 'default' => null],
 		'indexes' => [
 			'PRIMARY' => ['column' => 'id', 'unique' => 1]
 		],

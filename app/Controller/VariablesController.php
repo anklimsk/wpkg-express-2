@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2020, Andrey Klimov.
  * @package app.Controller
  */
 
@@ -193,9 +193,11 @@ class VariablesController extends AppController {
 		if (empty($refTypeName) || empty($fullName)) {
 			return $this->ViewExtension->setExceptionMessage(new NotFoundException(__('Invalid referrer ID or type for variable')));
 		}
+		$breadCrumbs = $this->Variable->getBreadcrumbInfo(null, $refType, null, $refId);
+		$breadCrumbs[] = __('Adding');
 		if ($this->request->is('post')) {
 			$this->Variable->create();
-			if ($this->Variable->save($this->request->data)) {
+			if ($this->Variable->saveAndUpdateDate($this->request->data, $breadCrumbs)) {
 				$this->Flash->success(__('Variable has been saved.'));
 
 				return $this->ViewExtension->redirectByUrl(null, $refTypeName);
@@ -206,8 +208,6 @@ class VariablesController extends AppController {
 			$this->request->data = $this->Variable->getDefaultValues($refType, $refId);
 			$this->ViewExtension->setRedirectUrl(null, $refTypeName);
 		}
-		$breadCrumbs = $this->Variable->getBreadcrumbInfo(null, $refType, null, $refId);
-		$breadCrumbs[] = __('Adding');
 		$pageHeader = __('Adding variable');
 
 		$this->set(compact('breadCrumbs', 'pageHeader', 'fullName', 'refType', 'refId'));
@@ -249,7 +249,7 @@ class VariablesController extends AppController {
 		$breadCrumbs[] = __('Editing');
 		$fullName = $this->Variable->getFullName($id, $refType, null, $refId);
 		if ($this->request->is(['post', 'put'])) {
-			if ($this->Variable->save($this->request->data)) {
+			if ($this->Variable->saveAndUpdateDate($this->request->data, $breadCrumbs)) {
 				$this->Flash->success(__('Variable has been saved.'));
 
 				return $this->ViewExtension->redirectByUrl(null, $refTypeName);

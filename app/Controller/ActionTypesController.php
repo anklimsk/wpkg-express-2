@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2020, Andrey Klimov.
  * @package app.Controller
  */
 
@@ -55,6 +55,7 @@ class ActionTypesController extends AppController {
  */
 	public $components = [
 		'Paginator',
+		'BookmarkTable' => ['TargetModel' => 'PackageActionType'],
 		'ChangeState' => ['TargetModel' => 'PackageActionType'],
 	];
 
@@ -97,8 +98,15 @@ class ActionTypesController extends AppController {
  */
 	protected function _index() {
 		$this->view = 'index';
+		$this->BookmarkTable->restoreBookmark();
 		$this->Paginator->settings = $this->paginate;
-		$actionTypes = $this->Paginator->paginate('PackageActionType');
+		try {
+			$actionTypes = $this->Paginator->paginate('PackageActionType');
+		} catch (Exception $e) {
+			$this->BookmarkTable->clearBookmark();
+			return $this->ViewExtension->setExceptionMessage($e);
+		}
+		$this->BookmarkTable->storeBookmark();
 		if (empty($actionTypes)) {
 			$this->Flash->information(__('Package action types not found'));
 		}

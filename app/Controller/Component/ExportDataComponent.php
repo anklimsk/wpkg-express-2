@@ -63,12 +63,9 @@ class ExportDataComponent extends BaseDataComponent {
  * @return void
  */
 	public function preview($id = null) {
-		if (!empty($id) && !$this->_modelTarget->exists($id)) {
-			$targetNameI18n = $this->_getTargetName(true);
-			if (method_exists($this->_modelTarget, 'getTargetName')) {
-				$targetNameI18n = mb_strtolower($this->_modelTarget->getTargetName());
-			}
-			return $this->_controller->ViewExtension->setExceptionMessage(new NotFoundException(__('Invalid ID for %s', $targetNameI18n)));
+		$resultValidate = $this->_validateId($id);
+		if ($resultValidate !== true) {
+			return $resultValidate;
 		}
 
 		$formatXml = true;
@@ -76,11 +73,14 @@ class ExportDataComponent extends BaseDataComponent {
 		$exportNotes = true;
 		$exportDisabled = true;
 		$xmlDataArray = $this->_modelTarget->getXMLdata($id, $exportDisable, $exportNotes, $exportDisabled);
-		$name = null;
 		$fullName = null;
 		$targetName = $this->_getTargetName();
 		$targetNamePlural = $this->_getTargetNamePlural();
 		$controllerName = $targetNamePlural;
+		$targetNameI18n = $this->_getTargetName(true);
+		if (method_exists($this->_modelTarget, 'getTargetName')) {
+			$targetNameI18n = mb_strtolower($this->_modelTarget->getTargetName());
+		}
 		$useBreadCrumbExt = false;
 		if ($this->_modelTarget->Behaviors->loaded('BreadCrumbExt')) {
 			$fullName = $this->_modelTarget->getFullName($id);
@@ -114,13 +114,21 @@ class ExportDataComponent extends BaseDataComponent {
 			$breadCrumbs[] = __('Previewing');
 		}
 		$pageHeader = __('Preview XML');
-		$headerMenuActions = [
-			[
-				'fas fa-file-download',
-				__('Download XML file'),
-				$downloadUrl,
-				['title' => __('Download XML file'), 'skip-modal' => true]
-			],
+		$headerMenuActions = [];
+		if ($this->_controller->Components->loaded('ImportData')) {
+			$headerMenuActions[] = [
+				'fas fa-pencil-alt',
+				__('Edit XML file'),
+				['controller' => $controllerName, 'action' => 'import', $id],
+				['title' => __('Editing XML information of this %s', $targetNameI18n),
+					'data-toggle' => 'modal', 'data-modal-size' => 'lg']
+			];
+		}
+		$headerMenuActions[] = [
+			'fas fa-file-download',
+			__('Download XML file'),
+			$downloadUrl,
+			['title' => __('Download XML file'), 'skip-modal' => true]
 		];
 
 		if (empty($errorMsg)) {
@@ -152,13 +160,11 @@ class ExportDataComponent extends BaseDataComponent {
 		if (!$this->_controller->RequestHandler->isXml()) {
 			throw new BadRequestException(__('Invalid request'));
 		}
-		if ($checkIsExists && !empty($id) && ctype_digit((string)$id) &&
-			!$this->_modelTarget->exists($id)) {
-			$targetNameI18n = $this->_getTargetName(true);
-			if (method_exists($this->_modelTarget, 'getTargetName')) {
-				$targetNameI18n = mb_strtolower($this->_modelTarget->getTargetName());
+		if ($checkIsExists && !empty($id) && ctype_digit((string)$id)) {
+			$resultValidate = $this->_validateId($id);
+			if ($resultValidate !== true) {
+				return $resultValidate;
 			}
-			return $this->_controller->ViewExtension->setExceptionMessage(new NotFoundException(__('Invalid ID for %s', $targetNameI18n)));
 		}
 
 		$this->_controller->autoRender = false;
@@ -195,12 +201,9 @@ class ExportDataComponent extends BaseDataComponent {
 		if (!$this->_controller->RequestHandler->isXml()) {
 			throw new BadRequestException(__('Invalid request'));
 		}
-		if (!empty($id) && !$this->_modelTarget->exists($id)) {
-			$targetNameI18n = $this->_getTargetName(true);
-			if (method_exists($this->_modelTarget, 'getTargetName')) {
-				$targetNameI18n = mb_strtolower($this->_modelTarget->getTargetName());
-			}
-			return $this->_controller->ViewExtension->setExceptionMessage(new NotFoundException(__('Invalid ID for %s', $targetNameI18n)));
+		$resultValidate = $this->_validateId($id);
+		if ($resultValidate !== true) {
+			return $resultValidate;
 		}
 
 		$this->_controller->response->disableCache();

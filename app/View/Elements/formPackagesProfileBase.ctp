@@ -41,7 +41,7 @@ if (!isset($fullName)) {
 		'PackagesProfile.package_id',
 	];
 	echo $this->Form->hiddenFields($hiddenFields);
-	echo $this->Form->staticControl(__('Editing installation date') . ':', h($fullName)); 
+	echo $this->Form->staticControl(__('Editing installation date') . ':', h($fullName));
 	echo $this->Form->input('PackagesProfile.installdate', ['label' => __('Installation date') . ':', 'title' => __('Date from which the package should be installed (this date or later). Date has to be specified in ISO 8601 format, e.g.: 2018-12-27T15:30:42+03:00.'),
 		'type' => 'dateTimeSelect', 'date-format' => 'YYYY-MM-DDTHH:mm:ssZ',
 		'data-inputmask-alias' => '9999-99-99T99:99:99[+|-99:99]',

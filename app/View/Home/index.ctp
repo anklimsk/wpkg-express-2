@@ -21,93 +21,114 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2020, Andrey Klimov.
  * @package app.View.Home
  */
+
+	echo $this->AssetCompress->css('codemirror', ['block' => 'css']);
+	echo $this->AssetCompress->script('codemirror', ['block' => 'script']);
 
 	$this->assign('title', $pageHeader);
 	$linkOptions = [
 		'data-modal-size' => 'lg',
 		'data-popover-size' => 'lg'
 	];
+	$newTabLinkOptions = [
+		'target' => '_blank',
+		'escape' => false
+	];
+	$indexLinkOptions = [
+		'action' => 'index',
+		'direction' => 'desc'
+	];
 ?>
 <div class="container" data-toggle="repeat" data-repeat-time="300">
 <?php
 	echo $this->ViewExtension->headerPage($pageHeader);
-	if (!empty($stateReportData)):
-?>
+	if (!empty($stateReportData)): ?>
 		<div class="row">
 			<div class="col-12">
-<?php
+	<?php
 		echo $this->Html->tag('h3', __('Installation state of packages'), ['class' => 'text-center']);
 		echo $this->ViewExtension->barState($stateReportData);
-?>
+	?>
 			</div>
 		</div>
-<?php
+	<?php
 	endif;
-	if (!empty($stateLogData)):
-?>
+	if (!empty($stateLogData)): ?>
 		<div class="row">
 			<div class="col-12">
-<?php
+	<?php
 		echo $this->Html->tag('h3', __('State of logs'), ['class' => 'text-center']);
 		echo $this->ViewExtension->barState($stateLogData);
-?>
+	?>
 			</div>
 		</div>
-<?php 
+	<?php
 	endif;
-	if (!empty($lastPackages) || !empty($lastProfiles) || !empty($lastHosts) || !empty($statistics)):
-?>
+	if (!empty($lastPackages) || !empty($lastProfiles) || !empty($lastHosts) || !empty($statistics)): ?>
 		<div class="row">
 			<div class="col-12">
-<?php
-	echo $this->Html->tag('h3', __('Last modified informations'), ['class' =>'text-center']);
-?>
+	<?php echo $this->Html->tag('h3', __('Last modified informations'), ['class' => 'text-center']); ?>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-5 col-md-offset-1 col-lg-5 col-lg-offset-1">
-<?php
-	echo $this->ViewExtension->listLastInfo($lastPackages, __('Packages'), 'packages', null, $linkOptions);
-?>
+	<?php
+		$linkUrl = $this->ViewExtension->addUserPrefixUrl(
+			[
+				'controller' => 'packages',
+				'sort' => 'Package.modified'
+			] + $indexLinkOptions
+		);
+		$labelList = $this->Html->link(__('Packages'), $linkUrl, $newTabLinkOptions);
+		echo $this->ViewExtension->listLastInfo($lastPackages, $labelList, $linkUrl['controller'], null, $linkOptions);
+	?>
 			</div>
 			<div class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-5 col-md-offset-0 col-lg-5 col-lg-offset-0">
-<?php
-	echo $this->ViewExtension->listLastInfo($lastProfiles, __('Profiles'), 'profiles', null, $linkOptions);
-?>
+	<?php
+		$linkUrl = $this->ViewExtension->addUserPrefixUrl(
+			[
+				'controller' => 'profiles',
+				'sort' => 'Profile.modified'
+			] + $indexLinkOptions
+		);
+		$labelList = $this->Html->link(__('Profiles'), $linkUrl, $newTabLinkOptions);
+		echo $this->ViewExtension->listLastInfo($lastProfiles, $labelList, $linkUrl['controller'], null, $linkOptions);
+	?>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-5 col-md-offset-1 col-lg-5 col-lg-offset-1">
-<?php
-	echo $this->ViewExtension->listLastInfo($lastHosts, __('Hosts'), 'hosts', null, $linkOptions);
-?>
+	<?php
+		$linkUrl = $this->ViewExtension->addUserPrefixUrl(
+			[
+				'controller' => 'hosts',
+				'sort' => 'Host.modified'
+			] + $indexLinkOptions
+		);
+		$labelList = $this->Html->link(__('Hosts'), $linkUrl, $newTabLinkOptions);
+		echo $this->ViewExtension->listLastInfo($lastHosts, $labelList, $linkUrl['controller'], null, $linkOptions);
+	?>
 			</div>
 			<div class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-5 col-md-offset-0 col-lg-5 col-lg-offset-0">
-<?php
-	echo $this->element('infoStatistics', compact('statistics'));
-?>
+	<?php echo $this->element('infoStatistics', compact('statistics')); ?>
 			</div>
 		</div>
-<?php 
+	<?php
 	endif;
-	if (!empty($listExport)):
-?>
+	if (!empty($listExport)): ?>
 		<div class="row">
 			<div class="col-12">
-<?php
-	echo $this->Html->tag('h3', __('Export XML files'), ['class' => 'text-center']);
-?>
+	<?php echo $this->Html->tag('h3', __('Export XML files'), ['class' => 'text-center']); ?>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-12 text-center">
-<?php
-	echo $this->element('listExports', compact('listExport'));
-?>
+	<?php echo $this->element('listExports', compact('listExport')); ?>
 			</div>
 		</div>
-<?php endif; ?>
+	<?php 
+	endif; ?>
 </div>

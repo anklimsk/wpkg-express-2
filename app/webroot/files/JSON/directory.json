@@ -1,0 +1,24 @@
+{
+  "!top": [
+    "directory"
+  ],
+  "directory": {
+    "children": [
+      "record"
+    ]
+  },
+  "record": {
+    "attrs": {
+      "code": null,
+      "lcid": null
+    },
+    "children": [
+      "description",
+      "hexadecimal",
+      "constant"
+    ]
+  },
+  "hexadecimal": {},
+  "constant": {},
+  "description": {}
+}

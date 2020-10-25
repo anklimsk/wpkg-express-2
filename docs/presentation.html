@@ -82,13 +82,13 @@ layout: false
 .right-column[
 WPKG implementation will require:
 
-- A server with the Domain Controller role for:
+- A server with the Domain Controller role (Ldap server) for:
 
-  * Authentication;
+  * Authentication (only "Active Directory");
 
   * WPKG client deployments using Group Policy;
 
-  * Receiving a list of active client computers.
+  * Receiving a list of active client computers ("Active Directory", "Samba" or "OpenLDAP").
 
 - File server with shared SMB resources for:
 
@@ -97,10 +97,26 @@ WPKG implementation will require:
   * WPKG Script Log files;
 
   * WPKG Script Database files.
+]
+---
+layout: false
+.left-column[
+  ## WPKG Infrastructure
+]
+.right-column[
+WPKG implementation will require:
 
-- Web server and database server for WEB Interface (WPKG Express 2);
+- Web server and database server ("MySQL" or "Postgres") for WEB Interface (WPKG Express 2);
 
 - Client computers containing a WPKG script and a WPKG client.
+
+Not necessary:
+
+- [GraphViz](https://www.graphviz.org) to create dependency graph of "Packages", "Profiles" and "Hosts";
+
+- [smbclient](https://www.samba.org/samba/docs/current/man-html/smbclient.1.html) to access log files and databases of client computers for parsing content;
+
+- SMTP Server to send mail notifications to the administrator.
 ]
 ---
 template: inverse
@@ -163,7 +179,9 @@ name: packages-index
 
 - To perform a group operation on the selected packages, press the button (7). To perform the operation, press the button (8). To select all rows, press the button (9);
 
-- To change the number of displayed packages on the page, select the required value from the list (10).
+- To change the number of displayed packages on the page, select the required value from the list (10);
+
+- To clear the saved state of the filter (11), sort order (6) and number of lines on the page (10), click on the link "Packages" in breadcrumbs (13).
 ]
 ---
 name: packages-edit
@@ -286,16 +304,47 @@ name: packages-preview-xml
 .right-column[
 - If the package configuration XML (2) does not pass the validation scheme, lines containing errors will be highlighted;
 
-- To download the package configuration XML file, use the "operations menu" (1).
+- To download or edit the package configuration XML file, use the "operations menu" (1).
 ]
 ---
-name: packages-view-graph
+name: packages-edit-xml
 .left-column[
   ## Packages
   ### - Add / edit package
   ### - Create a package based on a template
   ### - View package information
   ### - Preview XML package
+  ### - Edit XML package
+]
+.right-column[
+.center[[![Edit XML package]({{ site.baseurl }}/img/packages-edit-xml.png)]({{ site.baseurl }}/img/packages-edit-xml.png)]
+]
+---
+.left-column[
+  ## Packages
+  ### - Add / edit package
+  ### - Create a package based on a template
+  ### - View package information
+  ### - Preview XML package
+  ### - Edit XML package
+]
+.right-column[
+- To start editing, place the cursor in the editor window (1);
+
+- Press Ctrl-Space, or type a "&lt;" character to activate autocompletion;
+
+- Press Ctrl-J to jump to the tag that matches the one under the cursor;
+
+- To save the information, use the button (2).
+]
+---
+name: packages-view-graph
+.left-column[
+  ## Packages
+  ### - Create a package based on a template
+  ### - View package information
+  ### - Preview XML package
+  ### - Edit XML package
   ### - View package relationship graph
 ]
 .right-column[
@@ -307,10 +356,10 @@ name: packages-view-graph
 ---
 .left-column[
   ## Packages
-  ### - Add / edit package
   ### - Create a package based on a template
   ### - View package information
   ### - Preview XML package
+  ### - Edit XML package
   ### - View package relationship graph
 ]
 .right-column[
@@ -324,9 +373,9 @@ name: packages-view-graph
 name: packages-view-chart
 .left-column[
   ## Packages
-  ### - Create a package based on a template
   ### - View package information
   ### - Preview XML package
+  ### - Edit XML package
   ### - View package relationship graph
   ### - View chart of the installed versions
 ]
@@ -342,8 +391,8 @@ name: packages-view-chart
 name: packages-additional-information
 .left-column[
   ## Packages
-  ### - View package information
   ### - Preview XML package
+  ### - Edit XML package
   ### - View package relationship graph
   ### - View chart of the installed versions
   ### - Additional information
@@ -368,8 +417,8 @@ name: packages-additional-information
 ---
 .left-column[
   ## Packages
-  ### - View package information
   ### - Preview XML package
+  ### - Edit XML package
   ### - View package relationship graph
   ### - View chart of the installed versions
   ### - Additional information
@@ -522,6 +571,46 @@ name: reports-index
   When clicked, a window opens for viewing all the reports of the corresponding state.
 ]
 ---
+name: mail-error-reporting
+.left-column[
+  ## Emails
+  ### - Error reporting
+]
+.right-column[
+.center[[![Error reporting]({{ site.baseurl }}img/mail-error-reporting.png)]({{ site.baseurl }}img/mail-error-reporting.png)]
+- Error reports are sent out when parsing log files located in the SMB share;
+
+- The email contains the following information (1):
+
+  * Hostname;
+
+  * Error type;
+
+  * Error text;
+
+  * Date the error occurred.
+
+- To [view](#logs-index) a complete list of error reports, click (2). 
+]
+---
+name: mail-disabled-unused
+.left-column[
+  ## Emails
+  ### - Error reporting
+  ### - Disabled unused hosts and profiles
+]
+.right-column[
+.center[[![Error reporting]({{ site.baseurl }}img/mail-disabled-unused.png)]({{ site.baseurl }}img/mail-disabled-unused.png)]
+- In order to disable unused Hosts and Profiles, select the menu item "Hosts" &rarr; "Disable unused";
+
+- The information for processing is obtained by comparing the list of active computer names received from the LDAP Server with the list of active Host and Profile.
+  Host names are compared as [Regular expressions](https://en.wikipedia.org/wiki/Regular_expression).
+
+- The email contains the following information (1):
+
+  * List of names of processed Hosts and Profiles.
+]
+---
 name: creating-config-wpkg
 .left-column[
   ## WPKG service
@@ -577,9 +666,24 @@ name: creating-config-wpkg
 
 - Use the tabs for more information (2);
 
-- Enter XML in the editor field (3). If the WPKG configuration XML does not pass the validation scheme, lines containing errors will be highlighted;
+- Select the required XML template type from the list (3).
+]
+---
+name: creating-config-wpkg
+.left-column[
+  ## WPKG service
+  ### - Creating a configuration file for WPKG
+  ### - Global variables list management
+  ### - XML creation in the editor
+]
+.right-column[
+- Enter XML in the editor field (4). If the WPKG configuration XML does not pass the validation scheme, lines containing errors will be highlighted;
 
-- To process the configuration or clear the editor, use the buttons (4).
+- Press Ctrl-Space, or type a "&lt;" character to activate autocompletion;
+
+- Press Ctrl-J to jump to the tag that matches the one under the cursor;
+
+- To process the configuration or clear the editor, use the buttons (5).
 ]
 ---
 name: links

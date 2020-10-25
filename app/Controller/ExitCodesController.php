@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2020, Andrey Klimov.
  * @package app.Controller
  */
 
@@ -146,9 +146,11 @@ class ExitCodesController extends AppController {
 		if (empty($fullName)) {
 			return $this->ViewExtension->setExceptionMessage(new NotFoundException(__('Invalid referrer ID or type for exit code')));
 		}
+		$breadCrumbs = $this->ExitCode->getBreadcrumbInfo(null, null, null, $refId);
+		$breadCrumbs[] = __('Adding');
 		if ($this->request->is('post')) {
 			$this->ExitCode->create();
-			if ($this->ExitCode->save($this->request->data)) {
+			if ($this->ExitCode->saveAndUpdateDate($this->request->data, $breadCrumbs)) {
 				$this->Flash->success(__('Exit code has been saved.'));
 
 				return $this->ViewExtension->redirectByUrl(null, 'package');
@@ -159,8 +161,6 @@ class ExitCodesController extends AppController {
 			$this->request->data = $this->ExitCode->getDefaultValues($refId);
 			$this->ViewExtension->setRedirectUrl(null, 'package');
 		}
-		$breadCrumbs = $this->ExitCode->getBreadcrumbInfo(null, null, null, $refId);
-		$breadCrumbs[] = __('Adding');
 		$pageHeader = __('Adding exit code');
 		$listRebootType = $this->ExitCode->ExitcodeRebootType->getListRebootTypes();
 
@@ -200,7 +200,7 @@ class ExitCodesController extends AppController {
 		$breadCrumbs[] = __('Editing');
 		$fullName = $this->ExitCode->getFullName($id, null, null, $refId);
 		if ($this->request->is(['post', 'put'])) {
-			if ($this->ExitCode->save($this->request->data)) {
+			if ($this->ExitCode->saveAndUpdateDate($this->request->data, $breadCrumbs)) {
 				$this->Flash->success(__('Exit code has been saved.'));
 
 				return $this->ViewExtension->redirectByUrl(null, 'package');

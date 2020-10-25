@@ -129,7 +129,7 @@ switch ($checkType) {
 				];
 				$valueLabel = __('Date');
 				$valueTooltip = '<div class="text-left">' .
-__("Format:
+					__("Format:
 - Relative timestamp (in minutes):
 * -100 Means the file timestamp is compared to the timestamp 100 minutes ago.
 * +50 Means the file timestamp is compared to the timestamp 50 minutes in the future.

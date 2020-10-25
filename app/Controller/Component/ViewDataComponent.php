@@ -21,7 +21,7 @@
  * wpkgExpress II: A web-based frontend to WPKG.
  *  Based on wpkgExpress by Brian White.
  * @copyright Copyright 2009, Brian White.
- * @copyright Copyright 2018, Andrey Klimov.
+ * @copyright Copyright 2018-2020, Andrey Klimov.
  * @package app.Controller.Component
  */
 
@@ -47,6 +47,10 @@ class ViewDataComponent extends BaseDataComponent {
 		if (!$this->_controller->Components->loaded('CakeTheme.Filter')) {
 			$this->_controller->Filter = $this->_controller->Components->load('CakeTheme.Filter');
 			$this->_controller->Filter->initialize($this->_controller);
+		}
+		if (!$this->_controller->Components->loaded('BookmarkTable')) {
+			$this->_controller->BookmarkTable = $this->_controller->Components->load('BookmarkTable', ['TargetModel' => $this->_targetName]);
+			$this->_controller->BookmarkTable->initialize($this->_controller);
 		}
 	}
 
@@ -90,7 +94,9 @@ class ViewDataComponent extends BaseDataComponent {
 				'group-data-del' => __('Delete selected items'),
 			];
 		}
+		$this->_controller->BookmarkTable->restoreBookmark();
 		$conditions = $defaultConditions + $this->_controller->Filter->getFilterConditions();
+
 		$usePost = true;
 		if ($this->_controller->request->is('post')) {
 			if (!$this->_modelTarget->Behaviors->loaded('GroupAction')) {
@@ -115,7 +121,13 @@ class ViewDataComponent extends BaseDataComponent {
 			}
 		}
 		$this->_controller->Paginator->settings = $this->_controller->paginate;
-		$data = $this->_controller->Paginator->paginate($this->_modelTarget->alias, $conditions);
+		try {
+			$data = $this->_controller->Paginator->paginate($this->_modelTarget->alias, $conditions);
+		} catch (Exception $e) {
+			$this->_controller->BookmarkTable->clearBookmark();
+			return $this->_controller->ViewExtension->setExceptionMessage($e);
+		}
+		$this->_controller->BookmarkTable->storeBookmark();
 		if (empty($data)) {
 			$this->_controller->Flash->information(__('%s not found', $targetNamePluralI18n));
 		}
@@ -170,6 +182,10 @@ class ViewDataComponent extends BaseDataComponent {
 		if (!method_exists($this->_modelTarget, 'get')) {
 			throw new InternalErrorException(__("Method '%s' is not found in target model", 'get'));
 		}
+		$resultValidate = $this->_validateId($id);
+		if ($resultValidate !== true) {
+			return $resultValidate;
+		}
 
 		$this->_controller->view = 'view';
 		$targetName = $this->_getTargetName();
@@ -182,9 +198,7 @@ class ViewDataComponent extends BaseDataComponent {
 		if ($this->_modelTarget->Behaviors->loaded('BreadCrumbExt') || method_exists($this->_modelTarget, 'getControllerName')) {
 			$controllerName = $this->_modelTarget->getControllerName();
 		}
-		if (!$this->_modelTarget->exists($id)) {
-			return $this->_controller->ViewExtension->setExceptionMessage(new NotFoundException(__('Invalid ID for %s', $targetNameI18n)));
-		}
+
 		$breadCrumbs = [];
 		if ($this->_modelTarget->Behaviors->loaded('BreadCrumbExt')) {
 			$breadCrumbs = $this->_modelTarget->getBreadcrumbInfo($id);
@@ -219,8 +233,16 @@ class ViewDataComponent extends BaseDataComponent {
 					__('Preview XML'),
 					['controller' => $controllerName, 'action' => 'preview', $data[$this->_modelTarget->alias]['id']],
 					['title' => __('Preview XML file'), 'data-toggle' => 'modal', 'data-modal-size' => 'lg']
-				]
+				],
 			];
+			if ($this->_controller->Components->loaded('ImportData')) {
+				$headerMenuActionsExt[] = [
+					'fas fa-pencil-alt',
+					__('Edit XML'),
+					['controller' => $controllerName, 'action' => 'import', $data[$this->_modelTarget->alias]['id']],
+					['title' => __('Editing XML file'), 'data-toggle' => 'modal', 'data-modal-size' => 'lg']
+				];
+			}
 			if (method_exists($this->_modelTarget, 'getDownloadName')) {
 				$headerMenuActionsExt[] = [
 					'fas fa-file-download',
