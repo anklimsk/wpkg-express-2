@@ -46,9 +46,7 @@ if (empty($outXML)) {
 }
 ?>
 <dl class="dl-horizontal dl-popup-modal">
-<?php
-	if (!empty($fullName)):
-?>
+<?php if (!empty($fullName)): ?>
 	<dt><?php echo __('Preview type') . ':'; ?></dt>
 	<dd><?php echo h($fullName); ?></dd>
 <?php endif; ?>

@@ -66,11 +66,9 @@ if (!isset($listTypes)) {
 	echo $this->Filter->createFilterForm($formInputs);
 ?>
 		</thead>
-<?php if (!empty($garbages) && $usePost) : ?>
+<?php if (!empty($garbages) && $usePost): ?>
 		<tfoot class="hide-popup">
-<?php
-	echo $this->Filter->createGroupActionControls($formInputs, $groupActions, true);
-?>
+	<?php echo $this->Filter->createGroupActionControls($formInputs, $groupActions, true); ?>
 		</tfoot>
 <?php endif; ?>
 		<tbody>

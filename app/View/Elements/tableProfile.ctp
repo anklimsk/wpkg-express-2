@@ -76,11 +76,9 @@ if (!isset($usePost)) {
 	echo $this->Filter->createFilterForm($formInputs);
 ?>
 		</thead>
-<?php if (!empty($profiles) && $usePost) : ?>
+<?php if (!empty($profiles) && $usePost): ?>
 		<tfoot>
-<?php
-	echo $this->Filter->createGroupActionControls($formInputs, $groupActions, true);
-?>
+	<?php echo $this->Filter->createGroupActionControls($formInputs, $groupActions, true); ?>
 		</tfoot>
 <?php endif; ?>
 		<tbody>

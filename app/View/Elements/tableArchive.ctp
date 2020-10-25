@@ -45,12 +45,10 @@ if (!isset($useGroupActions)) {
 <?php echo $this->Filter->openFilterForm($usePost); ?>
 	<table class="table table-hover table-striped table-condensed">
 <?php
-	if (!empty($fullName)):
-?>
+	if (!empty($fullName)): ?>
 		<caption><?php echo h($fullName); ?></caption>
-<?php
-	endif;
-?>
+	<?php
+	endif; ?>
 		<thead>
 <?php
 	$formInputs = [];
@@ -80,11 +78,9 @@ if (!isset($useGroupActions)) {
 	echo $this->Filter->createFilterForm($formInputs);
 ?>
 		</thead>
-<?php if (!empty($archives) && $usePost && $useGroupActions) : ?>
+<?php if (!empty($archives) && $usePost && $useGroupActions): ?>
 		<tfoot class="hide-popup">
-<?php
-	echo $this->Filter->createGroupActionControls($formInputs, $groupActions, true);
-?>
+	<?php echo $this->Filter->createGroupActionControls($formInputs, $groupActions, true); ?>
 		</tfoot>
 <?php endif; ?>
 		<tbody>

@@ -89,11 +89,9 @@ $dataUrl = $this->Html->url(['controller' => 'hosts', 'action' => 'drop', 'ext' 
 	echo $this->Filter->createFilterForm($formInputs);
 ?>
 			</thead>
-<?php if (!empty($hosts) && $usePost) : ?>
+<?php if (!empty($hosts) && $usePost): ?>
 			<tfoot>
-<?php
-	echo $this->Filter->createGroupActionControls($formInputs, $groupActions, true);
-?>
+	<?php echo $this->Filter->createGroupActionControls($formInputs, $groupActions, true); ?>
 			</tfoot>
 <?php endif; ?>
 			<tbody>

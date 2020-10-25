@@ -115,11 +115,9 @@ if ($this->Helpers->loaded('Paginator') && $shortBtnPagination) {
 	}
 ?>
 		</thead>
-<?php if (!$shortInfo && !empty($logs) && $usePost) : ?>
+<?php if (!$shortInfo && !empty($logs) && $usePost): ?>
 		<tfoot>
-<?php
-	echo $this->Filter->createGroupActionControls($formInputs, $groupActions, true);
-?>
+	<?php echo $this->Filter->createGroupActionControls($formInputs, $groupActions, true); ?>
 		</tfoot>
 <?php endif; ?>
 		<tbody>

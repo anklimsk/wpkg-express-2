@@ -258,22 +258,23 @@ if (!isset($showBtnExpand)) {
 <div class="tab-content">
 <?php
 	$isActive = true;
-	foreach ($tableBodyActions as $actionTypeId => $tableBodyItem):
-?>
-	<div role="tabpanel" class="tab-pane<?php echo ($isActive ? ' active' : ''); ?>" id="<?php echo $prefixActionsTab . $actionTypeId; ?>">
+	foreach ($tableBodyActions as $actionTypeId => $tableBodyItem): ?>
+	<div role="tabpanel"
+	     class="tab-pane<?php echo ($isActive ? ' active' : ''); ?>"
+	     id="<?php echo $prefixActionsTab . $actionTypeId; ?>">
 		<div data-toggle="draggable" data-url="<?php echo $dataUrl; ?>">
 			<table class="table table-hover table-striped table-condensed">
-<?php
+	<?php
 		if (!empty($fullName)) {
 			echo $this->Html->tag('caption', h($fullName));
 		}
 		echo $this->Html->tag('thead', $this->Html->tableHeaders($tableHeader));
 		echo $this->Html->tag('tbody', implode('', $tableBodyItem));
-?>
+	?>
 			</table>
 		</div>
 	</div>
-<?php
+	<?php
 		$isActive = false;
 	endforeach;
 ?>
